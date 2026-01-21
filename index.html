@@ -38,9 +38,9 @@
         .action-btn {
             padding: 12px; border-radius: 10px; text-decoration: none; text-align: center;
             font-size: 13px; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
-            cursor: pointer;
+            cursor: pointer; border: none; width: 100%; box-sizing: border-box;
         }
-        .btn-primary { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #0f172a; border: none; }
+        .btn-primary { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #0f172a; }
         .btn-primary:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4); }
         .btn-outline { border: 1px dashed rgba(255,255,255,0.2); color: var(--text-sub); background: transparent; }
         .btn-outline:hover { border-color: var(--accent); color: var(--text-main); background: rgba(255,255,255,0.05); }
@@ -77,17 +77,13 @@
         
         .card-title { font-size: 18px; font-weight: bold; margin: 0 0 12px 0; color: #fff; line-height: 1.4; }
         
-        /* ✨ 內文縮略樣式 */
         .card-body { 
             color: #cbd5e1; line-height: 1.6; white-space: pre-line; margin-bottom: 10px; font-size: 15px; 
-            /* 關鍵：限制行數 */
             display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
             transition: max-height 0.3s ease;
         }
-        /* 展開後的樣式 */
         .card-body.expanded { -webkit-line-clamp: unset; overflow: visible; }
 
-        /* ✨ 展開/收起按鈕 */
         .read-more-btn {
             color: var(--accent); font-size: 13px; font-weight: bold; cursor: pointer; margin-bottom: 15px; display: inline-block;
         }
@@ -101,7 +97,6 @@
         }
         .card-link:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3); }
 
-        /* 手機版適配 */
         @media (max-width: 900px) {
             body { flex-direction: column; overflow: auto; height: auto; }
             .sidebar { width: 100%; padding: 15px; position: sticky; top: 0; }
@@ -123,7 +118,7 @@
         <div class="brand">Lingo.Space</div>
         <div class="nav-btn active" onclick="showPage('home')"><span class="nav-icon">🏠</span> 首頁動態</div>
         <div class="nav-btn" onclick="showPage('about')"><span class="nav-icon">👤</span> 關於我</div>
-        <div class="nav-btn" onclick="window.open('https://docs.google.com/spreadsheets/u/0/', '_blank')"><span class="nav-icon">✏️</span> 開啟 Excel 後台</div>
+        <div class="nav-btn" onclick="checkExcelPass()"><span class="nav-icon">✏️</span> 開啟 Excel 後台</div>
 
         <div class="bottom-actions">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfq4vQDMfnBrIBf6ljOqKuzWIE8u7NoNJvVZjkAw27WK5rsPA/viewform?usp=publish-editor" target="_blank" class="action-btn btn-primary">📤 上傳檔案給我</a>
@@ -155,6 +150,11 @@
 
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTH7CNeiMc193VcP1EEMhu90fVUmEuBLBhL6m13boyfz2DcocrVknLqMXVoa8R88eRRNmJT9pPuHP3Q/pub?gid=0&single=true&output=csv";
+        
+        // ✨ 設定密碼
+        const EXCEL_PASSWORD = "2djilxjl"; 
+        const EXCEL_URL = "https://docs.google.com/spreadsheets/d/1TH7CNeiMc193VcP1EEMhu90fVUmEuBLBhL6m13boyfz2DcocrVknLqMXVoa8R88eRRNmJT9pPuHP3Q/edit"; 
+        
         const FAMILY_PASSWORD = "4343818"; 
         const SECRET_LINKS = { cloud: "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec" };
 
@@ -167,10 +167,18 @@
             if(pageId === 'about') btns[1].classList.add('active');
         }
 
-        function loadBlogPosts() {
-            // 強制更新資料 (Cache Buster)
-            const nocacheUrl = SHEET_CSV_URL + "&t=" + new Date().getTime();
+        // ✨ 檢查 Excel 後台密碼的功能
+        function checkExcelPass() {
+            let input = prompt("🔐 請輸入後台管理密碼：");
+            if (input === EXCEL_PASSWORD) {
+                window.open(EXCEL_URL, '_blank');
+            } else if (input !== null) {
+                alert("❌ 密碼錯誤，無法開啟後台。");
+            }
+        }
 
+        function loadBlogPosts() {
+            const nocacheUrl = SHEET_CSV_URL + "&t=" + new Date().getTime();
             Papa.parse(nocacheUrl, {
                 download: true,
                 header: true,
@@ -179,7 +187,7 @@
                     const container = document.getElementById('blog-container');
                     const filterContainer = document.getElementById('category-filters');
                     
-                    if (posts.length === 0) {
+                    if (!posts || posts.length === 0 || !posts[0]['標題']) {
                         container.innerHTML = '<div class="loading">目前沒有文章。</div>';
                         return;
                     }
@@ -217,21 +225,15 @@
                             linkHtml = `<a href="${post['連結']}" target="_blank" class="card-link">🔗 開啟連結 / 下載</a>`;
                         }
 
-                        // ✨ 內容區塊：預設會被 CSS 截斷成 5 行
-                        // ✨ 按鈕區塊：點擊後切換 class
                         const contentId = `content-${index}`;
-                        
                         card.innerHTML = `
                             <div class="card-header">
                                 <span class="tag">${post['標籤'] || '公告'}</span>
                                 <span class="date">${post['日期'] || ''}</span>
                             </div>
                             <div class="card-title">${post['標題'] || '(無標題)'}</div>
-                            
                             <div id="${contentId}" class="card-body">${post['內容'] || ''}</div>
-                            
                             <div class="read-more-btn" onclick="toggleReadMore('${contentId}', this)">⬇️ 展開全文</div>
-
                             ${linkHtml}
                         `;
                         container.appendChild(card);
@@ -241,26 +243,16 @@
             });
         }
 
-        // ✨ 展開/收起功能
         function toggleReadMore(elementId, btn) {
             const content = document.getElementById(elementId);
             content.classList.toggle('expanded');
-            
-            if (content.classList.contains('expanded')) {
-                btn.innerText = "⬆️ 收起文章";
-            } else {
-                btn.innerText = "⬇️ 展開全文";
-            }
+            btn.innerText = content.classList.contains('expanded') ? "⬆️ 收起文章" : "⬇️ 展開全文";
         }
 
         function filterPosts(targetTag) {
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {
-                if (targetTag === "全部" || card.dataset.tag === targetTag) {
-                    card.style.display = "flex"; 
-                } else {
-                    card.style.display = "none"; 
-                }
+                card.style.display = (targetTag === "全部" || card.dataset.tag === targetTag) ? "flex" : "none";
             });
         }
 
