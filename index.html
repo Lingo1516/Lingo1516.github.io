@@ -18,17 +18,16 @@
         
         body { margin: 0; font-family: 'Noto Sans TC', sans-serif; background: var(--bg-dark); color: var(--text-main); height: 100vh; display: flex; overflow: hidden; }
 
-        /* === 左側導航欄 (Sidebar) === */
+        /* 左側導航 */
         .sidebar {
-            width: 240px; /* 稍微縮窄側邊欄 */
-            background: #020617; border-right: 1px solid rgba(255,255,255,0.05);
+            width: 240px; background: #020617; border-right: 1px solid rgba(255,255,255,0.05);
             padding: 25px 15px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
             box-shadow: 4px 0 20px rgba(0,0,0,0.2); z-index: 10;
         }
-        .brand { font-size: 20px; /* 縮小 */ font-weight: bold; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; color: #fff; letter-spacing: 1px; padding-left: 10px;}
+        .brand { font-size: 20px; font-weight: bold; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; color: #fff; letter-spacing: 1px; padding-left: 10px;}
         
         .nav-btn {
-            padding: 10px 14px; /* 縮小 */ border-radius: 10px; cursor: pointer; transition: 0.2s;
+            padding: 10px 14px; border-radius: 10px; cursor: pointer; transition: 0.2s;
             color: var(--text-sub); display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 15px;
         }
         .nav-btn:hover, .nav-btn.active { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
@@ -36,32 +35,39 @@
 
         .bottom-actions { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
         
-        /* 按鈕樣式 */
         .action-btn {
-            padding: 12px; /* 縮小 */ border-radius: 10px; text-decoration: none; text-align: center;
-            font-size: 13px; /* 縮小 */ font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px; border-radius: 10px; text-decoration: none; text-align: center;
+            font-size: 13px; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
             cursor: pointer;
         }
         .btn-primary { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #0f172a; border: none; }
         .btn-primary:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4); }
-        
         .btn-outline { border: 1px dashed rgba(255,255,255,0.2); color: var(--text-sub); background: transparent; }
         .btn-outline:hover { border-color: var(--accent); color: var(--text-main); background: rgba(255,255,255,0.05); }
 
-        /* === 右側內容區 === */
-        .main-content { flex: 1; padding: 30px; /* 減少留白 */ overflow-y: auto; position: relative; scroll-behavior: smooth; }
-        
+        /* 右側內容區 */
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; position: relative; scroll-behavior: smooth; }
         .page { display: none; animation: fadeIn 0.4s ease; }
         .page.active { display: block; }
         
-        /* 大標題縮小 */
         h1 { margin-top: 0; border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 20px; font-size: 22px; }
 
-        /* 文章卡片樣式 - 調整 grid 讓卡片可以變窄 */
+        /* === ✨ 新增：分類目錄按鈕區 === */
+        #category-filters {
+            display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: rgba(255,255,255,0.05); color: var(--text-sub); border: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 14px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: 0.2s;
+        }
+        .filter-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .filter-btn.active { background: var(--accent); color: #0f172a; border-color: var(--accent); font-weight: bold; }
+
+        /* 文章卡片 */
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 20px; }
         
         .card {
-            background: var(--bg-card); border-radius: 14px; padding: 24px; /* 減少內部留白 */
+            background: var(--bg-card); border-radius: 14px; padding: 24px;
             border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
             display: flex; flex-direction: column;
         }
@@ -71,9 +77,7 @@
         .tag { background: rgba(56, 189, 248, 0.15); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
         .date { color: var(--text-sub); font-size: 13px; font-family: 'Inter', sans-serif; }
         
-        /* 卡片標題縮小 */
         .card-title { font-size: 18px; font-weight: bold; margin: 0 0 12px 0; color: #fff; line-height: 1.4; }
-        /* 內文縮小 */
         .card-body { color: #cbd5e1; line-height: 1.6; white-space: pre-line; margin-bottom: 20px; font-size: 15px; flex-grow: 1; }
         
         .card-link {
@@ -89,14 +93,13 @@
             body { flex-direction: column; overflow: auto; height: auto; }
             .sidebar { width: 100%; padding: 15px; position: sticky; top: 0; }
             .main-content { padding: 15px; }
-            .blog-grid { grid-template-columns: 1fr; } /* 手機版維持單欄 */
+            .blog-grid { grid-template-columns: 1fr; } 
             .nav-btn { display: inline-flex; width: auto; margin-right: 10px; padding: 8px 12px; font-size: 14px; }
             .bottom-actions { flex-direction: row; margin-top: 15px; }
             .action-btn { flex: 1; }
             h1 { font-size: 20px; margin-bottom: 15px; }
             .card { padding: 20px; }
         }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .loading { text-align: center; color: var(--text-sub); padding: 40px; font-size: 16px; }
     </style>
@@ -105,36 +108,24 @@
 
     <nav class="sidebar">
         <div class="brand">Lingo.Space</div>
-        
-        <div class="nav-btn active" onclick="showPage('home')">
-            <span class="nav-icon">🏠</span> 首頁動態
-        </div>
-        <div class="nav-btn" onclick="showPage('about')">
-            <span class="nav-icon">👤</span> 關於我
-        </div>
-        <div class="nav-btn" onclick="window.open('https://docs.google.com/spreadsheets/u/0/', '_blank')">
-            <span class="nav-icon">✏️</span> 開啟 Excel 後台
-        </div>
+        <div class="nav-btn active" onclick="showPage('home')"><span class="nav-icon">🏠</span> 首頁動態</div>
+        <div class="nav-btn" onclick="showPage('about')"><span class="nav-icon">👤</span> 關於我</div>
+        <div class="nav-btn" onclick="window.open('https://docs.google.com/spreadsheets/u/0/', '_blank')"><span class="nav-icon">✏️</span> 開啟 Excel 後台</div>
 
         <div class="bottom-actions">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfq4vQDMfnBrIBf6ljOqKuzWIE8u7NoNJvVZjkAw27WK5rsPA/viewform?usp=publish-editor" target="_blank" class="action-btn btn-primary">
-                📤 上傳檔案給我
-            </a>
-            
-            <a href="https://drive.google.com/drive/folders/1k_373-1HTu1bBFHNuEJiWE1-75PqUz1gc7XVR8-9n0jdiON6gAlGKMJHnDEhU6BmS2h_hlSl?usp=sharing" target="_blank" class="action-btn btn-outline" style="border-style: solid; border-color: rgba(255,255,255,0.1);">
-                📂 瀏覽共享雲端
-            </a>
-
-            <button onclick="checkPassAndOpen('cloud')" class="action-btn btn-outline">
-                🔒 管理者區域
-            </button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfq4vQDMfnBrIBf6ljOqKuzWIE8u7NoNJvVZjkAw27WK5rsPA/viewform?usp=publish-editor" target="_blank" class="action-btn btn-primary">📤 上傳檔案給我</a>
+            <a href="https://drive.google.com/drive/folders/1k_373-1HTu1bBFHNuEJiWE1-75PqUz1gc7XVR8-9n0jdiON6gAlGKMJHnDEhU6BmS2h_hlSl?usp=sharing" target="_blank" class="action-btn btn-outline" style="border-style: solid; border-color: rgba(255,255,255,0.1);">📂 瀏覽共享雲端</a>
+            <button onclick="checkPassAndOpen('cloud')" class="action-btn btn-outline">🔒 管理者區域</button>
         </div>
     </nav>
 
     <main class="main-content">
-        
         <div id="home" class="page active">
             <h1>最新公告與資源</h1>
+            
+            <div id="category-filters">
+                </div>
+
             <div id="blog-container" class="blog-grid">
                 <div class="loading">正在從 Google Excel 讀取資料中...</div>
             </div>
@@ -144,78 +135,84 @@
             <h1>關於這個空間</h1>
             <div class="card">
                 <div class="card-body">
-                    這是 Lingo 的個人分享空間。
-                    <br><br>
+                    這是 Lingo 的個人分享空間。<br><br>
                     此網站的內容是由 Google 試算表即時連動生成的。
                     你可以透過左側的按鈕上傳檔案給我，所有的檔案都會彙整到共享雲端中。
-                    <br><br>
-                    若有任何問題，請透過公告中的聯絡方式聯繫我。
                 </div>
             </div>
         </div>
-
     </main>
 
     <script>
-        // ==========================================
-        // ⚙️ 核心設定區
-        // ==========================================
-        
-        // ✅ 已填入你的 Excel CSV 連結
+        // ✅ 你的 Excel CSV 連結
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTH7CNeiMc193VcP1EEMhu90fVUmEuBLBhL6m13boyfz2DcocrVknLqMXVoa8R88eRRNmJT9pPuHP3Q/pub?gid=0&single=true&output=csv";
-
         const FAMILY_PASSWORD = "4343818"; 
-        const SECRET_LINKS = {
-            cloud: "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec",
-        };
+        const SECRET_LINKS = { cloud: "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec" };
 
-        // ==========================================
-        // 🚀 程式邏輯 (自動處理資料)
-        // ==========================================
-
-        // 切換頁面
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
             const btns = document.querySelectorAll('.nav-btn');
             if(pageId === 'home') btns[0].classList.add('active');
             if(pageId === 'about') btns[1].classList.add('active');
         }
 
-        // 解析 Google Sheet CSV
         function loadBlogPosts() {
             Papa.parse(SHEET_CSV_URL, {
                 download: true,
                 header: true,
                 complete: function(results) {
-                    const posts = results.data.reverse(); // 讓最新的文章顯示在最上面
+                    const posts = results.data.reverse();
                     const container = document.getElementById('blog-container');
+                    const filterContainer = document.getElementById('category-filters');
                     
-                    // 如果讀不到資料
                     if (posts.length === 0) {
-                        container.innerHTML = '<div class="loading">目前沒有文章，請去 Excel 新增資料 (記得打標題列)。</div>';
+                        container.innerHTML = '<div class="loading">目前沒有文章。</div>';
                         return;
                     }
 
-                    container.innerHTML = ""; // 清空載入中訊息
+                    container.innerHTML = "";
+                    filterContainer.innerHTML = ""; // 清空舊按鈕
 
+                    // 1. 找出所有不重複的標籤 (Tags)
+                    const allTags = new Set();
+                    posts.forEach(p => { if(p['標籤']) allTags.add(p['標籤']); });
+
+                    // 2. 建立「全部」按鈕
+                    createFilterBtn("全部", true);
+
+                    // 3. 建立其他分類按鈕
+                    allTags.forEach(tag => createFilterBtn(tag, false));
+
+                    function createFilterBtn(tagName, isActive) {
+                        const btn = document.createElement('div');
+                        btn.className = `filter-btn ${isActive ? 'active' : ''}`;
+                        btn.innerText = tagName;
+                        btn.onclick = () => {
+                            // 切換按鈕樣式
+                            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                            btn.classList.add('active');
+                            // 執行篩選
+                            filterPosts(tagName);
+                        };
+                        filterContainer.appendChild(btn);
+                    }
+
+                    // 4. 產生文章卡片
                     posts.forEach(post => {
-                        // 防呆：如果這一行是空的，就跳過
                         if (!post['標題'] && !post['內容']) return;
 
-                        // 建立卡片
                         const card = document.createElement('div');
                         card.className = 'card';
-                        
+                        // 把標籤藏在屬性裡，方便篩選
+                        card.dataset.tag = post['標籤'] || "無分類";
+
                         let linkHtml = '';
-                        // 如果 Excel 的「連結」欄位有東西，才顯示按鈕
                         if (post['連結'] && post['連結'].trim() !== '') {
                             linkHtml = `<a href="${post['連結']}" target="_blank" class="card-link">🔗 開啟連結 / 下載</a>`;
                         }
 
-                        // 組合 HTML
                         card.innerHTML = `
                             <div class="card-header">
                                 <span class="tag">${post['標籤'] || '公告'}</span>
@@ -228,9 +225,18 @@
                         container.appendChild(card);
                     });
                 },
-                error: function(err) {
-                    document.getElementById('blog-container').innerHTML = '<div class="loading">❌ 讀取失敗，請確認網路連線。</div>';
-                    console.error(err);
+                error: function(err) { container.innerHTML = '<div class="loading">❌ 讀取失敗</div>'; }
+            });
+        }
+
+        // 篩選功能
+        function filterPosts(targetTag) {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (targetTag === "全部" || card.dataset.tag === targetTag) {
+                    card.style.display = "flex"; // 顯示
+                } else {
+                    card.style.display = "none"; // 隱藏
                 }
             });
         }
@@ -241,9 +247,7 @@
             else if (inputPass !== null) alert("密碼錯誤");
         }
 
-        // 啟動！
         loadBlogPosts();
-
     </script>
 </body>
 </html>
