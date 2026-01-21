@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>家庭雲端入口</title>
+<meta name="description" content="BeeStation 家庭文件與旅遊攻略的一頁式入口">
+<style>
+:root{
+  --bg:#fffaf7;--panel:rgba(255,255,255,.85);--text:#1f2937;--muted:#6b7280;
+  --line:rgba(31,41,55,.12);--accent:#1f4e79;--accent2:#6aa37c;--accent3:#f0b7c3;
+  --shadow:0 10px 30px rgba(0,0,0,.08);--r:18px;
+}
+html[data-theme="dark"]{
+  --bg:#0b1220;--panel:rgba(255,255,255,.08);--text:#e5e7eb;--muted:#a1a1aa;
+  --line:rgba(229,231,235,.14);--shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC",Arial;
+  background:radial-gradient(900px 500px at 15% 10%, rgba(240,183,195,.25), transparent 55%),
+             radial-gradient(900px 500px at 80% 20%, rgba(106,163,124,.22), transparent 55%),
+             var(--bg);color:var(--text);
+}
+.container{max-width:1100px;margin:0 auto;padding:22px}
+.topbar{position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);
+  background:color-mix(in srgb, var(--bg) 70%, transparent);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand__dot{width:12px;height:12px;border-radius:999px;
+  background:linear-gradient(135deg,var(--accent3),var(--accent2))}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a,.nav button{padding:8px 10px;border-radius:12px;border:1px solid var(--line);
+  background:var(--panel);color:var(--text);cursor:pointer}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:16px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:18px;box-shadow:var(--shadow)}
+h1{font-size:clamp(26px,3.2vw,40px);margin:.2em 0}
+p{color:var(--muted);line-height:1.7}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:var(--panel)}
+.btn.primary{background:linear-gradient(135deg, rgba(31,78,121,.2), rgba(106,163,124,.16))}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.grid3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.grid,.grid3{grid-template-columns:1fr}}
+.card{padding:14px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.06)}
+.card:hover{background:rgba(31,78,121,.1)}
+footer{margin-top:24px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:13px}
+section{scroll-margin-top:90px}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand__dot"></span>家庭雲端入口</div>
+  <div class="nav">
+    <a href="#home">首頁</a>
+    <a href="#family">家庭文件</a>
+    <a href="#travel">旅遊攻略</a>
+    <a href="#help">使用說明</a>
+    <button id="theme">深色模式</button>
+  </div>
+</header>
+
+<main class="container">
+<section id="home" class="hero">
+  <div class="panel">
+    <h1>BeeStation 家庭雲端入口</h1>
+    <p>一個頁面就夠：點卡片直接打開 BeeStation 分享的資料夾或檔案。</p>
+    <div class="actions">
+      <a class="btn primary" href="#family">家庭文件</a>
+      <a class="btn" href="#travel">旅遊攻略</a>
+      <a class="btn" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank" rel="noopener">常用連結</a>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>快速入口</h3>
+    <div class="grid">
+      <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">📁 家庭重要文件</a>
+      <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">🧾 收據 / 帳單</a>
+      <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">✈️ 旅遊資料夾</a>
+      <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">⭐ 常用連結</a>
+    </div>
+  </div>
+</section>
+
+<section id="family" class="panel" style="margin-top:16px">
+  <h2>家庭文件</h2>
+  <div class="grid3">
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">📄 保險 / 合約</a>
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">🔧 家電保固</a>
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">🪪 身分證明</a>
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">💼 財務 / 稅務</a>
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">🏠 房屋 / 租約</a>
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">🧾 帳單 / 收據</a>
+  </div>
+</section>
+
+<section id="travel" class="panel" style="margin-top:16px">
+  <h2>旅遊攻略</h2>
+  <div class="grid3">
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">🇯🇵 日本福岡</a>
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">🇰🇷 韓國首爾</a>
+    <a class="card" href="http://kq0yur8b7t9kbear4gashzac7keuyfx.quickconnect.to/sharing/WH2EP5Gnd" target="_blank">🚄 台中小旅行</a>
+  </div>
+</section>
+
+<section id="help" class="panel" style="margin-top:16px">
+  <h2>給家人的 1 分鐘說明</h2>
+  <ol>
+    <li>打開這個檔案（index.html）。</li>
+    <li>點上方或卡片，會開啟 BeeStation 分享頁。</li>
+    <li>看到內容就代表你有權限。</li>
+  </ol>
+</section>
+
+<footer>
+  © <span id="y"></span> 家庭雲端入口
+</footer>
+</main>
+
+<script>
+const root=document.documentElement;
+const btn=document.getElementById('theme');
+const saved=localStorage.getItem('theme');
+if(saved==='dark')root.setAttribute('data-theme','dark');
+btn.onclick=()=>{
+  const d=root.getAttribute('data-theme')==='dark';
+  if(d){root.removeAttribute('data-theme');localStorage.setItem('theme','light');btn.textContent='深色模式';}
+  else{root.setAttribute('data-theme','dark');localStorage.setItem('theme','dark');btn.textContent='淺色模式';}
+};
+document.getElementById('y').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
