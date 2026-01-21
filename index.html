@@ -52,7 +52,6 @@
         
         h1 { margin-top: 0; border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 20px; font-size: 22px; }
 
-        /* 分類目錄按鈕 */
         #category-filters { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         .filter-btn {
             background: rgba(255,255,255,0.05); color: var(--text-sub); border: 1px solid rgba(255,255,255,0.1);
@@ -61,7 +60,6 @@
         .filter-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
         .filter-btn.active { background: var(--accent); color: #0f172a; border-color: var(--accent); font-weight: bold; }
 
-        /* 文章卡片 */
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 20px; }
         
         .card {
@@ -118,7 +116,10 @@
         <div class="brand">Lingo.Space</div>
         <div class="nav-btn active" onclick="showPage('home')"><span class="nav-icon">🏠</span> 首頁動態</div>
         <div class="nav-btn" onclick="showPage('about')"><span class="nav-icon">👤</span> 關於我</div>
-        <div class="nav-btn" onclick="checkExcelPass()"><span class="nav-icon">✏️</span> 開啟 Excel 後台</div>
+        
+        <div class="nav-btn" onclick="let p=prompt('🔐 請輸入後台管理密碼：'); if(p==='2djilxjl'){ window.open('https://docs.google.com/spreadsheets/u/0/', '_blank'); } else if(p!==null){ alert('❌ 密碼錯誤'); }">
+            <span class="nav-icon">✏️</span> 開啟 Excel 後台
+        </div>
 
         <div class="bottom-actions">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfq4vQDMfnBrIBf6ljOqKuzWIE8u7NoNJvVZjkAw27WK5rsPA/viewform?usp=publish-editor" target="_blank" class="action-btn btn-primary">📤 上傳檔案給我</a>
@@ -150,11 +151,6 @@
 
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTH7CNeiMc193VcP1EEMhu90fVUmEuBLBhL6m13boyfz2DcocrVknLqMXVoa8R88eRRNmJT9pPuHP3Q/pub?gid=0&single=true&output=csv";
-        
-        // ✨ 設定密碼
-        const EXCEL_PASSWORD = "2djilxjl"; 
-        const EXCEL_URL = "https://docs.google.com/spreadsheets/d/1TH7CNeiMc193VcP1EEMhu90fVUmEuBLBhL6m13boyfz2DcocrVknLqMXVoa8R88eRRNmJT9pPuHP3Q/edit"; 
-        
         const FAMILY_PASSWORD = "4343818"; 
         const SECRET_LINKS = { cloud: "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec" };
 
@@ -167,16 +163,6 @@
             if(pageId === 'about') btns[1].classList.add('active');
         }
 
-        // ✨ 檢查 Excel 後台密碼的功能
-        function checkExcelPass() {
-            let input = prompt("🔐 請輸入後台管理密碼：");
-            if (input === EXCEL_PASSWORD) {
-                window.open(EXCEL_URL, '_blank');
-            } else if (input !== null) {
-                alert("❌ 密碼錯誤，無法開啟後台。");
-            }
-        }
-
         function loadBlogPosts() {
             const nocacheUrl = SHEET_CSV_URL + "&t=" + new Date().getTime();
             Papa.parse(nocacheUrl, {
@@ -187,7 +173,7 @@
                     const container = document.getElementById('blog-container');
                     const filterContainer = document.getElementById('category-filters');
                     
-                    if (!posts || posts.length === 0 || !posts[0]['標題']) {
+                    if (!posts || posts.length === 0) {
                         container.innerHTML = '<div class="loading">目前沒有文章。</div>';
                         return;
                     }
