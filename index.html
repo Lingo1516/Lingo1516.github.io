@@ -3,134 +3,377 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>家庭智慧入口｜生活・旅遊・雲端</title>
+  <title>家庭中控中心 | Smart Home Hub</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg1:#0b1020; --bg2:#151a2f; --card:#1f2542;
-      --accent:#7dd3fc; --accent2:#a78bfa;
-      --text:#eef2ff; --muted:#a5b4fc;
+    :root {
+      --bg-dark: #0f172a;
+      --panel-bg: #1e293b;
+      --accent-primary: #38bdf8; /* 亮藍 */
+      --accent-secondary: #818cf8; /* 紫藍 */
+      --accent-success: #34d399; /* 綠 */
+      --accent-warn: #fbbf24; /* 黃 */
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: rgba(255,255,255,0.1);
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;
-      background:linear-gradient(135deg,var(--bg1),var(--bg2));
-      color:var(--text); min-height:100vh;
-    }
-    header{ padding:40px 20px 20px; text-align:center; }
-    header h1{ margin:0 0 10px; font-size:32px; letter-spacing:1px; }
-    header p{ margin:0; color:var(--muted); font-size:16px; }
-    .container{ max-width:1100px; margin:0 auto; padding:20px; }
-    
-    .main-action{ display:flex; flex-direction:column; align-items:center; gap:14px; margin:24px 0 40px; }
-    .cloud-btn{
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#020617; border:none; border-radius:18px;
-      padding:22px 35px; font-size:20px; font-weight:700;
-      cursor:pointer; box-shadow:0 10px 30px rgba(125,211,252,0.3);
-      transition: 0.3s;
-    }
-    .cloud-btn:hover{ transform: scale(1.05); }
-    .cloud-btn small{ display:block; font-size:13px; opacity:.8; margin-top:4px; }
 
-    .section{ margin-bottom:40px; }
-    .section h2{ margin:0 0 20px; font-size:22px; display:flex; align-items:center; gap:10px; color:var(--accent); }
-    .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+    * { box-sizing: border-box; outline: none; }
     
-    .card{
-      background:rgba(255,255,255,.05); border-radius:20px; padding:24px;
-      min-height:160px; display:flex; flex-direction:column; justify-content:space-between;
-      border:1px solid rgba(255,255,255,.1);
-      transition: 0.3s;
+    body {
+      margin: 0;
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    .card:hover{ background:rgba(255,255,255,.08); border-color:var(--accent); }
-    .card strong{ font-size:19px; color:#fff; display:block; margin-bottom:10px;}
-    .card p{ font-size:15px; color:#c7d2fe; line-height:1.6; margin: 0; }
+
+    /* 頂部導航 */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand { font-size: 20px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+    .brand span { color: var(--accent-primary); }
+    .date-display { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+
+    /* 主要佈局 */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 300px 1fr; /* 左側欄 + 右側主區 */
+      gap: 30px;
+    }
+
+    /* 響應式：手機版變單欄 */
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+    }
+
+    /* 卡片通用樣式 */
+    .card {
+      background: var(--panel-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .card h3 { margin: 0 0 15px 0; font-size: 16px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
     
-    .card button{
-      align-self:flex-start; margin-top:20px; background:rgba(125,211,252,0.1);
-      border:1px solid var(--accent); color:var(--accent);
-      padding:10px 20px; border-radius:12px; cursor:pointer; font-size:15px; font-weight:bold;
+    /* 左側欄：重要資訊與留言板 */
+    .sidebar { display: flex; flex-direction: column; gap: 24px; }
+
+    /* 1. 家庭留言板 (互動區) */
+    .memo-card textarea {
+      width: 100%;
+      height: 150px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-main);
+      padding: 12px;
+      resize: none;
+      font-size: 15px;
+      line-height: 1.6;
     }
-    .card button:hover{ background:var(--accent); color:#000; }
-    footer{ text-align:center; padding:50px; font-size:14px; color:#94a3b8; border-top:1px solid rgba(255,255,255,0.1); }
+    .memo-card textarea:focus { border-color: var(--accent-primary); }
+    .save-status { font-size: 12px; color: var(--accent-success); margin-top: 5px; height: 18px; opacity: 0; transition: opacity 0.3s;}
+
+    /* 2. 緊急備忘錄 (靜態資訊) */
+    .info-list { list-style: none; padding: 0; margin: 0; }
+    .info-list li {
+      display: flex; justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .info-list li:last-child { border-bottom: none; }
+    .info-label { color: var(--text-muted); }
+    .info-value { font-family: monospace; font-size: 15px; color: var(--accent-secondary); user-select: all; cursor: pointer; }
+
+    /* 右側主區 */
+    .main-grid { display: grid; gap: 24px; }
+
+    /* 3. 核心雲端按鈕 (特別顯眼) */
+    .hero-btn {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #0f172a;
+      border: none;
+      width: 100%;
+      padding: 30px;
+      border-radius: 16px;
+      cursor: pointer;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
+    .hero-btn h2 { margin: 0; font-size: 24px; }
+    .hero-btn p { margin: 5px 0 0; opacity: 0.8; font-size: 15px; }
+    .hero-icon { position: absolute; right: 20px; bottom: -10px; font-size: 80px; opacity: 0.2; transform: rotate(-15deg); }
+
+    /* 4. 購物/待辦清單 (互動區) */
+    .todo-input-group { display: flex; gap: 10px; margin-bottom: 15px; }
+    .todo-input-group input {
+      flex: 1; background: rgba(0,0,0,0.2); border: 1px solid var(--border);
+      padding: 10px 15px; border-radius: 8px; color: #fff;
+    }
+    .todo-input-group button {
+      background: var(--accent-primary); color: #000; border: none;
+      padding: 0 20px; border-radius: 8px; cursor: pointer; font-weight: bold;
+    }
+    .todo-list { list-style: none; padding: 0; margin: 0; }
+    .todo-list li {
+      background: rgba(255,255,255,0.03);
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeIn 0.3s ease;
+    }
+    .todo-list li span { cursor: pointer; }
+    .todo-list li.done span { text-decoration: line-through; color: var(--text-muted); }
+    .delete-btn { color: #ef4444; cursor: pointer; background: none; border: none; font-size: 18px; }
+
+    /* 5. 快速連結網格 */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+    }
+    .link-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .link-item:hover { background: rgba(255,255,255,0.08); border-color: var(--accent-primary); transform: translateY(-2px); }
+    .link-icon { font-size: 28px; }
+    .link-name { font-size: 14px; font-weight: 500; }
+    .link-cat { font-size: 12px; color: var(--text-muted); }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
   </style>
 </head>
 <body>
 
 <header>
-  <h1>🏠 家庭智慧入口</h1>
-  <p>全家人的雲端、生活、旅遊導航</p>
+  <div class="brand">
+    🏠 Family<span>Hub</span>
+  </div>
+  <div class="date-display" id="dateDisplay">
+    載入中...
+  </div>
 </header>
 
 <div class="container">
+  
+  <aside class="sidebar">
+    
+    <div class="card memo-card">
+      <h3>📌 家人留言板 <small>(自動儲存)</small></h3>
+      <textarea id="familyMemo" placeholder="例如：爸爸今晚不回家吃晚餐、Wifi費已繳..."></textarea>
+      <div id="saveStatus" class="save-status">✓ 已儲存</div>
+    </div>
 
-  <div class="main-action">
-    <button class="cloud-btn" onclick="openCloud()">
-      ☁️ 打開家庭雲端硬碟
-      <small>存取重要文件、合約、保險資料</small>
+    <div class="card">
+      <h3>🔐 快速資訊 (點擊複製)</h3>
+      <ul class="info-list">
+        <li>
+          <span class="info-label">WiFi 密碼</span>
+          <span class="info-value" onclick="copyText(this)">HomeSweetHome_888</span>
+        </li>
+        <li>
+          <span class="info-label">車牌號碼</span>
+          <span class="info-value" onclick="copyText(this)">ABC-1234</span>
+        </li>
+        <li>
+          <span class="info-label">統編/載具</span>
+          <span class="info-value" onclick="copyText(this)">/AB12345</span>
+        </li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <main class="main-grid">
+
+    <button class="hero-btn" onclick="openCloud()">
+      <h2>📂 進入家庭雲端系統</h2>
+      <p>存取合約、保險資料、家庭帳本 (Google Script)</p>
+      <div class="hero-icon">☁️</div>
     </button>
-  </div>
 
-  <div class="section">
-    <h2>📁 生活工具箱</h2>
-    <div class="grid">
-      <div class="card">
-        <strong>📸 家族相簿</strong>
-        <p>查看全家人的照片紀錄與生活備份。</p>
-        <button onclick="openExternal('https://photos.google.com')">開啟相簿</button>
+    <div class="card">
+      <h3>🛒 購物與待辦清單</h3>
+      <div class="todo-input-group">
+        <input type="text" id="todoInput" placeholder="輸入要買的東西或代辦事項..." onkeypress="handleEnter(event)">
+        <button onclick="addTodo()">新增</button>
       </div>
-      <div class="card">
-        <strong>📍 Google 地圖</strong>
-        <p>找餐廳、儲存景點或規劃旅遊路線。</p>
-        <button onclick="openExternal('https://www.google.com.tw/maps')">打開地圖</button>
-      </div>
-      <div class="card">
-        <strong>📅 家族行事曆</strong>
-        <p>確認家人的聚餐、出遊與重要行程。</p>
-        <button onclick="openExternal('https://calendar.google.com')">開啟日曆</button>
+      <ul id="todoList" class="todo-list">
+        </ul>
+    </div>
+
+    <div class="card">
+      <h3>🚀 快速傳送門</h3>
+      <div class="links-grid">
+        <a href="https://mail.google.com" target="_blank" class="link-item">
+          <span class="link-icon">📧</span>
+          <span class="link-name">Gmail 信箱</span>
+          <span class="link-cat">帳單/通知</span>
+        </a>
+        
+        <a href="https://photos.google.com" target="_blank" class="link-item">
+          <span class="link-icon">📸</span>
+          <span class="link-name">Google 相簿</span>
+          <span class="link-cat">生活回憶</span>
+        </a>
+        <a href="https://calendar.google.com" target="_blank" class="link-item">
+          <span class="link-icon">📅</span>
+          <span class="link-name">家庭日曆</span>
+          <span class="link-cat">行程規劃</span>
+        </a>
+        <a href="https://keep.google.com" target="_blank" class="link-item">
+          <span class="link-icon">💡</span>
+          <span class="link-name">Google Keep</span>
+          <span class="link-cat">記事本</span>
+        </a>
+
+        <a href="https://www.google.com.tw/maps" target="_blank" class="link-item">
+          <span class="link-icon">📍</span>
+          <span class="link-name">Google 地圖</span>
+          <span class="link-cat">導航/景點</span>
+        </a>
+        <a href="https://www.booking.com" target="_blank" class="link-item">
+          <span class="link-icon">🏨</span>
+          <span class="link-name">Booking</span>
+          <span class="link-cat">訂房</span>
+        </a>
+        <a href="https://www.thsrc.com.tw" target="_blank" class="link-item">
+          <span class="link-icon">🚄</span>
+          <span class="link-name">高鐵訂票</span>
+          <span class="link-cat">交通</span>
+        </a>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2>✈️ 旅遊與交通</h2>
-    <div class="grid">
-      <div class="card">
-        <strong>🏨 住宿預訂 (Booking)</strong>
-        <p>查詢飯店、民宿，管理現有訂單。</p>
-        <button onclick="openExternal('https://www.booking.com')">前往訂房</button>
-      </div>
-      <div class="card">
-        <strong>🚄 高鐵訂票</strong>
-        <p>快速查詢時刻表與線上訂票。</p>
-        <button onclick="openExternal('https://www.thsrc.com.tw')">前往高鐵</button>
-      </div>
-      <div class="card">
-        <strong>📧 Gmail 郵件</strong>
-        <p>檢查帳單通知與電子門票。</p>
-        <button onclick="openExternal('https://mail.google.com')">開啟 Gmail</button>
-      </div>
-    </div>
-  </div>
-
+  </main>
 </div>
 
-<footer>
-  只要收藏這一頁，生活大小事都搞定
-</footer>
-
 <script>
-// 這就是你剛才拿到的雲端唯一連結，我已經幫你填好了
-const CLOUD_URL = "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec";
+  // 1. 雲端連結設定
+  const CLOUD_URL = "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec";
+  function openCloud(){ window.open(CLOUD_URL, "_blank"); }
 
-function openCloud(){
-  window.open(CLOUD_URL, "_blank");
-}
+  // 2. 日期顯示
+  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+  document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('zh-TW', dateOptions);
 
-function openExternal(url){
-  window.open(url, "_blank");
-}
+  // 3. 留言板功能 (使用 LocalStorage)
+  const memoEl = document.getElementById('familyMemo');
+  const statusEl = document.getElementById('saveStatus');
+
+  // 載入已存留言
+  if(localStorage.getItem('familyMemo')) {
+    memoEl.value = localStorage.getItem('familyMemo');
+  }
+
+  // 自動儲存
+  memoEl.addEventListener('input', () => {
+    localStorage.setItem('familyMemo', memoEl.value);
+    statusEl.style.opacity = '1';
+    setTimeout(() => { statusEl.style.opacity = '0'; }, 2000);
+  });
+
+  // 4. 複製功能
+  function copyText(element) {
+    const text = element.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = element.innerText;
+      element.innerText = "已複製!";
+      element.style.color = "#34d399";
+      setTimeout(() => {
+        element.innerText = original;
+        element.style.color = "";
+      }, 1000);
+    });
+  }
+
+  // 5. 待辦事項功能
+  let todos = JSON.parse(localStorage.getItem('familyTodos')) || [];
+  const todoListEl = document.getElementById('todoList');
+  const todoInput = document.getElementById('todoInput');
+
+  function renderTodos() {
+    todoListEl.innerHTML = '';
+    todos.forEach((todo, index) => {
+      const li = document.createElement('li');
+      if(todo.done) li.classList.add('done');
+      li.innerHTML = `
+        <span onclick="toggleTodo(${index})">${todo.text}</span>
+        <button class="delete-btn" onclick="deleteTodo(${index})">×</button>
+      `;
+      todoListEl.appendChild(li);
+    });
+    localStorage.setItem('familyTodos', JSON.stringify(todos));
+  }
+
+  function addTodo() {
+    const text = todoInput.value.trim();
+    if(text) {
+      todos.push({ text: text, done: false });
+      todoInput.value = '';
+      renderTodos();
+    }
+  }
+
+  function toggleTodo(index) {
+    todos[index].done = !todos[index].done;
+    renderTodos();
+  }
+
+  function deleteTodo(index) {
+    todos.splice(index, 1);
+    renderTodos();
+  }
+
+  function handleEnter(e) {
+    if(e.key === 'Enter') addTodo();
+  }
+
+  // 初始化列表
+  renderTodos();
+
 </script>
 
 </body>
