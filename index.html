@@ -3,245 +3,122 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>家庭入口｜生活・旅遊・雲端</title>
-
+  <title>家庭智慧入口｜一鍵通往全家生活</title>
   <style>
     :root{
-      --bg1:#0b1020;
-      --bg2:#151a2f;
-      --card:#1f2542;
-      --accent:#7dd3fc;
-      --accent2:#a78bfa;
-      --text:#eef2ff;
-      --muted:#a5b4fc;
+      --bg1:#0b1020; --bg2:#151a2f; --card:#1f2542;
+      --accent:#7dd3fc; --accent2:#a78bfa;
+      --text:#eef2ff; --muted:#a5b4fc;
     }
-
     *{box-sizing:border-box}
     body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;
+      margin:0; font-family:-apple-system,sans-serif;
       background:linear-gradient(135deg,var(--bg1),var(--bg2));
-      color:var(--text);
+      color:var(--text); min-height:100vh;
     }
-
-    header{
-      padding:32px 20px 20px;
-      text-align:center;
-    }
-
-    header h1{
-      margin:0 0 10px;
-      font-size:28px;
-      letter-spacing:1px;
-    }
-
-    header p{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
-    }
-
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      padding:20px;
-    }
-
-    .main-action{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-      margin:24px 0 40px;
-    }
-
+    header{padding:40px 20px; text-align:center;}
+    header h1{margin:0 0 10px; font-size:32px;}
+    header p{color:var(--muted); font-size:16px;}
+    .container{max-width:1100px; margin:0 auto; padding:20px;}
+    .main-action{display:flex; flex-direction:column; align-items:center; gap:16px; margin-bottom:40px;}
+    
+    /* 按鈕樣式 */
     .cloud-btn{
       background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#020617;
-      border:none;
-      border-radius:16px;
-      padding:18px 28px;
-      font-size:18px;
-      font-weight:700;
-      cursor:pointer;
-      box-shadow:0 20px 40px rgba(0,0,0,.35);
+      color:#020617; border:none; border-radius:20px;
+      padding:20px 40px; font-size:20px; font-weight:bold;
+      cursor:pointer; box-shadow:0 10px 30px rgba(125,211,252,0.3);
+      transition: transform 0.2s;
     }
+    .cloud-btn:hover{transform:scale(1.05);}
+    .cloud-btn small{display:block; font-size:12px; opacity:.8;}
 
-    .cloud-btn small{
-      display:block;
-      font-size:12px;
-      font-weight:500;
-      opacity:.7;
-    }
-
-    .search-box{
-      width:100%;
-      max-width:520px;
-    }
-
-    .search-box input{
-      width:100%;
-      padding:14px 18px;
-      border-radius:14px;
-      border:none;
-      outline:none;
-      font-size:16px;
-    }
-
-    .section{
-      margin-bottom:36px;
-    }
-
-    .section h2{
-      margin:0 0 16px;
-      font-size:20px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:16px;
-    }
-
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;}
+    .section-title{margin:30px 0 15px; font-size:22px; color:var(--accent); border-left:4px solid var(--accent); padding-left:12px;}
+    
     .card{
-      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-      border-radius:18px;
-      padding:18px;
-      min-height:140px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+      background:rgba(255,255,255,0.05); border-radius:20px; padding:22px;
+      display:flex; flex-direction:column; justify-content:space-between;
+      border:1px solid rgba(255,255,255,0.1);
     }
-
-    .card strong{
-      font-size:17px;
+    .card h3{margin:0 0 10px; font-size:18px;}
+    .card p{font-size:14px; color:var(--muted); margin-bottom:20px; line-height:1.6;}
+    
+    .btn-link{
+      background:rgba(125,211,252,0.1); color:var(--accent);
+      border:1px solid var(--accent); padding:10px; border-radius:10px;
+      text-align:center; text-decoration:none; font-size:14px; font-weight:bold;
     }
-
-    .card p{
-      font-size:14px;
-      color:#c7d2fe;
-      line-height:1.5;
-    }
-
-    .card button{
-      align-self:flex-start;
-      margin-top:12px;
-      background:none;
-      border:none;
-      color:var(--accent);
-      font-size:14px;
-      cursor:pointer;
-    }
-
-    footer{
-      text-align:center;
-      padding:30px 16px;
-      font-size:13px;
-      color:#94a3b8;
-    }
+    .btn-link:hover{background:var(--accent); color:#000;}
+    footer{text-align:center; padding:50px; color:#64748b; font-size:14px;}
   </style>
 </head>
-
 <body>
 
 <header>
   <h1>🏠 家庭智慧入口</h1>
-  <p>一個入口，搞定雲端・生活・旅遊（給全家人用）</p>
+  <p>全家人的雲端、旅遊、生活工具箱</p>
 </header>
 
 <div class="container">
-
-  <!-- 唯一雲端入口 -->
+  
   <div class="main-action">
     <button class="cloud-btn" onclick="openCloud()">
-      ☁️ 打開家庭雲端
-      <small>唯一入口（重要文件都在這）</small>
+      ☁️ 打開專屬雲端硬碟
+      <small>點此存取家庭重要文件</small>
     </button>
-
-    <div class="search-box">
-      <input id="searchInput" placeholder="🔍 搜尋：旅遊、住宿、帳單、保險…" />
-    </div>
   </div>
 
-  <!-- 家庭生活 -->
-  <div class="section">
-    <h2>📁 家庭生活</h2>
-    <div class="grid">
-      <div class="card">
-        <strong>重要文件</strong>
-        <p>身分證、保險、合約、房屋資料集中管理。</p>
-        <button onclick="openCloud()">前往雲端</button>
-      </div>
-
-      <div class="card">
-        <strong>帳單 / 收據</strong>
-        <p>水電費、醫療收據、報稅資料。</p>
-        <button onclick="openCloud()">前往雲端</button>
-      </div>
-
-      <div class="card">
-        <strong>家庭備忘</strong>
-        <p>重要事項提醒、全家共用資訊。</p>
-        <button disabled>（視覺區塊）</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 旅遊生活 -->
-  <div class="section">
-    <h2>✈️ 旅遊與休閒</h2>
-    <div class="grid">
-      <div class="card">
-        <strong>旅遊資料</strong>
-        <p>機票、住宿、行程表，一次找齊。</p>
-        <button onclick="openCloud()">前往雲端</button>
-      </div>
-
-      <div class="card">
-        <strong>住宿平台</strong>
-        <p>Agoda / Booking / Airbnb。</p>
-        <button onclick="openExternal('https://www.booking.com')">開啟</button>
-      </div>
-
-      <div class="card">
-        <strong>交通查詢</strong>
-        <p>高鐵、台鐵、航班查詢。</p>
-        <button onclick="openExternal('https://www.google.com/maps')">開啟</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 說明 -->
-  <div class="section">
-    <h2>🧭 給家人的 1 分鐘說明</h2>
+  <div class="section-title">📁 家庭常用連結</div>
+  <div class="grid">
     <div class="card">
-      <p>
-        ① 想找文件 → 按「打開家庭雲端」<br>
-        ② 不確定放哪 → 用上面的搜尋<br>
-        ③ 其他卡片只是分類提示，不會迷路
-      </p>
+      <h3>📸 家庭相簿</h3>
+      <p>查看全家人的旅遊照片與生活紀錄。</p>
+      <a href="https://photos.google.com" target="_blank" class="btn-link">開啟 Google 相簿</a>
+    </div>
+    <div class="card">
+      <h3>📧 家庭電子郵件</h3>
+      <p>收發重要通知與帳單郵件。</p>
+      <a href="https://mail.google.com" target="_blank" class="btn-link">開啟 Gmail</a>
+    </div>
+    <div class="card">
+      <h3>📅 家族行事曆</h3>
+      <p>查看家庭旅遊、聚餐等重要時程。</p>
+      <a href="https://calendar.google.com" target="_blank" class="btn-link">開啟行事曆</a>
+    </div>
+  </div>
+
+  <div class="section-title">✈️ 旅遊與交通</div>
+  <div class="grid">
+    <div class="card">
+      <h3>🗺️ Google 地圖</h3>
+      <p>規劃行程、查看附近美食與導航。</p>
+      <a href="https://www.google.com/maps" target="_blank" class="btn-link">開啟地圖</a>
+    </div>
+    <div class="card">
+      <h3>🏨 訂房平台</h3>
+      <p>Booking.com 快速訂房與訂單管理。</p>
+      <a href="https://www.booking.com" target="_blank" class="btn-link">前往 Booking</a>
+    </div>
+    <div class="card">
+      <h3>🚄 高鐵訂票</h3>
+      <p>快速查詢班次與預訂高鐵車票。</p>
+      <a href="https://www.thsrc.com.tw" target="_blank" class="btn-link">前往高鐵官網</a>
     </div>
   </div>
 
 </div>
 
 <footer>
-  家庭入口頁｜只要記住這一頁即可
+  家庭入口頁 © 2024｜只要收藏此頁即可通往全世界
 </footer>
 
 <script>
+// 這是你剛剛產生的雲端網址
 const CLOUD_URL = "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec";
 
 function openCloud(){
   window.open(CLOUD_URL, "_blank");
-}
-
-function openExternal(url){
-  window.open(url, "_blank");
 }
 </script>
 
