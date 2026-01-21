@@ -20,25 +20,26 @@
 
         /* === 左側導航欄 (Sidebar) === */
         .sidebar {
-            width: 260px; background: #020617; border-right: 1px solid rgba(255,255,255,0.05);
-            padding: 30px 20px; display: flex; flex-direction: column; gap: 10px; flex-shrink: 0;
+            width: 240px; /* 稍微縮窄側邊欄 */
+            background: #020617; border-right: 1px solid rgba(255,255,255,0.05);
+            padding: 25px 15px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0;
             box-shadow: 4px 0 20px rgba(0,0,0,0.2); z-index: 10;
         }
-        .brand { font-size: 24px; font-weight: bold; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; color: #fff; letter-spacing: 1px; }
+        .brand { font-size: 20px; /* 縮小 */ font-weight: bold; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; color: #fff; letter-spacing: 1px; padding-left: 10px;}
         
         .nav-btn {
-            padding: 12px 16px; border-radius: 12px; cursor: pointer; transition: 0.2s;
-            color: var(--text-sub); display: flex; align-items: center; gap: 12px; font-weight: 500;
+            padding: 10px 14px; /* 縮小 */ border-radius: 10px; cursor: pointer; transition: 0.2s;
+            color: var(--text-sub); display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 15px;
         }
         .nav-btn:hover, .nav-btn.active { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
-        .nav-icon { font-size: 18px; }
+        .nav-icon { font-size: 16px; }
 
         .bottom-actions { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
         
         /* 按鈕樣式 */
         .action-btn {
-            padding: 14px; border-radius: 12px; text-decoration: none; text-align: center;
-            font-size: 14px; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px; /* 縮小 */ border-radius: 10px; text-decoration: none; text-align: center;
+            font-size: 13px; /* 縮小 */ font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
             cursor: pointer;
         }
         .btn-primary { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #0f172a; border: none; }
@@ -48,50 +49,56 @@
         .btn-outline:hover { border-color: var(--accent); color: var(--text-main); background: rgba(255,255,255,0.05); }
 
         /* === 右側內容區 === */
-        .main-content { flex: 1; padding: 40px; overflow-y: auto; position: relative; scroll-behavior: smooth; }
+        .main-content { flex: 1; padding: 30px; /* 減少留白 */ overflow-y: auto; position: relative; scroll-behavior: smooth; }
         
         .page { display: none; animation: fadeIn 0.4s ease; }
         .page.active { display: block; }
         
-        h1 { margin-top: 0; border-left: 5px solid var(--accent); padding-left: 15px; margin-bottom: 30px; font-size: 28px; }
+        /* 大標題縮小 */
+        h1 { margin-top: 0; border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 20px; font-size: 22px; }
 
-        /* 文章卡片樣式 */
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(600px, 1fr)); gap: 24px; }
+        /* 文章卡片樣式 - 調整 grid 讓卡片可以變窄 */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 20px; }
+        
         .card {
-            background: var(--bg-card); border-radius: 16px; padding: 30px;
+            background: var(--bg-card); border-radius: 14px; padding: 24px; /* 減少內部留白 */
             border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
             display: flex; flex-direction: column;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
         
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .tag { background: rgba(56, 189, 248, 0.15); color: var(--accent); padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
-        .date { color: var(--text-sub); font-size: 14px; font-family: 'Inter', sans-serif; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .tag { background: rgba(56, 189, 248, 0.15); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .date { color: var(--text-sub); font-size: 13px; font-family: 'Inter', sans-serif; }
         
-        .card-title { font-size: 22px; font-weight: bold; margin: 0 0 15px 0; color: #fff; line-height: 1.4; }
-        .card-body { color: #cbd5e1; line-height: 1.7; white-space: pre-line; margin-bottom: 25px; font-size: 16px; flex-grow: 1; }
+        /* 卡片標題縮小 */
+        .card-title { font-size: 18px; font-weight: bold; margin: 0 0 12px 0; color: #fff; line-height: 1.4; }
+        /* 內文縮小 */
+        .card-body { color: #cbd5e1; line-height: 1.6; white-space: pre-line; margin-bottom: 20px; font-size: 15px; flex-grow: 1; }
         
         .card-link {
             align-self: flex-start;
             display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
-            color: #0f172a; background: var(--accent); font-size: 14px; font-weight: bold; padding: 10px 20px;
-            border-radius: 10px; transition: 0.2s;
+            color: #0f172a; background: var(--accent); font-size: 13px; font-weight: bold; padding: 8px 16px;
+            border-radius: 8px; transition: 0.2s;
         }
         .card-link:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3); }
 
         /* 手機版適配 */
         @media (max-width: 900px) {
             body { flex-direction: column; overflow: auto; height: auto; }
-            .sidebar { width: 100%; padding: 20px; position: sticky; top: 0; }
-            .main-content { padding: 20px; }
-            .blog-grid { grid-template-columns: 1fr; }
+            .sidebar { width: 100%; padding: 15px; position: sticky; top: 0; }
+            .main-content { padding: 15px; }
+            .blog-grid { grid-template-columns: 1fr; } /* 手機版維持單欄 */
             .nav-btn { display: inline-flex; width: auto; margin-right: 10px; padding: 8px 12px; font-size: 14px; }
             .bottom-actions { flex-direction: row; margin-top: 15px; }
             .action-btn { flex: 1; }
+            h1 { font-size: 20px; margin-bottom: 15px; }
+            .card { padding: 20px; }
         }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .loading { text-align: center; color: var(--text-sub); padding: 40px; font-size: 18px; }
+        .loading { text-align: center; color: var(--text-sub); padding: 40px; font-size: 16px; }
     </style>
 </head>
 <body>
@@ -154,7 +161,7 @@
         // ⚙️ 核心設定區
         // ==========================================
         
-        // ✅ 已填入你剛剛給我的 Excel CSV 連結
+        // ✅ 已填入你的 Excel CSV 連結
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTH7CNeiMc193VcP1EEMhu90fVUmEuBLBhL6m13boyfz2DcocrVknLqMXVoa8R88eRRNmJT9pPuHP3Q/pub?gid=0&single=true&output=csv";
 
         const FAMILY_PASSWORD = "4343818"; 
