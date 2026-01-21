@@ -52,10 +52,8 @@
         
         h1 { margin-top: 0; border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 20px; font-size: 22px; }
 
-        /* 分類目錄按鈕區 */
-        #category-filters {
-            display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;
-        }
+        /* 分類目錄按鈕 */
+        #category-filters { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         .filter-btn {
             background: rgba(255,255,255,0.05); color: var(--text-sub); border: 1px solid rgba(255,255,255,0.1);
             padding: 6px 14px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: 0.2s;
@@ -69,7 +67,7 @@
         .card {
             background: var(--bg-card); border-radius: 14px; padding: 24px;
             border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
-            display: flex; flex-direction: column;
+            display: flex; flex-direction: column; position: relative;
         }
         .card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
         
@@ -78,8 +76,23 @@
         .date { color: var(--text-sub); font-size: 13px; font-family: 'Inter', sans-serif; }
         
         .card-title { font-size: 18px; font-weight: bold; margin: 0 0 12px 0; color: #fff; line-height: 1.4; }
-        .card-body { color: #cbd5e1; line-height: 1.6; white-space: pre-line; margin-bottom: 20px; font-size: 15px; flex-grow: 1; }
         
+        /* ✨ 內文縮略樣式 */
+        .card-body { 
+            color: #cbd5e1; line-height: 1.6; white-space: pre-line; margin-bottom: 10px; font-size: 15px; 
+            /* 關鍵：限制行數 */
+            display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        /* 展開後的樣式 */
+        .card-body.expanded { -webkit-line-clamp: unset; overflow: visible; }
+
+        /* ✨ 展開/收起按鈕 */
+        .read-more-btn {
+            color: var(--accent); font-size: 13px; font-weight: bold; cursor: pointer; margin-bottom: 15px; display: inline-block;
+        }
+        .read-more-btn:hover { text-decoration: underline; }
+
         .card-link {
             align-self: flex-start;
             display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
@@ -134,6 +147,7 @@
                 <div class="card-body">
                     這是 Lingo 的個人分享空間。<br><br>
                     此網站的內容是由 Google 試算表即時連動生成的。
+                    你可以透過左側的按鈕上傳檔案給我，所有的檔案都會彙整到共享雲端中。
                 </div>
             </div>
         </div>
@@ -154,7 +168,7 @@
         }
 
         function loadBlogPosts() {
-            // ✅ 這裡加了 "Cache Buster" (時間戳記)，強迫瀏覽器抓最新資料
+            // 強制更新資料 (Cache Buster)
             const nocacheUrl = SHEET_CSV_URL + "&t=" + new Date().getTime();
 
             Papa.parse(nocacheUrl, {
@@ -191,7 +205,7 @@
                         filterContainer.appendChild(btn);
                     }
 
-                    posts.forEach(post => {
+                    posts.forEach((post, index) => {
                         if (!post['標題'] && !post['內容']) return;
 
                         const card = document.createElement('div');
@@ -203,13 +217,21 @@
                             linkHtml = `<a href="${post['連結']}" target="_blank" class="card-link">🔗 開啟連結 / 下載</a>`;
                         }
 
+                        // ✨ 內容區塊：預設會被 CSS 截斷成 5 行
+                        // ✨ 按鈕區塊：點擊後切換 class
+                        const contentId = `content-${index}`;
+                        
                         card.innerHTML = `
                             <div class="card-header">
                                 <span class="tag">${post['標籤'] || '公告'}</span>
                                 <span class="date">${post['日期'] || ''}</span>
                             </div>
                             <div class="card-title">${post['標題'] || '(無標題)'}</div>
-                            <div class="card-body">${post['內容'] || ''}</div>
+                            
+                            <div id="${contentId}" class="card-body">${post['內容'] || ''}</div>
+                            
+                            <div class="read-more-btn" onclick="toggleReadMore('${contentId}', this)">⬇️ 展開全文</div>
+
                             ${linkHtml}
                         `;
                         container.appendChild(card);
@@ -217,6 +239,18 @@
                 },
                 error: function(err) { container.innerHTML = '<div class="loading">❌ 讀取失敗</div>'; }
             });
+        }
+
+        // ✨ 展開/收起功能
+        function toggleReadMore(elementId, btn) {
+            const content = document.getElementById(elementId);
+            content.classList.toggle('expanded');
+            
+            if (content.classList.contains('expanded')) {
+                btn.innerText = "⬆️ 收起文章";
+            } else {
+                btn.innerText = "⬇️ 展開全文";
+            }
         }
 
         function filterPosts(targetTag) {
