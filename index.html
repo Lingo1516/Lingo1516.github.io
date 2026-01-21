@@ -3,287 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lingo's 雙向共享空間</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Lingo 的分享空間</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
-            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --danger: #ef4444;
-            --success: #10b981;
-        }
-
-        * { box-sizing: border-box; outline: none; }
+        /* === 1. 整體設定 === */
+        body { margin: 0; font-family: 'Noto Sans TC', sans-serif; background: #0f172a; color: #f1f5f9; height: 100vh; overflow: hidden; }
         
-        body {
-            margin: 0;
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .dashboard {
+        /* 版面：左邊 (文章) 70%，右邊 (工具) 30% */
+        .container {
             display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 24px;
-            max-width: 1200px;
+            grid-template-columns: 7fr 3fr;
+            height: 100vh;
+        }
+
+        /* === 2. 左邊：Google 文件視窗 (你的部落格) === */
+        .doc-frame {
             width: 100%;
-            height: 90vh;
-        }
-
-        .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: var(--glass-border);
-            border-radius: 24px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .card h3 {
-            margin: 0 0 16px 0;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .main-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .welcome-text h1 {
-            font-size: 36px;
-            margin: 0;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .welcome-text p { color: var(--text-secondary); margin-top: 8px; font-size: 14px; }
-
-        /* 超大雲端按鈕 */
-        .cloud-btn {
-            margin-top: 30px;
-            background: var(--accent-gradient);
+            height: 100vh;
             border: none;
-            border-radius: 18px;
-            padding: 25px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-align: left;
-            text-decoration: none;
+            background: #fff; /* 文件背景是白的 */
             display: block;
         }
-        .cloud-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
-        }
-        .cloud-btn strong { display: block; font-size: 22px; color: #0f172a; margin-bottom: 5px; }
-        .cloud-btn span { font-size: 14px; color: #1e293b; opacity: 0.9; }
-        .cloud-icon {
-            position: absolute; right: 20px; bottom: -10px; font-size: 80px; 
-            color: #fff; opacity: 0.2; transform: rotate(-15deg);
-        }
 
-        .memo-area {
-            flex: 1;
-            margin-top: 20px;
+        /* === 3. 右邊：工具列 (你的按鈕) === */
+        .sidebar {
+            background: #1e293b;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
+            gap: 20px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
         }
-        .memo-input {
-            width: 100%;
-            flex: 1;
-            background: rgba(0,0,0,0.3);
+
+        /* 個人資訊區 */
+        .profile { text-align: center; margin-bottom: 20px; }
+        .avatar { font-size: 60px; display: block; margin-bottom: 10px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .name { font-size: 24px; font-weight: bold; margin: 0; color: #fff; }
+        .bio { font-size: 14px; color: #94a3b8; margin-top: 8px; line-height: 1.5; }
+
+        /* 按鈕通用樣式 */
+        .btn {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; padding: 16px; 
+            border-radius: 12px; text-decoration: none;
+            font-weight: bold; transition: 0.2s; cursor: pointer;
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 15px;
-            color: #fff;
-            font-size: 15px;
-            resize: none;
-            font-family: inherit;
-            line-height: 1.6;
+            color: #fff; background: rgba(255,255,255,0.05);
+            gap: 12px; font-size: 15px;
         }
-        .memo-input:focus { border-color: #818cf8; }
-        .save-indicator { font-size: 12px; color: var(--success); margin-top: 8px; height: 20px; opacity: 0; transition: opacity 0.5s; text-align: right;}
+        .btn:hover { transform: translateY(-3px); border-color: #38bdf8; background: rgba(255,255,255,0.15); }
+        
+        /* 特殊顏色按鈕 */
+        .btn-upload { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #0f172a; border: none; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3); }
+        .btn-upload:hover { opacity: 0.95; box-shadow: 0 6px 15px rgba(56, 189, 248, 0.5); }
 
-        .grid-panel {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto 1fr;
-            gap: 24px;
-        }
+        .btn-admin { border-style: dashed; opacity: 0.6; font-size: 13px; padding: 12px; }
+        .btn-admin:hover { opacity: 1; border-color: #f472b6; color: #f472b6; }
 
-        /* === 雙向共享區按鈕 === */
-        .share-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            height: 100%;
-        }
-        .action-btn {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 30px 20px; border-radius: 16px; text-decoration: none;
-            transition: 0.3s; text-align: center; gap: 10px; border: 1px solid rgba(255,255,255,0.1);
-        }
-        /* 瀏覽按鈕 */
-        .btn-view { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
-        .btn-view:hover { background: rgba(56, 189, 248, 0.2); transform: translateY(-3px); }
-        /* 上傳按鈕 */
-        .btn-upload { background: rgba(167, 139, 250, 0.1); color: #a78bfa; }
-        .btn-upload:hover { background: rgba(167, 139, 250, 0.2); transform: translateY(-3px); }
+        /* 分隔線 */
+        .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 10px 0; }
 
-        .btn-icon { font-size: 32px; margin-bottom: 5px; }
-        .btn-title { font-weight: bold; font-size: 18px; }
-        .btn-desc { font-size: 12px; opacity: 0.8; line-height: 1.4; }
-
-        .link-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .link-btn {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: rgba(255,255,255,0.03); text-decoration: none; color: var(--text-primary);
-            border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 15px;
-            transition: 0.2s; gap: 8px; cursor: pointer;
-        }
-        .link-btn:hover { background: rgba(255,255,255,0.08); border-color: #38bdf8; }
-        .link-icon { font-size: 24px; }
-        .link-text { font-size: 13px; font-weight: 500; }
-
-        @media (max-width: 900px) {
-            .dashboard { grid-template-columns: 1fr; height: auto; }
-            .grid-panel { grid-template-columns: 1fr; }
+        /* 手機版適配 (變成上下排列) */
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+            .sidebar { order: -1; height: auto; padding: 20px; flex-direction: row; flex-wrap: wrap; justify-content: center; } 
+            .profile { width: 100%; margin-bottom: 10px; }
+            .btn { width: 48%; padding: 12px; font-size: 13px; }
+            .doc-frame { height: 100%; }
+            .divider, .btn-admin { display: none; } /* 手機版隱藏管理者按鈕，保持簡潔 */
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard">
-        
-        <div class="card main-panel">
-            <div class="welcome-text">
-                <h1>Lingo's Space</h1>
-                <p id="dateDisplay">載入中...</p>
-            </div>
+<div class="container">
 
-            <button class="cloud-btn" onclick="checkPassAndOpen('cloud')">
-                <strong>🔒 管理者後台 (Private)</strong>
-                <span>私人雲端、合約、重要文件</span>
-                <div class="cloud-icon">⚙️</div>
-            </button>
+    <iframe class="doc-frame" src="https://docs.google.com/document/d/e/2PACX-1vQt8f-PxFaSTB72dj9b4Oq9L8hzuxQk1IJxLffLSBgkw8hZ-wZF7_WI0ys-EYVohHt2cudwzdfBT_Mb/pub?embedded=true"></iframe>
 
-            <div class="memo-area">
-                <h3>📌 公告 / 備忘錄</h3>
-                <textarea id="memoInput" class="memo-input" placeholder="在這裡輸入網站公告或歡迎詞..."></textarea>
-                <div id="saveStatus" class="save-indicator">✓ 已更新</div>
-            </div>
+
+    <aside class="sidebar">
+        <div class="profile">
+            <span class="avatar">📝</span>
+            <div class="name">Lingo 的公告欄</div>
+            <div class="bio">左側內容同步自 Google 文件<br>隨時更新，即時顯示</div>
         </div>
 
-        <div class="grid-panel">
-            
-            <div class="card" style="grid-column: span 2;">
-                <h3>📂 雙向共享中心 (Public Share)</h3>
-                <div class="share-actions">
-                    
-                    <a href="https://drive.google.com/drive/folders/1k_373-1HTu1bBFHNuEJiWE1-75PqUz1gc7XVR8-9n0jdiON6gAlGKMJHnDEhU6BmS2h_hlSl?usp=sharing" target="_blank" class="action-btn btn-view">
-                        <div class="btn-icon">📂</div>
-                        <div class="btn-title">瀏覽共享區</div>
-                        <div class="btn-desc">查看所有檔案<br>確認上傳是否成功</div>
-                    </a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfq4vQDMfnBrIBf6ljOqKuzWIE8u7NoNJvVZjkAw27WK5rsPA/viewform?usp=publish-editor" target="_blank" class="btn btn-upload">
+            📤 上傳檔案給我
+        </a>
 
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfq4vQDMfnBrIBf6ljOqKuzWIE8u7NoNJvVZjkAw27WK5rsPA/viewform?usp=publish-editor" target="_blank" class="action-btn btn-upload">
-                        <div class="btn-icon">📤</div>
-                        <div class="btn-title">上傳檔案</div>
-                        <div class="btn-desc">點擊開啟上傳視窗<br>檔案將自動存入共享區</div>
-                    </a>
+        <a href="https://drive.google.com/drive/folders/1k_373-1HTu1bBFHNuEJiWE1-75PqUz1gc7XVR8-9n0jdiON6gAlGKMJHnDEhU6BmS2h_hlSl?usp=sharing" target="_blank" class="btn">
+            📂 瀏覽共享資料夾
+        </a>
 
-                </div>
-            </div>
+        <div class="divider"></div>
 
-            <div class="card">
-                <h3>✈️ 旅遊與交通</h3>
-                <div class="link-grid">
-                    <a href="https://www.google.com.tw/maps" target="_blank" class="link-btn">
-                        <span class="link-icon">📍</span>
-                        <span class="link-text">Google 地圖</span>
-                    </a>
-                    <a href="https://www.thsrc.com.tw" target="_blank" class="link-btn">
-                        <span class="link-icon">🚄</span>
-                        <span class="link-text">高鐵訂票</span>
-                    </a>
-                </div>
-            </div>
+        <button onclick="checkPassAndOpen('cloud')" class="btn btn-admin">
+            ⚙️ 管理者後台
+        </button>
+        <button onclick="checkPassAndOpen('photo')" class="btn btn-admin">
+            🖼️ 私人相簿
+        </button>
+    </aside>
 
-            <div class="card">
-                <h3>📁 私人相簿</h3>
-                <div class="link-grid">
-                    <button class="link-btn" onclick="checkPassAndOpen('photo')">
-                        <span class="link-icon">🔒</span>
-                        <span class="link-text">私密相簿</span>
-                    </button>
-                    <a href="https://keep.google.com" target="_blank" class="link-btn">
-                        <span class="link-icon">📝</span>
-                        <span class="link-text">Google Keep</span>
-                    </a>
-                </div>
-            </div>
+</div>
 
-        </div>
-    </div>
+<script>
+    // ============================
+    // ⚙️ 系統設定區
+    // ============================
+    const FAMILY_PASSWORD = "4343818"; 
 
-    <script>
-        // ==========================================
-        // ⚙️ 設定區
-        // ==========================================
-        const FAMILY_PASSWORD = "4343818"; 
+    const SECRET_LINKS = {
+        cloud: "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec",
+        photo: "https://photos.google.com"
+    };
 
-        const SECRET_LINKS = {
-            cloud: "https://script.google.com/macros/s/AKfycbypa9JJFV3222qsNr2TBsQO7dWn54iWGQY3FVce7SBJfJ9JG3S9M_D7ejvNeMk1VoyvXA/exec",
-            photo: "https://photos.google.com"
-        };
+    function checkPassAndOpen(type) {
+        let inputPass = prompt("🔒 請輸入管理者密碼：");
+        if (inputPass === null) return;
 
-        // ==========================================
-        // 🛑 核心功能
-        // ==========================================
-
-        function checkPassAndOpen(type) {
-            let inputPass = prompt("🔒 此區域為私人空間，請輸入密碼 (提示：家裡電話)：");
-            if (inputPass === FAMILY_PASSWORD) {
-                if(SECRET_LINKS[type]) window.open(SECRET_LINKS[type], "_blank");
-            } else if (inputPass !== null) {
-                alert("🚫 密碼錯誤！");
-            }
+        if (inputPass === FAMILY_PASSWORD) {
+            if(SECRET_LINKS[type]) window.location.href = SECRET_LINKS[type]; 
+        } else {
+            alert("🚫 密碼錯誤");
         }
+    }
+</script>
 
-        const d = new Date();
-        document.getElementById('dateDisplay').textContent = `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
-
-        const memoInput = document.getElementById('memoInput');
-        const saveStatus = document.getElementById('saveStatus');
-        memoInput.value = localStorage.getItem('family_memo') || "";
-        memoInput.addEventListener('input', () => {
-            localStorage.setItem('family_memo', memoInput.value);
-            saveStatus.style.opacity = '1';
-            setTimeout(() => { saveStatus.style.opacity = '0'; }, 1500);
-        });
-    </script>
 </body>
 </html>
