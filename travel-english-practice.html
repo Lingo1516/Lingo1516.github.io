@@ -5,624 +5,252 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <title>旅行英文練習 🗺️ Lingo ✕ 小綠</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, 'PingFang TC', 'Noto Sans TC', sans-serif;
-    background: #f8f6f0;
-    color: #1a1a1a;
-    line-height: 1.7;
-    font-size: 16px;
-  }
-  .header {
-    background: linear-gradient(135deg, #1a5276, #2e86c1);
-    color: white;
-    padding: 36px 20px 20px;
-    text-align: center;
-    position: sticky; top: 0; z-index: 10;
-  }
-  .header h1 { font-size: 30px; font-weight: 700; }
-  .header .sub { font-size: 16px; opacity: 0.85; margin-top: 4px; }
-
-  /* 速度控制列 */
-  .speed-bar {
-    background: #d4e6f1;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-    position: sticky; top: 95px; z-index: 9;
-  }
-  .speed-bar label { font-size: 16px; font-weight: 600; color: #1a5276; }
-  .speed-bar input[type="range"] { flex: 1; min-width: 120px; max-width: 300px; }
-  .speed-bar .speed-val { font-size: 16px; font-weight: 700; color: #1a5276; min-width: 40px; }
-  .speed-bar .btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
-  .btn-play-all, .btn-stop {
-    padding: 8px 18px;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .btn-play-all { background: #27ae60; color: white; }
-  .btn-stop { background: #e74c3c; color: white; }
-
-  .container { padding: 14px 16px; max-width: 700px; margin: 0 auto; }
-
-  .section-title {
-    font-size: 22px; font-weight: 700;
-    color: #1a5276;
-    padding: 14px 0 8px;
-    border-bottom: 3px solid #1a5276;
-    margin: 20px 0 12px;
-  }
-
-  .card {
-    background: white;
-    border-radius: 14px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    border-left: 5px solid #2e86c1;
-  }
-  .card-row { display: flex; align-items: flex-start; gap: 4px; }
-  .card-num {
-    font-size: 14px; font-weight: 700; color: #888;
-    min-width: 30px; padding-top: 1px;
-  }
-  .card-content { flex: 1; }
-
-  .chinese {
-    font-size: 20px; font-weight: 600;
-    color: #1a1a1a; margin-bottom: 2px;
-  }
-  .pinyin {
-    font-size: 14px; color: #888; margin-bottom: 6px;
-  }
-  .english {
-    font-size: 22px; font-weight: 600;
-    color: #2e86c1; margin-bottom: 2px;
-  }
-  .phonetic {
-    font-size: 14px; color: #666; margin-bottom: 6px;
-  }
-  .card-actions { display: flex; gap: 6px; margin-top: 6px; }
-  .btn-play {
-    display: inline-flex; align-items: center; gap: 4px;
-    padding: 6px 14px; border: none; border-radius: 8px;
-    font-size: 15px; font-weight: 600; cursor: pointer;
-    background: #eaf2f8; color: #1a5276;
-  }
-  .btn-play.speaking { background: #d4efdf; color: #1e8449; }
-  .btn-play svg { width: 16px; height: 16px; }
-
-  .footer {
-    text-align: center; font-size: 14px; color: #888;
-    padding: 24px; line-height: 1.8;
-  }
-
-  @media (max-width: 400px) {
-    .header h1 { font-size: 24px; }
-    .chinese { font-size: 18px; }
-    .english { font-size: 19px; }
-    .card { padding: 14px 14px; }
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang TC','Noto Sans TC',sans-serif;background:#f8f6f0;color:#1a1a1a;line-height:1.7;font-size:18px}
+.header{background:linear-gradient(135deg,#1a5276,#2e86c1);color:white;padding:36px 18px 16px;text-align:center;position:sticky;top:0;z-index:10}
+.header h1{font-size:28px;font-weight:700}
+.header .sub{font-size:15px;opacity:.85;margin-top:2px}
+.controls{background:#d4e6f1;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;position:sticky;top:88px;z-index:9}
+.controls .speed-group{display:flex;align-items:center;gap:6px}
+.controls label{font-size:15px;font-weight:600;color:#1a5276;white-space:nowrap}
+.controls input[type="range"]{flex:1;min-width:80px;max-width:140px}
+.controls .speed-val{font-size:15px;font-weight:700;color:#1a5276;min-width:35px}
+.btn-play-all,.btn-stop{padding:6px 14px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-play-all{background:#27ae60;color:white}
+.btn-stop{background:#e74c3c;color:white}
+.quiz-bar{background:#f0e6d0;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:128px;z-index:8}
+.quiz-bar span{font-size:14px;font-weight:600;color:#7d6608}
+.quiz-btn{padding:4px 12px;border:2px solid #a67c00;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:white;color:#7d6608}
+.quiz-btn.active{background:#a67c00;color:white}
+.container{padding:10px 12px;max-width:700px;margin:0 auto}
+.section-title{font-size:20px;font-weight:700;color:#1a5276;padding:10px 0 6px;border-bottom:3px solid #1a5276;margin:16px 0 10px}
+.card{background:white;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card-content{display:flex;gap:10px}
+.card-left{flex:1;min-width:0}
+.card-right{flex:1;min-width:0}
+.chinese{font-size:19px;font-weight:600;color:#1a1a1a;margin-bottom:10px;border-left:3px solid #e74c3c;padding-left:8px}
+.chinese .pinyin{display:block;font-size:13px;font-weight:400;color:#999;margin-top:2px}
+.english{font-size:20px;font-weight:600;color:#2e86c1;margin-bottom:6px;border-left:3px solid #2e86c1;padding-left:8px}
+.english .phonetic{display:block;font-size:13px;font-weight:400;color:#888;margin-top:2px}
+.vocab-area{margin-top:8px;padding-top:8px;border-top:1px dashed #ddd;display:flex;flex-wrap:wrap;gap:4px}
+.vocab-word{display:inline-block;padding:3px 8px;background:#eaf2f8;border-radius:6px;font-size:13px;font-weight:600;color:#1a5276;cursor:pointer}
+.vocab-word .def{display:none;font-weight:400;color:#555;margin-left:4px}
+.vocab-word.active .def{display:inline}
+.card-actions{margin-top:6px;display:flex;gap:6px}
+.btn-play{padding:5px 12px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;background:#eaf2f8;color:#1a5276}
+.btn-play.speaking{background:#d4efdf;color:#1e8449}
+body.quiz-cn .chinese,body.quiz-cn .chinese .pinyin{opacity:0}
+body.quiz-en .english,body.quiz-en .english .phonetic{opacity:0}
+.footer{text-align:center;font-size:13px;color:#888;padding:20px;line-height:1.8}
+@media(max-width:420px){.card-content{flex-direction:column;gap:4px}.chinese{font-size:17px}.english{font-size:18px}}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <h1>🌏 旅行英文練習</h1>
-  <div class="sub">Lingo ✕ 小綠 🍀 | 一行中文 · 一行英文</div>
+<div class="header"><h1>🌏 旅行英文練習</h1><div class="sub">Lingo ✕ 小綠 🍀</div></div>
+<div class="controls">
+<div class="speed-group"><label>🔊 語速</label><input type="range" id="speedSlider" min="0.3" max="1.5" step="0.1" value="0.9"><span class="speed-val" id="speedDisplay">0.9x</span></div>
+<div style="display:flex;gap:4px"><button class="btn-play-all" id="playAllBtn">▶ 全部</button><button class="btn-stop" id="stopBtn">■ 停止</button></div>
 </div>
-
-<div class="speed-bar">
-  <label>🔊 語速</label>
-  <input type="range" id="speedSlider" min="0.3" max="1.5" step="0.1" value="0.9">
-  <span class="speed-val" id="speedDisplay">0.9x</span>
-  <div class="btn-group">
-    <button class="btn-play-all" id="playAllBtn">▶ 全部播放</button>
-    <button class="btn-stop" id="stopBtn">■ 停止</button>
-  </div>
+<div class="quiz-bar">
+<span>📝 練習模式</span>
+<button class="quiz-btn active" data-mode="normal" onclick="setMode('normal')">正常</button>
+<button class="quiz-btn" data-mode="quiz-cn" onclick="setMode('quiz-cn')">遮中文</button>
+<button class="quiz-btn" data-mode="quiz-en" onclick="setMode('quiz-en')">遮英文</button>
 </div>
-
 <div class="container">
-
-  <!-- 🛫 機場 -->
-  <div class="section-title">🛫 機場</div>
-
-  <div class="card" data-en="Where is the check-in counter?" data-zh="請問報到櫃檯在哪裡？">
-    <div class="card-row">
-      <div class="card-num">1</div>
-      <div class="card-content">
-        <div class="chinese">請問報到櫃檯在哪裡？</div>
-        <div class="pinyin">Qǐngwèn bàodào guìtái zài nǎlǐ？</div>
-        <div class="english">Where is the check-in counter?</div>
-        <div class="phonetic">/wer ɪz ðə ˈtʃek.ɪn ˈkaʊn.tər/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Can I have a window seat, please?" data-zh="我可以選靠窗的位子嗎？">
-    <div class="card-row">
-      <div class="card-num">2</div>
-      <div class="card-content">
-        <div class="chinese">我可以選靠窗的位子嗎？</div>
-        <div class="pinyin">Wǒ kěyǐ xuǎn kàochuāng de wèizi ma？</div>
-        <div class="english">Can I have a window seat, please?</div>
-        <div class="phonetic">/kæn aɪ hæv ə ˈwɪn.doʊ siːt pliːz/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="What is the boarding gate?" data-zh="登機門是幾號？">
-    <div class="card-row">
-      <div class="card-num">3</div>
-      <div class="card-content">
-        <div class="chinese">登機門是幾號？</div>
-        <div class="pinyin">Dēngjī mén shì jǐ hào？</div>
-        <div class="english">What is the boarding gate?</div>
-        <div class="phonetic">/wʌt ɪz ðə ˈbɔːr.dɪŋ ɡeɪt/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="When does boarding start?" data-zh="什麼時候開始登機？">
-    <div class="card-row">
-      <div class="card-num">4</div>
-      <div class="card-content">
-        <div class="chinese">什麼時候開始登機？</div>
-        <div class="pinyin">Shénme shíhòu kāishǐ dēngjī？</div>
-        <div class="english">When does boarding start?</div>
-        <div class="phonetic">/wen dʌz ˈbɔːr.dɪŋ stɑːrt/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="How many kilograms of luggage can I bring?" data-zh="我可以帶幾公斤的行李？">
-    <div class="card-row">
-      <div class="card-num">5</div>
-      <div class="card-content">
-        <div class="chinese">我可以帶幾公斤的行李？</div>
-        <div class="pinyin">Wǒ kěyǐ dài jǐ gōngjīn de xínglǐ？</div>
-        <div class="english">How many kilograms of luggage can I bring?</div>
-        <div class="phonetic">/haʊ ˈmen.i ˈkɪl.ə.ɡræmz əv ˈlʌɡ.ɪdʒ kæn aɪ brɪŋ/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🚇 交通 -->
-  <div class="section-title">🚇 交通</div>
-
-  <div class="card" data-en="Excuse me, how do I get to the train station?" data-zh="不好意思，請問火車站怎麼走？">
-    <div class="card-row">
-      <div class="card-num">6</div>
-      <div class="card-content">
-        <div class="chinese">不好意思，請問火車站怎麼走？</div>
-        <div class="pinyin">Bù hǎoyìsi, qǐngwèn huǒchē zhàn zěnme zǒu？</div>
-        <div class="english">Excuse me, how do I get to the train station?</div>
-        <div class="phonetic">/ɪkˈskjuːz miː haʊ duː aɪ ɡet tə ðə treɪn ˈsteɪ.ʃən/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Is this the right bus to go to the city center?" data-zh="這班公車有到市中心嗎？">
-    <div class="card-row">
-      <div class="card-num">7</div>
-      <div class="card-content">
-        <div class="chinese">這班公車有到市中心嗎？</div>
-        <div class="pinyin">Zhè bān gōngchē yǒu dào shì zhōngxīn ma？</div>
-        <div class="english">Is this the right bus to go to the city center?</div>
-        <div class="phonetic">/ɪz ðɪs ðə raɪt bʌs tə ɡoʊ tə ðə ˈsɪt.i ˈsen.tər/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="How much is a one-way ticket?" data-zh="單程票多少錢？">
-    <div class="card-row">
-      <div class="card-num">8</div>
-      <div class="card-content">
-        <div class="chinese">單程票多少錢？</div>
-        <div class="pinyin">Dānchéng piào duōshǎo qián？</div>
-        <div class="english">How much is a one-way ticket?</div>
-        <div class="phonetic">/haʊ mʌtʃ ɪz ə wʌn-weɪ ˈtɪk.ɪt/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Could you call a taxi for me, please?" data-zh="可以幫我叫一輛計程車嗎？">
-    <div class="card-row">
-      <div class="card-num">9</div>
-      <div class="card-content">
-        <div class="chinese">可以幫我叫一輛計程車嗎？</div>
-        <div class="pinyin">Kěyǐ bāng wǒ jiào yí liàng jìchéngchē ma？</div>
-        <div class="english">Could you call a taxi for me, please?</div>
-        <div class="phonetic">/kʊd juː kɔːl ə ˈtæk.si fɔːr miː pliːz/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="How long does it take to get there?" data-zh="到那裡要多久？">
-    <div class="card-row">
-      <div class="card-num">10</div>
-      <div class="card-content">
-        <div class="chinese">到那裡要多久？</div>
-        <div class="pinyin">Dào nàlǐ yào duōjiǔ？</div>
-        <div class="english">How long does it take to get there?</div>
-        <div class="phonetic">/haʊ lɔːŋ dʌz ɪt teɪk tə ɡet ðer/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🏨 住宿 -->
-  <div class="section-title">🏨 住宿</div>
-
-  <div class="card" data-en="I have a reservation under the name Lingo." data-zh="我有預約，名字是 Lingo。">
-    <div class="card-row">
-      <div class="card-num">11</div>
-      <div class="card-content">
-        <div class="chinese">我有預約，名字是 Lingo。</div>
-        <div class="pinyin">Wǒ yǒu yùyuē, míngzì shì Lingo。</div>
-        <div class="english">I have a reservation under the name Lingo.</div>
-        <div class="phonetic">/aɪ hæv ə ˌrez.ərˈveɪ.ʃən ˈʌn.dər ðə neɪm ˈlɪŋ.ɡoʊ/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Can I check in now?" data-zh="我現在可以辦理入住嗎？">
-    <div class="card-row">
-      <div class="card-num">12</div>
-      <div class="card-content">
-        <div class="chinese">我現在可以辦理入住嗎？</div>
-        <div class="pinyin">Wǒ xiànzài kěyǐ bànlǐ rùzhù ma？</div>
-        <div class="english">Can I check in now?</div>
-        <div class="phonetic">/kæn aɪ tʃek ɪn naʊ/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="What time is breakfast served?" data-zh="早餐幾點供應？">
-    <div class="card-row">
-      <div class="card-num">13</div>
-      <div class="card-content">
-        <div class="chinese">早餐幾點供應？</div>
-        <div class="pinyin">Zǎocān jǐ diǎn gōngyìng？</div>
-        <div class="english">What time is breakfast served?</div>
-        <div class="phonetic">/wʌt taɪm ɪz ˈbrek.fəst sɜːrvd/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Could I get an extra towel, please?" data-zh="可以多給我一條毛巾嗎？">
-    <div class="card-row">
-      <div class="card-num">14</div>
-      <div class="card-content">
-        <div class="chinese">可以多給我一條毛巾嗎？</div>
-        <div class="pinyin">Kěyǐ duō gěi wǒ yì tiáo máojīn ma？</div>
-        <div class="english">Could I get an extra towel, please?</div>
-        <div class="phonetic">/kʊd aɪ ɡet æn ˈek.strə ˈtaʊ.əl pliːz/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Can I extend my stay for one more night?" data-zh="我可以多住一晚嗎？">
-    <div class="card-row">
-      <div class="card-num">15</div>
-      <div class="card-content">
-        <div class="chinese">我可以多住一晚嗎？</div>
-        <div class="pinyin">Wǒ kěyǐ duō zhù yì wǎn ma？</div>
-        <div class="english">Can I extend my stay for one more night?</div>
-        <div class="phonetic">/kæn aɪ ɪkˈstend maɪ steɪ fɔːr wʌn mɔːr naɪt/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🍜 餐飲 -->
-  <div class="section-title">🍜 餐飲</div>
-
-  <div class="card" data-en="What do you recommend?" data-zh="你有推薦什麼嗎？">
-    <div class="card-row">
-      <div class="card-num">16</div>
-      <div class="card-content">
-        <div class="chinese">你有推薦什麼嗎？</div>
-        <div class="pinyin">Nǐ yǒu tuījiàn shénme ma？</div>
-        <div class="english">What do you recommend?</div>
-        <div class="phonetic">/wʌt duː juː ˌrek.əˈmend/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="I'd like to order this, please." data-zh="我想要點這個。">
-    <div class="card-row">
-      <div class="card-num">17</div>
-      <div class="card-content">
-        <div class="chinese">我想要點這個。</div>
-        <div class="pinyin">Wǒ xiǎng yào diǎn zhège。</div>
-        <div class="english">I'd like to order this, please.</div>
-        <div class="phonetic">/aɪd laɪk tə ˈɔːr.dər ðɪs pliːz/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Could I have the bill, please?" data-zh="請買單。">
-    <div class="card-row">
-      <div class="card-num">18</div>
-      <div class="card-content">
-        <div class="chinese">請買單。</div>
-        <div class="pinyin">Qǐng mǎidān。</div>
-        <div class="english">Could I have the bill, please?</div>
-        <div class="phonetic">/kʊd aɪ hæv ðə bɪl pliːz/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="I have a food allergy to peanuts." data-zh="我對花生過敏。">
-    <div class="card-row">
-      <div class="card-num">19</div>
-      <div class="card-content">
-        <div class="chinese">我對花生過敏。</div>
-        <div class="pinyin">Wǒ duì huāshēng guòmǐn。</div>
-        <div class="english">I have a food allergy to peanuts.</div>
-        <div class="phonetic">/aɪ hæv ə fuːd ˈæl.ər.dʒi tə ˈpiː.nʌts/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Is there a convenience store near here?" data-zh="附近有便利商店嗎？">
-    <div class="card-row">
-      <div class="card-num">20</div>
-      <div class="card-content">
-        <div class="chinese">附近有便利商店嗎？</div>
-        <div class="pinyin">Fùjìn yǒu biànlì shāngdiàn ma？</div>
-        <div class="english">Is there a convenience store near here?</div>
-        <div class="phonetic">/ɪz ðer ə kənˈviː.ni.əns stɔːr nɪr hɪr/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🆘 緊急 -->
-  <div class="section-title">🆘 緊急</div>
-
-  <div class="card" data-en="I'm lost. Can you help me?" data-zh="我迷路了，可以幫我嗎？">
-    <div class="card-row">
-      <div class="card-num">21</div>
-      <div class="card-content">
-        <div class="chinese">我迷路了，可以幫我嗎？</div>
-        <div class="pinyin">Wǒ mílù le, kěyǐ bāng wǒ ma？</div>
-        <div class="english">I'm lost. Can you help me?</div>
-        <div class="phonetic">/aɪm lɔːst kæn juː help miː/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="I need to go to the hospital." data-zh="我需要去醫院。">
-    <div class="card-row">
-      <div class="card-num">22</div>
-      <div class="card-content">
-        <div class="chinese">我需要去醫院。</div>
-        <div class="pinyin">Wǒ xūyào qù yīyuàn。</div>
-        <div class="english">I need to go to the hospital.</div>
-        <div class="phonetic">/aɪ niːd tə ɡoʊ tə ðə ˈhɑːs.pɪ.təl/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="Please call the police!" data-zh="請報警！">
-    <div class="card-row">
-      <div class="card-num">23</div>
-      <div class="card-content">
-        <div class="chinese">請報警！</div>
-        <div class="pinyin">Qǐng bàojǐng！</div>
-        <div class="english">Please call the police!</div>
-        <div class="phonetic">/pliːz kɔːl ðə pəˈliːs/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="I lost my passport. What should I do?" data-zh="我的護照不見了，怎麼辦？">
-    <div class="card-row">
-      <div class="card-num">24</div>
-      <div class="card-content">
-        <div class="chinese">我的護照不見了，怎麼辦？</div>
-        <div class="pinyin">Wǒ de hùzhào bújiàn le, zěnmebàn？</div>
-        <div class="english">I lost my passport. What should I do?</div>
-        <div class="phonetic">/aɪ lɔːst maɪ ˈpæs.pɔːrt wʌt ʃʊd aɪ duː/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" data-en="I don't feel well. Can you call a doctor?" data-zh="我不舒服，可以幫我叫醫生嗎？">
-    <div class="card-row">
-      <div class="card-num">25</div>
-      <div class="card-content">
-        <div class="chinese">我不舒服，可以幫我叫醫生嗎？</div>
-        <div class="pinyin">Wǒ bù shūfú, kěyǐ bāng wǒ jiào yīshēng ma？</div>
-        <div class="english">I don't feel well. Can you call a doctor?</div>
-        <div class="phonetic">/aɪ doʊnt fiːl wel kæn juː kɔːl ə ˈdɑːk.tər/</div>
-        <div class="card-actions">
-          <button class="btn-play" onclick="speak(this)">🔊 聽發音</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    🗺️ Lingo ✕ 小綠 🍀 旅行英文練習<br>
-    🔊 點擊「聽發音」使用瀏覽器朗讀功能<br>
-    ⚡ 語速滑桿可調整朗讀速度 (0.3x ~ 1.5x)<br>
-    ✅ 已查證 | 模型：ollama-windows/qwen2.5:7b
-  </div>
-
+<div class="section-title">🛫 機場</div>
+<div class="card" data-en="Where is the check-in counter?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">請問報到櫃檯在哪裡？<span class="pinyin">Qǐngwèn bàodào guìtái zài nǎlǐ？</span></div></div>
+<div class="card-right">
+<div class="english">Where is the check-in counter?<span class="phonetic">/wer ɪz ðə ˈtʃek.ɪn ˈkaʊn.tər/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">counter<span class="def"> 櫃檯</span></span><span class="vocab-word" onclick="toggleDef(this)">check-in<span class="def"> 報到</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="Can I have a window seat, please?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我可以選靠窗的位子嗎？<span class="pinyin">Wǒ kěyǐ xuǎn kàochuāng de wèizi ma？</span></div></div>
+<div class="card-right">
+<div class="english">Can I have a window seat, please?<span class="phonetic">/kæn aɪ hæv ə ˈwɪn.doʊ siːt pliːz/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">window seat<span class="def"> 靠窗座位</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="What is the boarding gate?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">登機門是幾號？<span class="pinyin">Dēngjī mén shì jǐ hào？</span></div></div>
+<div class="card-right">
+<div class="english">What is the boarding gate?<span class="phonetic">/wʌt ɪz ðə ˈbɔːr.dɪŋ ɡeɪt/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">boarding gate<span class="def"> 登機門</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="When does boarding start?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">什麼時候開始登機？<span class="pinyin">Shénme shíhòu kāishǐ dēngjī？</span></div></div>
+<div class="card-right">
+<div class="english">When does boarding start?<span class="phonetic">/wen dʌz ˈbɔːr.dɪŋ stɑːrt/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">boarding<span class="def"> 登機</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="How many kilograms of luggage can I bring?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我可以帶幾公斤的行李？<span class="pinyin">Wǒ kěyǐ dài jǐ gōngjīn de xínglǐ？</span></div></div>
+<div class="card-right">
+<div class="english">How many kilograms of luggage can I bring?<span class="phonetic">/haʊ ˈmen.i ˈkɪl.ə.ɡræmz əv ˈlʌɡ.ɪdʒ kæn aɪ brɪŋ/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">luggage<span class="def"> 行李</span></span><span class="vocab-word" onclick="toggleDef(this)">kilogram<span class="def"> 公斤</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="section-title">🚇 交通</div>
+<div class="card" data-en="Excuse me, how do I get to the train station?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">不好意思，請問火車站怎麼走？<span class="pinyin">Bù hǎoyìsi, qǐngwèn huǒchē zhàn zěnme zǒu？</span></div></div>
+<div class="card-right">
+<div class="english">Excuse me, how do I get to the train station?<span class="phonetic">/ɪkˈskjuːz miː haʊ duː aɪ ɡet tə ðə treɪn ˈsteɪ.ʃən/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">train station<span class="def"> 火車站</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="Is this the right bus to the city center?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">這班公車有到市中心嗎？<span class="pinyin">Zhè bān gōngchē yǒu dào shì zhōngxīn ma？</span></div></div>
+<div class="card-right">
+<div class="english">Is this the right bus to the city center?<span class="phonetic">/ɪz ðɪs ðə raɪt bʌs tə ðə ˈsɪt.i ˈsen.tər/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">city center<span class="def"> 市中心</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="How much is a one-way ticket?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">單程票多少錢？<span class="pinyin">Dānchéng piào duōshǎo qián？</span></div></div>
+<div class="card-right">
+<div class="english">How much is a one-way ticket?<span class="phonetic">/haʊ mʌtʃ ɪz ə wʌn-weɪ ˈtɪk.ɪt/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">one-way ticket<span class="def"> 單程票</span></span><span class="vocab-word" onclick="toggleDef(this)">round-trip ticket<span class="def"> 來回票</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="Could you call a taxi for me, please?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">可以幫我叫一輛計程車嗎？<span class="pinyin">Kěyǐ bāng wǒ jiào yí liàng jìchéngchē ma？</span></div></div>
+<div class="card-right">
+<div class="english">Could you call a taxi for me, please?<span class="phonetic">/kʊd juː kɔːl ə ˈtæk.si fɔːr miː pliːz/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">taxi<span class="def"> 計程車</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="How long does it take to get there?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">到那裡要多久？<span class="pinyin">Dào nàlǐ yào duōjiǔ？</span></div></div>
+<div class="card-right">
+<div class="english">How long does it take to get there?<span class="phonetic">/haʊ lɔːŋ dʌz ɪt teɪk tə ɡet ðer/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">take time<span class="def"> 花時間</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="section-title">🏨 住宿</div>
+<div class="card" data-en="I have a reservation under the name Lingo.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我有預約，名字是 Lingo。<span class="pinyin">Wǒ yǒu yùyuē, míngzì shì Lingo。</span></div></div>
+<div class="card-right">
+<div class="english">I have a reservation under the name Lingo.<span class="phonetic">/aɪ hæv ə ˌrez.ərˈveɪ.ʃən ˈʌn.dər ðə neɪm ˈlɪŋ.ɡoʊ/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">reservation<span class="def"> 預約</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="What time is breakfast served?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">早餐幾點供應？<span class="pinyin">Zǎocān jǐ diǎn gōngyìng？</span></div></div>
+<div class="card-right">
+<div class="english">What time is breakfast served?<span class="phonetic">/wʌt taɪm ɪz ˈbrek.fəst sɜːrvd/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">breakfast<span class="def"> 早餐</span></span><span class="vocab-word" onclick="toggleDef(this)">served<span class="def"> 供應</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="Could I get an extra towel, please?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">可以多給我一條毛巾嗎？<span class="pinyin">Kěyǐ duō gěi wǒ yì tiáo máojīn ma？</span></div></div>
+<div class="card-right">
+<div class="english">Could I get an extra towel, please?<span class="phonetic">/kʊd aɪ ɡet æn ˈek.strə ˈtaʊ.əl pliːz/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">extra<span class="def"> 額外的</span></span><span class="vocab-word" onclick="toggleDef(this)">towel<span class="def"> 毛巾</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="Can I extend my stay for one more night?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我可以多住一晚嗎？<span class="pinyin">Wǒ kěyǐ duō zhù yì wǎn ma？</span></div></div>
+<div class="card-right">
+<div class="english">Can I extend my stay for one more night?<span class="phonetic">/kæn aɪ ɪkˈstend maɪ steɪ fɔːr wʌn mɔːr naɪt/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">extend<span class="def"> 延長</span></span><span class="vocab-word" onclick="toggleDef(this)">stay<span class="def"> 住宿、停留</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="section-title">🍜 餐飲</div>
+<div class="card" data-en="What do you recommend?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">你有推薦什麼嗎？<span class="pinyin">Nǐ yǒu tuījiàn shénme ma？</span></div></div>
+<div class="card-right">
+<div class="english">What do you recommend?<span class="phonetic">/wʌt duː juː ˌrek.əˈmend/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">recommend<span class="def"> 推薦</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="Could I have the bill, please?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">請買單。<span class="pinyin">Qǐng mǎidān。</span></div></div>
+<div class="card-right">
+<div class="english">Could I have the bill, please?<span class="phonetic">/kʊd aɪ hæv ðə bɪl pliːz/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">bill<span class="def"> 帳單</span></span><span class="vocab-word" onclick="toggleDef(this)">check<span class="def"> 帳單（美式）</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="I have an allergy to peanuts.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我對花生過敏。<span class="pinyin">Wǒ duì huāshēng guòmǐn。</span></div></div>
+<div class="card-right">
+<div class="english">I have an allergy to peanuts.<span class="phonetic">/aɪ hæv æn ˈæl.ər.dʒi tə ˈpiː.nʌts/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">allergy<span class="def"> 過敏</span></span><span class="vocab-word" onclick="toggleDef(this)">peanuts<span class="def"> 花生</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="Is there a convenience store near here?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">附近有便利商店嗎？<span class="pinyin">Fùjìn yǒu biànlì shāngdiàn ma？</span></div></div>
+<div class="card-right">
+<div class="english">Is there a convenience store near here?<span class="phonetic">/ɪz ðer ə kənˈviː.ni.əns stɔːr nɪr hɪr/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">convenience store<span class="def"> 便利商店</span></span><span class="vocab-word" onclick="toggleDef(this)">near here<span class="def"> 附近</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="section-title">🆘 緊急</div>
+<div class="card" data-en="I'm lost. Can you help me?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我迷路了，可以幫我嗎？<span class="pinyin">Wǒ mílù le, kěyǐ bāng wǒ ma？</span></div></div>
+<div class="card-right">
+<div class="english">I'm lost. Can you help me?<span class="phonetic">/aɪm lɔːst kæn juː help miː/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">lost<span class="def"> 迷路的</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="Please call the police!">
+<div class="card-content">
+<div class="card-left"><div class="chinese">請報警！<span class="pinyin">Qǐng bàojǐng！</span></div></div>
+<div class="card-right">
+<div class="english">Please call the police!<span class="phonetic">/pliːz kɔːl ðə pəˈliːs/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">police<span class="def"> 警察</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="I lost my passport. What should I do?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我的護照不見了，怎麼辦？<span class="pinyin">Wǒ de hùzhào bújiàn le, zěnmebàn？</span></div></div>
+<div class="card-right">
+<div class="english">I lost my passport. What should I do?<span class="phonetic">/aɪ lɔːst maɪ ˈpæs.pɔːrt wʌt ʃʊd aɪ duː/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">passport<span class="def"> 護照</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="card" data-en="I don't feel well. Can you call a doctor?">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我不舒服，可以幫我叫醫生嗎？<span class="pinyin">Wǒ bù shūfú, kěyǐ bāng wǒ jiào yīshēng ma？</span></div></div>
+<div class="card-right">
+<div class="english">I don't feel well. Can you call a doctor?<span class="phonetic">/aɪ doʊnt fiːl wel kæn juː kɔːl ə ˈdɑːk.tər/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">feel well<span class="def"> 身體舒服</span></span><span class="vocab-word" onclick="toggleDef(this)">doctor<span class="def"> 醫生</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+<div class="footer">🌏 Lingo ✕ 小綠 🍀 旅行英文練習<br>點擊生字看解釋 | 🔇 遮中/英文自我測驗<br>✅ 已查證 | 模型：ollama-windows/qwen2.5:7b</div>
 </div>
-
 <script>
-// 語速控制
-const slider = document.getElementById('speedSlider');
-const speedDisplay = document.getElementById('speedDisplay');
-let currentRate = 0.9;
-
-slider.addEventListener('input', function() {
-  currentRate = parseFloat(this.value);
-  speedDisplay.textContent = currentRate.toFixed(1) + 'x';
-});
-
-// 停止所有語音
-function stopAllSpeech() {
-  window.speechSynthesis.cancel();
-  document.querySelectorAll('.btn-play.speaking').forEach(b => b.classList.remove('speaking'));
-}
-
-document.getElementById('stopBtn').addEventListener('click', stopAllSpeech);
-
-// 單句朗讀
-function speak(btn) {
-  // 先停止正在播放的
-  window.speechSynthesis.cancel();
-  document.querySelectorAll('.btn-play.speaking').forEach(b => b.classList.remove('speaking'));
-
-  const card = btn.closest('.card');
-  const text = card.dataset.en;
-  if (!text) return;
-
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-US';
-  utterance.rate = currentRate;
-
-  // 尋找好的英文語音
-  const voices = window.speechSynthesis.getVoices();
-  const preferredVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Samantha'))
-    || voices.find(v => v.lang.startsWith('en') && v.name.includes('Google UK'))
-    || voices.find(v => v.lang.startsWith('en'));
-
-  if (preferredVoice) utterance.voice = preferredVoice;
-
-  btn.classList.add('speaking');
-  utterance.onend = () => btn.classList.remove('speaking');
-  utterance.onerror = () => btn.classList.remove('speaking');
-
-  window.speechSynthesis.speak(utterance);
-}
-
-// 全部播放
-document.getElementById('playAllBtn').addEventListener('click', function() {
-  stopAllSpeech();
-  const cards = document.querySelectorAll('.card[data-en]');
-  let index = 0;
-
-  function playNext() {
-    if (index >= cards.length) return;
-    const card = cards[index];
-    const text = card.dataset.en;
-    if (!text) { index++; playNext(); return; }
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.rate = currentRate;
-
-    const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Samantha'))
-      || voices.find(v => v.lang.startsWith('en') && v.name.includes('Google UK'))
-      || voices.find(v => v.lang.startsWith('en'));
-    if (preferredVoice) utterance.voice = preferredVoice;
-
-    const btn = card.querySelector('.btn-play');
-    if (btn) btn.classList.add('speaking');
-
-    utterance.onend = () => {
-      if (btn) btn.classList.remove('speaking');
-      index++;
-      setTimeout(playNext, 1200);
-    };
-    utterance.onerror = () => {
-      if (btn) btn.classList.remove('speaking');
-      index++;
-      playNext();
-    };
-
-    window.speechSynthesis.speak(utterance);
-  }
-
-  playNext();
-});
-
-// 預載語音（iOS Safari 需要用戶觸發後才能載入語音）
-window.speechSynthesis.getVoices();
-window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+var slider=document.getElementById('speedSlider'),spd=document.getElementById('speedDisplay'),rate=0.9;
+slider.addEventListener('input',function(){rate=parseFloat(this.value);spd.textContent=rate.toFixed(1)+'x'});
+function setMode(m){document.body.className=m==='normal'?'':'quiz-'+m;document.querySelectorAll('.quiz-btn').forEach(function(b){b.classList.toggle('active',b.dataset.mode===m)})}
+function toggleDef(el){el.classList.toggle('active')}
+function stopAll(){window.speechSynthesis.cancel();document.querySelectorAll('.btn-play.speaking').forEach(function(b){b.classList.remove('speaking')})}
+document.getElementById('stopBtn').addEventListener('click',stopAll);
+function speak(btn){stopAll();var card=btn.closest('.card'),text=card.dataset.en;if(!text)return;var u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;var v=window.speechSynthesis.getVoices(),pv=v.find(function(x){return x.lang.startsWith('en')&&x.name.includes('Samantha')})||v.find(function(x){return x.lang.startsWith('en')&&x.name.includes('Google US')})||v.find(function(x){return x.lang.startsWith('en')});if(pv)u.voice=pv;btn.classList.add('speaking');u.onend=function(){btn.classList.remove('speaking')};u.onerror=function(){btn.classList.remove('speaking')};window.speechSynthesis.speak(u)}
+document.getElementById('playAllBtn').addEventListener('click',function(){stopAll();var cards=document.querySelectorAll('.card[data-en]'),i=0;function next(){if(i>=cards.length)return;var card=cards[i],text=card.dataset.en;if(!text){i++;next();return}var u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;var v=window.speechSynthesis.getVoices(),pv=v.find(function(x){return x.lang.startsWith('en')&&x.name.includes('Samantha')})||v.find(function(x){return x.lang.startsWith('en')&&x.name.includes('Google US')})||v.find(function(x){return x.lang.startsWith('en')});if(pv)u.voice=pv;var btn=card.querySelector('.btn-play');if(btn)btn.classList.add('speaking');u.onend=function(){if(btn)btn.classList.remove('speaking');i++;setTimeout(next,1200)};u.onerror=function(){if(btn)btn.classList.remove('speaking');i++;next()};window.speechSynthesis.speak(u)}next()});
+window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=function(){window.speechSynthesis.getVoices()};
 </script>
-
 </body>
 </html>
