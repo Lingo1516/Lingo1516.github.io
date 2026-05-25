@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>旅行遇見好朋友 🌏 英文故事練習</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang TC','Noto Sans TC',sans-serif;background:#f8f6f0;color:#1a1a1a;line-height:1.7;font-size:18px}
+.header{background:linear-gradient(135deg,#6c3483,#a569bd);color:white;padding:36px 18px 16px;text-align:center;position:sticky;top:0;z-index:10}
+.header h1{font-size:26px;font-weight:700}
+.header .sub{font-size:14px;opacity:.85;margin-top:2px}
+.controls{background:#e8daef;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;position:sticky;top:84px;z-index:9}
+.controls .speed-group{display:flex;align-items:center;gap:6px}
+.controls label{font-size:15px;font-weight:600;color:#6c3483;white-space:nowrap}
+.controls input[type="range"]{flex:1;min-width:80px;max-width:140px}
+.controls .speed-val{font-size:15px;font-weight:700;color:#6c3483;min-width:35px}
+.btn-play-all,.btn-stop{padding:6px 14px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-play-all{background:#27ae60;color:white}
+.btn-stop{background:#e74c3c;color:white}
+.quiz-bar{background:#f4ecf7;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:124px;z-index:8}
+.quiz-bar span{font-size:14px;font-weight:600;color:#6c3483}
+.quiz-btn{padding:4px 12px;border:2px solid #8e44ad;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:white;color:#8e44ad}
+.quiz-btn.active{background:#8e44ad;color:white}
+.container{padding:10px 12px;max-width:700px;margin:0 auto}
+.story-title{font-size:20px;font-weight:700;color:#6c3483;text-align:center;padding:14px 0 6px}
+.story-sub{font-size:14px;color:#888;text-align:center;margin-bottom:12px}
+.card{background:white;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:5px solid #a569bd}
+.card-content{display:flex;gap:10px}
+.card-left{flex:1;min-width:0}
+.card-right{flex:1;min-width:0}
+.chinese{font-size:19px;font-weight:600;color:#1a1a1a;margin-bottom:8px;border-left:3px solid #e74c3c;padding-left:8px}
+.chinese .pinyin{display:block;font-size:13px;font-weight:400;color:#999;margin-top:2px}
+.english{font-size:20px;font-weight:600;color:#8e44ad;margin-bottom:6px;border-left:3px solid #8e44ad;padding-left:8px}
+.english .phonetic{display:block;font-size:13px;font-weight:400;color:#888;margin-top:2px}
+.vocab-area{margin-top:6px;padding-top:6px;border-top:1px dashed #ddd;display:flex;flex-wrap:wrap;gap:4px}
+.vocab-word{display:inline-block;padding:3px 8px;background:#f4ecf7;border-radius:6px;font-size:13px;font-weight:600;color:#6c3483;cursor:pointer}
+.vocab-word .def{display:none;font-weight:400;color:#555;margin-left:4px}
+.vocab-word.active .def{display:inline}
+.card-actions{margin-top:6px;display:flex;gap:6px}
+.btn-play{padding:5px 12px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;background:#f4ecf7;color:#6c3483}
+.btn-play.speaking{background:#d4efdf;color:#1e8449}
+body.quiz-cn .chinese,body.quiz-cn .chinese .pinyin{opacity:0}
+body.quiz-en .english,body.quiz-en .english .phonetic{opacity:0}
+.footer{text-align:center;font-size:13px;color:#888;padding:20px;line-height:1.8}
+@media(max-width:420px){.card-content{flex-direction:column;gap:4px}.chinese{font-size:17px}.english{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="header"><h1>🌏 旅行遇見好朋友</h1><div class="sub">一段真實的旅程故事 · 中英文對照練習</div></div>
+<div class="controls">
+<div class="speed-group"><label>🔊 語速</label><input type="range" id="speedSlider" min="0.3" max="1.5" step="0.1" value="0.9"><span class="speed-val" id="speedDisplay">0.9x</span></div>
+<div style="display:flex;gap:4px"><button class="btn-play-all" id="playAllBtn">▶ 朗讀全文</button><button class="btn-stop" id="stopBtn">■ 停止</button></div>
+</div>
+<div class="quiz-bar">
+<span>📝 練習模式</span>
+<button class="quiz-btn active" data-mode="normal" onclick="setMode('normal')">正常</button>
+<button class="quiz-btn" data-mode="quiz-cn" onclick="setMode('quiz-cn')">遮中文</button>
+<button class="quiz-btn" data-mode="quiz-en" onclick="setMode('quiz-en')">遮英文</button>
+</div>
+<div class="container">
+<div class="story-title">✈️ 在京都認識的台灣女孩</div>
+<div class="story-sub">去年秋天 · 京都 · 一場意外的相遇</div>
+
+<div class="card" data-en="Last autumn I went on a trip to Kyoto alone.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">去年秋天，我一個人去京都旅行。<span class="pinyin">Qùnián qiūtiān, wǒ yīgèrén qù Jīngdū lǚxíng。</span></div></div>
+<div class="card-right">
+<div class="english">Last autumn I went on a trip to Kyoto alone.<span class="phonetic">/læst ˈɔː.təm aɪ went ɒn ə trɪp tə kjoʊ.toʊ əˈloʊn/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">autumn<span class="def"> 秋天</span></span><span class="vocab-word" onclick="toggleDef(this)">alone<span class="def"> 獨自</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="It was my first time traveling by myself.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">這是我第一次自己旅行。<span class="pinyin">Zhè shì wǒ dìyīcì zìjǐ lǚxíng。</span></div></div>
+<div class="card-right">
+<div class="english">It was my first time traveling by myself.<span class="phonetic">/ɪt wʌz maɪ fɜːrst taɪm ˈtræv.əl.ɪŋ baɪ maɪˈself/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">travel by myself<span class="def"> 自己旅行</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="On my second day I visited a small temple in the hills.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">第二天，我去了一間山上的小寺廟。<span class="pinyin">Dì'èr tiān, wǒ qù le yī jiàn shānshàng de xiǎo sìmiào。</span></div></div>
+<div class="card-right">
+<div class="english">On my second day I visited a small temple in the hills.<span class="phonetic">/ɒn maɪ ˈsek.ənd deɪ aɪ ˈvɪz.ɪt.ɪd ə smɔːl ˈtem.pəl ɪn ðə hɪlz/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">temple<span class="def"> 寺廟</span></span><span class="vocab-word" onclick="toggleDef(this)">hill<span class="def"> 小山丘</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="There I met a girl who was taking photos of the maple leaves.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">在那裡，我遇到一個正在拍楓葉的女孩。<span class="pinyin">Zài nàlǐ, wǒ yùdào yīgè zhèngzài pāi fēngyè de nǚhái。</span></div></div>
+<div class="card-right">
+<div class="english">There I met a girl who was taking photos of the maple leaves.<span class="phonetic">/ðer aɪ met ə ɡɜːrld huː wʌz ˈteɪ.kɪŋ ˈfoʊ.toʊz əv ðə ˈmeɪ.pəl liːvz/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">maple leaves<span class="def"> 楓葉</span></span><span class="vocab-word" onclick="toggleDef(this)">take photos<span class="def"> 拍照</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="She smiled at me and asked if I could take a picture of her.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">她對我微笑，問我能不能幫她拍一張照片。<span class="pinyin">Tā duì wǒ wēixiào, wèn wǒ néng bù néng bāng tā pāi yī zhāng zhàopiàn。</span></div></div>
+<div class="card-right">
+<div class="english">She smiled at me and asked if I could take a picture of her.<span class="phonetic">/ʃiː smaɪld æt miː ænd æskt ɪf aɪ kʊd teɪk ə ˈpɪk.tʃər əv hɜːr/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">smile<span class="def"> 微笑</span></span><span class="vocab-word" onclick="toggleDef(this)">take a picture<span class="def"> 拍照</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="I nodded and we started talking.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我點點頭，然後我們就聊了起來。<span class="pinyin">Wǒ diǎndiǎn tóu, ránhòu wǒmen jiù liáo le qǐlái。</span></div></div>
+<div class="card-right">
+<div class="english">I nodded and we started talking.<span class="phonetic">/aɪ nɒd.ɪd ænd wiː ˈstɑːr.tɪd ˈtɔː.kɪŋ/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">nod<span class="def"> 點頭</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="She was also from Taiwan, traveling alone just like me.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">她也是台灣人，也和我一樣一個人旅行。<span class="pinyin">Tā yě shì Táiwān rén, yě hé wǒ yīyàng yīgèrén lǚxíng。</span></div></div>
+<div class="card-right">
+<div class="english">She was also from Taiwan, traveling alone just like me.<span class="phonetic">/ʃiː wʌz ˈɔːl.soʊ frɒm ˌtaɪˈwɑːn ˈtræv.əl.ɪŋ əˈloʊn dʒʌst laɪk miː/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">also<span class="def"> 也</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="We decided to explore the rest of the temple together.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我們決定一起逛逛寺廟的其他地方。<span class="pinyin">Wǒmen juédìng yīqǐ guàngguàng sìmiào de qítā dìfāng。</span></div></div>
+<div class="card-right">
+<div class="english">We decided to explore the rest of the temple together.<span class="phonetic">/wiː dɪˈsaɪ.dɪd tə ɪkˈsplɔːr ðə rest əv ðə ˈtem.pəl təˈɡeð.ər/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">explore<span class="def"> 探索</span></span><span class="vocab-word" onclick="toggleDef(this)">together<span class="def"> 一起</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="We talked about our favorite food and places in Japan.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我們聊起各自在日本最喜歡的食物和景點。<span class="pinyin">Wǒmen liáo qǐ gèzì zài Rìběn zuì xǐhuān de shíwù hé jǐngdiǎn。</span></div></div>
+<div class="card-right">
+<div class="english">We talked about our favorite food and places in Japan.<span class="phonetic">/wiː tɔːkt əˈbaʊt aʊər ˈfeɪ.vər.ɪt fuːd ænd ˈpleɪ.sɪz ɪn dʒəˈpæn/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">favorite<span class="def"> 最喜歡的</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="She told me about a hidden ramen shop that only locals know.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">她跟我說了一家只有當地人才知道的隱藏拉麵店。<span class="pinyin">Tā gēn wǒ shuō le yī jiā zhǐ yǒu dāngdìrén cái zhīdào de yǐncáng lāmiàn diàn。</span></div></div>
+<div class="card-right">
+<div class="english">She told me about a hidden ramen shop that only locals know.<span class="phonetic">/ʃiː toʊld miː əˈbaʊt ə ˈhɪd.ən ˈrɑː.men ʃɒp ðæt ˈoʊn.li ˈloʊ.kəlz noʊ/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">hidden<span class="def"> 隱藏的</span></span><span class="vocab-word" onclick="toggleDef(this)">locals<span class="def"> 當地人</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="The next day we met again and went there together.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">隔天我們又見面，一起去了那家店。<span class="pinyin">Gétiān wǒmen yòu jiànmiàn, yīqǐ qù le nà jiā diàn。</span></div></div>
+<div class="card-right">
+<div class="english">The next day we met again and went there together.<span class="phonetic">/ðə nekst deɪ wiː met əˈɡen ænd went ðer təˈɡeð.ər/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">next day<span class="def"> 隔天</span></span><span class="vocab-word" onclick="toggleDef(this)">again<span class="def"> 再次</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="The ramen was the best I had ever eaten.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">那碗拉麵是我吃過最好吃的。<span class="pinyin">Nà wǎn lāmiàn shì wǒ chī guò zuì hǎochī de。</span></div></div>
+<div class="card-right">
+<div class="english">The ramen was the best I had ever eaten.<span class="phonetic">/ðə ˈrɑː.men wʌz ðə best aɪ hæd ˈev.ər ˈiː.tən/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">best ever<span class="def"> 最好吃／最棒的（經驗）</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="We spent the rest of the week exploring Kyoto together.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">那一週剩下的日子，我們一起探索京都。<span class="pinyin">Nà yī zhōu shèngxià de rìzi, wǒmen yīqǐ tànsuǒ Jīngdū。</span></div></div>
+<div class="card-right">
+<div class="english">We spent the rest of the week exploring Kyoto together.<span class="phonetic">/wiː spent ðə rest əv ðə wiːk ɪkˈsplɔːr.ɪŋ kjoʊ.toʊ təˈɡeð.ər/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">spend time<span class="def"> 花時間</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="We visited bamboo forests, shrines, and drank matcha tea together.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我們一起去了竹林、神社，還喝了抹茶。<span class="pinyin">Wǒmen yīqǐ qù le zhúlín, shénshè, hái hē le mǒchá。</span></div></div>
+<div class="card-right">
+<div class="english">We visited bamboo forests, shrines, and drank matcha tea together.<span class="phonetic">/wiː ˈvɪz.ɪt.ɪd bæmˈbuː ˈfɔːr.ɪsts ʃraɪnz ænd dræŋk ˈmætʃ.ə tiː təˈɡeð.ər/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">bamboo forest<span class="def"> 竹林</span></span><span class="vocab-word" onclick="toggleDef(this)">shrine<span class="def"> 神社</span></span><span class="vocab-word" onclick="toggleDef(this)">matcha<span class="def"> 抹茶</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="On the last night we watched the sunset from Kiyomizu-dera.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">最後一晚，我們在清水寺看了夕陽。<span class="pinyin">Zuìhòu yī wǎn, wǒmen zài Qīngshuǐ Sì kàn le xīyáng。</span></div></div>
+<div class="card-right">
+<div class="english">On the last night we watched the sunset from Kiyomizu-dera.<span class="phonetic">/ɒn ðə læst naɪt wiː wɒtʃt ðə ˈsʌn.set frɒm ˌkiː.joʊ.miː.zuː ˈder.ə/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">sunset<span class="def"> 夕陽</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="She said, 'I'm so glad I met you on this trip.'">
+<div class="card-content">
+<div class="card-left"><div class="chinese">她說：「這趟旅行能遇到你，真的很開心。」<span class="pinyin">Tā shuō: 「Zhè tàng lǚxíng néng yùdào nǐ, zhēnde hěn kāixīn。」</span></div></div>
+<div class="card-right">
+<div class="english">She said, 'I'm so glad I met you on this trip.'<span class="phonetic">/ʃiː sed aɪm soʊ ɡlæd aɪ met juː ɒn ðɪs trɪp/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">I'm glad<span class="def"> 我很高興／開心</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="I felt the same way.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我也有同樣的感覺。<span class="pinyin">Wǒ yě yǒu tóngyàng de gǎnjué。</span></div></div>
+<div class="card-right">
+<div class="english">I felt the same way.<span class="phonetic">/aɪ felt ðə seɪm weɪ/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">feel the same way<span class="def"> 有同樣的感覺</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="We exchanged contact information and promised to meet again in Taiwan.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">我們交換了聯絡方式，約好回台灣再見面。<span class="pinyin">Wǒmen jiāohuàn le liánluò fāngshì, yuē hǎo huí Táiwān zài jiànmiàn。</span></div></div>
+<div class="card-right">
+<div class="english">We exchanged contact information and promised to meet again in Taiwan.<span class="phonetic">/wiː ɪksˈtʃeɪndʒd ˈkɒn.tækt ˌɪn.fərˈmeɪ.ʃən ænd ˈprɒm.ɪst tə miːt əˈɡen ɪn ˌtaɪˈwɑːn/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">exchange contacts<span class="def"> 交換聯絡方式</span></span><span class="vocab-word" onclick="toggleDef(this)">promise<span class="def"> 約定、承諾</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="Sometimes the best part of traveling is not the places, but the people you meet.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">有時候旅行最棒的，不是去了哪裡，而是遇到了誰。<span class="pinyin">Yǒu shíhòu lǚxíng zuì bàng de, bùshì qù le nǎlǐ, érshì yùdào le shéi。</span></div></div>
+<div class="card-right">
+<div class="english">Sometimes the best part of traveling is not the places, but the people you meet.<span class="phonetic">/ˈsʌm.taɪmz ðə best pɑːrt əv ˈtræv.əl.ɪŋ ɪz nɒt ðə ˈpleɪ.sɪz bʌt ðə ˈpiː.pəl juː miːt/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">the best part<span class="def"> 最好的部分</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="card" data-en="And that is how I made a new friend on the road.">
+<div class="card-content">
+<div class="card-left"><div class="chinese">這就是我在旅途中交到新朋友的故事。<span class="pinyin">Zhè jiùshì wǒ zài lǚtú zhōng jiāo dào xīn péngyǒu de gùshì。</span></div></div>
+<div class="card-right">
+<div class="english">And that is how I made a new friend on the road.<span class="phonetic">/ænd ðæt ɪz haʊ aɪ meɪd ə njuː frend ɒn ðə roʊd/</span></div>
+<div class="vocab-area"><span class="vocab-word" onclick="toggleDef(this)">make a friend<span class="def"> 交朋友</span></span><span class="vocab-word" onclick="toggleDef(this)">on the road<span class="def"> 在路上、旅途中</span></span></div>
+</div></div>
+<div class="card-actions"><button class="btn-play" onclick="speak(this)">🔊 朗讀</button></div></div>
+
+<div class="footer">🌏 Lingo ✕ 小綠 🍀 旅行英文故事<br>點擊生字看解釋 | 🔇 遮中/英文自我測驗<br>✅ 已查證 | 模型：ollama-windows/qwen2.5:7b</div>
+</div>
+<script>
+var slider=document.getElementById('speedSlider'),spd=document.getElementById('speedDisplay'),rate=0.9;
+slider.addEventListener('input',function(){rate=parseFloat(this.value);spd.textContent=rate.toFixed(1)+'x'});
+function setMode(m){document.body.className=m==='normal'?'':'quiz-'+m;document.querySelectorAll('.quiz-btn').forEach(function(b){b.classList.toggle('active',b.dataset.mode===m)})}
+function toggleDef(el){el.classList.toggle('active')}
+function stopAll(){window.speechSynthesis.cancel();document.querySelectorAll('.btn-play.speaking').forEach(function(b){b.classList.remove('speaking')})}
+document.getElementById('stopBtn').addEventListener('click',stopAll);
+function speak(btn){stopAll();var card=btn.closest('.card'),text=card.dataset.en;if(!text)return;var u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;var v=window.speechSynthesis.getVoices(),pv=v.find(function(x){return x.lang.startsWith('en')&&x.name.includes('Samantha')})||v.find(function(x){return x.lang.startsWith('en')});if(pv)u.voice=pv;btn.classList.add('speaking');u.onend=function(){btn.classList.remove('speaking')};u.onerror=function(){btn.classList.remove('speaking')};window.speechSynthesis.speak(u)}
+document.getElementById('playAllBtn').addEventListener('click',function(){stopAll();var cards=document.querySelectorAll('.card[data-en]'),i=0;function next(){if(i>=cards.length)return;var card=cards[i],text=card.dataset.en;if(!text){i++;next();return}var u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;var v=window.speechSynthesis.getVoices(),pv=v.find(function(x){return x.lang.startsWith('en')&&x.name.includes('Samantha')})||v.find(function(x){return x.lang.startsWith('en')});if(pv)u.voice=pv;var btn=card.querySelector('.btn-play');if(btn)btn.classList.add('speaking');u.onend=function(){if(btn)btn.classList.remove('speaking');i++;setTimeout(next,1500)};u.onerror=function(){if(btn)btn.classList.remove('speaking');i++;next()};window.speechSynthesis.speak(u)}next()});
+window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=function(){window.speechSynthesis.getVoices()};
+</script>
+</body>
+</html>
