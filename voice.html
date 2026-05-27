@@ -88,8 +88,10 @@ function sendMessage(){
     if(!recognizedText) return;
     document.getElementById("sendBtn").style.display = "none";
     document.getElementById("status").textContent = "📤 傳送中...";
-    const url = "http://100.95.219.87:8888/say?q=" + encodeURIComponent(recognizedText);
-    fetch(url).then(r=>r.text()).then(()=>{
+    // 直接送 Telegram，不用經過 Mac
+    const url = "https://api.telegram.org/bot881795…FlDc/sendMessage";
+    const body = JSON.stringify({chat_id: "8966711562", text: "🎤 " + recognizedText});
+    fetch(url, {method: "POST", headers: {"Content-Type": "application/json"}, body: body}).then(()=>{
         document.getElementById("status").textContent = "✅ 已送出！小綠收到囉 🍀";
         document.getElementById("result").style.display = "none";
         recognizedText = "";
