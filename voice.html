@@ -88,7 +88,7 @@ function sendMessage(){
     if(!recognizedText) return;
     document.getElementById("sendBtn").style.display = "none";
     document.getElementById("status").textContent = "📤 傳送中...";
-    const url = "https://Lingo1516.github.io/say-proxy.html?q=" + encodeURIComponent(recognizedText);
+    const url = "http://100.95.219.87:8888/say?q=" + encodeURIComponent(recognizedText);
     fetch(url).then(r=>r.text()).then(()=>{
         document.getElementById("status").textContent = "✅ 已送出！小綠收到囉 🍀";
         document.getElementById("result").style.display = "none";
