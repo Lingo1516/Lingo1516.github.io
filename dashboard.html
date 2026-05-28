@@ -32,15 +32,38 @@ body{font-family:-apple-system,'Noto Sans TC','PingFang TC',sans-serif;backgroun
 <div class="card"><span class="label">⏱️ 剩餘</span><span class="value" id="rem" style="color:#38bdf8">1:06</span></div>
 <div class="card"><span class="label">🖥️ 螢幕</span><span class="value" id="lid" style="color:#a855f7">🔒 蓋上</span></div>
 <div class="card"><span class="label">🛡️ caffeinate</span><span class="value" id="caf" style="color:#22c55e">✅ 運行中</span></div>
-<div class="footer">🍀 小綠 · MacBook Air M1 · 更新 2026-05-28 21:17:48</div>
+<div class="footer">🍀 小綠 · MacBook Air M1 · <span id="upts">載入中...</span></div>
 </div>
 <script>
 function pad(n){return n.toString().padStart(2,'0')}
-function update(){
+// 時鐘
+function updateClock(){
   var d=new Date();
   document.getElementById('clock').textContent=pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
   document.getElementById('date').textContent=d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 '+'星期'+['日','一','二','三','四','五','六'][d.getDay()];}
-update();setInterval(update,1000);
+updateClock();setInterval(updateClock,1000);
+
+// 每30秒從 raw 抓最新數據（繞過 CDN）
+function fetchData(){
+  fetch('https://raw.githubusercontent.com/Lingo1516/Lingo1516.github.io/main/dashboard.html?t='+Date.now())
+    .then(r=>r.text())
+    .then(html=>{
+      var parser=new DOMParser();
+      var doc=parser.parseFromString(html,'text/html');
+      document.getElementById('bat').textContent=doc.getElementById('bat').textContent;
+      document.getElementById('bat').style.color=doc.getElementById('bat').style.color;
+      document.getElementById('bar').style.width=doc.getElementById('bar').style.width;
+      document.getElementById('bar').style.background=doc.getElementById('bar').style.background;
+      document.getElementById('pwr').textContent=doc.getElementById('pwr').textContent;
+      document.getElementById('rem').textContent=doc.getElementById('rem').textContent;
+      document.getElementById('lid').textContent=doc.getElementById('lid').textContent;
+      document.getElementById('lid').style.color=doc.getElementById('lid').style.color;
+      document.getElementById('caf').textContent=doc.getElementById('caf').textContent;
+      document.getElementById('caf').style.color=doc.getElementById('caf').style.color;
+      document.getElementById('upts').textContent='更新 '+new Date().toLocaleString('zh-TW',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+    }).catch(e=>{});
+}
+fetchData();setInterval(fetchData,30000);
 </script>
 </body>
 </html>
