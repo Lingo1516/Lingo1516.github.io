@@ -5,124 +5,118 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>沖繩11月五天四夜全家自駕慢活行程規劃</title>
 <style>
-:root {
---primary-color: #0F2C59;
---secondary-color: #DAC0A3;
---bg-color: #F8F0E5;
---text-color: #102A43;
---card-bg: #FFFFFF;
---accent-time: #E11D48;
-}
+:root{--primary:#0F2C59;--secondary:#DAC0A3;--bg:#F8F0E5;--text:#102A43;--card:#fff;--time:#E11D48}
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Helvetica Neue",Arial,"Noto Sans TC",sans-serif}
-body{background-color:var(--bg-color);color:var(--text-color);line-height:1.6;padding:40px 20px}
+body{background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px}
 .container{max-width:1000px;margin:0 auto}
-header{text-align:center;margin-bottom:40px;border-bottom:3px solid var(--primary-color);padding-bottom:20px}
-header h1{font-size:2.2rem;color:var(--primary-color);margin-bottom:10px;font-weight:700}
+header{text-align:center;margin-bottom:40px;border-bottom:3px solid var(--primary);padding-bottom:20px}
+header h1{font-size:2.2rem;color:var(--primary);margin-bottom:10px;font-weight:700}
 header p{font-size:1.1rem;color:#627D98}
-.notice-box{background:#FFF;border-left:5px solid var(--secondary-color);padding:15px 20px;margin-bottom:30px;border-radius:4px;box-shadow:0 4px 6px rgba(0,0,0,0.05)}
-.notice-box h4{color:var(--primary-color);margin-bottom:5px}
-.tab-container{display:flex;justify-content:space-between;background:var(--primary-color);padding:8px;border-radius:8px;margin-bottom:30px;box-shadow:0 4px 10px rgba(0,0,0,0.15)}
-.tab-btn{flex:1;background:none;border:none;color:#BAC7D5;padding:12px 10px;font-size:1.1rem;font-weight:bold;cursor:pointer;transition:all 0.3s;text-align:center;border-radius:6px}
-.tab-btn:hover{color:#FFF;background:rgba(255,255,255,0.1)}
-.tab-btn.active{background:var(--secondary-color);color:var(--primary-color)}
-.tab-content{display:none;animation:fadeIn 0.4s}
-.tab-content.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.hotel-card{background:#E2E8F0;border:1px solid #CBD5E1;padding:18px;border-radius:8px;margin-bottom:25px;display:flex;align-items:center;justify-content:space-between}
-.hotel-card h3{color:var(--primary-color);font-size:1.2rem}
-.hotel-card p{font-size:0.95rem;color:#475569}
-.hotel-tag{background:var(--primary-color);color:#FFF;padding:6px 12px;border-radius:4px;font-size:0.85rem;font-weight:bold}
-.timeline{position:relative;padding-left:30px;border-left:3px solid var(--secondary-color)}
-.timeline-item{position:relative;margin-bottom:30px;background:var(--card-bg);padding:20px;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.05)}
-.timeline-item::before{content:'';position:absolute;left:-38px;top:24px;width:12px;height:12px;border-radius:50%;background:var(--accent-time);border:3px solid var(--card-bg)}
-.time-badge{display:inline-block;background:var(--accent-time);color:white;padding:3px 10px;border-radius:20px;font-size:0.85rem;font-weight:bold;margin-bottom:10px}
-.item-title{font-size:1.3rem;font-weight:bold;color:var(--primary-color);margin-bottom:8px}
-.type-tag{font-size:0.75rem;padding:2px 8px;border-radius:4px;margin-left:8px;font-weight:normal}
-.tag-play{background:#D1FAE5;color:#065F46}
-.tag-eat{background:#FFEDD5;color:#9A3412}
-.tag-traffic{background:#DBEAFE;color:#1E40AF}
-.item-desc{color:#486581;font-size:1rem}
-@media(max-width:768px){
-body{padding:20px 10px}
-.tab-container{flex-wrap:wrap}
-.tab-btn{flex:none;width:33.33%;font-size:0.95rem}
-.hotel-card{flex-direction:column;align-items:flex-start;gap:10px}
-}
+.notice{background:#fff;border-left:5px solid var(--secondary);padding:15px 20px;margin-bottom:30px;border-radius:4px}
+.tabs{display:flex;background:var(--primary);padding:8px;border-radius:8px;margin-bottom:30px;gap:4px}
+.tab{flex:1;background:none;border:none;color:#BAC7D5;padding:12px 8px;font-size:1rem;font-weight:bold;cursor:pointer;text-align:center;border-radius:6px;transition:all .3s}
+.tab:hover{color:#fff;background:rgba(255,255,255,.1)}
+.tab.on{background:var(--secondary);color:var(--primary)}
+.panel{display:none;animation:fade .4s}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hotel{background:#E2E8F0;border:1px solid #CBD5E1;padding:18px;border-radius:8px;margin-bottom:25px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.hotel h3{color:var(--primary);font-size:1.2rem}
+.hotel p{font-size:.95rem;color:#475569}
+.htag{background:var(--primary);color:#fff;padding:6px 12px;border-radius:4px;font-size:.85rem;font-weight:bold}
+.line{position:relative;padding-left:30px;border-left:3px solid var(--secondary)}
+.item{position:relative;margin-bottom:30px;background:var(--card);padding:20px;border-radius:8px}
+.item::before{content:'';position:absolute;left:-38px;top:24px;width:12px;height:12px;border-radius:50%;background:var(--time);border:3px solid var(--card)}
+.time{display:inline-block;background:var(--time);color:white;padding:3px 10px;border-radius:20px;font-size:.85rem;font-weight:bold;margin-bottom:10px}
+.title{font-size:1.3rem;font-weight:bold;color:var(--primary);margin-bottom:8px}
+.tag{font-size:.75rem;padding:2px 8px;border-radius:4px;margin-left:8px;font-weight:normal;display:inline-block}
+.tg-play{background:#D1FAE5;color:#065F46}
+.tg-eat{background:#FFEDD5;color:#9A3412}
+.tg-traffic{background:#DBEAFE;color:#1E40AF}
+.desc{color:#486581;font-size:1rem}
+@media(max-width:768px){body{padding:20px 10px}.tab{font-size:.85rem;padding:10px 4px}}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
 <h1>沖繩秋季慢活：五天四夜全家自駕規劃</h1>
-<p>📊 11月出發 | 舒適溫暖避風頭 | 兼顧長輩與小孩的黃金北中南動線</p>
+<p>📊 11月出發 | 舒適溫暖避風頭 | 兼顧長輩與小孩</p>
 </header>
-<div class="notice-box">
-<h4>💡 11月出遊智慧提示</h4>
-<ul style="list-style:none;font-size:0.95rem">
-<li>✨ <b>氣候指南：</b> 均溫 20-25°C 涼爽舒適。海風較大，請務必為家人準備防風薄外套。</li>
-<li>✨ <b>自駕提醒：</b> 抵達當天機場取車後直奔中北部，最後兩天回那霸市區，完全不走回頭路。</li>
+<div class="notice">
+<h4>💡 11月出遊提示</h4>
+<ul style="list-style:none;font-size:.95rem">
+<li>✨ 均溫20-25°C涼爽舒適，請準備防風薄外套</li>
+<li>✨ 機場取車後直奔中北部，最後兩天回那霸市區不走回頭路</li>
 </ul>
 </div>
-<div class="tab-container">
-<button class="tab-btn active" onclick="openDay(event,'day1')">第一天 (中部)</button>
-<button class="tab-btn" onclick="openDay(event,'day2')">第二天 (北部)</button>
-<button class="tab-btn" onclick="openDay(event,'day3')">第三天 (中北部)</button>
-<button class="tab-btn" onclick="openDay(event,'day4')">第四天 (市區)</button>
-<button class="tab-btn" onclick="openDay(event,'day5')">第五天 (返航)</button>
+
+<div class="tabs">
+<button class="tab on" data-day="day1">第一天 (中部)</button>
+<button class="tab" data-day="day2">第二天 (北部)</button>
+<button class="tab" data-day="day3">第三天 (中北部)</button>
+<button class="tab" data-day="day4">第四天 (市區)</button>
+<button class="tab" data-day="day5">第五天 (返航)</button>
 </div>
 
-<div id="day1" class="tab-content active">
-<div class="hotel-card"><div><h3>今日住宿預計：沖繩中部海景飯店 (如：Vessel Hotel Campana Okinawa)</h3><p>📍 北谷町美國村旁 | 開窗即是日落海灘，下樓直接逛街，附設大浴場可泡湯放鬆。</p></div><span class="hotel-tag">入住中部</span></div>
-<div class="timeline">
-<div class="timeline-item"><span class="time-badge">14:00 - 15:30</span><div class="item-title">那霸機場落地 ➔ 取車自駕 <span class="type-tag tag-traffic">交通</span></div><div class="item-desc">抵達那霸機場，全家通關後搭乘接駁車前往租車公司取車（建議選擇七人座/大空間車型）。檢查完車輛後立刻向中部出發。</div></div>
-<div class="timeline-item"><span class="time-badge">16:00 - 17:00</span><div class="item-title">港川外人住宅區散步 ➔ 下午茶 <span class="type-tag tag-eat">美食/景點</span></div><div class="item-desc">早期美軍宿舍改建的文青彩繪村，好停車、適合全家散步拍照。前往名店 [ohacorte] 品嚐招牌水果塔，為海島假期揭開序幕。</div></div>
-<div class="timeline-item"><span class="time-badge">17:30 - 20:30</span><div class="item-title">北谷美國村 ➔ 頂級和牛晚宴 <span class="type-tag tag-play">玩樂/美食</span></div><div class="item-desc">11月的海風非常舒服，漫步於美式風情的異國街頭。晚餐安排在 [琉球之牛 北谷店] 享用精緻縣產和牛燒肉（建議提早1-2個月預約）。</div></div>
+<div id="day1" class="panel on">
+<div class="hotel"><div><h3>住宿：中部海景飯店 (Vessel Hotel Campana Okinawa)</h3><p>北谷町美國村旁，開窗日落海灘，附大浴場</p></div><span class="htag">入住中部</span></div>
+<div class="line">
+<div class="item"><span class="time">14:00-15:30</span><div class="title">那霸機場→取車自駕 <span class="tag tg-traffic">交通</span></div><div class="desc">通關後搭接駁車取車（七人座），向中部出發</div></div>
+<div class="item"><span class="time">16:00-17:00</span><div class="title">港川外人住宅區散步 <span class="tag tg-eat">美食</span></div><div class="desc">文青彩繪村，去ohacorte吃水果塔</div></div>
+<div class="item"><span class="time">17:30-20:30</span><div class="title">北谷美國村+和牛晚宴 <span class="tag tg-play">玩樂/美食</span></div><div class="desc">琉球之牛北谷店，縣產和牛燒肉（提早1-2月預約）</div></div>
 </div></div>
 
-<div id="day2" class="tab-content">
-<div class="hotel-card"><div><h3>今日住宿預計：北部海景渡假飯店 (如：Okinawa Orion Resort & Spa)</h3><p>📍 本部町（鄰近水族館） | 頂級蔚藍海景房，附設溫泉大浴場。</p></div><span class="hotel-tag">入住北部</span></div>
-<div class="timeline">
-<div class="timeline-item"><span class="time-badge">09:30 - 10:30</span><div class="item-title">景觀壯麗：萬座毛 <span class="type-tag tag-play">玩樂</span></div><div class="item-desc">從中部往北開的路上順遊，觀賞天然象鼻海蝕岩與遼闊藍天，無障礙步道規劃完善。</div></div>
-<div class="timeline-item"><span class="time-badge">11:30 - 13:00</span><div class="item-title">午餐：百年古家 大家 <span class="type-tag tag-eat">美食</span></div><div class="item-desc">位於名護森林裡的百年歷史琉球木造老宅，欣賞中庭瀑布造景，享用 [阿古豬涮涮鍋]。</div></div>
-<div class="timeline-item"><span class="time-badge">13:30 - 17:00</span><div class="item-title">重頭戲：美麗海水族館 <span class="type-tag tag-play">玩樂</span></div><div class="item-desc">全亞洲最大水族館，欣賞「黑潮之海」巨大水槽與大鯨鯊，還有海豚表演。</div></div>
+<div id="day2" class="panel">
+<div class="hotel"><div><h3>住宿：北部海景渡假飯店 (Okinawa Orion Resort)</h3><p>本部町，鄰近水族館，附溫泉大浴場</p></div><span class="htag">入住北部</span></div>
+<div class="line">
+<div class="item"><span class="time">09:30-10:30</span><div class="title">萬座毛 <span class="tag tg-play">玩樂</span></div><div class="desc">天然象鼻海蝕岩，無障礙步道長輩友善</div></div>
+<div class="item"><span class="time">11:30-13:00</span><div class="title">百年古家大家·阿古豬涮涮鍋 <span class="tag tg-eat">美食</span></div><div class="desc">百年琉球木造老宅，瀑布造景，阿古豬軟嫩清甜</div></div>
+<div class="item"><span class="time">13:30-17:00</span><div class="title">美麗海水族館 <span class="tag tg-play">玩樂</span></div><div class="desc">亞洲最大水族館，黑潮之海大鯨鯊，海豚表演</div></div>
 </div></div>
 
-<div id="day3" class="tab-content">
-<div class="hotel-card"><div><h3>今日住宿預計：那霸市區精緻飯店 (如：那霸凱悅酒店 或 國際通周邊)</h3><p>📍 那霸市區 | 方便最後兩天逛街補貨與前往機場。</p></div><span class="hotel-tag">入住那霸市區</span></div>
-<div class="timeline">
-<div class="timeline-item"><span class="time-badge">09:30 - 11:00</span><div class="item-title">開車跨海：古宇利島大橋 <span class="type-tag tag-play">玩樂</span></div><div class="item-desc">11月雖然不下水，但開車駛過筆直跨海大橋，兩側「古宇利藍」清澈海景依舊壯觀。</div></div>
-<div class="timeline-item"><span class="time-badge">11:30 - 12:30</span><div class="item-title">午餐：岸本食堂 <span class="type-tag tag-eat">美食</span></div><div class="item-desc">品嚐沖繩傳統 [沖繩麵 Okinawa Soba]，古法製成的粗麵條口感Q彈。</div></div>
-<div class="timeline-item"><span class="time-badge">14:00 - 17:30</span><div class="item-title">下午血拼：永旺夢樂城沖繩來客夢 <span class="type-tag tag-play">購物</span></div><div class="item-desc">全沖繩最大購物中心，兩百多家專櫃與 AEON 大賣場，採購藥妝、日系服飾、零食。</div></div>
+<div id="day3" class="panel">
+<div class="hotel"><div><h3>住宿：那霸市區精緻飯店 (那霸凱悅)</h3><p>國際通周邊，最後兩天逛街補貨超方便</p></div><span class="htag">入住那霸市區</span></div>
+<div class="line">
+<div class="item"><span class="time">09:30-11:00</span><div class="title">古宇利島大橋 <span class="tag tg-play">玩樂</span></div><div class="desc">跨海大橋，古宇利藍海景，家族合照最佳背景</div></div>
+<div class="item"><span class="time">11:30-12:30</span><div class="title">岸本食堂·沖繩麵 <span class="tag tg-eat">美食</span></div><div class="desc">百年老店，古法沖繩麵，控肉入口即化</div></div>
+<div class="item"><span class="time">14:00-17:30</span><div class="title">永旺夢樂城購物 <span class="tag tg-play">購物</span></div><div class="desc">全沖繩最大購物中心，AEON超市採買藥妝零食</div></div>
 </div></div>
 
-<div id="day4" class="tab-content">
-<div class="hotel-card"><div><h3>今日住宿預計：那霸市區精緻飯店 (續住同間，免換房)</h3><p>📍 免去全家搬運行李的疲勞，晚上可輕裝步行出門。</p></div><span class="hotel-tag">續住那霸市區</span></div>
-<div class="timeline">
-<div class="timeline-item"><span class="time-badge">09:30 - 12:00</span><div class="item-title">南部文化：玉泉洞與王國村 <span class="type-tag tag-play">玩樂</span></div><div class="item-desc">參觀30萬年形成的巨型鐘乳石洞「玉泉洞」，冬暖夏涼。觀看琉球傳統大鼓舞表演。</div></div>
-<div class="timeline-item"><span class="time-badge">12:30 - 14:00</span><div class="item-title">午餐：泡瀨漁港 焗烤龍蝦 <span class="type-tag tag-eat">美食</span></div><div class="item-desc">漁港直營店享用 [焗烤海膽醬龍蝦定食]，價格平實，停車方便。</div></div>
-<div class="timeline-item"><span class="time-badge">15:00 - 17:00</span><div class="item-title">市區人文：波上宮參拜 <span class="type-tag tag-play">玩樂</span></div><div class="item-desc">建在懸崖上的神社，祈求全家平安。一旁有漂亮沙灘觀景點。</div></div>
-<div class="timeline-item"><span class="time-badge">18:00 - 21:00</span><div class="item-title">國際通狂歡 ➔ 復古牛排 <span class="type-tag tag-eat">美食</span></div><div class="item-desc">步行逛國際通，晚餐安排創立自1953年傳奇老店 Jack's Steak House，體驗在地牛排文化。</div></div>
+<div id="day4" class="panel">
+<div class="hotel"><div><h3>住宿：續住同間飯店</h3><p>免搬行李，晚上可輕裝步行出門</p></div><span class="htag">續住那霸市區</span></div>
+<div class="line">
+<div class="item"><span class="time">09:30-12:00</span><div class="title">玉泉洞+王國村 <span class="tag tg-play">玩樂</span></div><div class="desc">30萬年鐘乳石洞，琉球傳統大鼓舞表演</div></div>
+<div class="item"><span class="time">12:30-14:00</span><div class="title">泡瀨漁港·焗烤龍蝦 <span class="tag tg-eat">美食</span></div><div class="desc">海膽醬焗烤龍蝦定食，CP值超高</div></div>
+<div class="item"><span class="time">15:00-17:00</span><div class="title">波上宮參拜 <span class="tag tg-play">玩樂</span></div><div class="desc">懸崖上的神社，祈求全家平安</div></div>
+<div class="item"><span class="time">18:00-21:00</span><div class="title">國際通+Jack's牛排 <span class="tag tg-eat">美食</span></div><div class="desc">步行逛國際通，1953年傳奇牛排老店</div></div>
 </div></div>
 
-<div id="day5" class="tab-content">
-<div class="hotel-card"><div><h3>今日行程：返航回台灣</h3><p>✈️ 機場與市區僅 15 分鐘車程，時間充裕。</p></div><span class="hotel-tag">準備返航</span></div>
-<div class="timeline">
-<div class="timeline-item"><span class="time-badge">10:00 - 12:00</span><div class="item-title">沖繩小希臘：瀨長島海景下午茶 <span class="type-tag tag-play">玩樂/美食</span></div><div class="item-desc">離機場15分鐘。在 [幸福鬆餅] 露天座位看飛機起降與海景。</div></div>
-<div class="timeline-item"><span class="time-badge">12:15 - 14:00</span><div class="item-title">最後衝刺：ASHIBINAA Outlet <span class="type-tag tag-play">購物</span></div><div class="item-desc">各大國際品牌、日系精品、免稅折扣，最後伴手禮補貨。</div></div>
-<div class="timeline-item"><span class="time-badge">14:15 ~</span><div class="item-title">還車 ➔ 那霸機場登機 <span class="type-tag tag-traffic">交通</span></div><div class="item-desc">還車後搭乘接駁車至機場，好整以暇辦理登機回台灣。</div></div>
+<div id="day5" class="panel">
+<div class="hotel"><div><h3>返航回台灣</h3><p>機場距市區15分鐘，時間充裕</p></div><span class="htag">準備返航</span></div>
+<div class="line">
+<div class="item"><span class="time">10:00-12:00</span><div class="title">瀨長島·幸福鬆餅 <span class="tag tg-eat">美食</span></div><div class="desc">離機場15分，純白階梯建築，看飛機起降吃鬆餅</div></div>
+<div class="item"><span class="time">12:15-14:00</span><div class="title">ASHIBINAA Outlet <span class="tag tg-play">購物</span></div><div class="desc">最後補貨，國際品牌免稅折扣</div></div>
+<div class="item"><span class="time">14:15~</span><div class="title">還車→登機 <span class="tag tg-traffic">交通</span></div><div class="desc">還車搭接駁車至機場，快樂回台灣</div></div>
 </div></div>
 
 </div>
 <script>
-function openDay(e,d){
-var c=document.getElementsByClassName("tab-content");
-for(var i=0;i<c.length;i++)c[i].classList.remove("active");
-var b=document.getElementsByClassName("tab-btn");
-for(var i=0;i<b.length;i++)b[i].classList.remove("active");
-document.getElementById(d).classList.add("active");
-e.currentTarget.classList.add("active");
+(function(){
+var tabs=document.querySelectorAll('.tab');
+var panels={};
+document.querySelectorAll('.panel').forEach(function(p){panels[p.id]=p;});
+tabs.forEach(function(t){
+t.onclick=function(){
+tabs.forEach(function(x){x.classList.remove('on');});
+Object.values(panels).forEach(function(x){x.classList.remove('on');});
+this.classList.add('on');
+var id=this.getAttribute('data-day');
+if(panels[id])panels[id].classList.add('on');
 window.scrollTo({top:0,behavior:'smooth'});
-}
+};
+});
+})();
 </script>
 </body>
 </html>
