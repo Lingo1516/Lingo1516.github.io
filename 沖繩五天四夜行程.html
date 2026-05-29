@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>沖繩五天四夜自由行行程 🌺</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .info-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        .info-card .icon { font-size: 28px; margin-bottom: 6px; }
+        .info-card .label { font-size: 13px; color: #888; }
+        .info-card .value { font-size: 16px; font-weight: bold; color: #fff; margin-top: 4px; }
+
+        .day-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .day-header {
+            padding: 16px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .day-header span { font-size: 14px; font-weight: normal; color: #aaa; margin-left: 8px; }
+        .day-body { padding: 0 20px 20px; }
+
+        .timeline-item {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 14px;
+            align-items: flex-start;
+        }
+        .time-badge {
+            min-width: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 6px 8px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: #feca57;
+        }
+        .content { flex: 1; }
+        .content h3 { font-size: 17px; color: #fff; margin-bottom: 4px; }
+        .content p { font-size: 15px; color: #bbb; line-height: 1.6; }
+        .tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 12px;
+            color: #48dbfb;
+            margin-right: 6px;
+            margin-top: 4px;
+        }
+        .tag.food { color: #ff6b6b; }
+        .tag.view { color: #48dbfb; }
+        .tag.stay { color: #feca57; }
+        .tag.tip { color: #ff9ff3; }
+
+        .hotel-box {
+            background: rgba(254,202,87,0.1);
+            border: 1px solid rgba(254,202,87,0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .hotel-box h3 { color: #feca57; font-size: 18px; margin-bottom: 8px; }
+        .hotel-box p { font-size: 15px; color: #ccc; line-height: 1.6; }
+
+        .food-section {
+            background: rgba(255,107,107,0.08);
+            border: 1px solid rgba(255,107,107,0.2);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+        .food-section h3 { color: #ff6b6b; font-size: 18px; margin-bottom: 10px; }
+        .food-list { list-style: none; }
+        .food-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 15px;
+        }
+        .food-list li:last-child { border-bottom: none; }
+        .food-list .name { color: #fff; font-weight: bold; }
+        .food-list .desc { color: #999; font-size: 13px; }
+
+        .tips-box {
+            background: rgba(255,159,243,0.08);
+            border: 1px solid rgba(255,159,243,0.2);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+        .tips-box h3 { color: #ff9ff3; font-size: 18px; margin-bottom: 10px; }
+        .tips-box ul { padding-left: 20px; }
+        .tips-box li { font-size: 15px; color: #ccc; margin-bottom: 6px; line-height: 1.6; }
+
+        .footer {
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 24px; }
+            .info-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .info-card { padding: 12px 8px; }
+            .info-card .value { font-size: 14px; }
+            .day-header { font-size: 17px; padding: 12px 14px; }
+            .day-body { padding: 0 14px 14px; }
+            .time-badge { min-width: 50px; font-size: 12px; }
+            .content h3 { font-size: 15px; }
+            .content p { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>🌺 沖繩五天四夜自由行</h1>
+    <p class="subtitle">桃園出發 ｜ 四成人 ｜ 自駕玩透透</p>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="icon">✈️</div>
+            <div class="label">去程航班</div>
+            <div class="value">桃園 → 那霸（早班）</div>
+        </div>
+        <div class="info-card">
+            <div class="icon">🛬</div>
+            <div class="label">回程航班</div>
+            <div class="value">那霸 → 桃園（午班）</div>
+        </div>
+        <div class="info-card">
+            <div class="icon">🚗</div>
+            <div class="label">交通方式</div>
+            <div class="value">租車自駕（右駕）</div>
+        </div>
+        <div class="info-card">
+            <div class="icon">👥</div>
+            <div class="label">人數</div>
+            <div class="value">四成人</div>
+        </div>
+    </div>
+
+    <!-- ========== 住宿推薦 ========== -->
+    <div class="hotel-box">
+        <h3>🏨 住宿推薦（含早餐・四人房）</h3>
+        <p>
+            <strong>1. 那霸格拉斯麗飯店（Hotel Gracery Naha）</strong><br>
+            📍 國際通正中心，下樓就是國際通大街<br>
+            ✅ 有四人房｜含早餐方案可選｜單軌旭橋站步行 3 分鐘<br>
+            💰 約 NT$4,000～6,000/晚（含早）<br><br>
+            <strong>2. 那霸大和 Roynet 飯店（Daiwa Roynet Naha Kokusai-dori）</strong><br>
+            📍 國際通旁，生活機能一級棒<br>
+            ✅ 有四人房｜含早餐｜乾淨舒適<br>
+            💰 約 NT$3,500～5,500/晚（含早）<br><br>
+            <strong>3. 東橫 Inn 沖繩那霸國際通美榮橋站</strong><br>
+            📍 美榮橋站步行 2 分鐘，國際通中段<br>
+            ✅ 有四人房｜免費早餐（日式）｜CP 值高<br>
+            💰 約 NT$3,000～4,500/晚<br><br>
+            <strong>4. 那霸浮島龍神飯店（Kariyushi Condominium Resort）</strong><br>
+            📍 國際通巷子內，走出來就是大馬路<br>
+            ✅ 房間寬敞有小廚房｜適合四人｜生活機能好<br>
+            💰 約 NT$3,500～5,000/晚
+        </p>
+    </div>
+
+    <!-- ========== DAY 1 ========== -->
+    <div class="day-card">
+        <div class="day-header" style="background: linear-gradient(90deg, rgba(255,107,107,0.3), rgba(255,107,107,0.05));">
+            📅 Day 1<span>桃園 → 那霸・南部探索</span>
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <div class="time-badge">07:00</div>
+                <div class="content">
+                    <h3>桃園機場出發</h3>
+                    <p>搭乘早班機飛往那霸（約 1.5 小時）</p>
+                    <span class="tag">✈️ 航班</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">09:00</div>
+                <div class="content">
+                    <h3>抵達那霸機場</h3>
+                    <p>領取行李 → 前往租車櫃台取車（建議在機場取車最方便）</p>
+                    <span class="tag">🚗 租車</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">10:30</div>
+                <div class="content">
+                    <h3>瀨長島 Umikaji Terrace</h3>
+                    <p>地中海風格商店街，拍照超美！吃個早午餐、喝杯咖啡</p>
+                    <span class="tag view">🏖️ 景點</span>
+                    <span class="tag food">☕ 美食</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">13:00</div>
+                <div class="content">
+                    <h3>幸福鬆餅（幸福のパンケーキ）</h3>
+                    <p>瀨長島店！必吃舒芙蕾鬆餅，入口即化</p>
+                    <span class="tag food">🥞 必吃</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">15:00</div>
+                <div class="content">
+                    <h3>波上宮 & 波之上海灘</h3>
+                    <p>沖繩最熱門神社，參拜完散步沙灘，看夕陽</p>
+                    <span class="tag view">⛩️ 景點</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">17:00</div>
+                <div class="content">
+                    <h3>入住飯店 & 休息</h3>
+                    <p>放行李、稍作休息</p>
+                    <span class="tag stay">🏨 住宿</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">18:30</div>
+                <div class="content">
+                    <h3>國際通逛街 + 晚餐</h3>
+                    <p>逛國際通、藥妝採買、吃晚餐</p>
+                    <span class="tag food">🍜 美食</span>
+                    <span class="tag">🛍️ 購物</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== DAY 2 ========== -->
+    <div class="day-card">
+        <div class="day-header" style="background: linear-gradient(90deg, rgba(72,219,251,0.3), rgba(72,219,251,0.05));">
+            📅 Day 2<span>中部・美國村＆港川外人住宅</span>
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <div class="time-badge">08:00</div>
+                <div class="content">
+                    <h3>飯店早餐</h3>
+                    <p>享用含早餐的自助式或日式早餐</p>
+                    <span class="tag food">🍳 早餐</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">09:30</div>
+                <div class="content">
+                    <h3>港川外人住宅街</h3>
+                    <p>美式老屋改建的文青商圈，超多特色咖啡廳和小店</p>
+                    <span class="tag view">📸 景點</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">11:00</div>
+                <div class="content">
+                    <h3>oHacorte 港川店</h3>
+                    <p>超人氣水果塔，港川店限定口味，排隊也要吃！</p>
+                    <span class="tag food">🥧 必吃</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">12:00</div>
+                <div class="content">
+                    <h3>雞湯拉麵 いしぐふー</h3>
+                    <p>港川店！暖胃雞湯拉麵，湯頭濃郁</p>
+                    <span class="tag food">🍜 必吃</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">14:00</div>
+                <div class="content">
+                    <h3>美國村（Chatan American Village）</h3>
+                    <p>沖繩最熱鬧的美式購物區！摩天輪、海灘、購物、拍照</p>
+                    <span class="tag view">🎡 景點</span>
+                    <span class="tag">🛍️ 購物</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">17:00</div>
+                <div class="content">
+                    <h3>道之驛嘉手納觀景台</h3>
+                    <p>免費展望台看飛機起降 + 美國村夕陽，超壯觀</p>
+                    <span class="tag view">🌅 景點</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">18:30</div>
+                <div class="content">
+                    <h3>Chatan Dunchi 居酒屋 or 美國村海鮮晚餐</h3>
+                    <p>美國村周邊超多餐廳，海鮮、居酒屋、美式料理都有</p>
+                    <span class="tag food">🍺 晚餐</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== DAY 3 ========== -->
+    <div class="day-card">
+        <div class="day-header" style="background: linear-gradient(90deg, rgba(254,202,87,0.3), rgba(254,202,87,0.05));">
+            📅 Day 3<span>北部・美麗海水族館＆古宇利島</span>
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <div class="time-badge">08:00</div>
+                <div class="content">
+                    <h3>飯店早餐 → 出發北上</h3>
+                    <p>今天是北部大日！開車約 1.5 小時到水族館</p>
+                    <span class="tag food">🍳 早餐</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">10:00</div>
+                <div class="content">
+                    <h3>美麗海水族館（Churaumi Aquarium）</h3>
+                    <p>沖繩必去！巨大「黑潮之海」水槽看鯨鯊、魔鬼魚，超震撼</p>
+                    <span class="tag view">🐠 必去</span>
+                    <span class="tag tip">💡 建議停留 3-4 小時</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">14:00</div>
+                <div class="content">
+                    <h3>海洋博公園散步</h3>
+                    <p>水族館旁的免費公園，花園、海灘、兒童設施</p>
+                    <span class="tag view">🌿 景點</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">15:30</div>
+                <div class="content">
+                    <h3>古宇利大橋 & 心形岩</h3>
+                    <p>日本最長的大橋之一！橋上風景超美，到古宇利島看心形岩</p>
+                    <span class="tag view">🌉 景點</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">17:30</div>
+                <div class="content">
+                    <h3>名護市晚餐</h3>
+                    <p>推薦：潛水員牛排（Diver's Steak）50 年老牌，厚切牛排超好吃</p>
+                    <span class="tag food">🥩 必吃</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">19:30</div>
+                <div class="content">
+                    <h3>返回那霸飯店</h3>
+                    <p>開車回飯店（約 1 小時），休息</p>
+                    <span class="tag stay">🏨 住宿</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== DAY 4 ========== -->
+    <div class="day-card">
+        <div class="day-header" style="background: linear-gradient(90deg, rgba(255,159,243,0.3), rgba(255,159,243,0.05));">
+            📅 Day 4<span>南部・沖繩世界＆知念岬</span>
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <div class="time-badge">08:00</div>
+                <div class="content">
+                    <h3>飯店早餐</h3>
+                    <span class="tag food">🍳 早餐</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">09:30</div>
+                <div class="content">
+                    <h3>知念岬公園</h3>
+                    <p>免費！壯觀的斷崖海景，適合拍照，視野超好</p>
+                    <span class="tag view">📸 景點</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">11:00</div>
+                <div class="content">
+                    <h3>Nirai Kanai 大橋展望台</h3>
+                    <p>從高處俯瞰大桥和海岸線，壯觀程度破表</p>
+                    <span class="tag view">🌉 景點</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">12:30</div>
+                <div class="content">
+                    <h3>新原沙灘 or 海邊午餐</h3>
+                    <p>南部最美沙灘！白砂藍海，午餐吃海鮮</p>
+                    <span class="tag view">🏖️ 景點</span>
+                    <span class="tag food">🦐 午餐</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">14:30</div>
+                <div class="content">
+                    <h3>沖繩世界文化王國・玉泉洞</h3>
+                    <p>超大鐘乳石洞窟！還有沖繩王國村，體驗傳統文化</p>
+                    <span class="tag view">🕳️ 景點</span>
+                    <span class="tag tip">💡 門票 KLOOK 買比較便宜</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">17:30</div>
+                <div class="content">
+                    <h3>返回那霸，國際通晚餐</h3>
+                    <p>推薦：暖暮拉麵 or 琉家拉麵 or 燒肉王</p>
+                    <span class="tag food">🍜 晚餐</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">19:00</div>
+                <div class="content">
+                    <h3>國際通最後採買</h3>
+                    <p>藥妝、伴手禮、黑糖、雪鹽，最後補貨機會！</p>
+                    <span class="tag">🛍️ 購物</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== DAY 5 ========== -->
+    <div class="day-card">
+        <div class="day-header" style="background: linear-gradient(90deg, rgba(46,213,115,0.3), rgba(46,213,115,0.05));">
+            📅 Day 5<span>那霸市區・首里城＆回程</span>
+        </div>
+        <div class="day-body">
+            <div class="timeline-item">
+                <div class="time-badge">08:00</div>
+                <div class="content">
+                    <h3>飯店早餐 → 退房</h3>
+                    <p>寄放行李在飯店或車上</p>
+                    <span class="tag food">🍳 早餐</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">09:00</div>
+                <div class="content">
+                    <h3>首里城（Shuri Castle）</h3>
+                    <p>沖繩歷史象徵！2026 年重建中，仍可參觀部分區域</p>
+                    <span class="tag view">🏯 景點</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">10:30</div>
+                <div class="content">
+                    <h3>第一牧志公設市場</h3>
+                    <p>二樓挑海鮮、一樓代客料理，新鮮又實惠！</p>
+                    <span class="tag food">🦞 必吃</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">12:00</div>
+                <div class="content">
+                    <h3>豬肉蛋飯糰本店（Pork Egg Rice Ball）</h3>
+                    <p>沖繩必吃飯糰！ Pork + 蛋 + 海苔，簡單美味</p>
+                    <span class="tag food">🍙 必吃</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">13:00</div>
+                <div class="content">
+                    <h3>壺屋 Yachimun 通</h3>
+                    <p>陶器街，買伴手禮的好地方，沖繩傳統工藝</p>
+                    <span class="tag">🏺 購物</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">14:30</div>
+                <div class="content">
+                    <h3>前往機場 & 還車</h3>
+                    <p>開車到機場還車（約 15 分鐘），搭飛機回桃園</p>
+                    <span class="tag">✈️ 回程</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-badge">16:30</div>
+                <div class="content">
+                    <h3>抵達桃園機場</h3>
+                    <p>結束美好的沖繩之旅！🌺</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 必吃美食 ========== -->
+    <div class="food-section">
+        <h3>🍽️ 沖繩必吃美食清單</h3>
+        <ul class="food-list">
+            <li>
+                <span class="name">🐷 沖繩麵（Okinawa Soba）</span><br>
+                <span class="desc">不同於九州拉麵，用豬骨+鰹魚湯頭，麵條扁平Q彈</span>
+            </li>
+            <li>
+                <span class="name">🍙 豬肉蛋飯糰（Pork Egg Onigiri）</span><br>
+                <span class="desc">國際通超人氣排隊美食，簡單卻超好吃</span>
+            </li>
+            <li>
+                <span class="name">🥩 沖繩牛排</span><br>
+                <span class="desc">美式風格厚切牛排，名護潛水員牛排是代表</span>
+            </li>
+            <li>
+                <span class="name">🌮 塔可飯（Taco Rice）</span><br>
+                <span class="desc">美墨混血料理！白飯+牛肉+莎莎醬+起司，Kijimuna 最推</span>
+            </li>
+            <li>
+                <span class="name">🧈 幸福鬆餅</span><br>
+                <span class="desc">入口即化的舒芙蕾鬆餅，瀨長島店海景第一排</span>
+            </li>
+            <li>
+                <span class="name">🍡 阿古豬（Agu Pork）</span><br>
+                <span class="desc">沖繩特有品種，肉質軟嫩油脂豐富，火鍋或燒肉都讚</span>
+            </li>
+            <li>
+                <span class="name">🥗 海葡萄</span><br>
+                <span class="desc">沖繩限定超級食物，一咬就啵啵爆開，口感超特別</span>
+            </li>
+            <li>
+                <span class="name">🍦 Blue Seal 冰淇淋</span><br>
+                <span class="desc">沖繩版哈根達斯！紫芋、甘蔗口味必吃</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- ========== 實用提醒 ========== -->
+    <div class="tips-box">
+        <h3>💡 實用提醒</h3>
+        <ul>
+            <li>🚗 <strong>租車必備：</strong>台灣駕照正本 + 日文譯本（監理站辦理 100 元）+ 護照，三缺一不能租</li>
+            <li>🔄 <strong>右駕注意：</strong>方向燈和雨刷會打反，轉彎小心逆向，前幾天慢慢開</li>
+            <li>📱 <strong>上網：</strong>建議租 WiFi 分享器或買 eSIM，自駕導航需要網路</li>
+            <li>💰 <strong>花費預估：</strong>機票 NT$8,000-12,000 + 住宿 NT$15,000-25,000（四晚）+ 租車 NT$8,000-12,000 + 餐飲 NT$10,000-15,000 ≈ 一人 NT$40,000-65,000</li>
+            <li>⏰ <strong>時差：</strong>日本比台灣快 1 小時</li>
+            <li>🎫 <strong>門票：</strong>水族館、沖繩世界建議在 KLOOK/KKday 先買，比現場便宜</li>
+            <li>🅿️ <strong>停車：</strong>大部分飯店有停車場（免費或付費），美國村/水族館也有大型停車場</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        🍀 小綠行程規劃 ｜ 2026.05.29<br>
+        資料來源：Wendy's Journey、Mimi韓、波比看世界、KKday、KLOOK
+    </div>
+
+</div>
+</body>
+</html>
