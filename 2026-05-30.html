@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小綠新聞懶人包 — 2026/05/30</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #21262d;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2em;
+            background: linear-gradient(135deg, #58a6ff, #3fb950);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .header .date {
+            color: #8b949e;
+            font-size: 1.1em;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 1.4em;
+            color: #58a6ff;
+            border-left: 4px solid #58a6ff;
+            padding-left: 12px;
+            margin-bottom: 16px;
+        }
+        .section-title.international {
+            color: #f0883e;
+            border-left-color: #f0883e;
+        }
+        .section-title.tech {
+            color: #a371f7;
+            border-left-color: #a371f7;
+        }
+        .section-title.weather {
+            color: #3fb950;
+            border-left-color: #3fb950;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: default;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #58a6ff;
+        }
+        .card .tag {
+            display: inline-block;
+            font-size: 0.75em;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .tag.tw { background: rgba(88,166,255,0.15); color: #58a6ff; }
+        .tag.intl { background: rgba(240,136,62,0.15); color: #f0883e; }
+        .tag.tech { background: rgba(163,113,247,0.15); color: #a371f7; }
+        .tag.sport { background: rgba(63,185,80,0.15); color: #3fb950; }
+        .tag.weather { background: rgba(210,153,34,0.15); color: #d29922; }
+        .tag.finance { background: rgba(255,123,114,0.15); color: #ff7b72; }
+        .card h3 {
+            font-size: 1.15em;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            color: #f0f6fc;
+        }
+        .card p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #8b949e;
+        }
+        .card .source {
+            margin-top: 12px;
+            font-size: 0.8em;
+            color: #484f58;
+        }
+        .highlight-card {
+            background: linear-gradient(135deg, #161b22, #1a2332);
+            border: 1px solid #58a6ff33;
+        }
+        .highlight-card:hover {
+            border-color: #58a6ff;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #484f58;
+            font-size: 0.9em;
+            border-top: 1px solid #21262d;
+            margin-top: 30px;
+        }
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            .header h1 { font-size: 1.5em; }
+            .cards { grid-template-columns: 1fr; }
+            .card { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🍀 小綠新聞懶人包</h1>
+        <div class="date">2026 年 5 月 30 日（六）</div>
+    </div>
+
+    <!-- 台灣重點 -->
+    <div class="section">
+        <div class="section-title">🇹🇼 台灣重點</div>
+        <div class="cards">
+            <div class="card highlight-card">
+                <span class="tag tw">政治</span>
+                <h3>美伊利諾州眾院通過友台決議</h3>
+                <p>決議指出，台灣係印太地區民主夥伴，任何政要訪台不應受敵對勢力威脅或脅迫。此為美國州級議會再度展現對台支持。</p>
+                <div class="source">中央社 08:27</div>
+            </div>
+            <div class="card highlight-card">
+                <span class="tag tw">政治</span>
+                <h3>捷克參議長維特齊睽違6年再訪台</h3>
+                <p>將晉見總統、揭幕哈維爾長椅。維特齊表示：「不屈服中國施壓，訪台符合雙邊利益。」此行獻給民主推手哈維爾。</p>
+                <div class="source">中央社 09:00</div>
+            </div>
+            <div class="card">
+                <span class="tag tw">政治</span>
+                <h3>加州前市長王愛琳認罪當中國代理人</h3>
+                <p>承認在任內為中國政府從事未註冊遊說活動，10月宣判，最重可關10年。</p>
+                <div class="source">中央社 08:45</div>
+            </div>
+            <div class="card">
+                <span class="tag finance">財經</span>
+                <h3>台股本週狂漲2464點 總市值145.9兆創高</h3>
+                <p>受美伊談判樂觀預期激勵，台股一路走揚，上市總市值衝上145.9兆元歷史新高。</p>
+                <div class="source">中央社 08:30</div>
+            </div>
+            <div class="card">
+                <span class="tag tw">能源</span>
+                <h3>核安會召開綜審聯席會 推進核三再運轉</h3>
+                <p>核三廠再運轉審查進入實質審查階段，預計年底前完成安全評估。</p>
+                <div class="source">中央社 08:00</div>
+            </div>
+            <div class="card">
+                <span class="tag tw">科技</span>
+                <h3>國發會：首宗AI算力中心促參案 年底簽約</h3>
+                <p>台灣首件以促參模式推動的AI算力中心申請案，預計年底完成簽約，加速AI產業基礎建設。</p>
+                <div class="source">中央社 07:30</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 國際焦點 -->
+    <div class="section">
+        <div class="section-title international">🌍 國際焦點</div>
+        <div class="cards">
+            <div class="card highlight-card">
+                <span class="tag intl">中東</span>
+                <h3>美伊談判重大進展 川普將在戰情室拍板</h3>
+                <p>中東戰爭第90天，傳美伊達成初步協議。川普在白宮戰情室會商兩小時，表示將做最終決定。德黑蘭否認達最終共識，批說法「真假參半」。</p>
+                <div class="source">中央社 08:15</div>
+            </div>
+            <div class="card">
+                <span class="tag intl">中東</span>
+                <h3>預期美伊延長停火 油價跌至6週低點</h3>
+                <p>市場樂觀預期荷莫茲海峽將很快重新開放，國際原油價格應聲下跌，創近6週新低。</p>
+                <div class="source">中央社 08:00</div>
+            </div>
+            <div class="card">
+                <span class="tag intl">美國</span>
+                <h3>法官下令阻止甘迺迪中心關閉整修</h3>
+                <p>聯邦法官裁定，川普政府不得關閉甘迺迪中心進行整修，並要求移除以川普命名的標示。</p>
+                <div class="source">中央社 07:45</div>
+            </div>
+            <div class="card">
+                <span class="tag intl">烏克蘭</span>
+                <h3>澤倫斯基向爭議性二戰軍團致敬 惹波蘭憤怒</h3>
+                <p>烏克蘭總統向二戰期間有爭議的烏克蘭民族主義軍團致敬，引發波蘭政界強烈不滿，要求撤回勳章。</p>
+                <div class="source">中央社 05:00</div>
+            </div>
+            <div class="card">
+                <span class="tag intl">伊朗</span>
+                <h3>伊朗：中俄將享荷莫茲海峽通行特權</h3>
+                <p>伊朗議會國安委員會主席表示，俄羅斯和中國將享有通過荷莫茲海峽的「有利條件」。</p>
+                <div class="source">聯合新聞 08:27</div>
+            </div>
+            <div class="card">
+                <span class="tag intl">美國</span>
+                <h3>德州雲霄飛車卡在30公尺高空 8學生受困4小時</h3>
+                <p>加爾維斯敦雲霄飛車故障，8名乘客面朝天空受困，消防人員耗時數小時全數救下。</p>
+                <div class="source">聯合新聞 08:31</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 科技生活 -->
+    <div class="section">
+        <div class="section-title tech">💻 科技生活</div>
+        <div class="cards">
+            <div class="card highlight-card">
+                <span class="tag tech">AI</span>
+                <h3>黃仁勳「兆元宴」專訪 籲台灣年輕人擁抱AI</h3>
+                <p>輝達執行長黃仁勳在台受訪，強調AI將改變所有產業，呼籲台灣年輕人積極學習AI技術，把握機會。</p>
+                <div class="source">TVBS 08:00</div>
+            </div>
+            <div class="card">
+                <span class="tag tech">航太</span>
+                <h3>藍源新葛倫火箭測試爆炸 貝佐斯太空夢再受挫</h3>
+                <p>亞馬遜創辦人貝佐斯旗下藍源公司，新葛倫火箭在佛州發射台測試時發生爆炸。</p>
+                <div class="source">中央社 04:00</div>
+            </div>
+            <div class="card">
+                <span class="tag tech">AI</span>
+                <h3>Anthropic募資後估值逼近兆美元大關</h3>
+                <p>Claude AI開發商Anthropic完成新一輪募資，公司估值直逼1兆美元，反映AI產業持續火熱。</p>
+                <div class="source">中央社 03:00</div>
+            </div>
+            <div class="card">
+                <span class="tag sport">體育</span>
+                <h3>台灣英雄費爾柴德重返大聯盟！</h3>
+                <p>台美混血好手費爾柴德（Stuart Fairchild）本季首度升上大聯盟，克里夫蘭守護者教頭表示有望先發。</p>
+                <div class="source">中央社/TVBS 08:24</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 天氣提醒 -->
+    <div class="section">
+        <div class="section-title weather">🌤️ 天氣提醒</div>
+        <div class="cards">
+            <div class="card">
+                <span class="tag weather">颱風</span>
+                <h3>薔蜜颱風增強！恐挑戰中颱上限</h3>
+                <p>薔蜜颱風持續增強，預估今日升級為中颱，下週將有4天梅雨狂灌，請注意防災。</p>
+                <div class="source">TVBS 08:30</div>
+            </div>
+            <div class="card">
+                <span class="tag weather">豪雨</span>
+                <h3>6縣市豪雨特報！雨彈狂下到明晨</h3>
+                <p>氣象局發布豪雨特報，6縣市列入警戒地區，降雨持續到明（31）日凌晨。</p>
+                <div class="source">TVBS 08:00</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        小綠新聞懶人包 🍀 | 每日 09:00 自動更新<br>
+        資料來源：中央社、聯合新聞網、TVBS
+    </div>
+</body>
+</html>
