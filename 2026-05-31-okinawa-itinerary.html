@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>沖繩五天四夜行程</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', 'PingFang TC', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.8;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+.header {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    padding: 32px 20px 28px;
+    text-align: center;
+}
+.header h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.5px; line-height: 1.4; }
+.header .date { font-size: 15px; color: #94a3b8; margin-top: 8px; }
+.header .tag {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+.content { max-width: 720px; margin: 0 auto; padding: 24px 18px 60px; }
+.section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5e7eb;
+    color: #111;
+}
+.section p { font-size: 17px; margin-bottom: 12px; color: #333; }
+.highlight {
+    background: #f0f9ff;
+    border-left: 4px solid #38bdf8;
+    padding: 14px 16px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 16px;
+    color: #1e40af;
+}
+.stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0; }
+.stat-card {
+    flex: 1;
+    min-width: 100px;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+}
+.stat-card .num { font-size: 24px; font-weight: 800; color: #1a1a2e; }
+.stat-card .label { font-size: 13px; color: #6b7280; margin-top: 4px; }
+.day-header {
+    background: linear-gradient(135deg, #2c5f2d, #4a7c59);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.day-header .day-num { font-size: 28px; font-weight: 800; }
+.day-header .day-title { font-size: 17px; font-weight: 600; }
+.time-block {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-left: 3px solid #97bc62;
+}
+.time-block .time { font-size: 14px; font-weight: 700; color: #6b7280; }
+.time-block .place { font-size: 17px; font-weight: 600; color: #111; margin: 4px 0; }
+.time-block .info { font-size: 15px; color: #555; }
+.food-card {
+    background: linear-gradient(135deg, #fef3c7, #fef9c3);
+    border: 1px solid #fbbf24;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-size: 15px;
+}
+.food-card .emoji { font-size: 18px; }
+.tip-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 14px 0;
+}
+.tip-box h3 { font-size: 16px; font-weight: 700; color: #166534; margin-bottom: 8px; }
+.tip-box p { font-size: 15px; color: #333; margin-bottom: 4px; }
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #9ca3af;
+    font-size: 14px;
+}
+@media (max-width: 480px) {
+    .header h1 { font-size: 22px; }
+    .stat-row { flex-direction: column; }
+    .stat-card { min-width: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="tag">✈️ 行程規劃</div>
+    <h1>沖繩五天四夜</h1>
+    <div class="date">2026-05-31｜小綠 🍀</div>
+</div>
+
+<div class="content">
+
+<!-- 總覽 -->
+<div class="section">
+    <h2>📋 行程總覽</h2>
+    <div class="stat-row">
+        <div class="stat-card">
+            <div class="num">5</div>
+            <div class="label">天行程</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">4</div>
+            <div class="label">夜住宿</div>
+        </div>
+        <div class="stat-card">
+            <div class="num">5</div>
+            <div class="label">座世界遺產</div>
+        </div>
+    </div>
+    <div class="highlight">
+        D1 那霸・琉球王城 → D2 世界遺產城跡 → D3 海洋與自然 → D4 南部戰跡・陶藝 → D5 回程
+    </div>
+</div>
+
+<!-- Day 1 -->
+<div class="section">
+    <div class="day-header">
+        <div class="day-num">D1</div>
+        <div class="day-title">那霸・琉球王城巡禮</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">上午</div>
+        <div class="place">沖繩縣立博物館・美術館（OKIMYU）</div>
+        <div class="info">那霸市おもろまち｜ゆいレール步行 5 分鐘｜常設展 350 日圓｜2-3 小時</div>
+        <div class="info">看點：琉球王國歷史廳、渡瀨線生態展、港川人考古展、戶外傳統民居（免費）</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">下午</div>
+        <div class="place">首里城 + 玉陵</div>
+        <div class="info">首里城 400 日圓（1.5-2h）→ 玉陵 300 日圓（步行 10 分鐘）</div>
+        <div class="info">看點：守禮門、正殿重建工法、漱石之庭、王室陵墓</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">晚上</div>
+        <div class="place">國際通（Kokusai Dori）</div>
+        <div class="info">1.6 公里最熱鬧的街</div>
+    </div>
+
+    <div class="food-card">
+        <span class="emoji">🍽️</span> 必吃：沖繩そば、ゴーヤチャンプルー（苦瓜炒蛋）、第一牧志公設市場海鮮
+    </div>
+</div>
+
+<!-- Day 2 -->
+<div class="section">
+    <div class="day-header">
+        <div class="day-num">D2</div>
+        <div class="day-title">世界遺產城跡巡禮（北→中）</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">上午</div>
+        <div class="place">今歸仁城 + 世界遺產中心</div>
+        <div class="info">今歸仁城 600 日圓（1.5h）→ 世界遺產中心 免費</div>
+        <div class="info">看點：野面積石牆、北山王根據地、御嶽、眺望東海</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">下午</div>
+        <div class="place">座喜味城 → 中城城</div>
+        <div class="info">座喜味城 300 日圓（45min）→ 中城城 600 日圓（1h）</div>
+        <div class="info">看點：石牆工法演進、最完整的城牆保存、相方積精密砌法</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">晚上</div>
+        <div class="place">名護市晚餐</div>
+        <div class="info">名護屋台村（復古昭和風）或本部町海鮮居酒屋</div>
+    </div>
+</div>
+
+<!-- Day 3 -->
+<div class="section">
+    <div class="day-header">
+        <div class="day-num">D3</div>
+        <div class="day-title">海洋與自然</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">上午</div>
+        <div class="place">美ら海水族館（Churaumi Aquarium）</div>
+        <div class="info">本部町｜2,180 日圓｜2-3 小時</div>
+        <div class="info">看點：「黑潮之海」大水槽（鯨鯊+鬼蝠魟）、海豚表演（免費）</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">下午</div>
+        <div class="place">古宇利島（Kouri Island）</div>
+        <div class="info">開車 40 分鐘（經古宇利大橋 1,960m）</div>
+        <div class="info">看點：古宇利大橋、心型岩、能取岬、蝦蝦飯海鮮丼</div>
+    </div>
+</div>
+
+<!-- Day 4 -->
+<div class="section">
+    <div class="day-header">
+        <div class="day-num">D4</div>
+        <div class="day-title">南部戰跡・陶藝體驗</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">上午</div>
+        <div class="place">沖繩和平祈念公園 + 姬百合學徒之塔</div>
+        <div class="info">絲滿市摩文仁｜公園免費、資料館 300 日圓、塔 300 日圓｜2.5 小時</div>
+        <div class="info">看點：和平之礎（死者名單）、姬百合學徒之塔、南部海岸展望台</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">下午</div>
+        <div class="place">壺屋陶器街（Tsuboya）</div>
+        <div class="info">那霸市壺屋｜1.5-2 小時</div>
+        <div class="info">看點：壺屋燒（琉球王國陶器產地）、手拉坯體驗（需預約）、商店街</div>
+    </div>
+
+    <div class="food-card">
+        <span class="emoji">🍽️</span> 必吃：塔可飯（Taco Rice）— 沖繩特有美日混血料理
+    </div>
+</div>
+
+<!-- Day 5 -->
+<div class="section">
+    <div class="day-header">
+        <div class="day-num">D5</div>
+        <div class="day-title">那霸市區・回程</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">上午</div>
+        <div class="place">首里金城町石疊道 → 波上宮 → 國際通採買</div>
+        <div class="info">石疊道（免費 30min）→ 波上宮（免費）→ 伴手禮：紅芋塔、金楚糕、泡盛</div>
+    </div>
+
+    <div class="time-block">
+        <div class="time">下午</div>
+        <div class="place">那霸機場還車 / 回程</div>
+        <div class="info">國內線航廈美食街最後一餐</div>
+    </div>
+</div>
+
+<!-- 實用資訊 -->
+<div class="section">
+    <h2>📌 實用資訊</h2>
+
+    <div class="tip-box">
+        <h3>🚗 交通</h3>
+        <p>自駕最推薦（景點分散）｜ゆいレ爾只在那霸市區｜北部靠巴士班次少</p>
+    </div>
+
+    <div class="tip-box">
+        <h3>🏨 住宿建議</h3>
+        <p>D1-D2：那霸市區（國際通附近）</p>
+        <p>D3-D4：名護/本部町（靠近水族館）</p>
+    </div>
+
+    <div class="tip-box">
+        <h3>📅 最佳季節</h3>
+        <p>3-5 月：春暖花開，人潮少</p>
+        <p>10-11 月：秋高氣爽，海水仍溫暖</p>
+        <p>7-8 月：最熱但海水最清澈</p>
+        <p>1-2 月：人少，今歸仁城有夜櫻</p>
+    </div>
+
+    <div class="tip-box">
+        <h3>🍽️ 必吃清單</h3>
+        <p>沖繩そば、ゴーヤチャンプルー、塔可飯、紅芋塔、金楚糕、泡盛、海鮮丼、豬腳（あぐー）</p>
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+    沖繩五天四夜行程 🍀 小綠 製作
+</div>
+
+</body>
+</html>

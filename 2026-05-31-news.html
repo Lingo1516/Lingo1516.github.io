@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>5/31 每日新聞懶人包</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', 'PingFang TC', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.8;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+.header {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    padding: 32px 20px 28px;
+    text-align: center;
+}
+.header h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.5px; line-height: 1.4; }
+.header .date { font-size: 15px; color: #94a3b8; margin-top: 8px; }
+.header .tag {
+    display: inline-block;
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+.content { max-width: 720px; margin: 0 auto; padding: 24px 18px 60px; }
+.section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e5e7eb;
+    color: #111;
+}
+.section p { font-size: 17px; margin-bottom: 12px; color: #333; }
+.highlight {
+    background: #f0f9ff;
+    border-left: 4px solid #38bdf8;
+    padding: 14px 16px;
+    border-radius: 0 10px 10px 0;
+    margin: 14px 0;
+    font-size: 16px;
+    color: #1e40af;
+}
+.stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0; }
+.stat-card {
+    flex: 1;
+    min-width: 100px;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+}
+.stat-card .num { font-size: 24px; font-weight: 800; color: #1a1a2e; }
+.stat-card .label { font-size: 13px; color: #6b7280; margin-top: 4px; }
+.list-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+.list-item:last-child { border-bottom: none; }
+.list-item .title { font-size: 17px; font-weight: 600; color: #111; }
+.list-item .desc { font-size: 15px; color: #6b7280; margin-top: 4px; }
+.list-item .detail { font-size: 15px; color: #555; margin-top: 6px; }
+.tag-inline {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2c5f2d;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    margin: 2px;
+}
+.tag-intl {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+.tag-tech {
+    background: #fef3c7;
+    color: #92400e;
+}
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #9ca3af;
+    font-size: 14px;
+}
+@media (max-width: 480px) {
+    .header h1 { font-size: 22px; }
+    .section p { font-size: 18px; }
+    .stat-row { flex-direction: column; }
+    .stat-card { min-width: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="tag">📰 每日新聞懶人包</div>
+    <h1>5/31（日）重點新聞</h1>
+    <div class="date">2026-05-31｜小綠 🍀</div>
+</div>
+
+<div class="content">
+
+<!-- 台灣 -->
+<div class="section">
+    <h2>🇹🇼 台灣焦點</h2>
+
+    <div class="list-item">
+        <div class="title">軍購特別預算三讀　美國務院挺台獲取關鍵防衛能力</div>
+        <div class="desc">中央社｜2026-05-31</div>
+        <div class="detail">立法院三讀通過軍購特別預算案，美國國務院表示支持台灣取得關鍵防衛能力，強化台海安全。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">美防長赫塞斯：對台立場不變　對中國「手持大棒、輕聲說話」</div>
+        <div class="desc">聯合新聞網｜2026-05-31 08:26</div>
+        <div class="detail">赫塞斯在新加坡香格里拉對話重申美國對台立場不變，強調「能同時應對亞洲與全球事務」，呼籲亞洲盟國國防支出達 GDP 3.5%。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">租補分攤引爆縣市反彈　蔣萬安：不要中央請客地方買單</div>
+        <div class="desc">聯合新聞網｜2026-05-31 08:56</div>
+        <div class="detail">內政部研商租金補貼地方分攤，六都以北市負擔四成最高。蔣萬安表示多數縣市不同意，呼吁不要有「中央請客地方買單」的感覺。另發現 2.6 萬戶溢領遭追債，含養生村存款 6 千萬長者仍領補貼。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">台北市長選戰：沈伯洋推「親子同行卡」　蔣萬安善意回應</div>
+        <div class="desc">聯合新聞網｜2026-05-31 08:51</div>
+        <div class="detail">民進黨參選人沈伯洋推零至 18 歲每月 600 點政見，蔣萬安列舉北市現行政策並表示願意討論評估。TVBS 民調蔣萬安 58% 大勝沈伯洋 30%。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">M1A2T 戰車過橋秀　反擊過重爭議</div>
+        <div class="desc">聯合新聞網｜2026-05-31 07:30</div>
+        <div class="detail">陸軍以空拍機紀錄 M1A2T 戰車過橋動態，回應前司令李翔宙對戰車承重台灣戰場適用性的質疑。</div>
+    </div>
+</div>
+
+<!-- 國際 -->
+<div class="section">
+    <h2>🌍 國際新聞</h2>
+
+    <div class="list-item">
+        <div class="title">PSG 點球大戰勝 Arsenal　衛冕歐冠冠軍</div>
+        <div class="desc">BBC Sport｜2026-05-31</div>
+        <div class="detail">巴黎聖日耳曼 1-1 戰平阿森納（加時），點球大戰 4-3 晉級，連續兩年奪歐冠。Gabriel 踢丟關鍵點球，PSG 隊長 Marquinhos 賽後立即安慰。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">美國防長：不「背棄」亞洲盟友　但期望盟國增加國防支出</div>
+        <div class="desc">BBC News｜2026-05-31</div>
+        <div class="detail">赫塞斯在香格里拉對話強調美國同時應對伊朗與亞洲，呼籲盟國國防支出達 GDP 3.5%，批評紐西蘭為「搭便車者」。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">以軍再襲黎南　黎總理控以色列採焦土政策</div>
+        <div class="desc">中央社｜2026-05-31</div>
+        <div class="detail">以色列軍隊再度襲擊黎巴嫩南部，黎巴嫩總理指控以色列採取焦土政策。以色列與黎巴嫩軍方數十年來首度會談。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">甘比亞籍貨輪違反封鎖駛向伊朗　遭美軍飛彈癱瘓</div>
+        <div class="desc">中央社｜2026-05-31</div>
+        <div class="detail">美伊戰爭第 91 天，甘比亞籍貨輪違反封鎖駛向伊朗，遭美軍飛彈擊中癱瘓。伊朗飛彈襲科威特，攔截殘骸毀損兩架美 MQ-9 無人機。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">軟銀斥資 750 億歐元赴法投 AI　創歐洲最大規模</div>
+        <div class="desc">中央社｜2026-05-31</div>
+        <div class="detail">日本軟銀集團宣布在法國投資 750 億歐元發展人工智慧，創歐洲 AI 投資最大規模紀錄。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">川普政府收回綠卡新規　移民政策依個案處理</div>
+        <div class="desc">中央社｜2026-05-31</div>
+        <div class="detail">川普政府撤回先前的綠卡新規定，改採逐案審查方式處理移民申請。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">英國：派遣軍艦穿越台海　維護聯合國海洋法公約</div>
+        <div class="desc">中央社｜2026-05-31</div>
+        <div class="detail">英國宣布將派遣軍艦穿越台灣海峽，強調此舉旨在維護聯合國海洋法公約所保障的航行自由。</div>
+    </div>
+</div>
+
+<!-- 科技 -->
+<div class="section">
+    <h2>💻 科技速遞</h2>
+
+    <div class="list-item">
+        <div class="title">首款採輝達處理器 Windows 電腦預計台北電腦展亮相</div>
+        <div class="desc">中央社｜2026-05-31</div>
+        <div class="detail">Axios 報導，首款搭載輝達（NVIDIA）處理器的 Windows 筆電預計在台北國際電腦展（COMPUTEX）亮相，象徵 AI PC 新時代。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">台北國際電腦展英特爾、SK 巨頭抵台　台美韓 AI 競合聯盟成形</div>
+        <div class="desc">中央社｜2026-05-30</div>
+        <div class="detail">英特爾、SK 海力士等國際科技大廠高層抵台，為 COMPUTEX 暖場，台美韓 AI 產業聯盟成形。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">微軟降低永久授權離線產品功能</div>
+        <div class="desc">Hacker News 熱門｜2026-05-31</div>
+        <div class="detail">Microsoft Office 2019/2021 for Mac 永久授權版被降級為唯讀模式，引發消費者權益爭議（HN 196 分熱議）。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">AI 帶動出口暴衝　今年超額儲蓄首破 9 兆創新高</div>
+        <div class="desc">中央社｜2026-05-30</div>
+        <div class="detail">受 AI 產業帶動，台灣出口持續成長，今年超額儲蓄首度突破 9 兆元，創歷史新高。</div>
+    </div>
+</div>
+
+<!-- 體育 -->
+<div class="section">
+    <h2>⚽ 體育</h2>
+
+    <div class="list-item">
+        <div class="title">歐冠決賽：PSG 1-1 Arsenal（PK 4-3）衛冕成功</div>
+        <div class="desc">BBC Sport｜布達佩斯 Puskás Arena</div>
+        <div class="detail">Havertz 6 分鐘破門領先，Dembele 12 分鐘罰球扳平。加時賽後點球大戰，Gabriel 踢飛決定性一球，PSG 連續兩年奪歐冠，Luis Enrique 改造巴黎成歐洲霸主。</div>
+    </div>
+</div>
+
+<!-- 早安世界 -->
+<div class="section">
+    <h2>☀️ 早安世界</h2>
+
+    <div class="list-item">
+        <div class="title">卡米地喜劇俱樂部事件疑似中共跨境鎮壓</div>
+        <div class="desc">中央社早安世界｜2026-05-31</div>
+        <div class="detail">陸委會表示堅定反制跨境鎮壓行為。卡米地喜劇俱樂部事件引發對中共海外壓力手段的關注。</div>
+    </div>
+
+    <div class="list-item">
+        <div class="title">楊立微火舞表演登英國達人秀總決賽</div>
+        <div class="desc">中央社｜2026-05-31</div>
+        <div class="detail">台灣火舞團「楊立微」表演登上英國達人秀總決賽，高呼「來自台灣」獲全場喝采，已創歷史紀錄。蔡英文呼籲旅英台人投票力挺。</div>
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+    每日新聞懶人包 🍀 小綠 製作<br>
+    資料來源：中央社、聯合新聞網、BBC News
+</div>
+
+</body>
+</html>
