@@ -9,49 +9,57 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 <style>
-:root{--c1:#E8453C;--c2:#F59E0B;--c3:#10B981;--c4:#3B82F6;--c5:#8B5CF6;--bg:#0f172a;--card:#1e293b;--card2:#334155;--text:#f1f5f9;--dim:#94a3b8;--accent:#38bdf8}
+:root{--c1:#E8453C;--c2:#F59E0B;--c3:#10B981;--c4:#3B82F6;--c5:#8B5CF6;--bg:#f8fafc;--card:#ffffff;--card2:#f1f5f9;--text:#0f172a;--dim:#64748b;--accent:#0ea5e9;--shadow:0 4px 24px rgba(0,0,0,0.08)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
-.hero{position:relative;height:50vh;min-height:300px;background:linear-gradient(165deg,#0c4a6e,#155e75);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 20px 20px;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(56,189,248,0.12),transparent 50%)}
+.hero{position:relative;height:50vh;min-height:300px;background:linear-gradient(135deg,#38bdf8 0%,#818cf8 50%,#c084fc 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 20px 20px;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,var(--bg),transparent)}
 #map{position:absolute;inset:0;width:100%;height:100%;z-index:1}
 .hero-content{position:relative;z-index:2}
-.hero-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.3);color:var(--accent);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;backdrop-filter:blur(8px);margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:900;text-shadow:0 2px 20px rgba(0,0,0,0.5)}
-.hero h1 span{color:var(--accent)}
-.hero-sub{font-size:14px;color:var(--dim);margin-top:6px}
-.stats{display:flex;gap:1px;background:var(--card);overflow:hidden}
-.stat{flex:1;padding:14px 8px;text-align:center;background:var(--card)}
-.stat-num{font-size:22px;font-weight:900;color:var(--accent)}
-.stat-label{font-size:11px;color:var(--dim);margin-top:2px}
-.tabs{display:flex;background:var(--card);border-bottom:1px solid var(--card2);overflow-x:auto;scrollbar-width:none}
+.hero-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;backdrop-filter:blur(8px);margin-bottom:10px}
+.hero h1{font-size:34px;font-weight:900;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,0.15)}
+.hero h1 span{color:#fef08a}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.9);margin-top:6px;font-weight:400}
+.stats{display:flex;gap:1px;background:var(--card);box-shadow:var(--shadow);position:relative;z-index:3;margin-top:-20px;border-radius:16px 16px 0 0}
+.stat{flex:1;padding:16px 8px;text-align:center;background:var(--card)}
+.stat-num{font-size:24px;font-weight:900;color:var(--accent)}
+.stat-label{font-size:12px;color:var(--dim);margin-top:2px}
+.tabs{display:flex;background:var(--card);border-bottom:1px solid var(--card2);overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:10}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:0 0 auto;padding:12px 16px;font-size:13px;font-weight:600;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:6px}
-.tab .dot{width:8px;height:8px;border-radius:50%}
+.tab{flex:0 0 auto;padding:14px 18px;font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:all 0.2s}
+.tab .dot{width:10px;height:10px;border-radius:50%;transition:transform 0.2s}
 .tab.active{color:var(--text);border-bottom-color:var(--accent)}
-.content{padding:16px 16px 80px}
+.tab.active .dot{transform:scale(1.2)}
+.content{padding:20px 16px 80px;max-width:600px;margin:0 auto}
 .day-section{display:none}.day-section.active{display:block}
-.step{background:var(--card);border-radius:14px;padding:16px;margin-bottom:10px;border:1px solid var(--card2)}
-.step .time{font-size:14px;font-weight:800;color:var(--accent);margin-bottom:6px}
-.step h3{font-size:16px;font-weight:700;line-height:1.4}
-.step p{font-size:13px;color:var(--dim);margin-top:4px;line-height:1.5}
-.step .addr{font-size:12px;color:var(--dim);margin-top:6px;word-break:break-all}
-.step .addr a{color:var(--accent);text-decoration:none}
-.step .drive{display:inline-flex;align-items:center;gap:4px;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.2);color:var(--accent);padding:4px 10px;border-radius:8px;font-size:12px;font-weight:600;margin:8px 0}
-.hotel-box{background:linear-gradient(135deg,rgba(107,203,119,0.12),rgba(56,189,248,0.08));border:1px solid rgba(107,203,119,0.3);border-radius:14px;padding:16px;margin-top:10px}
-.hotel-box h3{font-size:16px;font-weight:700;color:#6BCB77}
-.hotel-box .price{font-size:13px;color:var(--accent);margin-top:4px;font-weight:600}
-.hotel-box p{font-size:12px;color:var(--dim);margin-top:4px;line-height:1.4}
-.leaflet-control-zoom{border:none!important;box-shadow:0 2px 12px rgba(0,0,0,0.3)!important;border-radius:10px!important;overflow:hidden}
-.leaflet-control-zoom a{background:var(--card)!important;color:var(--text)!important;border:none!important;width:36px!important;height:36px!important;line-height:36px!important}
-.leaflet-control-attribution{background:rgba(15,23,42,0.7)!important;color:var(--dim)!important;font-size:10px!important}
+.step{background:var(--card);border-radius:16px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--card2);transition:transform 0.2s}
+.step:active{transform:scale(0.98)}
+.step .time{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;color:var(--accent);background:rgba(14,165,233,0.08);padding:4px 10px;border-radius:8px;margin-bottom:8px}
+.step .icon{font-size:20px;margin-right:6px}
+.step h3{font-size:17px;font-weight:700;line-height:1.4;display:flex;align-items:center}
+.step p{font-size:14px;color:var(--dim);margin-top:6px;line-height:1.6}
+.step .addr{margin-top:8px}
+.step .addr a{display:inline-flex;align-items:center;gap:4px;color:var(--accent);text-decoration:none;font-size:13px;font-weight:500;background:rgba(14,165,233,0.06);padding:6px 12px;border-radius:8px;transition:background 0.2s}
+.step .addr a:hover{background:rgba(14,165,233,0.12)}
+.drive{display:flex;align-items:center;gap:6px;color:var(--dim);font-size:13px;padding:8px 0 8px 24px;margin:-4px 0}
+.drive::before{content:'';width:2px;height:20px;background:linear-gradient(to bottom,var(--accent),transparent);border-radius:1px}
+.hotel-box{background:linear-gradient(135deg,#ecfdf5,#f0f9ff);border:1px solid #a7f3d0;border-radius:16px;padding:18px;margin-top:12px;box-shadow:var(--shadow)}
+.hotel-box h3{font-size:17px;font-weight:700;color:#059669;display:flex;align-items:center;gap:6px}
+.hotel-box .price{font-size:14px;color:var(--accent);margin-top:6px;font-weight:600}
+.hotel-box p{font-size:13px;color:var(--dim);margin-top:6px;line-height:1.5}
+.leaflet-control-zoom{border:none!important;box-shadow:0 2px 12px rgba(0,0,0,0.1)!important;border-radius:12px!important;overflow:hidden}
+.leaflet-control-zoom a{background:#fff!important;color:var(--text)!important;border:none!important;width:36px!important;height:36px!important;line-height:36px!important}
+.leaflet-control-attribution{background:rgba(255,255,255,0.8)!important;color:var(--dim)!important;font-size:10px!important}
+.leaflet-control-attribution a{color:var(--accent)!important}
 .custom-marker{background:none;border:none}
-.marker-inner{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.4)}
-.leaflet-popup-content-wrapper{background:var(--card)!important;color:var(--text)!important;border-radius:12px!important;border:1px solid var(--card2)!important}
-.leaflet-popup-tip{background:var(--card)!important}
-.leaflet-popup-content{margin:12px 14px!important;font-size:14px!important}
-@media(max-width:480px){.hero{height:42vh;min-height:260px}.hero h1{font-size:26px}.tab{padding:10px 12px;font-size:12px}}
+.marker-inner{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;box-shadow:0 3px 12px rgba(0,0,0,0.2);border:3px solid #fff}
+.leaflet-popup-content-wrapper{background:#fff!important;color:var(--text)!important;border-radius:14px!important;box-shadow:0 8px 30px rgba(0,0,0,0.12)!important;border:1px solid var(--card2)!important}
+.leaflet-popup-tip{background:#fff!important}
+.leaflet-popup-content{margin:14px 16px!important;font-size:14px!important;line-height:1.5!important}
+.leaflet-popup-close-button{color:var(--dim)!important;font-size:22px!important}
+.popup-name{font-weight:700;font-size:16px}.popup-desc{color:var(--dim);font-size:13px;margin-top:4px}
+@media(max-width:480px){.hero{height:42vh;min-height:260px}.hero h1{font-size:28px}.tab{padding:12px 14px;font-size:13px}}
 </style>
 </head>
 <body>
@@ -60,7 +68,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 <div class="hero-content">
 <div class="hero-tag">🚗 自駕行程</div>
 <h1>沖繩 <span>5天4夜</span></h1>
-<div class="hero-sub">4人同行 · 每站有時間·地址·導航</div>
+<div class="hero-sub">4人同行 · 景點＋美食＋逛街＋住宿</div>
 </div>
 </div>
 <div class="stats">
@@ -70,93 +78,93 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text
 <div class="stat"><div class="stat-num">4</div><div class="stat-label">飯店</div></div>
 </div>
 <div class="tabs" id="tabs">
-<div class="tab active" data-day="d1"><span class="dot" style="background:var(--c1)"></span>D1</div>
-<div class="tab" data-day="d2"><span class="dot" style="background:var(--c2)"></span>D2</div>
-<div class="tab" data-day="d3"><span class="dot" style="background:var(--c3)"></span>D3</div>
-<div class="tab" data-day="d4"><span class="dot" style="background:var(--c4)"></span>D4</div>
-<div class="tab" data-day="d5"><span class="dot" style="background:var(--c5)"></span>D5</div>
+<div class="tab active" data-day="d1"><span class="dot" style="background:var(--c1)"></span>D1 那霸</div>
+<div class="tab" data-day="d2"><span class="dot" style="background:var(--c2)"></span>D2 南部</div>
+<div class="tab" data-day="d3"><span class="dot" style="background:var(--c3)"></span>D3 中部</div>
+<div class="tab" data-day="d4"><span class="dot" style="background:var(--c4)"></span>D4 北部</div>
+<div class="tab" data-day="d5"><span class="dot" style="background:var(--c5)"></span>D5 回程</div>
 </div>
 <div class="content">
 
 <!-- D1 -->
 <div class="day-section active" id="d1">
-<div class="step"><div class="time">09:30–10:30</div><h3>🍳 泊港魚市場（早餐）</h3><p>新鮮生魚片、烤海膽、龍蝦，CP值超高。營業到14:00。</p><div class="addr">📍 <a href="https://maps.google.com/?q=那霸市泊港魚市場+26.2195,127.6635" target="_blank">沖繩縣那霸市泊港 26.2195,127.6635</a></div></div>
+<div class="step"><div class="time">09:30–10:30</div><h3><span class="icon">🍳</span>泊港魚市場（早餐）</h3><p>新鮮生魚片、烤海膽、龍蝦，CP值超高。營業到14:00。</p><div class="addr">📍 <a href="https://maps.google.com/?q=那霸市泊港魚市場" target="_blank">沖繩縣那霸市泊港</a></div></div>
 <div class="drive">🚗 開車 5 分鐘</div>
-<div class="step"><div class="time">10:40–11:30</div><h3>⛩️ 波上宮 & 波之上海灘</h3><p>懸崖上的神社，參拜完走到沙灘看海。沖繩最熱門打卡點。</p><div class="addr">📍 <a href="https://maps.google.com/?q=沖繩縣那霸市若狹1-25-11" target="_blank">那霸市若狹1-25-11</a></div></div>
+<div class="step"><div class="time">10:40–11:30</div><h3><span class="icon">⛩️</span>波上宮 & 波之上海灘</h3><p>懸崖上的神社，參拜完走到沙灘看海。沖繩最熱門打卡點。</p><div class="addr">📍 <a href="https://maps.google.com/?q=沖繩縣那霸市若狹1-25-11" target="_blank">那霸市若狹1-25-11</a></div></div>
 <div class="drive">🚗 開車 10 分鐘</div>
-<div class="step"><div class="time">11:40–14:40</div><h3>🛍️ 國際通（逛街）</h3><p>1.6公里繁華大街。必逛：驚安殿堂、CALBEE+、鹽屋冰淇淋、御菓子御殿。</p><div class="addr">📍 <a href="https://maps.google.com/?q=沖繩縣那霸市國際通" target="_blank">那霸市國際通</a></div></div>
+<div class="step"><div class="time">11:40–14:40</div><h3><span class="icon">🛍️</span>國際通（逛街）</h3><p>1.6公里繁華大街。必逛：驚安殿堂、CALBEE+、鹽屋冰淇淋、御菓子御殿。</p><div class="addr">📍 <a href="https://maps.google.com/?q=沖繩縣那霸市國際通" target="_blank">那霸市國際通</a></div></div>
 <div class="drive">🚗 開車 5 分鐘</div>
-<div class="step"><div class="time">15:00–15:30</div><h3>🏨 入住飯店</h3><p>國際通步行5分鐘，2023年開幕，新穎舒適。</p><div class="addr">📍 <a href="https://maps.google.com/?q=JR九州ホテルブロッサム那覇" target="_blank">JR九州飯店Blossom那霸</a></div></div>
+<div class="step"><div class="time">15:00–15:30</div><h3><span class="icon">🏨</span>入住飯店</h3><p>國際通步行5分鐘，2023年開幕，新穎舒適。</p><div class="addr">📍 <a href="https://maps.google.com/?q=JR九州ホテルブロッサム那覇" target="_blank">JR九州飯店Blossom那霸</a></div></div>
 <div class="drive">🚗 開車 5 分鐘</div>
-<div class="step"><div class="time">17:30–19:00</div><h3>🍜 暮拉麵（晚餐）</h3><p>沖繩人氣拉麵TOP1，豚骨湯頭浓郁，必點叉燒拉麵。</p><div class="addr">📍 <a href="https://maps.google.com/?q=暖暮拉麵國際通本店" target="_blank">那霸市國際通</a></div></div>
+<div class="step"><div class="time">17:30–19:00</div><h3><span class="icon">🍜</span>暮拉麵（晚餐）</h3><p>沖繩人氣拉麵TOP1，豚骨湯頭浓郁，必點叉燒拉麵。</p><div class="addr">📍 <a href="https://maps.google.com/?q=暖暮拉麵國際通本店" target="_blank">那霸市國際通</a></div></div>
 <div class="hotel-box"><h3>🏨 今晚住：JR九州飯店Blossom那霸</h3><div class="price">約 ¥12,000~15,000/晚（2人房×2）·每人每晚約NT$800</div><p>國際通步行5分鐘，2023年開幕。4人分攤兩間房。</p></div>
 </div>
 
 <!-- D2 -->
 <div class="day-section" id="d2">
-<div class="step"><div class="time">08:00–08:30</div><h3>🍳 飯店早餐</h3><p>JR九州自助早餐，沖繩在地食材。</p><div class="addr">📍 <a href="https://maps.google.com/?q=JR九州ホテルブロッサム那覇" target="_blank">JR九州飯店Blossom那霸</a></div></div>
+<div class="step"><div class="time">08:00–08:30</div><h3><span class="icon">🍳</span>飯店早餐</h3><p>JR九州自助早餐，沖繩在地食材。</p><div class="addr">📍 <a href="https://maps.google.com/?q=JR九州ホテルブロッサム那覇" target="_blank">JR九州飯店Blossom那霸</a></div></div>
 <div class="drive">🚗 開車 40 分鐘</div>
-<div class="step"><div class="time">09:10–10:40</div><h3>🕳️ 玉泉洞 & 沖繩世界文化王國</h3><p>50萬年歷史鐘乳石洞，全長300公尺。洞內涼爽避暑。</p><div class="addr">📍 <a href="https://maps.google.com/?q=沖繩世界文化王國" target="_blank">南城市知念久手堅</a></div></div>
+<div class="step"><div class="time">09:10–10:40</div><h3><span class="icon">🕳️</span>玉泉洞 & 沖繩世界文化王國</h3><p>50萬年歷史鐘乳石洞，全長300公尺。洞內涼爽避暑。</p><div class="addr">📍 <a href="https://maps.google.com/?q=沖繩世界文化王國" target="_blank">南城市知念久手堅</a></div></div>
 <div class="drive">🚗 開車 25 分鐘</div>
-<div class="step"><div class="time">11:05–12:30</div><h3>🕊️ 沖繩和平祈念公園</h3><p>「和平之礎」刻著23萬以上戰殁者名字。資料館記錄戰役歷史。</p><div class="addr">📍 <a href="https://maps.google.com/?q=沖繩平和祈念公園" target="_blank">南城市�的南風原</a></div></div>
+<div class="step"><div class="time">11:05–12:30</div><h3><span class="icon">🕊️</span>沖繩和平祈念公園</h3><p>「和平之礎」刻著23萬以上戰殁者名字。資料館記錄戰役歷史。</p><div class="addr">📍 <a href="https://maps.google.com/?q=沖繩平和祈念公園" target="_blank">南城市南風原</a></div></div>
 <div class="drive">🚗 開車 40 分鐘</div>
-<div class="step"><div class="time">13:10–14:30</div><h3>🍦 瀨長島 Umikaji Terrace（午餐）</h3><p>小希臘風格商店街，邊看飛機邊吃。必吃：幸せのパンケーキ鬆餅。</p><div class="addr">📍 <a href="https://maps.google.com/?q=瀨長島ウミカジテラス" target="_blank">瀨長島 Umikaji Terrace</a></div></div>
+<div class="step"><div class="time">13:10–14:30</div><h3><span class="icon">🍦</span>瀨長島 Umikaji Terrace（午餐）</h3><p>小希臘風格商店街，邊看飛機邊吃。必吃：幸せのパンケーキ鬆餅。</p><div class="addr">📍 <a href="https://maps.google.com/?q=瀨長島ウミカジテラス" target="_blank">瀨長島 Umikaji Terrace</a></div></div>
 <div class="drive">🚗 開車 5 分鐘</div>
-<div class="step"><div class="time">15:00–15:30</div><h3>🏨 入住飯店</h3><p>房間內就有露天溫泉，看飛機起降，無敵海景。</p><div class="addr">📍 <a href="https://maps.google.com/?q=琉球温泉瀬長島ホテル" target="_blank">瀨長島琉球溫泉飯店</a></div></div>
+<div class="step"><div class="time">15:00–15:30</div><h3><span class="icon">🏨</span>入住飯店</h3><p>房間內就有露天溫泉，看飛機起降，無敵海景。</p><div class="addr">📍 <a href="https://maps.google.com/?q=琉球温泉瀬長島ホテル" target="_blank">瀨長島琉球溫泉飯店</a></div></div>
 <div class="hotel-box"><h3>🏨 今晚住：琉球溫泉瀨長島飯店</h3><div class="price">約 ¥18,000~22,000/晚（海景房×2）·每人每晚約NT$1,200</div><p>房間內露天溫泉＋無敵海景。</p></div>
 </div>
 
 <!-- D3 -->
 <div class="day-section" id="d3">
-<div class="step"><div class="time">08:00–09:00</div><h3>🍳 瀨長島飯店早餐</h3><p>海景第一排吃早餐。</p><div class="addr">📍 <a href="https://maps.google.com/?q=琉球温泉瀬長島ホテル" target="_blank">瀨長島琉球溫泉飯店</a></div></div>
+<div class="step"><div class="time">08:00–09:00</div><h3><span class="icon">🍳</span>瀨長島飯店早餐</h3><p>海景第一排吃早餐。</p><div class="addr">📍 <a href="https://maps.google.com/?q=琉球温泉瀬長島ホテル" target="_blank">瀨長島琉球溫泉飯店</a></div></div>
 <div class="drive">🚗 開車 60 分鐘</div>
-<div class="step"><div class="time">10:00–11:00</div><h3>🐘 萬座毛</h3><p>象鼻岩斷崖絕壁，沖繩最壯觀的自然景觀。2026新場館啟用。</p><div class="addr">📍 <a href="https://maps.google.com/?q=萬座毛" target="_blank">恩納村萬座毛</a></div></div>
+<div class="step"><div class="time">10:00–11:00</div><h3><span class="icon">🐘</span>萬座毛</h3><p>象鼻岩斷崖絕壁，沖繩最壯觀的自然景觀。2026新場館啟用。</p><div class="addr">📍 <a href="https://maps.google.com/?q=萬座毛" target="_blank">恩納村萬座毛</a></div></div>
 <div class="drive">🚗 開車 20 分鐘</div>
-<div class="step"><div class="time">11:20–13:00</div><h3>🍣 グルメ迴轉壽司市場（午餐）</h3><p>美國村排隊名店。17:00前先抽號碼牌，避開高峰。</p><div class="addr">📍 <a href="https://maps.google.com/?q=グルメ迴轉壽司市場北谷店" target="_blank">北谷町美國村</a></div></div>
+<div class="step"><div class="time">11:20–13:00</div><h3><span class="icon">🍣</span>グルメ迴轉壽司市場（午餐）</h3><p>美國村排隊名店。17:00前先抽號碼牌，避開高峰。</p><div class="addr">📍 <a href="https://maps.google.com/?q=グルメ迴轉壽司市場北谷店" target="_blank">北谷町美國村</a></div></div>
 <div class="drive">🚗 開車 5 分鐘</div>
-<div class="step"><div class="time">13:05–16:00</div><h3>🛍️ 美國村 American Village</h3><p>最有美式氛圍的購物區，海邊摩天輪、特色小店。</p><div class="addr">📍 <a href="https://maps.google.com/?q=北谷アメリカンビレッジ" target="_blank">北谷町美國村</a></div></div>
+<div class="step"><div class="time">13:05–16:00</div><h3><span class="icon">🛍️</span>美國村 American Village</h3><p>最有美式氛圍的購物區，海邊摩天輪、特色小店。</p><div class="addr">📍 <a href="https://maps.google.com/?q=北谷アメリカンビレッジ" target="_blank">北谷町美國村</a></div></div>
 <div class="drive">🚗 開車 20 分鐘</div>
-<div class="step"><div class="time">16:20–16:50</div><h3>🏨 入住飯店</h3><p>恩納村海景第一排，私人沙灘＋溫泉。</p><div class="addr">📍 <a href="https://maps.google.com/?q=ホテルモントレ沖縄恩納" target="_blank">沖繩蒙特利Spa度假飯店</a></div></div>
+<div class="step"><div class="time">16:20–16:50</div><h3><span class="icon">🏨</span>入住飯店</h3><p>恩納村海景第一排，私人沙灘＋溫泉。</p><div class="addr">📍 <a href="https://maps.google.com/?q=ホテルモントレ沖縄恩納" target="_blank">沖繩蒙特利Spa度假飯店</a></div></div>
 <div class="drive">🚗 開車 10 分鐘</div>
-<div class="step"><div class="time">17:00–19:00</div><h3>🥩 琉球の牛（晚餐）</h3><p>沖繩燒肉NO.1！石垣牛Agu豬雙拼，入口即化。建議提前預約。</p><div class="addr">📍 <a href="https://maps.google.com/?q=琉球の牛恩納本店" target="_blank">恩納村仲折敷</a></div></div>
+<div class="step"><div class="time">17:00–19:00</div><h3><span class="icon">🥩</span>琉球の牛（晚餐）</h3><p>沖繩燒肉NO.1！石垣牛Agu豬雙拼，入口即化。建議提前預約。</p><div class="addr">📍 <a href="https://maps.google.com/?q=琉球の牛恩納本店" target="_blank">恩納村仲折敷</a></div></div>
 <div class="hotel-box"><h3>🏨 今晚住：沖繩蒙特利Spa度假飯店</h3><div class="price">約 ¥20,000~25,000/晚（海景房×2）·每人每晚約NT$1,400</div><p>恩納村海景第一排，私人沙灘＋溫泉。</p></div>
 </div>
 
 <!-- D4 -->
 <div class="day-section" id="d4">
-<div class="step"><div class="time">08:00–09:00</div><h3>🍳 蒙特利飯店早餐</h3><p>海景餐廳自助餐。</p><div class="addr">📍 <a href="https://maps.google.com/?q=ホテルモントレ沖縄恩納" target="_blank">沖繩蒙特利Spa度假飯店</a></div></div>
+<div class="step"><div class="time">08:00–09:00</div><h3><span class="icon">🍳</span>蒙特利飯店早餐</h3><p>海景餐廳自助餐。</p><div class="addr">📍 <a href="https://maps.google.com/?q=ホテルモントレ沖縄恩納" target="_blank">沖繩蒙特利Spa度假飯店</a></div></div>
 <div class="drive">🚗 開車 60 分鐘</div>
-<div class="step"><div class="time">10:00–13:00</div><h3>🐠 美麗海水族館</h3><p>「黑潮之海」大水槽長22.5公尺，世界最大級。一開門就進去避開人潮。</p><div class="addr">📍 <a href="https://maps.google.com/?q=美ら海水族館" target="_blank">國頭村本部町石川</a></div></div>
+<div class="step"><div class="time">10:00–13:00</div><h3><span class="icon">🐠</span>美麗海水族館</h3><p>「黑潮之海」大水槽長22.5公尺，世界最大級。一開門就進去避開人潮。</p><div class="addr">📍 <a href="https://maps.google.com/?q=美ら海水族館" target="_blank">國頭村本部町石川</a></div></div>
 <div class="drive">🚗 開車 15 分鐘</div>
-<div class="step"><div class="time">13:15–14:00</div><h3>🦐 蝦蝦飯（午餐）</h3><p>古宇利島NO.1打卡美食！整隻蝦子丼飯，鮮到不行。</p><div class="addr">📍 <a href="https://maps.google.com/?q=エビエビご飯古宇利島" target="_blank">古宇利島蝦蝦飯</a></div></div>
+<div class="step"><div class="time">13:15–14:00</div><h3><span class="icon">🦐</span>蝦蝦飯（午餐）</h3><p>古宇利島NO.1打卡美食！整隻蝦子丼飯，鮮到不行。</p><div class="addr">📍 <a href="https://maps.google.com/?q=エビエビご飯古宇利島" target="_blank">古宇利島蝦蝦飯</a></div></div>
 <div class="drive">🚗 開車 15 分鐘</div>
-<div class="step"><div class="time">14:15–16:00</div><h3>🏖️ 古宇利島</h3><p>古宇利大橋連接本島，心型岩（Heart Rock）最浪漫打卡點。</p><div class="addr">📍 <a href="https://maps.google.com/?q=古宇利島ハートロック" target="_blank">古宇利島</a></div></div>
+<div class="step"><div class="time">14:15–16:00</div><h3><span class="icon">🏖️</span>古宇利島</h3><p>古宇利大橋連接本島，心型岩（Heart Rock）最浪漫打卡點。</p><div class="addr">📍 <a href="https://maps.google.com/?q=古宇利島ハートロック" target="_blank">古宇利島</a></div></div>
 <div class="drive">🚗 開車 20 分鐘</div>
-<div class="step"><div class="time">16:20–16:50</div><h3>🏨 入住飯店</h3><p>水族館旁，走路就到。無敵海景＋私人沙灘。</p><div class="addr">📍 <a href="https://maps.google.com/?q=ホテルオリアン本部" target="_blank">Orion本部度假飯店</a></div></div>
+<div class="step"><div class="time">16:20–16:50</div><h3><span class="icon">🏨</span>入住飯店</h3><p>水族館旁，走路就到。無敵海景＋私人沙灘。</p><div class="addr">📍 <a href="https://maps.google.com/?q=ホテルオリアン本部" target="_blank">Orion本部度假飯店</a></div></div>
 <div class="drive">🚗 開車 10 分鐘</div>
-<div class="step"><div class="time">17:00–19:00</div><h3>🥩 燒肉本部牧場（晚餐）</h3><p>本部牧場直送Agu豬燒肉，鮮度無可挑剔。</p><div class="addr">📍 <a href="https://maps.google.com/?q=燒肉本部牧場" target="_blank">本部町本部</a></div></div>
+<div class="step"><div class="time">17:00–19:00</div><h3><span class="icon">🥩</span>燒肉本部牧場（晚餐）</h3><p>本部牧場直送Agu豬燒肉，鮮度無可挑剔。</p><div class="addr">📍 <a href="https://maps.google.com/?q=燒肉本部牧場" target="_blank">本部町本部</a></div></div>
 <div class="hotel-box"><h3>🏨 今晚住：Orion本部度假飯店</h3><div class="price">約 ¥22,000~28,000/晚（海景房×2）·每人每晚約NT$1,500</div><p>水族館旁，無敵海景。</p></div>
 </div>
 
 <!-- D5 -->
 <div class="day-section" id="d5">
-<div class="step"><div class="time">08:00–09:00</div><h3>🍳 Orion本部度假飯店早餐</h3><p>海景餐廳自助餐，最後的沖繩早餐。</p><div class="addr">📍 <a href="https://maps.google.com/?q=ホテルオリアン本部" target="_blank">Orion本部度假飯店</a></div></div>
+<div class="step"><div class="time">08:00–09:00</div><h3><span class="icon">🍳</span>Orion本部度假飯店早餐</h3><p>海景餐廳自助餐，最後的沖繩早餐。</p><div class="addr">📍 <a href="https://maps.google.com/?q=ホテルオリアン本部" target="_blank">Orion本部度假飯店</a></div></div>
 <div class="drive">🚗 開車 70 分鐘</div>
-<div class="step"><div class="time">10:10–11:40</div><h3>🏯 首里城</h3><p>琉球王國象徵，2026秋季正殿重建完工。守禮門壯觀。</p><div class="addr">📍 <a href="https://maps.google.com/?q=首里城" target="_blank">那霸市首里金城町</a></div></div>
+<div class="step"><div class="time">10:10–11:40</div><h3><span class="icon">🏯</span>首里城</h3><p>琉球王國象徵，2026秋季正殿重建完工。守禮門壯觀。</p><div class="addr">📍 <a href="https://maps.google.com/?q=首里城" target="_blank">那霸市首里金城町</a></div></div>
 <div class="drive">🚗 開車 15 分鐘</div>
-<div class="step"><div class="time">11:55–13:55</div><h3>🛍️ ASHIBINAA Outlet</h3><p>沖繩最大Outlet，國際精品＋日本品牌。最後採買機會！</p><div class="addr">📍 <a href="https://maps.google.com/?q=ashibinaa outlet那覇" target="_blank">那霸市豐見城市</a></div></div>
+<div class="step"><div class="time">11:55–13:55</div><h3><span class="icon">🛍️</span>ASHIBINAA Outlet</h3><p>沖繩最大Outlet，國際精品＋日本品牌。最後採買機會！</p><div class="addr">📍 <a href="https://maps.google.com/?q=ashibinaa outlet那覇" target="_blank">那霸市豐見城市</a></div></div>
 <div class="drive">🚗 開車 15 分鐘</div>
-<div class="step"><div class="time">14:10–15:00</div><h3>🍦 那霸機場（最後美食）</h3><p>御菓子御殿紅芋塔（最後機會）、Blue Seal冰淇淋。</p><div class="addr">📍 <a href="https://maps.google.com/?q=那覇空港" target="_blank">那霸市鏡水</a></div></div>
-<div class="step"><div class="time">16:00–</div><h3>✈️ 回家</h3><p>帶著滿滿回憶和伴手禮飛回台灣。</p></div>
+<div class="step"><div class="time">14:10–15:00</div><h3><span class="icon">🍦</span>那霸機場（最後美食）</h3><p>御菓子御殿紅芋塔（最後機會）、Blue Seal冰淇淋。</p><div class="addr">📍 <a href="https://maps.google.com/?q=那覇空港" target="_blank">那霸市鏡水</a></div></div>
+<div class="step"><div class="time">16:00–</div><h3><span class="icon">✈️</span>回家</h3><p>帶著滿滿回憶和伴手禮飛回台灣。</p></div>
 </div>
 
 </div>
 <script>
 const map=L.map('map',{zoomControl:true,scrollWheelZoom:true}).setView([26.5,127.8],9);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
 const C={d1:'#E8453C',d2:'#F59E0B',d3:'#10B981',d4:'#3B82F6',d5:'#8B5CF6'};
 function mk(day,n,lat,lng,name,desc){
-const icon=L.divIcon({className:'custom-marker',html:`<div class="marker-inner" style="background:${C[day]}">${n}</div>`,iconSize:[28,28],iconAnchor:[14,14],popupAnchor:[0,-16]});
+const icon=L.divIcon({className:'custom-marker',html:`<div class="marker-inner" style="background:${C[day]}">${n}</div>`,iconSize:[32,32],iconAnchor:[16,16],popupAnchor:[0,-18]});
 L.marker([lat,lng],{icon}).addTo(map).bindPopup(`<div class="popup-name">${name}</div><div class="popup-desc">${desc}</div>`);
 }
 mk('d1',1,26.2195,127.6635,'泊港魚市場','早餐 09:30');
@@ -179,7 +187,7 @@ mk('d5',2,26.1400,127.6700,'ASHIBINAA Outlet','11:55');
 mk('d5',3,26.2058,127.6530,'那霸機場','14:10');
 const routes={d1:[[26.2195,127.6635],[26.2270,127.6712],[26.2146,127.6873],[26.2135,127.6900]],d2:[[26.1435,127.7455],[26.3428,127.7489],[26.1650,127.6500]],d3:[[26.4425,127.6957],[26.3180,127.7610],[26.3175,127.7600],[26.3800,127.7650]],d4:[[26.6940,127.8779],[26.6945,127.8950],[26.6936,127.8961],[26.7050,127.8850]],d5:[[26.2170,127.7193],[26.1400,127.6700],[26.2058,127.6530]]};
 let ap=[];
-function show(d){ap.forEach(p=>map.removeLayer(p));ap=[];if(routes[d]){ap.push(L.polyline(routes[d],{color:C[d],weight:3,opacity:0.8,dashArray:'6,8'}).addTo(map));map.fitBounds(L.latLngBounds(routes[d]),{padding:[50,50],maxZoom:13})}}
+function show(d){ap.forEach(p=>map.removeLayer(p));ap=[];if(routes[d]){ap.push(L.polyline(routes[d],{color:C[d],weight:4,opacity:0.9,dashArray:'8,10'}).addTo(map));map.fitBounds(L.latLngBounds(routes[d]),{padding:[50,50],maxZoom:13})}}
 document.querySelectorAll('.tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');const d=t.dataset.day;document.querySelectorAll('.day-section').forEach(s=>s.classList.remove('active'));document.getElementById(d).classList.add('active');show(d)})});
 show('d1');
 </script>
