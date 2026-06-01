@@ -1,278 +1,225 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>美股開盤報告 - 2026年5月29日</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        .header .subtitle {
-            font-size: 16px;
-            color: #a0aec0;
-        }
-        .market-status {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        .market-status .status-dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: #48bb78;
-            border-radius: 50%;
-            margin-right: 8px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .market-status .time {
-            font-size: 14px;
-            color: #a0aec0;
-        }
-        .section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .index-card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .index-card:last-child {
-            margin-bottom: 0;
-        }
-        .index-name {
-            font-size: 16px;
-            font-weight: 500;
-            color: #e2e8f0;
-        }
-        .index-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #fff;
-        }
-        .index-change {
-            font-size: 14px;
-            font-weight: 600;
-            padding: 4px 8px;
-            border-radius: 6px;
-        }
-        .positive {
-            background: rgba(72, 187, 120, 0.2);
-            color: #48bb78;
-        }
-        .negative {
-            background: rgba(245, 101, 101, 0.2);
-            color: #f56565;
-        }
-        .stock-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .stock-card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-        }
-        .stock-symbol {
-            font-size: 14px;
-            font-weight: 600;
-            color: #a0aec0;
-            margin-bottom: 5px;
-        }
-        .stock-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-        .stock-change {
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .news-section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .news-item {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .news-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .news-item:first-child {
-            padding-top: 0;
-        }
-        .news-title {
-            font-size: 15px;
-            font-weight: 500;
-            color: #e2e8f0;
-            line-height: 1.4;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            color: #718096;
-            font-size: 12px;
-        }
-        .footer a {
-            color: #4299e1;
-            text-decoration: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>美股開盤速報 — 2026/06/02</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1e293b;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .header .time {
+    font-size: 16px;
+    color: #94a3b8;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid #334155;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 400px) {
+    .card-grid { grid-template-columns: 1fr; }
+  }
+  .index-card {
+    text-align: center;
+  }
+  .index-card .name {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 4px;
+  }
+  .index-card .price {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .index-card .change {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .up { color: #22c55e; }
+  .down { color: #ef4444; }
+  .flat { color: #94a3b8; }
+  .stock-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+  }
+  .stock-info .ticker {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+  .stock-info .company {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 2px;
+  }
+  .stock-price {
+    text-align: right;
+  }
+  .stock-price .price {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .stock-price .change {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .highlight {
+    background: #1e293b;
+    border-left: 3px solid #60a5fa;
+    border-radius: 0 12px 12px 0;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #cbd5e1;
+  }
+  .highlight strong { color: #60a5fa; }
+  .footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #1e293b;
+    font-size: 12px;
+    color: #475569;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📈 美股開盤報告</h1>
-            <div class="subtitle">2026年5月29日（週四）</div>
-        </div>
 
-        <div class="market-status">
-            <span class="status-dot"></span>
-            <span>市場交易中</span>
-            <div class="time">台北時間 01:50 AM | 紐約時間 01:50 PM</div>
-        </div>
+<div class="header">
+  <h1>📈 美股開盤速報</h1>
+  <div class="time">2026 年 6 月 2 日（一）美東 10:10 AM · 台北時間 6/2 凌晨 1:50</div>
+</div>
 
-        <div class="section">
-            <div class="section-title">📊 主要指數</div>
-            
-            <div class="index-card">
-                <div>
-                    <div class="index-name">S&P 500</div>
-                    <div class="index-price">5,912.17</div>
-                </div>
-                <div class="index-change positive">+0.40%</div>
-            </div>
+<div class="section-title">🏛️ 主要指數</div>
 
-            <div class="index-card">
-                <div>
-                    <div class="index-name">道瓊工業指數</div>
-                    <div class="index-price">42,215.73</div>
-                </div>
-                <div class="index-change positive">+0.28%</div>
-            </div>
+<div class="card-grid">
+  <div class="card index-card">
+    <div class="name">S&P 500</div>
+    <div class="price">7,613.65</div>
+    <div class="change up">▲ +33.59 (+0.44%)</div>
+  </div>
+  <div class="card index-card">
+    <div class="name">道瓊工業</div>
+    <div class="price">50,978.13</div>
+    <div class="change down">▼ −54.33 (−0.11%)</div>
+  </div>
+  <div class="card index-card">
+    <div class="name">那斯達克</div>
+    <div class="price">27,176.53</div>
+    <div class="change up">▲ +203.91 (+0.76%)</div>
+  </div>
+  <div class="card index-card">
+    <div class="name">費半指數</div>
+    <div class="price">13,083.59</div>
+    <div class="change up">▲ +254.20 (+1.98%)</div>
+  </div>
+</div>
 
-            <div class="index-card">
-                <div>
-                    <div class="index-name">那斯達克指數</div>
-                    <div class="index-price">19,175.87</div>
-                </div>
-                <div class="index-change positive">+0.39%</div>
-            </div>
+<div class="section-title">🔥 重要個股</div>
 
-            <div class="index-card">
-                <div>
-                    <div class="index-name">費半指數</div>
-                    <div class="index-price">強勢上漲</div>
-                </div>
-                <div class="index-change positive">+1.84%</div>
-            </div>
-        </div>
+<div class="card stock-card">
+  <div class="stock-info">
+    <div class="ticker">NVDA 輝達</div>
+    <div class="company">NVIDIA Corporation</div>
+  </div>
+  <div class="stock-price">
+    <div class="price">$223.03</div>
+    <div class="change up">▲ +$11.89 (+5.63%)</div>
+  </div>
+</div>
 
-        <div class="section">
-            <div class="section-title">🎯 重要個股</div>
-            <div class="stock-grid">
-                <div class="stock-card">
-                    <div class="stock-symbol">NVDA 輝達</div>
-                    <div class="stock-price">$214.25</div>
-                    <div class="stock-change positive">+1.8%</div>
-                </div>
-                <div class="stock-card">
-                    <div class="stock-symbol">AAPL 蘋果</div>
-                    <div class="stock-price">$312.51</div>
-                    <div class="stock-change positive">+0.5%</div>
-                </div>
-                <div class="stock-card">
-                    <div class="stock-symbol">TSLA 特斯拉</div>
-                    <div class="stock-price">$437.66</div>
-                    <div class="stock-change positive">+1.2%</div>
-                </div>
-                <div class="stock-card">
-                    <div class="stock-symbol">TSM 台積電ADR</div>
-                    <div class="stock-price">$424.86</div>
-                    <div class="stock-change positive">+0.8%</div>
-                </div>
-            </div>
-        </div>
+<div class="card stock-card">
+  <div class="stock-info">
+    <div class="ticker">TSM 台積電 ADR</div>
+    <div class="company">TSMC</div>
+  </div>
+  <div class="stock-price">
+    <div class="price">$445.50</div>
+    <div class="change up">▲ +$27.05 (+6.46%)</div>
+  </div>
+</div>
 
-        <div class="news-section">
-            <div class="section-title">📰 今日焦點</div>
-            
-            <div class="news-item">
-                <div class="news-title">🏛️ 關稅政策反覆：法院裁定川普越權，但上訴法院隨即恢復</div>
-            </div>
-            
-            <div class="news-item">
-                <div class="news-title">🤖 輝達財報強勁：受惠AI需求，股價領漲科技股</div>
-            </div>
-            
-            <div class="news-item">
-                <div class="news-title">🛢️ 油價下跌：市場對美伊協議樂觀，能源股承壓</div>
-            </div>
-            
-            <div class="news-item">
-                <div class="news-title">💻 科術股領漲：軟體股全線走揚，費半指數漲幅逾1.8%</div>
-            </div>
-        </div>
+<div class="card stock-card">
+  <div class="stock-info">
+    <div class="ticker">AAPL 蘋果</div>
+    <div class="company">Apple Inc.</div>
+  </div>
+  <div class="stock-price">
+    <div class="price">$308.26</div>
+    <div class="change down">▼ −$3.80 (−1.22%)</div>
+  </div>
+</div>
 
-        <div class="footer">
-            <p>資料來源：CNBC、Yahoo Finance、Google Finance</p>
-            <p>報告時間：2026-05-29 17:50 UTC</p>
-            <p>由小綠 🍀 自動生成</p>
-        </div>
-    </div>
+<div class="card stock-card">
+  <div class="stock-info">
+    <div class="ticker">TSLA 特斯拉</div>
+    <div class="company">Tesla, Inc.</div>
+  </div>
+  <div class="stock-price">
+    <div class="price">$421.40</div>
+    <div class="change down">▼ −$14.39 (−3.30%)</div>
+  </div>
+</div>
+
+<div class="section-title">📋 今日觀測</div>
+
+<div class="highlight">
+  <strong>半導體強勢領漲：</strong>費半大漲近 2%，輝達 +5.6%、台積電 ADR +6.5%，AI 晶片需求持續火熱。
+</div>
+
+<div class="highlight">
+  <strong>科技股分化：</strong>那斯達克漲 0.76%，但蘋果（−1.2%）與特斯拉（−3.3%）逆勢走弱，道瓊小幅承壓。
+</div>
+
+<div class="highlight">
+  <strong>本週焦點：</strong>市場持續關注美伊和平談判進展、聯準會官員談話，以及更多 AI 相關消息。
+</div>
+
+<div class="footer">
+  資料來源：Yahoo Finance API · 即時數據，開盤約 20 分鐘<br>
+  小綠 🍀 為你整理 · 最後更新：台北時間 2026/06/02 01:50
+</div>
+
 </body>
 </html>
