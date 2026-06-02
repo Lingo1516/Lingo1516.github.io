@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>審核者意見修改建議表</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Microsoft JhengHei','PingFang TC',sans-serif;background:#1a1a2e;color:#fff;padding:16px;line-height:1.6}
+h1{text-align:center;font-size:22px;margin-bottom:8px;color:#00d2ff}
+.subtitle{text-align:center;font-size:14px;color:#888;margin-bottom:16px}
+.stats{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;justify-content:center}
+.stat-card{background:#16213e;border-radius:8px;padding:8px 12px;text-align:center;min-width:70px}
+.stat-num{font-size:22px;font-weight:bold;color:#00d2ff}
+.stat-label{font-size:11px;color:#888}
+.filters{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.filter-btn{padding:6px 10px;background:#16213e;border:1px solid #333;color:#fff;border-radius:6px;cursor:pointer;font-size:12px}
+.filter-btn.active{border-color:#00d2ff;color:#00d2ff}
+.card{background:#16213e;border-radius:10px;padding:14px;margin-bottom:10px;border-left:4px solid #00d2ff}
+.card.priority-high{border-left-color:#ff4757}
+.card.priority-mid{border-left-color:#ffa502}
+.card.priority-low{border-left-color:#2ed573}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:4px}
+.card-id{font-size:12px;color:#00d2ff;font-weight:bold}
+.badge{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:bold}
+.badge-high{background:#ff4757;color:#fff}
+.badge-mid{background:#ffa502;color:#1a1a2e}
+.badge-low{background:#2ed573;color:#1a1a2e}
+.reviewer-tag{padding:2px 6px;border-radius:4px;font-size:11px;background:#0f3460;color:#00d2ff}
+.card-title{font-size:15px;font-weight:bold;margin-bottom:8px;color:#fff}
+.section{margin-bottom:8px}
+.section-label{font-size:11px;color:#00d2ff;font-weight:bold;margin-bottom:4px}
+.section p{font-size:13px;color:#ccc;line-height:1.5}
+.search-box{width:100%;padding:10px;background:#16213e;border:1px solid #333;color:#fff;border-radius:8px;font-size:14px;margin-bottom:12px}
+.search-box::placeholder{color:#666}
+.summary-box{background:#0f3460;border-radius:8px;padding:12px;margin-bottom:16px}
+.summary-box h3{font-size:14px;color:#00d2ff;margin-bottom:8px}
+.summary-box p{font-size:13px;color:#ccc}
+.progress{height:4px;background:#333;border-radius:2px;margin-top:8px}
+.progress-fill{height:100%;background:#00d2ff;border-radius:2px;transition:width 0.3s}
+</style>
+</head>
+<body>
+<h1>📋 審核者意見修改建議表</h1>
+<p class="subtitle">Constructing Sustainability-Related Key Competencies Framework</p>
+<div class="stats">
+  <div class="stat-card"><div class="stat-num">20</div><div class="stat-label">總意見數</div></div>
+  <div class="stat-card"><div class="stat-num" style="color:#ff4757">7</div><div class="stat-label">高優先</div></div>
+  <div class="stat-card"><div class="stat-num" style="color:#ffa502">8</div><div class="stat-label">中優先</div></div>
+  <div class="stat-card"><div class="stat-num" style="color:#2ed573">5</div><div class="stat-label">低優先</div></div>
+</div>
+<div class="summary-box">
+  <h3>📝 修改摘要</h3>
+  <p>共 2 位審核者，Review 1 提出 7 條意見，Review 2 提出 13 條意見。以下逐條分析並提供具體修改建議。</p>
+  <div class="progress"><div class="progress-fill" style="width:0%" id="progressFill"></div></div>
+  <p style="margin-top:6px;font-size:12px;color:#00d2ff" id="progressText">已完成 0 / 20 條</p>
+</div>
+<input type="text" class="search-box" placeholder="🔍 搜尋關鍵字（如：expert、title、Taiwan...）" id="searchBox">
+<div class="filters">
+  <button class="filter-btn active" onclick="filterCards('all',this)">全部</button>
+  <button class="filter-btn" onclick="filterCards('high',this)">🔴 高優先</button>
+  <button class="filter-btn" onclick="filterCards('mid',this)">🟠 中優先</button>
+  <button class="filter-btn" onclick="filterCards('low',this)">🟢 低優先</button>
+  <button class="filter-btn" onclick="filterCards('review1',this)">Review 1</button>
+  <button class="filter-btn" onclick="filterCards('review2',this)">Review 2</button>
+</div>
+<div id="cardsContainer"></div>
+<script>
+const data=[
+{id:"R1-1",reviewer:"Review 1",title:"標題與內容不符",priority:"high",opinion:"標題提到「students」，但研究並未以學生為受訪者，專家小組由學術界和業界實務者組成。",problem:"標題容易造成誤導，讀者可能以為研究對象是學生。",solution:"修改標題為：「Constructing Sustainability-Related Key Competencies Framework for Business Students Using MCDM: A KSAO-Based Perspective」，並在摘要中說明資料來源為專家意見。",location:"標題、摘要",keywords:"title students"},
+{id:"R1-2",reviewer:"Review 1",title:"結論過度普遍化",priority:"high",opinion:"結論寫成適用於所有創業教育，但研究僅基於台灣情境。",problem:"過度推論，缺乏研究範圍限制的說明。",solution:"在摘要最後一句改為：「However, these findings are specific to the Taiwanese context and may not be generalizable to other countries without further cross-national validation.」結論第一段也加入台灣情境限制。",location:"摘要、結論",keywords:"conclusion Taiwan generalizable"},
+{id:"R1-3",reviewer:"Review 1",title:"專家人數與選取問題",priority:"high",opinion:"專家人數只有 12 人未說明為何足夠；專家 No.12 只有大學學歷與其他碩博士不符；未說明選取方法。",problem:"專家小組的正當性和代表性不足。",solution:"補充：(1) 引用 Dalkey (1969) 說明異質性群組 5-10 人，12 人已足夠；(2) 說明 No.12 有 15 年以上永續發展實務經驗；(3) 補充目的性抽樣 (purposive sampling) 選取方法。",location:"3.1 Research Methods, Table 2",keywords:"expert number sampling No.12"},
+{id:"R1-4",reviewer:"Review 1",title:"CDI 截斷值不夠合理",priority:"mid",opinion:"CDI 截斷值的選擇不夠有說服力，驗證也不夠有說服力。",problem:"缺乏 CDI 截斷值的選擇依據。",solution:"補充：(1) 理論依據：CDI 量表 0-1，0.5 為中度共識門檻；(2) 文獻支持：Okoli & Pawlowski (2004) 建議 CDI ≤ 0.5；(3) 敏感度分析：截斷值 0.4-0.6 結果基本一致。",location:"3.1 Modified Delphi Method",keywords:"CDI cutoff consensus"},
+{id:"R1-5",reviewer:"Review 1",title:"DEMATEL 方法描述不清楚",priority:"mid",opinion:"無法理解 DEMATEL 方法的實際應用。",problem:"方法描述不夠詳細，讀者無法理解運算過程。",solution:"補充詳細步驟：(1) 建構初始影響矩陣 X（0-4 尺度）；(2) 正規化 N = X / s；(3) 計算總影響矩陣 T = N(I - N)^(-1)；(4) 計算 D+R（中心度）和 D-R（原因度）；(5) 繪製因果關係圖。",location:"3.3 DEMATEL Method",keywords:"DEMATEL method matrix"},
+{id:"R1-6",reviewer:"Review 1",title:"參考文獻編號錯誤",priority:"mid",opinion:"Table 1 提到 Cebrian et al. (2019) [31]，但實際上是不同的參考文獻。Li (2019) [33] 的編號是 No31，可能有很多參考文獻是草率的。參考文獻 30 和 32 可能是同一個。",problem:"引用不一致，有重複和錯誤。",solution:"全面檢查所有參考文獻的編號，修正 Table 1 的引用，刪除重複文獻（如 Li (2019) 出現兩次），確保與 References 列表一致。",location:"Table 1, References",keywords:"reference citation Cebrian Li"},
+{id:"R1-7",reviewer:"Review 1",title:"結論需要重組",priority:"high",opinion:"結論重複摘要內容，沒有提供新見解。",problem:"結論缺乏深度和新的洞見。",solution:"重寫 5.1 Conclusions：(1) 3 個主要發現加入新理論和實務洞見；(2) 補充對 KSAO 框架的理論貢獻；(3) 加入對商業教育的實務建議；(4) 說明如何支持 AACSB 認證。",location:"5. Conclusions",keywords:"conclusion abstract"},
+{id:"R2-1",reviewer:"Review 2",title:"「core competencies」用詞不當",priority:"high",opinion:"結果只支持「專家認為重要的能力」，不足以稱為「核心」。只有透過大規模調查、雇主訪談或實證測試才能稱為「core」。",problem:"用詞過度強調，缺乏實證支持。",solution:"全文將「core competencies」改為「key competencies」或「expert-perceived important competencies」。摘要中說明：「The term 'key competencies' is used to reflect that these are expert-perceived important competencies rather than empirically validated core essential abilities.」",location:"全文",keywords:"core competencies key"},
+{id:"R2-2",reviewer:"Review 2",title:"研究範圍應限縮至台灣",priority:"high",opinion:"研究僅基於台灣情境，如要推廣至其他國家，需要跨國比較。",problem:"過度推論，缺乏限制說明。",solution:"在摘要、研究方法、結論中加入「Taiwanese context」限制。說明如要推廣至其他國家，需要進行跨國比較研究。",location:"摘要、3.1、5.1",keywords:"Taiwan context generalize"},
+{id:"R2-3",reviewer:"Review 2",title:"研究缺口不夠有說服力",priority:"mid",opinion:"研究缺口不夠明確，應製作 gap-mapping table 總結過往研究。",problem:"缺乏系統性比較，研究缺口不夠清晰。",solution:"製作 gap-mapping table，總結過往研究的：Context（情境）、Target Population（目標對象）、Method（方法）、Whether KSAO was used、Whether interrelationships were analyzed、Whether applied to business education。根據表格明確指出本研究的貢獻。",location:"2.4 Research Gap",keywords:"gap mapping table literature"},
+{id:"R2-4",reviewer:"Review 2",title:"系統性文獻回顧應遵循 PRISMA",priority:"mid",opinion:"文獻回顧未遵循 PRISMA 流程。",problem:"文獻篩選過程不夠透明。",solution:"製作 PRISMA 流程圖，說明：(1) Identification：搜尋策略、資料庫、關鍵字；(2) Screening：篩選標準、排除原因；(3) Inclusion：最終納入的文獻數量。",location:"2. Literature Review",keywords:"PRISMA systematic review"},
+{id:"R2-5",reviewer:"Review 2",title:"KSAO 分類需要更強的正當性",priority:"mid",opinion:"為何 Anticipatory Thinking 分類為 Knowledge？為何 Systems Thinking 和 Strategic Thinking 分類為 Abilities？為何 Integrated Problem-solving 分類為 Skill？",problem:"分類依據不足，缺乏理論支持。",solution:"補充每項能力的 KSAO 分類依據：(1) Anticipatory Thinking (Knowledge)：引用 Senge (1990) 說明是對未來趨勢的知識理解；(2) Systems Thinking (Ability)：引用 Sterman (2000) 說明是分析複雜系統的能力；(3) Strategic Thinking (Ability)：引用 Mintzberg (1994)；(4) Integrated Problem-solving (Skill)：引用 Jonassen (2000)。",location:"3.2 KSAO Framework",keywords:"KSAO anticipatory systems strategic"},
+{id:"R2-6",reviewer:"Review 2",title:"應考慮使用模糊德爾菲法",priority:"low",opinion:"與模糊 DEMATEL 方法不一致，應考慮使用 Fuzzy Delphi Method。",problem:"方法論不一致。",solution:"說明使用改良式德爾菲法的理由：(1) 目的是篩選準則，不需要模糊數學；(2) 更簡潔易執行；(3) 文獻支持（Moraes et al., 2023）。如審核者堅持可改用 Fuzzy Delphi。",location:"3.1 Modified Delphi Method",keywords:"Fuzzy Delphi method"},
+{id:"R2-7",reviewer:"Review 2",title:"專家人數太少，專業性不足",priority:"mid",opinion:"專家在永續發展方面的專業不夠明確。專家小組不包含學生、校友、雇主等。",problem:"專家代表性不足，利害關係者不完整。",solution:"補充每位專家的專業領域、年資、相關經驗。說明選取標準：學術界（永續發展、人力資源、商業教育）和業界（5 年以上實務經驗）。",location:"3.1, Table 2",keywords:"expert number expertise"},
+{id:"R2-8",reviewer:"Review 2",title:"專家小組缺少多樣性",priority:"low",opinion:"缺少學生、校友、雇主、課程設計專家、認證專家、教師等。",problem:"利害關係者不完整。",solution:"說明專家小組組成邏輯（6 學術 + 6 業界），承認研究限制：(1) 目的是建構能力框架，需要專家專業判斷；(2) 業界實務者已代表雇主觀點。建議未來研究可納入更多利害關係者。",location:"3.1, 5.4 Limitations",keywords:"expert panel diversity"},
+{id:"R2-9",reviewer:"Review 2",title:"需要提供補充數據",priority:"low",opinion:"缺少 129 個提取項目、26 個初始準則、19 個修正準則等數據。計算檔案也應提供。",problem:"資料不夠透明，無法驗證。",solution:"在 Supplementary Materials 提供：(1) 129 個提取項目的完整列表；(2) 26 個初始準則的定義；(3) 19 個修正準則的說明；(4) 最終 12 個核心準則的定義；(5) 德爾菲問卷；(6) 每位專家的模糊 DEMATEL 矩陣；(7) 聚合矩陣；(8) 計算檔案。",location:"Supplementary Materials",keywords:"supplementary data 129 items"},
+{id:"R2-10",reviewer:"Review 2",title:"排除某些能力的理由不夠充分",priority:"mid",opinion:"排除 Digital and Green Innovation Competencies 和 Sustainable Finance and Risk 可能不夠即時，特別是在 ESG、數位轉型、碳管理的背景下。",problem:"排除理由不足，可能影響框架的完整性。",solution:"補充排除理由：(1) 與其他能力重疊，合併後更精簡；(2) 屬於專業知識而非核心能力。承認研究限制，建議未來研究可專門探討。如審核者堅持可考慮納入。",location:"4.3 Discussion",keywords:"exclusion digital green innovation"},
+{id:"R2-11",reviewer:"Review 2",title:"缺少一致性檢查",priority:"mid",opinion:"缺少一致性、反應疲勞、穩定性檢查。大量成對比較可能影響專家判斷。",problem:"缺乏可靠性驗證。",solution:"補充：(1) Cronbach's α 係數說明問卷內部一致性；(2) test-retest reliability 說明結果穩定性；(3) 說明專家判斷的可靠性。承認研究限制。",location:"3.1, 4.1",keywords:"consistency reliability fatigue"},
+{id:"R2-12",reviewer:"Review 2",title:"DEMATEL 與 AACSB 認證關聯性不足",priority:"low",opinion:"未提供證據顯示 DEMATEL 指標能支持 AACSB 認證。AACSB 需要 assurance of learning、mission alignment、evidence of impact。",problem:"理論應用不夠具體。",solution:"說明 DEMATEL 如何支持 AACSB：(1) Assurance of Learning：D+R/D-R 可作為學習成效評估；(2) Mission Alignment：能力框架與學校使命對齊；(3) Evidence of Impact：因果關係圖作為影響力證據；(4) Continuous Improvement：作為課程改善依據。引用 AACSB 相關文件。",location:"5.3 Practical Implications",keywords:"AACSB accreditation"}
+];
+let completed=new Set();
+function renderCards(items){
+const c=document.getElementById('cardsContainer');c.innerHTML='';
+items.forEach(d=>{
+const pClass=d.priority==='high'?'priority-high':d.priority==='mid'?'priority-mid':'priority-low';
+const bClass=d.priority==='high'?'badge-high':d.priority==='mid'?'badge-mid':'badge-low';
+const pText=d.priority==='high'?'高優先':d.priority==='mid'?'中優先':'低優先';
+const ch=completed.has(d.id)?'checked':'';
+const cs=completed.has(d.id)?'opacity:0.5':'';
+c.innerHTML+=`<div class="card ${pClass}" style="${cs}" data-id="${d.id}"><div class="card-header"><span class="card-id">${d.id}</span><div><span class="reviewer-tag">${d.reviewer}</span> <span class="badge ${bClass}">${pText}</span> <input type="checkbox" ${ch} onchange="toggleDone('${d.id}')" style="margin-left:6px;cursor:pointer"></div></div><div class="card-title">${d.title}</div><div class="section"><div class="section-label">📋 審核者意見</div><p>${d.opinion}</p></div><div class="section"><div class="section-label">⚠️ 問題分析</div><p>${d.problem}</p></div><div class="section"><div class="section-label">✅ 具體修改方式</div><p>${d.solution}</p></div><div class="section"><div class="section-label">📍 修改位置</div><p>${d.location}</p></div></div>`});
+}
+function toggleDone(id){if(completed.has(id))completed.delete(id);else completed.add(id);updateProgress();filterCards(currentFilter)}
+function updateProgress(){const p=Math.round(completed.size/data.length*100);document.getElementById('progressFill').style.width=p+'%';document.getElementById('progressText').textContent=`已完成 ${completed.size} / ${data.length} 條`}
+let currentFilter='all';
+function filterCards(type,el){
+currentFilter=type;
+document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+if(el)el.classList.add('active');
+const s=document.getElementById('searchBox').value.toLowerCase();
+let items=data;
+if(type==='high')items=data.filter(d=>d.priority==='high');
+else if(type==='mid')items=data.filter(d=>d.priority==='mid');
+else if(type==='low')items=data.filter(d=>d.priority==='low');
+else if(type==='review1')items=data.filter(d=>d.reviewer==='Review 1');
+else if(type==='review2')items=data.filter(d=>d.reviewer==='Review 2');
+if(s)items=items.filter(d=>(d.title+d.opinion+d.solution+d.keywords).toLowerCase().includes(s));
+renderCards(items);
+}
+document.getElementById('searchBox').addEventListener('input',()=>filterCards(currentFilter));
+renderCards(data);
+</script>
+</body>
+</html>
