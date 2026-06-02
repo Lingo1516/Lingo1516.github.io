@@ -1,278 +1,115 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>🍀 小綠新聞懶人包 — 2026/06/02（週二）</title>
+<title>小綠新聞懶人包 2026/06/02</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, "PingFang SC", "Noto Sans CJK TC", "Microsoft JhengHei", sans-serif;
-  background: #0a0a0a;
-  color: #e8e8e8;
-  padding: 16px;
-  line-height: 1.7;
-  font-size: 18px;
-  -webkit-text-size-adjust: 100%;
-}
-.header {
-  text-align: center;
-  padding: 32px 0 24px;
-  border-bottom: 2px solid #222;
-  margin-bottom: 28px;
-}
-.header h1 {
-  font-size: 32px;
-  color: #4ade80;
-  margin-bottom: 6px;
-}
-.header .date {
-  font-size: 20px;
-  color: #888;
-}
-.section-title {
-  font-size: 24px;
-  font-weight: 800;
-  color: #4ade80;
-  margin: 32px 0 16px;
-  padding-left: 12px;
-  border-left: 4px solid #4ade80;
-}
-.card {
-  background: #1a1a1a;
-  border-radius: 14px;
-  padding: 20px 22px;
-  margin-bottom: 16px;
-  border: 1px solid #2a2a2a;
-  transition: transform 0.15s;
-}
-.card:active { transform: scale(0.98); }
-.card .tag {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-.tag-taiwan { background: #1e3a5f; color: #60a5fa; }
-.tag-world { background: #5f1e1e; color: #f87171; }
-.tag-tech { background: #3b1e5f; color: #c084fc; }
-.tag-sport { background: #1e5f3a; color: #4ade80; }
-.tag-money { background: #5f4b1e; color: #fbbf24; }
-.tag-weather { background: #1e4a5f; color: #67e8f9; }
-.card h3 {
-  font-size: 22px;
-  color: #f5f5f5;
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-.card p {
-  font-size: 18px;
-  color: #aaa;
-  line-height: 1.7;
-}
-.card .highlight {
-  color: #fbbf24;
-  font-weight: 700;
-}
-.card .source {
-  font-size: 13px;
-  color: #555;
-  margin-top: 10px;
-}
-.big-number {
-  font-size: 36px;
-  font-weight: 900;
-  color: #4ade80;
-}
-.footer {
-  text-align: center;
-  padding: 40px 0 20px;
-  color: #444;
-  font-size: 14px;
-  border-top: 1px solid #222;
-  margin-top: 32px;
-}
-.kicker {
-  text-align: center;
-  font-size: 28px;
-  font-weight: 800;
-  color: #fbbf24;
-  margin-bottom: 24px;
-  padding: 20px;
-  background: linear-gradient(135deg, #1a1a0a, #2a2a1a);
-  border-radius: 14px;
-  border: 1px solid #333;
-}
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 12px;
-}
-.countdown .item {
-  text-align: center;
-}
-.countdown .num {
-  font-size: 40px;
-  font-weight: 900;
-  color: #4ade80;
-}
-.countdown .label {
-  font-size: 14px;
-  color: #888;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;background:#0f0f23;color:#e0e0e0;line-height:1.7;padding:20px;max-width:800px;margin:0 auto}
+h1{color:#ff6b6b;font-size:28px;margin:20px 0;text-align:center}
+h2{color:#ffd93d;font-size:22px;margin:25px 0 15px;border-left:4px solid #ff6b6b;padding-left:12px}
+h3{color:#6bcb77;font-size:19px;margin:20px 0 10px}
+p{font-size:17px;margin:10px 0}
+.card{background:#1a1a2e;border-radius:12px;padding:18px;margin:12px 0;border:1px solid #2a3a5c}
+.card-title{font-size:18px;font-weight:bold;margin-bottom:8px}
+.tag{display:inline-block;background:#ff6b6b;color:#fff;padding:4px 10px;border-radius:15px;font-size:13px;margin:3px 3px 3px 0}
+.tag-tech{background:#6bcb77}
+.tag-world{background:#ffd93d;color:#000}
+.tag-local{background:#e94560}
+.quote{background:#16213e;border-left:4px solid #ffd93d;padding:12px 16px;margin:15px 0;border-radius:0 8px 8px 0;font-style:italic;font-size:16px}
+.highlight{background:#16213e;padding:15px;border-radius:8px;margin:12px 0}
+.key-point{color:#ff6b6b;font-weight:bold}
+ul{margin:8px 0 8px 20px}
+li{margin:6px 0;font-size:16px}
+.footer{text-align:center;margin:30px 0 15px;color:#666;font-size:13px}
+.divider{text-align:center;margin:25px 0;color:#ffd93d;font-size:20px}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>🍀 小綠新聞懶人包</h1>
-  <div class="date">2026 年 6 月 2 日（週二）</div>
-</div>
+<h1>📰 小綠新聞懶人包</h1>
+<p style="text-align:center;color:#666;font-size:14px;margin-bottom:25px">2026 年 6 月 2 日 星期二</p>
 
-<!-- 頭條 -->
-<div class="kicker">
-  🔥 今日頭條：美股四大指數全創新高！AI 熱潮席捲全球
-  <div class="countdown">
-    <div class="item"><div class="num">10</div><div class="label">天</div></div>
-    <div class="item"><div class="num">12</div><div class="label">小時</div></div>
-    <div class="item"><div class="num">⚽</div><div class="label">世足開踢</div></div>
-  </div>
-</div>
-
-<!-- 台灣焦點 -->
-<div class="section-title">🇹🇼 台灣焦點</div>
+<div class="divider">🖥️ COMPUTEX 2026 開幕</div>
 
 <div class="card">
-  <span class="tag tag-taiwan">台股</span>
-  <h3>美股全創新高！台指期夜盤漲 505 點</h3>
-  <p>受惠 AI 熱潮持續延燒，<span class="highlight">美股四大指數（道瓊、S&P500、那斯達克、費半）全數創歷史收盤新高</span>。台指期夜盤同步上漲 505 點，投顧預估今日台股將聚焦 COMPEUTX 效應。</p>
-  <div class="source">📌 來源：中央社、TVBS</div>
+<div class="card-title">🔥 COMPUTEX 2026 今天登場！</div>
+<p><span class="tag tag-tech">科技</span> <span class="tag tag-local">台灣</span></p>
+<p>全球科技年度盛事 <span class="key-point">COMPUTEX 2026</span> 今天起在台北南港展覽館盛大展開（6/2-5），主題為「<span class="key-point">AI Together</span>」，聚焦三大科技趨勢：</p>
+<ul>
+<li><strong>AI 運算</strong>（AI & Computing）</li>
+<li><strong>機器人 & 智慧移動</strong>（Robotics & Mobility）</li>
+<li><strong>次世代科技</strong>（Next-Gen Tech）</li>
+</ul>
+<p>輝達（NVIDIA）、高通（Qualcomm）、英特爾（Intel）等國際巨頭將發表主題演講。</p>
 </div>
 
 <div class="card">
-  <span class="tag tag-taiwan">半導體</span>
-  <h3>台積電 AI 產能全面爆發 — 2026 年 EPS 逼近百元</h3>
-  <p>大摩報告指出，2026 年 AI 半導體市場需求<span class="highlight">年增 70%</span>，台積電 Q1 毛利率突破 66% 創歷史新高。法人預估 2026 年 EPS 上看 99.7 元，2027 年更上修至 128.46 元，目標價上看 2600 元。</p>
-  <div class="source">📌 來源：Yahoo 股市、ETtoday</div>
+<div class="card-title">🎤 黃仁勳演講全紀錄</div>
+<p><span class="tag tag-tech">科技</span></p>
+<p>NVIDIA 執行長黃仁勳昨天（6/1）在台北流行音樂中心發表 GTC Taipei 2026 主題演講，重點：</p>
+<ul>
+<li>宣布<span class="key-point">代理式 AI（Agentic AI）時代</span>正式來臨</li>
+<li>發布 <strong>Vera Rubin 平台</strong>、Vera CPU、RTX Spark 等新品</li>
+<li>直言「AI 奪工作論」是<span class="key-point">「完全的無稽之談」</span></li>
+<li>AI 五層架構藍圖曝光</li>
+</ul>
 </div>
 
 <div class="card">
-  <span class="tag tag-taiwan">產業</span>
-  <h3>鴻海攜法企投資先進封裝廠動土</h3>
-  <p>鴻海與法國企業合資的先進封裝廠正式動土，<span class="highlight">助攻歐洲技術自主</span>，台灣半導體供應鏈進一步全球化佈局。</p>
-  <div class="source">📌 來源：中央社</div>
+<div class="card-title">⚡ 賴清德：穩定供電到 2032 年沒問題</div>
+<p><span class="tag tag-local">台灣</span></p>
+<p>總統賴清德今天出席 COMPUTEX 開幕典禮時表示，面對全球對算力、先進製造與 AI 基礎設施快速增加的需求，政府會確保水電供應，<span class="key-point">穩定供電到 2032 年都沒有問題</span>，會續推二次能源轉型。</p>
+</div>
+
+<div class="divider">🌍 國際快訊</div>
+
+<div class="card">
+<div class="card-title">💥 韓國韓華航太工廠爆炸</div>
+<p><span class="tag tag-world">國際</span></p>
+<p>韓國韓華航太工廠昨天驚傳爆炸起火，造成<span class="key-point">至少 2 死 2 傷</span>。詳細事故原因仍在調查中。</p>
 </div>
 
 <div class="card">
-  <span class="tag tag-taiwan">政治</span>
-  <h3>鄭麗文宣布訪美 — 將與美國防部官員會面</h3>
-  <p>立委鄭麗文宣布訪美行程，透露<span class="highlight">將與美國國防部官員會面</span>。此外，菲律賓防長也表態盼深化與台交流。</p>
-  <div class="source">📌 來源：中央社</div>
+<div class="card-title">🌀 颱風薔蜜襲日本沖繩</div>
+<p><span class="tag tag-world">國際</span></p>
+<p>颱風薔蜜襲擊日本沖繩，造成嚴重災情：</p>
+<ul>
+<li>全島大停電</li>
+<li>公車全數停駛</li>
+<li>數百航班取消</li>
+</ul>
 </div>
 
 <div class="card">
-  <span class="tag tag-taiwan">資安</span>
-  <h3>台灣波蘭簽署資安合作 MOU</h3>
-  <p>台灣與波蘭正式簽署<span class="highlight">資安合作備忘錄</span>，共同對抗境外網路威脅，深化中歐民主國家安全合作。</p>
-  <div class="source">📌 來源：中央社</div>
+<div class="card-title">🛡️ 日本防務大臣香格里拉對話會發言</div>
+<p><span class="tag tag-world">國際</span></p>
+<p>日本防務大臣在香格里拉對話會上否認新軍國主義，並批評中國「龐大武器庫」。這是日中關係近期的重要外交訊號。</p>
 </div>
 
-<!-- 國際焦點 -->
-<div class="section-title">🌍 國際焦點</div>
+<div class="divider">💡 科技聚焦</div>
 
 <div class="card">
-  <span class="tag tag-world">中東</span>
-  <h3>真主黨接受美國提議 — 停止與以色列相互攻擊</h3>
-  <p>黎巴嫩真主黨宣佈<span class="highlight">接受美國調停提議</span>，同意停止與以色列的相互攻擊。但傳出伊朗暫停與美國談判，要求以色列軍隊撤出黎巴嫩，中東和談再陷僵局。</p>
-  <div class="source">📌 來源：中央社</div>
+<div class="card-title">🤖 AI 從「會說」走向「會做」</div>
+<p><span class="tag tag-tech">科技</span></p>
+<p>新華社特稿指出，2026 年全球 AI 發展趨勢：越來越多頂尖 AI 企業聚焦提升大模型<span class="key-point">推理能力</span>與<span class="key-point">智能體執行任務能力</span>，推動 AI 從「會說」走向「會做」。</p>
 </div>
 
 <div class="card">
-  <span class="tag tag-money">能源</span>
-  <h3>國際油價飆漲 — 市場擔心中東能源供應</h3>
-  <p>因中東和談再陷僵局，市場擔憂能源供應進一步受限，<span class="highlight">國際油價應聲飆漲</span>。歐洲股市收低。</p>
-  <div class="source">📌 來源：中央社</div>
+<div class="card-title">🇭🇰 AI+ Power 2026 香港登場</div>
+<p><span class="tag tag-tech">科技</span> <span class="tag tag-world">國際</span></p>
+<p>第六屆「AI+ Power In Action」展覽及論壇將於 6/4-5 在香港會議展覽中心舉行，響應香港政府「AI+」發展策略，聚焦 AI 如何由概念走向落地。</p>
 </div>
 
-<div class="card">
-  <span class="tag tag-world">烏克蘭</span>
-  <h3>基輔再遭俄飛彈攻擊 — 公寓起火</h3>
-  <p>烏克蘭首都基輔再次遭到俄羅斯飛彈攻擊，<span class="highlight">公寓起火、民眾緊急避難</span>。澤倫斯基表示烏克蘭有能力打擊俄軍占領區後勤。</p>
-  <div class="source">📌 來源：中央社</div>
-</div>
-
-<div class="card">
-  <span class="tag tag-world">地震</span>
-  <h3>義大利南部外海規模 6.1 地震</h3>
-  <p>德國地科研究中心報告，義大利南部外海發生<span class="highlight">規模 6.1 地震</span>，目前尚無重大災損報告。</p>
-  <div class="source">📌 來源：中央社</div>
-</div>
-
-<!-- 科技 AI -->
-<div class="section-title">🤖 科技 AI</div>
-
-<div class="card">
-  <span class="tag tag-tech">AI 產業</span>
-  <h3>Anthropic 估值近兆美元 — 秘密提交 IPO 申請</h3>
-  <p>Claude 模型開發商 Anthropic 剛完成募資，<span class="highlight">估值逼近 1 兆美元</span>，已祕密提交 IPO 申請，有望成為 AI 領域最大上市案。</p>
-  <div class="source">📌 來源：中央社</div>
-</div>
-
-<div class="card">
-  <span class="tag tag-tech">AI 投資</span>
-  <h3>巴菲特加碼入股 Alphabet 100 億美元</h3>
-  <p>巴菲特旗下波克夏公司<span class="highlight">加碼入股 Alphabet（Google 母公司）100 億美元</span>，為 AI 籌資提供強大彈藥，顯示股神對 AI 長期看好。</p>
-  <div class="source">📌 來源：中央社</div>
-</div>
-
-<div class="card">
-  <span class="tag tag-tech">新聞自由</span>
-  <h3>紐時發行人痛斥 AI 竊取智財 — 新聞業面臨生存威脅</h3>
-  <p>紐約時報發行人公開抨擊<span class="highlight">AI 公司大規模竊取新聞內容作為訓練素材</span>，呼籲各國政府加強智財權保護，新聞產業面臨前所未有生存挑戰。</p>
-  <div class="source">📌 來源：中央社</div>
-</div>
-
-<div class="card">
-  <span class="tag tag-tech">AI 晶片</span>
-  <h3>黃仁勳本週訪韓 — 台韓半導體各有特色</h3>
-  <p>輝達執行長黃仁勳本週訪問韓國，<span class="highlight">新品連發強攻 AI PC</span>，輝達股價飆漲 5%。黃仁勳表示台韓半導體各有特色，無需比較。</p>
-  <div class="source">📌 來源：中央社、TVBS</div>
-</div>
-
-<!-- 體育 -->
-<div class="section-title">⚽ 體育</div>
-
-<div class="card">
-  <span class="tag tag-sport">世足</span>
-  <h3>2026 世界盃倒數 10 天！史上首次 48 隊參賽</h3>
-  <p>第 23 屆 FIFA 世界盃將於 <span class="highlight">6/12 在墨西哥開幕</span>，由美國、墨西哥、加拿大三國合辦，首次擴增至 48 隊。決賽中場秀邀請<span class="highlight">BTS、瑪丹娜、夏奇拉</span>演出，門票最高價破 3 萬美元。</p>
-  <div class="source">📌 來源：FIFA、Vogue</div>
-</div>
-
-<!-- 生活 -->
-<div class="section-title">🌤️ 生活天氣</div>
-
-<div class="card">
-  <span class="tag tag-weather">天氣</span>
-  <h3>梅雨季報到！6/5 起連下 10 天</h3>
-  <p>氣象專家吳德榮表示，<span class="highlight">6 月 5 日起進入梅雨旺盛期</span>，雨彈將橫掃全台連下 10 天。今日雲林以南防高溫，請注意防曬補水。</p>
-  <div class="source">📌 來源：TVBS、中央社</div>
-</div>
-
-<div class="card">
-  <span class="tag tag-money">彩券</span>
-  <h3>威力彩連 26 摃！下期獎金衝 7.7 億</h3>
-  <p>威力彩<span class="highlight">連續 26 期未開出頭獎</span>，下期頭獎獎金預估上看 7.7 億元，吸引民眾搶購。</p>
-  <div class="source">📌 來源：TVBS</div>
+<div class="highlight">
+<p><strong>📌 今日重點：</strong></p>
+<p style="font-size:17px;margin:10px 0">COMPUTEX 2026 今天開幕，黃仁勳昨天宣布代理式 AI 時代來臨；韓國航太工廠爆炸 2 死；颱風襲沖繩造成大停電。</p>
 </div>
 
 <div class="footer">
-  🍀 小綠新聞懶人包 — 由 AI 自動整理<br>
-  資料來源：中央社、TVBS、Yahoo 股市、ETtoday、FIFA<br>
-  每日 09:00 自動更新
+<p>🍀 小綠新聞懶人包 | 2026 年 6 月 2 日</p>
+<p>資料來源：ETtoday、中央社、TTV、CNA、Business Weekly、AIPostHub</p>
 </div>
 
 </body>
