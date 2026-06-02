@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>AI 簡報提示詞懶人包：6 個指令讓你從零做出專業簡報</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, 'Helvetica Neue', 'PingFang TC', 'LiHei Pro', '微軟正黑體', sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      line-height: 1.8;
+      padding: 20px 16px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 24px 0;
+      border-bottom: 2px solid #30363d;
+    }
+
+    .header .tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      color: #f0f6fc;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .header .meta {
+      font-size: 14px;
+      color: #8b949e;
+    }
+
+    .summary-box {
+      background: linear-gradient(135deg, #161b22, #1c2333);
+      border: 1px solid #30363d;
+      border-left: 4px solid #a855f7;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+    }
+
+    .summary-box .label {
+      font-size: 13px;
+      color: #a855f7;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .summary-box p {
+      font-size: 17px;
+      color: #e6edf3;
+      line-height: 1.7;
+    }
+
+    .flow-bar {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .flow-bar .flow-title {
+      font-size: 14px;
+      color: #8b949e;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .flow-step {
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: #c9d1d9;
+      font-weight: 500;
+    }
+
+    .flow-arrow {
+      color: #484f58;
+      font-size: 14px;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 22px 20px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: #484f58; }
+
+    .card-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      font-size: 21px;
+      color: #f0f6fc;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card .purpose {
+      font-size: 14px;
+      color: #a855f7;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .card .prompt-box {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 10px 0;
+      font-size: 15px;
+      color: #e6edf3;
+      line-height: 1.75;
+      position: relative;
+    }
+
+    .card .prompt-box .highlight {
+      color: #f97316;
+      font-weight: 700;
+    }
+
+    .card .tip {
+      font-size: 14px;
+      color: #8b949e;
+      margin-top: 8px;
+      padding-left: 12px;
+      border-left: 2px solid #30363d;
+    }
+
+    /* Colors */
+    .c1 { background: #7c3aed; }
+    .c2 { background: #059669; }
+    .c3 { background: #0891b2; }
+    .c4 { background: #ea580c; }
+    .c5 { background: #dc2626; }
+    .c6 { background: #ca8a04; }
+
+    .footer {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid #21262d;
+      font-size: 13px;
+      color: #484f58;
+    }
+
+    .footer .sign {
+      margin-top: 6px;
+      color: #3fb950;
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      .header h1 { font-size: 24px; }
+      .card h2 { font-size: 19px; }
+      .flow-step { font-size: 11px; padding: 5px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="tag">AI 工具</div>
+    <h1>用 AI 做簡報的 6 個提示詞</h1>
+    <div class="meta">羅達 Rhoda 整理 ｜ 小綠新聞懶人包</div>
+  </div>
+
+  <div class="summary-box">
+    <div class="label">一句话重點</div>
+    <p>不用再從空白投影片開始發呆了！這 6 組 AI 提示詞，從策略規劃到最後編輯，一步步帶你產出專業級簡報。把 [ ] 換成自己的內容，直接複製貼上就能用。</p>
+  </div>
+
+  <div class="flow-bar">
+    <div class="flow-title">建議使用流程</div>
+    <div class="flow-steps">
+      <span class="flow-step">① 藍圖</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">② 結構</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">③ 故事</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">④ 視覺</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">⑤ 內容</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">⑥ 編輯</span>
+    </div>
+  </div>
+
+  <!-- Card 1 -->
+  <div class="card">
+    <div class="card-number c1">1</div>
+    <h2>完整藍圖</h2>
+    <div class="purpose">🎯 先畫大方向，定義目標與受眾</div>
+    <div class="prompt-box">
+      請扮演資深簡報策略師，為 <span class="highlight">[topic]</span> 建立一份完整的高層次簡報藍圖。明確定義：目標、目標受眾（知識程度、痛點與期待），以及最該被記住的單一核心訊息。接著規劃從開場到結尾的投影片流程，含建議張數與分段。確保結構具說服力、易跟上，並符合真實簡報標準（主管簡報、提案簡報或教學演講）。
+    </div>
+    <div class="tip">💡 第一步永遠先搞清楚「對誰講、講什麼、要達成什麼」</div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <div class="card-number c2">2</div>
+    <h2>結構與流程</h2>
+    <div class="purpose">🏗️ 逐張設計，確保頁頁銜接</div>
+    <div class="prompt-box">
+      請為 <span class="highlight">[topic]</span> 的簡報設計一份詳細的逐張結構。針對每一張投影片，提供清楚、有吸引力的標題，並說明它在整體敘事中扮演的角色（鋪陳背景、製造張力、提供洞見、引導行動）。確保每張順暢銜接下一張、避免重複，並從頭到尾維持受眾的注意力。
+    </div>
+    <div class="tip">💡 每張投影片都要有「任務」，不能只是擺好看的</div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <div class="card-number c3">3</div>
+    <h2>故事型簡報</h2>
+    <div class="purpose">📖 用敘事弧線包裝，讓聽眾記得住</div>
+    <div class="prompt-box">
+      請把 <span class="highlight">[topic]</span> 轉化成一場由故事驅動、具完整敘事弧線的簡報（鉤子 → 問題 → 風險 → 洞見 → 解方 → 影響 → 明確結論）。開場用一個抓住注意力的鉤子，接著清楚定義問題與後果來堆疊張力，再引導受眾走向合理而令人滿意的收尾。語氣專業但不無聊，讓故事強化訊息、而非模糊重點。
+    </div>
+    <div class="tip">💡 故事結構：鉤子 → 問題 → 風險 → 洞見 → 解方 → 影響 → 結論</div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card">
+    <div class="card-number c4">4</div>
+    <h2>視覺方向</h2>
+    <div class="purpose">🎨 不只內容，連版面都幫你想好</div>
+    <div class="prompt-box">
+      請扮演簡報設計師，為 <span class="highlight">[topic]</span> 的簡報提供每一張的詳細視覺方向。建議最有效的版面配置（分割式版面、標題+主視覺、數據導向），並指定要用哪些視覺元素（圖表、示意圖、圖示、插圖或極簡文字）。同時提供視覺層次、留白與一致性建議，讓投影片乾淨、現代、好瀏覽。以清晰與衝擊力為優先，而非裝飾。
+    </div>
+    <div class="tip">💡 視覺是為了「更快理解」，不是為了「更好看」</div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card">
+    <div class="card-number c5">5</div>
+    <h2>內容生成</h2>
+    <div class="purpose">✍️ 產出可直接貼進投影片的文字</div>
+    <div class="prompt-box">
+      請為 <span class="highlight">[topic]</span> 的簡報產出每一張可直接使用的完整內容。撰寫精簡、有力、在螢幕上好讀的條列重點（不要寫成段落），並確保每張只傳達一個核心概念。依以下受眾調整語氣、用字與深度：<span class="highlight">[describe audience]</span>。在有助於理解與說服力的地方，適時加入數據、例子或比喻。
+    </div>
+    <div class="tip">💡 「條列重點」≠「一大段文字」，一張一個核心概念就好</div>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card">
+    <div class="card-number c6">6</div>
+    <h2>無情編輯</h2>
+    <div class="purpose">🔪 最後一道防線，砍掉所有廢話</div>
+    <div class="prompt-box">
+      請扮演一位毫不留情的編輯。審視以下簡報內容，改寫到最大程度的清楚與適合投影片呈現。刪掉廢話、減少字數，讓每個重點都能被立刻看懂。確保每張只有一個核心概念、用字乾淨、不造成認知負荷。在保留原意前提下，改善流暢度、一致性與清晰度。內容：<span class="highlight">[paste content]</span>。
+    </div>
+    <div class="tip">💡 這是最後一步！先用前 5 個指令產出內容，再丟給這個「無情編輯」收尾</div>
+  </div>
+
+  <div class="footer">
+    小綠新聞懶人包 ｜ 內容整理自羅達 Rhoda
+    <div class="sign">🍀 小綠 AI 製作</div>
+  </div>
+
+</body>
+</html>
