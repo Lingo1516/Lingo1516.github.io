@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>英文字卡 — 含音標與發音</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #eee;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .word {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .phonetic {
+            font-size: 24px;
+            color: #764ba2;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: "Lucida Sans Unicode", "Arial Unicode MS", sans-serif;
+        }
+        .meaning {
+            font-size: 20px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .example {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        .play-btn {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        .play-btn::after {
+            content: "🔊";
+            font-size: 40px;
+            line-height: 100px;
+        }
+        .word-type {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .tips {
+            background: #e8f4f8;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #667eea;
+        }
+        .tips-title {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 英文字卡 — 含音標與發音</h1>
+        
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">morning</div>
+            <div class="phonetic">/ˈmɔːrnɪŋ/</div>
+            <div class="meaning">早晨、早上</div>
+            <button class="play-btn" onclick="playAudio('morning')"></button>
+            <div class="example">
+                <strong>例句：</strong>Good morning! How are you today?<br>
+                <strong>翻譯：</strong>早安！你今天好嗎？
+            </div>
+            <div class="tips">
+                <div class="tips-title">💡 記憶技巧</div>
+                <p>morning = mor（死亡）+ ing → 太陽「死而復生」的時刻</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">afternoon</div>
+            <div class="phonetic">/ˌæftərˈnuːn/</div>
+            <div class="meaning">下午</div>
+            <button class="play-btn" onclick="playAudio('afternoon')"></button>
+            <div class="example">
+                <strong>例句：</strong>I usually take a nap in the afternoon.<br>
+                <strong>翻譯：</strong>我通常在下午小睡一下。
+            </div>
+            <div class="tips">
+                <div class="tips-title">💡 記憶技巧</div>
+                <p>after（在...之後）+ noon（中午）→ 中午之後</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">evening</div>
+            <div class="phonetic">/ˈiːvnɪŋ/</div>
+            <div class="meaning">晚上、傍晚</div>
+            <button class="play-btn" onclick="playAudio('evening')"></button>
+            <div class="example">
+                <strong>例句：</strong>We often go for a walk in the evening.<br>
+                <strong>翻譯：</strong>我們經常在傍晚去散步。
+            </div>
+            <div class="tips">
+                <div class="tips-title">💡 記憶技巧</div>
+                <p>even（平坦的）+ ing → 太陽「平息」下來的時刻</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">副詞</div>
+            <div class="word">tomorrow</div>
+            <div class="phonetic">/təˈmɑːroʊ/</div>
+            <div class="meaning">明天</div>
+            <button class="play-btn" onclick="playAudio('tomorrow')"></button>
+            <div class="example">
+                <strong>例句：</strong>See you tomorrow!<br>
+                <strong>翻譯：</strong>明天見！
+            </div>
+            <div class="tips">
+                <div class="tips-title">💡 記憶技巧</div>
+                <p>to（到）+ morrow（早晨）→ 到下一個早晨</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">副詞</div>
+            <div class="word">yesterday</div>
+            <div class="phonetic">/ˈjestərdeɪ/</div>
+            <div class="meaning">昨天</div>
+            <button class="play-btn" onclick="playAudio('yesterday')"></button>
+            <div class="example">
+                <strong>例句：</strong>I went to the park yesterday.<br>
+                <strong>翻譯：</strong>我昨天去了公園。
+            </div>
+            <div class="tips">
+                <div class="tips-title">💡 記憶技巧</div>
+                <p>yester（昨）+ day（天）→ 昨天</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: white;">
+            <p>點擊按鈕聽發音 🔊</p>
+            <p style="margin-top: 10px;">更多字卡即將上線...</p>
+        </div>
+    </div>
+
+    <script>
+        function playAudio(word) {
+            // Create audio element
+            const audio = new Audio(`pronunciation-${word}.aiff`);
+            audio.play().catch(e => {
+                console.log('播放失敗:', e);
+                alert('請確認音檔存在');
+            });
+        }
+    </script>
+</body>
+</html>
