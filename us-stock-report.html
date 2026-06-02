@@ -3,222 +3,229 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>美股開盤速報 — 2026/06/02</title>
+<title>美股開盤速報 — 2026/06/03</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-    background: #0f172a;
-    color: #e2e8f0;
-    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    background: #0a0e17;
+    color: #e0e0e0;
     min-height: 100vh;
+    padding: 20px 16px;
   }
   .header {
     text-align: center;
     margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #1e293b;
   }
   .header h1 {
     font-size: 28px;
     font-weight: 700;
-    background: linear-gradient(135deg, #60a5fa, #a78bfa);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 6px;
+    color: #fff;
+    margin-bottom: 4px;
   }
-  .header .time {
-    font-size: 16px;
-    color: #94a3b8;
+  .header .subtitle {
+    font-size: 15px;
+    color: #8892a4;
+  }
+  .header .live-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #ff4444;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
   }
   .section-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    color: #cbd5e1;
-    margin: 24px 0 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    color: #8892a4;
+    margin: 20px 0 12px 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
   .card {
-    background: #1e293b;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
-    border: 1px solid #334155;
-  }
-  .card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  @media (max-width: 400px) {
-    .card-grid { grid-template-columns: 1fr; }
-  }
-  .index-card {
-    text-align: center;
-  }
-  .index-card .name {
-    font-size: 14px;
-    color: #94a3b8;
-    margin-bottom: 4px;
-  }
-  .index-card .price {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .index-card .change {
-    font-size: 15px;
-    font-weight: 600;
-  }
-  .up { color: #22c55e; }
-  .down { color: #ef4444; }
-  .flat { color: #94a3b8; }
-  .stock-card {
+    background: #151b2b;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 16px;
+    border: 1px solid #1e2738;
   }
-  .stock-info .ticker {
-    font-size: 18px;
-    font-weight: 700;
-    color: #f8fafc;
+  .card .name {
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
   }
-  .stock-info .company {
+  .card .ticker {
     font-size: 13px;
-    color: #64748b;
+    color: #5a6577;
     margin-top: 2px;
   }
-  .stock-price {
+  .card .right {
     text-align: right;
   }
-  .stock-price .price {
-    font-size: 18px;
+  .card .price {
+    font-size: 20px;
     font-weight: 700;
+    color: #fff;
   }
-  .stock-price .change {
-    font-size: 14px;
+  .card .change {
+    font-size: 15px;
     font-weight: 600;
     margin-top: 2px;
   }
-  .highlight {
-    background: #1e293b;
-    border-left: 3px solid #60a5fa;
-    border-radius: 0 12px 12px 0;
-    padding: 14px 16px;
-    margin-bottom: 12px;
+  .up { color: #00d4aa; }
+  .down { color: #ff5252; }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-top: 2px;
+  }
+  .badge.up-badge { background: rgba(0,212,170,0.15); color: #00d4aa; }
+  .badge.down-badge { background: rgba(255,82,82,0.15); color: #ff5252; }
+  .summary {
+    background: linear-gradient(135deg, #1a2340 0%, #151b2b 100%);
+    border-radius: 14px;
+    padding: 18px;
+    margin-top: 20px;
+    border: 1px solid #2a3454;
+  }
+  .summary h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .summary p {
     font-size: 15px;
     line-height: 1.7;
-    color: #cbd5e1;
+    color: #b0b8c8;
   }
-  .highlight strong { color: #60a5fa; }
   .footer {
     text-align: center;
-    margin-top: 32px;
-    padding-top: 16px;
-    border-top: 1px solid #1e293b;
+    margin-top: 28px;
     font-size: 12px;
-    color: #475569;
+    color: #4a5568;
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>📈 美股開盤速報</h1>
-  <div class="time">2026 年 6 月 2 日（一）美東 10:10 AM · 台北時間 6/2 凌晨 1:50</div>
+  <h1>🇺🇸 美股開盤速報</h1>
+  <div class="subtitle"><span class="live-dot"></span>2026/06/03 01:50 台北時間（美股開盤約 20 分鐘）</div>
 </div>
 
-<div class="section-title">🏛️ 主要指數</div>
+<div class="section-title">📊 主要指數</div>
 
-<div class="card-grid">
-  <div class="card index-card">
+<div class="card">
+  <div>
     <div class="name">S&P 500</div>
-    <div class="price">7,613.65</div>
-    <div class="change up">▲ +33.59 (+0.44%)</div>
+    <div class="ticker">標準普爾 500</div>
   </div>
-  <div class="card index-card">
+  <div class="right">
+    <div class="price">7,608.19</div>
+    <div class="change up">+8.23 (+0.11%)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div>
     <div class="name">道瓊工業</div>
-    <div class="price">50,978.13</div>
-    <div class="change down">▼ −54.33 (−0.11%)</div>
+    <div class="ticker">Dow Jones</div>
   </div>
-  <div class="card index-card">
+  <div class="right">
+    <div class="price">51,232.00</div>
+    <div class="change up">+153.12 (+0.30%)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div>
     <div class="name">那斯達克</div>
-    <div class="price">27,176.53</div>
-    <div class="change up">▲ +203.91 (+0.76%)</div>
+    <div class="ticker">NASDAQ</div>
   </div>
-  <div class="card index-card">
-    <div class="name">費半指數</div>
-    <div class="price">13,083.59</div>
-    <div class="change up">▲ +254.20 (+1.98%)</div>
+  <div class="right">
+    <div class="price">27,093.75</div>
+    <div class="change up">+6.94 (+0.03%)</div>
   </div>
 </div>
 
-<div class="section-title">🔥 重要個股</div>
-
-<div class="card stock-card">
-  <div class="stock-info">
-    <div class="ticker">NVDA 輝達</div>
-    <div class="company">NVIDIA Corporation</div>
+<div class="card" style="border-color: #2a4a3a;">
+  <div>
+    <div class="name">🔥 費城半導體</div>
+    <div class="ticker">PHLX SOX</div>
   </div>
-  <div class="stock-price">
-    <div class="price">$223.03</div>
-    <div class="change up">▲ +$11.89 (+5.63%)</div>
-  </div>
-</div>
-
-<div class="card stock-card">
-  <div class="stock-info">
-    <div class="ticker">TSM 台積電 ADR</div>
-    <div class="company">TSMC</div>
-  </div>
-  <div class="stock-price">
-    <div class="price">$445.50</div>
-    <div class="change up">▲ +$27.05 (+6.46%)</div>
+  <div class="right">
+    <div class="price" style="color: #00d4aa;">13,552.59</div>
+    <div class="change up">+586.94 (+4.53%)</div>
+    <span class="badge up-badge">今日最強</span>
   </div>
 </div>
 
-<div class="card stock-card">
-  <div class="stock-info">
-    <div class="ticker">AAPL 蘋果</div>
-    <div class="company">Apple Inc.</div>
-  </div>
-  <div class="stock-price">
-    <div class="price">$308.26</div>
-    <div class="change down">▼ −$3.80 (−1.22%)</div>
-  </div>
-</div>
+<div class="section-title">🏢 重要個股</div>
 
-<div class="card stock-card">
-  <div class="stock-info">
-    <div class="ticker">TSLA 特斯拉</div>
-    <div class="company">Tesla, Inc.</div>
+<div class="card">
+  <div>
+    <div class="name">蘋果 AAPL</div>
+    <div class="ticker">Apple Inc.</div>
   </div>
-  <div class="stock-price">
-    <div class="price">$421.40</div>
-    <div class="change down">▼ −$14.39 (−3.30%)</div>
+  <div class="right">
+    <div class="price">$315.00</div>
+    <div class="change up">+8.69 (+2.84%)</div>
   </div>
 </div>
 
-<div class="section-title">📋 今日觀測</div>
-
-<div class="highlight">
-  <strong>半導體強勢領漲：</strong>費半大漲近 2%，輝達 +5.6%、台積電 ADR +6.5%，AI 晶片需求持續火熱。
+<div class="card">
+  <div>
+    <div class="name">台積電 ADR</div>
+    <div class="ticker">TSM · NYSE</div>
+  </div>
+  <div class="right">
+    <div class="price">$443.62</div>
+    <div class="change up">+7.99 (+1.83%)</div>
+  </div>
 </div>
 
-<div class="highlight">
-  <strong>科技股分化：</strong>那斯達克漲 0.76%，但蘋果（−1.2%）與特斯拉（−3.3%）逆勢走弱，道瓊小幅承壓。
+<div class="card">
+  <div>
+    <div class="name">特斯拉 TSLA</div>
+    <div class="ticker">Tesla Inc.</div>
+  </div>
+  <div class="right">
+    <div class="price">$422.34</div>
+    <div class="change up">+6.46 (+1.55%)</div>
+  </div>
 </div>
 
-<div class="highlight">
-  <strong>本週焦點：</strong>市場持續關注美伊和平談判進展、聯準會官員談話，以及更多 AI 相關消息。
+<div class="card">
+  <div>
+    <div class="name">輝達 NVDA</div>
+    <div class="ticker">NVIDIA Corp.</div>
+  </div>
+  <div class="right">
+    <div class="price">$222.95</div>
+    <div class="change down">-1.41 (-0.63%)</div>
+  </div>
+</div>
+
+<div class="summary">
+  <h3>📋 開盤重點</h3>
+  <p>
+    四大指數全面開高，<strong>費半飆漲 4.53%</strong> 為今日最大亮點。蘋果大漲 2.84%、台積電 ADR 漲 1.83%、特斯拉漲 1.55%。唯一微跌的是輝達，小跌 0.63%。整體科技股情緒偏多，半導體族群表現強勁。
+  </p>
 </div>
 
 <div class="footer">
-  資料來源：Yahoo Finance API · 即時數據，開盤約 20 分鐘<br>
-  小綠 🍀 為你整理 · 最後更新：台北時間 2026/06/02 01:50
+  🍀 小綠即時速報 · 數據來源 Yahoo Finance · 美東時間 2026/06/02 01:50 ET
 </div>
 
 </body>
