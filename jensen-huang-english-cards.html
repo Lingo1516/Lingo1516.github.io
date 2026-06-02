@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>跟著黃仁勳學英文 — AI 科技單字卡</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #76b900 0%, #1a1a2e 100%);
+            color: #eee;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            text-align: center;
+            color: #76b900;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            border-left: 5px solid #76b900;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .word {
+            font-size: 42px;
+            font-weight: bold;
+            color: #76b900;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .phonetic {
+            font-size: 22px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: "Lucida Sans Unicode", "Arial Unicode MS", sans-serif;
+        }
+        .meaning {
+            font-size: 20px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .example {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid #76b900;
+        }
+        .play-btn {
+            display: block;
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #76b900 0%, #5a8a00 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+        .play-btn::after {
+            content: "🔊";
+            font-size: 32px;
+            line-height: 80px;
+        }
+        .word-type {
+            display: inline-block;
+            background: #76b900;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .tips {
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #76b900;
+        }
+        .tips-title {
+            color: #76b900;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .context {
+            background: #fff3e0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #ff9800;
+        }
+        .context-title {
+            color: #ff9800;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 跟著黃仁勳學英文</h1>
+        <div class="subtitle">AI 科技單字卡 — NVIDIA 執行長常用詞彙</div>
+        
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">artificial intelligence</div>
+            <div class="phonetic">/ˌɑːrtɪˈfɪʃl ɪnˈtelɪdʒəns/</div>
+            <div class="meaning">人工智慧 (AI)</div>
+            <button class="play-btn" onclick="playAudio('artificial-intelligence')"></button>
+            <div class="example">
+                <strong>例句：</strong>Artificial intelligence is transforming every industry.<br>
+                <strong>翻譯：</strong>人工智慧正在改變每個產業。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳在演講中經常提到 AI 將改變整個世界，從自動駕駛到醫療診斷。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">machine learning</div>
+            <div class="phonetic">/məˈʃiːn ˈlɜːrnɪŋ/</div>
+            <div class="meaning">機器學習</div>
+            <button class="play-btn" onclick="playAudio('machine-learning')"></button>
+            <div class="example">
+                <strong>例句：</strong>Machine learning allows computers to learn from data.<br>
+                <strong>翻譯：</strong>機器學習讓電腦能從數據中學習。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳強調 GPU 是機器學習的基礎，NVIDIA 的晶片讓 AI 模型訓練更快。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">deep learning</div>
+            <div class="phonetic">/diːp ˈlɜːrnɪŋ/</div>
+            <div class="meaning">深度學習</div>
+            <button class="play-btn" onclick="playAudio('deep-learning')"></button>
+            <div class="example">
+                <strong>例句：</strong>Deep learning has achieved breakthroughs in image recognition.<br>
+                <strong>翻譯：</strong>深度學習在影像辨識上取得了突破。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳提到深度學習是 AI 的核心技術，需要大量的運算能力。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">neural network</div>
+            <div class="phonetic">/ˈnʊrəl ˈnetwɜːrk/</div>
+            <div class="meaning">神經網路</div>
+            <button class="play-btn" onclick="playAudio('neural-network')"></button>
+            <div class="example">
+                <strong>例句：</strong>Neural networks are inspired by the human brain.<br>
+                <strong>翻譯：</strong>神經網路的靈感來自人類大腦。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳解釋神經網路如何模擬人腦運作，讓電腦能辨識圖像和語言。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">computing</div>
+            <div class="phonetic">/kəmˈpjuːtɪŋ/</div>
+            <div class="meaning">運算、計算</div>
+            <button class="play-btn" onclick="playAudio('computing')"></button>
+            <div class="example">
+                <strong>例句：</strong>GPU computing has revolutionized AI research.<br>
+                <strong>翻譯：</strong>GPU 運算徹底改變了 AI 研究。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳強調 NVIDIA 的 GPU 運算能力是 AI 發展的關鍵。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">processor</div>
+            <div class="phonetic">/ˈprɑːsesər/</div>
+            <div class="meaning">處理器</div>
+            <button class="play-btn" onclick="playAudio('processor')"></button>
+            <div class="example">
+                <strong>例句：</strong>The new processor is 10 times faster.<br>
+                <strong>翻譯：</strong>新款處理器速度快了 10 倍。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳介紹 NVIDIA 的 GPU 處理器如何加速 AI 運算。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">graphics</div>
+            <div class="phonetic">/ˈɡræfɪks/</div>
+            <div class="meaning">圖形、繪圖</div>
+            <button class="play-btn" onclick="playAudio('graphics')"></button>
+            <div class="example">
+                <strong>例句：</strong>NVIDIA started as a graphics company.<br>
+                <strong>翻譯：</strong>NVIDIA 最初是一家繪圖公司。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳回顧 NVIDIA 從繪圖晶片起家，轉型為 AI 運算公司。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">acceleration</div>
+            <div class="phonetic">/əkˌseləˈreɪʃn/</div>
+            <div class="meaning">加速</div>
+            <button class="play-btn" onclick="playAudio('acceleration')"></button>
+            <div class="example">
+                <strong>例句：</strong>GPU acceleration makes AI training faster.<br>
+                <strong>翻譯：</strong>GPU 加速讓 AI 訓練更快。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳強調 NVIDIA 的加速運算技術如何縮短 AI 模型訓練時間。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">innovation</div>
+            <div class="phonetic">/ˌɪnəˈveɪʃn/</div>
+            <div class="meaning">創新</div>
+            <button class="play-btn" onclick="playAudio('innovation')"></button>
+            <div class="example">
+                <strong>例句：</strong>Innovation is the key to staying competitive.<br>
+                <strong>翻譯：</strong>創新是保持競爭力的關鍵。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳強調 NVIDIA 持續創新，從 GPU 到 AI 平台。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="word-type">名詞</div>
+            <div class="word">technology</div>
+            <div class="phonetic">/tekˈnɑːlədʒi/</div>
+            <div class="meaning">科技、技術</div>
+            <button class="play-btn" onclick="playAudio('technology')"></button>
+            <div class="example">
+                <strong>例句：</strong>Technology is advancing at an unprecedented pace.<br>
+                <strong>翻譯：</strong>科技正以前所未有的速度進步。
+            </div>
+            <div class="context">
+                <div class="context-title">🎯 黃仁勳語境</div>
+                <p>黃仁勳經常談論科技如何改變世界，特別是 AI 和 GPU 技術。</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: white;">
+            <p>更多黃仁勳演講單字即將上線...</p>
+            <p style="margin-top: 10px;">💡 提示：點擊按鈕聽發音 🔊</p>
+        </div>
+    </div>
+
+    <script>
+        function playAudio(word) {
+            const audio = new Audio(`pronunciation-${word}.mp3`);
+            audio.play().catch(e => {
+                console.log('播放失敗:', e);
+                alert('請確認音檔存在');
+            });
+        }
+    </script>
+</body>
+</html>
