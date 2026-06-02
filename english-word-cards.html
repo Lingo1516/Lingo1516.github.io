@@ -195,7 +195,7 @@
     <script>
         function playAudio(word) {
             // Create audio element
-            const audio = new Audio(`pronunciation-${word}.aiff`);
+            const audio = new Audio(`pronunciation-${word}.mp3`);
             audio.play().catch(e => {
                 console.log('播放失敗:', e);
                 alert('請確認音檔存在');
