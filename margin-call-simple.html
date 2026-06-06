@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>融資斷頭 — 最簡單版</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  padding: 20px;
+  line-height: 1.6;
+}
+.container { max-width: 700px; margin: 0 auto; }
+h1 {
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.subtitle { text-align: center; color: #8b949e; font-size: 15px; margin-bottom: 28px; }
+.assumption {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+.assumption h3 { font-size: 16px; color: #58a6ff; margin-bottom: 8px; }
+.assumption p { font-size: 15px; color: #c9d1d9; }
+.section { margin-bottom: 32px; }
+.section-title {
+  font-size: 20px;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #30363d;
+}
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  border: 1px solid #30363d;
+  margin-bottom: 16px;
+}
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th {
+  background: #1c2128;
+  color: #58a6ff;
+  padding: 12px 10px;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+}
+td {
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #21262d;
+  white-space: nowrap;
+}
+tr:hover { background: #161b22; }
+.profit { color: #3fb950; font-weight: 600; }
+.loss { color: #f85149; font-weight: 600; }
+.neutral { color: #8b949e; }
+.highlight-row { background: #1a2a1a; }
+.danger-row { background: #2a1a1a; }
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.badge-profit { background: #1a3a2a; color: #3fb950; }
+.badge-ok { background: #1a2a3a; color: #58a6ff; }
+.badge-warn { background: #2a2a1a; color: #d29922; }
+.badge-danger { background: #3a1a1a; color: #f85149; }
+.key-box {
+  background: linear-gradient(135deg, #161b22, #1c2128);
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.key-box h3 { font-size: 18px; color: #f97316; margin-bottom: 12px; }
+.key-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #21262d;
+  font-size: 15px;
+}
+.key-item:last-child { border-bottom: none; }
+.key-item .label { color: #8b949e; }
+.key-item .value { font-weight: 600; }
+.formula-box {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.formula-box h3 { font-size: 16px; color: #d29922; margin-bottom: 10px; }
+.formula {
+  background: #0d1117;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 14px;
+  color: #e6edf3;
+  margin-bottom: 8px;
+}
+.formula .comment { color: #8b949e; }
+.summary-box {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.summary-box h3 { font-size: 18px; color: #f97316; margin-bottom: 12px; }
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #21262d;
+  font-size: 15px;
+}
+.summary-row:last-child { border-bottom: none; }
+.summary-row .label { color: #8b949e; }
+.summary-row .value { font-weight: 600; }
+.note {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.note-red { background: #2a1a1a; color: #f85149; }
+.note-green { background: #1a2a1a; color: #3fb950; }
+.footer {
+  text-align: center;
+  color: #484f58;
+  font-size: 13px;
+  margin-top: 30px;
+  padding-top: 16px;
+  border-top: 1px solid #21262d;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📊 融資斷頭 — 最簡單版</h1>
+<p class="subtitle">一張圖搞懂融資的風險</p>
+
+<div class="assumption">
+  <h3>📌 假設條件</h3>
+  <p>股票一張 <strong>100 萬</strong>，你手上有 <strong>50 萬</strong>，融資借 <strong>50 萬</strong></p>
+</div>
+
+<!-- 關鍵數字 -->
+<div class="key-box">
+  <h3>💰 關鍵數字</h3>
+  <div class="key-item">
+    <span class="label">股票價值</span>
+    <span class="value" style="color:#58a6ff;">100 萬</span>
+  </div>
+  <div class="key-item">
+    <span class="label">你出的錢</span>
+    <span class="value" style="color:#3fb950;">50 萬</span>
+  </div>
+  <div class="key-item">
+    <span class="label">融資借款</span>
+    <span class="value" style="color:#d29922;">50 萬</span>
+  </div>
+  <div class="key-item">
+    <span class="label">斷頭門檻</span>
+    <span class="value" style="color:#f85149;">維持率 &lt; 130%</span>
+  </div>
+</div>
+
+<!-- 完整比較表 -->
+<div class="section">
+<h2 class="section-title">📈 完整損益比較表</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+  <th>股價</th>
+  <th>漲跌幅</th>
+  <th>沒融資<br>淨值</th>
+  <th>沒融資<br>損益</th>
+  <th>有融資<br>淨值</th>
+  <th>有融資<br>損益</th>
+  <th>維持率</th>
+  <th>狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>130 萬</strong></td>
+  <td class="profit">+30%</td>
+  <td>65 萬</td>
+  <td class="profit">+15 萬</td>
+  <td>80 萬</td>
+  <td class="profit">+30 萬</td>
+  <td>260%</td>
+  <td><span class="badge badge-profit">🎉 大賺</span></td>
+</tr>
+<tr>
+  <td><strong>120 萬</strong></td>
+  <td class="profit">+20%</td>
+  <td>60 萬</td>
+  <td class="profit">+10 萬</td>
+  <td>70 萬</td>
+  <td class="profit">+20 萬</td>
+  <td>233%</td>
+  <td><span class="badge badge-profit">😄 賺</span></td>
+</tr>
+<tr>
+  <td><strong>110 萬</strong></td>
+  <td class="profit">+10%</td>
+  <td>55 萬</td>
+  <td class="profit">+5 萬</td>
+  <td>60 萬</td>
+  <td class="profit">+10 萬</td>
+  <td>200%</td>
+  <td><span class="badge badge-ok">🙂 小賺</span></td>
+</tr>
+<tr class="highlight-row">
+  <td><strong>100 萬</strong></td>
+  <td class="neutral">0%</td>
+  <td>50 萬</td>
+  <td class="neutral">0</td>
+  <td>50 萬</td>
+  <td class="neutral">0</td>
+  <td>167%</td>
+  <td><span class="badge badge-ok">😐 持平</span></td>
+</tr>
+<tr>
+  <td><strong>90 萬</strong></td>
+  <td class="loss">-10%</td>
+  <td>45 萬</td>
+  <td class="loss">-5 萬</td>
+  <td>40 萬</td>
+  <td class="loss">-10 萬</td>
+  <td style="color:#d29922;">133%</td>
+  <td><span class="badge badge-warn">⚠️ 接近了</span></td>
+</tr>
+<tr>
+  <td><strong>80 萬</strong></td>
+  <td class="loss">-20%</td>
+  <td>40 萬</td>
+  <td class="loss">-10 萬</td>
+  <td>30 萬</td>
+  <td class="loss">-20 萬</td>
+  <td style="color:#f85149;">100%</td>
+  <td><span class="badge badge-warn">🚨 警戒</span></td>
+</tr>
+<tr class="danger-row">
+  <td><strong>70 萬</strong></td>
+  <td class="loss">-30%</td>
+  <td>35 萬</td>
+  <td class="loss">-15 萬</td>
+  <td>20 萬</td>
+  <td class="loss">-30 萬</td>
+  <td style="color:#f85149;">67%</td>
+  <td><span class="badge badge-danger">💀 斷頭！</span></td>
+</tr>
+<tr>
+  <td><strong>60 萬</strong></td>
+  <td class="loss">-40%</td>
+  <td>30 萬</td>
+  <td class="loss">-20 萬</td>
+  <td>10 萬</td>
+  <td class="loss">-40 萬</td>
+  <td style="color:#f85149;">33%</td>
+  <td><span class="badge badge-danger">💀💀</span></td>
+</tr>
+<tr class="danger-row">
+  <td><strong>50 萬</strong></td>
+  <td class="loss">-50%</td>
+  <td>25 萬</td>
+  <td class="loss">-25 萬</td>
+  <td>0 萬</td>
+  <td class="loss">-50 萬</td>
+  <td style="color:#f85149;">0%</td>
+  <td><span class="badge badge-danger">💀💀💀</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note note-red">
+  💡 關鍵：股價只跌 30%，融資維持率從 167% 掉到 67%，因為自備款只佔一半
+</div>
+</div>
+
+<!-- 公式說明 -->
+<div class="formula-box">
+  <h3>📐 融資維持率公式</h3>
+  <div class="formula">
+    維持率 = 自備款 ÷ 股票市值 × 100%
+  </div>
+  <div class="formula">
+    <span class="comment">// 舉例：股價 70 萬</span><br>
+    維持率 = 50萬 ÷ 70萬 × 100% = <strong>71%</strong> → 低於 130%，斷頭！
+  </div>
+  <div class="formula">
+    <span class="comment">// 斷頭流程</span><br>
+    1. 維持率 &lt; 130% → 券商通知補繳<br>
+    2. 2 天內沒補 → 強制賣出
+  </div>
+</div>
+
+<!-- 有融資 vs 沒融資 總結 -->
+<div class="section">
+<h2 class="section-title">⚖️ 有融資 vs 沒融資 — 總結</h2>
+
+<div class="summary-box">
+  <h3>📈 股價漲 30%（100 → 130 萬）</h3>
+  <div class="summary-row">
+    <span class="label">沒融資</span>
+    <span class="value" style="color:#3fb950;">+15 萬</span>
+  </div>
+  <div class="summary-row">
+    <span class="label">有融資</span>
+    <span class="value" style="color:#3fb950;">+30 萬（翻倍）</span>
+  </div>
+  <div class="note note-green">
+    💡 股價漲 30%，融資讓你多賺 15 萬
+  </div>
+</div>
+
+<div class="summary-box">
+  <h3>📉 股價跌 30%（100 → 70 萬）</h3>
+  <div class="summary-row">
+    <span class="label">沒融資</span>
+    <span class="value" style="color:#f85149;">-15 萬（還剩 35 萬）</span>
+  </div>
+  <div class="summary-row">
+    <span class="label">有融資</span>
+    <span class="value" style="color:#f85149;">-30 萬（斷頭！）</span>
+  </div>
+  <div class="note note-red">
+    💡 股價跌 30%，融資讓你多虧 15 萬，而且會被斷頭
+  </div>
+</div>
+
+<div class="summary-box">
+  <h3>💀 股價跌 50%（100 → 50 萬）</h3>
+  <div class="summary-row">
+    <span class="label">沒融資</span>
+    <span class="value" style="color:#f85149;">-25 萬（還剩 25 萬）</span>
+  </div>
+  <div class="summary-row">
+    <span class="label">有融資</span>
+    <span class="value" style="color:#f85149;">-50 萬（全沒了）</span>
+  </div>
+  <div class="note note-red">
+    💡 沒融資還剩一半，有融資全賠光
+  </div>
+</div>
+</div>
+
+<!-- 重點 -->
+<div class="summary-box" style="background: linear-gradient(135deg, #2a1a1a, #1a1a2e);">
+  <h3>⚡ 一句話總結</h3>
+  <div style="font-size: 18px; text-align: center; padding: 16px 0; line-height: 1.8;">
+    融資的風險不是「多虧 50 萬」<br>
+    而是「<strong style="color:#f85149;">虧完 50 萬後還要再欠 50 萬</strong>」<br>
+    <span style="color:#8b949e; font-size: 14px;">股票跌 50%，你的 50 萬歸零，還倒欠 50 萬</span>
+  </div>
+</div>
+
+<div class="footer">
+  🍀 小綠製作 — 2026/06/06<br>
+  數字僅供參考，實際融資利率與維持率計算依各券商規定
+</div>
+
+</div>
+</body>
+</html>
