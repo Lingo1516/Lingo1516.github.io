@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>杭州交通與飯店攻略</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',sans-serif;background:#0F172A;color:#F8FAFC;line-height:1.8;min-height:100vh}
+.hero{background:linear-gradient(135deg,#0B1220 0%,#1a365d 50%,#2d3748 100%);padding:60px 20px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 50%);animation:pulse 8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.hero h1{font-size:clamp(28px,6vw,48px);font-weight:900;background:linear-gradient(135deg,#F8FAFC,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;position:relative}
+.hero .subtitle{font-size:clamp(16px,3vw,22px);color:#94A3B8;font-weight:300;position:relative}
+.hero .badge{display:inline-block;background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.3);border-radius:20px;padding:6px 16px;font-size:14px;color:#818CF8;margin-top:16px;position:relative}
+.container{max-width:900px;margin:0 auto;padding:20px}
+.section{margin-bottom:32px}
+.section-title{font-size:clamp(22px,4vw,32px);font-weight:700;color:#F8FAFC;margin-bottom:16px;padding-left:16px;border-left:4px solid #6366F1}
+.card{background:#1E293B;border:1px solid rgba(99,102,241,0.15);border-radius:16px;padding:24px;margin-bottom:16px;transition:all 0.3s}
+.card:hover{border-color:rgba(99,102,241,0.3);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.3)}
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.card-icon{width:48px;height:48px;background:linear-gradient(135deg,#4F46E5,#6366F1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.card-title{font-size:20px;font-weight:700;color:#F8FAFC}
+.card-subtitle{font-size:14px;color:#818CF8}
+.card-body{color:#CBD5E1;font-size:16px;line-height:1.8}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:16px}
+.info-item{background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15);border-radius:12px;padding:16px}
+.info-label{font-size:13px;color:#818CF8;font-weight:500;margin-bottom:4px}
+.info-value{font-size:16px;color:#F8FAFC;font-weight:500}
+.link-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);border-radius:10px;color:#818CF8;text-decoration:none;font-size:14px;font-weight:500;transition:all 0.3s;margin:4px}
+.link-btn:hover{background:rgba(99,102,241,0.25);color:#A5B4FC;transform:translateY(-1px)}
+.link-btn.primary{background:linear-gradient(135deg,#4F46E5,#6366F1);color:#fff;border:none}
+.link-btn.primary:hover{box-shadow:0 4px 15px rgba(99,102,241,0.4)}
+.tip-card{background:linear-gradient(135deg,rgba(52,211,153,0.1),rgba(52,211,153,0.05));border:1px solid rgba(52,211,153,0.2);border-radius:16px;padding:20px;margin-top:16px}
+.tip-card .tip-title{font-size:16px;font-weight:700;color:#34D399;margin-bottom:8px}
+.tip-card .tip-text{color:#A7F3D0;font-size:15px;line-height:1.7}
+.warning-card{background:linear-gradient(135deg,rgba(251,146,60,0.1),rgba(251,146,60,0.05));border:1px solid rgba(251,146,60,0.2);border-radius:16px;padding:20px;margin-top:16px}
+.warning-card .warning-title{font-size:16px;font-weight:700;color:#FB923C;margin-bottom:8px}
+.warning-card .warning-text{color:#FED7AA;font-size:15px;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px}
+th{background:rgba(99,102,241,0.2);color:#F8FAFC;padding:12px 16px;text-align:left;font-weight:600}
+td{padding:12px 16px;border-bottom:1px solid rgba(99,102,241,0.1);color:#CBD5E1}
+tr:hover td{background:rgba(99,102,241,0.05)}
+.highlight{color:#818CF8;font-weight:600}
+.tag{display:inline-block;background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.3);border-radius:6px;padding:2px 8px;font-size:12px;color:#818CF8;margin:2px}
+.footer{text-align:center;padding:40px 20px;color:#64748B;font-size:14px;border-top:1px solid rgba(99,102,241,0.1);margin-top:40px}
+.quick-nav{position:fixed;bottom:20px;right:20px;z-index:100}
+.quick-nav-btn{width:56px;height:56px;background:linear-gradient(135deg,#4F46E5,#6366F1);border:none;border-radius:50%;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(99,102,241,0.5);transition:all 0.3s}
+.quick-nav-btn:hover{transform:scale(1.1);box-shadow:0 6px 25px rgba(99,102,241,0.6)}
+@media(max-width:600px){
+  .info-grid{grid-template-columns:1fr}
+  .container{padding:12px}
+  .card{padding:16px}
+  table{font-size:13px}
+  th,td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>✈️ 杭州交通與飯店攻略</h1>
+  <div class="subtitle">桃園 ↔ 杭州 航班 + 機場到市區交通 + 飯店推薦</div>
+  <div class="badge">2026年6月更新</div>
+</div>
+
+<div class="container">
+
+<!-- 航班資訊 -->
+<div class="section">
+  <div class="section-title">✈️ 桃園（TPE）↔ 杭州（HGH）直飛航班</div>
+  
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🛫</div>
+      <div><div class="card-title">去程：桃園 → 杭州</div><div class="card-subtitle">飛行時間約 1 小時 50 分鐘</div></div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr>
+          <th>航班號</th>
+          <th>航空公司</th>
+          <th>起飛</th>
+          <th>抵達</th>
+          <th>頻率</th>
+          <th>備註</th>
+        </tr>
+        <tr>
+          <td><span class="highlight">CA150</span></td>
+          <td>國航 Air China</td>
+          <td>12:30</td>
+          <td>14:20</td>
+          <td>每日飛</td>
+          <td><span class="tag">⭐ 推薦</span></td>
+        </tr>
+        <tr>
+          <td><span class="highlight">BR758</span></td>
+          <td>長榮 EVA Air</td>
+          <td>16:25</td>
+          <td>18:15</td>
+          <td>每週三班</td>
+          <td><span class="tag">三、五、日</span></td>
+        </tr>
+        <tr>
+          <td><span class="highlight">MF8690</span></td>
+          <td>廈門航空</td>
+          <td>12:45</td>
+          <td>14:40</td>
+          <td>每週一班</td>
+          <td><span class="tag">週五</span></td>
+        </tr>
+      </table>
+      <div class="tip-card">
+        <div class="tip-title">💡 推薦搭配</div>
+        <div class="tip-text">
+          <strong>去程首選 CA150（國航）</strong>：每日飛，時間最穩定，下午抵達直接入住飯店。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🛬</div>
+      <div><div class="card-title">回程：杭州 → 桃園</div><div class="card-subtitle">飛行時間約 1 小時 50 分鐘</div></div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr>
+          <th>航班號</th>
+          <th>航空公司</th>
+          <th>起飛</th>
+          <th>抵達</th>
+          <th>頻率</th>
+          <th>備註</th>
+        </tr>
+        <tr>
+          <td><span class="highlight">CA149</span></td>
+          <td>國航 Air China</td>
+          <td>09:30</td>
+          <td>11:20</td>
+          <td>每日飛</td>
+          <td><span class="tag">早班</span></td>
+        </tr>
+        <tr>
+          <td><span class="highlight">MF8689</span></td>
+          <td>廈門航空</td>
+          <td>12:00</td>
+          <td>13:50</td>
+          <td>每週一班</td>
+          <td><span class="tag">週五</span></td>
+        </tr>
+        <tr>
+          <td><span class="highlight">BR757</span></td>
+          <td>長榮 EVA Air</td>
+          <td>14:30</td>
+          <td>16:20</td>
+          <td>每週三班</td>
+          <td><span class="tag">⭐ 推薦</span></td>
+        </tr>
+      </table>
+      <div class="tip-card">
+        <div class="tip-title">💡 推薦搭配</div>
+        <div class="tip-text">
+          <strong>回程首選 BR757（長榮）</strong>：Day 5 上午還能去湖畔居喝下午茶，中午再去機場。<br>
+          <strong>備案 CA149（國航）</strong>：如果想早點回來，這是最早的直飛班次。
+        </div>
+      </div>
+      <div class="warning-card">
+        <div class="warning-title">⚠️ 注意事項</div>
+        <div class="warning-text">
+          長榮 BR758/BR757 每週只飛三班（三、五、日），要先確認日期！<br>
+          國航 CA150/CA149 每日飛，最靈活。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💰</div>
+      <div><div class="card-title">參考票價</div></div>
+    </div>
+    <div class="card-body">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">經濟艙來回</div>
+          <div class="info-value">TWD 10,000 - 14,000</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">最便宜月份</div>
+          <div class="info-value">1月（平均 TWD 5,033 單程）</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">最便宜星期</div>
+          <div class="info-value">週五（平均 TWD 7,207）</div>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <a href="https://tw.trip.com/flights/airport-tpe-hgh/" target="_blank" class="link-btn primary">🔍 Trip.com 查即時票價</a>
+        <a href="https://www.skyscanner.com.tw/routes/tpe/hgh/" target="_blank" class="link-btn">📋 Skyscanner 比價</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 機場交通 -->
+<div class="section">
+  <div class="section-title">🚇 蕭山機場 → 市區交通</div>
+  
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🚇</div>
+      <div><div class="card-title">地鐵（最方便）</div><div class="card-subtitle">三條線可達市區</div></div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr>
+          <th>地鐵線</th>
+          <th>路線</th>
+          <th>耗時</th>
+          <th>票價</th>
+          <th>推薦度</th>
+        </tr>
+        <tr>
+          <td><span class="highlight">19號線</span></td>
+          <td>機場 → 市區（機場快線）</td>
+          <td>約40分鐘</td>
+          <td>¥7-9</td>
+          <td><span class="tag">⭐ 最快</span></td>
+        </tr>
+        <tr>
+          <td><span class="highlight">1號線</span></td>
+          <td>機場 → 龍翔橋站（湖濱商圈）</td>
+          <td>約1小時</td>
+          <td>¥7-9</td>
+          <td><span class="tag">最方便</span></td>
+        </tr>
+        <tr>
+          <td><span class="highlight">7號線</span></td>
+          <td>機場 → 市區</td>
+          <td>約1小時</td>
+          <td>¥7-9</td>
+          <td><span class="tag">備用</span></td>
+        </tr>
+      </table>
+      <div class="tip-card">
+        <div class="tip-title">💡 搭地鐵要注意</div>
+        <div class="tip-text">
+          <strong>營運時間：</strong>1號線 6:00-22:30、19號線 6:03-23:14<br>
+          <strong>支付方式：</strong>可用支付寶、微信支付，人工櫃檯可用 VISA/MasterCard<br>
+          <strong>位置：</strong>交通中心 B2 層
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🚕</div>
+      <div><div class="card-title">其他交通方式</div></div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr>
+          <th>方式</th>
+          <th>耗時</th>
+          <th>價格</th>
+          <th>適用情況</th>
+        </tr>
+        <tr>
+          <td>計程車 / 滴滴</td>
+          <td>約40分鐘</td>
+          <td>約¥150</td>
+          <td>行李多、深夜抵達</td>
+        </tr>
+        <tr>
+          <td>機場巴士</td>
+          <td>約1小時20分</td>
+          <td>¥20-35</td>
+          <td>深夜地鐵停駛後</td>
+        </tr>
+        <tr>
+          <td>機場接送</td>
+          <td>約40分鐘</td>
+          <td>約¥200-300</td>
+          <td>提前預訂最安心</td>
+        </tr>
+      </table>
+      <div class="warning-card">
+        <div class="warning-title">⚠️ 深夜抵達備案</div>
+        <div class="warning-text">
+          如果飛機超過晚上10點抵達，地鐵已停駛，建議：<br>
+          1. 叫滴滴專車（約¥150）<br>
+          2. 搭機場巴士（末班車 01:30，¥20）<br>
+          3. 提前預訂機場接送
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 飯店推薦 -->
+<div class="section">
+  <div class="section-title">🏨 飯店推薦（地鐵直达）</div>
+  
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⭐</div>
+      <div><div class="card-title">首選：龍翔橋站 / 鳳起路站附近</div><div class="card-subtitle">出站走路5分鐘到西湖，最方便的位置！</div></div>
+    </div>
+    <div class="card-body">
+      <p>這兩個站就在西湖邊，出站走路5分鐘到湖濱商圈，是杭州旅遊的最佳住宿區域。</p>
+      <table>
+        <tr>
+          <th>飯店</th>
+          <th>位置</th>
+          <th>地鐵</th>
+          <th>價格/晚</th>
+          <th>特色</th>
+        </tr>
+        <tr>
+          <td><span class="highlight">杭州君悅酒店 (Grand Hyatt)</span></td>
+          <td>湖濱商圈</td>
+          <td>龍翔橋站步行5分鐘</td>
+          <td>¥1500-2500</td>
+          <td>五星級，出門口就是西湖</td>
+        </tr>
+        <tr>
+          <td><span class="highlight">杭州西湖湖濱龍翔橋地鐵站亞朵酒店</span></td>
+          <td>龍翔橋站旁</td>
+          <td>出站步行2分鐘</td>
+          <td>¥500-800</td>
+          <td>CP值高，位置絕佳</td>
+        </tr>
+        <tr>
+          <td><span class="highlight">杭州湖濱步行街亞朵S酒店</span></td>
+          <td>湖濱商圈</td>
+          <td>龍翔橋站步行3分鐘</td>
+          <td>¥600-900</td>
+          <td>新開，設計感強</td>
+        </tr>
+        <tr>
+          <td><span class="highlight">杭州武林廣場地鐵站亞朵酒店</span></td>
+          <td>武林廣場</td>
+          <td>武林廣場站步行5分鐘</td>
+          <td>¥400-700</td>
+          <td>交通便利，近嘉里中心</td>
+        </tr>
+      </table>
+      <div style="margin-top:16px">
+        <a href="https://tw.trip.com/hotels/hangzhou-hotel-detail-132003508/" target="_blank" class="link-btn primary">🔍 查龍翔橋亞朵酒店</a>
+        <a href="https://www.google.com/travel/hotels/杭州湖濱商圈" target="_blank" class="link-btn">📋 Google搜尋湖濱商圈飯店</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏛️</div>
+      <div><div class="card-title">頂級選擇：西湖國賓館</div><div class="card-subtitle">國宴級享受</div></div>
+    </div>
+    <div class="card-body">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">飯店</div>
+          <div class="info-value">杭州西湖國賓館</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">位置</div>
+          <div class="info-value">西湖邊，景色絕佳</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">價格</div>
+          <div class="info-value">¥3000-5000/晚</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">特色</div>
+          <div class="info-value">G20領導人住過</div>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <a href="https://www.google.com/maps/search/西湖國賓館+杭州" target="_blank" class="link-btn primary">📍 導航至西湖國賓館</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💰</div>
+      <div><div class="card-title">平價選擇：機場附近</div><div class="card-subtitle">適合紅眼航班或早班機</div></div>
+    </div>
+    <div class="card-body">
+      <table>
+        <tr>
+          <th>飯店</th>
+          <th>位置</th>
+          <th>地鐵</th>
+          <th>價格/晚</th>
+        </tr>
+        <tr>
+          <td>昊頤飯店（蕭山機場新港地鐵站店）</td>
+          <td>蕭山區</td>
+          <td>7號線新港站B出口步行2分鐘</td>
+          <td>¥903起</td>
+        </tr>
+        <tr>
+          <td>曼居酒店（蕭山機場店）</td>
+          <td>蕭山區</td>
+          <td>1號線、7號線直達機場</td>
+          <td>¥921起</td>
+        </tr>
+        <tr>
+          <td>杭州蕭山國際機場凱悅飯店</td>
+          <td>T4航廈內</td>
+          <td>直接在機場裡</td>
+          <td>¥2788起</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 搭地鐵到飯店路線 -->
+<div class="section">
+  <div class="section-title">🗺️ 搭地鐵到飯店路線</div>
+  
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🚶</div>
+      <div><div class="card-title">到龍翔橋站（推薦）</div></div>
+    </div>
+    <div class="card-body">
+      <div style="padding-left:20px;border-left:3px solid #6366F1">
+        <p><strong>Step 1：</strong>蕭山機場 T4 航站樓 → 搭 <span class="highlight">1號線</span> 或 <span class="highlight">19號線</span></p>
+        <p><strong>Step 2：</strong>到 <span class="highlight">龍翔橋站</span> 下車（D出口）</p>
+        <p><strong>Step 3：</strong>走路3-5分鐘到飯店區域</p>
+      </div>
+      <div style="margin-top:16px">
+        <a href="https://www.google.com/maps/dir/蕭山國際機場/龍翔橋站" target="_blank" class="link-btn primary">📍 Google Maps 路線圖</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🚶</div>
+      <div><div class="card-title">到鳳起路站</div></div>
+    </div>
+    <div class="card-body">
+      <div style="padding-left:20px;border-left:3px solid #6366F1">
+        <p><strong>Step 1：</strong>蕭山機場 → 搭 <span class="highlight">1號線</span></p>
+        <p><strong>Step 2：</strong>到 <span class="highlight">鳳起路站</span> 下車</p>
+        <p><strong>Step 3：</strong>走路5-10分鐘到湖濱商圈</p>
+      </div>
+      <div style="margin-top:16px">
+        <a href="https://www.google.com/maps/dir/蕭山國際機場/鳳起路站" target="_blank" class="link-btn primary">📍 Google Maps 路線圖</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 實用連結 -->
+<div class="section">
+  <div class="section-title">🔗 實用連結</div>
+  <div class="card">
+    <div class="card-body" style="text-align:center">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        <a href="https://tw.trip.com/flights/airport-tpe-hgh/" target="_blank" class="link-btn primary">✈️ 查機票</a>
+        <a href="https://tw.trip.com/hotels/hangzhou-hotel/" target="_blank" class="link-btn">🏨 查飯店</a>
+        <a href="https://www.google.com/maps/@30.2741,120.1551,12z" target="_blank" class="link-btn">📍 杭州地圖</a>
+        <a href="https://tw.trip.com/guide/transport/杭州機場.html" target="_blank" class="link-btn">🚇 交通攻略</a>
+        <a href="https://www.google.com/search?q=杭州天氣" target="_blank" class="link-btn">🌤️ 杭州天氣</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>✈️ 杭州交通與飯店攻略</p>
+  <p style="margin-top:8px;color:#6366F1">由小綠為您整理 🍀</p>
+</div>
+
+<div class="quick-nav">
+  <button class="quick-nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+</body>
+</html>
