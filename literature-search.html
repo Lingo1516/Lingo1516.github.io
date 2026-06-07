@@ -30,21 +30,23 @@ body {
 .search-row {
   display: flex;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
 }
-.search-row input {
+.search-row input[type="text"] {
   flex: 1;
-  padding: 14px 18px;
+  min-width: 120px;
+  padding: 12px 14px;
   border-radius: 12px;
   border: 2px solid rgba(255,255,255,0.15);
   background: rgba(255,255,255,0.08);
   color: #fff;
-  font-size: 17px;
+  font-size: 15px;
   outline: none;
   transition: border-color 0.3s;
 }
-.search-row input:focus { border-color: #6c63ff; }
-.search-row input::placeholder { color: #888; }
+.search-row input[type="text"]:focus { border-color: #6c63ff; }
+.search-row input[type="text"]::placeholder { color: #666; }
 
 .filter-row {
   display: flex;
@@ -237,8 +239,20 @@ body {
 
 <div class="search-box">
   <div class="search-row">
-    <input type="text" id="keyword" placeholder="輸入關鍵字，例：人工智慧、machine learning、ESG..." autofocus>
+    <input type="text" id="keyword" placeholder="關鍵字 1（必填）" autofocus>
+    <input type="text" id="keyword2" placeholder="關鍵字 2（選填）">
+    <input type="text" id="keyword3" placeholder="關鍵字 3（選填）">
+    <input type="text" id="keyword4" placeholder="關鍵字 4（選填）">
+    <input type="text" id="keyword5" placeholder="關鍵字 5（選填）">
     <button class="btn-search" id="btnSearch" onclick="doSearch()">🔍 搜尋</button>
+  </div>
+  <div style="text-align:center;margin-bottom:10px;">
+    <label style="font-size:13px;color:#888;">
+      <input type="radio" name="logicMode" value="and" checked> 全部都要出現（AND）
+    </label>
+    <label style="font-size:13px;color:#888;margin-left:15px;">
+      <input type="radio" name="logicMode" value="or"> 任一出現即可（OR）
+    </label>
   </div>
   <div class="filter-row">
     <select id="sourceSelect">
@@ -291,16 +305,61 @@ function quickSearch(kw) {
   doSearch();
 }
 
+// 收集所有關鍵字
+function getAllKeywords() {
+  var kws = [];
+  var k1 = document.getElementById('keyword').value.trim();
+  var k2 = document.getElementById('keyword2').value.trim();
+  var k3 = document.getElementById('keyword3').value.trim();
+  var k4 = document.getElementById('keyword4').value.trim();
+  var k5 = document.getElementById('keyword5').value.trim();
+  if (k1) kws.push(k1);
+  if (k2) kws.push(k2);
+  if (k3) kws.push(k3);
+  if (k4) kws.push(k4);
+  if (k5) kws.push(k5);
+  return kws;
+}
+
+// 多關鍵字搜尋：拼成「kw1 AND kw2 AND kw3」
+function buildSearchQuery(keywords) {
+  return keywords.join(' ');
+}
+
+// 結果篩選：檢查標題+摘要是否同時包含所有關鍵字
+function filterByKeywords(results, keywords, mode) {
+  if (keywords.length <= 1) return results; // 只有一個關鍵字不需要額外篩選
+  return results.filter(function(r) {
+    var text = (r.title + ' ' + r.abstract + ' ' + r.journal).toLowerCase();
+    if (mode === 'and') {
+      // AND：所有關鍵字都要出現
+      return keywords.every(function(kw) {
+        return text.indexOf(kw.toLowerCase()) !== -1;
+      });
+    } else {
+      // OR：任一關鍵字出現即可
+      return keywords.some(function(kw) {
+        return text.indexOf(kw.toLowerCase()) !== -1;
+      });
+    }
+  });
+}
+
 async function doSearch(page) {
   page = page || 1;
   currentPage = page;
-  currentKeyword = document.getElementById('keyword').value.trim();
-  if (!currentKeyword) { alert('請輸入關鍵字'); return; }
+  var allKws = getAllKeywords();
+  if (allKws.length === 0) { alert('請輸入至少一個關鍵字'); return; }
+  currentKeyword = allKws.join('_'); // 用於 CSV 匯出檔名
 
+  var logicMode = document.querySelector('input[name=logicMode]:checked').value;
   var source = document.getElementById('sourceSelect').value;
   var years = document.getElementById('yearRange').value;
   var sortBy = document.getElementById('sortBy').value;
   var lang = document.getElementById('langFilter').value;
+
+  // 搜尋用的關鍵字串（多個關鍵字拼成 AND 搜尋，讓 API 盡量找到相關結果）
+  var searchQuery = buildSearchQuery(allKws);
 
   var btn = document.getElementById('btnSearch');
   btn.disabled = true;
@@ -314,11 +373,11 @@ async function doSearch(page) {
     allResults = [];
 
     if (source === 'openalex' || source === 'all') {
-      var oaResults = await searchOpenAlex(currentKeyword, years, sortBy, lang);
+      var oaResults = await searchOpenAlex(searchQuery, years, sortBy, lang);
       allResults = allResults.concat(oaResults);
     }
     if (source === 'crossref' || source === 'all') {
-      var crResults = await searchCrossref(currentKeyword, years, sortBy, lang);
+      var crResults = await searchCrossref(searchQuery, years, sortBy, lang);
       allResults = allResults.concat(crResults);
     }
 
@@ -334,9 +393,12 @@ async function doSearch(page) {
       });
     }
 
+    // 多關鍵字 AND/OR 篩選
+    allResults = filterByKeywords(allResults, allKws, logicMode);
+
     var totalCount = allResults.length;
     document.getElementById('status').className = 'status success';
-    document.getElementById('status').textContent = '✅ 找到 ' + totalCount + ' 篇文獻';
+    document.getElementById('status').textContent = '✅ 找到 ' + totalCount + ' 篇文獻（' + allKws.join(' ' + logicMode.toUpperCase() + ' ') + '）';
 
     renderResults();
   } catch (err) {
@@ -593,6 +655,18 @@ function escHtml(s) {
 }
 
 document.getElementById('keyword').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doSearch();
+});
+document.getElementById('keyword2').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doSearch();
+});
+document.getElementById('keyword3').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doSearch();
+});
+document.getElementById('keyword4').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doSearch();
+});
+document.getElementById('keyword5').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') doSearch();
 });
 </script>
