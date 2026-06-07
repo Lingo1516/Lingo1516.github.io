@@ -342,14 +342,23 @@ async function searchOpenAlex(keyword, years, sortBy, lang) {
   var url = 'https://api.openalex.org/works?';
   var params = new URLSearchParams();
 
+  // 加入中文關鍵字同時搜尋英文翻譯（如果只輸入中文，也搜英文版）
+  var searchTerms = [keyword];
+  // 不做自動翻譯，讓用戶自己決定要搜什麼語言
+  
   params.set('search', keyword);
   params.set('per_page', '50');
   params.set('mailto', 'research@example.com');
 
+  // 語言篩選
+  var filters = [];
   if (years !== '0') {
     var fromYear = new Date().getFullYear() - parseInt(years);
-    params.set('filter', 'from_publication_date:' + fromYear + '-01-01');
+    filters.push('from_publication_date:' + fromYear + '-01-01');
   }
+  if (lang === 'zh') filters.push('language:zh');
+  else if (lang === 'en') filters.push('language:en');
+  if (filters.length > 0) params.set('filter', filters.join(','));
 
   if (sortBy === 'date') params.set('sort', 'publication_date:desc');
   else if (sortBy === 'cited') params.set('sort', 'cited_by_count:desc');
@@ -376,17 +385,26 @@ async function searchOpenAlex(keyword, years, sortBy, lang) {
 }
 
 async function searchCrossref(keyword, years, sortBy, lang) {
+  // Crossref 搜尋用 query 加入語言關鍵字
+  var query = keyword;
+  // Crossref 有 language filter，加入 language 參數
   var url = 'https://api.crossref.org/works?';
   var params = new URLSearchParams();
 
-  params.set('query', keyword);
+  params.set('query', query);
   params.set('rows', '50');
   params.set('mailto', 'research@example.com');
 
+  // 年份篩選
+  var filters = [];
   if (years !== '0') {
     var fromYear = new Date().getFullYear() - parseInt(years);
-    params.set('filter', 'from-pub-date:' + fromYear);
+    filters.push('from-pub-date:' + fromYear);
   }
+  // 語言篩選（Crossref 支援 language filter）
+  if (lang === 'zh') filters.push('language:zh');
+  else if (lang === 'en') filters.push('language:en');
+  if (filters.length > 0) params.set('filter', filters.join(','));
 
   if (sortBy === 'date') params.set('sort', 'published');
   else if (sortBy === 'cited') params.set('sort', 'is-referenced-by-count');
