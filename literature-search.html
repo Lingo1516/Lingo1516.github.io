@@ -88,6 +88,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Micr
       <option value="date">最新發表</option>
       <option value="citations">最多引用</option>
     </select>
+    <select id="language">
+      <option value="all">不限語言</option>
+      <option value="zh-TW">🇹🇼 繁體中文</option>
+      <option value="zh-CN">🇨🇳 简体中文</option>
+      <option value="en">🇺🇸 English</option>
+    </select>
   </div>
 </div>
 
@@ -168,6 +174,7 @@ async function doSearch(page) {
   currentKeyword = kws.join('_');
   var yearRange = document.getElementById('yearRange').value;
   var sortBy = document.getElementById('sortBy').value;
+  var language = document.getElementById('language').value;
 
   var btn = document.getElementById('btnSearch');
   btn.disabled = true;
@@ -188,7 +195,8 @@ async function doSearch(page) {
     var sortParam = sortBy === 'citations' ? 'relevance' : sortBy;
 
     var url = API_BASE + '/api/search?q=' + encodeURIComponent(query)
-      + '&sort_by=' + sortParam;
+      + '&sort_by=' + sortParam
+      + '&language=' + language;
     if (yearLow) url += '&year_low=' + yearLow;
     if (yearHigh) url += '&year_high=' + yearHigh;
 
@@ -209,7 +217,8 @@ async function doSearch(page) {
     }
 
     document.getElementById('status').className = 'status success';
-    document.getElementById('status').textContent = '✅ 找到 ' + allResults.length + ' 篇文獻（' + kws.join(' ' + mode.toUpperCase() + ' ') + '）';
+    var langText = {'all': '不限語言', 'zh-TW': '繁體中文', 'zh-CN': '简体中文', 'en': 'English'};
+    document.getElementById('status').textContent = '✅ 找到 ' + allResults.length + ' 篇文獻（' + kws.join(' ' + mode.toUpperCase() + ' ') + '，' + langText[language] + '）';
 
     renderResults();
   } catch (err) {
