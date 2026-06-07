@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>☀️ 早安新聞 — 2026年6月7日（六）</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: #E2E8F0;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            background: linear-gradient(90deg, #F59E0B, #EF4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .header .date {
+            font-size: 16px;
+            color: #94A3B8;
+        }
+        .section {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon {
+            font-size: 24px;
+        }
+        .news-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-item h3 {
+            font-size: 17px;
+            color: #F8FAFC;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        .news-item p {
+            font-size: 15px;
+            color: #94A3B8;
+            line-height: 1.5;
+        }
+        .news-item .tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: #818CF8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        .tag.hot { background: rgba(239, 68, 68, 0.2); color: #F87171; }
+        .tag.tech { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+        .tag.world { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
+        .tag.stock { background: rgba(245, 158, 11, 0.2); color: #FBBF24; }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+            border-left: 3px solid #EF4444;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+        .highlight-box h3 {
+            color: #F87171;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .stock-ticker {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .ticker-item {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 12px 16px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 140px;
+        }
+        .ticker-item .name {
+            font-size: 14px;
+            color: #94A3B8;
+            margin-bottom: 4px;
+        }
+        .ticker-item .value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .ticker-item .change {
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .up { color: #EF4444; }
+        .down { color: #22C55E; }
+        .weather-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .weather-box .temp {
+            font-size: 48px;
+            font-weight: bold;
+            color: #FBBF24;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #64748B;
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            body { padding: 15px; }
+            .header h1 { font-size: 24px; }
+            .section { padding: 15px; }
+            .section-title { font-size: 18px; }
+            .news-item h3 { font-size: 16px; }
+            .news-item p { font-size: 14px; }
+            .ticker-item { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>☀️ 早安新聞懶人包</h1>
+        <div class="date">2026年6月7日（六）・你的週末新聞快報</div>
+    </div>
+
+    <!-- 🔥 頭條 -->
+    <div class="highlight-box">
+        <h3>🔥 頭條速報</h3>
+        <p><strong>美伊衝突升溫</strong> — 中東戰爭第99天，美軍擊落2架伊朗無人機，荷莫茲海峽緊張升溫。伊朗隨後報復，鎖定巴林、科威特射飛彈。</p>
+        <span class="tag hot">熱門</span>
+    </div>
+
+    <!-- 🌍 國際 -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon">🌍</span> 國際焦點
+        </div>
+        <div class="news-item">
+            <h3>習近平將訪北韓會金正恩</h3>
+            <p>中國官媒預熱訪問，金與正重申北韓核武計畫不容妥協。分析指出此訪可能牽動東北亞情勢。</p>
+            <span class="tag world">兩岸國際</span>
+        </div>
+        <div class="news-item">
+            <h3>美伊波斯灣交火　脆弱停火再受考驗</h3>
+            <p>中東戰爭進入第99天，美擬挪用資產助盟友重建。伊朗射7飛彈襲科威特、巴林，稱報復美軍空襲。</p>
+            <span class="tag hot">戰爭</span>
+        </div>
+        <div class="news-item">
+            <h3>美國俄亥俄州節慶活動爆槍擊案</h3>
+            <p>多人中彈，傷亡不明。FBI嚴防世界盃期間無人機、AI威脅。</p>
+        </div>
+        <div class="news-item">
+            <h3>美學生日本旅遊失蹤　遺體在京都郊區尋獲</h3>
+            <p>希金巴坦前往日本旅遊後失蹤，遺體在京都郊區被發現。</p>
+        </div>
+        <div class="news-item">
+            <h3>馬克宏歡迎芬蘭加入核嚇阻</h3>
+            <p>芬蘭總理表示此舉將強化歐洲防務，歐盟峰會聚焦巴爾幹入歐議題。</p>
+        </div>
+    </div>
+
+    <!-- 🇹🇼 台灣 -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon">🇹🇼</span> 台灣要聞
+        </div>
+        <div class="news-item">
+            <h3>9艘共艦7艘公務船擾台　國軍監控</h3>
+            <p>中國艦艇持續在台海周邊活動，國軍全程掌握監控。</p>
+            <span class="tag hot">國防</span>
+        </div>
+        <div class="news-item">
+            <h3>蕭副總統出訪帛琉　浮潛大斷層訪二戰遺址</h3>
+            <p>蕭副總統與惠恕仁浮潛大斷層，親赴帛琉棒球場挺台灣隊，台帛友好升溫。</p>
+        </div>
+        <div class="news-item">
+            <h3>賴總統：推動AI新十大建設</h3>
+            <p>持續強化國防自主，推動AI新十大建設。卓榮泰表示台灣GDP成長飛速，將進入全球20大經濟體。</p>
+            <span class="tag tech">AI政策</span>
+        </div>
+        <div class="news-item">
+            <h3>健康台灣擴大篩檢</h3>
+            <p>總統力拚2030年癌症死亡率降1/3，國防部將辦後備軍人射擊比賽強化全社會防衛韌性。</p>
+        </div>
+    </div>
+
+    <!-- 📈 財經 -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon">📈</span> 財經動態
+        </div>
+        <div class="stock-ticker">
+            <div class="ticker-item">
+                <div class="name">美股（週五）</div>
+                <div class="value down">↓ 重挫</div>
+                <div class="change down">科技股漲多後賣壓湧現</div>
+            </div>
+            <div class="ticker-item">
+                <div class="name">歐股</div>
+                <div class="value">互有漲跌</div>
+                <div class="change">歐元區Q1經濟成長萎縮</div>
+            </div>
+        </div>
+        <div class="news-item" style="margin-top: 15px;">
+            <h3>黃仁勳旋風　帶旺電腦展飯店滿房接單到明年</h3>
+            <p>輝達GTC台北重返PC戰場，黃仁勳4大科技密碼一次看。Marvell搭AI熱潮跨獲利門檻，將納入標普500指數。</p>
+            <span class="tag stock">AI概念股</span>
+        </div>
+        <div class="news-item">
+            <h3>台灣50成分股大換血</h3>
+            <p>刪中鋼、台塑等傳產權值股，AI科技股入列。外資前5月淨匯入651億美元創同期最大。</p>
+            <span class="tag stock">台股</span>
+        </div>
+        <div class="news-item">
+            <h3>台股火熱5月</h3>
+            <p>成交量週轉率逾2成，定期定額衝破300億。投資人擔憂AI投資過熱、中東和平無進展，亞股大多收低。</p>
+        </div>
+        <div class="news-item">
+            <h3>國發會：下半年物價可望溫和成長</h3>
+            <p>全年CPI估低於2%。工商界向政院提24項提案，涵蓋資產管理、淨零轉型等。</p>
+        </div>
+    </div>
+
+    <!-- 💻 科技 -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon">💻</span> 科技新知
+        </div>
+        <div class="news-item">
+            <h3>Anthropic籲全球暫停研發尖端AI</h3>
+            <p>避免失控風險升高。白宮將加速AI國安應用，強調不得用於非法監控。</p>
+            <span class="tag tech">AI安全</span>
+        </div>
+        <div class="news-item">
+            <h3>紐約州議會通過新法案　暫緩興建資料中心一年</h3>
+            <p>對AI基礎設施擴張踩煞車，反映社會對AI發展的擔憂。</p>
+        </div>
+        <div class="news-item">
+            <h3>蘋果App Store生態系去年產值創高</h3>
+            <p>AI功能吸金效應強。微軟發表新一代量子晶片Majorana 2，可靠性提升千倍。</p>
+            <span class="tag tech">量子運算</span>
+        </div>
+        <div class="news-item">
+            <h3>疑中國駭客所為　釣魚郵件鎖定台灣與捷克</h3>
+            <p>竊取資料事件頻傳，資安議題持續升溫。</p>
+        </div>
+    </div>
+
+    <!-- 🎾 運動 -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon">🎾</span> 運動賽事
+        </div>
+        <div class="news-item">
+            <h3>19歲安德瑞娃法網封后</h3>
+            <p>奪生涯大滿貫首冠，世界排名將升第6。波蘭黑馬赫瓦林斯卡功虧一簣。</p>
+            <span class="tag hot">法網</span>
+        </div>
+        <div class="news-item">
+            <h3>世足熱身賽德國連9勝</h3>
+            <p>英格蘭小贏紐西蘭。世界盃開賽倒數，FBI嚴防無人機、AI威脅。</p>
+        </div>
+        <div class="news-item">
+            <h3>美體操天后拜爾絲自曝健康危機</h3>
+            <p>稱「差點沒命」，引發運動員健康關注。</p>
+        </div>
+        <div class="news-item">
+            <h3>台灣田徑佳績</h3>
+            <p>陳玟溥達亞運標準，新北國際田徑賽百公尺摘金。吳彥翰撐竿跳破全國紀錄再度摘金。</p>
+            <span class="tag">田徑</span>
+        </div>
+    </div>
+
+    <!-- 🌤️ 天氣 -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon">🌤️</span> 天氣提醒
+        </div>
+        <div class="weather-box">
+            <div class="temp">⚡ 5縣市防高溫</div>
+            <p style="margin-top: 10px; color: #94A3B8;">吳德榮：8日起注意致災降雨<br>梅雨鋒面9日報到，降雨恐持續到中旬<br>南部水情可望緩解</p>
+        </div>
+    </div>
+
+    <!-- 🎬 娛樂 -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon">🎬</span> 娛樂速報
+        </div>
+        <div class="news-item">
+            <h3>捍衛戰警續集演員詹姆斯韓迪遇刺身亡</h3>
+            <p>女友兒子被捕，震驚影壇。</p>
+        </div>
+        <div class="news-item">
+            <h3>理想混蛋首攻高雄巨蛋60秒票售罄</h3>
+            <p>拚雙蛋黃再開1場，人氣爆棚。</p>
+        </div>
+        <div class="news-item">
+            <h3>「茉莉人生」作者瑪嘉莎塔碧56歲離世</h3>
+            <p>創作伊朗故事傳向全球，享年56歲。</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        🍀 小綠新聞懶人包・來源：中央社 CNA<br>
+        祝你有美好的週末！
+    </div>
+</body>
+</html>
