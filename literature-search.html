@@ -326,10 +326,10 @@ async function doSearch(page) {
 
     // 語言二次過濾（解決 OpenAlex 日中不分的問題）
     if (lang === 'zh') {
-      allResults = allResults.filter(function(r) { return !isJapanese(r.title + ' ' + r.abstract); });
+      allResults = allResults.filter(function(r) { return !isJapanese(r.title + ' ' + r.abstract + ' ' + r.journal); });
     } else if (lang === 'en') {
       allResults = allResults.filter(function(r) {
-        var text = r.title + ' ' + r.abstract;
+        var text = r.title + ' ' + r.abstract + ' ' + r.journal;
         return !isJapanese(text) && !isChinese(text);
       });
     }
@@ -563,21 +563,19 @@ function exportCSV() {
   a.click();
 }
 
-// 日文偵測：多層判斷
+// 日文偵測：多層判斷（嚴格模式）
 function isJapanese(text) {
   if (!text) return false;
   // 1. 有平假名或片假名 → 一定是日文
   if (/[\u3040-\u309F]/.test(text) || /[\u30A0-\u30FF]/.test(text)) return true;
   // 2. 日文特有的漢字（和製漢字/擴充漢字）
-  //    例：働、辻、峠、畑、砿、塡、枠、痺、喰、雑、凧、匂
   if (/[働辻峠畑砿塡枠痺喰雑凧匂]/.test(text)) return true;
-  // 3. 日文特有的表記模式：漢字+假名的混合詞（雖然可能沒假名，但有日文特徵詞）
-  //    例：リサーチ、イシュー、アンブレラ、レビュー、サステナビリティ
-  if (/[\u30A0-\u30FF]{3,}/.test(text)) return true;  // 片假名連續3個以上（外來語）
-  // 4. 日文句尾特徵：「である」「について」「における」「の必要性」等
-  if (/について|における|であること|の必要性| Regarding|に際して/.test(text)) return true;
-  // 5. 日文特有的標點：全形句號「。」（中文也有，但日文更常用「．」半角句點）
-  if (/．/.test(text) && /[\u3040-\u30FF]/.test(text)) return true;
+  // 3. 片假名連續3個以上（外來語）
+  if (/[\u30A0-\u30FF]{3,}/.test(text)) return true;
+  // 4. 日文句尾特徵
+  if (/について|における|であること|の必要性|に際して/.test(text)) return true;
+  // 5. 日文期刊名特徵
+  if (/日本人|日本語|学会|誌|日本/.test(text) && /[\u3040-\u309F]/.test(text)) return true;
   return false;
 }
 
