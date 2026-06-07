@@ -3,291 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>📚 文獻搜尋器 — 學術研究利器</title>
+<title>📚 文獻搜尋器 — Google Scholar</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  min-height: 100vh;
-  color: #e0e0e0;
-}
-.header {
-  text-align: center;
-  padding: 30px 20px 20px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.header h1 { font-size: 28px; color: #fff; margin-bottom: 8px; }
-.header p { font-size: 16px; color: #aaa; }
-
-.search-box {
-  max-width: 900px;
-  margin: 25px auto;
-  padding: 0 15px;
-}
-.search-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-}
-.search-row input[type="text"] {
-  flex: 1;
-  min-width: 120px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 2px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  font-size: 15px;
-  outline: none;
-  transition: border-color 0.3s;
-}
-.search-row input[type="text"]:focus { border-color: #6c63ff; }
-.search-row input[type="text"]::placeholder { color: #666; }
-
-.filter-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.filter-row select, .filter-row input[type="number"] {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 2px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  font-size: 15px;
-  outline: none;
-}
-.filter-row select option { background: #1a1a2e; color: #fff; }
-
-.btn-search {
-  padding: 14px 32px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, #6c63ff, #3f51b5);
-  color: #fff;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.btn-search:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(108,99,255,0.4); }
-.btn-search:active { transform: scale(0.97); }
-.btn-search:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-.status {
-  text-align: center;
-  padding: 10px;
-  font-size: 15px;
-  color: #aaa;
-}
-.status.loading { color: #6c63ff; }
-.status.error { color: #ff6b6b; }
-.status.success { color: #51cf66; }
-
-.results-info {
-  max-width: 900px;
-  margin: 10px auto;
-  padding: 0 15px;
-  font-size: 14px;
-  color: #888;
-}
-
-.results {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 15px 40px;
-}
-
-.paper-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-  padding: 20px;
-  margin-bottom: 16px;
-  transition: transform 0.2s, border-color 0.3s;
-}
-.paper-card:hover { transform: translateY(-2px); border-color: #6c63ff; }
-
-.paper-title {
-  font-size: 17px;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-.paper-title a {
-  color: #fff;
-  text-decoration: none;
-}
-.paper-title a:hover { color: #6c63ff; text-decoration: underline; }
-
-.paper-authors {
-  font-size: 14px;
-  color: #aaa;
-  margin-bottom: 6px;
-}
-.paper-meta {
-  font-size: 13px;
-  color: #888;
-  margin-bottom: 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.paper-meta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.paper-abstract {
-  font-size: 14px;
-  color: #bbb;
-  line-height: 1.6;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.tag {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-right: 6px;
-}
-.tag-open { background: rgba(81,207,102,0.2); color: #51cf66; }
-.tag-closed { background: rgba(255,107,107,0.2); color: #ff6b6b; }
-.tag-year { background: rgba(108,99,255,0.2); color: #a5a0ff; }
-.tag-cite { background: rgba(255,193,7,0.2); color: #ffc107; }
-.tag-source { background: rgba(0,188,212,0.2); color: #00bcd4; }
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding-bottom: 20px;
-}
-.pagination button {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: 2px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.pagination button:hover:not(:disabled) { border-color: #6c63ff; background: rgba(108,99,255,0.2); }
-.pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
-
-.export-btn {
-  display: block;
-  margin: 15px auto;
-  padding: 12px 28px;
-  border-radius: 10px;
-  border: 2px solid #51cf66;
-  background: rgba(81,207,102,0.15);
-  color: #51cf66;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.export-btn:hover { background: rgba(81,207,102,0.3); }
-
-.quick-topics {
-  max-width: 900px;
-  margin: 0 auto 15px;
-  padding: 0 15px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.quick-topic {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.05);
-  color: #aaa;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.quick-topic:hover { border-color: #6c63ff; color: #fff; background: rgba(108,99,255,0.2); }
-
-@media (max-width: 600px) {
-  .header h1 { font-size: 22px; }
-  .search-row { flex-direction: column; }
-  .filter-row { flex-direction: column; }
-  .filter-row select, .filter-row input[type="number"] { width: 100%; }
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#e0e0e0}
+.header{text-align:center;padding:30px 20px 20px;background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1)}
+.header h1{font-size:28px;color:#fff;margin-bottom:8px}
+.header p{font-size:16px;color:#aaa}
+.search-box{max-width:1100px;margin:25px auto;padding:0 15px}
+.kw-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:10px}
+.kw-grid input{padding:11px 12px;border-radius:10px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;transition:border-color .3s}
+.kw-grid input:focus{border-color:#6c63ff}
+.kw-grid input::placeholder{color:#666}
+.logic-row{text-align:center;margin-bottom:12px}
+.logic-row label{font-size:14px;color:#aaa;cursor:pointer;margin:0 12px}
+.logic-row input{margin-right:4px}
+.btn-search{display:block;margin:0 auto;padding:14px 40px;border-radius:12px;border:none;background:linear-gradient(135deg,#6c63ff,#3f51b5);color:#fff;font-size:17px;font-weight:bold;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-search:hover{transform:scale(1.03);box-shadow:0 4px 20px rgba(108,99,255,.4)}
+.btn-search:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:12px}
+.filter-row select{padding:10px 14px;border-radius:10px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none}
+.filter-row select option{background:#1a1a2e;color:#fff}
+.status{text-align:center;padding:10px;font-size:15px;color:#aaa}
+.status.loading{color:#6c63ff}.status.error{color:#ff6b6b}.status.success{color:#51cf66}
+.results-info{max-width:1100px;margin:10px auto;padding:0 15px;font-size:14px;color:#888}
+.results{max-width:1100px;margin:0 auto;padding:0 15px 40px}
+.paper-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:20px;margin-bottom:16px;transition:transform .2s,border-color .3s}
+.paper-card:hover{transform:translateY(-2px);border-color:#6c63ff}
+.paper-title{font-size:17px;font-weight:bold;color:#fff;margin-bottom:8px;line-height:1.4}
+.paper-title a{color:#fff;text-decoration:none}
+.paper-title a:hover{color:#6c63ff;text-decoration:underline}
+.paper-authors{font-size:14px;color:#aaa;margin-bottom:6px}
+.paper-meta{font-size:13px;color:#888;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:12px}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:bold;margin-right:6px}
+.tag-year{background:rgba(108,99,255,.2);color:#a5a0ff}
+.tag-cite{background:rgba(255,193,7,.2);color:#ffc107}
+.tag-source{background:rgba(0,188,212,.2);color:#00bcd4}
+.paper-abstract{font-size:14px;color:#bbb;line-height:1.7;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.08)}
+.abstract-toggle{color:#6c63ff;cursor:pointer;font-size:13px;margin-top:6px;display:inline-block}
+.abstract-toggle:hover{text-decoration:underline}
+.pagination{display:flex;justify-content:center;gap:10px;margin-top:20px;padding-bottom:20px}
+.pagination button{padding:10px 20px;border-radius:10px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:15px;cursor:pointer;transition:all .3s}
+.pagination button:hover:not(:disabled){border-color:#6c63ff;background:rgba(108,99,255,.2)}
+.pagination button:disabled{opacity:.3;cursor:not-allowed}
+.export-btn{display:block;margin:15px auto;padding:12px 28px;border-radius:10px;border:2px solid #51cf66;background:rgba(81,207,102,.15);color:#51cf66;font-size:15px;cursor:pointer;transition:all .3s}
+.export-btn:hover{background:rgba(81,207,102,.3)}
+.quick-topics{max-width:1100px;margin:0 auto 15px;padding:0 15px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.quick-topic{padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:#aaa;font-size:13px;cursor:pointer;transition:all .3s}
+.quick-topic:hover{border-color:#6c63ff;color:#fff;background:rgba(108,99,255,.2)}
+.api-note{text-align:center;font-size:12px;color:#666;margin-top:5px}
+@media(max-width:768px){.kw-grid{grid-template-columns:repeat(2,1fr)}.header h1{font-size:22px}}
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>📚 文獻搜尋器</h1>
-  <p>搜尋台灣 + 國際學術文獻（近五年）· 中英文皆可</p>
+  <p>Google Scholar 學術文獻搜尋 · 多關鍵字 AND/OR 連動 · 附摘要</p>
+  <div class="api-note">⚠️ 需要啟動後端伺服器：python3 scholar_api.py</div>
 </div>
 
 <div class="search-box">
-  <div class="search-row">
-    <input type="text" id="keyword" placeholder="關鍵字 1（必填）" autofocus>
-    <input type="text" id="keyword2" placeholder="關鍵字 2（選填）">
-    <input type="text" id="keyword3" placeholder="關鍵字 3（選填）">
-    <input type="text" id="keyword4" placeholder="關鍵字 4（選填）">
-    <input type="text" id="keyword5" placeholder="關鍵字 5（選填）">
-    <button class="btn-search" id="btnSearch" onclick="doSearch()">🔍 搜尋</button>
+  <div class="kw-grid">
+    <input type="text" id="kw1" placeholder="關鍵字 1（必填）" autofocus>
+    <input type="text" id="kw2" placeholder="關鍵字 2（選填）">
+    <input type="text" id="kw3" placeholder="關鍵字 3（選填）">
+    <input type="text" id="kw4" placeholder="關鍵字 4（選填）">
+    <input type="text" id="kw5" placeholder="關鍵字 5（選填）">
   </div>
-  <div style="text-align:center;margin-bottom:10px;">
-    <label style="font-size:13px;color:#888;">
-      <input type="radio" name="logicMode" value="and" checked> 全部都要出現（AND）
-    </label>
-    <label style="font-size:13px;color:#888;margin-left:15px;">
-      <input type="radio" name="logicMode" value="or"> 任一出現即可（OR）
-    </label>
+  <div class="logic-row">
+    <label><input type="radio" name="logic" value="and" checked> AND（全部都要出現）</label>
+    <label><input type="radio" name="logic" value="or"> OR（任一出現即可）</label>
   </div>
+  <button class="btn-search" id="btnSearch" onclick="doSearch()">🔍 搜尋 Google Scholar</button>
   <div class="filter-row">
-    <select id="sourceSelect">
-      <option value="openalex">🌍 OpenAlex（國際，4.74億篇）</option>
-      <option value="crossref">📖 Crossref（國際引用）</option>
-      <option value="all">🌐 全部來源</option>
-    </select>
     <select id="yearRange">
+      <option value="">不限年份</option>
       <option value="5">近 5 年</option>
       <option value="3">近 3 年</option>
       <option value="10">近 10 年</option>
-      <option value="0">不限年份</option>
     </select>
     <select id="sortBy">
       <option value="relevance">相關度排序</option>
       <option value="date">最新發表</option>
-      <option value="cited">最多引用</option>
-    </select>
-    <select id="langFilter">
-      <option value="all">全部語言</option>
-      <option value="zh">中文</option>
-      <option value="en">英文</option>
+      <option value="citations">最多引用</option>
     </select>
   </div>
 </div>
 
 <div class="quick-topics">
-  <span class="quick-topic" onclick="quickSearch('人工智慧')">🤖 人工智慧</span>
-  <span class="quick-topic" onclick="quickSearch('ESG')">🌱 ESG</span>
-  <span class="quick-topic" onclick="quickSearch('machine learning')">🧠 Machine Learning</span>
-  <span class="quick-topic" onclick="quickSearch('大數據')">📊 大數據</span>
-  <span class="quick-topic" onclick="quickSearch('blockchain')">⛓️ 區塊鏈</span>
-  <span class="quick-topic" onclick="quickSearch('永續發展')">♻️ 永續發展</span>
-  <span class="quick-topic" onclick="quickSearch('supply chain')">🚚 Supply Chain</span>
-  <span class="quick-topic" onclick="quickSearch('數位轉型')">📱 數位轉型</span>
+  <span class="quick-topic" onclick="quick('人工智慧')">🤖 人工智慧</span>
+  <span class="quick-topic" onclick="quick('ESG')">🌱 ESG</span>
+  <span class="quick-topic" onclick="quick('machine learning')">🧠 Machine Learning</span>
+  <span class="quick-topic" onclick="quick('大數據')">📊 大數據</span>
+  <span class="quick-topic" onclick="quick('blockchain')">⛓️ 區塊鏈</span>
+  <span class="quick-topic" onclick="quick('永續發展')">♻️ 永續發展</span>
+  <span class="quick-topic" onclick="quick('supply chain')">🚚 Supply Chain</span>
+  <span class="quick-topic" onclick="quick('數位轉型')">📱 數位轉型</span>
 </div>
 
 <div class="status" id="status"></div>
@@ -295,52 +107,52 @@ body {
 <div class="results" id="results"></div>
 
 <script>
-let currentPage = 1;
-const perPage = 20;
-let allResults = [];
-let currentKeyword = '';
+var allResults = [];
+var currentPage = 1;
+var perPage = 20;
+var currentKeyword = '';
 
-function quickSearch(kw) {
-  document.getElementById('keyword').value = kw;
+// API 端點（本機伺服器）
+var API_BASE = 'http://127.0.0.1:5555';
+
+function quick(kw) {
+  document.getElementById('kw1').value = kw;
+  document.getElementById('kw2').value = '';
+  document.getElementById('kw3').value = '';
+  document.getElementById('kw4').value = '';
+  document.getElementById('kw5').value = '';
   doSearch();
 }
 
-// 收集所有關鍵字
-function getAllKeywords() {
+function getKeywords() {
   var kws = [];
-  var k1 = document.getElementById('keyword').value.trim();
-  var k2 = document.getElementById('keyword2').value.trim();
-  var k3 = document.getElementById('keyword3').value.trim();
-  var k4 = document.getElementById('keyword4').value.trim();
-  var k5 = document.getElementById('keyword5').value.trim();
-  if (k1) kws.push(k1);
-  if (k2) kws.push(k2);
-  if (k3) kws.push(k3);
-  if (k4) kws.push(k4);
-  if (k5) kws.push(k5);
+  for (var i = 1; i <= 5; i++) {
+    var v = document.getElementById('kw' + i).value.trim();
+    if (v) kws.push(v);
+  }
   return kws;
 }
 
-// 多關鍵字搜尋：拼成「kw1 AND kw2 AND kw3」
-function buildSearchQuery(keywords) {
-  return keywords.join(' ');
+function buildQuery(kws, mode) {
+  // AND 搜尋：用 Google Scholar 的 AND 語法
+  if (mode === 'and' && kws.length > 1) {
+    return kws.join(' AND ');
+  }
+  // OR 搜尋
+  if (mode === 'or' && kws.length > 1) {
+    return '(' + kws.join(' OR ') + ')';
+  }
+  return kws[0];
 }
 
-// 結果篩選：檢查標題+摘要是否同時包含所有關鍵字
-function filterByKeywords(results, keywords, mode) {
-  if (keywords.length <= 1) return results; // 只有一個關鍵字不需要額外篩選
+function filterResults(results, kws, mode) {
+  if (kws.length <= 1) return results;
   return results.filter(function(r) {
     var text = (r.title + ' ' + r.abstract + ' ' + r.journal).toLowerCase();
     if (mode === 'and') {
-      // AND：所有關鍵字都要出現
-      return keywords.every(function(kw) {
-        return text.indexOf(kw.toLowerCase()) !== -1;
-      });
+      return kws.every(function(kw) { return text.indexOf(kw.toLowerCase()) !== -1; });
     } else {
-      // OR：任一關鍵字出現即可
-      return keywords.some(function(kw) {
-        return text.indexOf(kw.toLowerCase()) !== -1;
-      });
+      return kws.some(function(kw) { return text.indexOf(kw.toLowerCase()) !== -1; });
     }
   });
 }
@@ -348,57 +160,56 @@ function filterByKeywords(results, keywords, mode) {
 async function doSearch(page) {
   page = page || 1;
   currentPage = page;
-  var allKws = getAllKeywords();
-  if (allKws.length === 0) { alert('請輸入至少一個關鍵字'); return; }
-  currentKeyword = allKws.join('_'); // 用於 CSV 匯出檔名
+  var kws = getKeywords();
+  if (kws.length === 0) { alert('請輸入至少一個關鍵字'); return; }
 
-  var logicMode = document.querySelector('input[name=logicMode]:checked').value;
-  var source = document.getElementById('sourceSelect').value;
-  var years = document.getElementById('yearRange').value;
+  var mode = document.querySelector('input[name=logic]:checked').value;
+  var query = buildQuery(kws, mode);
+  currentKeyword = kws.join('_');
+  var yearRange = document.getElementById('yearRange').value;
   var sortBy = document.getElementById('sortBy').value;
-  var lang = document.getElementById('langFilter').value;
-
-  // 搜尋用的關鍵字串（多個關鍵字拼成 AND 搜尋，讓 API 盡量找到相關結果）
-  var searchQuery = buildSearchQuery(allKws);
 
   var btn = document.getElementById('btnSearch');
   btn.disabled = true;
   btn.textContent = '搜尋中...';
   document.getElementById('status').className = 'status loading';
-  document.getElementById('status').textContent = '⏳ 正在搜尋文獻，請稍候...';
+  document.getElementById('status').textContent = '⏳ 正在搜尋 Google Scholar，請稍候（約 5~10 秒）...';
   document.getElementById('results').innerHTML = '';
   document.getElementById('resultsInfo').textContent = '';
 
   try {
-    allResults = [];
-
-    if (source === 'openalex' || source === 'all') {
-      var oaResults = await searchOpenAlex(searchQuery, years, sortBy, lang);
-      allResults = allResults.concat(oaResults);
-    }
-    if (source === 'crossref' || source === 'all') {
-      var crResults = await searchCrossref(searchQuery, years, sortBy, lang);
-      allResults = allResults.concat(crResults);
+    var yearLow = '';
+    var yearHigh = '';
+    if (yearRange) {
+      yearLow = (new Date().getFullYear() - parseInt(yearRange)).toString();
+      yearHigh = new Date().getFullYear().toString();
     }
 
-    allResults = deduplicate(allResults);
+    var sortParam = sortBy === 'citations' ? 'relevance' : sortBy;
 
-    // 語言二次過濾（解決 OpenAlex 日中不分的問題）
-    if (lang === 'zh') {
-      allResults = allResults.filter(function(r) { return !isJapanese(r.title + ' ' + r.abstract + ' ' + r.journal); });
-    } else if (lang === 'en') {
-      allResults = allResults.filter(function(r) {
-        var text = r.title + ' ' + r.abstract + ' ' + r.journal;
-        return !isJapanese(text) && !isChinese(text);
-      });
+    var url = API_BASE + '/api/search?q=' + encodeURIComponent(query)
+      + '&sort_by=' + sortParam;
+    if (yearLow) url += '&year_low=' + yearLow;
+    if (yearHigh) url += '&year_high=' + yearHigh;
+
+    var resp = await fetch(url);
+    if (!resp.ok) throw new Error('API 錯誤: ' + resp.status);
+    var data = await resp.json();
+
+    if (data.error) throw new Error(data.error);
+
+    allResults = data.results || [];
+
+    // 後端做 AND 過濾後，前端再做一次確保精確
+    allResults = filterResults(allResults, kws, mode);
+
+    // 最多引用排序（前端處理）
+    if (sortBy === 'citations') {
+      allResults.sort(function(a, b) { return (b.citation_count || 0) - (a.citation_count || 0); });
     }
 
-    // 多關鍵字 AND/OR 篩選
-    allResults = filterByKeywords(allResults, allKws, logicMode);
-
-    var totalCount = allResults.length;
     document.getElementById('status').className = 'status success';
-    document.getElementById('status').textContent = '✅ 找到 ' + totalCount + ' 篇文獻（' + allKws.join(' ' + logicMode.toUpperCase() + ' ') + '）';
+    document.getElementById('status').textContent = '✅ 找到 ' + allResults.length + ' 篇文獻（' + kws.join(' ' + mode.toUpperCase() + ' ') + '）';
 
     renderResults();
   } catch (err) {
@@ -406,145 +217,8 @@ async function doSearch(page) {
     document.getElementById('status').textContent = '❌ 搜尋失敗：' + err.message;
   } finally {
     btn.disabled = false;
-    btn.textContent = '🔍 搜尋';
+    btn.textContent = '🔍 搜尋 Google Scholar';
   }
-}
-
-async function searchOpenAlex(keyword, years, sortBy, lang) {
-  var url = 'https://api.openalex.org/works?';
-  var params = new URLSearchParams();
-
-  // 加入中文關鍵字同時搜尋英文翻譯（如果只輸入中文，也搜英文版）
-  var searchTerms = [keyword];
-  // 不做自動翻譯，讓用戶自己決定要搜什麼語言
-  
-  params.set('search', keyword);
-  params.set('per_page', '50');
-  params.set('mailto', 'research@example.com');
-
-  // 語言篩選
-  var filters = [];
-  if (years !== '0') {
-    var fromYear = new Date().getFullYear() - parseInt(years);
-    filters.push('from_publication_date:' + fromYear + '-01-01');
-  }
-  if (lang === 'zh') filters.push('language:zh');
-  else if (lang === 'en') filters.push('language:en');
-  if (filters.length > 0) params.set('filter', filters.join(','));
-
-  if (sortBy === 'date') params.set('sort', 'publication_date:desc');
-  else if (sortBy === 'cited') params.set('sort', 'cited_by_count:desc');
-  else params.set('sort', 'relevance_score:desc');
-
-  var resp = await fetch(url + params.toString());
-  if (!resp.ok) throw new Error('OpenAlex API 錯誤: ' + resp.status);
-  var data = await resp.json();
-
-  return (data.results || []).map(function(w) {
-    return {
-      title: w.title || '(無標題)',
-      authors: (w.authorships || []).slice(0, 5).map(function(a) { return a.author && a.author.display_name; }).filter(Boolean).join(', ') + ((w.authorships||[]).length > 5 ? ' et al.' : ''),
-      year: w.publication_date ? w.publication_date.substring(0, 4) : '?',
-      journal: w.primary_location && w.primary_location.source ? w.primary_location.source.display_name : '',
-      doi: w.doi || '',
-      url: (w.primary_location && w.primary_location.landing_page_url) || w.doi || '',
-      citedBy: w.cited_by_count || 0,
-      isOpenAccess: w.open_access && w.open_access.is_oa,
-      abstract: reconstructAbstract(w.abstract_inverted_index || {}),
-      source: 'OpenAlex'
-    };
-  });
-}
-
-async function searchCrossref(keyword, years, sortBy, lang) {
-  // Crossref 搜尋用 query 加入語言關鍵字
-  var query = keyword;
-  // Crossref 有 language filter，加入 language 參數
-  var url = 'https://api.crossref.org/works?';
-  var params = new URLSearchParams();
-
-  params.set('query', query);
-  params.set('rows', '50');
-  params.set('mailto', 'research@example.com');
-
-  // 年份篩選
-  var filters = [];
-  if (years !== '0') {
-    var fromYear = new Date().getFullYear() - parseInt(years);
-    filters.push('from-pub-date:' + fromYear);
-  }
-  // 語言篩選（Crossref 支援 language filter）
-  if (lang === 'zh') filters.push('language:zh');
-  else if (lang === 'en') filters.push('language:en');
-  if (filters.length > 0) params.set('filter', filters.join(','));
-
-  if (sortBy === 'date') params.set('sort', 'published');
-  else if (sortBy === 'cited') params.set('sort', 'is-referenced-by-count');
-  else params.set('sort', 'relevance');
-
-  params.set('order', 'desc');
-
-  var resp = await fetch(url + params.toString());
-  if (!resp.ok) throw new Error('Crossref API 錯誤: ' + resp.status);
-  var data = await resp.json();
-
-  return (data.message && data.message.items || []).map(function(item) {
-    var authors = (item.author || []).slice(0, 5).map(function(a) {
-      if (a.family && a.given) return a.given + ' ' + a.family;
-      return a.name || '';
-    }).filter(Boolean).join(', ');
-    var dateParts = (item.published && item.published['date-parts'] && item.published['date-parts'][0]) || (item['published-print'] && item['published-print']['date-parts'] && item['published-print']['date-parts'][0]);
-    var year = dateParts ? dateParts[0] : '?';
-    var doiUrl = item.DOI ? 'https://doi.org/' + item.DOI : '';
-    return {
-      title: (item.title && item.title[0]) || '(無標題)',
-      authors: authors + ((item.author||[]).length > 5 ? ' et al.' : ''),
-      year: year,
-      journal: (item['container-title'] && item['container-title'][0]) || '',
-      doi: doiUrl,
-      url: item.URL || doiUrl,
-      citedBy: item['is-referenced-by-count'] || 0,
-      isOpenAccess: (item.license || []).some(function(l) { return l.URL && l.URL.includes('creativecommons'); }),
-      abstract: item.abstract ? item.abstract.replace(/<[^>]*>/g, '') : '',
-      source: 'Crossref'
-    };
-  });
-}
-
-function reconstructAbstract(invertedIndex) {
-  if (!invertedIndex || Object.keys(invertedIndex).length === 0) return '';
-  var words = {};
-  var keys = Object.keys(invertedIndex);
-  for (var k = 0; k < keys.length; k++) {
-    var word = keys[k];
-    var positions = invertedIndex[word];
-    for (var p = 0; p < positions.length; p++) {
-      words[positions[p]] = word;
-    }
-  }
-  var maxPos = Math.max.apply(null, Object.keys(words).map(Number));
-  var arr = [];
-  for (var i = 0; i <= maxPos; i++) {
-    arr.push(words[i] || '');
-  }
-  return arr.join(' ');
-}
-
-function deduplicate(results) {
-  var seen = {};
-  var out = [];
-  for (var i = 0; i < results.length; i++) {
-    var r = results[i];
-    var key = r.title.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff]/g, '').substring(0, 60);
-    if (!seen[key] || r.citedBy > seen[key].citedBy) {
-      seen[key] = r;
-    }
-  }
-  var keys2 = Object.keys(seen);
-  for (var j = 0; j < keys2.length; j++) {
-    out.push(seen[keys2[j]]);
-  }
-  return out;
 }
 
 function renderResults() {
@@ -554,7 +228,7 @@ function renderResults() {
   var totalPages = Math.ceil(allResults.length / perPage);
 
   document.getElementById('resultsInfo').textContent =
-    '共 ' + allResults.length + ' 篇文獻，第 ' + currentPage + ' / ' + totalPages + ' 頁';
+    '共 ' + allResults.length + ' 篇文獻，第 ' + currentPage + ' / ' + (totalPages || 1) + ' 頁';
 
   container.innerHTML = '';
 
@@ -567,108 +241,109 @@ function renderResults() {
     var p = pageResults[i];
     var card = document.createElement('div');
     card.className = 'paper-card';
+
+    var hasAbstract = p.abstract && p.abstract.length > 0;
+    var abstractId = 'abs_' + i;
+
     var html = '';
     html += '<div class="paper-title">';
-    html += '<a href="' + (p.url||'') + '" target="_blank" rel="noopener">' + escHtml(p.title) + '</a>';
+    html += '<a href="' + esc(p.url || '') + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>';
     html += '</div>';
-    html += '<div class="paper-authors">' + escHtml(p.authors) + '</div>';
+    html += '<div class="paper-authors">' + esc(p.authors) + '</div>';
     html += '<div class="paper-meta">';
-    html += '<span class="tag tag-year">📅 ' + p.year + '</span>';
-    if (p.journal) html += '<span class="tag tag-source">📖 ' + escHtml(p.journal) + '</span>';
-    html += '<span class="tag tag-cite">引用 ' + p.citedBy + '</span>';
-    html += '<span class="tag ' + (p.isOpenAccess ? 'tag-open' : 'tag-closed') + '">' + (p.isOpenAccess ? '🔓 OA' : '🔒 閉鎖') + '</span>';
-    html += '<span style="font-size:12px;color:#666;">來源：' + p.source + '</span>';
+    html += '<span class="tag tag-year">📅 ' + esc(p.year) + '</span>';
+    if (p.journal) html += '<span class="tag tag-source">📖 ' + esc(p.journal) + '</span>';
+    html += '<span class="tag tag-cite">引用 ' + (p.citation_count || 0) + '</span>';
+    html += '<span style="font-size:12px;color:#666;">來源：Google Scholar</span>';
     html += '</div>';
-    if (p.doi) html += '<div style="font-size:12px;color:#666;margin-bottom:4px;">DOI: <a href="' + p.doi + '" target="_blank" style="color:#6c63ff;">' + p.doi + '</a></div>';
-    if (p.abstract) {
-      var absText = p.abstract.substring(0, 300);
-      if (p.abstract.length > 300) absText += '...';
-      html += '<div class="paper-abstract">' + escHtml(absText) + '</div>';
+
+    if (p.doi) {
+      html += '<div style="font-size:12px;color:#666;margin-bottom:4px;">DOI: <a href="https://doi.org/' + esc(p.doi) + '" target="_blank" style="color:#6c63ff;">' + esc(p.doi) + '</a></div>';
     }
+
+    if (hasAbstract) {
+      var shortAbs = p.abstract.length > 250 ? p.abstract.substring(0, 250) + '...' : p.abstract;
+      html += '<div class="paper-abstract" id="' + abstractId + '_short">' + esc(shortAbs) + '</div>';
+      if (p.abstract.length > 250) {
+        html += '<span class="abstract-toggle" onclick="toggleAbstract(' + i + ')">展開完整摘要 ▼</span>';
+        html += '<div class="paper-abstract" id="' + abstractId + '_full" style="display:none;">' + esc(p.abstract) + '</div>';
+      }
+    } else {
+      html += '<div class="paper-abstract" style="color:#666;font-style:italic;">（無摘要）</div>';
+    }
+
     card.innerHTML = html;
     container.appendChild(card);
   }
 
-  // Pagination
   if (totalPages > 1) {
     var pag = document.createElement('div');
     pag.className = 'pagination';
-    var prevDisabled = currentPage <= 1 ? 'disabled' : '';
-    var nextDisabled = currentPage >= totalPages ? 'disabled' : '';
-    pag.innerHTML = '<button ' + prevDisabled + ' onclick="currentPage--;renderResults()">⬅ 上一頁</button>' +
-      '<button style="background:rgba(108,99,255,0.2);border-color:#6c63ff;">' + currentPage + ' / ' + totalPages + '</button>' +
-      '<button ' + nextDisabled + ' onclick="currentPage++;renderResults()">下一頁 ➡</button>';
+    pag.innerHTML = '<button ' + (currentPage <= 1 ? 'disabled' : '') + ' onclick="currentPage--;renderResults()">⬅ 上一頁</button>' +
+      '<button style="background:rgba(108,99,255,.2);border-color:#6c63ff;">' + currentPage + ' / ' + totalPages + '</button>' +
+      '<button ' + (currentPage >= totalPages ? 'disabled' : '') + ' onclick="currentPage++;renderResults()">下一頁 ➡</button>';
     container.appendChild(pag);
   }
 
-  // Export button
   if (allResults.length > 0) {
-    var expBtn = document.createElement('button');
-    expBtn.className = 'export-btn';
-    expBtn.textContent = '📥 匯出 CSV';
-    expBtn.onclick = exportCSV;
-    container.appendChild(expBtn);
+    var exp = document.createElement('button');
+    exp.className = 'export-btn';
+    exp.textContent = '📥 匯出 CSV（含摘要）';
+    exp.onclick = exportCSV;
+    container.appendChild(exp);
   }
 
-  window.scrollTo({ top: 300, behavior: 'smooth' });
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+
+function toggleAbstract(i) {
+  var shortEl = document.getElementById('abs_' + i + '_short');
+  var fullEl = document.getElementById('abs_' + i + '_full');
+  var toggle = shortEl.nextElementSibling;
+  if (fullEl.style.display === 'none') {
+    fullEl.style.display = 'block';
+    shortEl.style.display = 'none';
+    toggle.textContent = '收起摘要 ▲';
+  } else {
+    fullEl.style.display = 'none';
+    shortEl.style.display = 'block';
+    toggle.textContent = '展開完整摘要 ▼';
+  }
 }
 
 function exportCSV() {
-  var header = '\uFEFF標題,作者,年份,期刊,DOI,引用數,OA,摘要,來源\n';
+  var header = '\uFEFF標題,作者,年份,期刊,引用數,DOI,URL,摘要\n';
   var rows = allResults.map(function(p) {
-    return '"' + (p.title||'').replace(/"/g,'""') + '","' + (p.authors||'').replace(/"/g,'""') + '","' + p.year + '","' + (p.journal||'').replace(/"/g,'""') + '","' + (p.doi||'') + '","' + p.citedBy + '","' + (p.isOpenAccess? '是':'否') + '","' + (p.abstract||'').replace(/"/g,'""').substring(0,500) + '","' + p.source + '"';
+    return '"' + esc(p.title).replace(/"/g, '""') + '","' +
+      esc(p.authors).replace(/"/g, '""') + '","' +
+      esc(p.year) + '","' +
+      esc(p.journal).replace(/"/g, '""') + '","' +
+      (p.citation_count || 0) + '","' +
+      esc(p.doi || '') + '","' +
+      esc(p.url || '') + '","' +
+      esc((p.abstract || '').replace(/"/g, '""').substring(0, 800)) + '"';
   }).join('\n');
   var blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'literature_' + currentKeyword + '_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.download = 'google_scholar_' + currentKeyword + '_' + new Date().toISOString().slice(0, 10) + '.csv';
   a.click();
 }
 
-// 日文偵測：多層判斷（嚴格模式）
-function isJapanese(text) {
-  if (!text) return false;
-  // 1. 有平假名或片假名 → 一定是日文
-  if (/[\u3040-\u309F]/.test(text) || /[\u30A0-\u30FF]/.test(text)) return true;
-  // 2. 日文特有的漢字（和製漢字/擴充漢字）
-  if (/[働辻峠畑砿塡枠痺喰雑凧匂]/.test(text)) return true;
-  // 3. 片假名連續3個以上（外來語）
-  if (/[\u30A0-\u30FF]{3,}/.test(text)) return true;
-  // 4. 日文句尾特徵
-  if (/について|における|であること|の必要性|に際して/.test(text)) return true;
-  // 5. 日文期刊名特徵
-  if (/日本人|日本語|学会|誌|日本/.test(text) && /[\u3040-\u309F]/.test(text)) return true;
-  return false;
-}
-
-// 中文偵測：只含漢字且不含日文特徵
-function isChinese(text) {
-  if (!text) return false;
-  if (isJapanese(text)) return false;
-  return /[\u4E00-\u9FFF]/.test(text);
-}
-
-function escHtml(s) {
+function esc(s) {
   var d = document.createElement('div');
   d.textContent = s || '';
   return d.innerHTML;
 }
 
-document.getElementById('keyword').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doSearch();
-});
-document.getElementById('keyword2').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doSearch();
-});
-document.getElementById('keyword3').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doSearch();
-});
-document.getElementById('keyword4').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doSearch();
-});
-document.getElementById('keyword5').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doSearch();
-});
+// Enter 鍵觸發搜尋
+for (var i = 1; i <= 5; i++) {
+  (function(n) {
+    document.getElementById('kw' + n).addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') doSearch();
+    });
+  })(i);
+}
 </script>
 </body>
 </html>
