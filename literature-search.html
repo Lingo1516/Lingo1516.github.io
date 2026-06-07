@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>📚 文獻搜尋器 — 學術研究利器</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  min-height: 100vh;
+  color: #e0e0e0;
+}
+.header {
+  text-align: center;
+  padding: 30px 20px 20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.header h1 { font-size: 28px; color: #fff; margin-bottom: 8px; }
+.header p { font-size: 16px; color: #aaa; }
+
+.search-box {
+  max-width: 900px;
+  margin: 25px auto;
+  padding: 0 15px;
+}
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.search-row input {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 17px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.search-row input:focus { border-color: #6c63ff; }
+.search-row input::placeholder { color: #888; }
+
+.filter-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filter-row select, .filter-row input[type="number"] {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+}
+.filter-row select option { background: #1a1a2e; color: #fff; }
+
+.btn-search {
+  padding: 14px 32px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #6c63ff, #3f51b5);
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-search:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(108,99,255,0.4); }
+.btn-search:active { transform: scale(0.97); }
+.btn-search:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.status {
+  text-align: center;
+  padding: 10px;
+  font-size: 15px;
+  color: #aaa;
+}
+.status.loading { color: #6c63ff; }
+.status.error { color: #ff6b6b; }
+.status.success { color: #51cf66; }
+
+.results-info {
+  max-width: 900px;
+  margin: 10px auto;
+  padding: 0 15px;
+  font-size: 14px;
+  color: #888;
+}
+
+.results {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 15px 40px;
+}
+
+.paper-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: transform 0.2s, border-color 0.3s;
+}
+.paper-card:hover { transform: translateY(-2px); border-color: #6c63ff; }
+
+.paper-title {
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.paper-title a {
+  color: #fff;
+  text-decoration: none;
+}
+.paper-title a:hover { color: #6c63ff; text-decoration: underline; }
+
+.paper-authors {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+.paper-meta {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.paper-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.paper-abstract {
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.6;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 6px;
+}
+.tag-open { background: rgba(81,207,102,0.2); color: #51cf66; }
+.tag-closed { background: rgba(255,107,107,0.2); color: #ff6b6b; }
+.tag-year { background: rgba(108,99,255,0.2); color: #a5a0ff; }
+.tag-cite { background: rgba(255,193,7,0.2); color: #ffc107; }
+.tag-source { background: rgba(0,188,212,0.2); color: #00bcd4; }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+.pagination button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.pagination button:hover:not(:disabled) { border-color: #6c63ff; background: rgba(108,99,255,0.2); }
+.pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.export-btn {
+  display: block;
+  margin: 15px auto;
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: 2px solid #51cf66;
+  background: rgba(81,207,102,0.15);
+  color: #51cf66;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.export-btn:hover { background: rgba(81,207,102,0.3); }
+
+.quick-topics {
+  max-width: 900px;
+  margin: 0 auto 15px;
+  padding: 0 15px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.quick-topic {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: #aaa;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.quick-topic:hover { border-color: #6c63ff; color: #fff; background: rgba(108,99,255,0.2); }
+
+@media (max-width: 600px) {
+  .header h1 { font-size: 22px; }
+  .search-row { flex-direction: column; }
+  .filter-row { flex-direction: column; }
+  .filter-row select, .filter-row input[type="number"] { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📚 文獻搜尋器</h1>
+  <p>搜尋台灣 + 國際學術文獻（近五年）· 中英文皆可</p>
+</div>
+
+<div class="search-box">
+  <div class="search-row">
+    <input type="text" id="keyword" placeholder="輸入關鍵字，例：人工智慧、machine learning、ESG..." autofocus>
+    <button class="btn-search" id="btnSearch" onclick="doSearch()">🔍 搜尋</button>
+  </div>
+  <div class="filter-row">
+    <select id="sourceSelect">
+      <option value="openalex">🌍 OpenAlex（國際，4.74億篇）</option>
+      <option value="crossref">📖 Crossref（國際引用）</option>
+      <option value="all">🌐 全部來源</option>
+    </select>
+    <select id="yearRange">
+      <option value="5">近 5 年</option>
+      <option value="3">近 3 年</option>
+      <option value="10">近 10 年</option>
+      <option value="0">不限年份</option>
+    </select>
+    <select id="sortBy">
+      <option value="relevance">相關度排序</option>
+      <option value="date">最新發表</option>
+      <option value="cited">最多引用</option>
+    </select>
+    <select id="langFilter">
+      <option value="all">全部語言</option>
+      <option value="zh">中文</option>
+      <option value="en">英文</option>
+    </select>
+  </div>
+</div>
+
+<div class="quick-topics">
+  <span class="quick-topic" onclick="quickSearch('人工智慧')">🤖 人工智慧</span>
+  <span class="quick-topic" onclick="quickSearch('ESG')">🌱 ESG</span>
+  <span class="quick-topic" onclick="quickSearch('machine learning')">🧠 Machine Learning</span>
+  <span class="quick-topic" onclick="quickSearch('大數據')">📊 大數據</span>
+  <span class="quick-topic" onclick="quickSearch('blockchain')">⛓️ 區塊鏈</span>
+  <span class="quick-topic" onclick="quickSearch('永續發展')">♻️ 永續發展</span>
+  <span class="quick-topic" onclick="quickSearch('supply chain')">🚚 Supply Chain</span>
+  <span class="quick-topic" onclick="quickSearch('數位轉型')">📱 數位轉型</span>
+</div>
+
+<div class="status" id="status"></div>
+<div class="results-info" id="resultsInfo"></div>
+<div class="results" id="results"></div>
+
+<script>
+let currentPage = 1;
+const perPage = 20;
+let allResults = [];
+let currentKeyword = '';
+
+function quickSearch(kw) {
+  document.getElementById('keyword').value = kw;
+  doSearch();
+}
+
+async function doSearch(page) {
+  page = page || 1;
+  currentPage = page;
+  currentKeyword = document.getElementById('keyword').value.trim();
+  if (!currentKeyword) { alert('請輸入關鍵字'); return; }
+
+  var source = document.getElementById('sourceSelect').value;
+  var years = document.getElementById('yearRange').value;
+  var sortBy = document.getElementById('sortBy').value;
+  var lang = document.getElementById('langFilter').value;
+
+  var btn = document.getElementById('btnSearch');
+  btn.disabled = true;
+  btn.textContent = '搜尋中...';
+  document.getElementById('status').className = 'status loading';
+  document.getElementById('status').textContent = '⏳ 正在搜尋文獻，請稍候...';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('resultsInfo').textContent = '';
+
+  try {
+    allResults = [];
+
+    if (source === 'openalex' || source === 'all') {
+      var oaResults = await searchOpenAlex(currentKeyword, years, sortBy, lang);
+      allResults = allResults.concat(oaResults);
+    }
+    if (source === 'crossref' || source === 'all') {
+      var crResults = await searchCrossref(currentKeyword, years, sortBy, lang);
+      allResults = allResults.concat(crResults);
+    }
+
+    allResults = deduplicate(allResults);
+
+    var totalCount = allResults.length;
+    document.getElementById('status').className = 'status success';
+    document.getElementById('status').textContent = '✅ 找到 ' + totalCount + ' 篇文獻';
+
+    renderResults();
+  } catch (err) {
+    document.getElementById('status').className = 'status error';
+    document.getElementById('status').textContent = '❌ 搜尋失敗：' + err.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🔍 搜尋';
+  }
+}
+
+async function searchOpenAlex(keyword, years, sortBy, lang) {
+  var url = 'https://api.openalex.org/works?';
+  var params = new URLSearchParams();
+
+  params.set('search', keyword);
+  params.set('per_page', '50');
+  params.set('mailto', 'research@example.com');
+
+  if (years !== '0') {
+    var fromYear = new Date().getFullYear() - parseInt(years);
+    params.set('filter', 'from_publication_date:' + fromYear + '-01-01');
+  }
+
+  if (sortBy === 'date') params.set('sort', 'publication_date:desc');
+  else if (sortBy === 'cited') params.set('sort', 'cited_by_count:desc');
+  else params.set('sort', 'relevance_score:desc');
+
+  var resp = await fetch(url + params.toString());
+  if (!resp.ok) throw new Error('OpenAlex API 錯誤: ' + resp.status);
+  var data = await resp.json();
+
+  return (data.results || []).map(function(w) {
+    return {
+      title: w.title || '(無標題)',
+      authors: (w.authorships || []).slice(0, 5).map(function(a) { return a.author && a.author.display_name; }).filter(Boolean).join(', ') + ((w.authorships||[]).length > 5 ? ' et al.' : ''),
+      year: w.publication_date ? w.publication_date.substring(0, 4) : '?',
+      journal: w.primary_location && w.primary_location.source ? w.primary_location.source.display_name : '',
+      doi: w.doi || '',
+      url: (w.primary_location && w.primary_location.landing_page_url) || w.doi || '',
+      citedBy: w.cited_by_count || 0,
+      isOpenAccess: w.open_access && w.open_access.is_oa,
+      abstract: reconstructAbstract(w.abstract_inverted_index || {}),
+      source: 'OpenAlex'
+    };
+  });
+}
+
+async function searchCrossref(keyword, years, sortBy, lang) {
+  var url = 'https://api.crossref.org/works?';
+  var params = new URLSearchParams();
+
+  params.set('query', keyword);
+  params.set('rows', '50');
+  params.set('mailto', 'research@example.com');
+
+  if (years !== '0') {
+    var fromYear = new Date().getFullYear() - parseInt(years);
+    params.set('filter', 'from-pub-date:' + fromYear);
+  }
+
+  if (sortBy === 'date') params.set('sort', 'published');
+  else if (sortBy === 'cited') params.set('sort', 'is-referenced-by-count');
+  else params.set('sort', 'relevance');
+
+  params.set('order', 'desc');
+
+  var resp = await fetch(url + params.toString());
+  if (!resp.ok) throw new Error('Crossref API 錯誤: ' + resp.status);
+  var data = await resp.json();
+
+  return (data.message && data.message.items || []).map(function(item) {
+    var authors = (item.author || []).slice(0, 5).map(function(a) {
+      if (a.family && a.given) return a.given + ' ' + a.family;
+      return a.name || '';
+    }).filter(Boolean).join(', ');
+    var dateParts = (item.published && item.published['date-parts'] && item.published['date-parts'][0]) || (item['published-print'] && item['published-print']['date-parts'] && item['published-print']['date-parts'][0]);
+    var year = dateParts ? dateParts[0] : '?';
+    var doiUrl = item.DOI ? 'https://doi.org/' + item.DOI : '';
+    return {
+      title: (item.title && item.title[0]) || '(無標題)',
+      authors: authors + ((item.author||[]).length > 5 ? ' et al.' : ''),
+      year: year,
+      journal: (item['container-title'] && item['container-title'][0]) || '',
+      doi: doiUrl,
+      url: item.URL || doiUrl,
+      citedBy: item['is-referenced-by-count'] || 0,
+      isOpenAccess: (item.license || []).some(function(l) { return l.URL && l.URL.includes('creativecommons'); }),
+      abstract: item.abstract ? item.abstract.replace(/<[^>]*>/g, '') : '',
+      source: 'Crossref'
+    };
+  });
+}
+
+function reconstructAbstract(invertedIndex) {
+  if (!invertedIndex || Object.keys(invertedIndex).length === 0) return '';
+  var words = {};
+  var keys = Object.keys(invertedIndex);
+  for (var k = 0; k < keys.length; k++) {
+    var word = keys[k];
+    var positions = invertedIndex[word];
+    for (var p = 0; p < positions.length; p++) {
+      words[positions[p]] = word;
+    }
+  }
+  var maxPos = Math.max.apply(null, Object.keys(words).map(Number));
+  var arr = [];
+  for (var i = 0; i <= maxPos; i++) {
+    arr.push(words[i] || '');
+  }
+  return arr.join(' ');
+}
+
+function deduplicate(results) {
+  var seen = {};
+  var out = [];
+  for (var i = 0; i < results.length; i++) {
+    var r = results[i];
+    var key = r.title.toLowerCase().replace(/[^a-z0-9\u4e00-\u9fff]/g, '').substring(0, 60);
+    if (!seen[key] || r.citedBy > seen[key].citedBy) {
+      seen[key] = r;
+    }
+  }
+  var keys2 = Object.keys(seen);
+  for (var j = 0; j < keys2.length; j++) {
+    out.push(seen[keys2[j]]);
+  }
+  return out;
+}
+
+function renderResults() {
+  var container = document.getElementById('results');
+  var start = (currentPage - 1) * perPage;
+  var pageResults = allResults.slice(start, start + perPage);
+  var totalPages = Math.ceil(allResults.length / perPage);
+
+  document.getElementById('resultsInfo').textContent =
+    '共 ' + allResults.length + ' 篇文獻，第 ' + currentPage + ' / ' + totalPages + ' 頁';
+
+  container.innerHTML = '';
+
+  if (pageResults.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:#888;padding:40px;">沒有找到相關文獻，試試其他關鍵字？</p>';
+    return;
+  }
+
+  for (var i = 0; i < pageResults.length; i++) {
+    var p = pageResults[i];
+    var card = document.createElement('div');
+    card.className = 'paper-card';
+    var html = '';
+    html += '<div class="paper-title">';
+    html += '<a href="' + (p.url||'') + '" target="_blank" rel="noopener">' + escHtml(p.title) + '</a>';
+    html += '</div>';
+    html += '<div class="paper-authors">' + escHtml(p.authors) + '</div>';
+    html += '<div class="paper-meta">';
+    html += '<span class="tag tag-year">📅 ' + p.year + '</span>';
+    if (p.journal) html += '<span class="tag tag-source">📖 ' + escHtml(p.journal) + '</span>';
+    html += '<span class="tag tag-cite">引用 ' + p.citedBy + '</span>';
+    html += '<span class="tag ' + (p.isOpenAccess ? 'tag-open' : 'tag-closed') + '">' + (p.isOpenAccess ? '🔓 OA' : '🔒 閉鎖') + '</span>';
+    html += '<span style="font-size:12px;color:#666;">來源：' + p.source + '</span>';
+    html += '</div>';
+    if (p.doi) html += '<div style="font-size:12px;color:#666;margin-bottom:4px;">DOI: <a href="' + p.doi + '" target="_blank" style="color:#6c63ff;">' + p.doi + '</a></div>';
+    if (p.abstract) {
+      var absText = p.abstract.substring(0, 300);
+      if (p.abstract.length > 300) absText += '...';
+      html += '<div class="paper-abstract">' + escHtml(absText) + '</div>';
+    }
+    card.innerHTML = html;
+    container.appendChild(card);
+  }
+
+  // Pagination
+  if (totalPages > 1) {
+    var pag = document.createElement('div');
+    pag.className = 'pagination';
+    var prevDisabled = currentPage <= 1 ? 'disabled' : '';
+    var nextDisabled = currentPage >= totalPages ? 'disabled' : '';
+    pag.innerHTML = '<button ' + prevDisabled + ' onclick="currentPage--;renderResults()">⬅ 上一頁</button>' +
+      '<button style="background:rgba(108,99,255,0.2);border-color:#6c63ff;">' + currentPage + ' / ' + totalPages + '</button>' +
+      '<button ' + nextDisabled + ' onclick="currentPage++;renderResults()">下一頁 ➡</button>';
+    container.appendChild(pag);
+  }
+
+  // Export button
+  if (allResults.length > 0) {
+    var expBtn = document.createElement('button');
+    expBtn.className = 'export-btn';
+    expBtn.textContent = '📥 匯出 CSV';
+    expBtn.onclick = exportCSV;
+    container.appendChild(expBtn);
+  }
+
+  window.scrollTo({ top: 300, behavior: 'smooth' });
+}
+
+function exportCSV() {
+  var header = '\uFEFF標題,作者,年份,期刊,DOI,引用數,OA,摘要,來源\n';
+  var rows = allResults.map(function(p) {
+    return '"' + (p.title||'').replace(/"/g,'""') + '","' + (p.authors||'').replace(/"/g,'""') + '","' + p.year + '","' + (p.journal||'').replace(/"/g,'""') + '","' + (p.doi||'') + '","' + p.citedBy + '","' + (p.isOpenAccess? '是':'否') + '","' + (p.abstract||'').replace(/"/g,'""').substring(0,500) + '","' + p.source + '"';
+  }).join('\n');
+  var blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'literature_' + currentKeyword + '_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+function escHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+document.getElementById('keyword').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doSearch();
+});
+</script>
+</body>
+</html>
