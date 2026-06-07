@@ -563,15 +563,25 @@ function exportCSV() {
   a.click();
 }
 
-// 日文偵測：包含平假名或片假名就判定為日文
+// 日文偵測：多層判斷
 function isJapanese(text) {
   if (!text) return false;
-  // 平假名 Unicode: U+3040-U+309F
-  // 片假名 Unicode: U+30A0-U+30FF
-  return /[\u3040-\u309F]/.test(text) || /[\u30A0-\u30FF]/.test(text);
+  // 1. 有平假名或片假名 → 一定是日文
+  if (/[\u3040-\u309F]/.test(text) || /[\u30A0-\u30FF]/.test(text)) return true;
+  // 2. 日文特有的漢字（和製漢字/擴充漢字）
+  //    例：働、辻、峠、畑、砿、塡、枠、痺、喰、雑、凧、匂
+  if (/[働辻峠畑砿塡枠痺喰雑凧匂]/.test(text)) return true;
+  // 3. 日文特有的表記模式：漢字+假名的混合詞（雖然可能沒假名，但有日文特徵詞）
+  //    例：リサーチ、イシュー、アンブレラ、レビュー、サステナビリティ
+  if (/[\u30A0-\u30FF]{3,}/.test(text)) return true;  // 片假名連續3個以上（外來語）
+  // 4. 日文句尾特徵：「である」「について」「における」「の必要性」等
+  if (/について|における|であること|の必要性| Regarding|に際して/.test(text)) return true;
+  // 5. 日文特有的標點：全形句號「。」（中文也有，但日文更常用「．」半角句點）
+  if (/．/.test(text) && /[\u3040-\u30FF]/.test(text)) return true;
+  return false;
 }
 
-// 中文偵測：只含漢字（排除日文假名）
+// 中文偵測：只含漢字且不含日文特徵
 function isChinese(text) {
   if (!text) return false;
   if (isJapanese(text)) return false;
