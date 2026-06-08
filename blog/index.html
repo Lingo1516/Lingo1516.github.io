@@ -5,57 +5,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#333}
+body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;background:#111;color:#fff}
 
 /* Hero */
-.hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),url('images/a1997df2-858e-41ab-96ff-58fdeb196cf2.jpg') center/cover}
-.hero h1{font-size:48px;font-weight:700;color:#fff;margin-bottom:10px;text-shadow:2px 2px 8px rgba(0,0,0,.5)}
-.hero p{font-size:18px;color:rgba(255,255,255,.85)}
+.hero{position:relative;height:50vh;min-height:350px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),url('images/a1997df2-858e-41ab-96ff-58fdeb196cf2.jpg') center/cover}
+.hero h1{font-size:48px;font-weight:700;color:#fff;margin-bottom:8px}
+.hero p{font-size:18px;color:rgba(255,255,255,.8)}
 
-/* Tabs */
-.tabs{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #eee;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.tabs-inner{display:flex;max-width:900px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tab-btn{flex:1;min-width:0;padding:18px 12px;border:none;background:none;font-size:15px;font-weight:600;color:#999;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
-.tab-btn:hover{color:#333}
-.tab-btn.active{color:#e74c3c;border-bottom-color:#e74c3c}
+/* Filter bar */
+.filter{position:sticky;top:0;z-index:100;background:rgba(17,17,17,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1);padding:14px 20px}
+.filter-inner{display:flex;gap:10px;max-width:1200px;margin:0 auto;justify-content:center;flex-wrap:wrap}
+.filter-btn{padding:8px 20px;border:1px solid rgba(255,255,255,.2);background:none;color:#aaa;border-radius:20px;font-size:14px;cursor:pointer;transition:all .2s}
+.filter-btn:hover{border-color:#fff;color:#fff}
+.filter-btn.active{background:#e74c3c;border-color:#e74c3c;color:#fff}
 
-/* Content */
-.content{max-width:900px;margin:0 auto;padding:40px 20px}
-.day-panel{display:none}
-.day-panel.active{display:block}
+/* Masonry grid */
+.gallery{max-width:1200px;margin:0 auto;padding:20px}
+.masonry{columns:4;column-gap:12px}
+.item{break-inside:avoid;margin-bottom:12px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;transition:transform .2s}
+.item:hover{transform:scale(1.02)}
+.item img{width:100%;display:block;border-radius:8px}
+.item .day-tag{position:absolute;top:8px;left:8px;padding:3px 10px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;border-radius:10px;backdrop-filter:blur(4px)}
 
-/* Day header */
-.day-header{margin-bottom:30px}
-.day-header .date{font-size:14px;color:#e74c3c;font-weight:600;margin-bottom:6px}
-.day-header h2{font-size:30px;font-weight:700;color:#1a1a2e;margin-bottom:8px}
-.day-header .summary{font-size:16px;color:#666;line-height:1.7}
+/* Lightbox */
+.lightbox{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:200;align-items:center;justify-content:center}
+.lightbox.show{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px}
+.lightbox .close{position:absolute;top:20px;right:20px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none}
+.lightbox .nav{position:absolute;top:50%;color:#fff;font-size:40px;cursor:pointer;background:none;border:none;padding:20px}
+.lightbox .prev{left:10px}
+.lightbox .next{right:10px}
 
-/* Photo grid */
-.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:24px}
-.photos img{width:100%;height:200px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .2s}
-.photos img:hover{transform:scale(1.03)}
-
-/* Section inside day */
-.section{margin-top:36px}
-.section h3{font-size:20px;font-weight:700;color:#1a1a2e;margin-bottom:12px;padding-left:12px;border-left:4px solid #e74c3c}
-.section p{font-size:16px;color:#555;line-height:1.8;margin-bottom:12px}
-
-/* Food card inside tab */
-.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:20px}
-.food-item{background:#f8f9fa;border-radius:12px;overflow:hidden}
-.food-item img{width:100%;height:150px;object-fit:cover}
-.food-item .info{padding:14px}
-.food-item .info h4{font-size:16px;font-weight:700;margin-bottom:4px}
-.food-item .info p{font-size:13px;color:#888}
-
-.footer{text-align:center;padding:40px 20px;color:#999;font-size:14px;border-top:1px solid #eee;margin-top:40px}
-
-@media(max-width:768px){
-.hero h1{font-size:32px}
-.tab-btn{font-size:13px;padding:14px 8px}
-.day-header h2{font-size:24px}
-.photos{grid-template-columns:1fr 1fr}
-}
+@media(max-width:1024px){.masonry{columns:3}}
+@media(max-width:768px){.masonry{columns:2}.hero h1{font-size:32px}}
+@media(max-width:480px){.masonry{columns:2;column-gap:8px}.item{margin-bottom:8px}}
 </style></head><body>
 
 <div class="hero">
@@ -63,145 +46,191 @@ body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;back
 <p>5 Days 4 Nights in Kyushu</p>
 </div>
 
-<div class="tabs">
-<div class="tabs-inner">
-<button class="tab-btn active" onclick="showDay(0)">DAY 1</button>
-<button class="tab-btn" onclick="showDay(1)">DAY 2</button>
-<button class="tab-btn" onclick="showDay(2)">DAY 3</button>
-<button class="tab-btn" onclick="showDay(3)">DAY 4</button>
-<button class="tab-btn" onclick="showDay(4)">DAY 5</button>
+<div class="filter">
+<div class="filter-inner">
+<button class="filter-btn active" onclick="filterDay('all')">全部（177）</button>
+<button class="filter-btn" onclick="filterDay(1)">Day 1</button>
+<button class="filter-btn" onclick="filterDay(2)">Day 2</button>
+<button class="filter-btn" onclick="filterDay(3)">Day 3</button>
+<button class="filter-btn" onclick="filterDay(4)">Day 4</button>
+<button class="filter-btn" onclick="filterDay(5)">Day 5</button>
 </div>
 </div>
 
-<div class="content">
-
-<!-- DAY 1 -->
-<div class="day-panel active">
-<div class="day-header">
-<div class="date">2026年5月17日（六）</div>
-<h2>Day 1 — 啟程</h2>
-<div class="summary">桃園機場 → 福岡 → 一幸舍拉麵 → 大福 → 大東園燒肉 → 櫛田神社夜參 → 運河城水舞</div>
-</div>
-<div class="section">
-<p>一趟說走就走的小旅行，從台北到福岡。清晨五點半出發，搭上長榮 BR 106 飛往福岡。抵達後直奔博多地下街，吃一幸舍的泡系拉麵，排隊買回饅頭大福，逛 OIOI 百貨，最後以夜晚的大東園燒肉完美收尾。</p>
-<p>晚上散步到櫛田神社參拜，再走到博多運河城看水舞秀，第一天就在福岡的夜色中結束。</p>
-</div>
-<div class="photos">
-<img src="images/f033be89-6de4-44b3-a190-22b55a851a14.jpg" alt="候機">
-<img src="images/1009a15d-dd15-4ff7-9f08-b1ed136d188b.jpg" alt="BR106">
-<img src="images/de1cc75d-a10d-4a46-9abb-8dc37e7e6e56.jpg" alt="降落福岡">
-<img src="images/a1997df2-858e-41ab-96ff-58fdeb196cf2.jpg" alt="福岡">
-<img src="images/69f1d436-6aef-4faf-a25d-4a08c3f7fbaa.jpg" alt="福岡機場">
-<img src="images/6a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d.jpg" alt="博多">
-</div>
-<div class="section" style="margin-top:30px">
-<a href="福岡之旅-·-啟程.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 1 →</a>
-</div>
+<div class="gallery">
+<div class="masonry" id="gallery"></div>
 </div>
 
-<!-- DAY 2 -->
-<div class="day-panel">
-<div class="day-header">
-<div class="date">2026年5月18日（日）</div>
-<h2>Day 2 — 晨光中的博多</h2>
-<div class="summary">太宰府天滿宮 → 皿嶽山 → 博多運河城 → 中洲屋台 → 天神地下街</div>
+<div class="lightbox" id="lightbox">
+<button class="close" onclick="closeLightbox()">✕</button>
+<button class="nav prev" onclick="navPic(-1)">‹</button>
+<button class="nav next" onclick="navPic(1)">›</button>
+<img id="lbImg" src="">
 </div>
-<div class="section">
-<p>陽光從窗簾縫隙透進來，喚醒了第二天在福岡的早晨。今天排滿了行程，從太宰府天滿宮開始，參拜學問之神。接著搭巴士前往皿嶽山，從山上俯瞰整個福岡市區。</p>
-<p>下午回到市區，逛博多運河城和中洲屋台，品嚐道地的屋台料理。晚上則鑽進天神地下街，享受購物的樂趣。</p>
-</div>
-<div class="photos">
-<img src="images/20260518_sunshine_hotel_morning_view.jpg" alt="晨光">
-<img src="images/20260518_dazaifu1.jpg" alt="太宰府">
-<img src="images/20260518_dazaifu2.jpg" alt="太宰府2">
-<img src="images/20260518_kamado_shrine1.jpg" alt="竈門神社">
-<img src="images/20260518_raizan_kannon1.jpg" alt="皿嶽山">
-<img src="images/20260518_hotel_breakfast2.jpg" alt="早餐">
-</div>
-<div class="section" style="margin-top:30px">
-<a href="福岡之旅-·-晨光中的博多.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 2 →</a>
-</div>
-</div>
-
-<!-- DAY 3 -->
-<div class="day-panel">
-<div class="day-header">
-<div class="date">2026年5月19日（一）</div>
-<h2>Day 3 — 同一扇窗・不同風景</h2>
-<div class="summary">豆田神社 → 大川運河遊船 → 西陣織會館 → 三條大橋 → 天神商圈</div>
-</div>
-<div class="section">
-<p>在陽光飯店的第三天早晨，雖然還是同一間餐廳，但今天換了個位子——窗外的風景完全不一樣了。陽光從另一個方向灑進來，街道的景色也不一樣，這就是住同一間飯店幾天的樂趣。</p>
-<p>今天前往豆田神社參拜，接著搭遊船遊覽大川運河，參觀西陣織會館，最後走到三條大橋。傍晚回到天神商圈逛街，走走停停，享受旅行的慢步調。</p>
-</div>
-<div class="photos">
-<img src="images/20260519_breakfast_day3_01.jpg" alt="早餐">
-<img src="images/day3_breakfast_view.jpg" alt="窗景">
-<img src="images/20260519_day3_01.jpg" alt="Day3">
-<img src="images/day3_tenjin_01.jpg" alt="天神">
-<img src="images/day3_street_02.jpg" alt="街景">
-<img src="images/day3_parco_01.jpg" alt="PARCO">
-</div>
-<div class="section" style="margin-top:30px">
-<a href="福岡之旅-·-day-3-同一扇窗・不同風景.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 3 →</a>
-</div>
-</div>
-
-<!-- DAY 4 -->
-<div class="day-panel">
-<div class="day-header">
-<div class="date">2026年5月20日（二）</div>
-<h2>Day 4 — 前田屋牛腸鍋之夜</h2>
-<div class="summary">六本松文青散策 → 運河城午餐 → 博多車站伴手禮 → 前田屋牛腸鍋</div>
-</div>
-<div class="section">
-<p>第四天早上，搭上火車前往六本松。六本松一帶有許多文青小店和咖啡館，氛圍和博多市區很不一樣。在這裡悠閒地散步，感受不一樣的福岡。</p>
-<p>下午回到博多運河城吃午餐，再到博多車站採買伴手禮。晚上則是重頭戲——前田屋的牛腸鍋，濃郁的味噌湯底配上軟嫩的牛腸，是福岡必吃的在地美味。</p>
-</div>
-<div class="photos">
-<img src="images/day4_morning1.jpg" alt="早晨">
-<img src="images/day4_ropponmatsu1.jpg" alt="六本松">
-<img src="images/day4_full1.jpg" alt="風景">
-<img src="images/day4_maedaya.jpg" alt="前田屋">
-<img src="images/day4_maedaya2.jpg" alt="牛腸鍋">
-<img src="images/day4_maedaya3.jpg" alt="料理">
-</div>
-<div class="section" style="margin-top:30px">
-<a href="福岡之旅-·-day-4-前田屋牛腸鍋之夜.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 4 →</a>
-</div>
-</div>
-
-<!-- DAY 5 -->
-<div class="day-panel">
-<div class="day-header">
-<div class="date">2026年5月20日（二）晚餐</div>
-<h2>Day 5 — 華味鳥・博多水炊雞</h2>
-<div class="summary">華味鳥（はなおり）— 博多水炊雞老字號 → 最後的福岡味</div>
-</div>
-<div class="section">
-<p>旅程的最後一晚，來到博多水炊雞的經典老店「華味鳥（はなおり）」。湯頭清甜鮮美，雞肉嫩滑多汁，是福岡必訪的在地美味。</p>
-<p>用這碗溫暖的雞湯，為這趟五天四夜的九州之旅畫下完美句點。</p>
-</div>
-<div class="photos">
-<img src="images/hanaori_dinner.jpg" alt="華味鳥">
-<img src="images/hanaori_dinner2.jpg" alt="料理">
-<img src="images/hanaori_dinner3.jpg" alt="湯頭">
-<img src="images/hanaori_dinner4.jpg" alt="用餐">
-</div>
-<div class="section" style="margin-top:30px">
-<a href="福岡·華味鳥-博多水炊雞老字號.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 5 →</a>
-</div>
-</div>
-
-</div>
-
-<div class="footer">Lingo Fukuoka Trip 2026</div>
 
 <script>
-function showDay(n){
-  document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.classList.toggle('active',i===n)});
-  document.querySelectorAll('.day-panel').forEach((p,i)=>{p.classList.toggle('active',i===n)});
-  window.scrollTo({top:document.querySelector('.tabs').offsetTop,behavior:'smooth'});
+var pics=[
+// Day 1
+{src:"images/a1997df2-858e-41ab-96ff-58fdeb196cf2.jpg",day:1},
+{src:"images/f033be89-6de4-44b3-a190-22b55a851a14.jpg",day:1},
+{src:"images/1009a15d-dd15-4ff7-9f08-b1ed136d188b.jpg",day:1},
+{src:"images/653514d8-238f-4bda-941a-29b72241a454.jpg",day:1},
+{src:"images/de1cc75d-a10d-4a46-9abb-8dc37e7e6e56.jpg",day:1},
+{src:"images/69f1d436-6aef-4faf-a25d-4a08c3f7fbaa.jpg",day:1},
+{src:"images/6a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d.jpg",day:1},
+{src:"images/lingo_airport2.jpg",day:1},
+{src:"images/lingo_airport3.jpg",day:1},
+{src:"images/lingo_boarding.jpg",day:1},
+{src:"images/lingo_canal1.jpg",day:1},
+{src:"images/hakata_daruma.jpg",day:1},
+{src:"images/ippudo3.jpg",day:1},
+{src:"images/daitoen_ext.jpg",day:1},
+{src:"images/danbo.jpg",day:1},
+{src:"images/lingo_boardgame.jpg",day:1},
+// Day 2
+{src:"images/20260518_sunshine_hotel_morning_view.jpg",day:2},
+{src:"images/20260518_hotel_breakfast2.jpg",day:2},
+{src:"images/20260518_hotel_breakfast3.jpg",day:2},
+{src:"images/20260518_hotel_breakfast4.jpg",day:2},
+{src:"images/20260518_hotel_breakfast5.jpg",day:2},
+{src:"images/20260518_hotel_breakfast6.jpg",day:2},
+{src:"images/20260518_hotel_breakfast7.jpg",day:2},
+{src:"images/20260518_hotel_breakfast8.jpg",day:2},
+{src:"images/20260518_dazaifu1.jpg",day:2},
+{src:"images/20260518_dazaifu2.jpg",day:2},
+{src:"images/20260518_dazaifu3.jpg",day:2},
+{src:"images/20260518_dazaifu4.jpg",day:2},
+{src:"images/20260518_kamado_shrine1.jpg",day:2},
+{src:"images/20260518_kamado_shrine2.jpg",day:2},
+{src:"images/20260518_kamado_shrine3.jpg",day:2},
+{src:"images/20260518_kamado_shrine4.jpg",day:2},
+{src:"images/20260518_raizan_kannon1.jpg",day:2},
+{src:"images/20260518_raizan_kannon2.jpg",day:2},
+{src:"images/20260518_raizan_kannon3.jpg",day:2},
+{src:"images/20260518_raizan_kannon4.jpg",day:2},
+{src:"images/20260518_raizan_kannon5.jpg",day:2},
+{src:"images/20260518_raizan_kannon6.jpg",day:2},
+{src:"images/20260518_raizan_kannon7.jpg",day:2},
+{src:"images/20260518_raizan_kannon8.jpg",day:2},
+{src:"images/20260518_kkday_bus_departure.jpg",day:2},
+{src:"images/20260518_kkday_enroute.jpg",day:2},
+{src:"images/20260518_kkday_scenery2.jpg",day:2},
+{src:"images/20260518_yanagawa1.jpg",day:2},
+{src:"images/dazaifu1.jpg",day:2},
+{src:"images/dazaifu2.jpg",day:2},
+{src:"images/dazaifu3.jpg",day:2},
+{src:"images/dazaifu4.jpg",day:2},
+{src:"images/kamado1.jpg",day:2},
+{src:"images/kamado2.jpg",day:2},
+{src:"images/kamado3.jpg",day:2},
+{src:"images/kamado4.jpg",day:2},
+// Day 3
+{src:"images/20260519_breakfast_day3_01.jpg",day:3},
+{src:"images/20260519_breakfast_day3_02.jpg",day:3},
+{src:"images/20260519_day3_01.jpg",day:3},
+{src:"images/20260519_day3_04.jpg",day:3},
+{src:"images/20260519_day3_05.jpg",day:3},
+{src:"images/20260519_day3_06.jpg",day:3},
+{src:"images/20260519_day3_07.jpg",day:3},
+{src:"images/20260519_day3_08.jpg",day:3},
+{src:"images/20260519_day3_09.jpg",day:3},
+{src:"images/20260519_day3_10.jpg",day:3},
+{src:"images/20260519_day3_11.jpg",day:3},
+{src:"images/20260519_day3_12.jpg",day:3},
+{src:"images/20260519_day3_13.jpg",day:3},
+{src:"images/20260519_day3_14.jpg",day:3},
+{src:"images/20260519_day3_15.jpg",day:3},
+{src:"images/20260519_day3_16.jpg",day:3},
+{src:"images/20260519_day3_17.jpg",day:3},
+{src:"images/20260519_day3_18.jpg",day:3},
+{src:"images/day3_breakfast_view.jpg",day:3},
+{src:"images/day3_breakfast_food.jpg",day:3},
+{src:"images/day3_bluescreen_coffee.jpg",day:3},
+{src:"images/day3_street_02.jpg",day:3},
+{src:"images/day3_street_03.jpg",day:3},
+{src:"images/day3_street_view.jpg",day:3},
+{src:"images/day3_tenjin_01.jpg",day:3},
+{src:"images/day3_tenjin_02.jpg",day:3},
+{src:"images/day3_tenjin_03.jpg",day:3},
+{src:"images/day3_tenjin_04.jpg",day:3},
+{src:"images/day3_tenjin_05.jpg",day:3},
+{src:"images/day3_tenjin_06.jpg",day:3},
+{src:"images/day3_tenjin_07.jpg",day:3},
+{src:"images/day3_tenjin_08.jpg",day:3},
+{src:"images/day3_tenjin_09.jpg",day:3},
+{src:"images/day3_tenjin_10.jpg",day:3},
+{src:"images/day3_tenjin_11.jpg",day:3},
+{src:"images/day3_walk_01.jpg",day:3},
+{src:"images/day3_parco_01.jpg",day:3},
+{src:"images/day3_mina_uniqlo.jpg",day:3},
+{src:"images/day3_bluescreen_receipt.jpg",day:3},
+// Day 4
+{src:"images/day4_morning1.jpg",day:4},
+{src:"images/day4_morning2.jpg",day:4},
+{src:"images/day4_morning3.jpg",day:4},
+{src:"images/day4_morning4.jpg",day:4},
+{src:"images/day4_morning5.jpg",day:4},
+{src:"images/day4_morning6.jpg",day:4},
+{src:"images/day4_morning7.jpg",day:4},
+{src:"images/day4_ropponmatsu1.jpg",day:4},
+{src:"images/day4_ropponmatsu2.jpg",day:4},
+{src:"images/day4_ropponmatsu3.jpg",day:4},
+{src:"images/day4_ropponmatsu4.jpg",day:4},
+{src:"images/day4_full1.jpg",day:4},
+{src:"images/day4_full2.jpg",day:4},
+{src:"images/day4_full3.jpg",day:4},
+{src:"images/day4_maedaya.jpg",day:4},
+{src:"images/day4_maedaya2.jpg",day:4},
+{src:"images/day4_maedaya3.jpg",day:4},
+// Day 5
+{src:"images/hanaori_dinner.jpg",day:5},
+{src:"images/hanaori_dinner2.jpg",day:5},
+{src:"images/hanaori_dinner3.jpg",day:5},
+{src:"images/hanaori_dinner4.jpg",day:5}
+];
+
+var currentFilter='all';
+var currentIdx=0;
+var filtered=[];
+
+function renderGallery(){
+  var g=document.getElementById('gallery');
+  g.innerHTML='';
+  filtered=currentFilter==='all'?pics:pics.filter(function(p){return p.day===currentFilter});
+  filtered.forEach(function(p,i){
+    var d=document.createElement('div');
+    d.className='item';
+    d.innerHTML='<img src="'+p.src+'" loading="lazy"><div class="day-tag">Day '+p.day+'</div>';
+    d.onclick=function(){openLightbox(i)};
+    g.appendChild(d);
+  });
 }
+
+function filterDay(d){
+  currentFilter=d;
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+  if(d==='all')document.querySelectorAll('.filter-btn')[0].classList.add('active');
+  else document.querySelectorAll('.filter-btn')[d].classList.add('active');
+  renderGallery();
+}
+
+function openLightbox(i){
+  currentIdx=i;
+  document.getElementById('lbImg').src=filtered[i].src;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('show')}
+function navPic(dir){
+  currentIdx=(currentIdx+dir+filtered.length)%filtered.length;
+  document.getElementById('lbImg').src=filtered[currentIdx].src;
+}
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('lightbox').classList.contains('show'))return;
+  if(e.key==='Escape')closeLightbox();
+  if(e.key==='ArrowLeft')navPic(-1);
+  if(e.key==='ArrowRight')navPic(1);
+});
+
+renderGallery();
 </script>
 </body></html>
