@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Lingo AI 服務方案 — 商業計畫書</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.8;
+    padding: 20px 16px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  
+  .hero {
+    text-align: center;
+    padding: 40px 0 30px;
+    border-bottom: 1px solid #222;
+    margin-bottom: 30px;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+  .hero .subtitle { font-size: 18px; color: #888; }
+  .hero .tagline { font-size: 22px; color: #ffd93d; margin-top: 12px; font-weight: 600; }
+  
+  h2 {
+    font-size: 24px;
+    color: #00d2ff;
+    margin: 30px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1a1a2e;
+  }
+  h3 { font-size: 20px; color: #ffd93d; margin: 20px 0 10px; }
+  
+  .card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card.highlight {
+    border-color: #3a7bd5;
+    background: linear-gradient(135deg, #0a0a2e, #111);
+  }
+  
+  .plan-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 600px) {
+    .plan-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  
+  .plan-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  .plan-card:active { transform: scale(0.97); }
+  .plan-card.popular {
+    border-color: #ffd93d;
+    background: linear-gradient(135deg, #1a1a00, #111);
+    position: relative;
+  }
+  .plan-card.popular::before {
+    content: "🔥 最熱銷";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffd93d;
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 16px;
+    border-radius: 20px;
+  }
+  .plan-name { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .plan-price { font-size: 36px; font-weight: 800; color: #00d2ff; margin: 12px 0; }
+  .plan-price span { font-size: 16px; color: #888; font-weight: 400; }
+  .plan-features { text-align: left; list-style: none; margin-top: 16px; }
+  .plan-features li {
+    padding: 6px 0;
+    font-size: 15px;
+    color: #ccc;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .plan-features li::before { content: "✅ "; }
+  
+  .flow-box {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  .flow-box .step {
+    display: inline-block;
+    background: #3a7bd5;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 8px;
+    margin-right: 8px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+  th {
+    background: #1a1a2e;
+    color: #ffd93d;
+    font-size: 15px;
+    padding: 12px;
+    text-align: left;
+  }
+  td {
+    padding: 12px;
+    font-size: 15px;
+    border-bottom: 1px solid #1a1a1a;
+    color: #ccc;
+  }
+  
+  .badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 8px;
+    margin-right: 6px;
+  }
+  .badge.green { background: #0a3d0a; color: #6bcb77; }
+  .badge.blue { background: #0a2a3d; color: #4d96ff; }
+  .badge.red { background: #3d0a0a; color: #ff6b6b; }
+  .badge.yellow { background: #3d2a0a; color: #ffd93d; }
+  
+  .footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    color: #555;
+    font-size: 14px;
+  }
+  
+  .tip {
+    background: rgba(255, 217, 61, 0.1);
+    border-left: 4px solid #ffd93d;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 16px;
+    color: #ffd93d;
+  }
+  
+  .warn {
+    background: rgba(255, 107, 107, 0.1);
+    border-left: 4px solid #ff6b6b;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 16px;
+    color: #ff6b6b;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="hero">
+  <h1>🤖 Lingo AI</h1>
+  <div class="subtitle">你的 AI 生活秘書 — 簡報・旅遊・論文・新聞，一句話搞定</div>
+  <div class="tagline">「給你一個 AI 助手，幫你做所有雜事」</div>
+</div>
+
+<!-- ===== 服務定位 ===== -->
+<h2>🎯 服務定位</h2>
+<div class="card highlight">
+  <p style="font-size:17px; line-height:1.8;">
+    <strong>不是賣工具，是賣「結果」。</strong><br><br>
+    客戶不需要懂 AI、不需要學 prompt、不需要設定任何東西。<br>
+    只要傳一句話（Telegram/微信），小綠就會幫你做出成品：<br><br>
+    📊 「幫我做一份季度業績簡報」→ 30 分鐘內收到完整 PPTX<br>
+    🗺️ 「幫我做沖繩五天旅遊地圖」→ 收到互動式地圖 + 行程<br>
+    📝 「幫我排版論文第三章」→ 收到 Word 格式完整排版<br>
+    📰 「幫我整理今天的新聞懶人包」→ 收到精美 HTML
+  </p>
+</div>
+
+<!-- ===== 三個方案 ===== -->
+<h2>💰 三個收費方案</h2>
+
+<div class="plan-grid">
+  <!-- 基本方案 -->
+  <div class="plan-card">
+    <div class="plan-name">🌱 入門版</div>
+    <div class="plan-price">NT$299<span>/月</span></div>
+    <ul class="plan-features">
+      <li>每月 30 次 AI 服務</li>
+      <li>新聞懶人包</li>
+      <li>旅遊地圖（基礎版）</li>
+      <li>簡報製作（10 頁內）</li>
+      <li>Telegram 專人服務</li>
+      <li>48 小時內交付</li>
+    </ul>
+  </div>
+  
+  <!-- 專業方案 -->
+  <div class="plan-card popular">
+    <div class="plan-name">⚡ 專業版</div>
+    <div class="plan-price">NT$799<span>/月</span></div>
+    <ul class="plan-features">
+      <li>每月 100 次 AI 服務</li>
+      <li>不限頁數簡報</li>
+      <li>旅遊地圖（豪華版）</li>
+      <li>論文排版協助</li>
+      <li>24 小時內交付</li>
+      <li>優先處理權</li>
+      <li>數據分析報告</li>
+    </ul>
+  </div>
+  
+  <!-- 企業方案 -->
+  <div class="plan-card">
+    <div class="plan-name">🏢 企業版</div>
+    <div class="plan-price">NT$2,499<span>/月</span></div>
+    <ul class="plan-features">
+      <li>無限次 AI 服務</li>
+      <li>專屬 AI 助手</li>
+      <li>所有技能全開</li>
+      <li>12 小時內交付</li>
+      <li>客製化技能開發</li>
+      <li>品牌簡報模板</li>
+      <li>季度使用報告</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tip">
+  💡 <strong>單次體驗價：</strong>不想訂閱？也可以單次購買！<br>
+  簡報 NT$300 / 旅遊地圖 NT$200 / 論文排版 NT$500 / 新聞懶人包 NT$100
+</div>
+
+<!-- ===== 金流方案 ===== -->
+<h2>💳 收錢方式（3 種選擇）</h2>
+
+<div class="card">
+  <h3>方案 A：最簡單 — 行動支付 + 匯款</h3>
+  <p style="font-size:16px; color:#aaa;">
+    <span class="badge green">零成本</span> <span class="badge blue">5 分鐘搞定</span>
+  </p>
+  <div class="flow-box">
+    <span class="step">1</span> 客戶在 Telegram 說「我要訂專業版」
+  </div>
+  <div class="flow-box">
+    <span class="step">2</span> 小綠回傳付款資訊（街口支付碼 / 匯款帳號）
+  </div>
+  <div class="flow-box">
+    <span class="step">3</span> 客戶付款後傳截圖給小綠
+  </div>
+  <div class="flow-box">
+    <span class="step">4</span> 小綠確認到帳 → 自動開通服務 → 記入 MEMORY.md
+  </div>
+  <p style="margin-top:12px; font-size:15px; color:#6bcb77;">
+    ✅ 優點：零手續費、零設定、馬上能開始<br>
+    ❌ 缺點：要人工對帳、沒自動化、不夠專業感
+  </p>
+</div>
+
+<div class="card">
+  <h3>方案 B：推薦 — 藍新金流（NewebPay）</h3>
+  <p style="font-size:16px; color:#aaa;">
+    <span class="badge yellow">手續費 2.5%</span> <span class="badge blue">全自動化</span>
+  </p>
+  <div class="flow-box">
+    <span class="step">1</span> 註冊藍新金流（個人或公司皆可）
+  </div>
+  <div class="flow-box">
+    <span class="step">2</span> 開一個簡單的結帳頁面（藍新有現成模板）
+  </div>
+  <div class="flow-box">
+    <span class="step">3</span> 客戶點連結 → 刷信用卡 / ATM / 超商代碼繳費
+  </div>
+  <div class="flow-box">
+    <span class="step">4</span> 付款成功 → 藍新自動通知小綠 → 開通服務
+  </div>
+  <p style="margin-top:12px; font-size:15px; color:#6bcb77;">
+    ✅ 優點：支援信用卡/ATM/超商、自動對帳、專業感強<br>
+    ✅ 支援：街口支付、LINE Pay、全聯支付、信用卡<br>
+    ❌ 缺點：手續費 2.5%、需要帳號審核（1-3 天）
+  </p>
+</div>
+
+<div class="card">
+  <h3>方案 C：海外客戶 — Stripe / Wise</h3>
+  <p style="font-size:16px; color:#aaa;">
+    <span class="badge red">手續費 3-4%</span> <span class="badge blue">國際收款</span>
+  </p>
+  <div class="flow-box">
+    <span class="step">適用</span> 客戶在日本/美國/其他國家
+  </div>
+  <div class="flow-box">
+    <span class="step">Stripe</span> 信用卡收款，自動換匯，API 整合方便
+  </div>
+  <div class="flow-box">
+    <span class="step">Wise</span> 低手續費國際匯款，適合大額
+  </div>
+  <p style="margin-top:12px; font-size:15px; color:#6bcb77;">
+    ✅ 優點：國際客戶友好、多幣別<br>
+    ❌ 缺點：手續費較高、需要海外帳號
+  </p>
+</div>
+
+<!-- ===== 建議路線 ===== -->
+<h2>🚀 建議執行路線</h2>
+
+<table>
+  <tr>
+    <th>階段</th>
+    <th>時間</th>
+    <th>行動</th>
+    <th>目標</th>
+  </tr>
+  <tr>
+    <td><span class="badge green">Phase 1</span></td>
+    <td>第 1 週</td>
+    <td>用方案 A（行動支付）<br>找 3 個朋友試用</td>
+    <td>驗證需求、收集 feedback</td>
+  </tr>
+  <tr>
+    <td><span class="badge blue">Phase 2</span></td>
+    <td>第 2-4 週</td>
+    <td>申請藍新金流<br>做一個簡單官網</td>
+    <td>自動化收款、看起來專業</td>
+  </tr>
+  <tr>
+    <td><span class="badge yellow">Phase 3</span></td>
+    <td>第 2 個月</td>
+    <td>在 PTT/Dcard/社團曝光<br>開放訂閱制</td>
+    <td>每月穩定 10-20 個客戶</td>
+  </tr>
+  <tr>
+    <td><span class="badge red">Phase 4</span></td>
+    <td>第 3 個月</td>
+    <td>根據 feedback 優化<br>考慮 SaaS 化</td>
+    <td>被動收入穩定</td>
+  </tr>
+</table>
+
+<!-- ===== 成本分析 ===== -->
+<h2>📊 成本與利潤分析</h2>
+
+<div class="card">
+  <table>
+    <tr>
+      <th>項目</th>
+      <th>月成本</th>
+      <th>備註</th>
+    </tr>
+    <tr>
+      <td>MiMo 模型</td>
+      <td>NT$0</td>
+      <td>免費額度</td>
+    </tr>
+    <tr>
+      <td>MacBook 電費</td>
+      <td>~NT$100</td>
+      <td>24hr 運轉</td>
+    </tr>
+    <tr>
+      <td>網路</td>
+      <td>NT$0</td>
+      <td>已有</td>
+    </tr>
+    <tr>
+      <td>藍新金流手續費</td>
+      <td>~NT$200</td>
+      <td>假設月營收 NT$8,000 × 2.5%</td>
+    </tr>
+    <tr>
+      <td style="color:#6bcb77; font-weight:700;">合計月成本</td>
+      <td style="color:#6bcb77; font-weight:700;">~NT$300</td>
+      <td></td>
+    </tr>
+  </table>
+  
+  <div style="margin-top:20px; padding:16px; background:#0a2a0a; border-radius:12px;">
+    <p style="font-size:18px; color:#6bcb77; font-weight:700;">
+      💰 假設：10 個專業版客戶（NT$799/月）
+    </p>
+    <p style="font-size:16px; color:#ccc; margin-top:8px;">
+      月營收：NT$7,990<br>
+      月成本：NT$300<br>
+      <strong style="font-size:20px; color:#6bcb77;">月淨利：NT$7,690 🎉</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ===== 風險 ===== -->
+<h2>⚠️ 風險與注意事項</h2>
+
+<div class="warn">
+  <strong>🚨 法律面：</strong><br>
+  • 個人接案不需要登記，但年收入超過 NT$890,000 要報稅<br>
+  • 月收 10 萬以內可以「執行業務所得」申報<br>
+  • 如果規模做大，建議登記「個人工作室」或「行號」
+</div>
+
+<div class="warn">
+  <strong>🚨 技術面：</strong><br>
+  • MiMo 免費額度可能不夠用（大量客戶時）<br>
+  • 模型回應品質需要持續監控<br>
+  • 交付品質要穩定，不然口碑會崩
+</div>
+
+<!-- ===== 總結 ===== -->
+<h2>🎯 一句話總結</h2>
+<div class="card highlight" style="text-align:center; padding:30px;">
+  <p style="font-size:22px; font-weight:700; color:#fff;">
+    先用「行動支付 + 朋友試用」開始<br>
+    證明有人願意付錢 → 再做自動化<br>
+    <span style="color:#ffd93d;">不要一開始就想做大，先賺第一塊錢</span>
+  </p>
+</div>
+
+<div class="footer">
+  🍀 小綠製作 ｜ 2026.06.08<br>
+  這是我們的商業計畫，開始執行吧！
+</div>
+
+</div>
+</body>
+</html>
