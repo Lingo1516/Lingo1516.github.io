@@ -5,187 +5,203 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;background:#f8f9fa;color:#333}
-.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),url('images/a1997df2-858e-41ab-96ff-58fdeb196cf2.jpg') center/cover}
-.hero h1{font-size:56px;font-weight:700;color:#fff;margin-bottom:16px;text-shadow:2px 2px 8px rgba(0,0,0,.5)}
-.hero p{font-size:20px;color:rgba(255,255,255,.9)}
-.hero .scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);color:#fff;font-size:14px;animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
-.container{max-width:1200px;margin:0 auto;padding:60px 20px}
-.section-title{text-align:center;margin-bottom:40px}
-.section-title h2{font-size:32px;font-weight:700;color:#1a1a2e;margin-bottom:8px}
-.section-title p{font-size:16px;color:#666}
-.timeline{position:relative;padding:20px 0}
-.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#f093fb,#f5576c);transform:translateX(-50%)}
-.day-card{position:relative;width:45%;padding:0;margin-bottom:60px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.1);transition:transform .3s}
-.day-card:hover{transform:translateY(-8px)}
-.day-card:nth-child(odd){margin-left:5%}
-.day-card:nth-child(even){margin-left:50%}
-.day-card::before{content:'';position:absolute;top:40px;width:20px;height:20px;background:#f5576c;border-radius:50%;z-index:1}
-.day-card:nth-child(odd)::before{right:-10px}
-.day-card:nth-child(even)::before{left:-10px}
-.day-card img{width:100%;height:250px;object-fit:cover}
-.day-card .content{padding:24px}
-.day-card .date{font-size:14px;color:#f5576c;font-weight:600;margin-bottom:8px}
-.day-card h3{font-size:24px;font-weight:700;color:#1a1a2e;margin-bottom:12px;line-height:1.3}
-.day-card p{font-size:15px;color:#666;line-height:1.6;margin-bottom:16px}
-.day-card .tags{display:flex;flex-wrap:wrap;gap:8px}
-.day-card .tag{padding:4px 12px;background:rgba(245,87,108,.1);color:#f5576c;border-radius:20px;font-size:13px}
-.day-card a{display:inline-block;padding:10px 24px;background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff;text-decoration:none;border-radius:25px;font-size:14px;font-weight:600;transition:opacity .3s}
-.day-card a:hover{opacity:.9}
-.food-section{background:#1a1a2e;padding:60px 20px;margin-top:60px}
-.food-section .section-title h2{color:#fff}
-.food-section .section-title p{color:rgba(255,255,255,.7)}
-.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;max-width:1200px;margin:0 auto}
-.food-card{background:rgba(255,255,255,.05);border-radius:16px;overflow:hidden;transition:transform .3s}
-.food-card:hover{transform:translateY(-5px)}
-.food-card img{width:100%;height:180px;object-fit:cover}
-.food-card .content{padding:20px}
-.food-card .type{font-size:12px;color:#f5576c;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.food-card h3{font-size:18px;color:#fff;margin-bottom:8px}
-.food-card p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.5}
-.food-card a{display:inline-block;margin-top:12px;color:#f5576c;text-decoration:none;font-size:14px;font-weight:600}
-.footer{text-align:center;padding:40px 20px;color:#999;font-size:14px}
+body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#333}
+
+/* Hero */
+.hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),url('images/a1997df2-858e-41ab-96ff-58fdeb196cf2.jpg') center/cover}
+.hero h1{font-size:48px;font-weight:700;color:#fff;margin-bottom:10px;text-shadow:2px 2px 8px rgba(0,0,0,.5)}
+.hero p{font-size:18px;color:rgba(255,255,255,.85)}
+
+/* Tabs */
+.tabs{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #eee;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.tabs-inner{display:flex;max-width:900px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-btn{flex:1;min-width:0;padding:18px 12px;border:none;background:none;font-size:15px;font-weight:600;color:#999;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:#333}
+.tab-btn.active{color:#e74c3c;border-bottom-color:#e74c3c}
+
+/* Content */
+.content{max-width:900px;margin:0 auto;padding:40px 20px}
+.day-panel{display:none}
+.day-panel.active{display:block}
+
+/* Day header */
+.day-header{margin-bottom:30px}
+.day-header .date{font-size:14px;color:#e74c3c;font-weight:600;margin-bottom:6px}
+.day-header h2{font-size:30px;font-weight:700;color:#1a1a2e;margin-bottom:8px}
+.day-header .summary{font-size:16px;color:#666;line-height:1.7}
+
+/* Photo grid */
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:24px}
+.photos img{width:100%;height:200px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .2s}
+.photos img:hover{transform:scale(1.03)}
+
+/* Section inside day */
+.section{margin-top:36px}
+.section h3{font-size:20px;font-weight:700;color:#1a1a2e;margin-bottom:12px;padding-left:12px;border-left:4px solid #e74c3c}
+.section p{font-size:16px;color:#555;line-height:1.8;margin-bottom:12px}
+
+/* Food card inside tab */
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:20px}
+.food-item{background:#f8f9fa;border-radius:12px;overflow:hidden}
+.food-item img{width:100%;height:150px;object-fit:cover}
+.food-item .info{padding:14px}
+.food-item .info h4{font-size:16px;font-weight:700;margin-bottom:4px}
+.food-item .info p{font-size:13px;color:#888}
+
+.footer{text-align:center;padding:40px 20px;color:#999;font-size:14px;border-top:1px solid #eee;margin-top:40px}
+
 @media(max-width:768px){
-.hero h1{font-size:36px}
-.hero p{font-size:16px}
-.timeline::before{left:20px}
-.day-card{width:calc(100% - 40px);margin-left:40px!important}
-.day-card::before{left:-30px!important}
+.hero h1{font-size:32px}
+.tab-btn{font-size:13px;padding:14px 8px}
+.day-header h2{font-size:24px}
+.photos{grid-template-columns:1fr 1fr}
 }
 </style></head><body>
 
 <div class="hero">
 <h1>福岡之旅 2026</h1>
 <p>5 Days 4 Nights in Kyushu</p>
-<div class="scroll">↓ Scroll Down</div>
 </div>
 
-<div class="container">
-<div class="section-title">
-<h2>旅程紀錄</h2>
-<p>從桃園到福岡，五天四夜的九州之旅</p>
+<div class="tabs">
+<div class="tabs-inner">
+<button class="tab-btn active" onclick="showDay(0)">DAY 1</button>
+<button class="tab-btn" onclick="showDay(1)">DAY 2</button>
+<button class="tab-btn" onclick="showDay(2)">DAY 3</button>
+<button class="tab-btn" onclick="showDay(3)">DAY 4</button>
+<button class="tab-btn" onclick="showDay(4)">DAY 5</button>
+</div>
 </div>
 
-<div class="timeline">
-
-<div class="day-card">
-<img src="images/a1997df2-858e-41ab-96ff-58fdeb196cf2.jpg" alt="Day 1">
 <div class="content">
-<div class="date">DAY 1 — 5月17日（六）</div>
-<h3>啟程</h3>
-<p>一趟說走就走的小旅行，從台北到福岡。在博多地下街吃一幸舍泡系拉麵、排隊買大福、逛OIOI百貨，最後以夜晚的大東園燒肉完美收尾。</p>
-<div class="tags">
-<span class="tag">桃園機場</span>
-<span class="tag">博多拉麵</span>
-<span class="tag">大東園燒肉</span>
-<span class="tag">櫛田神社</span>
+
+<!-- DAY 1 -->
+<div class="day-panel active">
+<div class="day-header">
+<div class="date">2026年5月17日（六）</div>
+<h2>Day 1 — 啟程</h2>
+<div class="summary">桃園機場 → 福岡 → 一幸舍拉麵 → 大福 → 大東園燒肉 → 櫛田神社夜參 → 運河城水舞</div>
 </div>
-<a href="福岡之旅-·-啟程.html">閱讀全文 →</a>
+<div class="section">
+<p>一趟說走就走的小旅行，從台北到福岡。清晨五點半出發，搭上長榮 BR 106 飛往福岡。抵達後直奔博多地下街，吃一幸舍的泡系拉麵，排隊買回饅頭大福，逛 OIOI 百貨，最後以夜晚的大東園燒肉完美收尾。</p>
+<p>晚上散步到櫛田神社參拜，再走到博多運河城看水舞秀，第一天就在福岡的夜色中結束。</p>
+</div>
+<div class="photos">
+<img src="images/f033be89-6de4-44b3-a190-22b55a851a14.jpg" alt="候機">
+<img src="images/1009a15d-dd15-4ff7-9f08-b1ed136d188b.jpg" alt="BR106">
+<img src="images/de1cc75d-a10d-4a46-9abb-8dc37e7e6e56.jpg" alt="降落福岡">
+<img src="images/a1997df2-858e-41ab-96ff-58fdeb196cf2.jpg" alt="福岡">
+<img src="images/69f1d436-6aef-4faf-a25d-4a08c3f7fbaa.jpg" alt="福岡機場">
+<img src="images/6a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d.jpg" alt="博多">
+</div>
+<div class="section" style="margin-top:30px">
+<a href="福岡之旅-·-啟程.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 1 →</a>
 </div>
 </div>
 
-<div class="day-card">
-<img src="images/20260518_sunshine_hotel_morning_view.jpg" alt="Day 2">
-<div class="content">
-<div class="date">DAY 2 — 5月18日（日）</div>
-<h3>晨光中的博多</h3>
-<p>陽光從窗簾縫隙透進來，喚醒了第二天在福岡的早晨。從太宰府天滿宮到博多運河城，滿滿的行程。</p>
-<div class="tags">
-<span class="tag">太宰府天滿宮</span>
-<span class="tag">皿嶽山</span>
-<span class="tag">中洲屋台</span>
-<span class="tag">天神地下街</span>
+<!-- DAY 2 -->
+<div class="day-panel">
+<div class="day-header">
+<div class="date">2026年5月18日（日）</div>
+<h2>Day 2 — 晨光中的博多</h2>
+<div class="summary">太宰府天滿宮 → 皿嶽山 → 博多運河城 → 中洲屋台 → 天神地下街</div>
 </div>
-<a href="福岡之旅-·-晨光中的博多.html">閱讀全文 →</a>
+<div class="section">
+<p>陽光從窗簾縫隙透進來，喚醒了第二天在福岡的早晨。今天排滿了行程，從太宰府天滿宮開始，參拜學問之神。接著搭巴士前往皿嶽山，從山上俯瞰整個福岡市區。</p>
+<p>下午回到市區，逛博多運河城和中洲屋台，品嚐道地的屋台料理。晚上則鑽進天神地下街，享受購物的樂趣。</p>
 </div>
+<div class="photos">
+<img src="images/20260518_sunshine_hotel_morning_view.jpg" alt="晨光">
+<img src="images/20260518_dazaifu1.jpg" alt="太宰府">
+<img src="images/20260518_dazaifu2.jpg" alt="太宰府2">
+<img src="images/20260518_kamado_shrine1.jpg" alt="竈門神社">
+<img src="images/20260518_raizan_kannon1.jpg" alt="皿嶽山">
+<img src="images/20260518_hotel_breakfast2.jpg" alt="早餐">
 </div>
-
-<div class="day-card">
-<img src="images/20260519_breakfast_day3_01.jpg" alt="Day 3">
-<div class="content">
-<div class="date">DAY 3 — 5月19日（一）</div>
-<h3>同一扇窗・不同風景</h3>
-<p>在陽光飯店的第三天早晨，雖然還是同一間餐廳，但今天換了個位子——窗外的風景完全不一樣了。</p>
-<div class="tags">
-<span class="tag">豆田神社</span>
-<span class="tag">大川運河</span>
-<span class="tag">西陣織會館</span>
-<span class="tag">三條大橋</span>
-</div>
-<a href="福岡之旅-·-day-3-同一扇窗・不同風景.html">閱讀全文 →</a>
+<div class="section" style="margin-top:30px">
+<a href="福岡之旅-·-晨光中的博多.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 2 →</a>
 </div>
 </div>
 
-<div class="day-card">
-<img src="images/day4_maedaya.jpg" alt="Day 4">
-<div class="content">
-<div class="date">DAY 4 — 5月20日（二）</div>
-<h3>前田屋牛腸鍋之夜</h3>
-<p>搭上火車前往六本松，文青小店和咖啡館的氛圍和博多市區很不一樣。晚上來一碗前田屋牛腸鍋。</p>
-<div class="tags">
-<span class="tag">六本松</span>
-<span class="tag">運河城</span>
-<span class="tag">博多車站</span>
-<span class="tag">牛腸鍋</span>
+<!-- DAY 3 -->
+<div class="day-panel">
+<div class="day-header">
+<div class="date">2026年5月19日（一）</div>
+<h2>Day 3 — 同一扇窗・不同風景</h2>
+<div class="summary">豆田神社 → 大川運河遊船 → 西陣織會館 → 三條大橋 → 天神商圈</div>
 </div>
-<a href="福岡之旅-·-day-4-前田屋牛腸鍋之夜.html">閱讀全文 →</a>
+<div class="section">
+<p>在陽光飯店的第三天早晨，雖然還是同一間餐廳，但今天換了個位子——窗外的風景完全不一樣了。陽光從另一個方向灑進來，街道的景色也不一樣，這就是住同一間飯店幾天的樂趣。</p>
+<p>今天前往豆田神社參拜，接著搭遊船遊覽大川運河，參觀西陣織會館，最後走到三條大橋。傍晚回到天神商圈逛街，走走停停，享受旅行的慢步調。</p>
+</div>
+<div class="photos">
+<img src="images/20260519_breakfast_day3_01.jpg" alt="早餐">
+<img src="images/day3_breakfast_view.jpg" alt="窗景">
+<img src="images/20260519_day3_01.jpg" alt="Day3">
+<img src="images/day3_tenjin_01.jpg" alt="天神">
+<img src="images/day3_street_02.jpg" alt="街景">
+<img src="images/day3_parco_01.jpg" alt="PARCO">
+</div>
+<div class="section" style="margin-top:30px">
+<a href="福岡之旅-·-day-3-同一扇窗・不同風景.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 3 →</a>
 </div>
 </div>
 
+<!-- DAY 4 -->
+<div class="day-panel">
+<div class="day-header">
+<div class="date">2026年5月20日（二）</div>
+<h2>Day 4 — 前田屋牛腸鍋之夜</h2>
+<div class="summary">六本松文青散策 → 運河城午餐 → 博多車站伴手禮 → 前田屋牛腸鍋</div>
+</div>
+<div class="section">
+<p>第四天早上，搭上火車前往六本松。六本松一帶有許多文青小店和咖啡館，氛圍和博多市區很不一樣。在這裡悠閒地散步，感受不一樣的福岡。</p>
+<p>下午回到博多運河城吃午餐，再到博多車站採買伴手禮。晚上則是重頭戲——前田屋的牛腸鍋，濃郁的味噌湯底配上軟嫩的牛腸，是福岡必吃的在地美味。</p>
+</div>
+<div class="photos">
+<img src="images/day4_morning1.jpg" alt="早晨">
+<img src="images/day4_ropponmatsu1.jpg" alt="六本松">
+<img src="images/day4_full1.jpg" alt="風景">
+<img src="images/day4_maedaya.jpg" alt="前田屋">
+<img src="images/day4_maedaya2.jpg" alt="牛腸鍋">
+<img src="images/day4_maedaya3.jpg" alt="料理">
+</div>
+<div class="section" style="margin-top:30px">
+<a href="福岡之旅-·-day-4-前田屋牛腸鍋之夜.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 4 →</a>
 </div>
 </div>
 
-<div class="food-section">
-<div class="section-title">
-<h2>美食特輯</h2>
-<p>福岡必吃的在地美味</p>
+<!-- DAY 5 -->
+<div class="day-panel">
+<div class="day-header">
+<div class="date">2026年5月20日（二）晚餐</div>
+<h2>Day 5 — 華味鳥・博多水炊雞</h2>
+<div class="summary">華味鳥（はなおり）— 博多水炊雞老字號 → 最後的福岡味</div>
 </div>
-<div class="food-grid">
-
-<div class="food-card">
+<div class="section">
+<p>旅程的最後一晚，來到博多水炊雞的經典老店「華味鳥（はなおり）」。湯頭清甜鮮美，雞肉嫩滑多汁，是福岡必訪的在地美味。</p>
+<p>用這碗溫暖的雞湯，為這趟五天四夜的九州之旅畫下完美句點。</p>
+</div>
+<div class="photos">
 <img src="images/hanaori_dinner.jpg" alt="華味鳥">
-<div class="content">
-<div class="type">博多水炊雞</div>
-<h3>華味鳥</h3>
-<p>はなおり — 博多水炊雞的經典老店，湯頭清甜鮮美，是福岡必訪的在地美味。</p>
-<a href="福岡·華味鳥-博多水炊雞老字號.html">閱讀全文 →</a>
+<img src="images/hanaori_dinner2.jpg" alt="料理">
+<img src="images/hanaori_dinner3.jpg" alt="湯頭">
+<img src="images/hanaori_dinner4.jpg" alt="用餐">
+</div>
+<div class="section" style="margin-top:30px">
+<a href="福岡·華味鳥-博多水炊雞老字號.html" style="display:inline-block;padding:12px 28px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:25px;font-weight:600">閱讀完整 Day 5 →</a>
 </div>
 </div>
 
-<div class="food-card">
-<img src="images/974b6857-9fa3-4b47-9a9b-4c4c1596bc7d.jpg" alt="燒肉">
-<div class="content">
-<div class="type">燒肉・牛腸鍋・甜點</div>
-<h3>博多車站周邊美食</h3>
-<p>大東園燒肉、元祖牛腸鍋、排隊甜點，博多三大美食一次收錄。</p>
-<a href="牛肉-博多車站周邊-燒肉．牛腸鍋．甜點.html">閱讀全文 →</a>
-</div>
-</div>
-
-<div class="food-card">
-<img src="images/20260518_dazaifu1.jpg" alt="屋台">
-<div class="content">
-<div class="type">屋台文化</div>
-<h3>福岡屋台與明太子</h3>
-<p>中洲屋台、博多名物明太子、道地庶民美食體驗。</p>
-<a href="福岡屋台與明太子-在地人帶路.html">閱讀全文 →</a>
-</div>
-</div>
-
-<div class="food-card">
-<img src="images/bfd9a570-0770-494d-8b92-eb7afcb78f89.jpg" alt="拉麵">
-<div class="content">
-<div class="type">拉麵地圖</div>
-<h3>五家必吃名店</h3>
-<p>一蘭、一幸舍、ShinShin、博多雙星、元祖長崎蛋糕。</p>
-<a href="福岡拉麵地圖-五家必吃名店.html">閱讀全文 →</a>
-</div>
-</div>
-
-</div>
 </div>
 
 <div class="footer">Lingo Fukuoka Trip 2026</div>
 
+<script>
+function showDay(n){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.classList.toggle('active',i===n)});
+  document.querySelectorAll('.day-panel').forEach((p,i)=>{p.classList.toggle('active',i===n)});
+  window.scrollTo({top:document.querySelector('.tabs').offsetTop,behavior:'smooth'});
+}
+</script>
 </body></html>
