@@ -7,25 +7,37 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;background:#111;color:#fff}
 
-/* Hero */
 .hero{position:relative;height:50vh;min-height:350px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),url('images/20260518_dazaifu1.jpg') center/cover}
 .hero h1{font-size:48px;font-weight:700;color:#fff;margin-bottom:8px}
 .hero p{font-size:18px;color:rgba(255,255,255,.8)}
 
-/* Filter bar */
 .filter{position:sticky;top:0;z-index:100;background:rgba(17,17,17,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1);padding:14px 20px}
 .filter-inner{display:flex;gap:10px;max-width:1200px;margin:0 auto;justify-content:center;flex-wrap:wrap}
 .filter-btn{padding:8px 20px;border:1px solid rgba(255,255,255,.2);background:none;color:#aaa;border-radius:20px;font-size:14px;cursor:pointer;transition:all .2s}
 .filter-btn:hover{border-color:#fff;color:#fff}
 .filter-btn.active{background:#e74c3c;border-color:#e74c3c;color:#fff}
 
-/* Masonry grid */
-.gallery{max-width:1200px;margin:0 auto;padding:20px}
-.masonry{columns:4;column-gap:12px}
-.item{break-inside:avoid;margin-bottom:12px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;transition:transform .2s}
-.item:hover{transform:scale(1.02)}
-.item img{width:100%;display:block;border-radius:8px}
-.item .day-tag{position:absolute;top:8px;left:8px;padding:3px 10px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;border-radius:10px;backdrop-filter:blur(4px)}
+.content{max-width:1200px;margin:0 auto;padding:20px}
+
+/* Day section */
+.day-section{display:none;margin-bottom:50px}
+.day-section.active{display:block}
+.day-header{margin-bottom:24px;padding:24px;background:rgba(255,255,255,.05);border-radius:12px}
+.day-header .date{font-size:14px;color:#e74c3c;font-weight:600;margin-bottom:6px}
+.day-header h2{font-size:28px;font-weight:700;margin-bottom:8px}
+.day-header .summary{font-size:16px;color:#aaa;line-height:1.7}
+.day-header a{display:inline-block;margin-top:12px;padding:8px 20px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:20px;font-size:14px;font-weight:600}
+
+/* Photo grid */
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.photos img{width:100%;height:180px;object-fit:cover;border-radius:8px;cursor:pointer;transition:transform .2s}
+.photos img:hover{transform:scale(1.03)}
+
+/* All view */
+.all-view{display:block}
+.day-section.all-mode{display:block}
+.day-section.all-mode .day-header{display:block}
+.day-section.all-mode .photos{margin-bottom:40px}
 
 /* Lightbox */
 .lightbox{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:200;align-items:center;justify-content:center}
@@ -36,9 +48,9 @@ body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;back
 .lightbox .prev{left:10px}
 .lightbox .next{right:10px}
 
-@media(max-width:1024px){.masonry{columns:3}}
-@media(max-width:768px){.masonry{columns:2}.hero h1{font-size:32px}}
-@media(max-width:480px){.masonry{columns:2;column-gap:8px}.item{margin-bottom:8px}}
+.footer{text-align:center;padding:40px 20px;color:#666;font-size:14px}
+
+@media(max-width:768px){.hero h1{font-size:32px}.photos{grid-template-columns:1fr 1fr}.day-header h2{font-size:22px}}
 </style></head><body>
 
 <div class="hero">
@@ -57,9 +69,7 @@ body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;back
 </div>
 </div>
 
-<div class="gallery">
-<div class="masonry" id="gallery"></div>
-</div>
+<div class="content" id="content"></div>
 
 <div class="lightbox" id="lightbox">
 <button class="close" onclick="closeLightbox()">✕</button>
@@ -68,205 +78,78 @@ body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;back
 <img id="lbImg" src="">
 </div>
 
+<div class="footer">Lingo Fukuoka Trip 2026</div>
+
 <script>
-var pics=[
-// Day 1
-{src:"images/lingo_airport2.jpg",day:1},
-{src:"images/lingo_airport3.jpg",day:1},
-{src:"images/lingo_boarding.jpg",day:1},
-{src:"images/lingo_seat.jpg",day:1},
-{src:"images/lingo_landing.jpg",day:1},
-{src:"images/lingo_airport_fuk.jpg",day:1},
-{src:"images/lingo_hotel.jpg",day:1},
-{src:"images/lingo_underground.jpg",day:1},
-{src:"images/lingo_ramen.jpg",day:1},
-{src:"images/lingo_ramen2.jpg",day:1},
-{src:"images/lingo_ramen3.jpg",day:1},
-{src:"images/lingo_daifuku.jpg",day:1},
-{src:"images/lingo_queue.jpg",day:1},
-{src:"images/lingo_street.jpg",day:1},
-{src:"images/lingo_uniqlo.jpg",day:1},
-{src:"images/ippudo3.jpg",day:1},
-{src:"images/lingo_daitoen1.jpg",day:1},
-{src:"images/lingo_daitoen2.jpg",day:1},
-{src:"images/lingo_daitoen3.jpg",day:1},
-{src:"images/lingo_daitoen4.jpg",day:1},
-{src:"images/daitoen_ext.jpg",day:1},
-{src:"images/lingo_kushida.jpg",day:1},
-{src:"images/lingo_kushida2.jpg",day:1},
-{src:"images/lingo_kushida3.jpg",day:1},
-{src:"images/lingo_kushida4.jpg",day:1},
-{src:"images/lingo_kushida5.jpg",day:1},
-{src:"images/lingo_kushida6.jpg",day:1},
-{src:"images/lingo_canal1.jpg",day:1},
-{src:"images/lingo_canal2.jpg",day:1},
-{src:"images/lingo_canal_food.jpg",day:1},
-{src:"images/lingo_boardgame.jpg",day:1},
-{src:"images/hakata_daruma.jpg",day:1},
-{src:"images/danbo.jpg",day:1},
-{src:"images/station1.jpg",day:1},
-{src:"images/da01.jpg",day:1},
-{src:"images/da02.jpg",day:1},
-{src:"images/scenery1.jpg",day:1},
-{src:"images/tour2.jpg",day:1},
-// Day 2
-{src:"images/20260518_sunshine_hotel_morning_view.jpg",day:2},
-{src:"images/20260518_hotel_breakfast2.jpg",day:2},
-{src:"images/20260518_hotel_breakfast3.jpg",day:2},
-{src:"images/20260518_hotel_breakfast4.jpg",day:2},
-{src:"images/20260518_hotel_breakfast5.jpg",day:2},
-{src:"images/20260518_hotel_breakfast6.jpg",day:2},
-{src:"images/20260518_hotel_breakfast7.jpg",day:2},
-{src:"images/20260518_hotel_breakfast8.jpg",day:2},
-{src:"images/breakfast1.jpg",day:2},
-{src:"images/breakfast2.jpg",day:2},
-{src:"images/breakfast3.jpg",day:2},
-{src:"images/breakfast4.jpg",day:2},
-{src:"images/breakfast5.jpg",day:2},
-{src:"images/breakfast6.jpg",day:2},
-{src:"images/breakfast7.jpg",day:2},
-{src:"images/breakfast8.jpg",day:2},
-{src:"images/20260518_dazaifu1.jpg",day:2},
-{src:"images/20260518_dazaifu2.jpg",day:2},
-{src:"images/20260518_dazaifu3.jpg",day:2},
-{src:"images/20260518_dazaifu4.jpg",day:2},
-{src:"images/dazaifu1.jpg",day:2},
-{src:"images/dazaifu2.jpg",day:2},
-{src:"images/dazaifu3.jpg",day:2},
-{src:"images/dazaifu4.jpg",day:2},
-{src:"images/20260518_kamado_shrine1.jpg",day:2},
-{src:"images/20260518_kamado_shrine2.jpg",day:2},
-{src:"images/20260518_kamado_shrine3.jpg",day:2},
-{src:"images/20260518_kamado_shrine4.jpg",day:2},
-{src:"images/kamado1.jpg",day:2},
-{src:"images/kamado2.jpg",day:2},
-{src:"images/kamado3.jpg",day:2},
-{src:"images/kamado4.jpg",day:2},
-{src:"images/20260518_raizan_kannon1.jpg",day:2},
-{src:"images/20260518_raizan_kannon2.jpg",day:2},
-{src:"images/20260518_raizan_kannon3.jpg",day:2},
-{src:"images/20260518_raizan_kannon4.jpg",day:2},
-{src:"images/20260518_raizan_kannon5.jpg",day:2},
-{src:"images/20260518_raizan_kannon6.jpg",day:2},
-{src:"images/20260518_raizan_kannon7.jpg",day:2},
-{src:"images/20260518_raizan_kannon8.jpg",day:2},
-{src:"images/raizan1.jpg",day:2},
-{src:"images/raizan2.jpg",day:2},
-{src:"images/raizan3.jpg",day:2},
-{src:"images/raizan4.jpg",day:2},
-{src:"images/raizan5.jpg",day:2},
-{src:"images/raizan6.jpg",day:2},
-{src:"images/raizan7.jpg",day:2},
-{src:"images/raizan8.jpg",day:2},
-{src:"images/20260518_kkday_bus_departure.jpg",day:2},
-{src:"images/20260518_kkday_enroute.jpg",day:2},
-{src:"images/20260518_kkday_scenery2.jpg",day:2},
-{src:"images/20260518_yanagawa1.jpg",day:2},
-{src:"images/20260518_yanagawa2.jpg",day:2},
-{src:"images/20260518_yanagawa3.jpg",day:2},
-{src:"images/20260518_yanagawa4.jpg",day:2},
-{src:"images/20260518_yanagawa5.jpg",day:2},
-{src:"images/yanagawa1.jpg",day:2},
-{src:"images/yanagawa2.jpg",day:2},
-{src:"images/yanagawa3.jpg",day:2},
-{src:"images/yanagawa4.jpg",day:2},
-{src:"images/yanagawa5.jpg",day:2},
-{src:"images/20260518_yatai_night1.jpg",day:2},
-{src:"images/20260518_yatai_night2.jpg",day:2},
-{src:"images/20260518_yatai_night3.jpg",day:2},
-{src:"images/20260518_yatai_night4.jpg",day:2},
-{src:"images/20260518_yatai_night5.jpg",day:2},
-{src:"images/20260518_yatai_night6.jpg",day:2},
-{src:"images/20260518_yatai_night7.jpg",day:2},
-{src:"images/yatai1.jpg",day:2},
-{src:"images/sohon_1.jpg",day:2},
-// Day 3
-{src:"images/20260519_breakfast_day3_01.jpg",day:3},
-{src:"images/20260519_breakfast_day3_02.jpg",day:3},
-{src:"images/day3_breakfast_view.jpg",day:3},
-{src:"images/day3_breakfast_food.jpg",day:3},
-{src:"images/day3_breakfast_02.jpg",day:3},
-{src:"images/20260519_day3_01.jpg",day:3},
-{src:"images/20260519_day3_04.jpg",day:3},
-{src:"images/20260519_day3_05.jpg",day:3},
-{src:"images/20260519_day3_06.jpg",day:3},
-{src:"images/20260519_day3_07.jpg",day:3},
-{src:"images/20260519_day3_08.jpg",day:3},
-{src:"images/20260519_day3_09.jpg",day:3},
-{src:"images/20260519_day3_10.jpg",day:3},
-{src:"images/20260519_day3_11.jpg",day:3},
-{src:"images/20260519_day3_12.jpg",day:3},
-{src:"images/20260519_day3_13.jpg",day:3},
-{src:"images/20260519_day3_14.jpg",day:3},
-{src:"images/20260519_day3_15.jpg",day:3},
-{src:"images/20260519_day3_16.jpg",day:3},
-{src:"images/20260519_day3_17.jpg",day:3},
-{src:"images/20260519_day3_18.jpg",day:3},
-{src:"images/20260519_day3_receipt.jpg",day:3},
-{src:"images/20260519_day3_uniqlo.jpg",day:3},
-{src:"images/20260519_hanamidori_01.jpg",day:3},
-{src:"images/20260519_hanamidori_02.jpg",day:3},
-{src:"images/20260519_hanamidori_03.jpg",day:3},
-{src:"images/20260519_hanamidori_04.jpg",day:3},
-{src:"images/day3_bluescreen_coffee.jpg",day:3},
-{src:"images/day3_bluescreen_receipt.jpg",day:3},
-{src:"images/day3_mina_uniqlo.jpg",day:3},
-{src:"images/day3_parco_01.jpg",day:3},
-{src:"images/day3_street_02.jpg",day:3},
-{src:"images/day3_street_03.jpg",day:3},
-{src:"images/day3_street_view.jpg",day:3},
-{src:"images/day3_tenjin_01.jpg",day:3},
-{src:"images/day3_tenjin_02.jpg",day:3},
-{src:"images/day3_tenjin_03.jpg",day:3},
-{src:"images/day3_tenjin_04.jpg",day:3},
-{src:"images/day3_tenjin_05.jpg",day:3},
-{src:"images/day3_tenjin_06.jpg",day:3},
-{src:"images/day3_tenjin_07.jpg",day:3},
-{src:"images/day3_tenjin_08.jpg",day:3},
-{src:"images/day3_tenjin_09.jpg",day:3},
-{src:"images/day3_tenjin_10.jpg",day:3},
-{src:"images/day3_tenjin_11.jpg",day:3},
-{src:"images/day3_walk_01.jpg",day:3},
-// Day 4
-{src:"images/day4_morning1.jpg",day:4},
-{src:"images/day4_morning2.jpg",day:4},
-{src:"images/day4_morning3.jpg",day:4},
-{src:"images/day4_morning4.jpg",day:4},
-{src:"images/day4_morning5.jpg",day:4},
-{src:"images/day4_morning6.jpg",day:4},
-{src:"images/day4_morning7.jpg",day:4},
-{src:"images/day4_ropponmatsu1.jpg",day:4},
-{src:"images/day4_ropponmatsu2.jpg",day:4},
-{src:"images/day4_ropponmatsu3.jpg",day:4},
-{src:"images/day4_ropponmatsu4.jpg",day:4},
-{src:"images/day4_full1.jpg",day:4},
-{src:"images/day4_full2.jpg",day:4},
-{src:"images/day4_full3.jpg",day:4},
-{src:"images/day4_maedaya.jpg",day:4},
-{src:"images/day4_maedaya2.jpg",day:4},
-{src:"images/day4_maedaya3.jpg",day:4},
-// Day 5
-{src:"images/hanaori_dinner.jpg",day:5},
-{src:"images/hanaori_dinner2.jpg",day:5},
-{src:"images/hanaori_dinner3.jpg",day:5},
-{src:"images/hanaori_dinner4.jpg",day:5}
+var days=[
+{
+  day:1, date:"2026年5月17日（六）", title:"啟程",
+  summary:"桃園機場 → 福岡 → 一幸舍拉麵 → 大福 → 大東園燒肉 → 櫛田神社夜參 → 運河城水舞",
+  text:"一趟說走就走的小旅行，從台北到福岡。清晨五點半出發，搭上長榮 BR 106 飛往福岡。抵達後直奔博多地下街，吃一幸舍的泡系拉麵，排隊買回饅頭大福，逛 OIOI 百貨，最後以夜晚的大東園燒肉完美收尾。晚上散步到櫛田神社參拜，再走到博多運河城看水舞秀，第一天就在福岡的夜色中結束。",
+  link:"福岡之旅-·-啟程.html",
+  pics:["lingo_airport2.jpg","lingo_airport3.jpg","lingo_boarding.jpg","lingo_seat.jpg","lingo_landing.jpg","lingo_airport_fuk.jpg","lingo_hotel.jpg","lingo_underground.jpg","lingo_ramen.jpg","lingo_ramen2.jpg","lingo_ramen3.jpg","lingo_daifuku.jpg","lingo_queue.jpg","lingo_street.jpg","lingo_uniqlo.jpg","ippudo3.jpg","lingo_daitoen1.jpg","lingo_daitoen2.jpg","lingo_daitoen3.jpg","lingo_daitoen4.jpg","daitoen_ext.jpg","lingo_kushida.jpg","lingo_kushida2.jpg","lingo_kushida3.jpg","lingo_kushida4.jpg","lingo_kushida5.jpg","lingo_kushida6.jpg","lingo_canal1.jpg","lingo_canal2.jpg","lingo_canal_food.jpg","lingo_boardgame.jpg","hakata_daruma.jpg","danbo.jpg","station1.jpg","da01.jpg","da02.jpg","scenery1.jpg","tour2.jpg"]
+},
+{
+  day:2, date:"2026年5月18日（日）", title:"晨光中的博多",
+  summary:"太宰府天滿宮 → 皿嶽山 → 博多運河城 → 中洲屋台 → 天神地下街",
+  text:"陽光從窗簾縫隙透進來，喚醒了第二天在福岡的早晨。今天排滿了行程，從太宰府天滿宮開始，參拜學問之神。接著搭巴士前往皿嶽山，從山上俯瞰整個福岡市區。下午回到市區，逛博多運河城和中洲屋台，品嚐道地的屋台料理。晚上則鑽進天神地下街，享受購物的樂趣。",
+  link:"福岡之旅-·-晨光中的博多.html",
+  pics:["20260518_sunshine_hotel_morning_view.jpg","20260518_hotel_breakfast2.jpg","20260518_hotel_breakfast3.jpg","20260518_hotel_breakfast4.jpg","20260518_hotel_breakfast5.jpg","20260518_hotel_breakfast6.jpg","20260518_hotel_breakfast7.jpg","20260518_hotel_breakfast8.jpg","breakfast1.jpg","breakfast2.jpg","breakfast3.jpg","breakfast4.jpg","breakfast5.jpg","breakfast6.jpg","breakfast7.jpg","breakfast8.jpg","20260518_dazaifu1.jpg","20260518_dazaifu2.jpg","20260518_dazaifu3.jpg","20260518_dazaifu4.jpg","dazaifu1.jpg","dazaifu2.jpg","dazaifu3.jpg","dazaifu4.jpg","20260518_kamado_shrine1.jpg","20260518_kamado_shrine2.jpg","20260518_kamado_shrine3.jpg","20260518_kamado_shrine4.jpg","kamado1.jpg","kamado2.jpg","kamado3.jpg","kamado4.jpg","20260518_raizan_kannon1.jpg","20260518_raizan_kannon2.jpg","20260518_raizan_kannon3.jpg","20260518_raizan_kannon4.jpg","20260518_raizan_kannon5.jpg","20260518_raizan_kannon6.jpg","20260518_raizan_kannon7.jpg","20260518_raizan_kannon8.jpg","raizan1.jpg","raizan2.jpg","raizan3.jpg","raizan4.jpg","raizan5.jpg","raizan6.jpg","raizan7.jpg","raizan8.jpg","20260518_kkday_bus_departure.jpg","20260518_kkday_enroute.jpg","20260518_kkday_scenery2.jpg","20260518_yanagawa1.jpg","20260518_yanagawa2.jpg","20260518_yanagawa3.jpg","20260518_yanagawa4.jpg","20260518_yanagawa5.jpg","yanagawa1.jpg","yanagawa2.jpg","yanagawa3.jpg","yanagawa4.jpg","yanagawa5.jpg","20260518_yatai_night1.jpg","20260518_yatai_night2.jpg","20260518_yatai_night3.jpg","20260518_yatai_night4.jpg","20260518_yatai_night5.jpg","20260518_yatai_night6.jpg","20260518_yatai_night7.jpg","yatai1.jpg","sohon_1.jpg"]
+},
+{
+  day:3, date:"2026年5月19日（一）", title:"同一扇窗・不同風景",
+  summary:"豆田神社 → 大川運河遊船 → 西陣織會館 → 三條大橋 → 天神商圈",
+  text:"在陽光飯店的第三天早晨，雖然還是同一間餐廳，但今天換了個位子——窗外的風景完全不一樣了。陽光從另一個方向灑進來，街道的景色也不一樣，這就是住同一間飯店幾天的樂趣。今天前往豆田神社參拜，接著搭遊船遊覽大川運河，參觀西陣織會館，最後走到三條大橋。傍晚回到天神商圈逛街，走走停停，享受旅行的慢步調。",
+  link:"福岡之旅-·-day-3-同一扇窗・不同風景.html",
+  pics:["20260519_breakfast_day3_01.jpg","20260519_breakfast_day3_02.jpg","day3_breakfast_view.jpg","day3_breakfast_food.jpg","day3_breakfast_02.jpg","20260519_day3_01.jpg","20260519_day3_04.jpg","20260519_day3_05.jpg","20260519_day3_06.jpg","20260519_day3_07.jpg","20260519_day3_08.jpg","20260519_day3_09.jpg","20260519_day3_10.jpg","20260519_day3_11.jpg","20260519_day3_12.jpg","20260519_day3_13.jpg","20260519_day3_14.jpg","20260519_day3_15.jpg","20260519_day3_16.jpg","20260519_day3_17.jpg","20260519_day3_18.jpg","20260519_day3_receipt.jpg","20260519_day3_uniqlo.jpg","20260519_hanamidori_01.jpg","20260519_hanamidori_02.jpg","20260519_hanamidori_03.jpg","20260519_hanamidori_04.jpg","day3_bluescreen_coffee.jpg","day3_bluescreen_receipt.jpg","day3_mina_uniqlo.jpg","day3_parco_01.jpg","day3_street_02.jpg","day3_street_03.jpg","day3_street_view.jpg","day3_tenjin_01.jpg","day3_tenjin_02.jpg","day3_tenjin_03.jpg","day3_tenjin_04.jpg","day3_tenjin_05.jpg","day3_tenjin_06.jpg","day3_tenjin_07.jpg","day3_tenjin_08.jpg","day3_tenjin_09.jpg","day3_tenjin_10.jpg","day3_tenjin_11.jpg","day3_walk_01.jpg"]
+},
+{
+  day:4, date:"2026年5月20日（二）", title:"前田屋牛腸鍋之夜",
+  summary:"六本松文青散策 → 運河城午餐 → 博多車站伴手禮 → 前田屋牛腸鍋",
+  text:"第四天早上，搭上火車前往六本松。六本松一帶有許多文青小店和咖啡館，氛圍和博多市區很不一樣。在這裡悠閒地散步，感受不一樣的福岡。下午回到博多運河城吃午餐，再到博多車站採買伴手禮。晚上則是重頭戲——前田屋的牛腸鍋，濃郁的味噌湯底配上軟嫩的牛腸，是福岡必吃的在地美味。",
+  link:"福岡之旅-·-day-4-前田屋牛腸鍋之夜.html",
+  pics:["day4_morning1.jpg","day4_morning2.jpg","day4_morning3.jpg","day4_morning4.jpg","day4_morning5.jpg","day4_morning6.jpg","day4_morning7.jpg","day4_ropponmatsu1.jpg","day4_ropponmatsu2.jpg","day4_ropponmatsu3.jpg","day4_ropponmatsu4.jpg","day4_full1.jpg","day4_full2.jpg","day4_full3.jpg","day4_maedaya.jpg","day4_maedaya2.jpg","day4_maedaya3.jpg"]
+},
+{
+  day:5, date:"2026年5月20日（二）晚餐", title:"華味鳥・博多水炊雞",
+  summary:"華味鳥（はなおり）— 博多水炊雞老字號 → 最後的福岡味",
+  text:"旅程的最後一晚，來到博多水炊雞的經典老店「華味鳥（はなおり）」。湯頭清甜鮮美，雞肉嫩滑多汁，是福岡必訪的在地美味。用這碗溫暖的雞湯，為這趟五天四夜的九州之旅畫下完美句點。",
+  link:"福岡·華味鳥-博多水炊雞老字號.html",
+  pics:["hanaori_dinner.jpg","hanaori_dinner2.jpg","hanaori_dinner3.jpg","hanaori_dinner4.jpg"]
+}
 ];
 
 var currentFilter='all';
-var currentIdx=0;
+var allPics=[];
 var filtered=[];
+var currentIdx=0;
 
-function renderGallery(){
-  var g=document.getElementById('gallery');
-  g.innerHTML='';
-  filtered=currentFilter==='all'?pics:pics.filter(function(p){return p.day===currentFilter});
-  filtered.forEach(function(p,i){
-    var d=document.createElement('div');
-    d.className='item';
-    d.innerHTML='<img src="'+p.src+'" loading="lazy"><div class="day-tag">Day '+p.day+'</div>';
-    d.onclick=function(){openLightbox(i)};
-    g.appendChild(d);
+// Build allPics for lightbox
+days.forEach(function(d){
+  d.pics.forEach(function(p){allPics.push({src:'images/'+p,day:d.day})});
+});
+
+function render(){
+  var c=document.getElementById('content');
+  c.innerHTML='';
+  var html='';
+  days.forEach(function(d){
+    var show=currentFilter==='all'||currentFilter===d.day;
+    html+='<div class="day-section'+(show?' active':'')+(currentFilter==='all'?' all-mode':'')+'">';
+    html+='<div class="day-header">';
+    html+='<div class="date">DAY '+d.day+' — '+d.date+'</div>';
+    html+='<h2>'+d.title+'</h2>';
+    html+='<div class="summary">'+d.summary+'</div>';
+    html+='<p style="margin-top:12px;color:#ccc;font-size:15px;line-height:1.8">'+d.text+'</p>';
+    html+='<a href="'+d.link+'">閱讀完整文章 →</a>';
+    html+='</div>';
+    html+='<div class="photos">';
+    d.pics.forEach(function(p,i){
+      html+='<img src="images/'+p+'" loading="lazy" onclick="openLB(\''+p+'\','+d.day+')">';
+    });
+    html+='</div></div>';
   });
+  c.innerHTML=html;
 }
 
 function filterDay(d){
@@ -274,12 +157,14 @@ function filterDay(d){
   document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
   if(d==='all')document.querySelectorAll('.filter-btn')[0].classList.add('active');
   else document.querySelectorAll('.filter-btn')[d].classList.add('active');
-  renderGallery();
+  render();
+  window.scrollTo({top:document.querySelector('.filter').offsetTop,behavior:'smooth'});
 }
 
-function openLightbox(i){
-  currentIdx=i;
-  document.getElementById('lbImg').src=filtered[i].src;
+function openLB(pic,day){
+  filtered=currentFilter==='all'?allPics:allPics.filter(function(p){return p.day===day});
+  currentIdx=filtered.findIndex(function(p){return p.src==='images/'+pic});
+  document.getElementById('lbImg').src=filtered[currentIdx].src;
   document.getElementById('lightbox').classList.add('show');
 }
 function closeLightbox(){document.getElementById('lightbox').classList.remove('show')}
@@ -294,6 +179,6 @@ document.addEventListener('keydown',function(e){
   if(e.key==='ArrowRight')navPic(1);
 });
 
-renderGallery();
+render();
 </script>
 </body></html>
