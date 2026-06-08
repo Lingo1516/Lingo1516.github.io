@@ -22,11 +22,12 @@ body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;back
 /* Day section */
 .day-section{display:none;margin-bottom:50px}
 .day-section.active{display:block}
-.day-header{margin-bottom:24px;padding:24px;background:rgba(255,255,255,.05);border-radius:12px}
-.day-header .date{font-size:14px;color:#e74c3c;font-weight:600;margin-bottom:6px}
-.day-header h2{font-size:28px;font-weight:700;margin-bottom:8px}
-.day-header .summary{font-size:16px;color:#aaa;line-height:1.7}
-.day-header a{display:inline-block;margin-top:12px;padding:8px 20px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:20px;font-size:14px;font-weight:600}
+.day-header{margin-bottom:24px;padding:28px;background:rgba(255,255,255,.06);border-radius:12px;border-left:4px solid #e74c3c}
+.day-header .date{font-size:14px;color:#e74c3c;font-weight:600;margin-bottom:8px}
+.day-header h2{font-size:28px;font-weight:700;margin-bottom:10px}
+.day-header .summary{font-size:16px;color:#aaa;line-height:1.7;margin-bottom:12px}
+.day-header .desc{font-size:15px;color:#ccc;line-height:1.8}
+.day-header a{display:inline-block;margin-top:14px;padding:10px 24px;background:#e74c3c;color:#fff;text-decoration:none;border-radius:20px;font-size:14px;font-weight:600}
 
 /* Photo grid */
 .photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
@@ -34,10 +35,12 @@ body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif;back
 .photos img:hover{transform:scale(1.03)}
 
 /* All view */
-.all-view{display:block}
 .day-section.all-mode{display:block}
-.day-section.all-mode .day-header{display:block}
+.day-section.all-mode .day-header{margin-bottom:20px}
+.day-section.all-mode .day-header .desc{display:none}
+.day-section.all-mode .day-header a{display:none}
 .day-section.all-mode .photos{margin-bottom:40px}
+.day-section.all-mode .day-header{padding:20px;border-left:3px solid #e74c3c}
 
 /* Lightbox */
 .lightbox{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:200;align-items:center;justify-content:center}
@@ -140,7 +143,7 @@ function render(){
     html+='<div class="date">DAY '+d.day+' — '+d.date+'</div>';
     html+='<h2>'+d.title+'</h2>';
     html+='<div class="summary">'+d.summary+'</div>';
-    html+='<p style="margin-top:12px;color:#ccc;font-size:15px;line-height:1.8">'+d.text+'</p>';
+    html+='<div class="desc">'+d.text+'</div>';
     html+='<a href="'+d.link+'">閱讀完整文章 →</a>';
     html+='</div>';
     html+='<div class="photos">';
