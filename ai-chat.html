@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Lingo AI — 你的 AI 生活秘書</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    padding: 16px 20px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .header .logo {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .header .info h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .header .info p {
+    font-size: 13px;
+    color: #6bcb77;
+  }
+
+  /* Chat Area */
+  .chat-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 16px;
+    scroll-behavior: smooth;
+  }
+
+  .msg {
+    max-width: 80%;
+    margin-bottom: 12px;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg.user { margin-left: auto; }
+  .msg.bot { margin-right: auto; }
+
+  .msg .bubble {
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 16px;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  .msg.user .bubble {
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+
+  .msg.bot .bubble {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border: 1px solid #2a2a4a;
+    border-bottom-left-radius: 4px;
+  }
+
+  .msg .bubble a {
+    color: #4d96ff;
+    text-decoration: underline;
+  }
+
+  .msg .bubble img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-top: 8px;
+  }
+
+  .msg .bubble .file-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #2a2a4a;
+    padding: 8px 14px;
+    border-radius: 10px;
+    color: #ffd93d;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 8px;
+  }
+
+  .typing {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+  }
+  .typing span {
+    width: 8px;
+    height: 8px;
+    background: #666;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+  }
+
+  /* Welcome */
+  .welcome {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .welcome .emoji { font-size: 64px; margin-bottom: 16px; }
+  .welcome h2 { font-size: 24px; color: #fff; margin-bottom: 8px; }
+  .welcome p { font-size: 16px; color: #888; line-height: 1.6; }
+
+  .suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .suggestions .chip {
+    background: #1a1a2e;
+    border: 1px solid #3a7bd5;
+    color: #4d96ff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .suggestions .chip:active {
+    background: #3a7bd5;
+    color: #fff;
+  }
+
+  /* Input Area */
+  .input-area {
+    padding: 12px 16px;
+    background: #111;
+    border-top: 1px solid #222;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .input-area textarea {
+    flex: 1;
+    background: #1a1a2e;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 10px 16px;
+    color: #fff;
+    font-size: 16px;
+    font-family: inherit;
+    resize: none;
+    max-height: 120px;
+    outline: none;
+    line-height: 1.5;
+  }
+  .input-area textarea:focus {
+    border-color: #3a7bd5;
+  }
+  .input-area textarea::placeholder {
+    color: #666;
+  }
+  .input-area .send-btn {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .input-area .send-btn:active { transform: scale(0.9); }
+  .input-area .send-btn:disabled {
+    background: #333;
+    cursor: not-allowed;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    color: #555;
+    background: #0a0a0a;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">🤖</div>
+  <div class="info">
+    <h1>Lingo AI</h1>
+    <p>🟢 線上 — 隨時為你服務</p>
+  </div>
+</div>
+
+<div class="chat-area" id="chatArea">
+  <div class="welcome">
+    <div class="emoji">🏝️</div>
+    <h2>你好！我是 Lingo AI</h2>
+    <p>你的 AI 生活秘書，傳一句話就能幫你搞定：<br>
+    簡報、旅遊規劃、新聞整理、文件排版...</p>
+    <div class="suggestions">
+      <div class="chip" onclick="sendSuggestion('幫我做一份簡報')">📊 幫我做簡報</div>
+      <div class="chip" onclick="sendSuggestion('幫我規劃沖繩五天旅遊')">🗺️ 沖繩旅遊</div>
+      <div class="chip" onclick="sendSuggestion('幫我整理今天的新聞')">📰 今日新聞</div>
+      <div class="chip" onclick="sendSuggestion('幫我做一個旅遊地圖')">📍 旅遊地圖</div>
+    </div>
+  </div>
+</div>
+
+<div class="input-area">
+  <textarea id="userInput" rows="1" placeholder="輸訊息給 AI..." 
+    onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+  <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+</div>
+
+<div class="footer">Powered by Lingo AI · OpenClaw</div>
+
+<script>
+const chatArea = document.getElementById('chatArea');
+const userInput = document.getElementById('userInput');
+const sendBtn = document.getElementById('sendBtn');
+const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'; // ← 換成你的 Telegram Bot Token
+const CHAT_ID = 'YOUR_CHAT_ID_HERE';     // ← 換成你的 Telegram Chat ID
+let isLoading = false;
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function sendSuggestion(text) {
+  userInput.value = text;
+  sendMessage();
+}
+
+function addMessage(text, isUser) {
+  // 移除 welcome
+  const welcome = chatArea.querySelector('.welcome');
+  if (welcome) welcome.remove();
+
+  const msg = document.createElement('div');
+  msg.className = `msg ${isUser ? 'user' : 'bot'}`;
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerHTML = text;
+  msg.appendChild(bubble);
+  chatArea.appendChild(msg);
+  chatArea.scrollTop = chatArea.scrollHeight;
+  return msg;
+}
+
+function showTyping() {
+  const msg = document.createElement('div');
+  msg.className = 'msg bot';
+  msg.id = 'typingIndicator';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+  msg.appendChild(bubble);
+  chatArea.appendChild(msg);
+  chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+function removeTyping() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+function sendMessage() {
+  const text = userInput.value.trim();
+  if (!text || isLoading) return;
+
+  isLoading = true;
+  sendBtn.disabled = true;
+  addMessage(text, true);
+  userInput.value = '';
+  userInput.style.height = 'auto';
+  showTyping();
+
+  // 用 Telegram Bot API 直接送
+  // 這裡有兩種做法：
+  // A) 直接呼叫你自己的後端（推薦）
+  // B) 前端直接打 Telegram API（不安全，僅限測試）
+
+  // 暫時用模擬回覆，等後端建好再換
+  setTimeout(() => {
+    removeTyping();
+    const reply = `收到！你說的是：「${text}」\n\n這是一個範例回覆。正式版會連接 AI 後端，幫你完成簡報、旅遊、新聞等任務。\n\n⏳ 後端設定中，敬請期待！`;
+    addMessage(reply, false);
+    isLoading = false;
+    sendBtn.disabled = false;
+  }, 1500);
+}
+</script>
+</body>
+</html>
