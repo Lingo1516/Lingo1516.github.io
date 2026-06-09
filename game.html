@@ -24,7 +24,8 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 .level-badge{background:#1f6feb;padding:4px 12px;border-radius:20px;font-size:14px;font-weight:700}
 .combo{position:fixed;top:60px;left:50%;transform:translateX(-50%);font-size:24px;font-weight:700;color:#f0883e;text-shadow:0 0 10px rgba(240,136,62,0.5);z-index:15;opacity:0;transition:opacity 0.3s}
 .combo.show{opacity:1}
-.sound-hint{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);font-size:12px;color:#8b949e;z-index:25;background:rgba(13,17,23,0.9);padding:8px 16px;border-radius:20px;border:1px solid #30363d}
+.sound-status{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);font-size:14px;color:#58a6ff;z-index:25;background:rgba(13,17,23,0.9);padding:10px 20px;border-radius:25px;border:2px solid #58a6ff;display:flex;align-items:center;gap:8px}
+.sound-status .icon{font-size:20px}
 </style>
 </head>
 <body>
@@ -51,8 +52,7 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 <div class="overlay" id="startScreen">
 <h2>🧱 打磚塊</h2>
 <p>👆 手指滑動控制擋板<br>📱 或按下方按鈕移動</p>
-<p>🔊 音效已開啟！</p>
-<button class="btn primary" id="startBtn">開始遊戲</button>
+<button class="btn primary" id="startBtn">🔊 開始遊戲（含音效）</button>
 </div>
 
 <div class="overlay" id="gameOverScreen" style="display:none">
@@ -68,109 +68,147 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 <button class="btn primary" id="nextLevelBtn">下一關</button>
 </div>
 
-<div class="sound-hint" id="soundHint">🔊 音效開啟中</div>
+<div class="sound-status" id="soundStatus">
+<span class="icon">🔇</span>
+<span id="soundText">點擊「開始遊戲」啟用音效</span>
+</div>
 
 <script>
-// 🔊 音效系統 - 使用 Web Audio API
+// 🔊 音效系統 - 使用 AudioBuffer 生成聲音（iOS 兼容）
 let audioCtx = null;
-let audioReady = false;
+let audioInitialized = false;
 
-function initAudio() {
-    if (audioReady) return;
+function initAudioOnUserGesture() {
+    if (audioInitialized) return true;
+    
     try {
+        // 建立 AudioContext
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        // iOS Safari 需要 resume
+        
+        // 立即恢復（iOS 需要）
         if (audioCtx.state === 'suspended') {
             audioCtx.resume();
         }
-        audioReady = true;
-        document.getElementById('soundHint').textContent = '🔊 音效已就緒';
+        
+        audioInitialized = true;
+        document.getElementById('soundStatus').innerHTML = '<span class="icon">🔊</span><span>音效已啟用！</span>';
+        document.getElementById('soundStatus').style.borderColor = '#3fb950';
+        document.getElementById('soundStatus').style.color = '#3fb950';
+        
+        // 1.5 秒後隱藏
         setTimeout(() => {
-            document.getElementById('soundHint').style.display = 'none';
+            document.getElementById('soundStatus').style.display = 'none';
         }, 1500);
+        
+        return true;
     } catch(e) {
-        console.log('Audio init failed:', e);
+        console.error('Audio init failed:', e);
+        return false;
     }
 }
 
-function playSound(type) {
-    if (!audioCtx || !audioReady) {
-        initAudio();
-        if (!audioCtx) return;
+// 生成簡單的音效緩衝區
+function createSoundBuffer(type) {
+    if (!audioCtx) return null;
+    
+    const sampleRate = audioCtx.sampleRate;
+    let duration, frequency, waveType;
+    
+    switch(type) {
+        case 'hit':
+            duration = 0.08;
+            frequency = 880;
+            waveType = 'square';
+            break;
+        case 'paddle':
+            duration = 0.06;
+            frequency = 440;
+            waveType = 'sine';
+            break;
+        case 'wall':
+            duration = 0.04;
+            frequency = 330;
+            waveType = 'sine';
+            break;
+        case 'lose':
+            duration = 0.2;
+            frequency = 200;
+            waveType = 'sawtooth';
+            break;
+        case 'levelup':
+            duration = 0.3;
+            frequency = 660;
+            waveType = 'sine';
+            break;
+        case 'gameover':
+            duration = 0.4;
+            frequency = 150;
+            waveType = 'sawtooth';
+            break;
+        default:
+            duration = 0.1;
+            frequency = 440;
+            waveType = 'sine';
     }
     
-    // 確保 audio context 是 running 狀態
+    const length = sampleRate * duration;
+    const buffer = audioCtx.createBuffer(1, length, sampleRate);
+    const data = buffer.getChannelData(0);
+    
+    for (let i = 0; i < length; i++) {
+        const t = i / sampleRate;
+        let sample = 0;
+        
+        switch(waveType) {
+            case 'sine':
+                sample = Math.sin(2 * Math.PI * frequency * t);
+                break;
+            case 'square':
+                sample = Math.sin(2 * Math.PI * frequency * t) > 0 ? 1 : -1;
+                break;
+            case 'sawtooth':
+                sample = 2 * (frequency * t % 1) - 1;
+                break;
+        }
+        
+        // 加入淡入淡出
+        const envelope = Math.min(1, i / (sampleRate * 0.01)) * Math.min(1, (length - i) / (sampleRate * 0.01));
+        data[i] = sample * envelope * 0.3; // 音量 30%
+    }
+    
+    return buffer;
+}
+
+// 快取音效
+const soundBuffers = {};
+
+function cacheSounds() {
+    const types = ['hit', 'paddle', 'wall', 'lose', 'levelup', 'gameover'];
+    types.forEach(type => {
+        soundBuffers[type] = createSoundBuffer(type);
+    });
+}
+
+function playSound(type) {
+    if (!audioCtx || !audioInitialized) {
+        if (!initAudioOnUserGesture()) return;
+    }
+    
+    // 確保 audio context 是 running
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
     
     try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
+        const buffer = soundBuffers[type];
+        if (!buffer) return;
         
-        const now = audioCtx.currentTime;
-        
-        switch(type) {
-            case 'hit':
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(523, now);
-                osc.frequency.exponentialRampToValueAtTime(1047, now + 0.03);
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
-                osc.start(now);
-                osc.stop(now + 0.08);
-                break;
-            case 'paddle':
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(330, now);
-                osc.frequency.exponentialRampToValueAtTime(440, now + 0.04);
-                gain.gain.setValueAtTime(0.15, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
-                osc.start(now);
-                osc.stop(now + 0.06);
-                break;
-            case 'wall':
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(220, now);
-                gain.gain.setValueAtTime(0.1, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
-                osc.start(now);
-                osc.stop(now + 0.04);
-                break;
-            case 'lose':
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(400, now);
-                osc.frequency.exponentialRampToValueAtTime(80, now + 0.3);
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-                osc.start(now);
-                osc.stop(now + 0.3);
-                break;
-            case 'levelup':
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(523, now);
-                osc.frequency.setValueAtTime(659, now + 0.08);
-                osc.frequency.setValueAtTime(784, now + 0.16);
-                osc.frequency.setValueAtTime(1047, now + 0.24);
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
-                osc.start(now);
-                osc.stop(now + 0.4);
-                break;
-            case 'gameover':
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(500, now);
-                osc.frequency.exponentialRampToValueAtTime(50, now + 0.5);
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
-                osc.start(now);
-                osc.stop(now + 0.5);
-                break;
-        }
+        const source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioCtx.destination);
+        source.start(0);
     } catch(e) {
-        console.log('Sound error:', e);
+        console.log('Sound play error:', e);
     }
 }
 
@@ -305,7 +343,7 @@ function handleMove(clientX) {
 // 觸控控制
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    initAudio();
+    initAudioOnUserGesture();
     if (!ballLaunched) ballLaunched = true;
     touchActive = true;
     handleMove(e.touches[0].clientX);
@@ -323,7 +361,7 @@ canvas.addEventListener('touchend', (e) => {
 
 // 滑鼠控制
 canvas.addEventListener('mousedown', (e) => {
-    initAudio();
+    initAudioOnUserGesture();
     if (!ballLaunched) ballLaunched = true;
     handleMove(e.clientX);
 });
@@ -338,7 +376,7 @@ const launchBtn = document.getElementById('launchBtn');
 
 leftBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    initAudio();
+    initAudioOnUserGesture();
     moveDir = -1;
 }, {passive: false});
 leftBtn.addEventListener('touchend', (e) => {
@@ -349,7 +387,7 @@ leftBtn.addEventListener('touchcancel', () => moveDir = 0);
 
 rightBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    initAudio();
+    initAudioOnUserGesture();
     moveDir = 1;
 }, {passive: false});
 rightBtn.addEventListener('touchend', (e) => {
@@ -360,13 +398,13 @@ rightBtn.addEventListener('touchcancel', () => moveDir = 0);
 
 launchBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    initAudio();
+    initAudioOnUserGesture();
     if (!ballLaunched) ballLaunched = true;
 }, {passive: false});
 
 // 鍵盤控制
 document.addEventListener('keydown', (e) => {
-    initAudio();
+    initAudioOnUserGesture();
     if (e.key === 'ArrowLeft' || e.key === 'a') moveDir = -1;
     if (e.key === 'ArrowRight' || e.key === 'd') moveDir = 1;
     if (e.key === ' ' || e.key === 'Enter') {
@@ -555,7 +593,8 @@ function gameLoop() {
 }
 
 function startGame() {
-    initAudio();
+    initAudioOnUserGesture();
+    cacheSounds(); // 快取所有音效
     document.getElementById('startScreen').style.display = 'none';
     document.getElementById('gameOverScreen').style.display = 'none';
     document.getElementById('levelUpScreen').style.display = 'none';
@@ -593,9 +632,9 @@ document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('restartBtn').addEventListener('click', startGame);
 document.getElementById('nextLevelBtn').addEventListener('click', nextLevel);
 
-// 頁面載入時初始化音效
+// 頁面載入時顯示音效提示
 window.addEventListener('load', () => {
-    initAudio();
+    document.getElementById('soundStatus').style.display = 'flex';
 });
 
 resetGame();
