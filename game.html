@@ -26,6 +26,9 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 .combo.show{opacity:1}
 .sound-status{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);font-size:14px;color:#58a6ff;z-index:25;background:rgba(13,17,23,0.9);padding:10px 20px;border-radius:25px;border:2px solid #58a6ff;display:flex;align-items:center;gap:8px}
 .sound-status .icon{font-size:20px}
+/* 拖動提示 */
+.drag-hint{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;color:#58a6ff;z-index:25;background:rgba(13,17,23,0.95);padding:15px 25px;border-radius:15px;border:2px solid #58a6ff;text-align:center;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
 </style>
 </head>
 <body>
@@ -51,8 +54,8 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 
 <div class="overlay" id="startScreen">
 <h2>🧱 打磚塊</h2>
-<p>👆 手指滑動控制擋板<br>📱 或按下方按鈕移動</p>
-<button class="btn primary" id="startBtn">🔊 開始遊戲（含音效）</button>
+<p>👆 <b>手指拖動</b>控制擋板<br>📱 或按下方按鈕移動</p>
+<button class="btn primary" id="startBtn">🔊 開始遊戲</button>
 </div>
 
 <div class="overlay" id="gameOverScreen" style="display:none">
@@ -68,38 +71,19 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 <button class="btn primary" id="nextLevelBtn">下一關</button>
 </div>
 
-<div class="sound-status" id="soundStatus">
-<span class="icon">🔇</span>
-<span id="soundText">點擊「開始遊戲」啟用音效</span>
-</div>
+<div class="drag-hint" id="dragHint">👆 在畫面上<b>左右拖動</b>控制擋板</div>
 
 <script>
-// 🔊 音效系統 - 使用 AudioBuffer 生成聲音（iOS 兼容）
+// 🔊 音效系統
 let audioCtx = null;
 let audioInitialized = false;
 
 function initAudioOnUserGesture() {
     if (audioInitialized) return true;
-    
     try {
-        // 建立 AudioContext
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
-        // 立即恢復（iOS 需要）
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-        
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         audioInitialized = true;
-        document.getElementById('soundStatus').innerHTML = '<span class="icon">🔊</span><span>音效已啟用！</span>';
-        document.getElementById('soundStatus').style.borderColor = '#3fb950';
-        document.getElementById('soundStatus').style.color = '#3fb950';
-        
-        // 1.5 秒後隱藏
-        setTimeout(() => {
-            document.getElementById('soundStatus').style.display = 'none';
-        }, 1500);
-        
         return true;
     } catch(e) {
         console.error('Audio init failed:', e);
@@ -107,48 +91,19 @@ function initAudioOnUserGesture() {
     }
 }
 
-// 生成簡單的音效緩衝區
 function createSoundBuffer(type) {
     if (!audioCtx) return null;
-    
     const sampleRate = audioCtx.sampleRate;
     let duration, frequency, waveType;
     
     switch(type) {
-        case 'hit':
-            duration = 0.08;
-            frequency = 880;
-            waveType = 'square';
-            break;
-        case 'paddle':
-            duration = 0.06;
-            frequency = 440;
-            waveType = 'sine';
-            break;
-        case 'wall':
-            duration = 0.04;
-            frequency = 330;
-            waveType = 'sine';
-            break;
-        case 'lose':
-            duration = 0.2;
-            frequency = 200;
-            waveType = 'sawtooth';
-            break;
-        case 'levelup':
-            duration = 0.3;
-            frequency = 660;
-            waveType = 'sine';
-            break;
-        case 'gameover':
-            duration = 0.4;
-            frequency = 150;
-            waveType = 'sawtooth';
-            break;
-        default:
-            duration = 0.1;
-            frequency = 440;
-            waveType = 'sine';
+        case 'hit': duration = 0.08; frequency = 880; waveType = 'square'; break;
+        case 'paddle': duration = 0.06; frequency = 440; waveType = 'sine'; break;
+        case 'wall': duration = 0.04; frequency = 330; waveType = 'sine'; break;
+        case 'lose': duration = 0.2; frequency = 200; waveType = 'sawtooth'; break;
+        case 'levelup': duration = 0.3; frequency = 660; waveType = 'sine'; break;
+        case 'gameover': duration = 0.4; frequency = 150; waveType = 'sawtooth'; break;
+        default: duration = 0.1; frequency = 440; waveType = 'sine';
     }
     
     const length = sampleRate * duration;
@@ -158,33 +113,20 @@ function createSoundBuffer(type) {
     for (let i = 0; i < length; i++) {
         const t = i / sampleRate;
         let sample = 0;
-        
         switch(waveType) {
-            case 'sine':
-                sample = Math.sin(2 * Math.PI * frequency * t);
-                break;
-            case 'square':
-                sample = Math.sin(2 * Math.PI * frequency * t) > 0 ? 1 : -1;
-                break;
-            case 'sawtooth':
-                sample = 2 * (frequency * t % 1) - 1;
-                break;
+            case 'sine': sample = Math.sin(2 * Math.PI * frequency * t); break;
+            case 'square': sample = Math.sin(2 * Math.PI * frequency * t) > 0 ? 1 : -1; break;
+            case 'sawtooth': sample = 2 * (frequency * t % 1) - 1; break;
         }
-        
-        // 加入淡入淡出
         const envelope = Math.min(1, i / (sampleRate * 0.01)) * Math.min(1, (length - i) / (sampleRate * 0.01));
-        data[i] = sample * envelope * 0.3; // 音量 30%
+        data[i] = sample * envelope * 0.3;
     }
-    
     return buffer;
 }
 
-// 快取音效
 const soundBuffers = {};
-
 function cacheSounds() {
-    const types = ['hit', 'paddle', 'wall', 'lose', 'levelup', 'gameover'];
-    types.forEach(type => {
+    ['hit', 'paddle', 'wall', 'lose', 'levelup', 'gameover'].forEach(type => {
         soundBuffers[type] = createSoundBuffer(type);
     });
 }
@@ -193,23 +135,15 @@ function playSound(type) {
     if (!audioCtx || !audioInitialized) {
         if (!initAudioOnUserGesture()) return;
     }
-    
-    // 確保 audio context 是 running
-    if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
-    
+    if (audioCtx.state === 'suspended') audioCtx.resume();
     try {
         const buffer = soundBuffers[type];
         if (!buffer) return;
-        
         const source = audioCtx.createBufferSource();
         source.buffer = buffer;
         source.connect(audioCtx.destination);
         source.start(0);
-    } catch(e) {
-        console.log('Sound play error:', e);
-    }
+    } catch(e) {}
 }
 
 // 🎮 遊戲設定
@@ -226,7 +160,6 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-// 遊戲狀態
 let score = 0;
 let lives = 3;
 let level = 1;
@@ -234,28 +167,9 @@ let combo = 0;
 let ballLaunched = false;
 let gameRunning = false;
 
-// 擋板
-const paddle = {
-    w: 100,
-    h: 14,
-    x: 0,
-    y: 0,
-    speed: 14,
-    color: '#58a6ff'
-};
+const paddle = { w: 100, h: 14, x: 0, y: 0, speed: 14, color: '#58a6ff' };
+const ball = { x: 0, y: 0, r: 7, dx: 0, dy: 0, speed: 6, color: '#e6edf3' };
 
-// 球
-const ball = {
-    x: 0,
-    y: 0,
-    r: 7,
-    dx: 0,
-    dy: 0,
-    speed: 6,
-    color: '#e6edf3'
-};
-
-// 磚塊顏色
 const brickColors = [
     ['#f85149', '#ff7b72', 30],
     ['#d29922', '#e3b341', 25],
@@ -282,13 +196,9 @@ function initBricks() {
             bricks[r][c] = {
                 x: brickPadding + c * (bw + brickPadding),
                 y: brickOffsetTop + r * (brickH + brickPadding),
-                w: bw,
-                h: brickH,
-                alive: true,
-                color: colorData[0],
-                highlight: colorData[1],
-                points: colorData[2],
-                hits: r === 0 ? 2 : 1
+                w: bw, h: brickH, alive: true,
+                color: colorData[0], highlight: colorData[1],
+                points: colorData[2], hits: r === 0 ? 2 : 1
             };
         }
     }
@@ -305,10 +215,7 @@ function resetBall() {
 }
 
 function resetGame() {
-    score = 0;
-    lives = 3;
-    level = 1;
-    combo = 0;
+    score = 0; lives = 3; level = 1; combo = 0;
     paddle.x = W / 2 - paddle.w / 2;
     paddle.y = H - 45;
     ball.speed = 6;
@@ -330,71 +237,122 @@ function showCombo(text) {
     setTimeout(() => el.classList.remove('show'), 800);
 }
 
-// 🎮 控制系統
+// 🎮 新的拖動控制系統
+let isDragging = false;
+let dragStartX = 0;
+let dragStartPaddleX = 0;
 let moveDir = 0;
-let touchActive = false;
 
-function handleMove(clientX) {
+// 絕對定位（按鈕用）
+function handleMoveAbsolute(clientX) {
     const rect = canvas.getBoundingClientRect();
     const x = clientX - rect.left;
     paddle.x = Math.max(0, Math.min(W - paddle.w, x - paddle.w / 2));
 }
 
-// 觸控控制
+// 相對拖動（觸控滑動用）
+function handleDragMove(clientX) {
+    const deltaX = clientX - dragStartX;
+    const newX = dragStartPaddleX + deltaX;
+    paddle.x = Math.max(0, Math.min(W - paddle.w, newX));
+}
+
+// 觸控控制 - 拖動模式
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
     initAudioOnUserGesture();
     if (!ballLaunched) ballLaunched = true;
-    touchActive = true;
-    handleMove(e.touches[0].clientX);
+    
+    isDragging = true;
+    dragStartX = e.touches[0].clientX;
+    dragStartPaddleX = paddle.x;
+    
+    // 隱藏提示
+    document.getElementById('dragHint').style.display = 'none';
 }, {passive: false});
 
 canvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
-    if (touchActive) handleMove(e.touches[0].clientX);
+    if (isDragging) {
+        handleDragMove(e.touches[0].clientX);
+    }
 }, {passive: false});
 
 canvas.addEventListener('touchend', (e) => {
     e.preventDefault();
-    touchActive = false;
+    isDragging = false;
 }, {passive: false});
 
 // 滑鼠控制
 canvas.addEventListener('mousedown', (e) => {
     initAudioOnUserGesture();
     if (!ballLaunched) ballLaunched = true;
-    handleMove(e.clientX);
+    
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartPaddleX = paddle.x;
 });
 canvas.addEventListener('mousemove', (e) => {
-    if (e.buttons) handleMove(e.clientX);
+    if (isDragging) {
+        handleDragMove(e.clientX);
+    }
 });
+canvas.addEventListener('mouseup', () => isDragging = false);
+canvas.addEventListener('mouseleave', () => isDragging = false);
 
-// 按鈕控制
+// 按鈕控制 - 重複按壓
 const leftBtn = document.getElementById('leftBtn');
 const rightBtn = document.getElementById('rightBtn');
 const launchBtn = document.getElementById('launchBtn');
 
+let leftInterval = null;
+let rightInterval = null;
+
+function startMoveLeft() {
+    moveDir = -1;
+    if (leftInterval) clearInterval(leftInterval);
+    leftInterval = setInterval(() => {
+        paddle.x += moveDir * paddle.speed;
+        paddle.x = Math.max(0, Math.min(W - paddle.w, paddle.x));
+    }, 16);
+}
+
+function startMoveRight() {
+    moveDir = 1;
+    if (rightInterval) clearInterval(rightInterval);
+    rightInterval = setInterval(() => {
+        paddle.x += moveDir * paddle.speed;
+        paddle.x = Math.max(0, Math.min(W - paddle.w, paddle.x));
+    }, 16);
+}
+
+function stopMove() {
+    moveDir = 0;
+    if (leftInterval) { clearInterval(leftInterval); leftInterval = null; }
+    if (rightInterval) { clearInterval(rightInterval); rightInterval = null; }
+}
+
 leftBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
     initAudioOnUserGesture();
-    moveDir = -1;
+    startMoveLeft();
 }, {passive: false});
 leftBtn.addEventListener('touchend', (e) => {
     e.preventDefault();
-    moveDir = 0;
+    stopMove();
 }, {passive: false});
-leftBtn.addEventListener('touchcancel', () => moveDir = 0);
+leftBtn.addEventListener('touchcancel', stopMove);
 
 rightBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
     initAudioOnUserGesture();
-    moveDir = 1;
+    startMoveRight();
 }, {passive: false});
 rightBtn.addEventListener('touchend', (e) => {
     e.preventDefault();
-    moveDir = 0;
+    stopMove();
 }, {passive: false});
-rightBtn.addEventListener('touchcancel', () => moveDir = 0);
+rightBtn.addEventListener('touchcancel', stopMove);
 
 launchBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
@@ -405,15 +363,19 @@ launchBtn.addEventListener('touchstart', (e) => {
 // 鍵盤控制
 document.addEventListener('keydown', (e) => {
     initAudioOnUserGesture();
-    if (e.key === 'ArrowLeft' || e.key === 'a') moveDir = -1;
-    if (e.key === 'ArrowRight' || e.key === 'd') moveDir = 1;
+    if (e.key === 'ArrowLeft' || e.key === 'a') {
+        if (!leftInterval) startMoveLeft();
+    }
+    if (e.key === 'ArrowRight' || e.key === 'd') {
+        if (!rightInterval) startMoveRight();
+    }
     if (e.key === ' ' || e.key === 'Enter') {
         if (!ballLaunched) ballLaunched = true;
     }
 });
 document.addEventListener('keyup', (e) => {
     if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'ArrowRight' || e.key === 'd') {
-        moveDir = 0;
+        stopMove();
     }
 });
 
@@ -421,30 +383,13 @@ document.addEventListener('keyup', (e) => {
 function update() {
     if (!gameRunning) return;
 
-    if (moveDir !== 0) {
-        paddle.x += moveDir * paddle.speed;
-        paddle.x = Math.max(0, Math.min(W - paddle.w, paddle.x));
-    }
-
     if (ballLaunched) {
         ball.x += ball.dx;
         ball.y += ball.dy;
 
-        if (ball.x - ball.r < 0) {
-            ball.dx = Math.abs(ball.dx);
-            ball.x = ball.r;
-            playSound('wall');
-        }
-        if (ball.x + ball.r > W) {
-            ball.dx = -Math.abs(ball.dx);
-            ball.x = W - ball.r;
-            playSound('wall');
-        }
-        if (ball.y - ball.r < 0) {
-            ball.dy = Math.abs(ball.dy);
-            ball.y = ball.r;
-            playSound('wall');
-        }
+        if (ball.x - ball.r < 0) { ball.dx = Math.abs(ball.dx); ball.x = ball.r; playSound('wall'); }
+        if (ball.x + ball.r > W) { ball.dx = -Math.abs(ball.dx); ball.x = W - ball.r; playSound('wall'); }
+        if (ball.y - ball.r < 0) { ball.dy = Math.abs(ball.dy); ball.y = ball.r; playSound('wall'); }
 
         if (ball.dy > 0 &&
             ball.y + ball.r >= paddle.y &&
@@ -455,12 +400,10 @@ function update() {
             ball.dy = -Math.abs(ball.dy);
             const hitPos = (ball.x - paddle.x) / paddle.w;
             ball.dx = ball.speed * (hitPos - 0.5) * 2.2;
-            
             const maxAngle = 0.85;
             if (Math.abs(ball.dx) > ball.speed * maxAngle) {
                 ball.dx = Math.sign(ball.dx) * ball.speed * maxAngle;
             }
-            
             combo = 0;
             playSound('paddle');
         }
@@ -479,15 +422,11 @@ function update() {
                     const overlapRight = b.x + b.w - (ball.x - ball.r);
                     const overlapTop = ball.y + ball.r - b.y;
                     const overlapBottom = b.y + b.h - (ball.y - ball.r);
-                    
                     const minOverlapX = Math.min(overlapLeft, overlapRight);
                     const minOverlapY = Math.min(overlapTop, overlapBottom);
                     
-                    if (minOverlapX < minOverlapY) {
-                        ball.dx = -ball.dx;
-                    } else {
-                        ball.dy = -ball.dy;
-                    }
+                    if (minOverlapX < minOverlapY) ball.dx = -ball.dx;
+                    else ball.dy = -ball.dy;
 
                     b.hits--;
                     if (b.hits <= 0) {
@@ -495,11 +434,9 @@ function update() {
                         combo++;
                         const points = b.points * (1 + Math.floor(combo / 3));
                         score += points;
-                        
                         if (combo >= 5) showCombo(`🔥 ${combo} COMBO! +${points}`);
                         else if (combo >= 3) showCombo(`✨ ${combo} COMBO! +${points}`);
                     }
-                    
                     updateUI();
                     playSound('hit');
                     break;
@@ -512,20 +449,15 @@ function update() {
             combo = 0;
             updateUI();
             playSound('lose');
-            if (lives <= 0) {
-                gameOver();
-            } else {
-                resetBall();
-            }
+            if (lives <= 0) gameOver();
+            else resetBall();
         }
     } else {
         ball.x = paddle.x + paddle.w / 2;
         ball.y = paddle.y - ball.r - 2;
     }
 
-    if (bricks.every(row => row.every(b => !b.alive))) {
-        levelUp();
-    }
+    if (bricks.every(row => row.every(b => !b.alive))) levelUp();
 }
 
 function draw() {
@@ -535,17 +467,14 @@ function draw() {
         for (let c = 0; c < brickColCount; c++) {
             const b = bricks[r][c];
             if (!b.alive) continue;
-
             ctx.fillStyle = b.color;
             ctx.beginPath();
             ctx.roundRect(b.x, b.y, b.w, b.h, 4);
             ctx.fill();
-
             ctx.fillStyle = b.highlight;
             ctx.beginPath();
             ctx.roundRect(b.x + 2, b.y + 2, b.w - 4, b.h / 3, [3, 3, 0, 0]);
             ctx.fill();
-
             if (b.hits > 1) {
                 ctx.fillStyle = 'rgba(255,255,255,0.8)';
                 ctx.font = 'bold 12px sans-serif';
@@ -562,7 +491,6 @@ function draw() {
     ctx.beginPath();
     ctx.roundRect(paddle.x, paddle.y, paddle.w, paddle.h, 7);
     ctx.fill();
-
     ctx.shadowColor = '#58a6ff';
     ctx.shadowBlur = 15;
     ctx.beginPath();
@@ -577,7 +505,6 @@ function draw() {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
     ctx.fill();
-
     ctx.shadowColor = '#e6edf3';
     ctx.shadowBlur = 20;
     ctx.beginPath();
@@ -594,10 +521,14 @@ function gameLoop() {
 
 function startGame() {
     initAudioOnUserGesture();
-    cacheSounds(); // 快取所有音效
+    cacheSounds();
     document.getElementById('startScreen').style.display = 'none';
     document.getElementById('gameOverScreen').style.display = 'none';
     document.getElementById('levelUpScreen').style.display = 'none';
+    document.getElementById('dragHint').style.display = 'block';
+    setTimeout(() => {
+        document.getElementById('dragHint').style.display = 'none';
+    }, 3000);
     gameRunning = true;
     resetGame();
 }
@@ -631,11 +562,6 @@ function nextLevel() {
 document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('restartBtn').addEventListener('click', startGame);
 document.getElementById('nextLevelBtn').addEventListener('click', nextLevel);
-
-// 頁面載入時顯示音效提示
-window.addEventListener('load', () => {
-    document.getElementById('soundStatus').style.display = 'flex';
-});
 
 resetGame();
 gameLoop();
