@@ -1,86 +1,264 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>富世達 6805 技術分析</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        body { background-color: #1a1a2e; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .chart-container { width: 100%; max-width: 1200px; margin: 0 auto; }
-        .report { background:#1a1a2e; color:#fff; padding:20px; border-radius:10px; margin-top:20px; }
-        h2 { color:#4fc3f7; }
-        h3 { margin-top: 20px; }
-        ul { line-height: 1.8; }
-        li { margin-bottom: 5px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>富世達 6805 技術分析</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0d1117; color:#e6edf3; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; padding:12px; font-size:16px; }
+h1 { color:#58a6ff; font-size:22px; text-align:center; margin:10px 0; }
+h2 { color:#58a6ff; font-size:18px; margin:15px 0 8px; border-bottom:1px solid #30363d; padding-bottom:6px; }
+.summary { background:#161b22; border-radius:8px; padding:12px; margin:10px 0; font-size:15px; line-height:1.7; }
+.summary .up { color:#3fb950; } .summary .dn { color:#f85149; } .summary .warn { color:#d29922; }
+canvas { width:100%; border-radius:8px; margin:8px 0; }
+.legend { display:flex; gap:12px; flex-wrap:wrap; font-size:13px; justify-content:center; margin:4px 0; }
+.legend span { display:inline-flex; align-items:center; gap:4px; }
+.legend .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+.section { background:#161b22; border-radius:8px; padding:12px; margin:10px 0; font-size:15px; line-height:1.8; }
+.section li { list-style:none; padding:2px 0; }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:13px; font-weight:bold; }
+.tag-buy { background:#238636; color:#fff; }
+.tag-sell { background:#da3633; color:#fff; }
+.tag-hold { background:#9e6a03; color:#fff; }
+.footer { text-align:center; color:#8b949e; font-size:12px; margin-top:20px; padding:10px; }
+</style>
 </head>
 <body>
-    <div class="chart-container">
-        <div id="chart"></div>
-        
-<div style="background:#1a1a2e; color:#fff; padding:20px; border-radius:10px; margin-top:20px; font-family: Arial, sans-serif;">
-<h2 style="color:#4fc3f7;">📊 富世達 6805 技術分析報告</h2>
-<hr style="border-color:#4fc3f7;">
 
-<h3 style="color:#81c784;">📈 今日數據</h3>
-<ul>
-<li>收盤價：<strong>1895.0</strong></li>
-<li>MA5: 2021.00 (↓) | MA10: 1944.50 | MA20: 1860.75 (↓)</li>
-<li>RSI(14): 56.0</li>
-<li>MACD: -8.50 | Signal: -35.81</li>
-<li>布林通道：1587.87 ~ 2133.63</li>
-</ul>
+<h1>📊 富世達 6805 技術分析</h1>
 
-<h3 style="color:#ffb74d;">🎯 支撐壓力</h3>
-<ul>
-<li>支撐位：<strong style="color:#4caf50;">1705.0</strong>（近期低點）</li>
-<li>壓力位：<strong style="color:#f44336;">2260.0</strong>（近期高點）</li>
-<li>布林中軌：1860.75</li>
-</ul>
-
-<h3 style="color:#ce93d8;">🔮 未來三天趨勢預測（圖表中金色虛線）</h3>
-<ul>
-<li><strong>Day 1（明天）：</strong>預計在 1739~2215 區間震盪，收盤約 1977</li>
-<li><strong>Day 2（後天）：</strong>若站穩 1861，有望挑戰 2260，收盤約 1861</li>
-<li><strong>Day 3（大後天）：</strong>觀察 2021 能否止跌回升，收盤約 1876</li>
-</ul>
-
-<h3 style="color:#4fc3f7;">💰 買入賣出建議</h3>
-<ul>
-<li>買入點：<strong style="color:#4caf50;">1739</strong>（支撐位上方 2%）</li>
-<li>停損點：<strong style="color:#f44336;">1654</strong>（支撐位下方 3%）</li>
-<li>第一目標：<strong>1861</strong>（布林中軌）</li>
-<li>第二目標：<strong>2260</strong>（近期高點）</li>
-<li>賣出點：<strong style="color:#f44336;">2215</strong>（壓力位下方 2%）</li>
-</ul>
-
-<h3 style="color:#ffb74d;">📊 技術指標解讀</h3>
-<ul>
-<li>MA5 ↓：短期下跌</li>
-<li>MA20 ↓：中期下跌</li>
-<li>RSI 56.0：中性</li>
-<li>MACD 黃金交叉：多頭訊號</li>
-</ul>
-
-<h3 style="color:#ef5350;">⚠️ 風險提示</h3>
-<ul>
-<li>本分析僅供參考，不構成投資建議</li>
-<li>股市有風險，投資需謹慎</li>
-<li>建議結合基本面和產業面綜合判斷</li>
-</ul>
+<div class="summary">
+<strong>今日收盤：<span class="dn">1895 (-2.8%)</span></strong><br>
+MA5: <span class="dn">2021 ↓</span> |
+MA10: 1944 |
+MA20: <span class="dn">1861 ↓</span><br>
+RSI(14): <span class="">56.0</span> |
+MACD: -8.5 | Signal: -35.8
 </div>
 
-    </div>
-    <script>
-        var data = {"data":[{"line":{"color":"rgba(173,216,230,0.5)","width":1},"name":"布林上軌","showlegend":false,"x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2093.1242007659566,2061.9816506038983,2111.6622912929897,2140.8681996907553,2148.1676925720412,2144.5559360917555,2133.6286360270806],"type":"scatter","xaxis":"x","yaxis":"y"},{"fill":"tonexty","fillcolor":"rgba(173,216,230,0.1)","line":{"color":"rgba(173,216,230,0.5)","width":1},"name":"布林下軌","showlegend":false,"x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1604.3757992340436,1626.0183493961017,1595.8377087070103,1587.1318003092447,1586.3323074279585,1586.9440639082445,1587.8713639729192],"type":"scatter","xaxis":"x","yaxis":"y"},{"close":[2215.0,1995.0,1880.0,1920.0,1980.0,1995.0,1850.0,1830.0,1780.0,1735.0,1735.0,1770.0,1720.0,1810.0,1795.0,1745.0,1785.0,1740.0,1765.0,1930.0,2120.0,2190.0,2085.0,1985.0,1950.0,1895.0],"decreasing":{"line":{"color":"#ef5350"}},"high":[2275.0,2165.0,2015.0,1950.0,2035.0,2055.0,2035.0,1890.0,1885.0,1840.0,1745.0,1815.0,1810.0,1810.0,1845.0,1825.0,1820.0,1840.0,1865.0,1940.0,2120.0,2245.0,2260.0,2055.0,2065.0,1935.0],"increasing":{"line":{"color":"#26a69a"}},"low":[2110.0,1995.0,1805.0,1875.0,1900.0,1965.0,1845.0,1805.0,1780.0,1725.0,1645.0,1695.0,1710.0,1755.0,1785.0,1740.0,1705.0,1720.0,1730.0,1800.0,2040.0,2100.0,2020.0,1955.0,1890.0,1760.0],"name":"K線","open":[2180.0,2160.0,2015.0,1925.0,1925.0,2020.0,2020.0,1835.0,1875.0,1820.0,1700.0,1735.0,1770.0,1770.0,1830.0,1825.0,1750.0,1805.0,1765.0,1835.0,2040.0,2150.0,2240.0,2020.0,1925.0,1760.0],"x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"type":"candlestick","xaxis":"x","yaxis":"y"},{"line":{"color":"#FFA500","width":1.5},"name":"MA5","x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[null,null,null,null,1998.0,1954.0,1925.0,1915.0,1887.0,1838.0,1786.0,1770.0,1748.0,1754.0,1766.0,1768.0,1771.0,1775.0,1766.0,1793.0,1868.0,1949.0,2018.0,2062.0,2066.0,2021.0],"type":"scatter","xaxis":"x","yaxis":"y"},{"line":{"color":"#00FF00","width":1.5},"name":"MA10","x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[null,null,null,null,null,null,null,null,null,1918.0,1870.0,1847.5,1831.5,1820.5,1802.0,1777.0,1770.5,1761.5,1760.0,1779.5,1818.0,1860.0,1896.5,1914.0,1929.5,1944.5],"type":"scatter","xaxis":"x","yaxis":"y"},{"line":{"color":"#1E90FF","width":1.5},"name":"MA20","x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1848.75,1844.0,1853.75,1864.0,1867.25,1865.75,1860.75],"type":"scatter","xaxis":"x","yaxis":"y"},{"marker":{"color":["#26a69a","#ef5350","#ef5350","#ef5350","#26a69a","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#26a69a","#26a69a","#ef5350","#26a69a","#ef5350","#ef5350","#26a69a","#ef5350","#26a69a","#26a69a","#26a69a","#26a69a","#ef5350","#ef5350","#26a69a","#26a69a"]},"name":"成交量","showlegend":false,"x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[2587650,3283287,5137849,1763898,2786603,1945868,2904762,2136690,2191888,1692195,981759,1131323,1087686,759562,989339,1813092,2439880,1613118,3125907,4063304,2968078,4685723,3383927,1191740,1437459,1291612],"type":"bar","xaxis":"x3","yaxis":"y3"},{"marker":{"color":["#26a69a","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#ef5350","#26a69a","#26a69a","#26a69a","#26a69a","#26a69a","#26a69a","#26a69a","#26a69a"]},"name":"MACD柱狀","showlegend":false,"x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[0.0,-14.039886039886188,-29.41085218464126,-34.851570934126165,-32.42720447364684,-27.998130984967517,-32.69173812648718,-34.80549904788869,-37.026656639893986,-38.7952120738596,-37.2271576377032,-31.331514324305346,-28.38557207220093,-18.44370706586713,-11.296919964186799,-8.484550200749766,-2.7734105737800263,-0.962945792110105,2.777175225130094,16.458847253561174,37.21240355360521,53.567609941943104,55.01846628448508,47.24519858199723,38.13838295060242,27.30984127048273],"type":"bar","xaxis":"x4","yaxis":"y4"},{"line":{"color":"#2196F3","width":1.5},"name":"MACD","x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[0.0,-17.549857549857734,-40.273536740773125,-54.42714822378957,-60.10958288172196,-62.680042139284524,-75.54658381242598,-86.36171949579966,-97.83954124777847,-109.30689970020899,-117.04563467347839,-118.98286994115688,-123.13332070710271,-117.8023824672357,-113.47982535660208,-112.7885931433525,-107.77080615982777,-106.20107782618538,-101.76666300266265,-83.9702791608413,-53.91362197239596,-24.166513098572295,-8.961040184909052,-4.923008241897605,-4.49522813564181,-8.496309498140818],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"line":{"color":"#FF9800","width":1.5},"name":"Signal","x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[0.0,-3.509971509971547,-10.862684556131864,-19.575577289663407,-27.68237840807512,-34.68191115431701,-42.8548456859388,-51.556220447910974,-60.812884607884484,-70.51168762634939,-79.81847703577519,-87.65135561685153,-94.74774863490178,-99.35867540136857,-102.18290539241528,-104.30404294260273,-104.99739558604774,-105.23813203407528,-104.54383822779275,-100.42912641440248,-91.12602552600117,-77.7341230405154,-63.97950646939413,-52.168206823894835,-42.63361108624423,-35.806150768623546],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"line":{"color":"#9C27B0","width":1.5},"name":"RSI(14)","x":["2026-05-04T00:00:00","2026-05-05T00:00:00","2026-05-06T00:00:00","2026-05-07T00:00:00","2026-05-08T00:00:00","2026-05-11T00:00:00","2026-05-12T00:00:00","2026-05-13T00:00:00","2026-05-14T00:00:00","2026-05-15T00:00:00","2026-05-18T00:00:00","2026-05-19T00:00:00","2026-05-20T00:00:00","2026-05-21T00:00:00","2026-05-22T00:00:00","2026-05-25T00:00:00","2026-05-26T00:00:00","2026-05-27T00:00:00","2026-05-28T00:00:00","2026-05-29T00:00:00","2026-06-01T00:00:00","2026-06-02T00:00:00","2026-06-03T00:00:00","2026-06-04T00:00:00","2026-06-05T00:00:00","2026-06-08T00:00:00"],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,26.666666666666657,32.87671232876713,42.74809160305343,36.36363636363636,32.8,45.80645161290323,66.46341463414635,70.6896551724138,66.48648648648648,62.755102040816325,60.59113300492611,56.03864734299517],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"line":{"color":"#FFD700","dash":"dash","width":3},"marker":{"size":12,"symbol":"diamond"},"mode":"lines+markers+text","name":"未來三天預測","text":["Day1: 1977","Day1: 1861","Day1: 1876"],"textfont":{"color":"#FFD700","family":"Arial Black","size":12},"textposition":"top center","x":["2026-06-09T00:00:00","2026-06-10T00:00:00","2026-06-11T00:00:00"],"y":[1976.9500000000003,1860.75,1876.05],"type":"scatter","xaxis":"x","yaxis":"y"},{"fill":"toself","fillcolor":"rgba(255,215,0,0.2)","line":{"color":"rgba(255,215,0,0.5)"},"name":"預測區間","showlegend":true,"x":["2026-06-09T00:00:00","2026-06-09T00:00:00","2026-06-11T00:00:00","2026-06-11T00:00:00"],"y":[1739.1000000000001,2214.8,1838.529,1913.571],"type":"scatter","xaxis":"x","yaxis":"y"}],"layout":{"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"matches":"x5","showticklabels":false,"rangeslider":{"visible":false}},"yaxis":{"anchor":"x","domain":[0.6757894736842105,0.9999999999999999],"title":{"text":"股價"}},"xaxis2":{"anchor":"y2","domain":[0.0,1.0],"matches":"x5","showticklabels":false},"yaxis2":{"anchor":"x2","domain":[0.5068421052631579,0.6457894736842105]},"xaxis3":{"anchor":"y3","domain":[0.0,1.0],"matches":"x5","showticklabels":false},"yaxis3":{"anchor":"x3","domain":[0.33789473684210525,0.47684210526315784],"title":{"text":"成交量"}},"xaxis4":{"anchor":"y4","domain":[0.0,1.0],"matches":"x5","showticklabels":false},"yaxis4":{"anchor":"x4","domain":[0.16894736842105262,0.3078947368421052],"title":{"text":"MACD"}},"xaxis5":{"anchor":"y5","domain":[0.0,1.0]},"yaxis5":{"anchor":"x5","domain":[0.0,0.13894736842105262],"title":{"text":"RSI"},"range":[0,100]},"annotations":[{"font":{"size":16},"showarrow":false,"text":"成交量","x":0.5,"xanchor":"center","xref":"paper","y":0.47684210526315784,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"MACD","x":0.5,"xanchor":"center","xref":"paper","y":0.3078947368421052,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"RSI","x":0.5,"xanchor":"center","xref":"paper","y":0.13894736842105262,"yanchor":"bottom","yref":"paper"}],"shapes":[{"line":{"color":"red","dash":"dash"},"opacity":0.5,"type":"line","x0":0,"x1":1,"xref":"x5 domain","y0":70,"y1":70,"yref":"y5"},{"line":{"color":"green","dash":"dash"},"opacity":0.5,"type":"line","x0":0,"x1":1,"xref":"x5 domain","y0":30,"y1":30,"yref":"y5"},{"line":{"color":"green","dash":"dot"},"opacity":0.7,"type":"line","x0":0,"x1":1,"xref":"x domain","y0":1739.1000000000001,"y1":1739.1000000000001,"yref":"y"},{"line":{"color":"red","dash":"dot"},"opacity":0.7,"type":"line","x0":0,"x1":1,"xref":"x domain","y0":2214.8,"y1":2214.8,"yref":"y"}],"title":{"font":{"size":18},"text":"富世達 6805 技術分析 | 收盤: 1895.0 | MA5↓ MA20↓"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"right","x":1},"font":{"size":11},"height":1200}};
-        var layout = {
-            xaxis: { rangeslider: { visible: false } },
-            height: 1200,
-            template: 'plotly_dark'
-        };
-        Plotly.newPlot('chart', data.data, layout);
-    </script>
+<h2>📈 K線 + 均線</h2>
+<div class="legend">
+<span><span class="dot" style="background:#FFA500"></span>MA5</span>
+<span><span class="dot" style="background:#00FF00"></span>MA10</span>
+<span><span class="dot" style="background:#1E90FF"></span>MA20</span>
+<span><span class="dot" style="background:#FFD700"></span>未來預測</span>
+</div>
+<canvas id="kline" height="300"></canvas>
+
+<h2>📊 成交量</h2>
+<canvas id="vol" height="120"></canvas>
+
+<h2>📉 MACD</h2>
+<canvas id="macdChart" height="120"></canvas>
+
+<h2>📊 RSI</h2>
+<canvas id="rsiChart" height="100"></canvas>
+
+<h2>🎯 支撐壓力 & 買賣點</h2>
+<div class="section">
+<li>🟢 支撐位：<strong style="color:#3fb950">1705</strong></li>
+<li>🔴 壓力位：<strong style="color:#f85149">2260</strong></li>
+<li>🟢 買入點：<span class="tag tag-buy">1739</span>（支撐上方2%）</li>
+<li>🔴 停損點：<span class="tag tag-sell">1654</span>（支撐下方3%）</li>
+<li>🎯 目標一：1861（布林中軌）</li>
+<li>🎯 目標二：2260（壓力位）</li>
+</div>
+
+<h2>🔮 未來三天趨勢預測</h2>
+<div class="section">
+<li><strong>Day 1（明天）：</strong>預計 1739~2215 區間震盪，收盤約 <strong>1977</strong></li>
+<li><strong>Day 2（後天）：</strong>若站穩 1861，有望挑戰 2260，收盤約 <strong>1861</strong></li>
+<li><strong>Day 3（大後天）：</strong>觀察 MA5(2021) 能否止跌回升，收盤約 <strong>1876</strong></li>
+</div>
+
+<h2>📊 技術指標解讀</h2>
+<div class="section">
+<li>MA5 ↓：短期下跌</li>
+<li>MA20 ↓：中期下跌</li>
+<li>RSI 56.0：✅ 中性</li>
+<li>MACD 🟢 黃金交叉（多頭）</li>
+</div>
+
+<h2>⚠️ 風險提示</h2>
+<div class="section" style="color:#8b949e; font-size:13px;">
+<li>• 本分析僅供參考，不構成投資建議</li>
+<li>• 股市有風險，投資需謹慎</li>
+<li>• 建議結合基本面和產業面綜合判斷</li>
+</div>
+
+<div class="footer">小綠技術分析系統 🍀 | 2026-06-09 08:52</div>
+
+<script>
+const D = {"dates": ["05/04", "05/05", "05/06", "05/07", "05/08", "05/11", "05/12", "05/13", "05/14", "05/15", "05/18", "05/19", "05/20", "05/21", "05/22", "05/25", "05/26", "05/27", "05/28", "05/29", "06/01", "06/02", "06/03", "06/04", "06/05", "06/08"], "opens": [2180.0, 2160.0, 2015.0, 1925.0, 1925.0, 2020.0, 2020.0, 1835.0, 1875.0, 1820.0, 1700.0, 1735.0, 1770.0, 1770.0, 1830.0, 1825.0, 1750.0, 1805.0, 1765.0, 1835.0, 2040.0, 2150.0, 2240.0, 2020.0, 1925.0, 1760.0], "highs": [2275.0, 2165.0, 2015.0, 1950.0, 2035.0, 2055.0, 2035.0, 1890.0, 1885.0, 1840.0, 1745.0, 1815.0, 1810.0, 1810.0, 1845.0, 1825.0, 1820.0, 1840.0, 1865.0, 1940.0, 2120.0, 2245.0, 2260.0, 2055.0, 2065.0, 1935.0], "lows": [2110.0, 1995.0, 1805.0, 1875.0, 1900.0, 1965.0, 1845.0, 1805.0, 1780.0, 1725.0, 1645.0, 1695.0, 1710.0, 1755.0, 1785.0, 1740.0, 1705.0, 1720.0, 1730.0, 1800.0, 2040.0, 2100.0, 2020.0, 1955.0, 1890.0, 1760.0], "closes": [2215.0, 1995.0, 1880.0, 1920.0, 1980.0, 1995.0, 1850.0, 1830.0, 1780.0, 1735.0, 1735.0, 1770.0, 1720.0, 1810.0, 1795.0, 1745.0, 1785.0, 1740.0, 1765.0, 1930.0, 2120.0, 2190.0, 2085.0, 1985.0, 1950.0, 1895.0], "volumes": [2587650, 3283287, 5137849, 1763898, 2786603, 1945868, 2904762, 2136690, 2191888, 1692195, 981759, 1131323, 1087686, 759562, 989339, 1813092, 2439880, 1613118, 3125907, 4063304, 2968078, 4685723, 3383927, 1191740, 1437459, 1291612], "ma5": [null, null, null, null, 1998.0, 1954.0, 1925.0, 1915.0, 1887.0, 1838.0, 1786.0, 1770.0, 1748.0, 1754.0, 1766.0, 1768.0, 1771.0, 1775.0, 1766.0, 1793.0, 1868.0, 1949.0, 2018.0, 2062.0, 2066.0, 2021.0], "ma10": [null, null, null, null, null, null, null, null, null, 1918.0, 1870.0, 1847.5, 1831.5, 1820.5, 1802.0, 1777.0, 1770.5, 1761.5, 1760.0, 1779.5, 1818.0, 1860.0, 1896.5, 1914.0, 1929.5, 1944.5], "ma20": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1848.75, 1844.0, 1853.75, 1864.0, 1867.25, 1865.75, 1860.75], "rsi": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, 26.666666666666657, 32.87671232876713, 42.74809160305343, 36.36363636363636, 32.8, 45.80645161290323, 66.46341463414635, 70.6896551724138, 66.48648648648648, 62.755102040816325, 60.59113300492611, 56.03864734299517], "macd": [0.0, -17.549857549857734, -40.273536740773125, -54.42714822378957, -60.10958288172196, -62.680042139284524, -75.54658381242598, -86.36171949579966, -97.83954124777847, -109.30689970020899, -117.04563467347839, -118.98286994115688, -123.13332070710271, -117.8023824672357, -113.47982535660208, -112.7885931433525, -107.77080615982777, -106.20107782618538, -101.76666300266265, -83.9702791608413, -53.91362197239596, -24.166513098572295, -8.961040184909052, -4.923008241897605, -4.49522813564181, -8.496309498140818], "signal": [0.0, -3.509971509971547, -10.862684556131864, -19.575577289663407, -27.68237840807512, -34.68191115431701, -42.8548456859388, -51.556220447910974, -60.812884607884484, -70.51168762634939, -79.81847703577519, -87.65135561685153, -94.74774863490178, -99.35867540136857, -102.18290539241528, -104.30404294260273, -104.99739558604774, -105.23813203407528, -104.54383822779275, -100.42912641440248, -91.12602552600117, -77.7341230405154, -63.97950646939413, -52.168206823894835, -42.63361108624423, -35.806150768623546], "histogram": [0.0, -14.039886039886188, -29.41085218464126, -34.851570934126165, -32.42720447364684, -27.998130984967517, -32.69173812648718, -34.80549904788869, -37.026656639893986, -38.7952120738596, -37.2271576377032, -31.331514324305346, -28.38557207220093, -18.44370706586713, -11.296919964186799, -8.484550200749766, -2.7734105737800263, -0.962945792110105, 2.777175225130094, 16.458847253561174, 37.21240355360521, 53.567609941943104, 55.01846628448508, 47.24519858199723, 38.13838295060242, 27.30984127048273], "future_labels": ["Day1: 1977", "Day2: 1861", "Day3: 1876"], "future_prices": [1976.9500000000003, 1861, 1876.05], "support": 1705.0, "resistance": 2260.0, "buy_price": 1739.1000000000001, "sell_price": 2214.8, "last_close": 1895.0, "ma5_trend": "\u2193", "ma20_trend": "\u2193", "ma5_val": 2021.0, "ma10_val": 1944.5, "ma20_val": 1860.75, "rsi_val": 56.03864734299517, "macd_val": -8.496309498140818, "signal_val": -35.806150768623546, "bb_lower": 1587.87, "bb_upper": 2133.63, "bb_middle": 1860.75};
+
+function drawKline() {
+  const c = document.getElementById('kline');
+  const ctx = c.getContext('2d');
+  const W = c.width = c.offsetWidth * 2;
+  const H = c.height = 600;
+  ctx.scale(1,1);
+  const pad = {l:60,r:20,t:20,b:40};
+  const cw = W-pad.l-pad.r, ch = H-pad.t-pad.b;
+  const n = D.closes.length;
+  const allPrices = [...D.highs,...D.lows,...D.ma5.filter(v=>v),...D.ma10.filter(v=>v),...D.ma20.filter(v=>v),...D.future_prices];
+  const mn = Math.min(...allPrices)*0.98, mx = Math.max(...allPrices)*1.02;
+  const xStep = cw/(n+3);
+  const yScale = v => pad.t + ch - (v-mn)/(mx-mn)*ch;
+  const xScale = i => pad.l + (i+0.5)*xStep;
+
+  // Grid
+  ctx.strokeStyle='#21262d'; ctx.lineWidth=0.5;
+  for(let i=0;i<5;i++){ const y=pad.t+ch*i/4; ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(W-pad.r,y); ctx.stroke();
+    ctx.fillStyle='#8b949e'; ctx.font='20px sans-serif'; ctx.textAlign='right';
+    ctx.fillText((mx-(mx-mn)*i/4).toFixed(0),pad.l-8,y+6);
+  }
+
+  // MA lines
+  function drawMA(arr,color){ ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath(); let started=false;
+    for(let i=0;i<arr.length;i++){ if(arr[i]===null)continue; const x=xScale(i),y=yScale(arr[i]);
+      if(!started){ctx.moveTo(x,y);started=true;}else ctx.lineTo(x,y);} ctx.stroke(); }
+  drawMA(D.ma5,'#FFA500'); drawMA(D.ma10,'#00FF00'); drawMA(D.ma20,'#1E90FF');
+
+  // Support/Resistance
+  ctx.setLineDash([8,4]);
+  ctx.strokeStyle='#3fb95080'; ctx.beginPath(); ctx.moveTo(pad.l,yScale(D.support)); ctx.lineTo(W-pad.r,yScale(D.support)); ctx.stroke();
+  ctx.strokeStyle='#f8514980'; ctx.beginPath(); ctx.moveTo(pad.l,yScale(D.resistance)); ctx.lineTo(W-pad.r,yScale(D.resistance)); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Candlesticks
+  for(let i=0;i<n;i++){ const x=xScale(i);
+    const o=D.opens[i],cl=D.closes[i],h=D.highs[i],l=D.lows[i];
+    const bullish = cl>=o;
+    ctx.strokeStyle=ctx.fillStyle=bullish?'#3fb950':'#f85149';
+    ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(x,yScale(h)); ctx.lineTo(x,yScale(l)); ctx.stroke();
+    const bodyTop=yScale(Math.max(o,cl)), bodyBot=yScale(Math.min(o,cl));
+    const bodyH=Math.max(bodyBot-bodyTop,2);
+    ctx.fillRect(x-6, bodyTop, 12, bodyH);
+  }
+
+  // Future prediction
+  ctx.strokeStyle='#FFD700'; ctx.lineWidth=3; ctx.setLineDash([10,6]);
+  ctx.beginPath();
+  const lastX = xScale(n-1), lastY = yScale(D.closes[n-1]);
+  ctx.moveTo(lastX, lastY);
+  for(let i=0;i<3;i++){ const fx=xScale(n+i), fy=yScale(D.future_prices[i]); ctx.lineTo(fx,fy); }
+  ctx.stroke(); ctx.setLineDash([]);
+
+  // Future markers with labels
+  for(let i=0;i<3;i++){ const fx=xScale(n+i), fy=yScale(D.future_prices[i]);
+    ctx.fillStyle='#FFD700'; ctx.beginPath(); ctx.arc(fx,fy,8,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#0d1117'; ctx.beginPath(); ctx.arc(fx,fy,4,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#FFD700'; ctx.font='bold 20px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(D.future_labels[i], fx, fy-16);
+    // Date label
+    const futureDates = ['明天','後天','大後天'];
+    ctx.fillStyle='#8b949e'; ctx.font='16px sans-serif';
+    ctx.fillText(futureDates[i], fx, fy+28);
+  }
+
+  // X-axis dates
+  ctx.fillStyle='#8b949e'; ctx.font='16px sans-serif'; ctx.textAlign='center';
+  for(let i=0;i<n;i+=Math.max(1,Math.floor(n/8))){ ctx.fillText(D.dates[i],xScale(i),H-8); }
+}
+
+function drawVol() {
+  const c = document.getElementById('vol');
+  const ctx = c.getContext('2d');
+  const W = c.width = c.offsetWidth * 2;
+  const H = c.height = 240;
+  const pad = {l:60,r:20,t:10,b:30};
+  const cw = W-pad.l-pad.r, ch = H-pad.t-pad.b;
+  const n = D.volumes.length;
+  const mx = Math.max(...D.volumes);
+  const xStep = cw/n;
+  const barW = xStep*0.7;
+
+  for(let i=0;i<n;i++){ const x=pad.l+i*xStep;
+    const h = (D.volumes[i]/mx)*ch;
+    const bullish = D.closes[i]>=D.opens[i];
+    ctx.fillStyle=bullish?'#3fb95080':'#f8514980';
+    ctx.fillRect(x+(xStep-barW)/2, pad.t+ch-h, barW, h);
+  }
+  ctx.fillStyle='#8b949e'; ctx.font='16px sans-serif'; ctx.textAlign='right';
+  ctx.fillText((mx/10000).toFixed(0)+'萬',pad.l-8,pad.t+16);
+}
+
+function drawMACD() {
+  const c = document.getElementById('macdChart');
+  const ctx = c.getContext('2d');
+  const W = c.width = c.offsetWidth * 2;
+  const H = c.height = 240;
+  const pad = {l:60,r:20,t:10,b:30};
+  const cw = W-pad.l-pad.r, ch = H-pad.t-pad.b;
+  const n = D.histogram.length;
+  const allVals = [...D.macd,...D.signal,...D.histogram];
+  const mx = Math.max(...allVals.map(Math.abs));
+  const xStep = cw/n;
+  const barW = xStep*0.6;
+  const mid = pad.t + ch/2;
+
+  // Zero line
+  ctx.strokeStyle='#30363d'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(pad.l,mid); ctx.lineTo(W-pad.r,mid); ctx.stroke();
+
+  // Histogram
+  for(let i=0;i<n;i++){ const x=pad.l+i*xStep;
+    const h = (D.histogram[i]/mx)*(ch/2);
+    ctx.fillStyle=D.histogram[i]>=0?'#3fb95080':'#f8514980';
+    ctx.fillRect(x+(xStep-barW)/2, mid-Math.max(h,0), barW, Math.abs(h));
+  }
+
+  // MACD & Signal lines
+  function drawLine(arr,color){ ctx.strokeStyle=color; ctx.lineWidth=2; ctx.beginPath();
+    for(let i=0;i<n;i++){ const x=pad.l+(i+0.5)*xStep, y=mid-(arr[i]/mx)*(ch/2);
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);} ctx.stroke(); }
+  drawLine(D.macd,'#2196F3');
+  drawLine(D.signal,'#FF9800');
+
+  ctx.fillStyle='#8b949e'; ctx.font='14px sans-serif'; ctx.textAlign='right';
+  ctx.fillText('MACD',pad.l-8,pad.t+14);
+}
+
+function drawRSI() {
+  const c = document.getElementById('rsiChart');
+  const ctx = c.getContext('2d');
+  const W = c.width = c.offsetWidth * 2;
+  const H = c.height = 200;
+  const pad = {l:60,r:20,t:10,b:30};
+  const cw = W-pad.l-pad.r, ch = H-pad.t-pad.b;
+  const n = D.rsi.length;
+  const xStep = cw/n;
+
+  // 70/30 lines
+  ctx.setLineDash([6,4]);
+  ctx.strokeStyle='#f8514940'; ctx.beginPath();
+  ctx.moveTo(pad.l, pad.t+ch*(1-70/100)); ctx.lineTo(W-pad.r, pad.t+ch*(1-70/100)); ctx.stroke();
+  ctx.strokeStyle='#3fb95040'; ctx.beginPath();
+  ctx.moveTo(pad.l, pad.t+ch*(1-30/100)); ctx.lineTo(W-pad.r, pad.t+ch*(1-30/100)); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // RSI line
+  ctx.strokeStyle='#9C27B0'; ctx.lineWidth=2.5; ctx.beginPath();
+  let started=false;
+  for(let i=0;i<n;i++){ if(D.rsi[i]===null)continue;
+    const x=pad.l+(i+0.5)*xStep, y=pad.t+ch*(1-D.rsi[i]/100);
+    if(!started){ctx.moveTo(x,y);started=true;}else ctx.lineTo(x,y);}
+  ctx.stroke();
+
+  // Current RSI label
+  const lastRsi = D.rsi[D.rsi.length-1];
+  const lx = pad.l+(n-0.5)*xStep, ly = pad.t+ch*(1-lastRsi/100);
+  ctx.fillStyle='#9C27B0'; ctx.beginPath(); ctx.arc(lx,ly,6,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.font='bold 18px sans-serif'; ctx.textAlign='left';
+  ctx.fillText('RSI: '+lastRsi.toFixed(1), lx+12, ly+6);
+
+  ctx.fillStyle='#8b949e'; ctx.font='14px sans-serif'; ctx.textAlign='right';
+  ctx.fillText('RSI',pad.l-8,pad.t+14);
+}
+
+drawKline(); drawVol(); drawMACD(); drawRSI();
+</script>
 </body>
 </html>
