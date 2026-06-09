@@ -2,24 +2,21 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>打磚塊 - 小綠遊戲</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang HK","Heiti TC",sans-serif;overflow:hidden;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#e6edf3;user-select:none;-webkit-user-select:none}
+body{background:#0d1117;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang HK","Heiti TC",sans-serif;overflow:hidden;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#e6edf3;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .hdr{position:fixed;top:0;left:0;right:0;background:rgba(13,17,23,0.95);padding:10px 15px;display:flex;justify-content:space-between;align-items:center;z-index:10;border-bottom:1px solid #30363d}
 .hdr h1{font-size:18px;color:#58a6ff}
 .info{display:flex;gap:15px;font-size:13px;color:#8b949e}
 .info span{color:#e6edf3;font-weight:700}
-canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:none}
-.ctrl{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:10;padding:10px;gap:8px}
-.btn{background:rgba(33,38,45,0.95);border:2px solid #30363d;color:#e6edf3;padding:18px 0;border-radius:12px;font-size:18px;cursor:pointer;touch-action:manipulation;flex:1;text-align:center;transition:all 0.1s}
+canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:none;display:block}
+.ctrl{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:10;padding:8px;gap:6px}
+.btn{background:rgba(33,38,45,0.95);border:2px solid #30363d;color:#e6edf3;padding:20px 0;border-radius:12px;font-size:18px;cursor:pointer;touch-action:manipulation;flex:1;text-align:center;transition:all 0.05s}
 .btn:active{background:#30363d;transform:scale(0.95)}
 .btn.primary{background:rgba(35,134,54,0.9);border-color:#2ea043}
 .btn.primary:active{background:#2ea043}
-.btn.left{flex:1.2}
-.btn.right{flex:1.2}
-.btn.launch{flex:1.5;font-size:20px}
 .overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20}
 .overlay h2{font-size:32px;color:#58a6ff;margin-bottom:20px;text-shadow:0 0 20px rgba(88,166,255,0.5)}
 .overlay p{font-size:16px;color:#8b949e;margin-bottom:10px;text-align:center;line-height:1.6}
@@ -27,6 +24,7 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 .level-badge{background:#1f6feb;padding:4px 12px;border-radius:20px;font-size:14px;font-weight:700}
 .combo{position:fixed;top:60px;left:50%;transform:translateX(-50%);font-size:24px;font-weight:700;color:#f0883e;text-shadow:0 0 10px rgba(240,136,62,0.5);z-index:15;opacity:0;transition:opacity 0.3s}
 .combo.show{opacity:1}
+.sound-hint{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);font-size:12px;color:#8b949e;z-index:25;background:rgba(13,17,23,0.9);padding:8px 16px;border-radius:20px;border:1px solid #30363d}
 </style>
 </head>
 <body>
@@ -45,15 +43,15 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 <canvas id="game"></canvas>
 
 <div class="ctrl">
-<button class="btn left" id="leftBtn">⬅️ 左</button>
-<button class="btn launch primary" id="launchBtn">🚀 發射</button>
-<button class="btn right" id="rightBtn">右 ➡️</button>
+<button class="btn" id="leftBtn">⬅️ 左</button>
+<button class="btn primary" id="launchBtn">🚀 發射</button>
+<button class="btn" id="rightBtn">右 ➡️</button>
 </div>
 
 <div class="overlay" id="startScreen">
 <h2>🧱 打磚塊</h2>
 <p>👆 手指滑動控制擋板<br>📱 或按下方按鈕移動</p>
-<p>打掉所有磚塊過關！</p>
+<p>🔊 音效已開啟！</p>
 <button class="btn primary" id="startBtn">開始遊戲</button>
 </div>
 
@@ -70,80 +68,109 @@ canvas{border-radius:8px;border:1px solid #30363d;margin-top:50px;touch-action:n
 <button class="btn primary" id="nextLevelBtn">下一關</button>
 </div>
 
+<div class="sound-hint" id="soundHint">🔊 音效開啟中</div>
+
 <script>
-// 🔊 音效系統
-const AudioCtx = window.AudioContext || window.webkitAudioContext;
+// 🔊 音效系統 - 使用 Web Audio API
 let audioCtx = null;
+let audioReady = false;
 
 function initAudio() {
-    if (!audioCtx) audioCtx = new AudioCtx();
+    if (audioReady) return;
+    try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // iOS Safari 需要 resume
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        audioReady = true;
+        document.getElementById('soundHint').textContent = '🔊 音效已就緒';
+        setTimeout(() => {
+            document.getElementById('soundHint').style.display = 'none';
+        }, 1500);
+    } catch(e) {
+        console.log('Audio init failed:', e);
+    }
 }
 
 function playSound(type) {
-    if (!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    if (!audioCtx || !audioReady) {
+        initAudio();
+        if (!audioCtx) return;
+    }
     
-    const now = audioCtx.currentTime;
+    // 確保 audio context 是 running 狀態
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
     
-    switch(type) {
-        case 'hit':
-            osc.type = 'square';
-            osc.frequency.setValueAtTime(440, now);
-            osc.frequency.exponentialRampToValueAtTime(880, now + 0.05);
-            gain.gain.setValueAtTime(0.15, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
-            osc.start(now);
-            osc.stop(now + 0.1);
-            break;
-        case 'paddle':
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(220, now);
-            osc.frequency.exponentialRampToValueAtTime(330, now + 0.05);
-            gain.gain.setValueAtTime(0.1, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
-            osc.start(now);
-            osc.stop(now + 0.08);
-            break;
-        case 'wall':
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(180, now);
-            gain.gain.setValueAtTime(0.08, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
-            osc.start(now);
-            osc.stop(now + 0.05);
-            break;
-        case 'lose':
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(300, now);
-            osc.frequency.exponentialRampToValueAtTime(100, now + 0.3);
-            gain.gain.setValueAtTime(0.15, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-            osc.start(now);
-            osc.stop(now + 0.3);
-            break;
-        case 'levelup':
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(523, now);
-            osc.frequency.setValueAtTime(659, now + 0.1);
-            osc.frequency.setValueAtTime(784, now + 0.2);
-            osc.frequency.setValueAtTime(1047, now + 0.3);
-            gain.gain.setValueAtTime(0.15, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
-            osc.start(now);
-            osc.stop(now + 0.5);
-            break;
-        case 'gameover':
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(400, now);
-            osc.frequency.exponentialRampToValueAtTime(50, now + 0.5);
-            gain.gain.setValueAtTime(0.15, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
-            osc.start(now);
-            osc.stop(now + 0.5);
-            break;
+    try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        const now = audioCtx.currentTime;
+        
+        switch(type) {
+            case 'hit':
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(523, now);
+                osc.frequency.exponentialRampToValueAtTime(1047, now + 0.03);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                osc.start(now);
+                osc.stop(now + 0.08);
+                break;
+            case 'paddle':
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(330, now);
+                osc.frequency.exponentialRampToValueAtTime(440, now + 0.04);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
+                osc.start(now);
+                osc.stop(now + 0.06);
+                break;
+            case 'wall':
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(220, now);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+                osc.start(now);
+                osc.stop(now + 0.04);
+                break;
+            case 'lose':
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(400, now);
+                osc.frequency.exponentialRampToValueAtTime(80, now + 0.3);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+                break;
+            case 'levelup':
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523, now);
+                osc.frequency.setValueAtTime(659, now + 0.08);
+                osc.frequency.setValueAtTime(784, now + 0.16);
+                osc.frequency.setValueAtTime(1047, now + 0.24);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                osc.start(now);
+                osc.stop(now + 0.4);
+                break;
+            case 'gameover':
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(500, now);
+                osc.frequency.exponentialRampToValueAtTime(50, now + 0.5);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                osc.start(now);
+                osc.stop(now + 0.5);
+                break;
+        }
+    } catch(e) {
+        console.log('Sound error:', e);
     }
 }
 
@@ -171,11 +198,11 @@ let gameRunning = false;
 
 // 擋板
 const paddle = {
-    w: 90,
+    w: 100,
     h: 14,
     x: 0,
     y: 0,
-    speed: 12,
+    speed: 14,
     color: '#58a6ff'
 };
 
@@ -192,12 +219,12 @@ const ball = {
 
 // 磚塊顏色
 const brickColors = [
-    ['#f85149', '#ff7b72', 30],  // 紅 - 高分
-    ['#d29922', '#e3b341', 25],  // 黃
-    ['#3fb950', '#56d364', 20],  // 綠
-    ['#58a6ff', '#79c0ff', 15],  // 藍
-    ['#bc8cff', '#d2a8ff', 10],  // 紫
-    ['#f778ba', '#ff9bce', 5],   // 粉 - 低分
+    ['#f85149', '#ff7b72', 30],
+    ['#d29922', '#e3b341', 25],
+    ['#3fb950', '#56d364', 20],
+    ['#58a6ff', '#79c0ff', 15],
+    ['#bc8cff', '#d2a8ff', 10],
+    ['#f778ba', '#ff9bce', 5],
 ];
 
 let bricks = [];
@@ -223,7 +250,7 @@ function initBricks() {
                 color: colorData[0],
                 highlight: colorData[1],
                 points: colorData[2],
-                hits: r === 0 ? 2 : 1  // 第一排需要打兩次
+                hits: r === 0 ? 2 : 1
             };
         }
     }
@@ -275,7 +302,7 @@ function handleMove(clientX) {
     paddle.x = Math.max(0, Math.min(W - paddle.w, x - paddle.w / 2));
 }
 
-// 觸控控制 - 畫面區域
+// 觸控控制
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
     initAudio();
@@ -304,12 +331,11 @@ canvas.addEventListener('mousemove', (e) => {
     if (e.buttons) handleMove(e.clientX);
 });
 
-// 按鈕控制 - 更靈敏
+// 按鈕控制
 const leftBtn = document.getElementById('leftBtn');
 const rightBtn = document.getElementById('rightBtn');
 const launchBtn = document.getElementById('launchBtn');
 
-// 左按鈕
 leftBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
     initAudio();
@@ -321,7 +347,6 @@ leftBtn.addEventListener('touchend', (e) => {
 }, {passive: false});
 leftBtn.addEventListener('touchcancel', () => moveDir = 0);
 
-// 右按鈕
 rightBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
     initAudio();
@@ -333,7 +358,6 @@ rightBtn.addEventListener('touchend', (e) => {
 }, {passive: false});
 rightBtn.addEventListener('touchcancel', () => moveDir = 0);
 
-// 發射按鈕
 launchBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
     initAudio();
@@ -359,7 +383,6 @@ document.addEventListener('keyup', (e) => {
 function update() {
     if (!gameRunning) return;
 
-    // 擋板按鈕移動
     if (moveDir !== 0) {
         paddle.x += moveDir * paddle.speed;
         paddle.x = Math.max(0, Math.min(W - paddle.w, paddle.x));
@@ -369,7 +392,6 @@ function update() {
         ball.x += ball.dx;
         ball.y += ball.dy;
 
-        // 牆壁碰撞
         if (ball.x - ball.r < 0) {
             ball.dx = Math.abs(ball.dx);
             ball.x = ball.r;
@@ -386,7 +408,6 @@ function update() {
             playSound('wall');
         }
 
-        // 擋板碰撞
         if (ball.dy > 0 &&
             ball.y + ball.r >= paddle.y &&
             ball.y + ball.r <= paddle.y + paddle.h + 8 &&
@@ -397,7 +418,6 @@ function update() {
             const hitPos = (ball.x - paddle.x) / paddle.w;
             ball.dx = ball.speed * (hitPos - 0.5) * 2.2;
             
-            // 限制角度
             const maxAngle = 0.85;
             if (Math.abs(ball.dx) > ball.speed * maxAngle) {
                 ball.dx = Math.sign(ball.dx) * ball.speed * maxAngle;
@@ -407,7 +427,6 @@ function update() {
             playSound('paddle');
         }
 
-        // 磚塊碰撞
         for (let r = 0; r < brickRowCount; r++) {
             for (let c = 0; c < brickColCount; c++) {
                 const b = bricks[r][c];
@@ -418,7 +437,6 @@ function update() {
                     ball.y + ball.r > b.y &&
                     ball.y - ball.r < b.y + b.h) {
                     
-                    // 判斷碰撞方向
                     const overlapLeft = ball.x + ball.r - b.x;
                     const overlapRight = b.x + b.w - (ball.x - ball.r);
                     const overlapTop = ball.y + ball.r - b.y;
@@ -451,7 +469,6 @@ function update() {
             }
         }
 
-        // 球掉出底部
         if (ball.y - ball.r > H) {
             lives--;
             combo = 0;
@@ -468,7 +485,6 @@ function update() {
         ball.y = paddle.y - ball.r - 2;
     }
 
-    // 檢查是否過關
     if (bricks.every(row => row.every(b => !b.alive))) {
         levelUp();
     }
@@ -477,25 +493,21 @@ function update() {
 function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    // 畫磚塊
     for (let r = 0; r < brickRowCount; r++) {
         for (let c = 0; c < brickColCount; c++) {
             const b = bricks[r][c];
             if (!b.alive) continue;
 
-            // 主體
             ctx.fillStyle = b.color;
             ctx.beginPath();
             ctx.roundRect(b.x, b.y, b.w, b.h, 4);
             ctx.fill();
 
-            // 高光
             ctx.fillStyle = b.highlight;
             ctx.beginPath();
             ctx.roundRect(b.x + 2, b.y + 2, b.w - 4, b.h / 3, [3, 3, 0, 0]);
             ctx.fill();
 
-            // 需要打兩次的磚塊加標記
             if (b.hits > 1) {
                 ctx.fillStyle = 'rgba(255,255,255,0.8)';
                 ctx.font = 'bold 12px sans-serif';
@@ -505,7 +517,6 @@ function draw() {
         }
     }
 
-    // 畫擋板
     const gradient = ctx.createLinearGradient(paddle.x, paddle.y, paddle.x, paddle.y + paddle.h);
     gradient.addColorStop(0, '#79c0ff');
     gradient.addColorStop(1, '#1f6feb');
@@ -514,7 +525,6 @@ function draw() {
     ctx.roundRect(paddle.x, paddle.y, paddle.w, paddle.h, 7);
     ctx.fill();
 
-    // 擋板發光
     ctx.shadowColor = '#58a6ff';
     ctx.shadowBlur = 15;
     ctx.beginPath();
@@ -522,7 +532,6 @@ function draw() {
     ctx.fill();
     ctx.shadowBlur = 0;
 
-    // 畫球
     const ballGradient = ctx.createRadialGradient(ball.x - 2, ball.y - 2, 0, ball.x, ball.y, ball.r);
     ballGradient.addColorStop(0, '#ffffff');
     ballGradient.addColorStop(1, '#e6edf3');
@@ -531,7 +540,6 @@ function draw() {
     ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
     ctx.fill();
 
-    // 球發光
     ctx.shadowColor = '#e6edf3';
     ctx.shadowBlur = 20;
     ctx.beginPath();
@@ -581,12 +589,15 @@ function nextLevel() {
     updateUI();
 }
 
-// 事件綁定
 document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('restartBtn').addEventListener('click', startGame);
 document.getElementById('nextLevelBtn').addEventListener('click', nextLevel);
 
-// 開始遊戲迴圈
+// 頁面載入時初始化音效
+window.addEventListener('load', () => {
+    initAudio();
+});
+
 resetGame();
 gameLoop();
 </script>
