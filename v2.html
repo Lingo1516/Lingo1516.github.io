@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>English Practice</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f8fafc;color:#1e293b;height:100vh;display:flex;flex-direction:column}
+.hdr{background:#2563eb;color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.hdr h1{font-size:18px}
+.pg{display:none;flex:1;overflow-y:auto;padding:16px}
+.pg.on{display:flex;flex-direction:column}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.scard{background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center;cursor:pointer}
+.scard:active{border-color:#2563eb;background:#eff6ff}
+.scard .ic{font-size:32px;margin-bottom:8px}
+.scard .ti{font-size:14px;font-weight:600}
+.scard .de{font-size:11px;color:#64748b;margin-top:4px}
+.carea{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:80%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}
+.ai{background:#2563eb;color:#fff;align-self:flex-start;border-bottom-left-radius:4px}
+.usr{background:#e0e7ff;color:#1e293b;align-self:flex-end;border-bottom-right-radius:4px}
+.sys{background:#f59e0b;color:#fff;align-self:center;font-size:12px;padding:6px 12px;border-radius:20px}
+.hint{font-size:11px;opacity:0.8;margin-top:4px;font-style:italic}
+.inp{padding:8px 12px;border-top:1px solid #e2e8f0;background:#fff;display:flex;gap:8px}
+.inp input{flex:1;padding:10px 14px;border:1px solid #e2e8f0;border-radius:20px;font-size:14px;outline:none}
+.inp button{background:#2563eb;color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:18px;cursor:pointer}
+.cat{margin-bottom:16px}
+.cat h3{font-size:14px;color:#2563eb;margin-bottom:8px;border-bottom:1px solid #e2e8f0;padding-bottom:4px}
+.pi{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:10px;margin-bottom:6px;cursor:pointer}
+.pi .en{font-size:13px;font-weight:500}
+.pi .cn{font-size:12px;color:#64748b;margin-top:2px}
+.sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.sc{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center}
+.sc .n{font-size:28px;font-weight:700;color:#2563eb}
+.sc .l{font-size:11px;color:#64748b;margin-top:4px}
+.bnav{display:flex;background:#fff;border-top:1px solid #e2e8f0;padding:8px 0}
+.bnav div{flex:1;text-align:center;padding:8px 0;cursor:pointer;font-size:11px;color:#64748b}
+.bnav div.on{color:#2563eb;font-weight:600}
+.back{background:none;border:none;font-size:20px;cursor:pointer;margin-right:8px}
+@media(max-width:480px){.sgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hdr"><h1>English Practice</h1></div>
+
+<div class="pg on" id="p0">
+<h2 style="font-size:16px;margin-bottom:4px">選擇情境</h2>
+<p style="font-size:12px;color:#64748b">選一個場景開始練習</p>
+<div class="sgrid" id="sg"></div>
+</div>
+
+<div class="pg" id="p1">
+<div style="display:flex;align-items:center;border-bottom:1px solid #e2e8f0;padding-bottom:8px;margin-bottom:8px">
+<button class="back" onclick="go(0)">←</button>
+<div><div id="ct" style="font-size:14px;font-weight:600"></div><div id="cs" style="font-size:11px;color:#64748b"></div></div>
+</div>
+<div class="carea" id="ca"></div>
+<div class="inp"><input type="text" id="ui" placeholder="輸入英文..." onkeydown="if(event.key==='Enter')send()"><button onclick="send()">➤</button></div>
+</div>
+
+<div class="pg" id="p2">
+<h2 style="font-size:16px;margin-bottom:12px">常用句型</h2>
+<div id="pl"></div>
+</div>
+
+<div class="pg" id="p3">
+<h2 style="font-size:16px;margin-bottom:12px">學習進度</h2>
+<div class="sgrid2">
+<div class="sc"><div class="n" id="s1">0</div><div class="l">練習次數</div></div>
+<div class="sc"><div class="n" id="s2">0</div><div class="l">句子數</div></div>
+<div class="sc"><div class="n" id="s3">0</div><div class="l">連續天數</div></div>
+<div class="sc"><div class="n" id="s4">0</div><div class="l">已學句型</div></div>
+</div>
+</div>
+
+<div class="bnav">
+<div class="on" onclick="go(0)">🎯情境</div>
+<div onclick="go(2)">📚句型</div>
+<div onclick="go(3)">📊進度</div>
+</div>
+
+<script>
+var S=[
+{id:"r",ic:"🍽️",ti:"餐廳點餐",de:"Order food",g:"Welcome! I will be your server today. Can I start you off with something to drink?",gc:"我是服務生，請問要先喝點什麼？"},
+{id:"h",ic:"🏨",ti:"飯店住宿",de:"Check in at a hotel",g:"Good afternoon! Welcome to Grand Hotel. Do you have a reservation with us?",gc:"下午好！歡迎來到大酒店，請問有訂房嗎？"},
+{id:"a",ic:"✈️",ti:"機場通關",de:"Go through customs",g:"Good morning. Passport and boarding pass, please. What is the purpose of your visit?",gc:"早安，請出示護照和登機證。請問來訪目的是什麼？"},
+{id:"s",ic:"🛍️",ti:"逛街購物",de:"Shop for clothes",g:"Hi there! Looking for anything special today? We just got some new arrivals.",gc:"嗨！今天在找什麼特別的嗎？我們剛到了一些新品。"},
+{id:"b",ic:"💼",ti:"商務會議",de:"Business meeting",g:"Hey, thanks for joining the call. Let us get started with the quarterly review.",gc:"嗨，感謝加入會議。我們開始做季度回顧吧。"},
+{id:"d",ic:"🏥",ti:"看醫生",de:"Visit a doctor",g:"Hello, what brings you in today? Any symptoms you would like to discuss?",gc:"你好，今天什麼症狀來看診？"},
+{id:"t",ic:"🚕",ti:"搭計程車",de:"Take a taxi",g:"Hey! Where to today?",gc:"嗨！今天要去哪裡？"},
+{id:"c",ic:"☕",ti:"閒聊社交",de:"Casual chat",g:"Yo! What is up? Haven't seen you in a while!",gc:"嘿！最近怎樣？好久沒見了！"}
+];
+
+var P=[
+{cat:"基本問候",items:[
+{en:"How are you doing?",cn:"你最近好嗎？"},
+{en:"What have you been up to?",cn:"你最近在忙什麼？"},
+{en:"Long time no see!",cn:"好久不見！"},
+{en:"It has been a while.",cn:"好久沒見了。"}
+]},
+{cat:"購物必備",items:[
+{en:"How much is this?",cn:"這個多少錢？"},
+{en:"Do you have this in a different size?",cn:"有不同尺寸嗎？"},
+{en:"Can I try this on?",cn:"可以試穿嗎？"},
+{en:"I will take it.",cn:"我要買這個。"}
+]},
+{cat:"餐廳用語",items:[
+{en:"Could I see the menu, please?",cn:"可以看一下菜單嗎？"},
+{en:"I would like to order...",cn:"我要點..."},
+{en:"Could we get the check, please?",cn:"可以結帳了嗎？"},
+{en:"Everything was delicious, thank you.",cn:"一切都很好吃，謝謝。"}
+]},
+{cat:"旅行必備",items:[
+{en:"Where is the gate?",cn:"登機門在哪裡？"},
+{en:"Is this the line for boarding?",cn:"這是排隊登機嗎？"},
+{en:"I would like a window seat.",cn:"我要靠窗的位子。"},
+{en:"Where can I pick up my luggage?",cn:"哪裡可以領行李？"}
+]},
+{cat:"商務用語",items:[
+{en:"Let us schedule a meeting.",cn:"我們來排個會議。"},
+{en:"I will send you a follow-up email.",cn:"我會寄後續 email 給你。"},
+{en:"Could you clarify that point?",cn:"可以說明一下那個重點嗎？"},
+{en:"I think we are on the same page.",cn:"我覺得我們想法一致。"}
+]},
+{cat:"緊急狀況",items:[
+{en:"I need help!",cn:"我需要幫忙！"},
+{en:"Where is the nearest hospital?",cn:"最近的醫院在哪裡？"},
+{en:"I lost my passport.",cn:"我的護照不見了。"},
+{en:"Can someone call the police?",cn:"有人可以報警嗎？"}
+]},
+{cat:"常用片語",items:[
+{en:"That makes sense.",cn:"有道理。"},
+{en:"I am not sure about that.",cn:"我不太確定。"},
+{en:"Could you say that again?",cn:"可以再說一次嗎？"},
+{en:"What do you think?",cn:"你覺得呢？"}
+]}
+];
+
+var cur=null,hist=[],st=JSON.parse(localStorage.getItem("est")||"{\"ss\":0,\"sn\":0,\"sk\":0,\"ld\":\"\",\"h\":[]}");
+
+function go(n){
+document.querySelectorAll(".pg").forEach(function(p){p.classList.remove("on")});
+document.querySelectorAll(".bnav div").forEach(function(d){d.classList.remove("on")});
+document.getElementById("p"+n).classList.add("on");
+if(n<2)document.querySelectorAll(".bnav div")[0].classList.add("on");
+else if(n===2)document.querySelectorAll(".bnav div")[1].classList.add("on");
+else document.querySelectorAll("bnav div")[2].classList.add("on");
+}
+
+function init(){
+var g=document.getElementById("sg");
+g.innerHTML=S.map(function(s){
+return "<div class=\"scard\" onclick=\"start('" + s.id + "')\"><div class=\"ic\">" + s.ic + "</div><div class=\"ti\">" + s.ti + "</div><div class=\"de\">" + s.de + "</div></div>";
+}).join("");
+var pl=document.getElementById("pl");
+pl.innerHTML=P.map(function(p){
+return "<div class=\"cat\"><h3>" + p.cat + "</h3>" + p.items.map(function(q){
+return "<div class=\"pi\" onclick=\"cp('" + q.en.replace(/'/g,"\\'") + "')\"><div class=\"en\">" + q.en + "</div><div class=\"cn\">" + q.cn + "</div></div>";
+}).join("") + "</div>";
+}).join("");
+}
+
+function start(id){
+cur=null;
+for(var i=0;i<S.length;i++){if(S[i].id===id){cur=S[i];break;}}
+if(!cur)return;
+hist=[];
+document.getElementById("ct").textContent=cur.ic+" "+cur.ti;
+document.getElementById("cs").textContent=cur.gc;
+document.getElementById("ca").innerHTML="";
+go(1);
+addAI(cur.g,cur.gc);
+document.getElementById("ui").focus();
+}
+
+function addAI(t,cn){
+var d=document.createElement("div");
+d.className="msg ai";
+d.innerHTML=t+(cn?"<div class=\"hint\">"+cn+"</div>":"");
+document.getElementById("ca").appendChild(d);
+document.getElementById("ca").scrollTop=document.getElementById("ca").scrollHeight;
+}
+
+function addU(t){
+var d=document.createElement("div");
+d.className="msg usr";
+d.textContent=t;
+document.getElementById("ca").appendChild(d);
+document.getElementById("ca").scrollTop=document.getElementById("ca").scrollHeight;
+}
+
+function addS(t){
+var d=document.createElement("div");
+d.className="msg sys";
+d.innerHTML=t;
+document.getElementById("ca").appendChild(d);
+document.getElementById("ca").scrollTop=document.getElementById("ca").scrollHeight;
+}
+
+function send(){
+var inp=document.getElementById("ui");
+var t=inp.value.trim();
+if(!t)return;
+inp.value="";
+addU(t);
+st.sn++;
+save();
+setTimeout(function(){resp(t);},500);
+}
+
+function resp(t){
+var cn=/[\u4e00-\u9fff]/.test(t);
+var r,fb;
+if(cn){
+var tr={"你好":"Hello!","謝謝":"Thank you!","多少錢":"How much is it?","我要點餐":"I would like to order.","再見":"Goodbye!","這個":"This one, please.","可以便宜一點嗎":"Can you give me a discount?","我想要":"I would like...","有沒有":"Do you have...?"};
+r={t:tr[t]||("I want to say: " + t),c:"已翻譯你的中文"};
+fb="已將你的中文翻譯成英文對話";
+}else{
+r=ai(t);
+fb=chk(t);
+}
+addAI(r.t,r.c);
+if(fb)addS(fb);
+}
+
+function ai(t){
+var l=t.toLowerCase();
+if(/hello|hi|hey/.test(l))return{t:"Hey there! How can I help you today?",c:"你好！有什麼可以幫你的？"};
+if(/how much|price|cost/.test(l))return{t:"This one is $29.99. We also have a sale on the blue ones for $19.99.",c:"這個29.99美元，藍色特價19.99美元。"};
+if(/thank|thanks/.test(l))return{t:"You are welcome! Is there anything else I can help with?",c:"不客氣！還有其他需要的嗎？"};
+if(/yes|yeah|ok|sure/.test(l))return{t:"Great! Let me know if you need anything else.",c:"好的！有需要再跟我說。"};
+if(/no|nah|not really/.test(l))return{t:"No problem! Take your time browsing.",c:"沒問題！慢慢看。"};
+if(/bye|goodbye|see you/.test(l))return{t:"Have a great day! Come back anytime!",c:"祝你愉快！歡迎再來！"};
+if(/what|where|when|how|why/.test(l))return{t:"That is a good question. Let me think about that for a moment... Here is what I think.",c:"好問題，讓我想想..."};
+return{t:"Interesting! Tell me more about that.",c:"有趣！跟我多說一點。"};
+}
+
+function chk(t){
+var n=[];
+if(/i\s/.test(t))n.push("I 要大寫");
+if(t.length>0&&!/[.!?]$/.test(t))n.push("句尾加標點");
+if(n.length===0&&t.split(" ").length>=3)return"句子不錯！";
+return n.length>0?"✏️ "+n.join("、"):"加油！多說一點";
+}
+
+function cp(t){navigator.clipboard.writeText(t).then(function(){alert("已複製："+t);});}
+
+function save(){
+var today=new Date().toDateString();
+if(st.ld!==today){
+if(st.ld===new Date(Date.now()-86400000).toDateString())st.sk++;
+else st.sk=1;
+st.ld=today;
+}
+localStorage.setItem("est",JSON.stringify(st));
+document.getElementById("s1").textContent=st.ss;
+document.getElementById("s2").textContent=st.sn;
+document.getElementById("s3").textContent=st.sk;
+document.getElementById("s4").textContent=0;
+}
+
+window.onbeforeunload=function(){
+if(hist.length>0&&cur){
+st.ss++;
+save();
+}
+};
+
+init();
+</script>
+</body>
+</html>
