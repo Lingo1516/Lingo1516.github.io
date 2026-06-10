@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>防詐騙掃描器</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;padding:16px;max-width:480px;margin:0 auto}
+h1{font-size:22px;text-align:center;margin:16px 0 8px;color:#f8fafc}
+.sub{text-align:center;color:#94a3b8;font-size:13px;margin-bottom:20px}
+.box{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px;margin-bottom:16px}
+.box h2{font-size:15px;color:#38bdf8;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+textarea{width:100%;height:120px;background:#0f172a;color:#e2e8f0;border:1px solid #475569;border-radius:8px;padding:12px;font-size:14px;resize:vertical;outline:none}
+textarea:focus{border-color:#38bdf8}
+textarea::placeholder{color:#64748b}
+.btn{background:#2563eb;color:#fff;border:none;width:100%;padding:12px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;margin-top:12px}
+.btn:active{background:#1d4ed8}
+.result{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:12px;margin-top:12px;display:none}
+.risk-high{border-color:#ef4444;background:#1c1017}
+.risk-mid{border-color:#f59e0b;background:#1c1a0f}
+.risk-low{border-color:#22c55e;background:#0f1c14}
+.risk-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700;margin-bottom:8px}
+.tag-high{background:#ef4444;color:#fff}
+.tag-mid{background:#f59e0b;color:#000}
+.tag-low{background:#22c55e;color:#fff}
+.flag{display:flex;align-items:flex-start;gap:8px;margin:6px 0;font-size:13px;line-height:1.4}
+.flag .ic{flex-shrink:0;font-size:16px}
+.tip{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px;margin-bottom:8px;font-size:13px;line-height:1.5}
+.tip strong{color:#38bdf8}
+.checklist label{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #1e293b;font-size:13px;cursor:pointer}
+.checklist input[type=checkbox]{width:18px;height:18px;accent-color:#22c55e}
+.score-bar{height:8px;background:#334155;border-radius:4px;overflow:hidden;margin:8px 0}
+.score-fill{height:100%;border-radius:4px;transition:width 0.5s}
+.tab{display:flex;gap:8px;margin-bottom:16px}
+.tab button{flex:1;padding:10px;background:#1e293b;color:#94a3b8;border:1px solid #334155;border-radius:8px;font-size:13px;cursor:pointer}
+.tab button.on{background:#2563eb;color:#fff;border-color:#2563eb}
+.page{display:none}.page.on{display:block}
+footer{text-align:center;color:#475569;font-size:11px;margin-top:24px;padding:16px 0}
+</style>
+</head>
+<body>
+<h1>🛡️ 防詐騙掃描器</h1>
+<p class="sub">貼上可疑訊息，AI 幫你分析風險</p>
+
+<div class="tab">
+<button class="on" onclick="showTab(0)">🔍 掃描訊息</button>
+<button onclick="showTab(1)">📋 安全清單</button>
+<button onclick="showTab(2)">📖 常見手法</button>
+</div>
+
+<!-- Tab 0: Scanner -->
+<div class="page on" id="t0">
+<div class="box">
+<h2>📝 貼上可疑訊息</h2>
+<textarea id="input" placeholder="把收到的訊息貼在這裡...&#10;&#10;例如：「您的帳號出現異常登入，請立即點擊連結驗證」"></textarea>
+<button class="btn" onclick="scan()">🔍 分析風險</button>
+</div>
+<div class="result" id="result"></div>
+</div>
+
+<!-- Tab 1: Checklist -->
+<div class="page" id="t1">
+<div class="box">
+<h2>📱 手機安全檢查</h2>
+<div class="checklist">
+<label><input type="checkbox" onchange="calcScore()"> 系統和 App 都更新到最新版</label>
+<label><input type="checkbox" onchange="calcScore()"> 有設定螢幕鎖（指紋/臉部/密碼）</label>
+<label><input type="checkbox" onchange="calcScore()"> 雙重驗證（2FA）已開啟</label>
+<label><input type="checkbox" onchange="calcScore()"> 不明 App 已移除</label>
+<label><input type="checkbox" onchange="calcScore()"> 不隨意連接公共 Wi-Fi</label>
+<label><input type="checkbox" onchange="calcScore()"> 陌生連結不會隨便點</label>
+<label><input type="checkbox" onchange="calcScore()"> 備份已設定（iCloud/Google）</label>
+<label><input type="checkbox" onchange="calcScore()"> 簡訊驗證碼不會給任何人</label>
+<label><input type="checkbox" onchange="calcScore()"> 只從官方商店下載 App</label>
+<label><input type="checkbox" onchange="calcScore()"> 定期檢查 App 權限</label>
+</div>
+<div class="score-bar"><div class="score-fill" id="scoreFill" style="width:0%;background:#ef4444"></div></div>
+<p style="text-align:center;font-size:13px;margin-top:8px">安全分數：<strong id="scoreNum">0</strong> / 10</p>
+</div>
+</div>
+
+<!-- Tab 2: Common Scams -->
+<div class="page" id="t2">
+<div class="box">
+<h2>📖 常見詐騙手法</h2>
+<div class="tip">
+<strong>🏦 假銀行/假電信</strong><br>
+「您的帳戶異常，請立即點擊連結驗證」<br>
+→ 銀行不會用簡訊/私訊要你點連結
+</div>
+<div class="tip">
+<strong>📦 假取貨通知</strong><br>
+「您的包裹無法送達，請更新地址」<br>
+→ 沒下單就不會有包裹，有的話去官方 App 查
+</div>
+<div class="tip">
+<strong>💰 假投資/博弈</strong><br>
+「跟著老師操作，穩賺不賠」<br>
+→ 沒有穩賺的投資，有也是詐騙
+</div>
+<div class="tip">
+<strong>👩‍❤️‍👨 殺豬盤</strong><br>
+陌生人加好友，聊幾天就聊感情，然後推薦投資<br>
+→ 網路认识的人提錢就是詐騙
+</div>
+<div class="tip">
+<strong>👮 假警察/假檢察官</strong><br>
+「你涉及洗錢，需配合調查」<br>
+→ 真警察不會電話辦案，也不會要你匯款
+</div>
+<div class="tip">
+<strong>🎁 假中獎</strong><br>
+「恭喜你中獎！請付手續費領取」<br>
+→ 沒參加的抽獎怎麼會中？先要錢就是詐騙
+</div>
+<div class="tip">
+<strong>👨‍💼 假亲友借錢</strong><br>
+「是我，換號碼了，借我5萬急用」<br>
+→ 換號碼？先打舊號碼確認
+</div>
+<div class="tip">
+<strong>📲 假 App/假網站</strong><br>
+連結做得很像真的，但網址差一個字<br>
+→ 網址要一個字一個字對，https 開頭+鎖頭圖示
+</div>
+</div>
+</div>
+
+<footer>小綠防詐騙工具 🍀 有疑問直接封鎖最安全</footer>
+
+<script>
+var scams=[
+{kw:["驗證","帳戶","異常","點擊","連結","登入"],risk:"high",reason:"假銀行/電信詐騙常用話術，要求你點連結「驗證」"},
+{kw:["中獎","恭喜","領取","手續費","付費"],risk:"high",reason:"假中獎詐騙，要求先付費才能領獎"},
+{kw:["投資","穩賺","獲利","跟著","老師","帶單"],risk:"high",reason:"假投資/博弈詐騙，沒有穩賺的投資"},
+{kw:["借錢","急用","匯款","帳號","轉帳"],risk:"high",reason:"可能是假亲友借錢詐騙"},
+{kw:["警察","檢察官","洗錢","配合調查","案號"],risk:"high",reason:"假執法人員詐騙，真警察不會電話辦案"},
+{kw:["包裹","快遞","送達","地址","更新"],risk:"mid",reason:"假快遞通知，可能釣魚網站"},
+{kw:["免費","限時","點擊領取","搶購"],risk:"mid",reason:"可能是釣魚連結或惡意軟體"},
+{kw:["密碼","帳號","凍結","停用","安全"],risk:"mid",reason:"利用恐慌心理骗取個資"},
+{kw:["加line","加LINE","私訊","聊聊"],risk:"mid",reason:"可能引導到其他平台進行詐騙"},
+{kw:["裸聊","影片","錄影","威脅"],risk:"high",reason:"勒索詐騙，千萬別回應"}
+];
+
+function scan(){
+var text=document.getElementById("input").value.trim();
+if(!text){alert("請先貼上訊息");return;}
+var flags=[];
+var maxRisk="low";
+scams.forEach(function(s){
+var found=[];
+s.kw.forEach(function(k){if(text.includes(k))found.push(k);});
+if(found.length>=2){
+flags.push({risk:s.risk,reason:s.reason,words:found.join("、")});
+if(s.risk==="high")maxRisk="high";
+else if(s.risk==="mid"&&maxRisk!=="high")maxRisk="mid";
+}
+});
+var el=document.getElementById("result");
+el.style.display="block";
+if(flags.length===0){
+el.className="result risk-low";
+el.innerHTML="<span class='risk-tag tag-low'>低風險</span><p style='font-size:13px'>這則訊息沒有明顯的詐騙特徵，但仍需留意。</p>";
+}else{
+var cls=maxRisk==="high"?"risk-high":"risk-mid";
+var tagCls=maxRisk==="high"?"tag-high":"tag-mid";
+var tagText=maxRisk==="high"?"⚠️ 高風險":"⚡ 中風險";
+var html="<span class='risk-tag "+tagCls+"'>"+tagText+"</span><p style='font-size:13px;margin-bottom:8px'>偵測到 "+flags.length+" 個可疑特徵：</p>";
+flags.forEach(function(f){
+html+="<div class='flag'><span class='ic'>"+(f.risk==="high"?"🚨":"⚠️")+"</span><div><strong>"+f.words+"</strong><br>"+f.reason+"</div></div>";
+});
+html+="<div style='margin-top:12px;padding:10px;background:#1e293b;border-radius:6px;font-size:12px;color:#94a3b8'>💡 建議：不要回覆、不要點連結、直接封鎖並檢舉</div>";
+el.className="result "+cls;
+el.innerHTML=html;
+}
+el.scrollIntoView({behavior:"smooth"});
+}
+
+function calcScore(){
+var boxes=document.querySelectorAll(".checklist input");
+var done=0;
+boxes.forEach(function(b){if(b.checked)done++;});
+var pct=done/boxes.length*100;
+document.getElementById("scoreFill").style.width=pct+"%";
+document.getElementById("scoreNum").textContent=done;
+var fill=document.getElementById("scoreFill");
+if(pct<40)fill.style.background="#ef4444";
+else if(pct<70)fill.style.background="#f59e0b";
+else fill.style.background="#22c55e";
+}
+
+function showTab(n){
+document.querySelectorAll(".page").forEach(function(p){p.classList.remove("on")});
+document.querySelectorAll(".tab button").forEach(function(b){b.classList.remove("on")});
+document.getElementById("t"+n).classList.add("on");
+document.querySelectorAll(".tab button")[n].classList.add("on");
+}
+</script>
+</body>
+</html>
