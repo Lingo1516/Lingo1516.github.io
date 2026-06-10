@@ -370,7 +370,8 @@ function switchPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('page'+name).classList.add('active');
-  document.querySelectorAll('.nav-item')[['Scenario','Phrases','Progress'].indexOf(name)].classList.add('active');
+  const navIdx=['Scenario','Phrases','Progress'].indexOf(name);
+  if(navIdx>=0)document.querySelectorAll('.nav-item')[navIdx].classList.add('active');
 }
 
 function goBack(){switchPage('Scenario')}
