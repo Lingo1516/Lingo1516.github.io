@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>English Practice 🇺🇸</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#2563eb;--accent:#f59e0b;--bg:#f8fafc;--card:#fff;--text:#1e293b;--gray:#64748b;--border:#e2e8f0;--correct:#16a34a;--wrong:#dc2626}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.app{max-width:480px;margin:0 auto;height:100vh;display:flex;flex-direction:column}
+
+/* Header */
+.header{background:var(--primary);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-size:18px}
+.header button{background:none;border:none;color:#fff;font-size:13px;cursor:pointer;padding:6px 12px;border-radius:6px}
+.header button:hover{background:rgba(255,255,255,0.2)}
+
+/* Pages */
+.page{display:none;flex:1;overflow-y:auto;padding:16px}
+.page.active{display:flex;flex-direction:column}
+
+/* Scenario Select */
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.scenario-card{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;text-align:center;transition:all 0.2s}
+.scenario-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.scenario-card .icon{font-size:32px;margin-bottom:8px}
+.scenario-card .title{font-size:14px;font-weight:600}
+.scenario-card .desc{font-size:11px;color:var(--gray);margin-top:4px}
+
+/* Chat */
+.chat-area{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.msg{max-width:80%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}
+.msg.ai{background:var(--primary);color:#fff;align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:#e0e7ff;color:var(--text);align-self:flex-end;border-bottom-right-radius:4px}
+.msg.system{background:var(--accent);color:#fff;align-self:center;font-size:12px;padding:6px 12px;border-radius:20px}
+.msg .hint{font-size:11px;opacity:0.8;margin-top:4px;font-style:italic}
+.msg .cn{font-size:12px;opacity:0.75;margin-top:4px}
+
+.input-area{padding:8px 12px;border-top:1px solid var(--border);background:var(--card);display:flex;gap:8px;align-items:center}
+.input-area input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:20px;font-size:14px;outline:none}
+.input-area input:focus{border-color:var(--primary)}
+.input-area button{background:var(--primary);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:18px;cursor:pointer}
+.input-area button:hover{background:#1d4ed8}
+.send-btn:disabled{background:#94a3b8;cursor:not-allowed}
+
+/* Phrase Library */
+.phrase-category{margin-bottom:16px}
+.phrase-category h3{font-size:14px;color:var(--primary);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.phrase-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:6px;cursor:pointer}
+.phrase-item:hover{border-color:var(--primary)}
+.phrase-item .en{font-size:13px;font-weight:500}
+.phrase-item .cn{font-size:12px;color:var(--gray);margin-top:2px}
+
+/* Progress */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.stat-card .num{font-size:28px;font-weight:700;color:var(--primary)}
+.stat-card .label{font-size:11px;color:var(--gray);margin-top:4px}
+.history-list{display:flex;flex-direction:column;gap:8px}
+.history-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center}
+.history-item .scenario{font-size:13px;font-weight:500}
+.history-item .time{font-size:11px;color:var(--gray)}
+.history-item .score{font-size:14px;font-weight:600}
+
+/* Nav */
+.bottom-nav{display:flex;background:var(--card);border-top:1px solid var(--border);padding:8px 0}
+.nav-item{flex:1;text-align:center;padding:8px 0;cursor:pointer;font-size:11px;color:var(--gray)}
+.nav-item.active{color:var(--primary);font-weight:600}
+.nav-item .icon{font-size:20px;display:block;margin-bottom:2px}
+
+/* Tips overlay */
+.tips-overlay{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:2px solid var(--accent);padding:16px;transform:translateY(100%);transition:transform 0.3s;z-index:100;max-width:480px;margin:0 auto}
+.tips-overlay.show{transform:translateY(0)}
+.tips-overlay h4{font-size:14px;margin-bottom:8px}
+.tips-overlay p{font-size:13px;color:var(--gray);line-height:1.5}
+.tips-overlay .close-tips{position:absolute;top:8px;right:12px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--gray)}
+
+@media(max-width:480px){.scenario-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Header -->
+  <div class="header">
+    <h1>🇺🇸 English Practice</h1>
+    <button onclick="showTips()">💡 Tips</button>
+  </div>
+
+  <!-- Page: Scenarios -->
+  <div class="page active" id="pageScenario">
+    <h2 style="font-size:16px;margin-bottom:4px">選擇情境</h2>
+    <p style="font-size:12px;color:var(--gray)">選一個場景開始練習</p>
+    <div class="scenario-grid" id="scenarioGrid"></div>
+  </div>
+
+  <!-- Page: Chat -->
+  <div class="page" id="pageChat">
+    <div style="display:flex;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);margin-bottom:8px">
+      <button onclick="goBack()" style="background:none;border:none;font-size:20px;cursor:pointer;margin-right:8px">←</button>
+      <div>
+        <div id="chatTitle" style="font-size:14px;font-weight:600"></div>
+        <div id="chatSub" style="font-size:11px;color:var(--gray)"></div>
+      </div>
+    </div>
+    <div class="chat-area" id="chatArea"></div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="輸入英文..." onkeydown="if(event.key==='Enter')sendMsg()">
+      <button class="send-btn" id="sendBtn" onclick="sendMsg()">➤</button>
+    </div>
+  </div>
+
+  <!-- Page: Phrases -->
+  <div class="page" id="pagePhrases">
+    <h2 style="font-size:16px;margin-bottom:12px">📚 常用句型庫</h2>
+    <div id="phraseList"></div>
+  </div>
+
+  <!-- Page: Progress -->
+  <div class="page" id="pageProgress">
+    <h2 style="font-size:16px;margin-bottom:12px">📊 學習進度</h2>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="num" id="statSessions">0</div><div class="label">練習次數</div></div>
+      <div class="stat-card"><div class="num" id="statSentences">0</div><div class="label">句子數</div></div>
+      <div class="stat-card"><div class="num" id="statStreak">0</div><div class="label">連續天數</div></div>
+      <div class="stat-card"><div class="num" id="statPhrases">0</div><div class="label">已學句型</div></div>
+    </div>
+    <h3 style="font-size:14px;margin-bottom:8px">最近紀錄</h3>
+    <div class="history-list" id="historyList"></div>
+  </div>
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="switchPage('Scenario')"><span class="icon">🎯</span>情境</div>
+    <div class="nav-item" onclick="switchPage('Phrases')"><span class="icon">📚</span>句型</div>
+    <div class="nav-item" onclick="switchPage('Progress')"><span class="icon">📊</span>進度</div>
+  </div>
+</div>
+
+<!-- Tips Overlay -->
+<div class="tips-overlay" id="tipsOverlay">
+  <button class="close-tips" onclick="hideTips()">×</button>
+  <h4>💡 練習小撇步</h4>
+  <p>• 輸入英文句子，AI 會扮演對方角色回應<br>
+  • 每次回應後會顯示中文翻譯和文法提示<br>
+  • 不會說的可以先輸入中文，系統會幫你翻譯<br>
+  • 可以隨時切換情境，不會丟失紀錄<br>
+  • 點擊句型庫可以快速複製常用句子</p>
+</div>
+
+<script>
+// === DATA ===
+const scenarios = [
+  {id:'restaurant',icon:'🍽️',title:'餐廳點餐',desc:'Order food at a restaurant',role:'waiter',greeting:"Welcome! I'll be your server today. Can I start you off with something to drink?",roleCn:'我是服務生，請問要先喝點什麼？'},
+  {id:'hotel',icon:'🏨',title:'飯店住宿',desc:'Check in at a hotel',role:'receptionist',greeting:"Good afternoon! Welcome to Grand Hotel. Do you have a reservation with us?",roleCn:'下午好！歡迎來到大酒店，請問有訂房嗎？'},
+  {id:'airport',icon:'✈️',title:'機場通關',desc:'Go through airport customs',role:'customs officer',greeting:"Good morning. Passport and boarding pass, please. What's the purpose of your visit?",roleCn:'早安，請出示護照和登機證。請問來訪目的是什麼？'},
+  {id:'shopping',icon:'🛍️',title:'逛街購物',desc:'Shop for clothes or gifts',role:'shop assistant',greeting:"Hi there! Looking for anything special today? We just got some new arrivals.",roleCn:'嗨！今天在找什麼特別的嗎？我們剛到了一些新品。'},
+  {id:'business',icon:'💼',title:'商務會議',desc:'Attend a business meeting',role:'colleague',greeting:"Hey, thanks for joining the call. Let's get started with the quarterly review.",roleCn:'嗨，感謝加入會議。我們開始做季度回顧吧。'},
+  {id:'doctor',icon:'🏥',title:'看醫生',desc:'Visit a doctor',role:'doctor',greeting:"Hello, what brings you in today? Any symptoms you'd like to discuss?",roleCn:'你好，今天什麼症狀來看診？'},
+  {id:'taxi',icon:'🚕',title:'搭計程車',desc:'Take a taxi or rideshare',role:'driver',greeting:"Hey! Where to today?",roleCn:'嗨！今天要去哪裡？'},
+  {id:'casual',icon:'☕',title:'閒聊社交',desc:'Casual conversation with friends',role:'friend',greeting:"Yo! What's up? Haven't seen you in a while!",roleCn:'嘿！最近怎樣？好久沒見了！'}
+];
+
+const phrases = [
+  {cat:'🙋 基本問候',items:[
+    {en:'How are you doing?',cn:'你最近好嗎？'},
+    {en:'What have you been up to?',cn:'你最近在忙什麼？'},
+    {en:'Long time no see!',cn:'好久不見！'},
+    {en:"It's been a while.",cn:'好久沒見了。'}
+  ]},
+  {cat:'🛒 購物必備',items:[
+    {en:'How much is this?',cn:'這個多少錢？'},
+    {en:'Do you have this in a different size?',cn:'有不同尺寸嗎？'},
+    {en:'Can I try this on?',cn:'可以試穿嗎？'},
+    {en:"I'll take it.",cn:'我要買這個。'}
+  ]},
+  {cat:'🍽️ 餐廳用語',items:[
+    {en:'Could I see the menu, please?',cn:'可以看一下菜單嗎？'},
+    {en:"I'd like to order...",cn:'我要點...'},
+    {en:'Could we get the check, please?',cn:'可以結帳了嗎？'},
+    {en:"Everything was delicious, thank you.",cn:'一切都很好吃，謝謝。'}
+  ]},
+  {cat:'✈️ 旅行必備',items:[
+    {en:'Where is the gate?',cn:'登機門在哪裡？'},
+    {en:'Is this the line for boarding?',cn:'這是排隊登機嗎？'},
+    {en:"I'd like a window/aisle seat.",cn:'我要靠窗/走道的位子。'},
+    {en:'Where can I pick up my luggage?',cn:'哪裡可以領行李？'}
+  ]},
+  {cat:'💼 商務用語',items:[
+    {en:"Let's schedule a meeting.",cn:'我們來排個會議。'},
+    {en:'I'll send you a follow-up email.',cn:'我會寄後續 email 給你。'},
+    {en:'Could you clarify that point?',cn:'可以說明一下那個重點嗎？'},
+    {en:"I think we're on the same page.",cn:'我覺得我們想法一致。'}
+  ]},
+  {cat:'🆘 緊急狀況',items:[
+    {en:'I need help!',cn:'我需要幫忙！'},
+    {en:'Where is the nearest hospital?',cn:'最近的醫院在哪裡？'},
+    {en:'I lost my passport.',cn:'我的護照不見了。'},
+    {en:'Can someone call the police?',cn:'有人可以報警嗎？'}
+  ]},
+  {cat:'💬 常用片語',items:[
+    {en:'That makes sense.',cn:'有道理。'},
+    {en:"I'm not sure about that.",cn:'我不太確定。'},
+    {en:'Could you say that again?',cn:'可以再說一次嗎？'},
+    {en:'What do you think?',cn:'你覺得呢？'}
+  ]}
+];
+
+// === STATE ===
+let currentScenario = null;
+let chatHistory = [];
+let learnedPhrases = JSON.parse(localStorage.getItem('engPhrases')||'[]');
+let stats = JSON.parse(localStorage.getItem('engStats')||'{"sessions":0,"sentences":0,"streak":0,"lastDate":"","history":[]}');
+
+// === INIT ===
+function init(){
+  renderScenarios();
+  renderPhrases();
+  updateStats();
+}
+
+function renderScenarios(){
+  const grid=document.getElementById('scenarioGrid');
+  grid.innerHTML=scenarios.map(s=>`
+    <div class="scenario-card" onclick="startScenario('${s.id}')">
+      <div class="icon">${s.icon}</div>
+      <div class="title">${s.title}</div>
+      <div class="desc">${s.desc}</div>
+    </div>
+  `).join('');
+}
+
+function renderPhrases(){
+  const list=document.getElementById('phraseList');
+  list.innerHTML=phrases.map(p=>`
+    <div class="phrase-category">
+      <h3>${p.cat}</h3>
+      ${p.items.map(q=>`
+        <div class="phrase-item" onclick="copyPhrase('${q.en.replace(/'/g,"\\'")}')">
+          <div class="en">${q.en}</div>
+          <div class="cn">${q.cn}</div>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+// === SCENARIOS ===
+function startScenario(id){
+  currentScenario=scenarios.find(s=>s.id===id);
+  chatHistory=[];
+  document.getElementById('chatTitle').textContent=currentScenario.icon+' '+currentScenario.title;
+  document.getElementById('chatSub').textContent=currentScenario.roleCn;
+  document.getElementById('chatArea').innerHTML='';
+  switchPage('Chat');
+  addAIMsg(currentScenario.greeting,currentScenario.roleCn);
+  document.getElementById('userInput').focus();
+}
+
+function addAIMsg(text,cn){
+  const div=document.createElement('div');
+  div.className='msg ai';
+  div.innerHTML=text+(cn?`<div class="hint">${cn}</div>`:'');
+  document.getElementById('chatArea').appendChild(div);
+  scrollChat();
+}
+
+function addUserMsg(text){
+  const div=document.createElement('div');
+  div.className='msg user';
+  div.textContent=text;
+  document.getElementById('chatArea').appendChild(div);
+  scrollChat();
+}
+
+function addSystemMsg(text){
+  const div=document.createElement('div');
+  div.className='msg system';
+  div.innerHTML=text;
+  document.getElementById('chatArea').appendChild(div);
+  scrollChat();
+}
+
+function scrollChat(){
+  const area=document.getElementById('chatArea');
+  area.scrollTop=area.scrollHeight;
+}
+
+// === SEND ===
+function sendMsg(){
+  const input=document.getElementById('userInput');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  addUserMsg(text);
+  chatHistory.push({role:'user',content:text});
+  stats.sentences++;
+  saveStats();
+  // Simulate AI response (in real version, call LLM)
+  setTimeout(()=>generateResponse(text),500);
+}
+
+function generateResponse(userText){
+  const isChinese=/[\u4e00-\u9fff]/.test(userText);
+  let response,feedback;
+  
+  if(isChinese){
+    response=translateAndRespond(userText);
+    feedback='🔄 已將你的中文翻譯成英文對話';
+  }else{
+    response=aiRespond(userText);
+    feedback=checkGrammar(userText);
+  }
+  
+  addAIMsg(response.text,response.cn);
+  if(feedback)addSystemMsg(feedback);
+  chatHistory.push({role:'assistant',content:response.text});
+  
+  // Track learned phrases
+  if(!learnedPhrases.includes(userText)){
+    learnedPhrases.push(userText);
+    localStorage.setItem('engPhrases',JSON.stringify(learnedPhrases));
+  }
+}
+
+function translateAndRespond(cnText){
+  const translations={
+    '你好':'Hello!',
+    '謝謝':'Thank you!',
+    '多少錢':'How much is it?',
+    '我要點餐':'I would like to order.',
+    '再見':'Goodbye!',
+    '這個':'This one, please.',
+    '可以便宜一點嗎':'Can you give me a discount?',
+    '我想要':'I would like...',
+    '有沒有':'Do you have...?'
+  };
+  const translated=translations[cnText]||`I want to say: "${cnText}"`;
+  return{text:translated,cn:'已翻譯你的中文'};
+}
+
+function aiRespond(text){
+  const lc=text.toLowerCase();
+  const responses=[
+    {match:/hello|hi|hey/i,resp:"Hey there! How can I help you today?",cn:'你好！有什麼可以幫你的？'},
+    {match:/how much|price|cost/i,resp:"This one is $29.99. We also have a sale on the blue ones for $19.99.",cn:'這個29.99美元，藍色特價19.99美元。'},
+    {match:/thank|thanks/i,resp:"You're welcome! Is there anything else I can help with?",cn:'不客氣！還有其他需要的嗎？'},
+    {match:/yes|yeah|ok|sure/i,resp:"Great! Let me know if you need anything else.",cn:'好的！有需要再跟我說。'},
+    {match:/no|nah|not really/i,resp:"No problem! Take your time browsing.",cn:'沒問題！慢慢看。'},
+    {match:/bye|goodbye|see you/i,resp:"Have a great day! Come back anytime!",cn:'祝你愉快！歡迎再來！'},
+    {match:/what|where|when|how|why/i,resp:"That's a good question. Let me think about that for a moment... Here's what I think.",cn:'好問題，讓我想想...'},
+    {match:/.*/,resp:"Interesting! Tell me more about that.",cn:'有趣！跟我多說一點。'}
+  ];
+  const matched=responses.find(r=>r.match.test(lc))||responses[responses.length-1];
+  return{text:matched.resp,cn:matched.cn};
+}
+
+function checkGrammar(text){
+  const issues=[];
+  if(text.includes('  '))issues.push('多餘空格');
+  if(/i\s/.test(text))issues.push('「I」要大寫');
+  if(/\bi\b/.test(text)&&!/^I\b/.test(text))issues.push('句首的「I」要大寫');
+  if(text.length>0&&!/[.!?]$/.test(text))issues.push('句尾加標點會更完整');
+  if(issues.length===0&&text.split(' ').length>=3)return'✅ 句子不錯！';
+  return issues.length>0?'✏️ '+issues.join('、'):'✅ 加油！多說一點';
+}
+
+// === NAVIGATION ===
+function switchPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page'+name).classList.add('active');
+  document.querySelectorAll('.nav-item')[['Scenario','Phrases','Progress'].indexOf(name)].classList.add('active');
+}
+
+function goBack(){switchPage('Scenario')}
+function showTips(){document.getElementById('tipsOverlay').classList.add('show')}
+function hideTips(){document.getElementById('tipsOverlay').classList.remove('show')}
+function copyPhrase(text){navigator.clipboard.writeText(text).then(()=>alert('已複製：'+text))}
+
+// === STATS ===
+function updateStats(){
+  const today=new Date().toDateString();
+  if(stats.lastDate!==today){
+    if(stats.lastDate===new Date(Date.now()-86400000).toDateString())stats.streak++;
+    else stats.streak=1;
+    stats.lastDate=today;
+    saveStats();
+  }
+  document.getElementById('statSessions').textContent=stats.sessions;
+  document.getElementById('statSentences').textContent=stats.sentences;
+  document.getElementById('statStreak').textContent=stats.streak;
+  document.getElementById('statPhrases').textContent=learnedPhrases.length;
+  renderHistory();
+}
+
+function renderHistory(){
+  const list=document.getElementById('historyList');
+  if(stats.history.length===0){list.innerHTML='<p style="color:var(--gray);font-size:13px">還沒有練習紀錄</p>';return;}
+  list.innerHTML=stats.history.slice(-10).reverse().map(h=>`
+    <div class="history-item">
+      <div><div class="scenario">${h.scenario}</div><div class="time">${h.time}</div></div>
+      <div class="score">${h.sentences} 句</div>
+    </div>
+  `).join('');
+}
+
+function saveStats(){
+  localStorage.setItem('engStats',JSON.stringify(stats));
+}
+
+// Track session end
+window.addEventListener('beforeunload',()=>{
+  if(chatHistory.length>0&&currentScenario){
+    stats.sessions++;
+    stats.history.push({
+      scenario:currentScenario.title,
+      time:new Date().toLocaleString('zh-TW'),
+      sentences:chatHistory.filter(m=>m.role==='user').length
+    });
+    saveStats();
+  }
+});
+
+init();
+</script>
+</body>
+</html>
