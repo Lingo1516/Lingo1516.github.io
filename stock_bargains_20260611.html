@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超跌撿便宜分析 | 2026-06-11</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #4ade80;
+        }
+        .header p {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+        .summary {
+            background: rgba(74, 222, 128, 0.2);
+            border: 1px solid #4ade80;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .summary h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #4ade80;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .summary-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .summary-item .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4ade80;
+        }
+        .summary-item .label {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+        .stock-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s;
+        }
+        .stock-card:hover {
+            transform: translateY(-5px);
+        }
+        .stock-card.buy {
+            border-left: 5px solid #4ade80;
+        }
+        .stock-card.watch {
+            border-left: 5px solid #fbbf24;
+        }
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .stock-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .stock-code {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+        .stock-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4ade80;
+        }
+        .stock-change {
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .stock-change.up {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+        .stock-change.down {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        .stock-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .metric {
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .metric .value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+        .metric .label {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 3px;
+        }
+        .stock-support {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+        .support-item {
+            text-align: center;
+        }
+        .support-item .label {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .support-item .value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #f472b6;
+        }
+        .stock-reasons {
+            margin: 15px 0;
+        }
+        .reason-tag {
+            display: inline-block;
+            background: rgba(96, 165, 250, 0.2);
+            color: #60a5fa;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 3px;
+        }
+        .stock-recommendation {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+        .recommendation-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .recommendation-header.buy {
+            color: #4ade80;
+        }
+        .recommendation-header.watch {
+            color: #fbbf24;
+        }
+        .recommendation-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .detail-item {
+            background: rgba(0,0,0,0.2);
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            .stock-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .recommendation-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 超跌撿便宜分析</h1>
+        <p>2026年6月11日 | 大盤下跌 -1.66%</p>
+    </div>
+    
+    <div class="summary">
+        <h2>📈 分析總結</h2>
+        <div class="summary-grid">
+            <div class="summary-item">
+                <div class="value">12</div>
+                <div class="label">分析股票數</div>
+            </div>
+            <div class="summary-item">
+                <div class="value">2</div>
+                <div class="label">可以買進</div>
+            </div>
+            <div class="summary-item">
+                <div class="value">10</div>
+                <div class="label">觀望/不買</div>
+            </div>
+            <div class="summary-item">
+                <div class="value">75%</div>
+                <div class="label">最高反彈機率</div>
+            </div>
+        </div>
+    </div>
+    
+    <h2 style="margin-bottom: 20px; font-size: 22px;">🟢 可以買進（反彈機率 >=70%）</h2>
+    
+    <div class="stock-card buy">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2426 鼎元</div>
+                <div class="stock-code">光電元件</div>
+            </div>
+            <div>
+                <span class="stock-price">$62.40</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">28.2</div>
+                <div class="label">RSI（超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">18.4</div>
+                <div class="label">KD K（超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">75%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-support">
+            <div class="support-item">
+                <div class="label">從高點跌幅</div>
+                <div class="value">-29.7%</div>
+            </div>
+            <div class="support-item">
+                <div class="label">支撐價</div>
+                <div class="value">$57.90</div>
+            </div>
+            <div class="support-item">
+                <div class="label">壓力價</div>
+                <div class="value">$88.80</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">RSI 超賣</span>
+            <span class="reason-tag">KD 超賣</span>
+            <span class="reason-tag">超跌 29.7%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header buy">🟢 建議：可以買進</div>
+            <div class="recommendation-details">
+                <div class="detail-item">💰 買進價：$62.40</div>
+                <div class="detail-item">🛑 停損價：$59.28（-5%）</div>
+                <div class="detail-item">🎯 停利價：$67.39（+8%）</div>
+                <div class="detail-item">📊 風險報酬比：1:1.6</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="stock-card buy">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2388 威盛</div>
+                <div class="stock-code">IC 設計</div>
+            </div>
+            <div>
+                <span class="stock-price">$65.10</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">16.6</div>
+                <div class="label">RSI（極度超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">18.3</div>
+                <div class="label">KD K（超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">75%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-support">
+            <div class="support-item">
+                <div class="label">從高點跌幅</div>
+                <div class="value">-28.7%</div>
+            </div>
+            <div class="support-item">
+                <div class="label">支撐價</div>
+                <div class="value">$62.10</div>
+            </div>
+            <div class="support-item">
+                <div class="label">壓力價</div>
+                <div class="value">$91.30</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">RSI 極度超賣</span>
+            <span class="reason-tag">KD 超賣</span>
+            <span class="reason-tag">超跌 28.7%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header buy">🟢 建議：可以買進</div>
+            <div class="recommendation-details">
+                <div class="detail-item">💰 買進價：$65.10</div>
+                <div class="detail-item">🛑 停損價：$61.84（-5%）</div>
+                <div class="detail-item">🎯 停利價：$70.31（+8%）</div>
+                <div class="detail-item">📊 風險報酬比：1:1.6</div>
+            </div>
+        </div>
+    </div>
+    
+    <h2 style="margin: 30px 0 20px; font-size: 22px;">🟡 觀望（反彈機率 45-69%）</h2>
+    
+    <div class="stock-card watch">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2338 光罩</div>
+                <div class="stock-code">半導體</div>
+            </div>
+            <div>
+                <span class="stock-price">$46.30</span>
+                <span class="stock-change down">-5.12%</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">33.9</div>
+                <div class="label">RSI</div>
+            </div>
+            <div class="metric">
+                <div class="value">12.7</div>
+                <div class="label">KD K（極度超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">45%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">KD 極度超賣</span>
+            <span class="reason-tag">超跌 24.6%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header watch">🟡 建議：觀望，等止跌</div>
+        </div>
+    </div>
+    
+    <div class="stock-card watch">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2331 精英</div>
+                <div class="stock-code">電腦週邊</div>
+            </div>
+            <div>
+                <span class="stock-price">$20.50</span>
+                <span class="stock-change down">-16.67%</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">48.8</div>
+                <div class="label">RSI</div>
+            </div>
+            <div class="metric">
+                <div class="value">4.8</div>
+                <div class="label">KD K（極度超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">45%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">KD 極度超賣</span>
+            <span class="reason-tag">超跌 22.6%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header watch">🟡 建議：觀望，等止跌</div>
+        </div>
+    </div>
+    
+    <div class="stock-card watch">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2449 京元電子</div>
+                <div class="stock-code">半導體封測</div>
+            </div>
+            <div>
+                <span class="stock-price">$268.00</span>
+                <span class="stock-change down">-12.42%</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">42.0</div>
+                <div class="label">RSI</div>
+            </div>
+            <div class="metric">
+                <div class="value">6.5</div>
+                <div class="label">KD K（極度超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">45%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">KD 極度超賣</span>
+            <span class="reason-tag">超跌 23.1%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header watch">🟡 建議：觀望，等止跌</div>
+        </div>
+    </div>
+    
+    <div class="stock-card watch">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2486 一詮</div>
+                <div class="stock-code">光電元件</div>
+            </div>
+            <div>
+                <span class="stock-price">$237.00</span>
+                <span class="stock-change up">+68.68%</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">39.4</div>
+                <div class="label">RSI</div>
+            </div>
+            <div class="metric">
+                <div class="value">17.6</div>
+                <div class="label">KD K（超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">45%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">KD 超賣</span>
+            <span class="reason-tag">超跌 24.5%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header watch">🟡 建議：觀望，等止跌</div>
+        </div>
+    </div>
+    
+    <div class="stock-card watch">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2498 隆達</div>
+                <div class="stock-code">LED</div>
+            </div>
+            <div>
+                <span class="stock-price">$41.75</span>
+                <span class="stock-change down">-4.57%</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">37.5</div>
+                <div class="label">RSI</div>
+            </div>
+            <div class="metric">
+                <div class="value">4.1</div>
+                <div class="label">KD K（極度超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">45%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">KD 極度超賣</span>
+            <span class="reason-tag">超跌 20.3%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header watch">🟡 建議：觀望，等止跌</div>
+        </div>
+    </div>
+    
+    <div class="stock-card watch">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2328 廣宇</div>
+                <div class="stock-code">連接器</div>
+            </div>
+            <div>
+                <span class="stock-price">$50.90</span>
+                <span class="stock-change up">+10.17%</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">43.2</div>
+                <div class="label">RSI</div>
+            </div>
+            <div class="metric">
+                <div class="value">8.1</div>
+                <div class="label">KD K（極度超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">45%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">KD 極度超賣</span>
+            <span class="reason-tag">超跌 21.1%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header watch">🟡 建議：觀望，等止跌</div>
+        </div>
+    </div>
+    
+    <div class="stock-card watch">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2340 台亞</div>
+                <div class="stock-code">LED</div>
+            </div>
+            <div>
+                <span class="stock-price">$32.15</span>
+                <span class="stock-change up">+25.34%</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">33.0</div>
+                <div class="label">RSI</div>
+            </div>
+            <div class="metric">
+                <div class="value">12.1</div>
+                <div class="label">KD K（極度超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">45%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">RSI 偏低</span>
+            <span class="reason-tag">KD 極度超賣</span>
+            <span class="reason-tag">超跌 22.0%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header watch">🟡 建議：觀望，等止跌</div>
+        </div>
+    </div>
+    
+    <div class="stock-card watch">
+        <div class="stock-header">
+            <div>
+                <div class="stock-name">2342 茂矽</div>
+                <div class="stock-code">IC 設計</div>
+            </div>
+            <div>
+                <span class="stock-price">$37.80</span>
+                <span class="stock-change up">+21.74%</span>
+            </div>
+        </div>
+        
+        <div class="stock-metrics">
+            <div class="metric">
+                <div class="value">42.1</div>
+                <div class="label">RSI</div>
+            </div>
+            <div class="metric">
+                <div class="value">10.8</div>
+                <div class="label">KD K（極度超賣）</div>
+            </div>
+            <div class="metric">
+                <div class="value">45%</div>
+                <div class="label">反彈機率</div>
+            </div>
+        </div>
+        
+        <div class="stock-reasons">
+            <span class="reason-tag">KD 極度超賣</span>
+            <span class="reason-tag">超跌 20.3%</span>
+        </div>
+        
+        <div class="stock-recommendation">
+            <div class="recommendation-header watch">🟡 建議：觀望，等止跌</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>📊 分析時間：2026-06-11 11:53</p>
+        <p>⚠️ 投資有風險，交易需謹慎</p>
+        <p>小綠當沖分析系統 🍀</p>
+    </div>
+</body>
+</html>
