@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>♟️ 西洋棋學習遊戲</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#1a1a2e;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:10px}
+h1{font-size:24px;margin:10px 0;color:#e94560}
+.subtitle{font-size:14px;color:#888;margin-bottom:10px}
+.board-container{position:relative;width:min(90vw,400px);height:min(90vw,400px)}
+.board{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);width:100%;height:100%;border:3px solid #e94560;border-radius:8px;overflow:hidden}
+.square{display:flex;align-items:center;justify-content:center;font-size:min(8vw,40px);cursor:pointer;transition:background 0.2s;user-select:none}
+.square.light{background:#f0d9b5}
+.square.dark{background:#b58863}
+.square.selected{background:#7fc97f !important}
+.square.valid-move{background:rgba(0,200,0,0.4) !important}
+.square.last-move{background:rgba(233,69,96,0.4) !important}
+.square.check{background:rgba(255,0,0,0.5) !important}
+.controls{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap;justify-content:center}
+.btn{padding:8px 16px;border:none;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;transition:transform 0.1s}
+.btn:active{transform:scale(0.95)}
+.btn-primary{background:#e94560;color:#fff}
+.btn-secondary{background:#16213e;color:#fff;border:2px solid #e94560}
+.btn-success{background:#27ae60;color:#fff}
+.info-panel{background:#16213e;border-radius:8px;padding:12px;margin:10px 0;width:min(90vw,400px);max-height:200px;overflow-y:auto}
+.info-panel h3{color:#e94560;font-size:16px;margin-bottom:6px}
+.info-panel p{font-size:14px;line-height:1.6;color:#ccc}
+.info-panel .highlight{color:#f1c40f;font-weight:600}
+.status-bar{display:flex;justify-content:space-between;width:min(90vw,400px);margin:8px 0;font-size:14px}
+.status-bar span{padding:4px 8px;border-radius:4px;background:#16213e}
+.turn-white{color:#fff}
+.turn-black{color:#888}
+.tutorial{display:none;background:#0f3460;border-radius:8px;padding:12px;margin:10px 0;width:min(90vw,400px)}
+.tutorial.active{display:block}
+.tutorial h3{color:#f1c40f;margin-bottom:8px;font-size:16px}
+.tutorial p{font-size:13px;line-height:1.6;color:#ccc;margin-bottom:6px}
+.tutorial .piece-intro{font-size:20px;margin:4px 0}
+.captured{display:flex;gap:4px;flex-wrap:wrap;margin:4px 0;min-height:30px}
+.captured span{font-size:20px}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;z-index:100}
+.modal.active{display:flex}
+.modal-content{background:#16213e;border-radius:12px;padding:20px;text-align:center;max-width:300px}
+.modal-content h2{color:#e94560;margin-bottom:10px}
+.modal-content p{margin:8px 0}
+</style>
+</head>
+<body>
+<h1>♟️ 西洋棋學習遊戲</h1>
+<p class="subtitle">點擊棋子 → 點擊目標格子移動</p>
+
+<div class="status-bar">
+  <span id="turn-indicator">⚪ 白方回合</span>
+  <span id="move-count">步數: 0</span>
+</div>
+
+<div class="board-container">
+  <div class="board" id="board"></div>
+</div>
+
+<div class="captured" id="captured-white">白方吃子：</div>
+<div class="captured" id="captured-black">黑方吃子：</div>
+
+<div class="controls">
+  <button class="btn btn-primary" onclick="toggleTutorial()">📚 學習模式</button>
+  <button class="btn btn-secondary" onclick="resetGame()">🔄 新局</button>
+  <button class="btn btn-secondary" onclick="undoMove()">↩️ 悔棋</button>
+</div>
+
+<div class="tutorial" id="tutorial">
+  <h3 id="tut-title">📖 歡迎學習西洋棋！</h3>
+  <p id="tut-content">西洋棋有6種棋子，每種走法不同。<br><br>點擊「下一步」開始學習各棋子的走法！</p>
+  <div style="text-align:center;margin-top:10px">
+    <button class="btn btn-secondary" onclick="prevTut()">◀ 上一步</button>
+    <button class="btn btn-success" onclick="nextTut()">下一步 ▶</button>
+  </div>
+</div>
+
+<div class="info-panel" id="info-panel">
+  <h3>💡 提示</h3>
+  <p id="info-text">選擇一個棋子開始遊戲。白方先行！</p>
+</div>
+
+<div class="modal" id="game-over">
+  <div class="modal-content">
+    <h2 id="winner-text">🎉 遊戲結束</h2>
+    <p id="winner-detail"></p>
+    <button class="btn btn-primary" onclick="resetGame();document.getElementById('game-over').classList.remove('active')">🔄 再來一局</button>
+  </div>
+</div>
+
+<script>
+// ===== 棋子 Unicode =====
+const PIECES={
+  'K':'♔','Q':'♕','R':'♖','B':'♗','N':'♘','P':'♙',
+  'k':'♚','q':'♛','r':'♜','b':'♝','n':'♞','p':'♟'
+};
+
+// ===== 遊戲狀態 =====
+let board=[],currentTurn='white',selectedSquare=null,validMoves=[];
+let moveHistory=[],capturedWhite=[],capturedBlack=[];
+let moveCount=0,tutorialStep=0,tutorialMode=false;
+let lastMove=null,castlingRights={K:true,Q:true,k:true,q:true};
+let enPassantTarget=null;
+
+// ===== 初始棋盤 =====
+function initBoard(){
+  board=[
+    ['r','n','b','q','k','b','n','r'],
+    ['p','p','p','p','p','p','p','p'],
+    [null,null,null,null,null,null,null,null],
+    [null,null,null,null,null,null,null,null],
+    [null,null,null,null,null,null,null,null],
+    [null,null,null,null,null,null,null,null],
+    ['P','P','P','P','P','P','P','P'],
+    ['R','N','B','Q','K','B','N','R']
+  ];
+}
+
+// ===== 畫棋盤 =====
+function renderBoard(){
+  const b=document.getElementById('board');
+  b.innerHTML='';
+  for(let r=0;r<8;r++){
+    for(let c=0;c<8;c++){
+      const sq=document.createElement('div');
+      const isLight=(r+c)%2===0;
+      sq.className='square '+(isLight?'light':'dark');
+      
+      if(selectedSquare&&selectedSquare[0]===r&&selectedSquare[1]===c)
+        sq.classList.add('selected');
+      
+      if(lastMove&&((lastMove[0]===r&&lastMove[1]===c)||(lastMove[2]===r&&lastMove[3]===c)))
+        sq.classList.add('last-move');
+      
+      if(isKingInCheck(currentTurn)&&getKingPos(currentTurn)[0]===r&&getKingPos(currentTurn)[1]===c)
+        sq.classList.add('check');
+      
+      if(validMoves.some(m=>m[0]===r&&m[1]===c))
+        sq.classList.add('valid-move');
+      
+      if(board[r][c]){
+        sq.textContent=PIECES[board[r][c]];
+        sq.style.color=board[r][c]===board[r][c].toUpperCase()?'#fff':'#333';
+        sq.style.textShadow=board[r][c]===board[r][c].toUpperCase()?'0 0 3px #000':'0 0 3px #fff';
+      }
+      
+      sq.dataset.row=r;
+      sq.dataset.col=c;
+      sq.onclick=()=>handleClick(r,c);
+      b.appendChild(sq);
+    }
+  }
+}
+
+// ===== 處理點擊 =====
+function handleClick(r,c){
+  const piece=board[r][c];
+  
+  if(selectedSquare){
+    const move=validMoves.find(m=>m[0]===r&&m[1]===c);
+    if(move){
+      makeMove(selectedSquare[0],selectedSquare[1],r,c);
+      selectedSquare=null;
+      validMoves=[];
+      renderBoard();
+      updateInfo();
+      return;
+    }
+  }
+  
+  if(piece&&isPieceMine(piece)){
+    selectedSquare=[r,c];
+    validMoves=getValidMoves(r,c);
+    renderBoard();
+    showPieceInfo(piece);
+  }else{
+    selectedSquare=null;
+    validMoves=[];
+    renderBoard();
+  }
+}
+
+// ===== 棋子歸屬 =====
+function isPieceMine(piece){
+  if(!piece)return false;
+  return currentTurn==='white'?piece===piece.toUpperCase():piece===piece.toLowerCase();
+}
+
+// ===== 取得合法移動 =====
+function getValidMoves(r,c){
+  const piece=board[r][c];
+  if(!piece)return[];
+  let moves=getRawMoves(r,c,piece);
+  
+  // 過路兵
+  if(piece.toLowerCase()==='p'&&enPassantTarget){
+    const dir=piece==='P'?-1:1;
+    const epR=enPassantTarget[0],epC=enPassantTarget[1];
+    if(r+dir===epR&&(c-1===epC||c+1===epC)){
+      moves.push([epR,epC]);
+    }
+  }
+  
+  // 王車易位
+  if(piece==='K'){
+    if(castlingRights.K&&board[7][5]===null&&board[7][6]===null&&!isSquareAttacked(7,4,'black')&&!isSquareAttacked(7,5,'black')&&!isSquareAttacked(7,6,'black'))
+      moves.push([7,6]);
+    if(castlingRights.Q&&board[7][3]===null&&board[7][2]===null&&board[7][1]===null&&!isSquareAttacked(7,4,'black')&&!isSquareAttacked(7,3,'black')&&!isSquareAttacked(7,2,'black'))
+      moves.push([7,2]);
+  }
+  if(piece==='k'){
+    if(castlingRights.k&&board[0][5]===null&&board[0][6]===null&&!isSquareAttacked(0,4,'white')&&!isSquareAttacked(0,5,'white')&&!isSquareAttacked(0,6,'white'))
+      moves.push([0,6]);
+    if(castlingRights.q&&board[0][3]===null&&board[0][2]===null&&board[0][1]===null&&!isSquareAttacked(0,4,'white')&&!isSquareAttacked(0,3,'white')&&!isSquareAttacked(0,2,'white'))
+      moves.push([0,2]);
+  }
+  
+  // 過濾掉會讓自己被將軍的移動
+  return moves.filter(([mr,mc])=>{
+    const saved=board[mr][mc];
+    const savedEP=enPassantTarget;
+    board[mr][mc]=board[r][c];
+    board[r][c]=null;
+    
+    // 過路兵吃子
+    let epCapture=false;
+    if(piece.toLowerCase()==='p'&&savedEP&&mr===savedEP[0]&&mc===savedEP[1]){
+      const epR=piece==='P'?r-1:r+1;
+      board[epR][mc]=null;
+      epCapture=true;
+    }
+    
+    const inCheck=isKingInCheck(currentTurn);
+    
+    board[r][c]=board[mr][mc];
+    board[mr][mc]=saved;
+    if(epCapture){
+      const epR=piece==='P'?r-1:r+1;
+      board[epR][mc]=currentTurn==='P'?'p':'P';
+    }
+    
+    return !inCheck;
+  });
+}
+
+// ===== 原始移動規則 =====
+function getRawMoves(r,c,piece){
+  const moves=[];
+  const isWhite=piece===piece.toUpperCase();
+  const dir=isWhite?-1:1;
+  
+  switch(piece.toLowerCase()){
+    case 'p':{
+      // 前進
+      if(!board[r+dir][c]){moves.push([r+dir,c]);if((isWhite&&r===6)||(!isWhite&&r===1))if(!board[r+dir*2][c])moves.push([r+dir*2,c]);}
+      // 吃子
+      if(c>0&&board[r+dir][c-1]&&isEnemy(r+dir,c-1,isWhite))moves.push([r+dir,c-1]);
+      if(c<7&&board[r+dir][c+1]&&isEnemy(r+dir,c+1,isWhite))moves.push([r+dir,c+1]);
+      break;
+    }
+    case 'r':
+      addSlidingMoves(moves,r,c,isWhite,[[0,1],[0,-1],[1,0],[-1,0]]);
+      break;
+    case 'n':
+      for(const[dr,dc]of[[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]]){
+        const nr=r+dr,nc=c+dc;
+        if(nr>=0&&nr<8&&nc>=0&&nc<8&&(!board[nr][nc]||isEnemy(nr,nc,isWhite)))moves.push([nr,nc]);
+      }
+      break;
+    case 'b':
+      addSlidingMoves(moves,r,c,isWhite,[[1,1],[1,-1],[-1,1],[-1,-1]]);
+      break;
+    case 'q':
+      addSlidingMoves(moves,r,c,isWhite,[[0,1],[0,-1],[1,0],[-1,0],[1,1],[1,-1],[-1,1],[-1,-1]]);
+      break;
+    case 'k':
+      for(const[dr,dc]of[[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]){
+        const nr=r+dr,nc=c+dc;
+        if(nr>=0&&nr<8&&nc>=0&&nc<8&&(!board[nr][nc]||isEnemy(nr,nc,isWhite)))moves.push([nr,nc]);
+      }
+      break;
+  }
+  return moves;
+}
+
+function addSlidingMoves(moves,r,c,isWhite,dirs){
+  for(const[dr,dc]of dirs){
+    let nr=r+dr,nc=c+dc;
+    while(nr>=0&&nr<8&&nc>=0&&nc<8){
+      if(!board[nr][nc]){moves.push([nr,nc]);}
+      else{if(isEnemy(nr,nc,isWhite))moves.push([nr,nc]);break;}
+      nr+=dr;nc+=dc;
+    }
+  }
+}
+
+function isEnemy(r,c,isWhite){
+  const p=board[r][c];
+  if(!p)return false;
+  return isWhite?p===p.toLowerCase():p===p.toUpperCase();
+}
+
+// ===== 執行移動 =====
+function makeMove(fr,fc,tr,tc){
+  const piece=board[fr][fc];
+  const captured=board[tr][tc];
+  
+  // 記錄移動
+  moveHistory.push({board:board.map(r=>[...r]),castlingRights:{...castlingRights},enPassantTarget,lastMove});
+  
+  // 吃子
+  if(captured){
+    if(currentTurn==='white')capturedWhite.push(captured);
+    else capturedBlack.push(captured);
+  }
+  
+  // 過路兵吃子
+  if(piece.toLowerCase()==='p'&&enPassantTarget&&tr===enPassantTarget[0]&&tc===enPassantTarget[1]){
+    const epR=piece==='P'?fr-1:fr+1;
+    const epPiece=board[epR][tc];
+    if(currentTurn==='white')capturedWhite.push(epPiece);
+    else capturedBlack.push(epPiece);
+    board[epR][tc]=null;
+  }
+  
+  // 王車易位
+  if(piece==='K'&&fc===4&&tc===6){board[7][7]=null;board[7][5]='R';}
+  if(piece==='K'&&fc===4&&tc===2){board[7][0]=null;board[7][3]='R';}
+  if(piece==='k'&&fc===4&&tc===6){board[0][7]=null;board[0][5]='r';}
+  if(piece==='k'&&fc===4&&tc===2){board[0][0]=null;board[0][3]='r';}
+  
+  // 升變
+  board[tr][tc]=piece;
+  board[fr][fc]=null;
+  if(piece==='P'&&tr===0)board[tr][tc]='Q';
+  if(piece==='p'&&tr===7)board[tr][tc]='q';
+  
+  // 更新過路兵目標
+  enPassantTarget=null;
+  if(piece.toLowerCase()==='p'&&Math.abs(fr-tr)===2){
+    enPassantTarget=[(fr+tr)/2,fc];
+  }
+  
+  // 更新城堡權限
+  if(piece==='K'){castlingRights.K=false;castlingRights.Q=false;}
+  if(piece==='k'){castlingRights.k=false;castlingRights.q=false;}
+  if(piece==='R'&&fr===7&&fc===7)castlingRights.K=false;
+  if(piece==='R'&&fr===7&&fc===0)castlingRights.Q=false;
+  if(piece==='r'&&fr===0&&fc===7)castlingRights.k=false;
+  if(piece==='r'&&fr===0&&fc===0)castlingRights.q=false;
+  
+  lastMove=[fr,fc,tr,tc];
+  moveCount++;
+  
+  // 切換回合
+  currentTurn=currentTurn==='white'?'black':'white';
+  
+  // 檢查遊戲結束
+  checkGameOver();
+  
+  // 更新顯示
+  document.getElementById('turn-indicator').textContent=currentTurn==='white'?'⚪ 白方回合':'⚫ 黑方回合';
+  document.getElementById('move-count').textContent='步數: '+moveCount;
+  updateCaptured();
+}
+
+// ===== 悔棋 =====
+function undoMove(){
+  if(moveHistory.length===0)return;
+  const prev=moveHistory.pop();
+  board=prev.board;
+  castlingRights=prev.castlingRights;
+  enPassantTarget=prev.enPassantTarget;
+  lastMove=prev.lastMove;
+  moveCount--;
+  currentTurn=currentTurn==='white'?'black':'white';
+  selectedSquare=null;validMoves=[];
+  renderBoard();
+  document.getElementById('turn-indicator').textContent=currentTurn==='white'?'⚪ 白方回合':'⚫ 黑方回合';
+  document.getElementById('move-count').textContent='步數: '+moveCount;
+}
+
+// ===== 檢查被攻擊 =====
+function isSquareAttacked(r,c,byColor){
+  for(let i=0;i<8;i++){
+    for(let j=0;j<8;j++){
+      const p=board[i][j];
+      if(!p)continue;
+      const isW=p===p.toUpperCase();
+      if(byColor==='white'&&!isW)continue;
+      if(byColor==='black'&&isW)continue;
+      const moves=getRawMoves(i,j,p);
+      if(moves.some(m=>m[0]===r&&m[1]===c))return true;
+    }
+  }
+  return false;
+}
+
+// ===== 將軍檢查 =====
+function isKingInCheck(color){
+  const kp=getKingPos(color);
+  if(!kp)return false;
+  return isSquareAttacked(kp[0],kp[1],color==='white'?'black':'white');
+}
+
+function getKingPos(color){
+  const king=color==='white'?'K':'k';
+  for(let r=0;r<8;r++)for(let c=0;c<8;c++)if(board[r][c]===king)return[r,c];
+  return null;
+}
+
+// ===== 遊戲結束 =====
+function checkGameOver(){
+  let hasLegalMove=false;
+  for(let r=0;r<8;r++){
+    for(let c=0;c<8;c++){
+      const p=board[r][c];
+      if(p&&isPieceMine(p)){
+        if(getValidMoves(r,c).length>0){hasLegalMove=true;break;}
+      }
+    }
+    if(hasLegalMove)break;
+  }
+  
+  if(!hasLegalMove){
+    const check=isKingInCheck(currentTurn);
+    const winner=currentTurn==='white'?'黑方勝！':'白方勝！';
+    const detail=check?'將殺！'+winner:'逼和！平局！';
+    document.getElementById('winner-text').textContent=check?'🎉 將殺！':'🤝 逼和！';
+    document.getElementById('winner-detail').textContent=detail;
+    document.getElementById('game-over').classList.add('active');
+  }
+}
+
+// ===== 更新吃子 =====
+function updateCaptured(){
+  document.getElementById('captured-white').innerHTML='白方吃子：'+capturedWhite.map(p=>PIECES[p]).join('');
+  document.getElementById('captured-black').innerHTML='黑方吃子：'+capturedBlack.map(p=>PIECES[p]).join('');
+}
+
+// ===== 顯示棋子資訊 =====
+function showPieceInfo(piece){
+  const names={'K':'白王','Q':'白后','R':'白車','B':'白主教','N':'白騎士','P':'白兵',
+    'k':'黑王','q':'黑后','r':'黑車','b':'黑主教','n':'黑騎士','p':'黑兵'};
+  const info={
+    'K':'👑 <b>王</b>：每次只能走一格（橫、直、斜都可以）。王不能走到會被吃的位置。',
+    'Q':'♛ <b>后</b>：最強棋子！可以走任意數量的格子（橫、直、斜都行）。',
+    'R':'♜ <b>車</b>：可以走任意數量的格子（橫或直）。城堡時會和王配合移動。',
+    'B':'♝ <b>主教</b>：只能走斜線，且不能換顏色格子。',
+    'N':'♞ <b>騎士</b>：走「L」形（兩格直+一格橫，或兩格橫+一格直）。唯一能跳過其他棋子的！',
+    'P':'♟ <b>兵</b>：向前走一格（起始可走兩格）。吃子時斜前方吃。到底線可升變為后、車、主教或騎士。'
+  };
+  const type=piece.toLowerCase();
+  document.getElementById('info-text').innerHTML=info[type]||'';
+}
+
+// ===== 更新提示 =====
+function updateInfo(){
+  const check=isKingInCheck(currentTurn);
+  if(check){
+    document.getElementById('info-text').innerHTML='⚠️ <b>將軍！</b>'+currentTurn==='white'?'白':'黑'+'方的王被攻擊！';
+  }
+}
+
+// ===== 學習模式 =====
+const tutorials=[
+  {title:'📖 歡迎學習西洋棋！',content:'西洋棋有6種棋子，共32顆（16白16黑）。<br><br>白方先走，輪流移動。<br><br>目標：將殺（checkmate）對方的王！'},
+  {title:'♟ 兵（Pawn）',content:'兵是最基本的棋子。<br><br>• 每次向前走一格<br>• <span class="highlight">起始位置可走兩格</span><br>• 吃子時<span class="highlight">斜前方</span>吃<br>• 到達對手底線可<span class="highlight">升變</span>為后、車、主教或騎士'},
+  {title:'♞ 騎士（Knight）',content:'騎士走「L」形：<br><br>• 兩格直 + 一格橫<br>• 或兩格橫 + 一格直<br><br><span class="highlight">唯一能跳過其他棋子的棋子！</span><br><br>騎士在角落只有2個位置，在中心有8個！'},
+  {title:'♝ 主教（Bishop）',content:'主教只能走<span class="highlight">斜線</span>：<br><br>• 可走任意格數<br>• <span class="highlight">不能換顏色格子</span><br><br>開局有兩個主教，一個在白格，一個在黑格。'},
+  {title:'♜ 車（Rook）',content:'車走<span class="highlight">直線</span>（橫或直）：<br><br>• 可走任意格數<br>• 不能斜走<br><br>車很強，價值等於5個兵。<br><br><span class="highlight">城堡（Castling）</span>時車會和王配合！'},
+  {title:'♛ 后（Queen）',content:'后是<span class="highlight">最強的棋子</span>！<br><br>• 可以走任意格數<br>• 橫、直、斜都可以<br><br>后的價值等於9個兵。<br><br>保護好后，但不要太早出后！'},
+  {title:'👑 王（King）',content:'王是最重要（也最脆弱）的棋子：<br><br>• 每次只能走<span class="highlight">一格</span><br>• 橫、直、斜都可以<br>• <span class="highlight">不能走到被攻擊的位置</span><br><br>王被將殺就輸了！'},
+  {title:'🏰 城堡（Castling）',content:'城堡是一種特殊移動：<br><br>• 王向車的方向走兩格<br>• 車跳過王到王的另一側<br><br>條件：<br>• 王和車都沒移動過<br>• 中間沒有其他棋子<br>• 王沒有被將軍<br>• 王經過的格子沒有被攻擊'},
+  {title:'🎯 開局策略',content:'開局三個原則：<br><br>1. <span class="highlight">快速出子</span>：先動騎士和主教<br>2. <span class="highlight">控制中心</span>：佔領 e4、d4、e5、d5<br>3. <span class="highlight">保護王</span>：盡快城堡到安全位置<br><br>經典開局：<br>• 意大利開局：e4 e5 Nf3 Nc6 Bc4<br>• 西西里防禦：e4 c5'},
+  {title:'⚔️ 基本戰術',content:'三個重要戰術：<br><br>1. <span class="highlight">雙攻（Fork）</span>：一個棋子同時攻擊兩個目標<br>2. <span class="highlight">牽制（Pin）</span>：威脅對方躲在後面的棋子<br>3. <span class="highlight"> discovered attack</span>：移開一個棋子露出後面的攻擊<br><br>記住：騎士和兵最適合做雙攻！'},
+  {title:'🏁 結束語',content:'恭喜你學完基本規則！<br><br>現在就開始練習吧：<br>• 點擊棋子選擇<br>• 綠色格子是可走的位置<br>• 可以隨時按「悔棋」<br><br>多練習，你會越來越強！💪'}
+];
+
+function toggleTutorial(){
+  tutorialMode=!tutorialMode;
+  document.getElementById('tutorial').classList.toggle('active',tutorialMode);
+}
+
+function nextTut(){
+  if(tutorialStep<tutorials.length-1){
+    tutorialStep++;
+    renderTutorial();
+  }
+}
+
+function prevTut(){
+  if(tutorialStep>0){
+    tutorialStep--;
+    renderTutorial();
+  }
+}
+
+function renderTutorial(){
+  const t=tutorials[tutorialStep];
+  document.getElementById('tut-title').textContent=t.title;
+  document.getElementById('tut-content').innerHTML=t.content;
+}
+
+// ===== 重設遊戲 =====
+function resetGame(){
+  initBoard();
+  currentTurn='white';selectedSquare=null;validMoves=[];
+  moveHistory=[];capturedWhite=[];capturedBlack=[];
+  moveCount=0;lastMove=null;enPassantTarget=null;
+  castlingRights={K:true,Q:true,k:true,q:true};
+  renderBoard();
+  document.getElementById('turn-indicator').textContent='⚪ 白方回合';
+  document.getElementById('move-count').textContent='步數: 0';
+  updateCaptured();
+  document.getElementById('info-text').innerHTML='選擇一個棋子開始遊戲。白方先行！';
+}
+
+// ===== 啟動 =====
+initBoard();
+renderBoard();
+renderTutorial();
+</script>
+</body>
+</html>
