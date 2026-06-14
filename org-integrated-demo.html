@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>組織理論 vs 組織設計 — 整合示範版</title>
+<style>
+/* ===== DESIGN.md 規範 ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh;overflow-x:hidden}
+
+/* ===== Hero 區塊 ===== */
+.hero{position:relative;height:45vh;min-height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f172a 0%,#1a1040 50%,#0a2018 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(99,102,241,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,0.05) 1px,transparent 1px);background-size:40px 40px}
+.hero-stage{position:relative;z-index:2;width:100%;max-width:500px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 20px}
+.figure{display:flex;flex-direction:column;align-items:center}
+.figure-label{font-size:14px;font-weight:600;margin-top:8px;text-align:center}
+.figure-label.theory{color:#a5b4fc}
+.figure-label.design{color:#6ee7b7}
+.vs-center{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);z-index:5}
+.vs-diamond{width:64px;height:64px;background:linear-gradient(135deg,#6366f1,#10b981);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);display:flex;align-items:center;justify-content:center;animation:pulse 2s ease-in-out infinite}
+.vs-diamond span{font-size:18px;font-weight:900;color:#fff}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.hero-title{position:absolute;bottom:20px;left:0;right:0;text-align:center;z-index:3}
+.hero-title h1{font-size:28px;font-weight:800;background:linear-gradient(90deg,#a5b4fc,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-title p{font-size:13px;color:#64748b;margin-top:4px}
+
+/* ===== 區塊規範 ===== */
+.section{padding:20px;max-width:600px;margin:0 auto}
+.section-title{font-size:18px;font-weight:700;text-align:center;margin-bottom:16px;color:#f8fafc}
+.card{background:#1e293b;border-radius:16px;padding:24px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.05)}
+.card h3{font-size:14px;color:#94a3b8;margin-bottom:12px;text-align:center}
+
+.mermaid{display:flex;justify-content:center}
+
+/* ===== 數據卡片 ===== */
+.stats-row{display:flex;gap:12px;margin-bottom:16px}
+.stat{flex:1;background:#1e293b;border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.05)}
+.stat-value{font-size:28px;font-weight:800;background:linear-gradient(90deg,#a5b4fc,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:11px;color:#64748b;margin-top:4px}
+
+/* ===== 時間軸 ===== */
+.timeline{position:relative;padding-left:24px;margin:16px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#6366f1,#10b981)}
+.timeline-item{position:relative;margin-bottom:16px;padding-left:16px}
+.timeline-item::before{content:'';position:absolute;left:-20px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #6366f1;background:#0a0e1a}
+.timeline-item:nth-child(2)::before{border-color:#818cf8}
+.timeline-item:nth-child(3)::before{border-color:#10b981}
+.timeline-item:nth-child(4)::before{border-color:#34d399}
+.timeline-title{font-size:13px;font-weight:600;color:#e2e8f0}
+.timeline-desc{font-size:11px;color:#94a3b8;margin-top:2px}
+
+/* ===== 決策樹 ===== */
+.decision-box{background:#1e293b;border-radius:12px;padding:16px;margin:8px 0;border:1px solid rgba(255,255,255,0.05)}
+.decision-box h4{font-size:13px;color:#fbbf24;margin-bottom:8px}
+.decision-box p{font-size:11px;color:#94a3b8;line-height:1.6}
+.decision-box .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;margin:2px}
+.decision-box .tag.yes{background:rgba(16,185,129,0.2);color:#34d399}
+.decision-box .tag.no{background:rgba(239,68,68,0.2);color:#f87171}
+
+/* ===== 比較表格 ===== */
+.compare-table{width:100%;border-collapse:collapse;margin:12px 0}
+.compare-table th{padding:8px;text-align:left;font-size:12px;color:#94a3b8;border-bottom:1px solid rgba(255,255,255,0.05)}
+.compare-table td{padding:8px;font-size:11px;color:#e2e8f0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.compare-table tr:nth-child(even){background:rgba(255,255,255,0.02)}
+
+/* ===== Footer ===== */
+.footer{text-align:center;padding:20px;color:#334155;font-size:11px}
+
+/* ===== 亮色版本 ===== */
+.light-section{background:#f8fafc;padding:20px;max-width:600px;margin:0 auto}
+.light-section .section-title{color:#1e293b}
+.light-card{background:#ffffff;border-radius:16px;padding:24px;margin-bottom:16px;border:1px solid #e2e8f0}
+.light-card h3{font-size:14px;color:#64748b;margin-bottom:12px;text-align:center}
+.light-card .mermaid{filter:invert(0.9) hue-rotate(180deg)}
+</style>
+</head>
+<body>
+
+<!-- ====== Hero：SVG 角色 ====== -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-stage">
+    <div class="figure">
+      <svg viewBox="0 0 120 160" width="90" height="130">
+        <circle cx="60" cy="35" r="22" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+        <circle cx="52" cy="33" r="8" fill="none" stroke="#a5b4fc" stroke-width="2"/>
+        <circle cx="68" cy="33" r="8" fill="none" stroke="#a5b4fc" stroke-width="2"/>
+        <circle cx="52" cy="33" r="2" fill="#a5b4fc"/>
+        <circle cx="68" cy="33" r="2" fill="#a5b4fc"/>
+        <path d="M38 55 Q60 48 82 55 L78 100 Q60 105 42 100 Z" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+        <rect x="25" y="75" width="18" height="24" rx="2" fill="#6366f1" opacity="0.6"/>
+        <circle cx="95" cy="85" r="14" fill="none" stroke="#c4b5fd" stroke-width="2.5"/>
+        <line x1="105" y1="95" x2="115" y2="108" stroke="#c4b5fd" stroke-width="3" stroke-linecap="round"/>
+        <rect x="45" y="100" width="10" height="30" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+        <rect x="65" y="100" width="10" height="30" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+      </svg>
+      <div class="figure-label theory">人資研究員</div>
+    </div>
+    <div class="vs-center"><div class="vs-diamond"><span>VS</span></div></div>
+    <div class="figure">
+      <svg viewBox="0 0 120 160" width="90" height="130">
+        <circle cx="60" cy="35" r="22" fill="#052e16" stroke="#10b981" stroke-width="2"/>
+        <path d="M35 28 Q60 12 85 28" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5"/>
+        <rect x="33" y="26" width="54" height="5" rx="2" fill="#fbbf24"/>
+        <circle cx="52" cy="35" r="2" fill="#6ee7b7"/>
+        <circle cx="68" cy="35" r="2" fill="#6ee7b7"/>
+        <path d="M38 55 Q60 48 82 55 L78 100 Q60 105 42 100 Z" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="78" y="70" width="25" height="18" rx="2" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+        <rect x="15" y="75" width="50" height="6" rx="1" fill="#065f46" stroke="#34d399" stroke-width="0.8"/>
+        <rect x="45" y="100" width="10" height="30" rx="3" fill="#052e16" stroke="#10b981" stroke-width="1"/>
+        <rect x="65" y="100" width="10" height="30" rx="3" fill="#052e16" stroke="#10b981" stroke-width="1"/>
+      </svg>
+      <div class="figure-label design">營運長</div>
+    </div>
+  </div>
+  <div class="hero-title">
+    <h1>組織理論 vs 組織設計</h1>
+    <p>「為什麼會這樣？」vs「應該怎麼改？」</p>
+  </div>
+</div>
+
+<!-- ====== 數據卡片 ====== -->
+<div class="section">
+  <div class="section-title">📊 關鍵數據（餐飲集團案例）</div>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-value">128%</div>
+      <div class="stat-label">年流動率</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">35%</div>
+      <div class="stat-label">培訓後離職</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">42萬</div>
+      <div class="stat-label">年招募成本</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 心智圖：核心概念 ====== -->
+<div class="section">
+  <div class="section-title">🧠 核心概念（精簡版）</div>
+  <div class="card">
+    <div class="mermaid">
+mindmap
+  root((理論vs設計))
+    組織理論
+      找原因
+      建模型
+    組織設計
+      做改變
+      設制度
+    循環
+      理論指導設計
+      設計驗證理論
+    </div>
+  </div>
+</div>
+
+<!-- ====== 時間軸：解決方案 ====== -->
+<div class="section">
+  <div class="section-title">⏰ 解決方案時間軸</div>
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-title">第 1 月：理論分析</div>
+        <div class="timeline-desc">訪談 30 位離職員工，發現主因：排班不固定、缺乏成長、主管不支持</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-title">第 2-3 月：設計行動</div>
+        <div class="timeline-desc">建立職涯路徑、導入 AI 排班系統、主管領導力培訓</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-title">第 6 月：初步驗證</div>
+        <div class="timeline-desc">離職率從 128% 降至 65%，新制度上線三個月</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-title">第 12 月：全面擴大</div>
+        <div class="timeline-desc">離職率降至 42%，節省招募成本 28 萬，全公司推廣</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 決策樹：問題診斷 ====== -->
+<div class="section">
+  <div class="section-title">🔍 問題診斷（決策樹）</div>
+  <div class="card">
+    <h3>員工離職原因分析</h3>
+    <div class="mermaid">
+graph TD
+    A[員工提出離職] --> B{訪談發現}
+    B --> C[排班問題]
+    B --> D[缺乏成長]
+    B --> E[主管關係]
+    B --> F[薪資不滿]
+    C --> G[AI 排班系統]
+    D --> H[職涯路徑]
+    E --> I[領導力培訓]
+    F --> J[市場薪資調查]
+    G --> K[離職率下降]
+    H --> K
+    I --> K
+    J --> K
+    </div>
+  </div>
+</div>
+
+<!-- ====== 比較表格 ====== -->
+<div class="section">
+  <div class="section-title">📋 前後對照</div>
+  <div class="card">
+    <table class="compare-table">
+      <tr><th>指標</th><th>改善前</th><th>改善後</th></tr>
+      <tr><td>年流動率</td><td>128%</td><td>42%</td></tr>
+      <tr><td>培訓後離職</td><td>35%</td><td>8%</td></tr>
+      <tr><td>招募成本</td><td>42 萬/年</td><td>14 萬/年</td></tr>
+      <tr><td>員工滿意度</td><td>2.8/5</td><td>4.2/5</td></tr>
+      <tr><td>顧客滿意度</td><td>3.1/5</td><td>4.5/5</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ====== 技術說明 ====== -->
+<div class="section">
+  <div style="padding:16px;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.15);border-radius:12px">
+    <h4 style="font-size:13px;color:#fbbf24;margin-bottom:8px">🔧 整合架構</h4>
+    <p style="font-size:11px;color:#94a3b8;line-height:1.6">
+    <strong>DESIGN.md</strong>：配色 + 字型 + 結構統一規範<br>
+    <strong>Starter Kit</strong>：模板 C（比較對照型）+ 時間軸<br>
+    <strong>Skills</strong>：/explain-compare（比較對照）+ /explain-story（角色故事）<br><br>
+    <strong>工具</strong>：SVG 角色 + Mermaid 心智圖 + Mermaid 流程圖 + CSS 時間軸
+    </p>
+  </div>
+</div>
+
+<div class="footer">🍀 小綠圖解 ｜ 整合示範版 ｜ DESIGN.md + Starter Kit + Skills</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({ 
+  startOnLoad: true,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#6366f1',
+    primaryTextColor: '#e2e8f0',
+    primaryBorderColor: '#818cf8',
+    lineColor: '#475569',
+    secondaryColor: '#10b981',
+    tertiaryColor: '#1e293b'
+  }
+});
+</script>
+
+</body>
+</html>
