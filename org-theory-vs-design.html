@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>組織理論 vs 組織設計 — 圖解</title>
+<title>組織理論 vs 組織設計 — Mermaid + SVG 版</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh;overflow-x:hidden}
 
-/* Hero */
 .hero{position:relative;height:50vh;min-height:360px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f172a 0%,#1a1040 50%,#0a2018 100%)}
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(99,102,241,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,0.05) 1px,transparent 1px);background-size:40px 40px}
@@ -25,55 +24,53 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei
 .hero-title h1{font-size:28px;font-weight:800;background:linear-gradient(90deg,#a5b4fc,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-title p{font-size:13px;color:#64748b;margin-top:4px}
 
-/* Section */
 .section{padding:30px 20px;max-width:520px;margin:0 auto}
 .section-title{font-size:18px;font-weight:700;text-align:center;margin-bottom:20px;color:#f8fafc}
 
-/* Workplace Scenario Card */
-.scenario{background:#1e293b;border-radius:16px;padding:20px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.05)}
-.scenario-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.scenario-badge{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600}
-.scenario-badge.theory{background:rgba(99,102,241,0.15);color:#818cf8}
-.scenario-badge.design{background:rgba(16,185,129,0.15);color:#34d399}
-.scenario-title{font-size:15px;font-weight:700;color:#f8fafc}
+/* Mermaid 容器 */
+.mermaid-box{background:#1e293b;border-radius:16px;padding:20px;margin-bottom:24px;border:1px solid rgba(255,255,255,0.05)}
+.mermaid-box h3{font-size:14px;color:#94a3b8;margin-bottom:12px;text-align:center}
+.mermaid{display:flex;justify-content:center}
 
-/* Role card */
-.role-card{display:flex;gap:12px;padding:14px;border-radius:12px;margin-bottom:10px;align-items:flex-start}
-.role-card.theory{background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15)}
-.role-card.design{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15)}
-.role-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-.role-avatar.theory{background:rgba(99,102,241,0.2)}
-.role-avatar.design{background:rgba(16,185,129,0.2)}
+/* 職場案例卡片 */
+.case-card{background:#1e293b;border-radius:16px;padding:20px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.05)}
+.case-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.case-badge{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600}
+.case-badge.theory{background:rgba(99,102,241,0.15);color:#818cf8}
+.case-badge.design{background:rgba(16,185,129,0.15);color:#34d399}
+.case-title{font-size:15px;font-weight:700;color:#f8fafc}
+
+.role-row{display:flex;gap:12px;padding:12px;border-radius:10px;margin-bottom:8px;align-items:flex-start}
+.role-row.theory{background:rgba(99,102,241,0.06)}
+.role-row.design{background:rgba(16,185,129,0.06)}
+.role-avatar{font-size:24px;flex-shrink:0}
 .role-content{flex:1}
-.role-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.role-name{font-size:13px;font-weight:600;margin-bottom:2px}
 .role-name.theory{color:#a5b4fc}
 .role-name.design{color:#6ee7b7}
-.role-action{font-size:12px;color:#cbd5e1;line-height:1.5}
-.role-result{font-size:11px;color:#94a3b8;margin-top:4px;padding:6px 8px;background:rgba(0,0,0,0.2);border-radius:6px}
+.role-text{font-size:12px;color:#cbd5e1;line-height:1.5}
+.role-highlight{font-size:11px;color:#94a3b8;margin-top:4px;padding:6px 8px;background:rgba(0,0,0,0.2);border-radius:6px}
 
-/* Timeline */
-.timeline{position:relative;padding-left:24px;margin:20px 0}
-.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#6366f1,#10b981)}
-.timeline-item{position:relative;margin-bottom:16px;padding:12px;border-radius:10px;background:rgba(0,0,0,0.2)}
-.timeline-dot{position:absolute;left:-20px;top:12px;width:12px;height:12px;border-radius:50%;border:2px solid}
-.timeline-dot.theory{border-color:#6366f1;background:#1e1b4b}
-.timeline-dot.design{border-color:#10b981;background:#052e16}
-.timeline-dot.result{border-color:#fbbf24;background:#1a1600}
-.timeline-label{font-size:11px;font-weight:600;margin-bottom:4px}
-.timeline-label.theory{color:#818cf8}
-.timeline-label.design{color:#34d399}
-.timeline-label.result{color:#fbbf24}
-.timeline-text{font-size:12px;color:#cbd5e1;line-height:1.4}
+/* 比較表 */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.compare-item{padding:16px;border-radius:12px;text-align:center}
+.compare-item.theory{background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15)}
+.compare-item.design{background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.15)}
+.compare-icon{font-size:28px;margin-bottom:6px}
+.compare-label{font-size:13px;font-weight:600;margin-bottom:4px}
+.compare-label.theory{color:#a5b4fc}
+.compare-label.design{color:#6ee7b7}
+.compare-desc{font-size:11px;color:#94a3b8;line-height:1.4}
 
-/* Stats bar */
-.stats-bar{display:flex;gap:10px;margin:20px 0}
+/* 數據卡 */
+.stats-row{display:flex;gap:10px;margin:20px 0}
 .stat-card{flex:1;background:#1e293b;border-radius:12px;padding:14px;text-align:center;border:1px solid rgba(255,255,255,0.05)}
-.stat-number{font-size:24px;font-weight:800;margin-bottom:4px}
-.stat-number.good{color:#4ade80}
-.stat-number.bad{color:#f87171}
+.stat-num{font-size:22px;font-weight:800;margin-bottom:2px}
+.stat-num.good{color:#4ade80}
+.stat-num.bad{color:#f87171}
 .stat-label{font-size:11px;color:#64748b}
 
-/* Summary */
+/* 總結 */
 .summary{margin:24px 0;padding:24px 20px;background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(16,185,129,0.08));border-radius:16px;text-align:center}
 .summary-visual{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:12px}
 .summary-circle{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px}
@@ -83,11 +80,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei
 .summary-text{font-size:15px;font-weight:600;color:#f8fafc}
 .summary-sub{font-size:12px;color:#64748b;margin-top:6px}
 
+.tech-note{margin:20px 0;padding:14px;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.15);border-radius:12px}
+.tech-note h4{font-size:13px;color:#fbbf24;margin-bottom:6px}
+.tech-note p{font-size:11px;color:#94a3b8;line-height:1.5}
+
 .footer{text-align:center;padding:20px;color:#334155;font-size:11px}
 
 @media(max-width:480px){
   .hero{height:40vh;min-height:320px}
-  .stats-bar{flex-direction:column}
+  .compare-grid{grid-template-columns:1fr}
+  .stats-row{flex-direction:column}
   .hero-title h1{font-size:22px}
   .section{padding:20px 14px}
 }
@@ -139,107 +141,156 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei
   </div>
 </div>
 
-<!-- ====== 職場案例：科技業 ====== -->
+<!-- ====== 一句話比較 ====== -->
+<div class="section">
+  <div class="section-title">🎯 一句話比較</div>
+  <div class="compare-grid">
+    <div class="compare-item theory">
+      <div class="compare-icon">🔍</div>
+      <div class="compare-label theory">組織理論</div>
+      <div class="compare-desc">「為什麼工程師一直走？」<br>→ 找出根本原因</div>
+    </div>
+    <div class="compare-item design">
+      <div class="compare-icon">🛠️</div>
+      <div class="compare-label design">組織設計</div>
+      <div class="compare-desc">「怎麼讓他們留下來？」<br>→ 設計解決方案</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== Mermaid 流程圖：核心循環 ====== -->
+<div class="section">
+  <div class="section-title">🔄 核心循環（Mermaid 自動產生）</div>
+  <div class="mermaid-box">
+    <h3>理論與設計的正向循環</h3>
+    <div class="mermaid">
+graph LR
+    A["🔍 組織理論<br>找原因"] -->|指導| B["🛠️ 組織設計<br>做改變"]
+    B -->|驗證| A
+    
+    style A fill:#1e1b4b,stroke:#6366f1,stroke-width:2px,color:#a5b4fc
+    style B fill:#052e16,stroke:#10b981,stroke-width:2px,color:#6ee7b7
+    </div>
+  </div>
+</div>
+
+<!-- ====== 職場案例 ====== -->
 <div class="section">
   <div class="section-title">💼 職場案例：科技公司工程師離職潮</div>
   
-  <div class="scenario">
-    <div class="scenario-header">
-      <span class="scenario-badge theory">🔍 組織理論在做什麼</span>
+  <div class="case-card">
+    <div class="case-header">
+      <span class="case-badge theory">🔍 組織理論在做什麼</span>
     </div>
-    <div class="role-card theory">
-      <div class="role-avatar theory">👩‍🔬</div>
+    <div class="role-row theory">
+      <span class="role-avatar">👩‍🔬</span>
       <div class="role-content">
         <div class="role-name theory">人資研究員 小美</div>
-        <div class="role-action">「為什麼這半年走了 12 個工程師？」<br><br>
-        📊 收集離職面談資料<br>
-        📈 分析離職率數據（25%→半年內）<br>
-        🧩 發現共同原因：缺乏成長機會<br>
-        📝 產出研究報告：「員工倦怠與離職傾向之研究」</div>
-        <div class="role-result">💡 找到根本原因：不是薪水問題，是看不到未來</div>
+        <div class="role-text">「為什麼這半年走了 12 個工程師？」<br><br>
+        📊 訪談 20 位在職 + 12 位離職員工<br>
+        📈 分析離職率數據（25%）<br>
+        🧩 發現：78% 說「看不到成長方向」<br>
+        📝 產出：研究報告</div>
+        <div class="role-highlight">💡 找到根本原因：不是薪水問題，是看不到未來</div>
       </div>
     </div>
   </div>
 
-  <div class="scenario">
-    <div class="scenario-header">
-      <span class="scenario-badge design">🛠️ 組織設計在做什麼</span>
+  <div class="case-card">
+    <div class="case-header">
+      <span class="case-badge design">🛠️ 組織設計在做什麼</span>
     </div>
-    <div class="role-card design">
-      <div class="role-avatar design">👷</div>
+    <div class="role-row design">
+      <span class="role-avatar">👷</span>
       <div class="role-content">
         <div class="role-name design">營運長 陳總</div>
-        <div class="role-action">「怎麼讓工程師願意留下來？」<br><br>
+        <div class="role-text">「怎麼讓他們留下來？」<br><br>
         🏗️ 重新設計職涯發展路徑<br>
-        📐 建立技術職等制度（初级→資深→專家→架構師）<br>
-        ⚙️ 導入季度目標設定 + 1對1輔導<br>
-        🚀 實施技術分享會制度</div>
-        <div class="role-result">✅ 從「組織結構」動手改造</div>
+        📐 建立技術職等制度（初級→資深→專家→架構師）<br>
+        ⚙️ 導入季度目標 + 1對1輔導<br>
+        🚀 建立 mentorship 計畫</div>
+        <div class="role-highlight">✅ 從「組織結構」動手改造</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ====== 改變歷程 ====== -->
+<!-- ====== Mermaid 流程圖：決策樹 ====== -->
 <div class="section">
-  <div class="section-title">📅 改變歷程</div>
-  
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot theory"></div>
-      <div class="timeline-label theory">第 1 個月：理論階段</div>
-      <div class="timeline-text">小美訪談 20 位在職工程師 + 12 位離職員工<br>發現：78% 說「看不到成長方向」是最大痛點</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot design"></div>
-      <div class="timeline-label design">第 2-3 個月：設計階段</div>
-      <div class="timeline-text">陳總根據研究報告，設計新的職涯發展制度<br>包含：技術職等、季度目標、 mentorship 計畫</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot result"></div>
-      <div class="timeline-label result">第 6 個月：驗證階段</div>
-      <div class="timeline-text">離職率從 25% 降到 11%<br>員工滿意度從 3.2 分升到 4.1 分（滿分 5）</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot design"></div>
-      <div class="timeline-label design">第 12 個月：擴大階段</div>
-      <div class="timeline-text">全公司推廣：業務部、行銷部也導入同樣制度<br>整體離職率降至 8%，業界平均 15%</div>
+  <div class="section-title">🌳 決策流程（Mermaid 自動產生）</div>
+  <div class="mermaid-box">
+    <h3>員工離職分析決策樹</h3>
+    <div class="mermaid">
+graph TD
+    A["員工提出離職"] --> B{"訪談原因"}
+    B -->|"薪水問題"| C["市場薪資調查"]
+    B -->|"沒有成長"| D["職涯發展制度"]
+    B -->|"主管問題"| E["管理訓練"]
+    B -->|"工作倦怠"| F["工作設計調整"]
+    
+    C --> G["薪資結構改革"]
+    D --> H["建立職等制度"]
+    E --> I["主管輔導計畫"]
+    F --> J["工作豐富化"]
+    
+    G --> K["降低離職率"]
+    H --> K
+    I --> K
+    J --> K
+    
+    style A fill:#1e293b,stroke:#475569,stroke-width:2px,color:#f8fafc
+    style K fill:#052e16,stroke:#10b981,stroke-width:2px,color:#6ee7b7
     </div>
   </div>
 </div>
 
-<!-- ====== 數字說話 ====== -->
+<!-- ====== 數據說話 ====== -->
 <div class="section">
   <div class="section-title">📊 改變前 vs 改變後</div>
-  <div class="stats-bar">
+  <div class="stats-row">
     <div class="stat-card">
-      <div class="stat-number bad">25%</div>
+      <div class="stat-num bad">25%</div>
       <div class="stat-label">原本離職率</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number good">8%</div>
+      <div class="stat-num good">8%</div>
       <div class="stat-label">改善後離職率</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number good">3.2→4.1</div>
+      <div class="stat-num good">3.2→4.1</div>
       <div class="stat-label">滿意度提升</div>
     </div>
   </div>
 </div>
 
-<!-- ====== 一句話比較 ====== -->
+<!-- ====== Mermaid 組織架構 ====== -->
 <div class="section">
-  <div class="section-title">🎯 一句話比較</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-    <div style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);border-radius:12px;padding:16px;text-align:center">
-      <div style="font-size:28px;margin-bottom:8px">🔍</div>
-      <div style="font-size:14px;font-weight:700;color:#a5b4fc;margin-bottom:4px">組織理論</div>
-      <div style="font-size:12px;color:#cbd5e1;line-height:1.4">「為什麼工程師一直走？」<br>→ 找出根本原因</div>
-    </div>
-    <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:16px;text-align:center">
-      <div style="font-size:28px;margin-bottom:8px">🛠️</div>
-      <div style="font-size:14px;font-weight:700;color:#6ee7b7;margin-bottom:4px">組織設計</div>
-      <div style="font-size:12px;color:#cbd5e1;line-height:1.4">「怎麼讓他們留下來？」<br>→ 設計解決方案</div>
+  <div class="section-title">🏢 組織架構（Mermaid 自動產生）</div>
+  <div class="mermaid-box">
+    <h3>科技公司研發部門組織</h3>
+    <div class="mermaid">
+graph TD
+    A["總經理"] --> B["技術副總"]
+    A --> C["人資副總"]
+    
+    B --> D["研發一部<br>前端團隊"]
+    B --> E["研發二部<br>後端團隊"]
+    B --> F["研發三部<br>基礎建設"]
+    
+    C --> G["招募組"]
+    C --> H["教育訓練組"]
+    C --> I["員工關係組"]
+    
+    D -->|"職等制度"| J["初級工程師"]
+    J -->|"季度目標"| K["資深工程師"]
+    K -->|"mentorship"| L["技術專家"]
+    L -->|"指導"| M["架構師"]
+    
+    style A fill:#1e293b,stroke:#475569,stroke-width:2px,color:#f8fafc
+    style J fill:#1e1b4b,stroke:#6366f1,stroke-width:1px,color:#a5b4fc
+    style K fill:#1e1b4b,stroke:#6366f1,stroke-width:1px,color:#a5b4fc
+    style L fill:#1e1b4b,stroke:#6366f1,stroke-width:1px,color:#a5b4fc
+    style M fill:#052e16,stroke:#10b981,stroke-width:2px,color:#6ee7b7
     </div>
   </div>
 </div>
@@ -264,7 +315,36 @@ body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei
   </div>
 </div>
 
-<div class="footer">🍀 小綠圖解 ｜ 用職場案例理解組織理論 vs 組織設計</div>
+<!-- ====== 技術說明 ====== -->
+<div class="section">
+  <div class="tech-note">
+    <h4>🔧 這次用了新技能：Mermaid</h4>
+    <p>以前手寫 SVG 畫流程圖要 30 分鐘，現在用 Mermaid 語法只要 3 分鐘。<br><br>
+    <strong>差異比較：</strong><br>
+    • 流程圖：Mermaid 自動產生 ✅ vs 手寫 SVG ❌<br>
+    • 組織圖：Mermaid 自動排版 ✅ vs 手動定位 ❌<br>
+    • 決策樹：Mermaid 判斷節點 ✅ vs 手動繪製 ❌<br><br>
+    <strong>角色插圖</strong>仍然用 SVG（因為需要自訂視覺）</p>
+  </div>
+</div>
+
+<div class="footer">🍀 小綠圖解 ｜ Mermaid + SVG 混合版 v4</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({ 
+  startOnLoad: true,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#6366f1',
+    primaryTextColor: '#e2e8f0',
+    primaryBorderColor: '#818cf8',
+    lineColor: '#475569',
+    secondaryColor: '#10b981',
+    tertiaryColor: '#1e293b'
+  }
+});
+</script>
 
 </body>
 </html>
