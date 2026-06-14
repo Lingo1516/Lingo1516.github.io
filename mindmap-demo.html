@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>心智圖示範 — 組織理論 vs 組織設計</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh;overflow-x:hidden}
+
+.hero{position:relative;padding:40px 20px;text-align:center}
+.hero h1{font-size:28px;font-weight:800;background:linear-gradient(90deg,#a5b4fc,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:13px;color:#64748b;margin-top:8px}
+
+.section{padding:20px;max-width:600px;margin:0 auto}
+.section-title{font-size:18px;font-weight:700;text-align:center;margin-bottom:16px;color:#f8fafc}
+
+.mindmap-box{background:#1e293b;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto}
+.mindmap-box h3{font-size:14px;color:#94a3b8;margin-bottom:12px;text-align:center}
+
+.mermaid{display:flex;justify-content:center}
+
+.tech-compare{margin:20px 0;padding:16px;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.15);border-radius:12px}
+.tech-compare h4{font-size:13px;color:#fbbf24;margin-bottom:8px}
+.tech-compare p{font-size:11px;color:#94a3b8;line-height:1.6}
+
+.footer{text-align:center;padding:20px;color:#334155;font-size:11px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🧠 心智圖示範</h1>
+  <p>Mermaid mindmap 語法 — 自動產生概念圖</p>
+</div>
+
+<!-- 範例 1：核心概念 -->
+<div class="section">
+  <div class="section-title">📋 範例 1：核心概念</div>
+  <div class="mindmap-box">
+    <h3>組織理論 vs 組織設計</h3>
+    <div class="mermaid">
+mindmap
+  root((組織理論vs設計))
+    組織理論
+      問為什麼
+        為什麼員工離職
+        為什麼效率低落
+      方法
+        訪談
+        數據分析
+        文獻回顧
+      產出
+        研究報告
+        理論模型
+    組織設計
+      問怎麼做
+        怎麼降低離職率
+        怎麼提升效率
+      方法
+        診斷問題
+        規劃方案
+        設計架構
+      產出
+        制度改革
+        流程優化
+    正向循環
+      理論指導設計
+      設計驗證理論
+    </div>
+  </div>
+</div>
+
+<!-- 範例 2：職場案例 -->
+<div class="section">
+  <div class="section-title">💼 範例 2：職場案例</div>
+  <div class="mindmap-box">
+    <h3>工程師離職潮解決方案</h3>
+    <div class="mermaid">
+mindmap
+  root((工程師離職潮))
+    問題現狀
+      離職率25%
+      半年走12人
+      團隊士氣低落
+    組織理論分析
+      訪談在職員工
+      訪談離職員工
+      發現
+        78%看不到成長
+        不是薪水問題
+    組織設計行動
+      建立技術職等
+      季度目標設定
+      1對1輔導
+      Mentorship計畫
+    成果
+      離職率降到8%
+      滿意度提升
+      全公司推廣
+    </div>
+  </div>
+</div>
+
+<!-- 範例 3：SWOT -->
+<div class="section">
+  <div class="section-title">📊 範例 3：SWOT 分析</div>
+  <div class="mindmap-box">
+    <h3>新產品上市 SWOT</h3>
+    <div class="mermaid">
+mindmap
+  root((新產品上市SWOT))
+    優勢
+      技術領先
+      品牌知名度
+      團隊經驗豐富
+    劣勢
+      預算有限
+      行銷通路少
+      人才不足
+    機會
+      市場成長快
+      競爭對手少
+      政策補助
+    威脅
+      大廠進入
+      原物料漲價
+      法規變化
+    </div>
+  </div>
+</div>
+
+<!-- 技術說明 -->
+<div class="section">
+  <div class="tech-compare">
+    <h4>🔧 心智圖 vs 流程圖：什麼時候用哪個？</h4>
+    <p>
+    <strong>🧠 心智圖（mindmap）</strong>→ 適合：概念分類、腦力激盪、整理思緒<br>
+    <strong>📊 流程圖（graph）</strong>→ 適合：步驟流程、決策判斷、時間順序<br><br>
+    <strong>以前</strong>：手畫心智圖 → 30 分鐘<br>
+    <strong>現在</strong>：Mermaid mindmap 語法 → 3 分鐘<br><br>
+    學生看到心智圖，秒懂概念之間的關係！
+    </p>
+  </div>
+</div>
+
+<div class="footer">🍀 小綠圖解 ｜ Mermaid 心智圖示範</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({ 
+  startOnLoad: true,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#6366f1',
+    primaryTextColor: '#e2e8f0',
+    primaryBorderColor: '#818cf8',
+    lineColor: '#475569',
+    secondaryColor: '#10b981',
+    tertiaryColor: '#1e293b'
+  }
+});
+</script>
+
+</body>
+</html>
