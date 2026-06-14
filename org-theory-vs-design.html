@@ -14,229 +14,62 @@
             padding: 20px;
             line-height: 1.6;
         }
+        .header { text-align: center; padding: 30px 0 20px; }
+        .header h1 { font-size: 26px; font-weight: 700; color: #f8fafc; margin-bottom: 6px; }
+        .header .sub { font-size: 14px; color: #94a3b8; }
 
-        /* ===== Header ===== */
-        .header {
-            text-align: center;
-            padding: 40px 0 30px;
-        }
-        .header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #f8fafc;
-            margin-bottom: 8px;
-        }
-        .header .subtitle {
-            font-size: 15px;
-            color: #94a3b8;
-            font-weight: 400;
-        }
+        /* Two-column visual comparison */
+        .compare { display: flex; gap: 16px; margin: 20px 0; align-items: stretch; }
+        .compare-col { flex: 1; background: #1e293b; border-radius: 14px; padding: 20px 16px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+        .compare-col.theory { border-top: 3px solid #6366f1; }
+        .compare-col.design { border-top: 3px solid #10b981; }
+        .compare-col .icon { width: 120px; height: 120px; margin: 0 auto 12px; }
+        .compare-col h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+        .compare-col h2.theory { color: #a5b4fc; }
+        .compare-col h2.design { color: #6ee7b7; }
+        .compare-col .en { font-size: 11px; color: #64748b; margin-bottom: 12px; }
+        .compare-col .desc { font-size: 13px; color: #cbd5e1; text-align: left; padding: 0 4px; }
 
-        /* ===== VS Divider ===== */
-        .vs-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin: 30px 0;
-        }
-        .vs-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #334155, transparent);
-        }
-        .vs-badge {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 800;
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(99,102,241,0.4);
-            flex-shrink: 0;
-        }
+        /* Tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 10px 0; }
+        .tag { font-size: 11px; padding: 3px 8px; border-radius: 5px; font-weight: 500; }
+        .tag.t { background: rgba(99,102,241,0.15); color: #818cf8; }
+        .tag.d { background: rgba(16,185,129,0.15); color: #34d399; }
 
-        /* ===== Card ===== */
-        .card {
-            background: #1e293b;
-            border-radius: 16px;
-            padding: 28px 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-        .card-icon.theory { background: rgba(99,102,241,0.15); }
-        .card-icon.design { background: rgba(16,185,129,0.15); }
-        .card-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #f8fafc;
-        }
-        .card-en {
-            font-size: 12px;
-            color: #64748b;
-            font-weight: 400;
-            margin-top: 2px;
-        }
+        /* VS badge */
+        .vs-row { display: flex; align-items: center; justify-content: center; margin: -10px 0; position: relative; z-index: 2; }
+        .vs-hex { width: 60px; height: 60px; }
 
-        /* ===== Tags ===== */
-        .tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 18px;
-        }
-        .tag {
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-        .tag.theory { background: rgba(99,102,241,0.15); color: #818cf8; }
-        .tag.design { background: rgba(16,185,129,0.15); color: #34d399; }
+        /* Flow diagram */
+        .flow { text-align: center; margin: 24px 0; }
+        .flow svg { width: 100%; max-width: 400px; }
 
-        /* ===== Definition ===== */
-        .definition {
-            font-size: 15px;
-            color: #cbd5e1;
-            margin-bottom: 20px;
-            padding-left: 14px;
-            border-left: 3px solid;
-        }
-        .definition.theory { border-color: #6366f1; }
-        .definition.design { border-color: #10b981; }
+        /* Analogy */
+        .analogy { text-align: center; margin: 24px 0; }
+        .analogy svg { width: 100%; max-width: 400px; }
 
-        /* ===== Feature Grid ===== */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .feature-item {
-            background: rgba(15,23,42,0.6);
-            border-radius: 10px;
-            padding: 14px;
-        }
-        .feature-label {
-            font-size: 11px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-        .feature-value {
-            font-size: 14px;
-            color: #e2e8f0;
-            font-weight: 500;
-        }
+        /* Key differences - visual cards */
+        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .diff-card { background: rgba(15,23,42,0.6); border-radius: 10px; padding: 14px; }
+        .diff-label { font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .diff-values { display: flex; gap: 8px; }
+        .diff-val { flex: 1; text-align: center; padding: 8px 4px; border-radius: 8px; font-size: 12px; font-weight: 500; }
+        .diff-val.left { background: rgba(99,102,241,0.12); color: #a5b4fc; }
+        .diff-val.right { background: rgba(16,185,129,0.12); color: #6ee7b7; }
 
-        /* ===== Analogy ===== */
-        .analogy {
-            background: rgba(245,158,11,0.08);
-            border: 1px solid rgba(245,158,11,0.2);
-            border-radius: 12px;
-            padding: 18px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .analogy-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-        .analogy-text {
-            font-size: 14px;
-            color: #fbbf24;
-            font-weight: 500;
-        }
-        .analogy-sub {
-            font-size: 12px;
-            color: #92400e;
-            margin-top: 4px;
-        }
+        /* Summary bar */
+        .summary { background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(16,185,129,0.1)); border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+        .summary .big { font-size: 18px; font-weight: 700; color: #f8fafc; }
+        .summary .big .t { color: #818cf8; }
+        .summary .big .d { color: #34d399; }
+        .summary .sub { font-size: 13px; color: #64748b; margin-top: 6px; }
 
-        /* ===== Connection Arrow ===== */
-        .connection {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 10px 0;
-        }
-        .conn-arrow {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-        .conn-arrow svg {
-            width: 24px;
-            height: 40px;
-        }
-        .conn-label {
-            font-size: 12px;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        /* ===== Summary Table ===== */
-        .summary-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .summary-table th {
-            background: #334155;
-            color: #f8fafc;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 12px 16px;
-            text-align: left;
-        }
-        .summary-table td {
-            background: #1e293b;
-            font-size: 13px;
-            padding: 12px 16px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: #cbd5e1;
-        }
-        .summary-table tr:last-child td:first-child { border-bottom-left-radius: 12px; }
-        .summary-table tr:last-child td:last-child { border-bottom-right-radius: 12px; }
-
-        /* ===== Footer ===== */
-        .footer {
-            text-align: center;
-            padding: 30px 0 10px;
-            color: #475569;
-            font-size: 12px;
-        }
+        .footer { text-align: center; padding: 20px 0 10px; color: #475569; font-size: 11px; }
 
         @media (max-width: 480px) {
+            .compare { flex-direction: column; }
+            .diff-grid { grid-template-columns: 1fr; }
             body { padding: 14px; }
-            .header h1 { font-size: 22px; }
-            .card { padding: 20px 16px; }
-            .feature-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -244,172 +77,202 @@
 
 <div class="header">
     <h1>組織理論 vs 組織設計</h1>
-    <div class="subtitle">一個是「理解世界」，一個是「改造世界」</div>
+    <div class="sub">一個是「理解世界」，一個是「改造世界」</div>
 </div>
 
-<!-- ====== 組織理論 ====== -->
-<div class="card">
-    <div class="card-header">
-        <div class="card-icon theory">🔍</div>
-        <div>
-            <div class="card-title">組織理論</div>
-            <div class="card-en">Organization Theory</div>
-        </div>
-    </div>
-
-    <div class="tag-row">
-        <span class="tag theory">學術研究</span>
-        <span class="tag theory">解釋現象</span>
-        <span class="tag theory">描述性</span>
-        <span class="tag theory">回顧過去</span>
-    </div>
-
-    <div class="definition theory">
-        研究組織「是什麼」以及「為什麼會這樣」的學問。透過觀察、分析和理論建構，理解組織的結構、行為、與環境的關係。
-    </div>
-
-    <div class="feature-grid">
-        <div class="feature-item">
-            <div class="feature-label">🎯 核心問題</div>
-            <div class="feature-value">為什麼組織會這樣運作？</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-label">📐 方法</div>
-            <div class="feature-value">觀察、分析、建構理論</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-label">🔭 視角</div>
-            <div class="feature-value">巨觀＋微觀，全面理解</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-label">📚 產出</div>
-            <div class="feature-value">理論、模型、研究論文</div>
-        </div>
-    </div>
-
-    <div class="analogy">
-        <div class="analogy-icon">🔬</div>
-        <div class="analogy-text">就像「生物學家研究人體」</div>
-        <div class="analogy-sub">理解心臟怎麼運作、細胞怎麼分裂，但不動手術</div>
-    </div>
+<!-- ====== VS Badge ====== -->
+<div class="vs-row">
+    <div class="vs-hex"><svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#10b981"/>
+    </linearGradient>
+  </defs>
+  <polygon points="40,5 72,22 72,58 40,75 8,58 8,22" fill="url(#vsGrad)" opacity="0.9"/>
+  <text x="40" y="46" text-anchor="middle" font-family="system-ui" font-size="22" font-weight="800" fill="white">VS</text>
+</svg></div>
 </div>
 
-<!-- ====== Arrow ====== -->
-<div class="connection">
-    <div class="conn-arrow">
-        <svg viewBox="0 0 24 40" fill="none">
-            <path d="M12 4 L12 32" stroke="#475569" stroke-width="2" stroke-dasharray="4 4"/>
-            <path d="M6 26 L12 34 L18 26" stroke="#475569" stroke-width="2" fill="none"/>
-        </svg>
-        <div class="conn-label">理論指導實踐</div>
-    </div>
-</div>
-
-<!-- ====== 組織設計 ====== -->
-<div class="card">
-    <div class="card-header">
-        <div class="card-icon design">🛠️</div>
-        <div>
-            <div class="card-title">組織設計</div>
-            <div class="card-en">Organization Design</div>
+<!-- ====== Two Visual Columns ====== -->
+<div class="compare">
+    <div class="compare-col theory">
+        <div class="icon"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#1e1b4b" stroke="#6366f1" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Org chart boxes -->
+  <rect x="75" y="30" width="50" height="24" rx="4" fill="#6366f1" opacity="0.6"/>
+  <rect x="35" y="70" width="40" height="20" rx="3" fill="#818cf8" opacity="0.5"/>
+  <rect x="85" y="70" width="40" height="20" rx="3" fill="#818cf8" opacity="0.5"/>
+  <rect x="25" y="100" width="30" height="16" rx="3" fill="#a5b4fc" opacity="0.4"/>
+  <rect x="65" y="100" width="30" height="16" rx="3" fill="#a5b4fc" opacity="0.4"/>
+  <rect x="105" y="100" width="30" height="16" rx="3" fill="#a5b4fc" opacity="0.4"/>
+  
+  <!-- Connecting lines -->
+  <line x1="100" y1="54" x2="55" y2="70" stroke="#6366f1" stroke-width="1.5" opacity="0.5"/>
+  <line x1="100" y1="54" x2="105" y2="70" stroke="#6366f1" stroke-width="1.5" opacity="0.5"/>
+  <line x1="55" y1="90" x2="40" y2="100" stroke="#818cf8" stroke-width="1" opacity="0.4"/>
+  <line x1="55" y1="90" x2="80" y2="100" stroke="#818cf8" stroke-width="1" opacity="0.4"/>
+  <line x1="105" y1="90" x2="120" y2="100" stroke="#818cf8" stroke-width="1" opacity="0.4"/>
+  
+  <!-- Magnifying glass -->
+  <circle cx="130" cy="130" r="28" fill="none" stroke="#c4b5fd" stroke-width="3"/>
+  <line x1="150" y1="150" x2="168" y2="168" stroke="#c4b5fd" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="130" cy="130" r="22" fill="#6366f1" opacity="0.15"/>
+  
+  <!-- Eye/observe symbol inside magnifier -->
+  <ellipse cx="130" cy="130" rx="10" ry="6" fill="none" stroke="#c4b5fd" stroke-width="1.5"/>
+  <circle cx="130" cy="130" r="3" fill="#c4b5fd"/>
+</svg></div>
+        <h2 class="theory">組織理論</h2>
+        <div class="en">Organization Theory</div>
+        <div class="tags">
+            <span class="tag t">學術研究</span>
+            <span class="tag t">解釋現象</span>
         </div>
+        <div class="desc">研究組織「是什麼」和「為什麼」<br>像科學家一樣觀察、分析、建構理論</div>
     </div>
-
-    <div class="tag-row">
-        <span class="tag design">實務應用</span>
-        <span class="tag design">解決問題</span>
-        <span class="tag design">規範性</span>
-        <span class="tag design">改變未來</span>
-    </div>
-
-    <div class="definition design">
-        根據組織理論的知識，主動「設計」和「改造」組織的結構、流程、制度，讓組織更有效地達成目標。
-    </div>
-
-    <div class="feature-grid">
-        <div class="feature-item">
-            <div class="feature-label">🎯 核心問題</div>
-            <div class="feature-value">組織「應該」怎麼設計？</div>
+    <div class="compare-col design">
+        <div class="icon"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#052e16" stroke="#10b981" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Blueprint paper -->
+  <rect x="40" y="35" width="80" height="100" rx="4" fill="#064e3b" opacity="0.5" stroke="#34d399" stroke-width="1"/>
+  <line x1="50" y1="55" x2="110" y2="55" stroke="#34d399" stroke-width="1" opacity="0.4"/>
+  <line x1="50" y1="70" x2="100" y2="70" stroke="#34d399" stroke-width="1" opacity="0.3"/>
+  <line x1="50" y1="85" x2="105" y2="85" stroke="#34d399" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Building structure on blueprint -->
+  <rect x="55" y="95" width="20" height="30" rx="2" fill="none" stroke="#6ee7b7" stroke-width="1.5" opacity="0.7"/>
+  <rect x="80" y="105" width="20" height="20" rx="2" fill="none" stroke="#6ee7b7" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Compass/divider tool -->
+  <line x1="140" y1="40" x2="120" y2="100" stroke="#a7f3d0" stroke-width="2" stroke-linecap="round"/>
+  <line x1="140" y1="40" x2="165" y2="90" stroke="#a7f3d0" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="140" cy="40" r="3" fill="#10b981"/>
+  
+  <!-- Ruler -->
+  <rect x="100" y="140" width="70" height="12" rx="2" fill="#065f46" stroke="#34d399" stroke-width="1"/>
+  <line x1="110" y1="140" x2="110" y2="148" stroke="#6ee7b7" stroke-width="1" opacity="0.6"/>
+  <line x1="125" y1="140" x2="125" y2="148" stroke="#6ee7b7" stroke-width="1" opacity="0.6"/>
+  <line x1="140" y1="140" x2="140" y2="148" stroke="#6ee7b7" stroke-width="1" opacity="0.6"/>
+  <line x1="155" y1="140" x2="155" y2="148" stroke="#6ee7b7" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Wrench -->
+  <circle cx="60" cy="155" r="8" fill="none" stroke="#a7f3d0" stroke-width="2"/>
+  <line x1="60" y1="163" x2="60" y2="180" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round"/>
+</svg></div>
+        <h2 class="design">組織設計</h2>
+        <div class="en">Organization Design</div>
+        <div class="tags">
+            <span class="tag d">實務應用</span>
+            <span class="tag d">解決問題</span>
         </div>
-        <div class="feature-item">
-            <div class="feature-label">📐 方法</div>
-            <div class="feature-value">診斷、規劃、實施變革</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-label">🔭 視角</div>
-            <div class="feature-value">聚焦特定組織，解決問題</div>
-        </div>
-        <div class="feature-item">
-            <div class="feature-label">📚 產出</div>
-            <div class="feature-value">架構圖、流程、制度方案</div>
-        </div>
-    </div>
-
-    <div class="analogy">
-        <div class="analogy-icon">🏗️</div>
-        <div class="analogy-text">就像「建築師蓋房子」</div>
-        <div class="analogy-sub">運用物理學原理（理論），設計出安全又實用的建築（實踐）</div>
+        <div class="desc">規劃組織「應該怎麼做」<br>像建築師一樣診斷、規劃、實施</div>
     </div>
 </div>
 
-<!-- ====== 關係圖 ====== -->
-<div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(16,185,129,0.08));">
-    <div style="text-align:center; margin-bottom: 16px;">
-        <span style="font-size:18px; font-weight:700; color:#f8fafc;">🔄 兩者的關係</span>
-    </div>
+<!-- ====== Flow: Theory → Apply → Design ====== -->
+<div class="flow">
+    <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left box: Theory -->
+  <rect x="20" y="15" width="100" height="30" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="70" y="35" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#a5b4fc">理論</text>
+  
+  <!-- Arrow 1 -->
+  <path d="M130 30 L170 30" stroke="#6366f1" stroke-width="2" fill="none" marker-end="url(#arrowPurple)"/>
+  
+  <!-- Middle box: Apply -->
+  <rect x="175" y="15" width="60" height="30" rx="6" fill="#334155"/>
+  <text x="205" y="35" text-anchor="middle" font-family="system-ui" font-size="11" fill="#94a3b8">應用</text>
+  
+  <!-- Arrow 2 -->
+  <path d="M240 30 L280 30" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+  
+  <!-- Right box: Design -->
+  <rect x="285" y="15" width="100" height="30" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+  <text x="335" y="35" text-anchor="middle" font-family="system-ui" font-size="12" font-weight="600" fill="#6ee7b7">設計</text>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#6366f1" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#10b981" stroke-width="1.5"/>
+    </marker>
+  </defs>
+</svg>
+</div>
 
-    <table class="summary-table">
-        <tr>
-            <th style="width:25%">面向</th>
-            <th style="width:37.5%">組織理論 🔍</th>
-            <th style="width:37.5%">組織設計 🛠️</th>
-        </tr>
-        <tr>
-            <td>本質</td>
-            <td>理解組織</td>
-            <td>改造組織</td>
-        </tr>
-        <tr>
-            <td>問題</td>
-            <td>是什麼？為什麼？</td>
-            <td>應該怎麼做？</td>
-        </tr>
-        <tr>
-            <td>方向</td>
-            <td>由觀察→理論</td>
-            <td>由理論→實踐</td>
-        </tr>
-        <tr>
-            <td>時間</td>
-            <td>回顧過去、解釋現在</td>
-            <td>規劃未來、改變現在</td>
-        </tr>
-        <tr>
-            <td>產出</td>
-            <td>知識、模型</td>
-            <td>方案、架構</td>
-        </tr>
-        <tr>
-            <td>類比</td>
-            <td>科學家🔬</td>
-            <td>工程師🏗️</td>
-        </tr>
-    </table>
-
-    <div style="text-align:center; margin-top: 20px; padding: 16px; background: rgba(15,23,42,0.6); border-radius: 10px;">
-        <div style="font-size: 14px; color: #94a3b8; margin-bottom: 6px;">一句話總結</div>
-        <div style="font-size: 16px; color: #f8fafc; font-weight: 600;">
-            組織理論是<span style="color:#818cf8;">「知」</span>，組織設計是<span style="color:#34d399;">「行」</span>
+<!-- ====== Key Differences ====== -->
+<div class="diff-grid">
+    <div class="diff-card">
+        <div class="diff-label">核心問題</div>
+        <div class="diff-values">
+            <div class="diff-val left">為什麼？</div>
+            <div class="diff-val right">怎麼做？</div>
         </div>
-        <div style="font-size: 13px; color: #64748b; margin-top: 6px;">
-            知行合一，才能讓組織真正變好
+    </div>
+    <div class="diff-card">
+        <div class="diff-label">時間方向</div>
+        <div class="diff-values">
+            <div class="diff-val left">回顧過去</div>
+            <div class="diff-val right">改變未來</div>
+        </div>
+    </div>
+    <div class="diff-card">
+        <div class="diff-label">產出</div>
+        <div class="diff-values">
+            <div class="diff-val left">理論、模型</div>
+            <div class="diff-val right">方案、架構</div>
+        </div>
+    </div>
+    <div class="diff-card">
+        <div class="diff-label">角色</div>
+        <div class="diff-values">
+            <div class="diff-val left">🔬 科學家</div>
+            <div class="diff-val right">🏗️ 建築師</div>
         </div>
     </div>
 </div>
 
-<div class="footer">
-    🍀 小綠圖解 ｜ 以理論指導設計，以設計驗證理論
+<!-- ====== Analogy ====== -->
+<div class="analogy">
+    <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left: Theory = Biologist -->
+  <circle cx="60" cy="40" r="25" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="60" y="36" text-anchor="middle" font-size="20">🔬</text>
+  <text x="60" y="52" text-anchor="middle" font-family="system-ui" font-size="9" fill="#818cf8">生物學家</text>
+  
+  <!-- Arrow left->right -->
+  <line x1="90" y1="40" x2="165" y2="40" stroke="#475569" stroke-width="1.5" stroke-dasharray="4 3"/>
+  
+  <!-- Middle text -->
+  <text x="128" y="36" text-anchor="middle" font-family="system-ui" font-size="10" fill="#64748b">=</text>
+  
+  <!-- VS divider -->
+  <text x="200" y="44" text-anchor="middle" font-family="system-ui" font-size="14" font-weight="800" fill="#475569">VS</text>
+  
+  <!-- Arrow right->left -->
+  <line x1="235" y1="40" x2="310" y2="40" stroke="#475569" stroke-width="1.5" stroke-dasharray="4 3"/>
+  
+  <!-- Right: Design = Architect -->
+  <circle cx="340" cy="40" r="25" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+  <text x="340" y="36" text-anchor="middle" font-size="20">🏗️</text>
+  <text x="340" y="52" text-anchor="middle" font-family="system-ui" font-size="9" fill="#34d399">建築師</text>
+</svg>
 </div>
+
+<!-- ====== Summary ====== -->
+<div class="summary">
+    <div class="big"><span class="t">知</span> 與 <span class="d">行</span> 的關係</div>
+    <div class="sub">理論指導設計，設計驗證理論 — 知行合一</div>
+</div>
+
+<div class="footer">🍀 小綠圖解</div>
 
 </body>
 </html>
