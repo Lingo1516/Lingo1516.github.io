@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>心智圖 + SVG 角色 — 精簡結合版</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh;overflow-x:hidden}
+
+.hero{position:relative;height:45vh;min-height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f172a 0%,#1a1040 50%,#0a2018 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(99,102,241,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,0.05) 1px,transparent 1px);background-size:40px 40px}
+.hero-stage{position:relative;z-index:2;width:100%;max-width:500px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 20px}
+.figure{display:flex;flex-direction:column;align-items:center}
+.figure-label{font-size:14px;font-weight:600;margin-top:8px;text-align:center}
+.figure-label.theory{color:#a5b4fc}
+.figure-label.design{color:#6ee7b7}
+.vs-center{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);z-index:5}
+.vs-diamond{width:64px;height:64px;background:linear-gradient(135deg,#6366f1,#10b981);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);display:flex;align-items:center;justify-content:center;animation:pulse 2s ease-in-out infinite}
+.vs-diamond span{font-size:18px;font-weight:900;color:#fff}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.hero-title{position:absolute;bottom:20px;left:0;right:0;text-align:center;z-index:3}
+.hero-title h1{font-size:28px;font-weight:800;background:linear-gradient(90deg,#a5b4fc,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-title p{font-size:13px;color:#64748b;margin-top:4px}
+
+.section{padding:20px;max-width:600px;margin:0 auto}
+.section-title{font-size:18px;font-weight:700;text-align:center;margin-bottom:16px;color:#f8fafc}
+
+.mindmap-box{background:#1e293b;border-radius:16px;padding:24px;margin-bottom:24px;border:1px solid rgba(255,255,255,0.05);overflow-x:auto}
+.mindmap-box h3{font-size:14px;color:#94a3b8;margin-bottom:12px;text-align:center}
+.mermaid{display:flex;justify-content:center}
+
+.footer{text-align:center;padding:20px;color:#334155;font-size:11px}
+</style>
+</head>
+<body>
+
+<!-- ====== HERO：SVG 角色 ====== -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-stage">
+    <div class="figure">
+      <svg viewBox="0 0 120 160" width="90" height="130">
+        <circle cx="60" cy="35" r="22" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+        <circle cx="52" cy="33" r="8" fill="none" stroke="#a5b4fc" stroke-width="2"/>
+        <circle cx="68" cy="33" r="8" fill="none" stroke="#a5b4fc" stroke-width="2"/>
+        <circle cx="52" cy="33" r="2" fill="#a5b4fc"/>
+        <circle cx="68" cy="33" r="2" fill="#a5b4fc"/>
+        <path d="M38 55 Q60 48 82 55 L78 100 Q60 105 42 100 Z" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+        <rect x="25" y="75" width="18" height="24" rx="2" fill="#6366f1" opacity="0.6"/>
+        <circle cx="95" cy="85" r="14" fill="none" stroke="#c4b5fd" stroke-width="2.5"/>
+        <line x1="105" y1="95" x2="115" y2="108" stroke="#c4b5fd" stroke-width="3" stroke-linecap="round"/>
+        <rect x="45" y="100" width="10" height="30" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+        <rect x="65" y="100" width="10" height="30" rx="3" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+      </svg>
+      <div class="figure-label theory">人資研究員</div>
+    </div>
+    <div class="vs-center"><div class="vs-diamond"><span>VS</span></div></div>
+    <div class="figure">
+      <svg viewBox="0 0 120 160" width="90" height="130">
+        <circle cx="60" cy="35" r="22" fill="#052e16" stroke="#10b981" stroke-width="2"/>
+        <path d="M35 28 Q60 12 85 28" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5"/>
+        <rect x="33" y="26" width="54" height="5" rx="2" fill="#fbbf24"/>
+        <circle cx="52" cy="35" r="2" fill="#6ee7b7"/>
+        <circle cx="68" cy="35" r="2" fill="#6ee7b7"/>
+        <path d="M38 55 Q60 48 82 55 L78 100 Q60 105 42 100 Z" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+        <rect x="78" y="70" width="25" height="18" rx="2" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
+        <rect x="15" y="75" width="50" height="6" rx="1" fill="#065f46" stroke="#34d399" stroke-width="0.8"/>
+        <rect x="45" y="100" width="10" height="30" rx="3" fill="#052e16" stroke="#10b981" stroke-width="1"/>
+        <rect x="65" y="100" width="10" height="30" rx="3" fill="#052e16" stroke="#10b981" stroke-width="1"/>
+      </svg>
+      <div class="figure-label design">營運長</div>
+    </div>
+  </div>
+  <div class="hero-title">
+    <h1>組織理論 vs 組織設計</h1>
+    <p>「為什麼會這樣？」vs「應該怎麼改？」</p>
+  </div>
+</div>
+
+<!-- ====== 心智圖：精簡版 ====== -->
+<div class="section">
+  <div class="section-title">🧠 核心概念（精簡版）</div>
+  <div class="mindmap-box">
+    <div class="mermaid">
+mindmap
+  root((理論vs設計))
+    組織理論
+      找原因
+      建模型
+    組織設計
+      做改變
+      設制度
+    循環
+      理論指導設計
+      設計驗證理論
+    </div>
+  </div>
+</div>
+
+<!-- ====== 心智圖：職場案例精簡版 ====== -->
+<div class="section">
+  <div class="section-title">💼 職場案例（精簡版）</div>
+  <div class="mindmap-box">
+    <div class="mermaid">
+mindmap
+  root((離職潮))
+    問題
+      離職率高
+      士氣低落
+    理論分析
+      訪談員工
+      找出原因
+    設計行動
+      建職等制度
+      導入輔導
+    成果
+      離職率降
+      滿意度升
+    </div>
+  </div>
+</div>
+
+<!-- ====== 心智圖：SWOT 精簡版 ====== -->
+<div class="section">
+  <div class="section-title">📊 SWOT 分析（精簡版）</div>
+  <div class="mindmap-box">
+    <div class="mermaid">
+mindmap
+  root((SWOT))
+    優勢
+      技術
+      品牌
+    劣勢
+      預算
+      通路
+    機會
+      成長
+      補助
+    威脅
+      競爭
+      漲價
+    </div>
+  </div>
+</div>
+
+<!-- ====== 技術說明 ====== -->
+<div class="section">
+  <div style="padding:16px;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.15);border-radius:12px">
+    <h4 style="font-size:13px;color:#fbbf24;margin-bottom:8px">🔧 結合方式</h4>
+    <p style="font-size:11px;color:#94a3b8;line-height:1.6">
+    <strong>SVG 角色</strong>：人資研究員 + 營運長（Hero 區塊）<br>
+    <strong>Mermaid 心智圖</strong>：精簡版概念展開<br><br>
+    <strong>精簡原則</strong>：只留主要項目，每層最多 3 個節點<br>
+    <strong>差異</strong>：以前 5 層 15 個節點 → 現在 2 層 6 個節點
+    </p>
+  </div>
+</div>
+
+<div class="footer">🍀 小綠圖解 ｜ 心智圖 + SVG 結合精簡版</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({ 
+  startOnLoad: true,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#6366f1',
+    primaryTextColor: '#e2e8f0',
+    primaryBorderColor: '#818cf8',
+    lineColor: '#475569',
+    secondaryColor: '#10b981',
+    tertiaryColor: '#1e293b'
+  }
+});
+</script>
+
+</body>
+</html>
