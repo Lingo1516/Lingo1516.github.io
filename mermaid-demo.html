@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Mermaid 流程圖示範</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;padding:20px}
+h1{text-align:center;font-size:24px;margin:20px 0;background:linear-gradient(90deg,#a5b4fc,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#64748b;margin-bottom:30px;font-size:14px}
+.section{max-width:600px;margin:0 auto 40px;background:#1e293b;border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,0.05)}
+.section h2{font-size:18px;margin-bottom:16px;color:#f8fafc}
+.mermaid{display:flex;justify-content:center}
+.footer{text-align:center;color:#334155;font-size:11px;margin-top:40px}
+</style>
+</head>
+<body>
+
+<h1>Mermaid 流程圖示範</h1>
+<p class="subtitle">用文字語法自動產生流程圖 — 比手寫 SVG 快 10 倍</p>
+
+<!-- 範例 1：組織理論 vs 組織設計 -->
+<div class="section">
+  <h2>📋 範例 1：組織理論 vs 組織設計</h2>
+  <div class="mermaid">
+graph LR
+    A[🔍 組織理論] -->|為什麼？| B[觀察現象]
+    B --> C[分析數據]
+    C --> D[建構模型]
+    D --> E[📝 產出理論]
+    E -->|指導| F[🛠️ 組織設計]
+    F -->|怎麼做？| G[診斷問題]
+    G --> H[規劃方案]
+    H --> I[設計架構]
+    I --> J[🚀 實施變革]
+    J -->|驗證| A
+  </div>
+</div>
+
+<!-- 範例 2：決策流程 -->
+<div class="section">
+  <h2>📋 範例 2：職場決策流程</h2>
+  <div class="mermaid">
+graph TD
+    A[遇到問題] --> B{問題分析}
+    B -->|有數據支持| C[理論驗證]
+    B -->|沒有數據| D[先收集資料]
+    D --> C
+    C --> E{解決方案}
+    E -->|改制度| F[組織設計]
+    E -->|改流程| G[流程再造]
+    E -->|改結構| H[結構調整]
+    F --> I[實施]
+    G --> I
+    H --> I
+    I --> J{效果如何？}
+    J -->|有效| K[標準化]
+    J -->|無效| L[重新分析]
+    L --> B
+  </div>
+</div>
+
+<!-- 範例 3：組織架構圖 -->
+<div class="section">
+  <h2>📋 範例 3：公司組織架構</h2>
+  <div class="mermaid">
+graph TD
+    A[董事會] --> B[總經理]
+    B --> C[營運副總]
+    B --> D[財務副總]
+    B --> E[人資副總]
+    C --> F[業務部]
+    C --> G[行銷部]
+    C --> H[客服部]
+    D --> I[會計部]
+    D --> J[財務部]
+    E --> K[招募組]
+    E --> L[教育訓練組]
+  </div>
+</div>
+
+<!-- 範例 4：判斷圖 -->
+<div class="section">
+  <h2>📋 範例 4：員工離職分析</h2>
+  <div class="mermaid">
+graph TD
+    A[員工提出離職] --> B{訪談原因}
+    B -->|薪水問題| C[市場薪資調查]
+    B -->|沒有成長| D[職涯發展制度]
+    B -->|主管問題| E[管理訓練]
+    B -->|工作倦怠| F[工作設計調整]
+    C --> G[薪資結構改革]
+    D --> H[建立職等制度]
+    E --> I[主管輔導計畫]
+    F --> J[工作豐富化]
+    G --> K[降低離職率]
+    H --> K
+    I --> K
+    J --> K
+  </div>
+</div>
+
+<div class="footer">🍀 小綠圖解 ｜ Mermaid 流程圖示範</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({ 
+  startOnLoad: true,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#6366f1',
+    primaryTextColor: '#e2e8f0',
+    primaryBorderColor: '#818cf8',
+    lineColor: '#475569',
+    secondaryColor: '#10b981',
+    tertiaryColor: '#1e293b'
+  }
+});
+</script>
+
+</body>
+</html>
