@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>組織理論 vs 組織設計 — 圖解</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            text-align: center;
+            padding: 40px 0 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            font-size: 15px;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        /* ===== VS Divider ===== */
+        .vs-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 30px 0;
+        }
+        .vs-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #334155, transparent);
+        }
+        .vs-badge {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+            flex-shrink: 0;
+        }
+
+        /* ===== Card ===== */
+        .card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .card-icon.theory { background: rgba(99,102,241,0.15); }
+        .card-icon.design { background: rgba(16,185,129,0.15); }
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .card-en {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* ===== Tags ===== */
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        .tag {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .tag.theory { background: rgba(99,102,241,0.15); color: #818cf8; }
+        .tag.design { background: rgba(16,185,129,0.15); color: #34d399; }
+
+        /* ===== Definition ===== */
+        .definition {
+            font-size: 15px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            padding-left: 14px;
+            border-left: 3px solid;
+        }
+        .definition.theory { border-color: #6366f1; }
+        .definition.design { border-color: #10b981; }
+
+        /* ===== Feature Grid ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .feature-item {
+            background: rgba(15,23,42,0.6);
+            border-radius: 10px;
+            padding: 14px;
+        }
+        .feature-label {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .feature-value {
+            font-size: 14px;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        /* ===== Analogy ===== */
+        .analogy {
+            background: rgba(245,158,11,0.08);
+            border: 1px solid rgba(245,158,11,0.2);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .analogy-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        .analogy-text {
+            font-size: 14px;
+            color: #fbbf24;
+            font-weight: 500;
+        }
+        .analogy-sub {
+            font-size: 12px;
+            color: #92400e;
+            margin-top: 4px;
+        }
+
+        /* ===== Connection Arrow ===== */
+        .connection {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .conn-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .conn-arrow svg {
+            width: 24px;
+            height: 40px;
+        }
+        .conn-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* ===== Summary Table ===== */
+        .summary-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .summary-table th {
+            background: #334155;
+            color: #f8fafc;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 12px 16px;
+            text-align: left;
+        }
+        .summary-table td {
+            background: #1e293b;
+            font-size: 13px;
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #cbd5e1;
+        }
+        .summary-table tr:last-child td:first-child { border-bottom-left-radius: 12px; }
+        .summary-table tr:last-child td:last-child { border-bottom-right-radius: 12px; }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 30px 0 10px;
+            color: #475569;
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 14px; }
+            .header h1 { font-size: 22px; }
+            .card { padding: 20px 16px; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>組織理論 vs 組織設計</h1>
+    <div class="subtitle">一個是「理解世界」，一個是「改造世界」</div>
+</div>
+
+<!-- ====== 組織理論 ====== -->
+<div class="card">
+    <div class="card-header">
+        <div class="card-icon theory">🔍</div>
+        <div>
+            <div class="card-title">組織理論</div>
+            <div class="card-en">Organization Theory</div>
+        </div>
+    </div>
+
+    <div class="tag-row">
+        <span class="tag theory">學術研究</span>
+        <span class="tag theory">解釋現象</span>
+        <span class="tag theory">描述性</span>
+        <span class="tag theory">回顧過去</span>
+    </div>
+
+    <div class="definition theory">
+        研究組織「是什麼」以及「為什麼會這樣」的學問。透過觀察、分析和理論建構，理解組織的結構、行為、與環境的關係。
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-item">
+            <div class="feature-label">🎯 核心問題</div>
+            <div class="feature-value">為什麼組織會這樣運作？</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-label">📐 方法</div>
+            <div class="feature-value">觀察、分析、建構理論</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-label">🔭 視角</div>
+            <div class="feature-value">巨觀＋微觀，全面理解</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-label">📚 產出</div>
+            <div class="feature-value">理論、模型、研究論文</div>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-icon">🔬</div>
+        <div class="analogy-text">就像「生物學家研究人體」</div>
+        <div class="analogy-sub">理解心臟怎麼運作、細胞怎麼分裂，但不動手術</div>
+    </div>
+</div>
+
+<!-- ====== Arrow ====== -->
+<div class="connection">
+    <div class="conn-arrow">
+        <svg viewBox="0 0 24 40" fill="none">
+            <path d="M12 4 L12 32" stroke="#475569" stroke-width="2" stroke-dasharray="4 4"/>
+            <path d="M6 26 L12 34 L18 26" stroke="#475569" stroke-width="2" fill="none"/>
+        </svg>
+        <div class="conn-label">理論指導實踐</div>
+    </div>
+</div>
+
+<!-- ====== 組織設計 ====== -->
+<div class="card">
+    <div class="card-header">
+        <div class="card-icon design">🛠️</div>
+        <div>
+            <div class="card-title">組織設計</div>
+            <div class="card-en">Organization Design</div>
+        </div>
+    </div>
+
+    <div class="tag-row">
+        <span class="tag design">實務應用</span>
+        <span class="tag design">解決問題</span>
+        <span class="tag design">規範性</span>
+        <span class="tag design">改變未來</span>
+    </div>
+
+    <div class="definition design">
+        根據組織理論的知識，主動「設計」和「改造」組織的結構、流程、制度，讓組織更有效地達成目標。
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-item">
+            <div class="feature-label">🎯 核心問題</div>
+            <div class="feature-value">組織「應該」怎麼設計？</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-label">📐 方法</div>
+            <div class="feature-value">診斷、規劃、實施變革</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-label">🔭 視角</div>
+            <div class="feature-value">聚焦特定組織，解決問題</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-label">📚 產出</div>
+            <div class="feature-value">架構圖、流程、制度方案</div>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-icon">🏗️</div>
+        <div class="analogy-text">就像「建築師蓋房子」</div>
+        <div class="analogy-sub">運用物理學原理（理論），設計出安全又實用的建築（實踐）</div>
+    </div>
+</div>
+
+<!-- ====== 關係圖 ====== -->
+<div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(16,185,129,0.08));">
+    <div style="text-align:center; margin-bottom: 16px;">
+        <span style="font-size:18px; font-weight:700; color:#f8fafc;">🔄 兩者的關係</span>
+    </div>
+
+    <table class="summary-table">
+        <tr>
+            <th style="width:25%">面向</th>
+            <th style="width:37.5%">組織理論 🔍</th>
+            <th style="width:37.5%">組織設計 🛠️</th>
+        </tr>
+        <tr>
+            <td>本質</td>
+            <td>理解組織</td>
+            <td>改造組織</td>
+        </tr>
+        <tr>
+            <td>問題</td>
+            <td>是什麼？為什麼？</td>
+            <td>應該怎麼做？</td>
+        </tr>
+        <tr>
+            <td>方向</td>
+            <td>由觀察→理論</td>
+            <td>由理論→實踐</td>
+        </tr>
+        <tr>
+            <td>時間</td>
+            <td>回顧過去、解釋現在</td>
+            <td>規劃未來、改變現在</td>
+        </tr>
+        <tr>
+            <td>產出</td>
+            <td>知識、模型</td>
+            <td>方案、架構</td>
+        </tr>
+        <tr>
+            <td>類比</td>
+            <td>科學家🔬</td>
+            <td>工程師🏗️</td>
+        </tr>
+    </table>
+
+    <div style="text-align:center; margin-top: 20px; padding: 16px; background: rgba(15,23,42,0.6); border-radius: 10px;">
+        <div style="font-size: 14px; color: #94a3b8; margin-bottom: 6px;">一句話總結</div>
+        <div style="font-size: 16px; color: #f8fafc; font-weight: 600;">
+            組織理論是<span style="color:#818cf8;">「知」</span>，組織設計是<span style="color:#34d399;">「行」</span>
+        </div>
+        <div style="font-size: 13px; color: #64748b; margin-top: 6px;">
+            知行合一，才能讓組織真正變好
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    🍀 小綠圖解 ｜ 以理論指導設計，以設計驗證理論
+</div>
+
+</body>
+</html>
