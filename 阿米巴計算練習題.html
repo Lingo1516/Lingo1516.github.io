@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿米巴經營實務計算練習題 | Amoeba Management Practice Problems</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #e67e22;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --border: #dee2e6;
+    --text: #2c3e50;
+    --correct: #27ae60;
+    --wrong: #e74c3c;
+    --note: #fef9e7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', 'Noto Sans TC', 'Hiragino Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 2rem; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; color: var(--primary); border-bottom: 3px solid var(--accent); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 1.3rem; color: var(--primary); margin: 2rem 0 0.8rem; padding-left: 0.5rem; border-left: 4px solid var(--accent); }
+  h3 { font-size: 1.1rem; color: #34495e; margin: 1.2rem 0 0.5rem; }
+  .card { background: var(--card); border-radius: 10px; border: 1px solid var(--border); padding: 1.5rem; margin: 1rem 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .problem { background: var(--card); border-radius: 10px; border-left: 4px solid var(--accent); padding: 1.2rem 1.5rem; margin: 1rem 0; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .label { display: inline-block; background: var(--accent); color: white; font-weight: bold; font-size: 0.8rem; padding: 0.15rem 0.6rem; border-radius: 4px; margin-right: 0.5rem; }
+  .label.jp { background: #8e44ad; }
+  .label.en { background: #2980b9; }
+  .label.formula { background: #1a5276; }
+  .answer { background: #f0f8ff; border: 1px dashed #2980b9; border-radius: 8px; padding: 1rem; margin-top: 0.8rem; display: none; }
+  .show-btn { background: var(--primary); color: white; border: none; border-radius: 5px; padding: 0.4rem 1rem; cursor: pointer; font-size: 0.85rem; margin-top: 0.5rem; }
+  .show-btn:hover { background: #1a3c5e; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem; }
+  th, td { padding: 0.6rem 0.8rem; border: 1px solid var(--border); text-align: right; }
+  th { background: var(--primary); color: white; font-weight: 600; text-align: center; }
+  td:first-child, th:first-child { text-align: left; }
+  tr:nth-child(even) { background: #f2f6fa; }
+  tr.total { font-weight: bold; background: #e8f0f8; border-top: 2px solid var(--primary); }
+  .input-field { border: 2px solid var(--border); border-radius: 5px; padding: 0.3rem 0.5rem; width: 120px; font-size: 0.95rem; text-align: right; }
+  .input-field:focus { outline: none; border-color: var(--accent); }
+  .check-btn { background: var(--accent); color: white; border: none; border-radius: 5px; padding: 0.3rem 0.8rem; cursor: pointer; font-size: 0.85rem; }
+  .check-btn:hover { background: #d35400; }
+  .result-msg { margin-left: 0.5rem; font-weight: bold; }
+  .result-correct { color: var(--correct); }
+  .result-wrong { color: var(--wrong); }
+  .note-box { background: var(--note); border-left: 4px solid #f1c40f; border-radius: 6px; padding: 1rem 1.2rem; margin: 1rem 0; }
+  .formula-box { background: #f0f4f8; padding: 1rem; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.95rem; margin: 0.5rem 0; }
+  .toc { background: var(--card); border-radius: 10px; padding: 1.2rem 1.5rem; margin: 1rem 0; border: 1px solid var(--border); }
+  .toc a { color: var(--primary); text-decoration: none; display: block; padding: 0.2rem 0; }
+  .toc a:hover { color: var(--accent); }
+  .toc .section { font-weight: bold; margin-top: 0.5rem; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: #7f8c8d; text-align: center; }
+  .highlight { background: #fff3cd; padding: 0.15rem 0.3rem; border-radius: 3px; }
+  .inline-formula { font-family: 'Courier New', monospace; background: #ecf0f1; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.9rem; }
+  .col-2 { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .col-2 > * { flex: 1; min-width: 280px; }
+  @media print {
+    .show-btn, .check-btn { display: none; }
+    .answer { display: block; background: #f9f9f9; }
+    body { padding: 0.5cm; font-size: 10pt; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🧮 阿米巴經營實務計算練習題</h1>
+<p style="margin-bottom:1rem;color:#555;">
+Amoeba Management Practice Problems — 時間當量採算・部門別採算・損益計算實戰<br>
+<small>基於京セラ（Kyocera）阿米巴經營體系之實務計算練習。各題目可點擊顯示解答。</small>
+</p>
+
+<!-- ============================== -->
+<!-- 目次 -->
+<!-- ============================== -->
+<div class="toc">
+<div class="section">📋 目次</div>
+<a href="#formula">1. 時間當量採算公式對照表</a>
+<a href="#template">2. 部門別採算表（損益計算書）模板</a>
+<a href="#p1">練習①：時間當量採算計算（入門）</a>
+<a href="#p2">練習②：部門別採算表作成</a>
+<a href="#p3">練習③：阿米巴分割前後比較</a>
+<a href="#p4">練習④：內部銷售・內部購買計算</a>
+<a href="#p5">練習⑤：全公司合併損益與部門採算</a>
+<a href="#case1">案例分析①：京セラ型製造阿米巴</a>
+<a href="#case2">案例分析②：第二電電（DDI）型銷售阿米巴</a>
+</div>
+
+<!-- ============================== -->
+<!-- 公式一覧 -->
+<!-- ============================== -->
+<h2 id="formula">📐 時間當量採算公式對照表</h2>
+<div class="card">
+<p style="margin-bottom:0.5rem;"><strong>時間當量採算（Hourly Profit / 時間当たり採算）</strong>是阿米巴經營的核心指標，計算每小時創造的附加價值。</p>
+
+<div class="col-2">
+<div>
+<h3>基本公式</h3>
+<div class="formula-box">
+總附加價值 = 總銷售額（出貨＋內部銷售）− 總費用（內部購買＋經費）<br>
+<br>
+勞動生產性 = 總附加價值 ÷ 總勞動時間<br>
+（日文：時間当たり採算 / 毎時附加価値）<br>
+<br>
+每小時利潤 = 總附加價值 ÷ 總工作時數
+</div>
+</div>
+<div>
+<h3>詳細公式</h3>
+<div class="formula-box">
+<b>出貨額（Sales to External）</b><br>
+= 對外部銷售金額<br><br>
+<b>內部銷售額（Internal Sales）</b><br>
+= 對其他阿米巴之銷售<br><br>
+<b>內部購買額（Internal Purchase）</b><br>
+= 從其他阿米巴之購買<br><br>
+<b>總產值（Total Production）</b><br>
+= 出貨額 + 內部銷售額<br><br>
+<b>經費（Expenses）</b><br>
+= 材料費 + 水電 + 折舊 + 外包 + 其他費用<br><br>
+<b>附加價值（Value Added）</b><br>
+= 總產值 − (內部購買 + 經費)<br><br>
+<b>時間當量採算</b><br>
+= 附加價值 ÷ 總勞動時間
+</div>
+</div>
+</div>
+
+<h3>重要公式速查表</h3>
+<table>
+<thead>
+<tr><th>指標</th><th>計算式</th><th>單位</th></tr>
+</thead>
+<tbody>
+<tr><td>總產值</td><td>出貨額 + 內部銷售額</td><td>金額</td></tr>
+<tr><td>扣除內部購買</td><td>總產值 − 內部購買額</td><td>金額</td></tr>
+<tr><td>附加價值</td><td>總產值 − 內部購買額 − 經費</td><td>金額</td></tr>
+<tr><td>時間當量採算</td><td>附加價值 ÷ 總勞動時間</td><td>円（或元）/時</td></tr>
+<tr><td>銷售額對時間當量採算比</td><td>時間當量採算 ÷ 每人平均銷售額</td><td>倍數</td></tr>
+<tr><td>每人附加價值</td><td>附加價值 ÷ 人員數</td><td>金額/人</td></tr>
+</tbody>
+</table>
+
+<div class="note-box">
+<strong>📌 實務重點：</strong><br>
+• 京セラ不使用傳統利潤（Profit），而是用「附加價值」來衡量阿米巴的貢獻。<br>
+• 時間當量採算最好與行業平均、前月、前年同月比較。<br>
+• 標準目標：製造業阿米巴的時間當量採算通常設在 <strong>2,000〜5,000 円/時</strong>（日本）或等值。
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 模板 -->
+<!-- ============================== -->
+<h2 id="template">📋 部門別採算表（損益計算書）模板</h2>
+<div class="card">
+<p>這張表是京セラ體系下<strong>每個阿米巴</strong>每月必做的核心報表。填寫後可計算出時間當量採算。</p>
+
+<table>
+<thead><tr><th>項目</th><th>計算方式</th><th>範例填寫</th></tr></thead>
+<tbody>
+<tr><td><strong>1. 對外出貨額</strong></td><td>對外部客戶之銷售金額</td><td>¥XXX</td></tr>
+<tr><td><strong>2. 內部銷售額</strong></td><td>對其他阿米巴之銷售金額</td><td>¥XXX</td></tr>
+<tr><td><strong>3. 總產值</strong></td><td>(1)+(2)</td><td>¥XXX</td></tr>
+<tr><td><strong>4. 內部購買額</strong></td><td>從其他阿米巴購買</td><td>¥XXX</td></tr>
+<tr><td><strong>5. 扣除內部購買後總產值</strong></td><td>(3)−(4)</td><td>¥XXX</td></tr>
+<tr><td><strong>6. 經費（材料費）</strong></td><td>原材料費用</td><td>¥XXX</td></tr>
+<tr><td><strong>7. 經費（外包加工費）</strong></td><td>委外加工費用</td><td>¥XXX</td></tr>
+<tr><td><strong>8. 經費（水電瓦斯）</strong></td><td></td><td>¥XXX</td></tr>
+<tr><td><strong>9. 經費（折舊費）</strong></td><td></td><td>¥XXX</td></tr>
+<tr><td><strong>10. 經費（其他費用）</strong></td><td>物流、通信等</td><td>¥XXX</td></tr>
+<tr><td><strong>11. 經費合計</strong></td><td>(6)+(7)+(8)+(9)+(10)</td><td>¥XXX</td></tr>
+<tr><td><strong>12. 附加價值</strong></td><td>(5)−(11)</td><td>¥XXX</td></tr>
+<tr><td><strong>13. 總勞動時間</strong></td><td>該阿米巴全員實際工作總時數</td><td>XXX 小時</td></tr>
+<tr><td><strong>14. 時間當量採算</strong></td><td>(12)÷(13)</td><td>¥XXX/時</td></tr>
+<tr><td><strong>15. 人員數</strong></td><td>該阿米巴人數</td><td>XX 人</td></tr>
+<tr><td><strong>16. 每人附加價值</strong></td><td>(12)÷(15)</td><td>¥XXX/人</td></tr>
+</tbody>
+</table>
+
+<div class="note-box">
+<strong>📋 使用說明：</strong> 可將此模板複製到 Excel 中，每月按此格式填寫每個阿米巴的數據。京セラ的做法是<strong>每天</strong>各阿米巴長看到數據，而非月底才有。
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 練習① -->
+<!-- ============================== -->
+<h2 id="p1">練習①：時間當量採算計算（入門）</h2>
+
+<div class="problem">
+<p><span class="label">練習 1-1</span><span class="label jp">時間当たり採算</span></p>
+<p>ある製造アメーバ（某製造阿米巴）の当月実績：</p>
+<ul style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>對外出貨額：500 萬円</li>
+<li>內部銷售額：200 萬円</li>
+<li>內部購買額：150 萬円</li>
+<li>材料費：50 萬円</li>
+<li>外包加工費：30 萬円</li>
+<li>水電費：10 萬円</li>
+<li>折舊費：8 萬円</li>
+<li>其他經費：12 萬円</li>
+<li>總勞動時間：800 小時</li>
+<li>人員數：5 人</li>
+</ul>
+
+<p><strong>問題：</strong></p>
+<ol style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>總產值是多少？</li>
+<li>經費合計是多少？</li>
+<li>附加價值是多少？</li>
+<li>時間當量採算（每小時附加價值）是多少？</li>
+<li>每人附加價值是多少？</li>
+</ol>
+
+<button class="show-btn" onclick="toggleAnswer('a1a')">顯示解答</button>
+<div id="a1a" class="answer">
+<p><strong>解答：</strong></p>
+<ol>
+<li><strong>總產值</strong> = 500 + 200 = <strong>700 萬円</strong></li>
+<li><strong>經費合計</strong> = 50 + 30 + 10 + 8 + 12 = <strong>110 萬円</strong></li>
+<li><strong>附加價值</strong> = 700 − 150 − 110 = <strong>440 萬円</strong></li>
+<li><strong>時間當量採算</strong> = 4,400,000 ÷ 800 = <strong>5,500 円/時</strong></li>
+<li><strong>每人附加價值</strong> = 4,400,000 ÷ 5 = <strong>880,000 円/人</strong></li>
+</ol>
+</div>
+</div>
+
+<div class="problem">
+<p><span class="label">練習 1-2</span><span class="label jp">仕入・経費変動</span></p>
+<p>上記阿米巴（練習1-1），次月の変動（次月變動如下）：</p>
+<ul style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>對外出貨額增加 10% → 550 萬円</li>
+<li>內部銷售額減少 50 萬円 → 150 萬円</li>
+<li>內部購買額維持 150 萬円</li>
+<li>經費合計因節約降低 10%</li>
+<li>總勞動時間增加為 850 小時（因為加班）</li>
+</ul>
+
+<p><strong>問題：</strong>計算次月的時間當量採算。改善了還是惡化了？</p>
+
+<button class="show-btn" onclick="toggleAnswer('a1b')">顯示解答</button>
+<div id="a1b" class="answer">
+<p><strong>解答：</strong></p>
+<p>總產值 = 550 + 150 = <strong>700 萬円</strong>（不變）</p>
+<p>經費合計 = 110 × 0.9 = <strong>99 萬円</strong></p>
+<p>附加價值 = 700 − 150 − 99 = <strong>451 萬円</strong></p>
+<p>時間當量採算 = 4,510,000 ÷ 850 = <strong>5,306 円/時</strong></p>
+<p>對比上月 <strong>5,500 円/時 → 5,306 円/時</strong></p>
+<p><strong>📉 雖然附加價值總額增加了（440→451），但因為工時增加比例更大，時間當量採算反而惡化了。</strong></p>
+<p style="color:var(--accent);">💡 這就是阿米巴經營的重要洞察：只看附加價值總額可能會誤判，時間當量採算才是真正的效率指標。</p>
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 練習② -->
+<!-- ============================== -->
+<h2 id="p2">練習②：部門別採算表作成</h2>
+
+<div class="problem">
+<p><span class="label">練習 2</span><span class="label jp">部門別採算表 完成</span></p>
+<p>次のデータから製造アメーバAの損益計算書（部門別採算表）を完成しなさい。<br>
+（根據以下數據，完成製造阿米巴A的部門別採算表）</p>
+
+<table>
+<thead><tr><th>項目</th><th>金額 (萬円)</th></tr></thead>
+<tbody>
+<tr><td>1. 對外出貨額</td><td>1,200</td></tr>
+<tr><td>2. 內部銷售額</td><td>?</td></tr>
+<tr><td>3. 總產值</td><td>1,600</td></tr>
+<tr><td>4. 內部購買額</td><td>400</td></tr>
+<tr><td>5. 扣除購買後總產值</td><td>?</td></tr>
+<tr><td>6. 材料費</td><td>180</td></tr>
+<tr><td>7. 外包加工費</td><td>60</td></tr>
+<tr><td>8. 折舊費</td><td>25</td></tr>
+<tr><td>9. 水電費</td><td>15</td></tr>
+<tr><td>10. 其他經費</td><td>20</td></tr>
+<tr><td>11. 經費合計</td><td>?</td></tr>
+<tr><td>12. 附加價值</td><td>?</td></tr>
+<tr><td>13. 總勞動時間</td><td>1,600 時</td></tr>
+<tr><td>14. 人員數</td><td>10 人</td></tr>
+</tbody>
+</table>
+
+<ol style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>填入 <strong>?</strong> 的部分（2.內部銷售額、5.扣除購買後總產值、11.經費合計、12.附加價值）</li>
+<li>計算時間當量採算</li>
+<li>計算每人附加價值</li>
+</ol>
+
+<button class="show-btn" onclick="toggleAnswer('a2')">顯示解答</button>
+<div id="a2" class="answer">
+<p><strong>解答：</strong></p>
+<table>
+<thead><tr><th>項目</th><th>計算過程</th><th>金額 (萬円)</th></tr></thead>
+<tbody>
+<tr><td>1. 對外出貨額</td><td>—</td><td>1,200</td></tr>
+<tr><td>2. 內部銷售額</td><td>3 − 1 = 1,600 − 1,200</td><td><strong>400</strong></td></tr>
+<tr><td>3. 總產值</td><td>—</td><td>1,600</td></tr>
+<tr><td>4. 內部購買額</td><td>—</td><td>400</td></tr>
+<tr><td>5. 扣除購買後總產值</td><td>3 − 4 = 1,600 − 400</td><td><strong>1,200</strong></td></tr>
+<tr><td>6. 材料費</td><td>—</td><td>180</td></tr>
+<tr><td>7. 外包加工費</td><td>—</td><td>60</td></tr>
+<tr><td>8. 折舊費</td><td>—</td><td>25</td></tr>
+<tr><td>9. 水電費</td><td>—</td><td>15</td></tr>
+<tr><td>10. 其他經費</td><td>—</td><td>20</td></tr>
+<tr><td>11. 經費合計</td><td>6+7+8+9+10 = 180+60+25+15+20</td><td><strong>300</strong></td></tr>
+<tr><td>12. 附加價值</td><td>5 − 11 = 1,200 − 300</td><td><strong>900</strong></td></tr>
+</tbody>
+</table>
+<p><strong>時間當量採算</strong> = 9,000,000 ÷ 1,600 = <strong>5,625 円/時</strong></p>
+<p><strong>每人附加價值</strong> = 9,000,000 ÷ 10 = <strong>900,000 円/人</strong></p>
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 練習③ -->
+<!-- ============================== -->
+<h2 id="p3">練習③：阿米巴分割前後比較</h2>
+
+<div class="problem">
+<p><span class="label">練習 3</span><span class="label jp">アメーバ分割シミュレーション</span></p>
+<p>京セラ的經典做法：當阿米巴大到一定規模（通常超過 20 人），就會分割成更小的阿米巴。<br>
+現在的阿米巴 X（25 人）的月報如下，試算如果分割成 A（15人）和 B（10人）兩個阿米巴的效益。</p>
+
+<h3>分割前：阿米巴 X（綜合）</h3>
+<table>
+<thead><tr><th>項目</th><th>金額 (萬円)</th></tr></thead>
+<tbody>
+<tr><td>對外出貨額</td><td>3,000</td></tr>
+<tr><td>內部銷售額</td><td>500</td></tr>
+<tr><td>內部購買額</td><td>600</td></tr>
+<tr><td>經費合計</td><td>700</td></tr>
+<tr><td>總勞動時間</td><td>4,000 時</td></tr>
+<tr><td>人員</td><td>25 人</td></tr>
+</tbody>
+</table>
+
+<h3>分割後假設數據</h3>
+<table>
+<thead><tr><th>項目</th><th>阿米巴 A（15人）</th><th>阿米巴 B（10人）</th></tr></thead>
+<tbody>
+<tr><td>對外出貨額</td><td>2,000</td><td>1,500</td></tr>
+<tr><td>內部銷售額<br><small>（A→B：300，B→A：100）</small></td><td>300（←B）<br>100（→B）</td><td>100（←A）<br>300（→A）</td></tr>
+<tr><td>內部購買額</td><td>?</td><td>?</td></tr>
+<tr><td>經費合計（含新增管理費）</td><td>400</td><td>350</td></tr>
+<tr><td>總勞動時間</td><td>2,400 時</td><td>1,600 時</td></tr>
+</tbody>
+</table>
+
+<p><strong>注意：</strong>分割後 A 和 B 之間的交易以「內部銷售/內部購買」記帳。<br>
+A 對 B 銷售 300 萬円（A 記作內部銷售，B 記作內部購買），<br>
+B 對 A 銷售 100 萬円（B 記作內部銷售，A 記作內部購買）。</p>
+
+<p><strong>問題：</strong></p>
+<ol style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>完成分割後 A 和 B 的內部購買額，並計算各自的附加價值。</li>
+<li>計算分割後 A 和 B 各自的時間當量採算。</li>
+<li>比較分割前與分割後的總附加價值與時間當量採算。</li>
+</ol>
+
+<button class="show-btn" onclick="toggleAnswer('a3')">顯示解答</button>
+<div id="a3" class="answer">
+<p><strong>解答：</strong></p>
+
+<h3>A的計算：</h3>
+<p>總產值 = 對外出貨 2,000 + 內部銷售（對B銷售 300）= <strong>2,300 萬円</strong></p>
+<p>內部購買額 = B對A銷售 100 = <strong>100 萬円</strong></p>
+<p>扣除購買後總產值 = 2,300 − 100 = <strong>2,200 萬円</strong></p>
+<p>附加價值 = 2,200 − 經費 400 = <strong>1,800 萬円</strong></p>
+<p>時間當量採算 = 18,000,000 ÷ 2,400 = <strong>7,500 円/時</strong></p>
+
+<h3>B的計算：</h3>
+<p>總產值 = 對外出貨 1,500 + 內部銷售（對A銷售 100）= <strong>1,600 萬円</strong></p>
+<p>內部購買額 = A對B銷售 300 = <strong>300 萬円</strong></p>
+<p>扣除購買後總產值 = 1,600 − 300 = <strong>1,300 萬円</strong></p>
+<p>附加價值 = 1,300 − 經費 350 = <strong>950 萬円</strong></p>
+<p>時間當量採算 = 9,500,000 ÷ 1,600 = <strong>5,938 円/時</strong></p>
+
+<h3>比較</h3>
+<table>
+<thead><tr><th>指標</th><th>分割前 (X)</th><th>分割後 (A+B)</th><th>差異</th></tr></thead>
+<tbody>
+<tr><td>總附加價值</td><td>3,000+500−600−700=2,200 萬円</td><td>1,800+950=2,750 萬円</td><td><strong style="color:var(--correct)">+550 萬円 ▲</strong></td></tr>
+<tr><td>時間當量採算（綜合）</td><td>2,200÷4,000=<strong>5,500 円/時</strong></td><td>(2,750÷4,000)=<strong>6,875 円/時</strong></td><td><strong style="color:var(--correct)">+1,375 円/時 ▲</strong></td></tr>
+</tbody>
+</table>
+<p style="color:var(--accent);margin-top:0.5rem;">💡 分割後雖然新增管理經費，但由於責任明確化，每位成員更有經營意識，整體效率反而提升。這是京セラ持續分割阿米巴的理論基礎。</p>
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 練習④ -->
+<!-- ============================== -->
+<h2 id="p4">練習④：內部銷售・內部購買計算</h2>
+
+<div class="problem">
+<p><span class="label">練習 4-1</span><span class="label jp">内部売買の抹消</span></p>
+<p>京セラ的合併損益需要「消除內部交易」（消去/elimination）。</p>
+
+<p>三つのアメーバ（三個阿米巴 A、B、C）のデータ：</p>
+<table>
+<thead><tr><th>阿米巴</th><th>對外出貨</th><th>內部銷售</th><th>內部購買</th><th>經費</th><th>總工時</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>800</td><td>300（→B）</td><td>200（←C）</td><td>250</td><td>500</td></tr>
+<tr><td>B</td><td>600</td><td>200（→C）</td><td>300（←A）</td><td>150</td><td>400</td></tr>
+<tr><td>C</td><td>500</td><td>200（→A）</td><td>200（←B）</td><td>180</td><td>350</td></tr>
+</tbody>
+</table>
+
+<p><strong>問題：</strong></p>
+<ol style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>各阿米巴的附加價值和時間當量採算是多少？</li>
+<li>全公司（合併）附加價值是多少？<br>
+   <small>（提示：全公司附加價值 = Σ各阿米巴附加價值 = 合併對外出貨 − 合併經費）</small></li>
+<li>確認全公司對外出貨額 − 全公司經費 是否等於各阿米巴附加價值之和。</li>
+</ol>
+
+<button class="show-btn" onclick="toggleAnswer('a4a')">顯示解答</button>
+<div id="a4a" class="answer">
+<p><strong>解答：</strong></p>
+
+<h3>各阿米巴計算</h3>
+<table>
+<thead><tr><th>阿米巴</th><th>總產值</th><th>−內部購買</th><th>−經費</th><th>=附加價值</th><th>÷工時</th><th>=時間當量</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>800+300=1,100</td><td>200</td><td>250</td><td><strong>650</strong></td><td>500</td><td><strong>13,000 円/時</strong></td></tr>
+<tr><td>B</td><td>600+200=800</td><td>300</td><td>150</td><td><strong>350</strong></td><td>400</td><td><strong>8,750 円/時</strong></td></tr>
+<tr><td>C</td><td>500+200=700</td><td>200</td><td>180</td><td><strong>320</strong></td><td>350</td><td><strong>9,143 円/時</strong></td></tr>
+</tbody>
+</table>
+
+<h3>全公司合併計算</h3>
+<p>合併附加價值 = 650 + 350 + 320 = <strong>1,320 萬円</strong></p>
+<p>驗算：全公司對外出貨 = 800+600+500 = 1,900 萬円</p>
+<p>全公司經費合計 = 250+150+180 = 580 萬円</p>
+<p>全公司附加價值 = 1,900 − 580 = <strong>1,320 萬円</strong> ✓</p>
+
+<p style="color:var(--accent);margin-top:0.5rem;">💡 內部交易在全公司合併後完全抵銷，不影響合併附加價值總額。但內部定價（transfer pricing）會影響各阿米巴的績效分配。</p>
+</div>
+</div>
+
+<div class="problem">
+<p><span class="label">練習 4-2</span><span class="label jp">内部振替価格の設定</span></p>
+<p>內部移轉價格（transfer price）是阿米巴經營的關鍵。</p>
+
+<p>製造阿米巴 M 生產產品給銷售阿米巴 S 販售。<br>
+產品成本：M 的成本為 10 萬円/個，對外售價 20 萬円/個。<br>
+S 的銷售經費：2 萬円/個。<br>
+M 和 S 各有 5 人，每月總工時各為 800 小時。<br>
+月產銷量：100 個。</p>
+
+<p><strong>問題：</strong></p>
+<ol style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>如果內部移轉價格設為 15 萬円/個，M 和 S 各自的附加價值和時間當量採算是多少？</li>
+<li>如果改為 18 萬円/個呢？</li>
+<li>哪一種設定更能激勵 M 降低成本、S 增加銷售？</li>
+</ol>
+
+<button class="show-btn" onclick="toggleAnswer('a4b')">顯示解答</button>
+<div id="a4b" class="answer">
+<p><strong>解答：</strong></p>
+
+<h3>狀況①：內部價格 15 萬円/個</h3>
+<table>
+<thead><tr><th>項目</th><th>M 阿米巴</th><th>S 阿米巴</th></tr></thead>
+<tbody>
+<tr><td>對外銷售</td><td>0</td><td>20×100=<strong>2,000 萬円</strong></td></tr>
+<tr><td>內部銷售</td><td>15×100=<strong>1,500 萬円</strong></td><td>0</td></tr>
+<tr><td>總產值</td><td>1,500 萬円</td><td>2,000 萬円</td></tr>
+<tr><td>內部購買</td><td>0</td><td>1,500 萬円</td></tr>
+<tr><td>經費</td><td>10×100=<strong>1,000 萬円</strong></td><td>2×100=<strong>200 萬円</strong></td></tr>
+<tr><td>附加價值</td><td>1,500−0−1,000=<strong>500 萬円</strong></td><td>2,000−1,500−200=<strong>300 萬円</strong></td></tr>
+<tr><td>時間當量</td><td>500÷800=<strong>6,250 円/時</strong></td><td>300÷800=<strong>3,750 円/時</strong></td></tr>
+</tbody>
+</table>
+
+<h3>狀況②：內部價格 18 萬円/個</h3>
+<table>
+<thead><tr><th>項目</th><th>M 阿米巴</th><th>S 阿米巴</th></tr></thead>
+<tbody>
+<tr><td>對外銷售</td><td>0</td><td>2,000 萬円</td></tr>
+<tr><td>內部銷售</td><td>18×100=<strong>1,800 萬円</strong></td><td>0</td></tr>
+<tr><td>總產值</td><td>1,800 萬円</td><td>2,000 萬円</td></tr>
+<tr><td>內部購買</td><td>0</td><td>1,800 萬円</td></tr>
+<tr><td>經費</td><td>1,000 萬円</td><td>200 萬円</td></tr>
+<tr><td>附加價值</td><td>1,800−0−1,000=<strong>800 萬円</strong></td><td>2,000−1,800−200=<strong>0 萬円</strong></td></tr>
+<tr><td>時間當量</td><td>800÷800=<strong>10,000 円/時</strong></td><td>0÷800=<strong>0 円/時</strong></td></tr>
+</tbody>
+</table>
+
+<h3>分析</h3>
+<p>京セラ的內部定價原則為「<strong>市場價格連動</strong>」：內部價格應接近市場價格，反映市場競爭。</p>
+<p>如果定價過高（18萬）→ M 的利潤過高，S 完全沒利潤，S 沒有動力銷售。</p>
+<p>如果定價過低（12萬以下）→ M 沒有利潤，不願意交貨給 S。</p>
+<p><strong>最理想：</strong>內部價格 = 市場價格 × (1 − S 的銷售佣金比率)，讓雙方都有合理的利潤動力。</p>
+<p>實務上京セラ的做法是讓 M 和 S <strong>共同協商</strong>內部價格，模擬市場機制。</p>
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 練習⑤ -->
+<!-- ============================== -->
+<h2 id="p5">練習⑤：全公司合併損益與部門採算</h2>
+
+<div class="problem">
+<p><span class="label">練習 5</span><span class="label jp">全社統合損益 シミュレーション</span></p>
+<p>京セラのある工場、4つのアメーバ（A、B、C、D）で構成。</p>
+
+<table>
+<thead><tr><th>項目</th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+<tbody>
+<tr><td>對外出貨（萬円）</td><td>1,000</td><td>800</td><td>600</td><td>400</td></tr>
+<tr><td>內部對A銷售</td><td>—</td><td>200</td><td>100</td><td>50</td></tr>
+<tr><td>內部對B銷售</td><td>150</td><td>—</td><td>50</td><td>30</td></tr>
+<tr><td>內部對C銷售</td><td>80</td><td>60</td><td>—</td><td>20</td></tr>
+<tr><td>內部對D銷售</td><td>40</td><td>30</td><td>20</td><td>—</td></tr>
+<tr><td>經費（萬円）</td><td>400</td><td>300</td><td>200</td><td>150</td></tr>
+<tr><td>總勞動時間</td><td>600時</td><td>500時</td><td>400時</td><td>350時</td></tr>
+<tr><td>人員</td><td>4人</td><td>3人</td><td>3人</td><td>2人</td></tr>
+</tbody>
+</table>
+
+<p><strong>問題：</strong></p>
+<ol style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>計算各阿米巴的總產值（對外出貨+內部銷售總額）</li>
+<li>計算各阿米巴的內部購買額（從其他阿米巴的購買總和）</li>
+<li>計算各阿米巴的附加價值和時間當量採算</li>
+<li>計算全公司合併附加價值</li>
+<li>哪個阿米巴效率最高？哪個最需要改善？</li>
+</ol>
+
+<button class="show-btn" onclick="toggleAnswer('a5')">顯示解答</button>
+<div id="a5" class="answer">
+<p><strong>解答：</strong></p>
+
+<h3>各阿米巴總產值與內部購買</h3>
+<table>
+<thead><tr><th>阿米巴</th><th>對外出貨</th><th>內部銷售合計</th><th>總產值</th><th>內部購買合計</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>1,000</td><td>150+80+40=270</td><td><strong>1,270</strong></td><td>200+100+50=<strong>350</strong></td></tr>
+<tr><td>B</td><td>800</td><td>200+60+30=290</td><td><strong>1,090</strong></td><td>150+50+30=<strong>230</strong></td></tr>
+<tr><td>C</td><td>600</td><td>100+50+20=170</td><td><strong>770</strong></td><td>80+60+20=<strong>160</strong></td></tr>
+<tr><td>D</td><td>400</td><td>50+30+20=100</td><td><strong>500</strong></td><td>40+30+20=<strong>90</strong></td></tr>
+</tbody>
+</table>
+
+<h3>附加價值與時間當量</h3>
+<table>
+<thead><tr><th>阿米巴</th><th>附加價值計算</th><th>附加價值</th><th>時間當量</th><th>排名</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>1,270−350−400=</td><td><strong>520 萬円</strong></td><td>520÷600=<strong>8,667 円/時</strong></td><td>🥇1</td></tr>
+<tr><td>B</td><td>1,090−230−300</td><td><strong>560 萬円</strong></td><td>560÷500=<strong>11,200 円/時</strong></td><td>🥇1</td></tr>
+<tr><td>C</td><td>770−160−200</td><td><strong>410 萬円</strong></td><td>410÷400=<strong>10,250 円/時</strong></td><td>🥈2</td></tr>
+<tr><td>D</td><td>500−90−150</td><td><strong>260 萬円</strong></td><td>260÷350=<strong>7,429 円/時</strong></td><td>🥉3</td></tr>
+</tbody>
+</table>
+
+<h3>全公司合併</h3>
+<p>合併附加價值 = 520+560+410+260 = <strong>1,750 萬円</strong></p>
+<p>驗算：全公司對外出貨 = 1,000+800+600+400 = 2,800 萬円</p>
+<p>全公司經費合計 = 400+300+200+150 = 1,050 萬円</p>
+<p>附加價值 = 2,800 − 1,050 = <strong>1,750 萬円</strong> ✓</p>
+
+<h3>分析</h3>
+<p><strong>效率最高：</strong> B 阿米巴（11,200 円/時）— 雖附加價值總額不是最高，但每小時效率最佳。</p>
+<p><strong>需改善：</strong> D 阿米巴（7,429 円/時）— 效率最低，可檢討是否人員配置過多或產能不足。</p>
+<p style="color:var(--accent);margin-top:0.5rem;">💡 注意：附加價值總額高不等於效率高。A 的總附加價值（520萬）與 B 相近，但時間當量採算明顯偏低（8,667 vs 11,200），代表 A 的人員可能過多或工作時間偏長。</p>
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 案例分析 -->
+<!-- ============================== -->
+<h2 id="case1">🏭 案例分析①：京セラ型製造阿米巴</h2>
+
+<div class="card">
+<p>京セラのセラミック部品製造ラインにおける実際に近いデータ（基於公開資料與稲盛和夫著作再構成）。</p>
+
+<h3>製造阿米巴「燒成工程」（焼成工程）月報</h3>
+<table>
+<thead><tr><th>項目</th><th>單位</th><th>前月</th><th>當月</th><th>增減率</th></tr></thead>
+<tbody>
+<tr><td>1. 對外出貨額</td><td>萬円</td><td>1,800</td><td>2,100</td><td>+16.7%</td></tr>
+<tr><td>2. 對其他阿米巴內部銷售</td><td>萬円</td><td>600</td><td>700</td><td>+16.7%</td></tr>
+<tr><td>3. 總產值</td><td>萬円</td><td>2,400</td><td>2,800</td><td>+16.7%</td></tr>
+<tr><td>4. 內部購買（原料+前工程）</td><td>萬円</td><td>500</td><td>550</td><td>+10.0%</td></tr>
+<tr><td>5. 扣除購買後總產值</td><td>萬円</td><td>1,900</td><td>2,250</td><td>+18.4%</td></tr>
+<tr><td>6. 經費（材料費）</td><td>萬円</td><td>180</td><td>200</td><td>+11.1%</td></tr>
+<tr><td>7. 經費（外包加工費）</td><td>萬円</td><td>60</td><td>70</td><td>+16.7%</td></tr>
+<tr><td>8. 經費（水電瓦斯）</td><td>萬円</td><td>40</td><td>45</td><td>+12.5%</td></tr>
+<tr><td>9. 經費（設備折舊）</td><td>萬円</td><td>50</td><td>50</td><td>±0%</td></tr>
+<tr><td>10. 經費（其他）</td><td>萬円</td><td>30</td><td>35</td><td>+16.7%</td></tr>
+<tr><td><strong>11. 經費合計</strong></td><td>萬円</td><td>360</td><td>400</td><td>+11.1%</td></tr>
+<tr><td><strong>12. 附加價值</strong></td><td>萬円</td><td>1,540</td><td>1,850</td><td>+20.1%</td></tr>
+<tr><td>13. 總勞動時間</td><td>小時</td><td>3,080</td><td>3,200</td><td>+3.9%</td></tr>
+<tr><td>14. 時間當量採算</td><td>円/時</td><td><strong>5,000</strong></td><td><strong>5,781</strong></td><td>+15.6%</td></tr>
+<tr><td>15. 人員數</td><td>人</td><td>20</td><td>20</td><td>±0</td></tr>
+<tr><td>16. 每人附加價值</td><td>萬円/人</td><td>77.0</td><td>92.5</td><td>+20.1%</td></tr>
+</tbody>
+</table>
+
+<h3>解讀與分析</h3>
+<ul style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li><strong>附加價值增長（+20.1%）</strong>大於經費增長（+11.1%）和工時增長（+3.9%），顯示效率顯著提升。</li>
+<li><strong>時間當量採算從 5,000 → 5,781 円/時</strong>，提升 15.6%。</li>
+<li>京セラ的標準做法是將此數據<strong>每天</strong>回報給阿米巴長，並在早會上向全員公布。</li>
+<li>如果某阿米巴的時間當量採算連續三個月低於目標，會檢討是否需要分割或改組。</li>
+</ul>
+
+<div class="note-box">
+<strong>📌 京セラ的 KPI 設定參考：</strong><br>
+• 時間當量採算目標：製造阿米巴約 <strong>4,000〜6,000 円/時</strong>（1990年代水準）<br>
+• 銷售阿米巴：約 <strong>8,000〜20,000 円/時</strong>（因附加價值率高）<br>
+• 管理事務阿米巴（間接部門）：約 <strong>0〜2,000 円/時</strong>（支援性質，目標是費用最小化）
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 案例分析② -->
+<!-- ============================== -->
+<h2 id="case2">📊 案例分析②：第二電電（DDI）型銷售阿米巴</h2>
+
+<div class="card">
+<p>稲盛和夫が第二電電（DDI、現 au/KDDI）創業時に導入した代理店営業アメーバの実例をベースに構成。</p>
+
+<h3>DDI 代理店銷售阿米巴「九州エリア」月報</h3>
+<p>DDI 不設直營店面，而是透過代理店銷售，每個代理店阿米巴獨立計算。</p>
+
+<table>
+<thead><tr><th>項目</th><th>計算式</th><th>金額（萬円）</th></tr></thead>
+<tbody>
+<tr><td>1. 契約獲得件數</td><td>—</td><td>500 件</td></tr>
+<tr><td>2. 平均契約單價（含加入費、月額手数料等）</td><td>—</td><td>3 萬円/件</td></tr>
+<tr><td>3. 總銷售額（對外）</td><td>1×2</td><td>1,500</td></tr>
+<tr><td>4. 內部銷售（對其他阿米巴的支援服務）</td><td>—</td><td>100</td></tr>
+<tr><td>5. 總產值</td><td>3+4</td><td>1,600</td></tr>
+<tr><td>6. 內部購買（委託總部處理費）</td><td>—</td><td>200</td></tr>
+<tr><td>7. 扣除購買後總產值</td><td>5−6</td><td>1,400</td></tr>
+<tr><td>8. 人件費（員工人數10人）</td><td>—</td><td>400</td></tr>
+<tr><td>9. 広告宣伝費</td><td>—</td><td>100</td></tr>
+<tr><td>10. 通信費</td><td>—</td><td>30</td></tr>
+<tr><td>11. 旅費交通費</td><td>—</td><td>50</td></tr>
+<tr><td>12. 地代家賃</td><td>—</td><td>80</td></tr>
+<tr><td>13. その他経費</td><td>—</td><td>40</td></tr>
+<tr><td>14. 経費合計</td><td>8〜13</td><td>700</td></tr>
+<tr><td><strong>15. 附加價值</strong></td><td>7−14</td><td><strong>700</strong></td></tr>
+<tr><td>16. 總勞動時間</td><td>—</td><td>1,600 時</td></tr>
+<tr><td><strong>17. 時間當量採算</strong></td><td>15÷16</td><td><strong>4,375 円/時</strong></td></tr>
+<tr><td>18. 人員數</td><td>—</td><td>10 人</td></tr>
+<tr><td>19. 每人附加價值</td><td>15÷18</td><td>70 萬円/人</td></tr>
+</tbody>
+</table>
+
+<h3>DDI 獨特的阿米巴經營特色</h3>
+<ul style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>DDI 時代，代理店阿米巴能直接看到自己的<strong>時間當量採算</strong>，自己決定廣告費的投入報酬。</li>
+<li>如果某代理店阿米巴的時間當量採算長期中位數低於 <strong>3,000 円/時</strong>，總公司會輔導改善或考慮合併。</li>
+<li>代理店之間可以互相「購買」客戶 — 這是內部市場的延伸，一個區域的代理店若無法服務的客戶可轉給其他代理店，以內部銷售記帳。</li>
+</ul>
+
+<h3>假設性問題：廣告效率分析</h3>
+<p>如果九州阿米巴決定追加 50 萬円的廣告費，預估可增加 20 件契約。</p>
+
+<p><strong>計算新增廣告的投資效率：</strong></p>
+<ul style="margin:0.5rem 0 0.5rem 1.5rem;">
+<li>新增銷售額 = 20×3萬 = 60 萬円</li>
+<li>新增附加價值 = 60 萬円 − 50 萬円（新增廣告費）= <strong>10 萬円</strong></li>
+<li>假設減少工時 80 小時（減少部分其他作業）</li>
+<li>新附加價值 = 700+10 = 710 萬円</li>
+<li>新總工時 = 1,600−80 = 1,520 小時</li>
+<li>新時間當量採算 = 710÷1,520×10,000 = <strong>4,671 円/時</strong>（改善！）</li>
+</ul>
+<p style="color:var(--accent);">💡 阿米巴長可以自行判斷廣告投報率，這就是「經營者意識」的實踐。</p>
+</div>
+
+<!-- ============================== -->
+<!-- 補充：マルト水谷の事例 -->
+<!-- ============================== -->
+<h2>🏪 補充案例：マルト水谷（Maruto Mizutani）</h2>
+
+<div class="card">
+<p>マルト水谷（愛知県の水産加工・小売企業）是導入阿米巴經營的知名成功案例之一。其採用「<strong>店舗別アメーバ</strong>」制度，每家店都是一個阿米巴。</p>
+
+<p>某分店「熱田店」的假設月份數據：</p>
+
+<table>
+<thead><tr><th>項目</th><th>金額（萬円）</th></tr></thead>
+<tbody>
+<tr><td>日販売売上（日均銷售額）</td><td>50</td></tr>
+<tr><td>営業日数</td><td>26 日</td></tr>
+<tr><td>月間売上（月銷售總額）</td><td>1,300</td></tr>
+<tr><td>売上原価（進貨成本含來自總部的內部購買）</td><td>910（原価率70%）</td></tr>
+<tr><td>人件費（含店長・パート）</td><td>180</td></tr>
+<tr><td>水道光熱費</td><td>30</td></tr>
+<tr><td>地代家賃</td><td>50</td></tr>
+<tr><td>その他経費</td><td>40</td></tr>
+<tr><td>経費合計</td><td>300</td></tr>
+<tr><td>附加價值（粗利−経費）</td><td>1,300−910−300= 90</td></tr>
+<tr><td>総労働時間（従業員合計）</td><td>900 時</td></tr>
+<tr><td>時間當量採算</td><td>1,000 円/時（90萬÷900時）</td></tr>
+<tr><td>人員數</td><td>6 人（店長+社員2+パート3）</td></tr>
+<tr><td>每人附加價值</td><td>15 萬円/人</td></tr>
+</tbody>
+</table>
+
+<div class="note-box">
+<strong>📌 マルト水谷の実務ポイント：</strong><br>
+• 各店の <strong>売上 + 在庫回転率 + 時間当たり採算</strong> を毎日店長が確認。<br>
+• 時間當量採算目標：小売業で約 <strong>800〜1,500 円/時</strong>（日本水準）。<br>
+• 店長が価格設定、仕入先選定、シフト調整を自主決定できる。<br>
+• 赤字店舗（時間當量採算が 0 以下）は、原則 3 ヶ月以内に改善なければ閉鎖か業態変換の検討。
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 練習解答つき習問題シート -->
+<!-- ============================== -->
+<h2>🧪 追加自習問題（附簡答）</h2>
+
+<div class="problem">
+<p><span class="label">自習①</span><span class="label jp">阿米巴成本降低計算</span></p>
+<p>某阿米巴當月數據：總產值 5,000 萬円、內部購買 800 萬円、經費 1,200 萬円、總工時 2,500 時。</p>
+<p>下月預計經費降低 10%、工時減少 5%、其他條件不變。</p>
+<p><strong>Q:</strong> 時間當量採算從多少變成多少？</p>
+<button class="show-btn" onclick="toggleAnswer('q1')">顯示簡答</button>
+<div id="q1" class="answer">
+<p><strong>解答：</strong><br>
+當月附加價值 = 5,000 − 800 − 1,200 = 3,000 萬円<br>
+當月時間當量 = 3,000万÷2,500 = <strong>12,000 円/時</strong><br>
+次月附加價值 = 5,000 − 800 − (1,200×0.9) = 5,000 − 800 − 1,080 = 3,120 萬円<br>
+次月工時 = 2,500×0.95 = 2,375 時<br>
+次月時間當量 = 3,120万÷2,375 = <strong>13,137 円/時</strong></p>
+</div>
+</div>
+
+<div class="problem">
+<p><span class="label">自習②</span><span class="label jp">新設備投資判斷</span></p>
+<p>某設備阿米巴考慮導入 1,000 萬円的新機器（耐用 5 年，折舊 200 萬円/年），預計可減少外包加工費 150 萬円/年、減少 3 人分的人事費（每人年薪 400 萬円/年，但這 3 人轉調其他部門）。</p>
+<p><strong>Q:</strong> 該投資對該阿米巴的附加價值和時間當量採算影響？</p>
+<button class="show-btn" onclick="toggleAnswer('q2')">顯示簡答</button>
+<div id="q2" class="answer">
+<p><strong>解答：</strong><br>
+新增折舊 = +200 萬円（經費增加）<br>
+外包減少 = −150 萬円（經費減少）<br>
+人事費影響 = 0（人員轉調，不計入該阿米巴經費）<br>
+經費淨變動 = +200 − 150 = <strong>+50 萬円</strong><br>
+附加價值 = 總產值減少? → 不對，總產值不變，但經費增 50 萬，附加價值<strong>減少 50 萬円</strong><br>
+若原本時間當量採算 10,000 円/時（工時 1,000 時），投資後變為 (1,000万−50万)÷1,000 = <strong>9,500 円/時</strong><br>
+短期來看效率下降。但如果因此提升品質並可將產品賣更高價（總產值提升），則需重新評估。</p>
+<p style="color:var(--accent);">💡 阿米巴經營中，設備投資通常由總公司決定，不會讓單一阿米巴純粹因為折舊而抗拒必要投資。</p>
+</div>
+</div>
+
+<div class="problem">
+<p><span class="label">自習③</span><span class="label jp">比較：日次採算 vs 月次採算</span></p>
+<p>某阿米巴月報（下列金額為 <strong>萬円</strong>）：<br>
+對外出貨 300、內部銷售 100、內部購買 80、材料費 50、外包 20、水電 8、折舊 10、其他經費 12、總工時 400 時。</p>
+<p>已知該月工作日 20 天，其中<strong>前半（10天）</strong>：對外出貨 150、內部銷售 60、內部購買 40、經費合計 55、工時 210 時。</p>
+<p><strong>Q:</strong> 前半和後半的附加價值和時間當量採算各是多少？</p>
+<button class="show-btn" onclick="toggleAnswer('q3')">顯示簡答</button>
+<div id="q3" class="answer">
+<p><strong>解答：</strong><br>
+<strong>前半：</strong> 總產值 = 150+60=210、附加價值 = 210−40−55=115 萬円、時間當量 = 115万÷210 = <strong>5,476 円/時</strong><br>
+<strong>後半：</strong> 總產值 = (300−150)+(100−60)=190、內部購買 = 80−40=40、經費 = (50+20+8+10+12)−55=100−55=45<br>
+附加價值 = 190−40−45=105 萬円、工時 = 400−210=190、時間當量 = 105万÷190 = <strong>5,526 円/時</strong></p>
+<p>🔄 京セラ的特色：月初〜月中〜月末都可以追蹤，快速對應變化。</p>
+</div>
+</div>
+
+<!-- ============================== -->
+<!-- 公式對照表（日英中） -->
+<!-- ============================== -->
+<h2>📖 用語對照表（日・英・中）</h2>
+
+<div class="card">
+<table>
+<thead><tr><th>日本語</th><th>English</th><th>中文</th><th>備註</th></tr></thead>
+<tbody>
+<tr><td>アメーバ経営</td><td>Amoeba Management</td><td>阿米巴經營</td><td></td></tr>
+<tr><td>時間当たり採算</td><td>Hourly Profit / Per-hour Value Added</td><td>時間當量採算</td><td>核心指標</td></tr>
+<tr><td>部門別採算制度</td><td>Divisional Accounting System</td><td>部門別採算制度</td><td></td></tr>
+<tr><td>付加価値</td><td>Value Added</td><td>附加價值</td><td></td></tr>
+<tr><td>売上高（出荷額）</td><td>Sales (Shipments)</td><td>銷售額（出貨額）</td><td></td></tr>
+<tr><td>社内売買（内部売買）</td><td>Internal Sales / Inter-amoeba Transactions</td><td>內部銷售（內部交易）</td><td></td></tr>
+<tr><td>社内購入（内部購入）</td><td>Internal Purchase</td><td>內部購買</td><td></td></tr>
+<tr><td>経費</td><td>Expenses</td><td>經費</td><td></td></tr>
+<tr><td>総労働時間</td><td>Total Working Hours</td><td>總勞動時間</td><td></td></tr>
+<tr><td>内部振替価格</td><td>Internal Transfer Price</td><td>內部移轉價格</td><td></td></tr>
+<tr><td>消去（内部取引の消去）</td><td>Elimination (of internal transactions)</td><td>消除內部交易</td><td>合併報表用</td></tr>
+<tr><td>採算表</td><td>Profit and Loss Statement (Amoeba-style)</td><td>採算表（損益計算書）</td><td></td></tr>
+<tr><td>全員参加経営</td><td>Participatory Management</td><td>全員參與經營</td><td></td></tr>
+<tr><td>アメーバリーダー</td><td>Amoeba Leader</td><td>阿米巴長</td><td></td></tr>
+<tr><td>損益分岐点</td><td>Break-even Point</td><td>損益平衡點</td><td></td></tr>
+<tr><td>限界利益</td><td>Marginal Profit</td><td>邊際貢獻</td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ============================== -->
+<!-- Excel 匯入用テキスト -->
+<!-- ============================== -->
+<h2>📎 Excel 匯入用：計算練習用公式對照</h2>
+
+<div class="card">
+<p>下列公式可用於 Excel 或 Google Sheets，產生阿米巴計算練習表。</p>
+
+<div class="formula-box" style="white-space:pre;overflow-x:auto;">
+A1: 項目                B1: 金額
+A2: 對外銷售額          B2: [輸入數值]
+A3: 內部銷售額          B3: [輸入數值]
+A4: 總產值              B4: =B2+B3
+A5: 內部購買額          B5: [輸入數值]
+A6: 扣除購買後總產值    B6: =B4-B5
+A7: 經費合計            B7: [經費細項加總]
+A8: 附加價值            B8: =B6-B7
+A9: 總勞動時間          B9: [輸入數值]
+A10: 時間當量採算       B10: =B8/B9
+A11: 人員數             B11: [輸入數值]
+A12: 每人附加價值       B12: =B8/B11
+</div>
+<p>將以上複製到 Excel 第一行開始即可使用。</p>
+</div>
+
+<!-- ============================== -->
+<!-- フッター -->
+<!-- ============================== -->
+<footer>
+<p>本教材根據稲盛和夫の著作《アメーバ経営》《稲盛和夫の実学》及京セラ公開資料之原理所構成。</p>
+<p>數值為教學用假設案例，非真實公司數據。</p>
+<p>© Amoeba Management Practice Workbook • Generated for Educational Purposes</p>
+</footer>
+
+</div>
+
+<script>
+function toggleAnswer(id) {
+  const el = document.getElementById(id);
+  if (el.style.display === 'block') {
+    el.style.display = 'none';
+  } else {
+    el.style.display = 'block';
+  }
+}
+</script>
+
+</body>
+</html>
