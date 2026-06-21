@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企業倫理案例分析與實務應用</title>
+<style>
+  :root {
+    --type-title: 64px;
+    --type-subtitle: 44px;
+    --type-body: 34px;
+    --type-small: 26px;
+    --type-tiny: 20px;
+    --pad-top: 100px;
+    --pad-bottom: 80px;
+    --pad-x: 100px;
+    --gap-title: 52px;
+    --gap-item: 28px;
+    --gap-small: 16px;
+
+    --color-primary: #1F4E79;
+    --color-accent: #2E75B6;
+    --color-emphasis: #C00000;
+    --color-bg: #FFFFFF;
+    --color-text: #1a1a1a;
+    --color-muted: #555555;
+    --color-light: #E8F0F8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8e6e0;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  deck-stage {
+    --stage-bg: var(--color-bg);
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: var(--pad-top) var(--pad-x) var(--pad-bottom) var(--pad-x);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  /* ===== Cover Slide ===== */
+  .slide-cover {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #0d2e4a 100%);
+    color: #ffffff;
+  }
+  .slide-cover h1 {
+    font-size: var(--type-title);
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 24px;
+  }
+  .slide-cover .subtitle {
+    font-size: var(--type-subtitle);
+    font-weight: 400;
+    opacity: 0.85;
+    letter-spacing: 2px;
+  }
+  .slide-cover .meta {
+    font-size: var(--type-tiny);
+    opacity: 0.6;
+    margin-top: 80px;
+  }
+  .slide-cover .divider {
+    width: 80px;
+    height: 3px;
+    background: var(--color-accent);
+    margin: 20px auto;
+  }
+
+  /* ===== Section Divider ===== */
+  .slide-section {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+  .slide-section h2 {
+    font-size: var(--type-title);
+    font-weight: 700;
+    margin-bottom: var(--gap-title);
+  }
+
+  /* ===== Content Slides ===== */
+  .slide-content .title {
+    font-size: var(--type-subtitle);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--gap-title);
+    line-height: 1.3;
+    max-width: 100%;
+  }
+  .slide-content .body {
+    font-size: var(--type-body);
+    line-height: 1.5;
+    color: var(--color-text);
+    max-width: 100%;
+  }
+  .slide-content .body li {
+    font-size: var(--type-body);
+    line-height: 1.6;
+    margin-bottom: var(--gap-item);
+    list-style: none;
+    position: relative;
+    padding-left: 36px;
+  }
+  .slide-content .body li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-size: var(--type-body);
+  }
+  .slide-content .meta-row {
+    display: flex;
+    gap: 60px;
+    margin-top: var(--gap-title);
+    width: 100%;
+  }
+  .slide-content .meta-item {
+    flex: 1;
+    background: var(--color-light);
+    padding: 24px 28px;
+    border-radius: 8px;
+  }
+  .slide-content .meta-item .label {
+    font-size: var(--type-tiny);
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: var(--gap-small);
+  }
+  .slide-content .meta-item .value {
+    font-size: var(--type-body);
+    line-height: 1.4;
+  }
+  .slide-content .emphasis-box {
+    background: #FFF0F0;
+    border-left: 6px solid var(--color-emphasis);
+    padding: 20px 28px;
+    border-radius: 4px;
+    font-size: var(--type-body);
+    color: var(--color-emphasis);
+    margin-top: var(--gap-title);
+    width: 100%;
+  }
+  .slide-content .accent-box {
+    background: var(--color-light);
+    border-left: 6px solid var(--color-accent);
+    padding: 20px 28px;
+    border-radius: 4px;
+    font-size: var(--type-body);
+    color: var(--color-primary);
+    margin-top: var(--gap-title);
+    width: 100%;
+  }
+
+  /* ===== TOC ===== */
+  .slide-toc ol {
+    font-size: var(--type-body);
+    line-height: 1.6;
+    color: var(--color-text);
+    list-style: none;
+    counter-reset: toc-counter;
+    width: 100%;
+  }
+  .slide-toc ol li {
+    counter-increment: toc-counter;
+    padding: 10px 0 10px 60px;
+    position: relative;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .slide-toc ol li::before {
+    content: counter(toc-counter, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: var(--type-body);
+  }
+
+  /* ===== Two-column Layout ===== */
+  .two-col {
+    display: flex;
+    gap: 60px;
+    width: 100%;
+    flex: 1;
+  }
+  .two-col .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .two-col .col h3 {
+    font-size: var(--type-small);
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: var(--gap-item);
+  }
+  .two-col .col p {
+    font-size: var(--type-body);
+    line-height: 1.5;
+    margin-bottom: var(--gap-item);
+  }
+  .two-col .col li {
+    font-size: var(--type-body);
+    line-height: 1.6;
+    margin-bottom: var(--gap-item);
+    list-style: none;
+    padding-left: 28px;
+    position: relative;
+  }
+  .two-col .col li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-size: var(--type-body);
+  }
+
+  /* ===== References ===== */
+  .ref-list {
+    font-size: var(--type-small);
+    line-height: 1.7;
+    color: var(--color-text);
+    width: 100%;
+  }
+  .ref-list p {
+    margin-bottom: var(--gap-small);
+    padding-left: 40px;
+    text-indent: -40px;
+  }
+
+  /* ===== Notes-only (speaker notes) ===== */
+  .speaker-notes { display: none; }
+
+  /* Prevent overflow */
+  section > * {
+    max-width: 100%;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ===== 頁1：封面 ===== -->
+<section class="slide-cover" data-label="01-封面">
+  <h1>企業倫理案例分析<br>與實務應用</h1>
+  <div class="divider"></div>
+  <div class="subtitle">從理論到實踐的倫理決策</div>
+  <div class="meta">企業倫理課程 | 2026</div>
+  <div class="speaker-notes">[備註] 開場簡介：本簡報從定義出發，透過兩個真實案例分析企業面臨的倫理挑戰，最後提出實務執行策略。請學員思考自身職場經驗中有無類似倫理困境。</div>
+</section>
+
+<!-- ===== 頁2：目錄 ===== -->
+<section class="slide-content slide-toc" data-label="02-目錄">
+  <div class="title">今日內容</div>
+  <ol>
+    <li>企業倫理的定義與重要性</li>
+    <li>四大核心價值</li>
+    <li>常見倫理問題類型</li>
+    <li>案例一：供應鏈倫理爭議</li>
+    <li>案例二：數據倫理與隱私</li>
+    <li>實施策略</li>
+    <li>倫理領導與組織文化</li>
+    <li>結論：從合規到共好</li>
+  </ol>
+  <div class="speaker-notes">[備註] 引言結束後簡介本日議程，並提示兩個案例皆為近年真實事件之改編。</div>
+</section>
+
+<!-- ===== 頁3：定義與重要性 ===== -->
+<section class="slide-content" data-label="03-定義與重要性">
+  <div class="title">倫理是企業長期價值的基石</div>
+  <div class="body">
+    <li>企業倫理：組織在經營活動中應遵循的道德原則與行為規範</li>
+    <li>不僅關乎合法，更關乎「什麼是對的決定」</li>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="label">統計數據</div>
+      <div class="value">2023 Edelman Trust Barometer：58% 消費者會因倫理爭議抵制品牌</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">財務影響</div>
+      <div class="value">高 ESG 評級企業的股價波動率平均低 15%（MSCI, 2024）</div>
+    </div>
+  </div>
+  <div class="speaker-notes">[備註] 可舉例：Nike 1990年代血汗工廠爭議後股價大跌，後來重建供應鏈倫理才回升。倫理不是成本，是風險管理。</div>
+</section>
+
+<!-- ===== 頁4：四大核心價值 ===== -->
+<section class="slide-content" data-label="04-四大核心價值">
+  <div class="title">誠信、透明、問責、公平</div>
+  <div class="two-col">
+    <div class="col">
+      <h3>誠信（Integrity）</h3>
+      <p>言行一致，即使無人監督也堅守承諾</p>
+      <h3 style="margin-top:var(--gap-title)">透明（Transparency）</h3>
+      <p>資訊公開、決策過程可被檢視</p>
+    </div>
+    <div class="col">
+      <h3>問責（Accountability）</h3>
+      <p>為自身決策與行為承擔責任</p>
+      <h3 style="margin-top:var(--gap-title)">公平（Fairness）</h3>
+      <p>利益相關者之間的利益平衡</p>
+    </div>
+  </div>
+  <div class="accent-box">四大核心價值構成企業倫理決策的判斷座標系</div>
+  <div class="speaker-notes">[備註] 這四個價值是相互支撐的。缺乏透明的誠信不可驗證，缺乏問責的公平不可執行。可請學員討論哪個價值在他們行業中最難落實。</div>
+</section>
+
+<!-- ===== 頁5：常見問題類型 ===== -->
+<section class="slide-content" data-label="05-常見問題類型">
+  <div class="title">從供應鏈到數據治理的多面向挑戰</div>
+  <div class="two-col">
+    <div class="col">
+      <li>供應鏈人權：強迫勞動、工時過長</li>
+      <li>環境污染：廢棄物排放、碳排隱瞞</li>
+      <li>產品安全：品質瑕疵隱匿</li>
+    </div>
+    <div class="col">
+      <li>數據隱私：用戶資料未經授權使用</li>
+      <li>利益衝突：供應商回扣與不當關係</li>
+      <li>稅務規劃：跨國避稅與社會責任</li>
+    </div>
+  </div>
+  <div class="emphasis-box">2024 全球企業倫理調查：68% 的受訪企業曾遭遇至少一項重大倫理事件</div>
+  <div class="speaker-notes">[備註] 這些問題類型涵蓋了企業營運的各個環節。接下來兩個案例會深入探討供應鏈倫理和數據倫理這兩個當代最熱門的議題。</div>
+</section>
+
+<!-- ===== 頁6：案例一 ===== -->
+<section class="slide-content" data-label="06-案例一供應鏈">
+  <div class="title">案例一：某科技公司的供應鏈倫理爭議</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="emphasis-box" style="margin-top:0;font-size:var(--type-small)">背景</div>
+      <li>某國際消費電子品牌被爆出供應商使用強迫勞動</li>
+      <li>涉及東南亞數家代工廠，員工每日工時達 14 小時</li>
+      <li>違反國際勞工組織（ILO）核心公約</li>
+    </div>
+    <div class="col">
+      <div class="emphasis-box" style="margin-top:0;font-size:var(--type-small)">數據</div>
+      <li>NGO 調查報告揭露後，該品牌市值單日蒸發 5.2%</li>
+      <li>社群媒體負面聲量在 48 小時內成長 340%</li>
+      <li>三家國際客戶宣布暫停合作</li>
+    </div>
+  </div>
+  <div class="speaker-notes">[備註] 此案例綜合參考 Apple 供應鏈審計、H&M 血汗工廠等真實事件。要強調的是：即使品牌本身沒有直接違法，供應商的違規行為仍然會透過品牌效應反饋到企業本身。</div>
+</section>
+
+<!-- ===== 頁7：案例一分析 ===== -->
+<section class="slide-content" data-label="07-案例一分析">
+  <div class="title">監管失靈與品牌信譽風險</div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="label">核心問題</div>
+      <div class="value">供應鏈深度外包，終端品牌對 Tier 2/3 供應商缺乏監管</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">影響層面</div>
+      <div class="value">品牌信譽受損（72% 消費者表示不信任該品牌後續聲明）</div>
+    </div>
+  </div>
+  <div class="two-col" style="margin-top:var(--gap-item)">
+    <div class="col">
+      <h3>道德風險</h3>
+      <li>成本壓力轉嫁供應商</li>
+      <li>稽查流於形式</li>
+    </div>
+    <div class="col">
+      <h3>法律風險</h3>
+      <li>歐盟 CSDDD 要求企業盡職調查</li>
+      <li>美國 UFLPA 推定強迫勞動產品禁止進口</li>
+    </div>
+  </div>
+  <div class="speaker-notes">[備註] CSDDD = Corporate Sustainability Due Diligence Directive（企業永續盡職調查指令）。UFLPA = Uyghur Forced Labor Prevention Act（維吾爾強迫勞動預防法）。</div>
+</section>
+
+<!-- ===== 頁8：案例一啟示 ===== -->
+<section class="slide-content" data-label="08-案例一啟示">
+  <div class="title">建立可追溯、可驗證的倫理供應鏈</div>
+  <div class="two-col">
+    <div class="col">
+      <h3>預防機制</h3>
+      <li>供應商分級管理制度（Tier 1–3 全面覆蓋）</li>
+      <li>第三方突擊審計取代預告式稽查</li>
+      <li>區塊鏈溯源技術記錄產品生命週期</li>
+    </div>
+    <div class="col">
+      <h3>文化建設</h3>
+      <li>將倫理評分納入供應商遴選權重（≥ 20%）</li>
+      <li>建立吹哨者保護機制與匿名通報管道</li>
+      <li>定期舉辦供應商倫理教育訓練</li>
+    </div>
+  </div>
+  <div class="accent-box">Patagonia 案例：全面供應鏈透明化後，營收反而成長 28%</div>
+  <div class="speaker-notes">[備註] Patagonia 於 2007 年推出「Footprint Chronicles」網站，公開所有供應商資訊和環境影響。消費者信任度提升直接轉化為營收成長。</div>
+</section>
+
+<!-- ===== 頁9：案例二 ===== -->
+<section class="slide-content" data-label="09-案例二數據倫理">
+  <div class="title">案例二：社群平台的隱私與數據倫理</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="emphasis-box" style="margin-top:0;font-size:var(--type-small)">事件</div>
+      <li>某社群平台被揭露未經用戶同意，將 8,700 萬筆資料提供給第三方分析公司</li>
+      <li>資料用於政治廣告定向投放</li>
+      <li>用戶完全不知情，也未獲得選擇退出機會</li>
+    </div>
+    <div class="col">
+      <div class="emphasis-box" style="margin-top:0;font-size:var(--type-small)">衝擊</div>
+      <li>美國 FTC 罰款 50 億美元（史上最高隱私罰款）</li>
+      <li>活躍用戶在事件後一年減少約 2%</li>
+      <li>各國加速推動數據保護立法</li>
+    </div>
+  </div>
+  <div class="speaker-notes">[備註] 此案例參照 Cambridge Analytica / Facebook 事件。強調的不是技術漏洞，而是商業模式本身的倫理缺陷：當數據是核心資產時，倫理界線在哪裡？</div>
+</section>
+
+<!-- ===== 頁10：案例二分析 ===== -->
+<section class="slide-content" data-label="10-案例二分析">
+  <div class="title">用戶信任與商業利益的零和賽局</div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="label">結構性矛盾</div>
+      <div class="value">廣告收入模式驅動數據極大化收集，與用戶隱私權直接衝突</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">信任代價</div>
+      <div class="value">事件後該平台信任指數下降 66%（由 79% 降至 27%）</div>
+    </div>
+  </div>
+  <div class="two-col" style="margin-top:var(--gap-item)">
+    <div class="col">
+      <h3>倫理缺失</h3>
+      <li>告知同意流於形式（80% 用戶從未閱讀隱私政策）</li>
+      <li>資料使用目的與收集目的不一致</li>
+    </div>
+    <div class="col">
+      <h3>監管回應</h3>
+      <li>歐盟 GDPR 最高罰款為全球營收 4%</li>
+      <li>台灣個資法修正條文提高罰則至 1,500 萬元</li>
+    </div>
+  </div>
+  <div class="speaker-notes">[備註] 討論重點：商業模式是否本質上與用戶權利衝突？Apple 的 App Tracking Transparency（ATT）框架提供了一種替代方案：以用戶選擇權為核心。</div>
+</section>
+
+<!-- ===== 頁11：案例二啟示 ===== -->
+<section class="slide-content" data-label="11-案例二啟示">
+  <div class="title">數據治理的倫理框架</div>
+  <div class="two-col">
+    <div class="col">
+      <h3>隱私設計（Privacy by Design）</h3>
+      <li>產品開發階段即嵌入隱私保護機制</li>
+      <li>資料最小化原則：只收集必要的數據</li>
+      <li>用戶資料權：查閱、修改、刪除的權利</li>
+    </div>
+    <div class="col">
+      <h3>治理機制</h3>
+      <li>設置獨立的資料倫理委員會</li>
+      <li>定期發布透明度報告（政府請求次數、資料使用統計）</li>
+      <li>導入資料保護影響評估（DPIA）流程</li>
+    </div>
+  </div>
+  <div class="accent-box">Apple 隱私標籤與 ATT 框架：將用戶選擇權還給使用者</div>
+  <div class="speaker-notes">[備註] Apple 自 iOS 14.5 起強制 App 取得用戶同意才能跨應用程式追蹤。雖然 Meta 曾公開反對，但此舉反而強化了 Apple 的品牌信任度。</div>
+</section>
+
+<!-- ===== 頁12：實施策略 ===== -->
+<section class="slide-content" data-label="12-實施策略">
+  <div class="title">從政策制定到落實執行</div>
+  <div class="two-col">
+    <div class="col">
+      <h3>制度層面</h3>
+      <li>制定倫理守則（Code of Conduct）</li>
+      <li>設立倫理長（Chief Ethics Officer）</li>
+      <li>建立倫理風險評估機制</li>
+    </div>
+    <div class="col">
+      <h3>執行層面</h3>
+      <li>倫理訓練納入新人必修與年度回訓</li>
+      <li>倫理績效納入 KPI 與獎酬設計</li>
+      <li>吹哨者保護與匿名通報平台</li>
+    </div>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="label">實施效益</div>
+      <div class="value">擁有完整倫理計畫的企業，員工離職率低 22%（Ethisphere, 2024）</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">國際標準</div>
+      <div class="value">ISO 37001 反賄賂管理系統、ISO 26000 社會責任指引</div>
+    </div>
+  </div>
+  <div class="speaker-notes">[備註] 強調制度與執行必須並重。許多企業有倫理守則但從未執行、從未訓練，這種「牆上規範」比沒有更糟 — 因為它製造了虛假安全感。</div>
+</section>
+
+<!-- ===== 頁13：倫理領導 ===== -->
+<section class="slide-content" data-label="13-倫理領導">
+  <div class="title">高層示範是倫理文化的起點</div>
+  <div class="two-col">
+    <div class="col">
+      <h3>領導者的角色</h3>
+      <li>言行一致：管理層行為需符合倫理守則</li>
+      <li>獎懲分明：倫理表率應受表揚，違規應被究責</li>
+      <li>公開承諾：將倫理目標納入年度股東報告</li>
+    </div>
+    <div class="col">
+      <h3>組織文化指標</h3>
+      <li>員工是否敢於提出倫理疑慮？</li>
+      <li>團隊會議是否討論倫理議題？</li>
+      <li>短期績效能否凌駕倫理原則？</li>
+    </div>
+  </div>
+  <div class="emphasis-box">Enron 崩潰的教訓：當「結果」凌駕「手段」，倫理文化蕩然無存</div>
+  <div class="speaker-notes">[備註] Enron 案是企業倫理課本必讀案例。高層帶頭造假，企業文化獎勵隱瞞而非誠實。這顯示倫理領導不是口號，而是每天每個決策的積累。</div>
+</section>
+
+<!-- ===== 頁14：結論 ===== -->
+<section class="slide-content" data-label="14-結論">
+  <div class="title">從合規到共好 — 超越法規的永續競爭力</div>
+  <div class="two-col">
+    <div class="col">
+      <h3>合規（Compliance）</h3>
+      <li>符合法規最低標準</li>
+      <li>被動回應外部要求</li>
+      <li>短期風險管理</li>
+    </div>
+    <div class="col">
+      <h3>共好（Common Good）</h3>
+      <li>主動創造社會價值</li>
+      <li>超越法規的倫理承諾</li>
+      <li>長期競爭優勢來源</li>
+    </div>
+  </div>
+  <div class="accent-box">企業倫理不是成本，是投資。每一次倫理選擇，都在定義企業的未來。</div>
+  <div class="speaker-notes">[備註] 總結時可引導反思：學員各自的企業目前處在「合規」還是「共好」的階段？下一步該怎麼走？鼓勵討論與分享。</div>
+</section>
+
+<!-- ===== 頁15：參考資料 ===== -->
+<section class="slide-content" data-label="15-參考資料">
+  <div class="title">參考資料</div>
+  <div class="ref-list">
+    <p>Edelman. (2023). <i>Edelman Trust Barometer 2023</i>.</p>
+    <p>MSCI. (2024). <i>ESG Ratings and Corporate Financial Performance</i>.</p>
+    <p>Ethisphere. (2024). <i>World's Most Ethical Companies Report</i>.</p>
+    <p>European Commission. (2024). <i>Corporate Sustainability Due Diligence Directive</i>.</p>
+    <p>U.S. Congress. (2021). <i>Uyghur Forced Labor Prevention Act</i>.</p>
+    <p>FTC. (2019). <i>In the Matter of Facebook, Inc.</i>, Docket No. C-4695.</p>
+    <p>ILO. (1998). <i>Declaration on Fundamental Principles and Rights at Work</i>.</p>
+    <p>ISO. (2016). <i>ISO 37001 Anti-bribery Management Systems</i>.</p>
+    <p>ISO. (2010). <i>ISO 26000 Guidance on Social Responsibility</i>.</p>
+  </div>
+  <div class="speaker-notes">[備註] 完整引用清單。可依授課需要補充在地化資料或產業特定文獻。</div>
+</section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+
+</body>
+</html>
