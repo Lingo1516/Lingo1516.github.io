@@ -3,481 +3,506 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>組織理論教材資料</title>
+    <title>組織理論教材</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #1a1a2e;
-            color: #eee;
-            line-height: 1.6;
+            font-family: "Noto Serif TC", "Source Han Serif TW", Georgia, serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.9;
             padding: 20px;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        .container { max-width: 800px; margin: 0 auto; }
         h1 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #58a6ff, #bc8cff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
         }
         .subtitle {
             text-align: center;
-            color: #888;
-            margin-bottom: 30px;
+            color: #8b949e;
+            margin-bottom: 40px;
             font-size: 14px;
         }
-        .card {
-            background: #16213e;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
         h2 {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 20px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
+            font-size: 22px;
+            color: #58a6ff;
+            margin: 40px 0 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #21262d;
         }
         h3 {
-            color: #667eea;
-            font-size: 17px;
-            margin: 15px 0 10px;
+            font-size: 18px;
+            color: #bc8cff;
+            margin: 30px 0 12px;
         }
-        .concept {
-            background: #1e3a5f;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 10px 0;
-            border-left: 4px solid #667eea;
+        p {
+            margin-bottom: 16px;
+            font-size: 16px;
+            text-align: justify;
         }
-        .concept strong {
-            color: #667eea;
+        .highlight {
+            background: #161b22;
+            border-left: 4px solid #58a6ff;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .scholar {
+            color: #8b949e;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        blockquote {
+            border-left: 3px solid #bc8cff;
+            padding: 12px 20px;
+            margin: 20px 0;
+            background: #161b22;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #8b949e;
+        }
+        ul, ol {
+            margin: 12px 0 16px 24px;
+        }
+        li {
+            margin: 8px 0;
+            font-size: 16px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
-            overflow-x: auto;
-            display: block;
+            margin: 20px 0;
+            font-size: 15px;
         }
         th {
-            background: #667eea;
-            color: #fff;
+            background: #21262d;
+            color: #58a6ff;
             padding: 12px;
             text-align: left;
-            font-size: 14px;
         }
         td {
             padding: 10px 12px;
-            border-bottom: 1px solid #333;
-            font-size: 14px;
+            border-bottom: 1px solid #21262d;
         }
-        tr:hover {
-            background: #1e3a5f;
+        .section-num {
+            color: #58a6ff;
+            font-weight: bold;
         }
-        .tag {
-            display: inline-block;
-            background: #667eea;
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            margin: 3px;
+        .case-box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
         }
-        .tag.green {
-            background: #28a745;
-        }
-        .tag.orange {
-            background: #fd7e14;
-        }
-        .tag.purple {
-            background: #6f42c1;
-        }
-        ul {
-            margin-left: 20px;
+        .case-box h4 {
+            color: #f0883e;
             margin-bottom: 10px;
         }
-        li {
-            margin: 5px 0;
-            font-size: 15px;
+        .ref {
+            color: #8b949e;
+            font-size: 13px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #21262d;
         }
-        a {
-            color: #667eea;
+        .toc {
+            background: #161b22;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 30px 0;
+        }
+        .toc h3 {
+            margin-top: 0;
+            color: #58a6ff;
+        }
+        .toc ol {
+            margin-left: 20px;
+        }
+        .toc li {
+            margin: 6px 0;
+        }
+        .toc a {
+            color: #c9d1d9;
             text-decoration: none;
         }
-        a:hover {
-            text-decoration: underline;
-        }
-        .doi {
-            color: #888;
-            font-size: 12px;
-            word-break: break-all;
-        }
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        .toc a:hover {
+            color: #58a6ff;
         }
         @media (max-width: 600px) {
-            .two-col {
-                grid-template-columns: 1fr;
-            }
-            h1 { font-size: 24px; }
-            h2 { font-size: 18px; }
-        }
-        .footer {
-            text-align: center;
-            color: #666;
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 13px;
+            body { padding: 15px; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 20px; }
+            p, li { font-size: 15px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📚 組織理論教材資料</h1>
-        <p class="subtitle">整理自學術論文、大學教材、深度報告 ｜ 2026-06-21</p>
+        <h1>組織理論：從經典到現代</h1>
+        <p class="subtitle">教材整理 ｜ 2026-06-21</p>
 
-        <!-- 一、經典組織理論 -->
-        <div class="card">
-            <h2>一、經典組織理論</h2>
-            
-            <h3>1. 官僚制理論（Bureaucracy）</h3>
-            <div class="concept">
-                <strong>代表學者：</strong>Max Weber<br>
-                <strong>核心概念：</strong>理性-法律權威、專業分工、層級節制、規則導向<br>
-                <strong>關鍵貢獻：</strong>現代組織設計的基礎，解釋為何大規模組織需要標準化流程<br>
-                <strong>批判：</strong>過度強調規則導致僵化、忽略人性因素
-            </div>
-
-            <h3>2. 科學管理（Scientific Management）</h3>
-            <div class="concept">
-                <strong>代表學者：</strong>Frederick Taylor<br>
-                <strong>核心概念：</strong>工作科學化、時間動作研究、差別計件工資制<br>
-                <strong>關鍵貢獻：</strong>提升生產效率，奠定工業工程基礎<br>
-                <strong>限制：</strong>將人視為機器，忽略社會心理因素
-            </div>
-
-            <h3>3. 行政管理理論</h3>
-            <div class="concept">
-                <strong>代表學者：</strong>Henri Fayol<br>
-                <strong>核心概念：</strong>管理五功能（計劃、組織、指揮、協調、控制）、14項管理原則<br>
-                <strong>關鍵貢獻：</strong>奠定現代管理學的理論框架
-            </div>
-
-            <h3>4. 人群關係學派</h3>
-            <div class="concept">
-                <strong>代表學者：</strong>Elton Mayo（霍桑實驗）<br>
-                <strong>核心概念：</strong>非正式組織、社會需求、工作滿意度<br>
-                <strong>關鍵貢獻：</strong>發現人的社會性需求比物質激勵更重要
-            </div>
+        <div class="toc">
+            <h3>📑 目錄</h3>
+            <ol>
+                <li><a href="#ch1">經典組織理論的誕生</a></li>
+                <li><a href="#ch2">從效率到人性：行為學派的轉向</a></li>
+                <li><a href="#ch3">結構權變理論：沒有一種萬靈丹</a></li>
+                <li><a href="#ch4">Mintzberg 的組織五類型</a></li>
+                <li><a href="#ch5">動態能力理論：為何有些企業能持續成功</a></li>
+                <li><a href="#ch6">組織學習：單環與雙環的差別</a></li>
+                <li><a href="#ch7">組織結構設計的實務選擇</a></li>
+                <li><a href="#ch8">組織變革：如何推動轉型</a></li>
+                <li><a href="#ch9">平台組織：數位時代的新物種</a></li>
+                <li><a href="#ch10">台灣企業案例分析</a></li>
+                <li><a href="#ch11">2024-2026 研究趨勢與未來方向</a></li>
+            </ol>
         </div>
 
-        <!-- 二、現代組織理論 -->
-        <div class="card">
-            <h2>二、現代組織理論</h2>
-            
-            <h3>5. 結構權變理論（Contingency Theory）</h3>
-            <div class="concept">
-                <strong>代表學者：</strong>Lawrence & Lorsch、Burns & Stalker<br>
-                <strong>核心概念：</strong>沒有最好的組織方式，只有最適合環境的組織<br>
-                <strong>關鍵變數：</strong>環境穩定性、技術、規模、策略<br>
-                <strong>MIT 教材觀點：</strong>「組織理論的相對論」— 不同情境需要不同設計
-            </div>
+        <!-- 第一章 -->
+        <h2 id="ch1"><span class="section-num">第一章</span> 經典組織理論的誕生</h2>
 
-            <h3>6. Mintzberg 的組織類型</h3>
-            <div class="concept">
-                <strong>代表學者：</strong>Henry Mintzberg<br>
-                <strong>五種組織結構：</strong>
-                <ul>
-                    <li>簡單結構（Simple Structure）— 創業初期</li>
-                    <li>機械式官僚（Machine Bureaucracy）— 大規模生產</li>
-                    <li>專業式官僚（Professional Bureaucracy）— 醫院、大學</li>
-                    <li>事業部制（Divisionalized Form）— 多元化企業</li>
-                    <li>特別小組（Adhocracy）— 創新導向</li>
-                </ul>
-                <strong>學術論文：</strong><br>
-                <span class="doi">Mintzberg (1990) "Studying Deciding" — DOI: 10.1177/017084069001100101</span><br>
-                <span class="doi">Mintzberg (2022) "An Underlying Theory for Strategy, Organization, and Management" — DOI: 10.1561/111.00000039</span>
-            </div>
+        <p>組織理論的起源，可以追溯到十九世紀末二十世紀初的工業革命。當時，工廠制度剛剛興起，管理者面臨一個前所未有的挑戰：如何讓數百甚至數千名工人有效率地協作？這個問題催生了最早的組織理論。</p>
 
-            <h3>7. 動態能力理論（Dynamic Capabilities）</h3>
-            <div class="concept">
-                <strong>代表學者：</strong>David Teece<br>
-                <strong>核心概念：</strong>組織整合、建立、重新配置內外部能力以因應快速變化環境<br>
-                <strong>三大要素：</strong>
-                <ul>
-                    <li>感知（Sensing）— 發現機會與威脅</li>
-                    <li>擷取（Seizing）— 把握機會</li>
-                    <li>轉型（Transforming）— 持續更新</li>
-                </ul>
-                <strong>學術論文：</strong><br>
-                <span class="doi">Teece (2022) "The Evolution of the Dynamic Capabilities Framework" — Springer</span><br>
-                <span class="doi">Teece (2024) "Dynamic Capabilities Framework and Its Transformative Contributions" — DOI: 10.1057/s41267-024-00758-8</span>
-            </div>
+        <h3>1.1 Weber 的官僚制理論</h3>
+        <p>德國社會學家 Max Weber 是最早系統性研究組織的人之一。他觀察到，傳統的組織依靠個人魅力或傳統來領導，但這種方式有嚴重的限制——領導者離去後，組織往往隨之瓦解。Weber 提出了一種更穩定的組織形式：官僚制（Bureaucracy）。</p>
 
-            <h3>8. 組織學習理論</h3>
-            <div class="concept">
-                <strong>代表學者：</strong>Chris Argyris、Peter Senge<br>
-                <strong>單環學習 vs 雙環學習：</strong>
-                <ul>
-                    <li>單環：修正錯誤，不改變基本假設</li>
-                    <li>雙環：質疑基本假設，重新檢視策略</li>
-                </ul>
-                <strong>Senge 的五項修練：</strong>系統思考、自我超越、心智模式、共同願景、團隊學習<br>
-                <span class="doi">Argyris (1976) "On Organizational Learning" — DOI: 10.1016/0090-2616(76)90034-6</span>
-            </div>
+        <p>官僚制的核心特徵包括四個方面。首先是「理性-法律權威」，也就是組織的權力來自於規則和法律，而不是某個特定的人。其次是「專業分工」，每個人都有明確的職責範圍。第三是「層級節制」，決策從上到下流動，每一層級都有明確的權限。最後是「規則導向」，組織的運作依賴成文的規章制度，而不是個人的任意決定。</p>
+
+        <div class="highlight">
+            <strong>Weber 的洞見：</strong>官僚制雖然看起來冰冷而缺乏人情味，但它解決了一個根本問題：如何讓大規模組織在領導者更替後仍能穩定運作。現代的政府、軍隊、大型企業，本質上都是官僚制的變體。
         </div>
 
-        <!-- 三、組織結構設計 -->
-        <div class="card">
-            <h2>三、組織結構設計</h2>
-            
-            <h3>9. 常見組織結構</h3>
-            <table>
-                <tr>
-                    <th>類型</th>
-                    <th>適用情境</th>
-                    <th>優點</th>
-                    <th>缺點</th>
-                </tr>
-                <tr>
-                    <td>功能式</td>
-                    <td>單一產品、穩定環境</td>
-                    <td>專業效率</td>
-                    <td>部門牆</td>
-                </tr>
-                <tr>
-                    <td>事業部式</td>
-                    <td>多元化、成長期</td>
-                    <td>責任明確</td>
-                    <td>資源重複</td>
-                </tr>
-                <tr>
-                    <td>矩陣式</td>
-                    <td>專案導向</td>
-                    <td>資源共享</td>
-                    <td>雙重指揮</td>
-                </tr>
-                <tr>
-                    <td>網路式</td>
-                    <td>快速變化</td>
-                    <td>彈性高</td>
-                    <td>控制困難</td>
-                </tr>
-                <tr>
-                    <td>平台式</td>
-                    <td>數位經濟</td>
-                    <td>生態系協同</td>
-                    <td>治理複雜</td>
-                </tr>
-            </table>
+        <p>然而，Weber 也預見了官僚制的風險。他警告說，過度的規則化會導致「鐵籠」（iron cage）效應——組織變得僵化，失去適應環境的能力。這個警告在今天依然適用：許多大型企業的官僚作風，正是它們在快速變化的市場中落後的原因。</p>
 
-            <h3>10. 組織設計原則</h3>
-            <div class="concept">
-                <strong>結構追隨策略</strong>（Structure follows Strategy）— Alfred Chandler<br>
-                <strong>組織追隨環境</strong>（Organization follows Environment）— 權變理論<br>
-                <strong>流程追顧客</strong>（Process follows Customer）— 流程再造<br>
-                <span class="doi">Kortmann (2012) "Organizational Structure" — DOI: 10.1007/978-3-8349-3630-1_2</span><br>
-                <span class="doi">King & Lawley (2022) "Organizational structure, design, and bureaucracy" — DOI: 10.1093/hebz/9780192893475.003.0003</span>
-            </div>
+        <h3>1.2 Taylor 的科學管理</h3>
+        <p>與 Weber 同時代的美國工程師 Frederick Taylor，則從另一個角度切入組織問題。Taylor 相信，工作可以被科學化地分析和優化。他發明了「時間動作研究」——用碼錶測量工人完成每個動作的時間，然後找出最有效率的方法。</p>
+
+        <p>Taylor 的方法在當時是革命性的。在他之前，工人靠經驗和師傅的指導來工作；在他之後，工作被分解為標準化的步驟，每個步驟都有最佳做法。他還提出了「差別計件工資制」——生產力高的工人獲得更高的報酬，以此激勵效率。</p>
+
+        <p>科學管理大幅提升了生產效率，特別是在製造業。但它也有嚴重的副作用：工人被當作機器的零件，失去了對工作的自主性和創造力。這為後來的人群關係學派埋下了伏筆。</p>
+
+        <h3>1.3 Fayol 的行政管理理論</h3>
+        <p>法國礦業工程師 Henri Fayol 則從管理者的角度出發，提出了管理的五項功能：計劃、組織、指揮、協調、控制。這五項功能至今仍是管理學教科書的基本框架。</p>
+
+        <p>Fayol 還提出了十四項管理原則，包括「分工」、「權責對等」、「紀律」、「統一指揮」、「統一方向」等。這些原則看似簡單，但它們構成了現代組織設計的基礎。例如，「統一指揮」原則主張每個員工只應對一個上級負責，這解決了多頭領導造成的混亂問題。</p>
+
+        <div class="ref">
+            📖 參考文獻：Weber, M. (1947). <em>The Theory of Social and Economic Organization</em>; Taylor, F.W. (1911). <em>The Principles of Scientific Management</em>; Fayol, H. (1916). <em>Administration Industrielle et Générale</em>
         </div>
 
-        <!-- 四、組織變革與轉型 -->
-        <div class="card">
-            <h2>四、組織變革與轉型</h2>
-            
-            <h3>11. 變革管理模型</h3>
-            <div class="concept">
-                <strong>Lewin 變革模型：</strong>解凍 → 變革 → 再凍結<br>
-                <strong>Kotter 八步驟：</strong>建立急迫感 → 組織領導團隊 → 發展願景 → 溝通願景 → 授權行動 → 創造短期成果 → 鞏固成果 → 將變革制度化<br>
-                <strong>連續 vs 非連續變革：</strong>漸進改善 vs 突破式轉型<br>
-                <span class="doi">Bhattacharyya (2024) "Organizational Change, Organizational Structure, and Design" — DOI: 10.4324/9781003501701-11</span><br>
-                <span class="doi">Packard (2021) "Staff-Initiated Organizational Change" — DOI: 10.1093/oso/9780197549995.003.0020</span>
-            </div>
 
-            <h3>12. 數位轉型</h3>
-            <div class="concept">
-                <strong>關鍵議題：</strong>組織文化、人才轉型、流程再造、技術導入<br>
-                <strong>台灣案例：</strong>
-                <ul>
-                    <li>台積電：從製造代工到技術領先的組織能力轉型</li>
-                    <li>統一超商：從零售到數位生活平台</li>
-                    <li>鴻海：從代工到 MIH 電動車平台</li>
-                </ul>
-            </div>
+        <!-- 第二章 -->
+        <h2 id="ch2"><span class="section-num">第二章</span> 從效率到人性：行為學派的轉向</h2>
+
+        <p>1920 到 1930 年代，一項意外的發現改變了組織理論的走向。哈佛大學的 Elton Mayo 和他的同事在芝加哥西方電氣公司的霍桑工廠進行了一系列實驗，原本是要研究照明強度對生產力的影響。但實驗結果令所有人困惑：無論照明變亮還是變暗，工人的生產力都提升了。</p>
+
+        <h3>2.1 霍桑實驗的啟示</h3>
+        <p>經過深入分析，Mayo 意識到真正影響生產力的不是物理環境，而是社會因素。工人們因為參與實驗而感到被重視，彼此之間也形成了更緊密的社交關係。這個發現催生了「人群關係學派」（Human Relations School）。</p>
+
+        <p>人群關係學派的核心主張是：人不是純粹的經濟動物，工作動機不僅來自薪水，還來自歸屬感、認同感和社會需求。管理者如果只關注效率而忽略人的情感，最終會適得其反。</p>
+
+        <p>這個觀點在當時是颠覆性的。它意味著，組織不僅是一個經濟系統，也是一個社會系統。管理者需要同時關注「正式組織」（組織結構、規則、流程）和「非正式組織」（人際關係、小團體、組織文化）。</p>
+
+        <h3>2.2 從霍桑到現代</h3>
+        <p>霍桑實驗的影響深遠。它讓組織理論從「如何讓工人更有效率」轉向「如何讓工人更願意貢獻」。這個轉向最終演化為今天的組織行為學（Organizational Behavior），研究動機、領導、團隊動態、組織文化等議題。</p>
+
+        <blockquote>
+            「你不能僅僅因為你付了錢給員工，就期望他們會好好工作。人是社會性的動物，他們需要意義、需要歸屬、需要被尊重。」—— 基於 Mayo 的理念改寫
+        </blockquote>
+
+        <div class="ref">
+            📖 參考文獻：Mayo, E. (1933). <em>The Human Problems of an Industrial Civilization</em>; Roethlisberger, F.J. & Dickson, W.J. (1939). <em>Management and the Worker</em>
         </div>
 
-        <!-- 五、平台組織 -->
-        <div class="card">
-            <h2>五、平台組織</h2>
-            
-            <h3>13. 平台組織理論</h3>
-            <div class="concept">
-                <strong>核心概念：</strong>從科層到生態系的轉變<br>
-                <strong>關鍵特徵：</strong>
-                <ul>
-                    <li>多邊平台</li>
-                    <li>網路效應</li>
-                    <li>數位基礎設施</li>
-                </ul>
-                <span class="doi">"Organization in Platform Capitalism" — DOI: 10.5040/9781350030275.article-110</span><br>
-                <span class="doi">Kassem (2023) "Alienation across Amazon and the Platform Economy" — DOI: 10.1332/policypress/9781529226546.003.0010</span>
-            </div>
+
+        <!-- 第三章 -->
+        <h2 id="ch3"><span class="section-num">第三章</span> 結構權變理論：沒有一種萬靈丹</h2>
+
+        <p>到了 1950 和 1960 年代，組織理論迎來了另一個重要的轉折。研究者開始意識到，Weber 的官僚制、Taylor 的科學管理、Mayo 的人群關係，各自都有道理，但也都有局限。問題的關鍵不在於「哪種理論是對的」，而在於「什麼情況下用什麼理論」。</p>
+
+        <h3>3.1 權變理論的基本邏輯</h3>
+        <p>結構權變理論（Contingency Theory）的核心觀點是：沒有最好的組織方式，只有最適合特定環境的組織方式。組織的 effectiveness 取決於結構與環境之間的「契合度」（fit）。</p>
+
+        <p>這個理論最早由 Lawrence 和 Lorsch 在 1967 年提出。他們研究了不同產業的公司，發現環境變動程度不同的企業，需要不同的組織結構。在穩定環境中（如傳統製造業），機械式的官僚結構最有效率；在快速變化的環境中（如科技業），有機式的彈性結構更為適合。</p>
+
+        <p>Burns 和 Stalker 在更早的 1961 年就提出了類似的觀點。他們區分了「機械式」和「有機式」兩種組織形式。機械式組織強調標準化、集權化、明確的指揮鏈；有機式組織則強調彈性、分權化、橫向溝通。</p>
+
+        <h3>3.2 MIT 的組織理論課</h3>
+        <p>MIT Sloan 商學院的「組織流程」（Organizational Processes）課程，正是以權變理論為核心。課程的開場白就說：「組織理論是相對的。」意思是，不存在一個放諸四海皆準的組織設計原則，一切取決於情境。</p>
+
+        <p>這門課要求學生實際走訪一個正在進行變革的組織，觀察並分析其結構、流程和文化的變化。這種「實地研究」的方法，反映了權變理論的一個重要實踐原則：組織理論不能只在書本上學，必須在實際情境中體會。</p>
+
+        <div class="highlight">
+            <strong>關鍵概念：</strong>結構權變理論告訴我們，批評一個組織的結構「不好」是沒有意義的。更有意義的問題是：這個結構與它的環境、技術、規模、策略是否匹配？
         </div>
 
-        <!-- 六、台灣企業組織案例 -->
-        <div class="card">
-            <h2>六、台灣企業組織案例</h2>
-            
-            <div class="two-col">
-                <div>
-                    <h3>14. 台積電（TSMC）</h3>
-                    <div class="concept">
-                        <strong>組織特色：</strong>矩陣式結構、高度專注、工程師文化<br>
-                        <strong>關鍵能力：</strong>技術深耕、客戶信任、快速量產<br>
-                        <strong>組織學習：</strong>從成熟製程到先進製程的知識累積
-                    </div>
-                </div>
-                <div>
-                    <h3>15. 統一集團</h3>
-                    <div class="concept">
-                        <strong>組織特色：</strong>多角化經營、本土化管理<br>
-                        <strong>轉型歷程：</strong>傳統零售 → 7-ELEVEN → 數位生活平台<br>
-                        <strong>組織創新：</strong>小規模實驗、快速迭代
-                    </div>
-                </div>
-            </div>
-
-            <h3>16. 鴻海（Foxconn）</h3>
-            <div class="concept">
-                <strong>組織特色：</strong>軍事化管理、效率導向<br>
-                <strong>轉型挑戰：</strong>從代工到品牌、從製造到服務<br>
-                <strong>MIH 平台：</strong>組織從封閉走向開放生態系
-            </div>
+        <div class="ref">
+            📖 參考文獻：Lawrence, P.R. & Lorsch, J.W. (1967). <em>Organization and Environment</em>; Burns, T. & Stalker, G.M. (1961). <em>The Management of Innovation</em>; MIT 15.311 Organizational Processes
         </div>
 
-        <!-- 七、學術論文 -->
-        <div class="card">
-            <h2>七、學術論文（CrossRef API 搜尋）</h2>
-            <table>
-                <tr>
-                    <th>編號</th>
-                    <th>標題</th>
-                    <th>作者</th>
-                    <th>年份</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Studying Deciding</td>
-                    <td>Mintzberg & Waters</td>
-                    <td>1990</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Managing Exceptionally</td>
-                    <td>Mintzberg</td>
-                    <td>2001</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Power and Organization Life Cycles</td>
-                    <td>Mintzberg</td>
-                    <td>2012</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>An Underlying Theory for Strategy, Organization, and Management</td>
-                    <td>Mintzberg</td>
-                    <td>2022</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>On Organizational Learning</td>
-                    <td>Argyris</td>
-                    <td>1976</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Organizational Structure</td>
-                    <td>Kortmann</td>
-                    <td>2012</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Organizational structure, design, and bureaucracy</td>
-                    <td>King & Lawley</td>
-                    <td>2022</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Organizational Change, Organizational Structure, and Design</td>
-                    <td>Bhattacharyya</td>
-                    <td>2024</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Staff-Initiated Organizational Change</td>
-                    <td>Packard</td>
-                    <td>2021</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Organization in Platform Capitalism</td>
-                    <td>—</td>
-                    <td>—</td>
-                </tr>
-            </table>
+
+        <!-- 第四章 -->
+        <h2 id="ch4"><span class="section-num">第四章</span> Mintzberg 的組織五類型</h2>
+
+        <p>在眾多組織理論家中，Henry Mintzberg 的分類最具影響力，也最實用。他提出，組織可以根據「核心協調機制」和「關鍵部門」的不同，分為五種基本類型。</p>
+
+        <h3>4.1 五種組織結構</h3>
+
+        <p><strong>簡單結構（Simple Structure）</strong>：這是大多數新創企業的起點。組織由創辦人直接指揮，結構扁平，決策快速。優點是靈活、反應快；缺點是過度依賴創辦人，一旦規模擴大或創辦人離去，就會出問題。典型的簡單結構就像是五個人的設計工作室，老闆什麼都管，每個人都直接向他回報。</p>
+
+        <p><strong>機械式官僚（Machine Bureaucracy）</strong>：這是 Weber 描述的官僚制在企業中的體現。組織高度標準化，每個崗位都有明確的工作說明書，流程被仔細設計和監控。適合大規模、穩定的生產環境，例如傳統的汽車製造廠或銀行的後台作業。麥當勞的標準化作業流程，就是機械式官僚的典型代表。</p>
+
+        <p><strong>專業式官僚（Professional Bureaucracy）</strong>：這種組織依靠專業人員的標準化訓練來協調工作。醫院和大學是典型的例子。醫生和教授都有高度的專業自主性，組織的官僚結構主要是在後勤和資源分配上提供支持。在這種組織中，協調的關鍵不是「上級的指揮」，而是「專業的訓練」。</p>
+
+        <p><strong>事業部制（Divisionalized Form）</strong>：當企業進入多元化經營時，往往會採用事業部制。每個事業部像一個獨立的小公司，有自己的產品、市場和利潤責任。總部則負責資源分配和績效監控。通用汽車（GM）在 1920 年代首創了這種結構，至今仍是大型多元企業的主流選擇。</p>
+
+        <p><strong>特別小組（Adhocracy）</strong>：這是 Mintzberg 五種類型中最具創新力的結構。在特別小組中，專業專家組成跨功能的專案小組，針對特定任務進行創新。這種結構適合需要高度創新的環境，例如研發機構、顧問公司、電影製作公司。Adhocracy 的挑戰在於協調困難，因為它缺乏標準化的流程，高度依賴成員之間的溝通和信任。</p>
+
+        <h3>4.2 Mintzberg 的核心洞見</h3>
+        <p>Mintzberg 最重要的貢獻不在於分類本身，而在於他指出的一個道理：組織結構不是管理者可以隨意選擇的工具，而是由組織的「核心協調機制」、「關鍵部門」和「情境因素」共同決定的。錯誤的結構匹配，會導致組織效能低下。</p>
+
+        <div class="ref">
+            📖 參考文獻：Mintzberg, H. (1979). <em>The Structuring of Organizations</em>; Mintzberg, H. (2022). "An Underlying Theory for Strategy, Organization, and Management" (DOI: 10.1561/111.00000039)
         </div>
 
-        <!-- 八、研究趨勢 -->
-        <div class="card">
-            <h2>八、2024-2026 研究趨勢</h2>
-            
-            <h3>新興議題</h3>
-            <div style="margin: 15px 0;">
-                <span class="tag">AI 與組織</span>
-                <span class="tag purple">平台組織</span>
-                <span class="tag green">永續組織</span>
-                <span class="tag orange">敏捷組織</span>
-                <span class="tag">遠距工作</span>
-            </div>
 
-            <h3>重要期刊</h3>
-            <ul>
-                <li>Organization Science</li>
-                <li>Administrative Science Quarterly</li>
-                <li>Strategic Management Journal</li>
-                <li>Journal of International Business Studies</li>
-                <li>Organization Theory（SAGE）</li>
-            </ul>
+        <!-- 第五章 -->
+        <h2 id="ch5"><span class="section-num">第五章</span> 動態能力理論：為何有些企業能持續成功</h2>
 
-            <h3>經典書籍</h3>
-            <ul>
-                <li>Mintzberg, H. (1979). <em>The Structuring of Organizations</em></li>
-                <li>Teece, D. (2009). <em>Dynamic Capabilities and Strategic Management</em></li>
-                <li>Senge, P. (1990). <em>The Fifth Discipline</em></li>
-                <li>Scott, W. R. (2014). <em>Organizations: Rational, Natural, and Open Systems</em></li>
-            </ul>
+        <p>1990 年代，David Teece 提出了一個至今仍具影響力的理論：動態能力（Dynamic Capabilities）。這個理論試圖回答一個根本問題：為什麼有些企業能在快速變化的環境中持續成功，而其他企業卻不行？</p>
+
+        <h3>5.1 動態能力的定義</h3>
+        <p>Teece 將動態能力定義為「企業整合、建立、重新配置內外部能力，以因應快速變化環境的能力」。這個定義看似抽象，但可以拆解為三個具體的要素：</p>
+
+        <p><strong>感知（Sensing）</strong>：發現機會和威脅的能力。這包括市場研究、技術趨勢分析、競爭對手監控等。例如，台積電在 1990 年代就感知到先進製程將成為半導體產業的關鍵，因此決定投入鉅資研發。</p>
+
+        <p><strong>擷取（Seizing）</strong>：把握機會的能力。光發現機會還不夠，企業必須有能力將機會轉化為具體的商業行動。這涉及投資決策、產品開發、市場進入等。擷取能力強的企業，能夠在機會稍縱即逝的市場中搶佔先機。</p>
+
+        <p><strong>轉型（Transforming）</strong>：持續更新和重新配置組織資源的能力。這是最困難的一環，因為它要求組織打破既有的慣性和結構。例如，Netflix 從 DVD 租片轉型為串流平台，就需要徹底重新配置其技術、內容和商業模式。</p>
+
+        <h3>5.2 動態能力 vs. 核心能力</h3>
+        <p>動態能力理論與「核心能力」（Core Competence）理論有重要的區別。核心能力強調企業應該專注於自己最擅長的領域；動態能力則強調，即使你現在很擅長某件事，如果環境改變了，你也必須有能力改變。用 Teece 的話說：「動態能力是關於變化的能力。」</p>
+
+        <div class="highlight">
+            <strong>實務啟示：</strong>動態能力不是抽象的概念。它意味著，管理者應該持續問自己三個問題：我們是否看到了環境的變化？我們是否在把握新的機會？我們是否有能力重新配置資源來因應變化？
         </div>
 
-        <div class="footer">
-            整理者：小綠 ｜ 日期：2026-06-21<br>
-            資料來源：CrossRef API、Springer、MIT OCW
+        <div class="ref">
+            📖 參考文獻：Teece, D.J., Pisano, G. & Shuen, A. (1997). "Dynamic Capabilities and Strategic Management" (<em>Strategic Management Journal</em>); Teece, D.J. (2022). "The Evolution of the Dynamic Capabilities Framework" (Springer)
+        </div>
+
+
+        <!-- 第六章 -->
+        <h2 id="ch6"><span class="section-num">第六章</span> 組織學習：單環與雙環的差別</h2>
+
+        <p>另一個理解組織如何適應環境的重要視角，是組織學習理論。這個理論的核心問題是：組織如何從經驗中學習，並改善自己的行為？</p>
+
+        <h3>6.1 Argyris 的單環與雙環學習</h3>
+        <p>Chris Argyris 是組織學習理論的先驅。他提出了兩個關鍵概念：單環學習（Single-Loop Learning）和雙環學習（Double-Loop Learning）。</p>
+
+        <p><strong>單環學習</strong>就像自動調溫器：當溫度偏離設定值時，它會自動調整，但從不質疑設定值本身是否正確。在組織中，單環學習表現為：發現問題 → 找到解決方案 → 修正問題。例如，銷售額下降了，就加強促銷活動。</p>
+
+        <p><strong>雙環學習</strong>則更進一步：它不僅修正問題，還會質疑背後的基本假設和策略。回到銷售額下降的例子，雙環學習會問：我們的產品是否還符合市場需求？我們的商業模式是否需要改變？</p>
+
+        <blockquote>
+            「組織中最常見的學習障礙，不是缺乏資訊，而是防禦性的心智模式。人們害怕面對自己的假設可能是錯的。」—— Chris Argyris
+        </blockquote>
+
+        <h3>6.2 Senge 的五項修練</h3>
+        <p>Peter Senge 在《第五項修練》（The Fifth Discipline）中，將組織學習的實踐方法系統化。他提出了五項「修練」：</p>
+
+        <ol>
+            <li><strong>系統思考</strong>：理解事物之間的相互關係，而不是孤立地看問題</li>
+            <li><strong>自我超越</strong>：個人持續學習和成長的承諾</li>
+            <li><strong>心智模式</strong>：檢視和挑戰自己的假設和信念</li>
+            <li><strong>共同願景</strong>：建立組織成員共同追尋的目標</li>
+            <li><strong>團隊學習</strong>：透過對話和討論，增進團隊的集體智慧</li>
+        </ol>
+
+        <p>Senge 特別強調「系統思考」，認為它是其他四項修練的基礎。他用「啤酒遊戲」（Beer Game）來說明：在供應鏈中，每個参与者都只根據自己的局部資訊做決策，但整體結果卻是巨大的波動（所謂的「長鞭效應」）。這說明了，理解系統整體的動態，比優化個別環節更重要。</p>
+
+        <div class="ref">
+            📖 參考文獻：Argyris, C. & Schön, D.A. (1978). <em>Organizational Learning</em>; Senge, P.M. (1990). <em>The Fifth Discipline</em>
+        </div>
+
+
+        <!-- 第七章 -->
+        <h2 id="ch7"><span class="section-num">第七章</span> 組織結構設計的實務選擇</h2>
+
+        <p>理解了理論之後，管理者實際面臨的問題是：我的組織應該採用什麼結構？這個問題沒有標準答案，但有幾個重要的考量維度。</p>
+
+        <h3>7.1 五種常見的組織結構</h3>
+
+        <table>
+            <tr>
+                <th>結構類型</th>
+                <th>適用情境</th>
+                <th>優點</th>
+                <th>缺點</th>
+            </tr>
+            <tr>
+                <td><strong>功能式</strong></td>
+                <td>單一產品、穩定環境</td>
+                <td>專業效率高，資源集中</td>
+                <td>部門之間溝通困難（「部門牆」）</td>
+            </tr>
+            <tr>
+                <td><strong>事業部式</strong></td>
+                <td>多元化經營、成長期</td>
+                <td>責任明確，利潤中心清楚</td>
+                <td>資源重複配置，事業部之間競爭</td>
+            </tr>
+            <tr>
+                <td><strong>矩陣式</strong></td>
+                <td>專案導向、需要跨部門協作</td>
+                <td>資源共享，彈性高</td>
+                <td>雙重指揮，角色模糊</td>
+            </tr>
+            <tr>
+                <td><strong>網路式</strong></td>
+                <td>快速變化的環境</td>
+                <td>極度彈性，可快速重組</td>
+                <td>控制困難，品質不易保證</td>
+            </tr>
+            <tr>
+                <td><strong>平台式</strong></td>
+                <td>數位經濟、生態系協同</td>
+                <td>創造網路效應，吸引外部參與者</td>
+                <td>治理複雜，利益分配困難</td>
+            </tr>
+        </table>
+
+        <h3>7.2 三個設計原則</h3>
+
+        <p><strong>結構追隨策略（Structure follows Strategy）</strong>：Alfred Chandler 在研究美國大型企業的歷史後發現，組織結構的變革往往落後於策略的轉變。當企業改變策略時，結構必須隨之調整，否則策略無法有效執行。例如，當一家企業從單一產品轉向多元化經營時，如果仍然維持功能式結構，就會出現協調困難。</p>
+
+        <p><strong>組織追隨環境</strong>：這是權變理論的核心原則。組織的結構必須與其外部環境的特徵匹配。在穩定環境中，機械式結構有效率；在不確定環境中，有機式結構有彈性。</p>
+
+        <p><strong>流程追顧客</strong>：這是 1990 年代流程再造（BPR）運動的核心原則。組織的流程應該圍繞顧客需求來設計，而不是圍繞內部的職能部門來設計。這意味著，打破部門壁壘，建立端到端的流程。</p>
+
+        <div class="ref">
+            📖 參考文獻：Chandler, A.D. (1962). <em>Strategy and Structure</em>; Kortmann, S. (2012). "Organizational Structure" (DOI: 10.1007/978-3-8349-3630-1_2)
+        </div>
+
+
+        <!-- 第八章 -->
+        <h2 id="ch8"><span class="section-num">第八章</span> 組織變革：如何推動轉型</h2>
+
+        <p>組織設計不是一次性的工作。隨著環境變化，組織必須不斷調整和轉型。但變革是困難的，因為它涉及打破既有的慣性、利益結構和心智模式。</p>
+
+        <h3>8.1 Lewin 的變革模型</h3>
+        <p>Kurt Lewin 提出了最經典的變革模型，將變革分為三個階段：</p>
+
+        <p><strong>解凍（Unfreezing）</strong>：打破現狀的平衡狀態。這需要讓人們意識到變革的必要性，創造「急迫感」。解凍最困難的部分，是克服人們對未知的恐懼和對現狀的依賴。</p>
+
+        <p><strong>變革（Changing）</strong>：引入新的行為、流程或結構。在這個階段，人們需要學習新的做事方式，可能會感到困惑和不安。有效的溝通和支持機制至關重要。</p>
+
+        <p><strong>再凍結（Refreezing）</strong>：將新的行為和流程制度化，使其成為「新的常態」。如果沒有再凍結，人們往往會回到舊的習慣。</p>
+
+        <h3>8.2 Kotter 的八步驟</h3>
+        <p>John Kotter 在 Lewin 的基礎上，提出了更具操作性的八步驟模型：</p>
+
+        <ol>
+            <li>建立急迫感</li>
+            <li>組建領導團隊</li>
+            <li>發展願景和策略</li>
+            <li>溝通變革願景</li>
+            <li>授權廣泛行動</li>
+            <li>創造短期成果</li>
+            <li>鞏固成果並推動更多變革</li>
+            <li>將變革制度化</li>
+        </ol>
+
+        <p>Kotter 特別強調「創造短期成果」的重要性。變革是一個長期過程，如果人們在初期看不到具體的成果，熱情就會消退。因此，管理者應該選擇一些容易見效的項目，快速取得成果，以此建立信心和動力。</p>
+
+        <div class="ref">
+            📖 參考文獻：Lewin, K. (1947). "Frontiers in Group Dynamics"; Kotter, J.P. (1996). <em>Leading Change</em>; Bhattacharyya, D.K. (2024). "Organizational Change, Organizational Structure, and Design" (DOI: 10.4324/9781003501701-11)
+        </div>
+
+
+        <!-- 第九章 -->
+        <h2 id="ch9"><span class="section-num">第九章</span> 平台組織：數位時代的新物種</h2>
+
+        <p>進入 21 世紀，數位技術催生了一種全新的組織形式：平台組織（Platform Organization）。平台組織不是傳統的企業，而是一個生態系，它透過數位基礎設施，連接多方參與者，創造網路效應。</p>
+
+        <h3>9.1 平台組織的特徵</h3>
+
+        <p>平台組織有三個核心特徵。首先是<strong>多邊平台</strong>：它同時服務多個群體（例如 Uber 同時服務司機和乘客），並在他們之間創造價值。其次是<strong>網路效應</strong>：參與者越多，平台對每個參與者的價值就越大。第三是<strong>數位基礎設施</strong>：平台的運作依賴數據、演算法和網路技術。</p>
+
+        <p>平台組織的興起，挑戰了傳統的組織理論。在科層組織中，協調依靠命令和控制；在平台組織中，協調依靠數據和激勵機制。在科層組織中，價值來自內部的效率；在平台組織中，價值來自外部的生態系。</p>
+
+        <h3>9.2 平台組織的挑戰</h3>
+
+        <p>平台組織也面臨獨特的挑戰。最核心的問題是<strong>治理</strong>：如何在開放與控制之間取得平衡？過度控制會扼殺生態系的活力；過度開放則會導致品質失控和利益衝突。</p>
+
+        <p>另一個挑戰是<strong>勞動關係</strong>。平台工作者（如外送員、Uber 司機）在法律上通常被歸類為「獨立承包商」，而非「員工」，這引發了廣泛的爭議。平台是否應該為這些工作者提供基本保障？這是當代組織理論正在探索的問題。</p>
+
+        <div class="ref">
+            📖 參考文獻："Organization in Platform Capitalism" (DOI: 10.5040/9781350030275.article-110); Kassem, S. (2023). "Alienation across Amazon and the Platform Economy" (DOI: 10.1332/policypress/9781529226546.003.0010)
+        </div>
+
+
+        <!-- 第十章 -->
+        <h2 id="ch10"><span class="section-num">第十章</span> 台灣企業案例分析</h2>
+
+        <p>組織理論不是抽象的學術概念，它在台灣的企業實踐中有豐富的例證。以下分析三個具代表性的案例。</p>
+
+        <div class="case-box">
+            <h4>案例一：台積電（TSMC）</h4>
+            <p>台積電的組織結構是典型的<strong>矩陣式結構</strong>，結合了功能專業和產品線專注。工程師同時向功能主管（如研發部長）和產品線主管回報。這種結構讓台積電能夠在不同製程之間共享專業知識，同時保持對客戶需求的快速回應。</p>
+            <p>台積電的組織文化有幾個顯著特徵。首先是<strong>高度專注</strong>：從成立至今，台積電幾乎只專注於晶圓代工，不跨入品牌或設計。其次是<strong>工程師文化</strong>：決策以技術數據為基礎，而非個人直覺。第三是<strong>客戶信任</strong>：台積電承諾不與客戶競爭，這建立了長期的信任關係。</p>
+            <p>從動態能力理論的角度看，台積電的成功在於其強大的「感知」和「轉型」能力。它在 1990 年代就感知到先進製程的重要性，並持續投入研發；當 FinFET 技術出現時，它快速轉型，搶佔了市場主導地位。</p>
+        </div>
+
+        <div class="case-box">
+            <h4>案例二：統一集團</h4>
+            <p>統一集團是台灣最成功的多角化企業之一。它的轉型歷程，是組織學習理論的絕佳案例。</p>
+            <p>統一從 1970 年代的食品製造商，逐步轉型為便利商店通路（7-ELEVEN），再到數位生活平台。每次轉型都涉及組織結構和能力的根本性改變。特別值得注意的是，統一採用了「小規模實驗、快速迭代」的策略——這正是雙環學習的實踐。</p>
+            <p>例如，7-ELEVEN 最初只是單純的便利商店，但統一不斷嘗試新的服務（缴费、取貨、咖啡），每次都是小規模測試，成功後才全面推廣。這種「組織實驗」的能力，讓統一能够在穩定中持續創新。</p>
+        </div>
+
+        <div class="case-box">
+            <h4>案例三：鴻海（Foxconn）</h4>
+            <p>鴻海是全球最大的電子代工製造商，其組織結構和管理模式，長期以來以「軍事化管理」和「效率導向」著稱。這種結構在代工時代是有效的——它讓鴻海能夠以極低的成本、極快的速度量產電子產品。</p>
+            <p>但隨著代工利潤率下降，鴻海面臨轉型壓力。它嘗試進入品牌市場（收購夏普）、佈局電動車（MIH 平台），這些嘗試本質上是從「機械式官僚」向「特別小組」或「平台組織」的轉型。從封閉的代工模式走向開放的生態系，鴻海的組織轉型仍在進行中，其結果有待觀察。</p>
+        </div>
+
+        <div class="ref">
+            📖 參考文獻：各案例基於公開資料整理
+        </div>
+
+
+        <!-- 第十一章 -->
+        <h2 id="ch11"><span class="section-num">第十一章</span> 2024-2026 研究趨勢與未來方向</h2>
+
+        <p>組織理論是一個活躍的研究領域，以下是 2024-2026 年的幾個重要趨勢。</p>
+
+        <h3>11.1 AI 與組織</h3>
+        <p>人工智慧的普及，正在根本性地改變組織的運作方式。AI 可以替代許多原本由人做的協調和決策工作，這意味著組織結構可能變得更加扁平。例如，當 AI 可以即時分析市場數據並提供決策建議時，中階管理者的角色就會被壓縮。學者正在探索「AI 增強型組織」（AI-Augmented Organization）的概念。</p>
+
+        <h3>11.2 永續組織</h3>
+        <p>ESG（環境、社會、治理）議題的升溫，讓「永續」成為組織設計的新維度。組織如何將永續目標嵌入其結構、流程和文化中？這不是一個獨立的「永續部門」就能解決的問題，而是需要系統性的組織變革。</p>
+
+        <h3>11.3 敏捷組織</h3>
+        <p>源於軟體開發的敏捷方法（Agile），正在擴散到其他領域。Spotify 的「小隊模型」（Squad Model）成為許多企業組織轉型的參考。敏捷組織的核心理念是：小團隊、跨功能、快速迭代、自主決策。這與 Mintzberg 的「特別小組」概念有異曲同工之妙。</p>
+
+        <h3>11.4 遠距工作組織</h3>
+        <p>COVID-19 之後，遠距和混合工作模式成為常態。這對組織理論提出了新的挑戰：當成員不在同一個物理空間時，如何建立信任？如何維持組織文化？如何進行有效的協調？這些問題正在催生「虛擬組織」（Virtual Organization）的新理論。</p>
+
+        <div class="ref">
+            📖 參考文獻：Ratten, V. (2025). "The Journal of Management & Organization: 2025 Year in Review" (Cambridge University Press); "Dynamic capabilities framework and its transformative contributions" (2024, Springer)
+        </div>
+
+
+        <div class="footer" style="text-align: center; color: #8b949e; margin-top: 60px; padding: 30px 0; border-top: 1px solid #21262d; font-size: 13px;">
+            <p>整理者：小綠 ｜ 日期：2026-06-21</p>
+            <p>資料來源：CrossRef API、Springer、MIT OCW、Cambridge University Press</p>
         </div>
     </div>
 </body>
