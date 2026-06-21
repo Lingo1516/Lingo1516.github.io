@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>組織理論教材資料</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        h2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #667eea;
+            font-size: 17px;
+            margin: 15px 0 10px;
+        }
+        .concept {
+            background: #1e3a5f;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+        }
+        .concept strong {
+            color: #667eea;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            overflow-x: auto;
+            display: block;
+        }
+        th {
+            background: #667eea;
+            color: #fff;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #333;
+            font-size: 14px;
+        }
+        tr:hover {
+            background: #1e3a5f;
+        }
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 3px;
+        }
+        .tag.green {
+            background: #28a745;
+        }
+        .tag.orange {
+            background: #fd7e14;
+        }
+        .tag.purple {
+            background: #6f42c1;
+        }
+        ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        li {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .doi {
+            color: #888;
+            font-size: 12px;
+            word-break: break-all;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media (max-width: 600px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 24px; }
+            h2 { font-size: 18px; }
+        }
+        .footer {
+            text-align: center;
+            color: #666;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 組織理論教材資料</h1>
+        <p class="subtitle">整理自學術論文、大學教材、深度報告 ｜ 2026-06-21</p>
+
+        <!-- 一、經典組織理論 -->
+        <div class="card">
+            <h2>一、經典組織理論</h2>
+            
+            <h3>1. 官僚制理論（Bureaucracy）</h3>
+            <div class="concept">
+                <strong>代表學者：</strong>Max Weber<br>
+                <strong>核心概念：</strong>理性-法律權威、專業分工、層級節制、規則導向<br>
+                <strong>關鍵貢獻：</strong>現代組織設計的基礎，解釋為何大規模組織需要標準化流程<br>
+                <strong>批判：</strong>過度強調規則導致僵化、忽略人性因素
+            </div>
+
+            <h3>2. 科學管理（Scientific Management）</h3>
+            <div class="concept">
+                <strong>代表學者：</strong>Frederick Taylor<br>
+                <strong>核心概念：</strong>工作科學化、時間動作研究、差別計件工資制<br>
+                <strong>關鍵貢獻：</strong>提升生產效率，奠定工業工程基礎<br>
+                <strong>限制：</strong>將人視為機器，忽略社會心理因素
+            </div>
+
+            <h3>3. 行政管理理論</h3>
+            <div class="concept">
+                <strong>代表學者：</strong>Henri Fayol<br>
+                <strong>核心概念：</strong>管理五功能（計劃、組織、指揮、協調、控制）、14項管理原則<br>
+                <strong>關鍵貢獻：</strong>奠定現代管理學的理論框架
+            </div>
+
+            <h3>4. 人群關係學派</h3>
+            <div class="concept">
+                <strong>代表學者：</strong>Elton Mayo（霍桑實驗）<br>
+                <strong>核心概念：</strong>非正式組織、社會需求、工作滿意度<br>
+                <strong>關鍵貢獻：</strong>發現人的社會性需求比物質激勵更重要
+            </div>
+        </div>
+
+        <!-- 二、現代組織理論 -->
+        <div class="card">
+            <h2>二、現代組織理論</h2>
+            
+            <h3>5. 結構權變理論（Contingency Theory）</h3>
+            <div class="concept">
+                <strong>代表學者：</strong>Lawrence & Lorsch、Burns & Stalker<br>
+                <strong>核心概念：</strong>沒有最好的組織方式，只有最適合環境的組織<br>
+                <strong>關鍵變數：</strong>環境穩定性、技術、規模、策略<br>
+                <strong>MIT 教材觀點：</strong>「組織理論的相對論」— 不同情境需要不同設計
+            </div>
+
+            <h3>6. Mintzberg 的組織類型</h3>
+            <div class="concept">
+                <strong>代表學者：</strong>Henry Mintzberg<br>
+                <strong>五種組織結構：</strong>
+                <ul>
+                    <li>簡單結構（Simple Structure）— 創業初期</li>
+                    <li>機械式官僚（Machine Bureaucracy）— 大規模生產</li>
+                    <li>專業式官僚（Professional Bureaucracy）— 醫院、大學</li>
+                    <li>事業部制（Divisionalized Form）— 多元化企業</li>
+                    <li>特別小組（Adhocracy）— 創新導向</li>
+                </ul>
+                <strong>學術論文：</strong><br>
+                <span class="doi">Mintzberg (1990) "Studying Deciding" — DOI: 10.1177/017084069001100101</span><br>
+                <span class="doi">Mintzberg (2022) "An Underlying Theory for Strategy, Organization, and Management" — DOI: 10.1561/111.00000039</span>
+            </div>
+
+            <h3>7. 動態能力理論（Dynamic Capabilities）</h3>
+            <div class="concept">
+                <strong>代表學者：</strong>David Teece<br>
+                <strong>核心概念：</strong>組織整合、建立、重新配置內外部能力以因應快速變化環境<br>
+                <strong>三大要素：</strong>
+                <ul>
+                    <li>感知（Sensing）— 發現機會與威脅</li>
+                    <li>擷取（Seizing）— 把握機會</li>
+                    <li>轉型（Transforming）— 持續更新</li>
+                </ul>
+                <strong>學術論文：</strong><br>
+                <span class="doi">Teece (2022) "The Evolution of the Dynamic Capabilities Framework" — Springer</span><br>
+                <span class="doi">Teece (2024) "Dynamic Capabilities Framework and Its Transformative Contributions" — DOI: 10.1057/s41267-024-00758-8</span>
+            </div>
+
+            <h3>8. 組織學習理論</h3>
+            <div class="concept">
+                <strong>代表學者：</strong>Chris Argyris、Peter Senge<br>
+                <strong>單環學習 vs 雙環學習：</strong>
+                <ul>
+                    <li>單環：修正錯誤，不改變基本假設</li>
+                    <li>雙環：質疑基本假設，重新檢視策略</li>
+                </ul>
+                <strong>Senge 的五項修練：</strong>系統思考、自我超越、心智模式、共同願景、團隊學習<br>
+                <span class="doi">Argyris (1976) "On Organizational Learning" — DOI: 10.1016/0090-2616(76)90034-6</span>
+            </div>
+        </div>
+
+        <!-- 三、組織結構設計 -->
+        <div class="card">
+            <h2>三、組織結構設計</h2>
+            
+            <h3>9. 常見組織結構</h3>
+            <table>
+                <tr>
+                    <th>類型</th>
+                    <th>適用情境</th>
+                    <th>優點</th>
+                    <th>缺點</th>
+                </tr>
+                <tr>
+                    <td>功能式</td>
+                    <td>單一產品、穩定環境</td>
+                    <td>專業效率</td>
+                    <td>部門牆</td>
+                </tr>
+                <tr>
+                    <td>事業部式</td>
+                    <td>多元化、成長期</td>
+                    <td>責任明確</td>
+                    <td>資源重複</td>
+                </tr>
+                <tr>
+                    <td>矩陣式</td>
+                    <td>專案導向</td>
+                    <td>資源共享</td>
+                    <td>雙重指揮</td>
+                </tr>
+                <tr>
+                    <td>網路式</td>
+                    <td>快速變化</td>
+                    <td>彈性高</td>
+                    <td>控制困難</td>
+                </tr>
+                <tr>
+                    <td>平台式</td>
+                    <td>數位經濟</td>
+                    <td>生態系協同</td>
+                    <td>治理複雜</td>
+                </tr>
+            </table>
+
+            <h3>10. 組織設計原則</h3>
+            <div class="concept">
+                <strong>結構追隨策略</strong>（Structure follows Strategy）— Alfred Chandler<br>
+                <strong>組織追隨環境</strong>（Organization follows Environment）— 權變理論<br>
+                <strong>流程追顧客</strong>（Process follows Customer）— 流程再造<br>
+                <span class="doi">Kortmann (2012) "Organizational Structure" — DOI: 10.1007/978-3-8349-3630-1_2</span><br>
+                <span class="doi">King & Lawley (2022) "Organizational structure, design, and bureaucracy" — DOI: 10.1093/hebz/9780192893475.003.0003</span>
+            </div>
+        </div>
+
+        <!-- 四、組織變革與轉型 -->
+        <div class="card">
+            <h2>四、組織變革與轉型</h2>
+            
+            <h3>11. 變革管理模型</h3>
+            <div class="concept">
+                <strong>Lewin 變革模型：</strong>解凍 → 變革 → 再凍結<br>
+                <strong>Kotter 八步驟：</strong>建立急迫感 → 組織領導團隊 → 發展願景 → 溝通願景 → 授權行動 → 創造短期成果 → 鞏固成果 → 將變革制度化<br>
+                <strong>連續 vs 非連續變革：</strong>漸進改善 vs 突破式轉型<br>
+                <span class="doi">Bhattacharyya (2024) "Organizational Change, Organizational Structure, and Design" — DOI: 10.4324/9781003501701-11</span><br>
+                <span class="doi">Packard (2021) "Staff-Initiated Organizational Change" — DOI: 10.1093/oso/9780197549995.003.0020</span>
+            </div>
+
+            <h3>12. 數位轉型</h3>
+            <div class="concept">
+                <strong>關鍵議題：</strong>組織文化、人才轉型、流程再造、技術導入<br>
+                <strong>台灣案例：</strong>
+                <ul>
+                    <li>台積電：從製造代工到技術領先的組織能力轉型</li>
+                    <li>統一超商：從零售到數位生活平台</li>
+                    <li>鴻海：從代工到 MIH 電動車平台</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 五、平台組織 -->
+        <div class="card">
+            <h2>五、平台組織</h2>
+            
+            <h3>13. 平台組織理論</h3>
+            <div class="concept">
+                <strong>核心概念：</strong>從科層到生態系的轉變<br>
+                <strong>關鍵特徵：</strong>
+                <ul>
+                    <li>多邊平台</li>
+                    <li>網路效應</li>
+                    <li>數位基礎設施</li>
+                </ul>
+                <span class="doi">"Organization in Platform Capitalism" — DOI: 10.5040/9781350030275.article-110</span><br>
+                <span class="doi">Kassem (2023) "Alienation across Amazon and the Platform Economy" — DOI: 10.1332/policypress/9781529226546.003.0010</span>
+            </div>
+        </div>
+
+        <!-- 六、台灣企業組織案例 -->
+        <div class="card">
+            <h2>六、台灣企業組織案例</h2>
+            
+            <div class="two-col">
+                <div>
+                    <h3>14. 台積電（TSMC）</h3>
+                    <div class="concept">
+                        <strong>組織特色：</strong>矩陣式結構、高度專注、工程師文化<br>
+                        <strong>關鍵能力：</strong>技術深耕、客戶信任、快速量產<br>
+                        <strong>組織學習：</strong>從成熟製程到先進製程的知識累積
+                    </div>
+                </div>
+                <div>
+                    <h3>15. 統一集團</h3>
+                    <div class="concept">
+                        <strong>組織特色：</strong>多角化經營、本土化管理<br>
+                        <strong>轉型歷程：</strong>傳統零售 → 7-ELEVEN → 數位生活平台<br>
+                        <strong>組織創新：</strong>小規模實驗、快速迭代
+                    </div>
+                </div>
+            </div>
+
+            <h3>16. 鴻海（Foxconn）</h3>
+            <div class="concept">
+                <strong>組織特色：</strong>軍事化管理、效率導向<br>
+                <strong>轉型挑戰：</strong>從代工到品牌、從製造到服務<br>
+                <strong>MIH 平台：</strong>組織從封閉走向開放生態系
+            </div>
+        </div>
+
+        <!-- 七、學術論文 -->
+        <div class="card">
+            <h2>七、學術論文（CrossRef API 搜尋）</h2>
+            <table>
+                <tr>
+                    <th>編號</th>
+                    <th>標題</th>
+                    <th>作者</th>
+                    <th>年份</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Studying Deciding</td>
+                    <td>Mintzberg & Waters</td>
+                    <td>1990</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Managing Exceptionally</td>
+                    <td>Mintzberg</td>
+                    <td>2001</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Power and Organization Life Cycles</td>
+                    <td>Mintzberg</td>
+                    <td>2012</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>An Underlying Theory for Strategy, Organization, and Management</td>
+                    <td>Mintzberg</td>
+                    <td>2022</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>On Organizational Learning</td>
+                    <td>Argyris</td>
+                    <td>1976</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Organizational Structure</td>
+                    <td>Kortmann</td>
+                    <td>2012</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Organizational structure, design, and bureaucracy</td>
+                    <td>King & Lawley</td>
+                    <td>2022</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Organizational Change, Organizational Structure, and Design</td>
+                    <td>Bhattacharyya</td>
+                    <td>2024</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Staff-Initiated Organizational Change</td>
+                    <td>Packard</td>
+                    <td>2021</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Organization in Platform Capitalism</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 八、研究趨勢 -->
+        <div class="card">
+            <h2>八、2024-2026 研究趨勢</h2>
+            
+            <h3>新興議題</h3>
+            <div style="margin: 15px 0;">
+                <span class="tag">AI 與組織</span>
+                <span class="tag purple">平台組織</span>
+                <span class="tag green">永續組織</span>
+                <span class="tag orange">敏捷組織</span>
+                <span class="tag">遠距工作</span>
+            </div>
+
+            <h3>重要期刊</h3>
+            <ul>
+                <li>Organization Science</li>
+                <li>Administrative Science Quarterly</li>
+                <li>Strategic Management Journal</li>
+                <li>Journal of International Business Studies</li>
+                <li>Organization Theory（SAGE）</li>
+            </ul>
+
+            <h3>經典書籍</h3>
+            <ul>
+                <li>Mintzberg, H. (1979). <em>The Structuring of Organizations</em></li>
+                <li>Teece, D. (2009). <em>Dynamic Capabilities and Strategic Management</em></li>
+                <li>Senge, P. (1990). <em>The Fifth Discipline</em></li>
+                <li>Scott, W. R. (2014). <em>Organizations: Rational, Natural, and Open Systems</em></li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            整理者：小綠 ｜ 日期：2026-06-21<br>
+            資料來源：CrossRef API、Springer、MIT OCW
+        </div>
+    </div>
+</body>
+</html>
