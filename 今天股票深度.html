@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台股深度報告 | 2026-06-21（週日）</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#0d1117;
+  color:#c9d1d9;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.6;
+  padding:16px;
+}
+.container { max-width:800px; margin:0 auto; }
+h1 {
+  font-size:22px; font-weight:700; color:#58a6ff; margin-bottom:4px;
+}
+.subtitle { color:#8b949e; font-size:14px; margin-bottom:20px; }
+.card {
+  background:#161b22;
+  border:1px solid #30363d;
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:16px;
+}
+.card h2 {
+  font-size:16px; font-weight:600; color:#f0f6fc; margin-bottom:12px;
+  display:flex; align-items:center; gap:6px;
+}
+.card h2 .icon { font-size:18px; }
+.market-big {
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 16px;
+  margin-bottom:8px;
+}
+.market-big .index { font-size:28px; font-weight:700; color:#f0f6fc; }
+.market-big .change { font-size:18px; font-weight:600; }
+.change.up { color:#3fb950; }
+.change.down { color:#f85149; }
+.market-meta { color:#8b949e; font-size:13px; }
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th {
+  text-align:left; padding:6px 8px; border-bottom:1px solid #30363d;
+  color:#8b949e; font-weight:500; font-size:12px; white-space:nowrap;
+}
+td { padding:6px 8px; border-bottom:1px solid #21262d; white-space:nowrap; }
+tr:last-child td { border-bottom:none; }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+.green { color:#3fb950; }
+.red { color:#f85149; }
+.yellow { color:#d29922; }
+.blue { color:#58a6ff; }
+.tag {
+  display:inline-block; font-size:11px; padding:1px 6px; border-radius:8px;
+  margin-left:4px;
+}
+.tag-up { background:#1b3d1f; color:#3fb950; }
+.tag-down { background:#3d1b1b; color:#f85149; }
+.tag-neutral { background:#1b2d3d; color:#58a6ff; }
+.badge {
+  display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px;
+  font-weight:600;
+}
+.section-desc { color:#8b949e; font-size:12px; margin-bottom:10px; }
+ul.stock-list { list-style:none; }
+ul.stock-list li {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:6px 0; border-bottom:1px solid #21262d; font-size:13px;
+}
+ul.stock-list li:last-child { border-bottom:none; }
+.stock-code { color:#8b949e; font-size:11px; }
+.stock-name { font-weight:500; }
+.exec-log {
+  margin-top:16px; padding:12px; background:#0d1117; border-radius:8px;
+  border:1px solid #30363d;
+}
+.exec-log h4 { color:#8b949e; font-size:13px; margin-bottom:8px; }
+.exec-log ul { list-style:none; font-size:12px; color:#8b949e; }
+.exec-log ul li::before { content:"• "; color:#58a6ff; }
+.alert-bar {
+  background:#1b2d3d; border:1px solid #58a6ff40; border-radius:8px;
+  padding:10px 14px; margin-bottom:16px; font-size:13px; color:#8b949e;
+}
+.alert-bar strong { color:#58a6ff; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📊 台股深度報告</h1>
+<p class="subtitle">資料日期：2026-06-18（四）· 今日 06-21（日）休市</p>
+
+<div class="alert-bar">
+  <strong>⚠️ 注意</strong>：今日（06/21）為週日，台股休市。以下數據為最近交易日 <strong>2026/06/18（四）</strong> 盤後資料。06/19（五）TWSE 尚無資料。
+</div>
+
+<!-- 大盤概況 -->
+<div class="card">
+  <h2><span class="icon">📈</span> 大盤概況</h2>
+  <div class="market-big">
+    <span class="index">46,465.20</span>
+    <span class="change up">▲587.81 (+1.28%)</span>
+  </div>
+  <div class="market-meta">
+    開盤 45,972.26 · 最高 46,565.70 · 最低 45,972.26 · 成交金額 15,439 億 · 振幅 1.29%
+  </div>
+</div>
+
+<!-- 三大法人買賣超 -->
+<div class="card">
+  <h2><span class="icon">🏦</span> 三大法人買賣超（2026/06/18）</h2>
+  <p class="section-desc">單位：股。資料來源：TWSE T86 盤後統計</p>
+
+  <h3 style="font-size:14px; color:#3fb950; margin:8px 0 6px;">🟢 外資買超 Top 10</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th style="text-align:right;">買超股數</th></tr>
+    <tr><td>2002</td><td>中鋼</td><td class="num green">319,913,795</td></tr>
+    <tr><td>1301</td><td>台塑</td><td class="num green">142,290,326</td></tr>
+    <tr><td>2303</td><td>聯電</td><td class="num green">65,777,401</td></tr>
+    <tr><td>2409</td><td>友達</td><td class="num green">52,384,372</td></tr>
+    <tr><td>2337</td><td>旺宏</td><td class="num green">31,388,823</td></tr>
+    <tr><td>1802</td><td>台玻</td><td class="num green">26,659,152</td></tr>
+    <tr><td>6919</td><td>康霈*</td><td class="num green">25,485,783</td></tr>
+    <tr><td>2890</td><td>永豐金</td><td class="num green">23,485,793</td></tr>
+    <tr><td>2610</td><td>華航</td><td class="num green">19,462,274</td></tr>
+    <tr><td>2891</td><td>中信金</td><td class="num green">19,244,555</td></tr>
+  </table>
+  </div>
+
+  <h3 style="font-size:14px; color:#f85149; margin:12px 0 6px;">🔴 外資賣超 Top 10</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th style="text-align:right;">賣超股數</th></tr>
+    <tr><td>6116</td><td>彩晶</td><td class="num red">-79,725,519</td></tr>
+    <tr><td>2886</td><td>兆豐金</td><td class="num red">-33,020,694</td></tr>
+    <tr><td>3481</td><td>群創</td><td class="num red">-29,761,210</td></tr>
+    <tr><td>2317</td><td>鴻海</td><td class="num red">-25,474,195</td></tr>
+    <tr><td>3231</td><td>緯創</td><td class="num red">-25,043,493</td></tr>
+    <tr><td>4904</td><td>遠傳</td><td class="num red">-24,676,956</td></tr>
+    <tr><td>3576</td><td>聯合再生</td><td class="num red">-21,442,432</td></tr>
+    <tr><td>2344</td><td>華邦電</td><td class="num red">-19,836,811</td></tr>
+    <tr><td>4958</td><td>臻鼎-KY</td><td class="num red">-18,103,445</td></tr>
+    <tr><td>2884</td><td>玉山金</td><td class="num red">-15,142,454</td></tr>
+  </table>
+  </div>
+
+  <h3 style="font-size:14px; color:#3fb950; margin:12px 0 6px;">🟢 投信買超 Top 10</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th style="text-align:right;">買超股數</th></tr>
+    <tr><td>2886</td><td>兆豐金</td><td class="num green">35,366,883</td></tr>
+    <tr><td>4904</td><td>遠傳</td><td class="num green">23,500,922</td></tr>
+    <tr><td>2890</td><td>永豐金</td><td class="num green">22,670,088</td></tr>
+    <tr><td>2892</td><td>第一金</td><td class="num green">20,339,405</td></tr>
+    <tr><td>4958</td><td>臻鼎-KY</td><td class="num green">19,702,830</td></tr>
+    <tr><td>3481</td><td>群創</td><td class="num green">17,759,000</td></tr>
+    <tr><td>2880</td><td>華南金</td><td class="num green">13,666,880</td></tr>
+    <tr><td>2408</td><td>南亞科</td><td class="num green">13,354,963</td></tr>
+    <tr><td>1216</td><td>統一</td><td class="num green">8,258,975</td></tr>
+    <tr><td>1402</td><td>遠東新</td><td class="num green">7,973,000</td></tr>
+  </table>
+  </div>
+
+  <h3 style="font-size:14px; color:#f85149; margin:12px 0 6px;">🔴 投信賣超 Top 10</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th style="text-align:right;">賣超股數</th></tr>
+    <tr><td>2002</td><td>中鋼</td><td class="num red">-286,095,940</td></tr>
+    <tr><td>1301</td><td>台塑</td><td class="num red">-107,362,798</td></tr>
+    <tr><td>2303</td><td>聯電</td><td class="num red">-49,325,866</td></tr>
+    <tr><td>6919</td><td>康霈*</td><td class="num red">-24,869,246</td></tr>
+    <tr><td>2891</td><td>中信金</td><td class="num red">-11,319,036</td></tr>
+    <tr><td>2885</td><td>元大金</td><td class="num red">-9,755,828</td></tr>
+    <tr><td>3711</td><td>日月光投控</td><td class="num red">-8,525,378</td></tr>
+    <tr><td>2881</td><td>富邦金</td><td class="num red">-8,139,610</td></tr>
+    <tr><td>2330</td><td>台積電</td><td class="num red">-7,268,349</td></tr>
+    <tr><td>2207</td><td>和泰車</td><td class="num red">-7,092,628</td></tr>
+  </table>
+  </div>
+
+  <h3 style="font-size:14px; color:#d29922; margin:12px 0 6px;">🟡 三大法人合計買超 Top 10</h3>
+  <p class="section-desc">外=外資·投=投信·自=自營商</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th style="text-align:right;">合計</th><th>明細</th></tr>
+    <tr><td>2409</td><td>友達</td><td class="num green">56,969,694</td><td><span class="tag tag-up">外+52.4M</span> <span class="tag tag-neutral">投-0.1M</span> <span class="tag tag-up">自+4.7M</span></td></tr>
+    <tr><td>2890</td><td>永豐金</td><td class="num green">45,822,113</td><td><span class="tag tag-up">外+23.5M</span> <span class="tag tag-up">投+22.7M</span> <span class="tag tag-down">自-0.3M</span></td></tr>
+    <tr><td>1301</td><td>台塑</td><td class="num green">35,302,581</td><td><span class="tag tag-up">外+142.3M</span> <span class="tag tag-down">投-107.4M</span> <span class="tag tag-up">自+0.4M</span></td></tr>
+    <tr><td>2002</td><td>中鋼</td><td class="num green">34,629,025</td><td><span class="tag tag-up">外+319.9M</span> <span class="tag tag-down">投-286.1M</span> <span class="tag tag-up">自+0.8M</span></td></tr>
+    <tr><td>2337</td><td>旺宏</td><td class="num green">31,273,824</td><td><span class="tag tag-up">外+31.4M</span> <span class="tag tag-down">投-0.2M</span> <span class="tag tag-up">自+0.04M</span></td></tr>
+    <tr><td>1802</td><td>台玻</td><td class="num green">28,388,476</td><td><span class="tag tag-up">外+26.7M</span> <span class="tag tag-up">投+0.6M</span> <span class="tag tag-up">自+1.1M</span></td></tr>
+    <tr><td>2303</td><td>聯電</td><td class="num green">24,756,560</td><td><span class="tag tag-up">外+65.8M</span> <span class="tag tag-down">投-49.3M</span> <span class="tag tag-up">自+8.3M</span></td></tr>
+    <tr><td>8150</td><td>南茂</td><td class="num green">20,041,261</td><td><span class="tag tag-up">外+15.8M</span> <span class="tag tag-up">投+3.1M</span> <span class="tag tag-up">自+1.1M</span></td></tr>
+    <tr><td>2610</td><td>華航</td><td class="num green">19,425,563</td><td><span class="tag tag-up">外+19.5M</span> <span class="tag tag-up">投+0.007M</span> <span class="tag tag-down">自-0.04M</span></td></tr>
+    <tr><td>6770</td><td>力積電</td><td class="num green">18,607,313</td><td><span class="tag tag-up">外+14.7M</span> <span class="tag tag-up">投+1.7M</span> <span class="tag tag-up">自+2.2M</span></td></tr>
+  </table>
+  </div>
+
+  <h3 style="font-size:14px; color:#f85149; margin:12px 0 6px;">🔴 三大法人合計賣超 Top 10</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th style="text-align:right;">合計</th><th>明細</th></tr>
+    <tr><td>6116</td><td>彩晶</td><td class="num red">-80,501,886</td><td><span class="tag tag-down">外-79.7M</span> <span class="tag tag-up">投+2.3M</span> <span class="tag tag-down">自-3.1M</span></td></tr>
+    <tr><td>2317</td><td>鴻海</td><td class="num red">-29,377,749</td><td><span class="tag tag-down">外-25.5M</span> <span class="tag tag-down">投-3.5M</span> <span class="tag tag-down">自-0.4M</span></td></tr>
+    <tr><td>3576</td><td>聯合再生</td><td class="num red">-21,397,927</td><td><span class="tag tag-down">外-21.4M</span> <span class="tag tag-neutral">投+0.0M</span> <span class="tag tag-up">自+0.04M</span></td></tr>
+    <tr><td>3231</td><td>緯創</td><td class="num red">-20,744,293</td><td><span class="tag tag-down">外-25.0M</span> <span class="tag tag-up">投+4.2M</span> <span class="tag tag-up">自+0.05M</span></td></tr>
+    <tr><td>9904</td><td>寶成</td><td class="num red">-17,485,897</td><td><span class="tag tag-down">外-14.8M</span> <span class="tag tag-down">投-3.9M</span> <span class="tag tag-up">自+1.2M</span></td></tr>
+    <tr><td>1409</td><td>新纖</td><td class="num red">-14,935,709</td><td><span class="tag tag-down">外-14.7M</span> <span class="tag tag-up">投+0.002M</span> <span class="tag tag-down">自-0.2M</span></td></tr>
+    <tr><td>1605</td><td>華新</td><td class="num red">-12,105,005</td><td><span class="tag tag-down">外-12.6M</span> <span class="tag tag-down">投-0.1M</span> <span class="tag tag-up">自+0.6M</span></td></tr>
+    <tr><td>2344</td><td>華邦電</td><td class="num red">-10,945,745</td><td><span class="tag tag-down">外-19.8M</span> <span class="tag tag-up">投+7.3M</span> <span class="tag tag-up">自+1.6M</span></td></tr>
+    <tr><td>2834</td><td>臺企銀</td><td class="num red">-10,431,780</td><td><span class="tag tag-down">外-9.8M</span> <span class="tag tag-down">投-0.7M</span> <span class="tag tag-up">自+0.1M</span></td></tr>
+    <tr><td>1101</td><td>台泥</td><td class="num red">-9,189,245</td><td><span class="tag tag-down">外-9.2M</span> <span class="tag tag-up">投+0.05M</span> <span class="tag tag-up">自+0.007M</span></td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- 強勢股 / 弱勢股 -->
+<div class="card">
+  <h2><span class="icon">🔥</span> 強勢股 / 弱勢股排行</h2>
+  <p class="section-desc">06/18 收盤 · 漲跌幅排行（資料來源：HiStock）</p>
+
+  <h3 style="font-size:14px; color:#3fb950; margin:8px 0 6px;">🟢 強勢股 Top 15</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th>收盤</th><th style="text-align:right;">漲跌幅</th><th>成交量(張)</th></tr>
+    <tr><td>7610</td><td>聯友金屬-創</td><td class="num">2,315</td><td class="num green">+9.98%</td><td class="num">1,538</td></tr>
+    <tr><td>6274</td><td>台燿</td><td class="num">1,835</td><td class="num green">+9.88%</td><td class="num">3,462</td></tr>
+    <tr><td>6531</td><td>愛普*</td><td class="num">1,025</td><td class="num green">+9.86%</td><td class="num">5,347</td></tr>
+    <tr><td>2327</td><td>國巨</td><td class="num">1,080</td><td class="num green">+9.76%</td><td class="num">90,472</td></tr>
+    <tr><td>3081</td><td>聯亞</td><td class="num">2,440</td><td class="num green">+8.69%</td><td class="num">2,389</td></tr>
+    <tr><td>8299</td><td>群聯</td><td class="num">2,530</td><td class="num green">+8.58%</td><td class="num">7,486</td></tr>
+    <tr><td>3131</td><td>弘塑</td><td class="num">3,520</td><td class="num green">+8.47%</td><td class="num">834</td></tr>
+    <tr><td>7734</td><td>印能科技</td><td class="num">3,615</td><td class="num green">+7.91%</td><td class="num">256</td></tr>
+    <tr><td>2383</td><td>台光電</td><td class="num">5,600</td><td class="num green">+7.69%</td><td class="num">1,584</td></tr>
+    <tr><td>7750</td><td>新代</td><td class="num">2,370</td><td class="num green">+6.76%</td><td class="num">283</td></tr>
+    <tr><td>6187</td><td>萬潤</td><td class="num">1,235</td><td class="num green">+6.93%</td><td class="num">1,694</td></tr>
+    <tr><td>5536</td><td>聖暉*</td><td class="num">1,265</td><td class="num green">+6.30%</td><td class="num">1,092</td></tr>
+    <tr><td>6442</td><td>光聖</td><td class="num">1,945</td><td class="num green">+5.99%</td><td class="num">573</td></tr>
+    <tr><td>4749</td><td>新應材</td><td class="num">991</td><td class="num green">+5.43%</td><td class="num">1,433</td></tr>
+    <tr><td>8996</td><td>高力</td><td class="num">1,590</td><td class="num green">+4.95%</td><td class="num">5,842</td></tr>
+  </table>
+  </div>
+
+  <h3 style="font-size:14px; color:#f85149; margin:12px 0 6px;">🔴 弱勢股 Top 10</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th>收盤</th><th style="text-align:right;">漲跌幅</th><th>成交量(張)</th></tr>
+    <tr><td>7769</td><td>鴻勁</td><td class="num">6,975</td><td class="num red">-4.84%</td><td class="num">1,265</td></tr>
+    <tr><td>3443</td><td>創意</td><td class="num">4,860</td><td class="num red">-4.24%</td><td class="num">4,466</td></tr>
+    <tr><td>7828</td><td>創新服務</td><td class="num">2,000</td><td class="num red">-3.38%</td><td class="num">80</td></tr>
+    <tr><td>2345</td><td>智邦</td><td class="num">2,435</td><td class="num red">-2.40%</td><td class="num">4,073</td></tr>
+    <tr><td>2454</td><td>聯發科</td><td class="num">4,390</td><td class="num red">-1.57%</td><td class="num">12,095</td></tr>
+    <tr><td>2404</td><td>漢唐</td><td class="num">1,265</td><td class="num red">-1.17%</td><td class="num">3,009</td></tr>
+    <tr><td>2368</td><td>金像電</td><td class="num">1,355</td><td class="num red">-1.09%</td><td class="num">3,377</td></tr>
+    <tr><td>3653</td><td>健策</td><td class="num">3,965</td><td class="num red">-0.63%</td><td class="num">1,868</td></tr>
+    <tr><td>3533</td><td>嘉澤</td><td class="num">2,290</td><td class="num red">-0.43%</td><td class="num">1,054</td></tr>
+    <tr><td>2308</td><td>台達電</td><td class="num">2,150</td><td class="num red">-0.23%</td><td class="num">10,395</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- 成交量排行 -->
+<div class="card">
+  <h2><span class="icon">📊</span> 熱門成交量排行</h2>
+  <p class="section-desc">06/18 成交值排行前 15（資料來源：HiStock）</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th>收盤</th><th>漲跌幅</th><th style="text-align:right;">成交值(億)</th></tr>
+    <tr><td>2330</td><td>台積電</td><td>2,410</td><td class="green">+1.05%</td><td class="num">1,115.155</td></tr>
+    <tr><td>2327</td><td>國巨</td><td>1,080</td><td class="green">+9.76%</td><td class="num">977.098</td></tr>
+    <tr><td>2454</td><td>聯發科</td><td>4,390</td><td class="red">-1.57%</td><td class="num">530.971</td></tr>
+    <tr><td>3443</td><td>創意</td><td>4,860</td><td class="red">-4.24%</td><td class="num">217.048</td></tr>
+    <tr><td>2308</td><td>台達電</td><td>2,150</td><td class="red">-0.23%</td><td class="num">223.493</td></tr>
+    <tr><td>3665</td><td>貿聯-KY</td><td>2,100</td><td class="green">+0.48%</td><td class="num">143.829</td></tr>
+    <tr><td>6488</td><td>環球晶</td><td>1,110</td><td class="green">+0.91%</td><td class="num">126.929</td></tr>
+    <tr><td>8299</td><td>群聯</td><td>2,530</td><td class="green">+8.58%</td><td class="num">189.396</td></tr>
+    <tr><td>3008</td><td>大立光</td><td>5,195</td><td class="green">+0.97%</td><td class="num">144.681</td></tr>
+    <tr><td>3661</td><td>世芯-KY</td><td>4,380</td><td class="green">+1.39%</td><td class="num">92.068</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- 主力籌碼觀察 -->
+<div class="card">
+  <h2><span class="icon">🧩</span> 主力籌碼觀察</h2>
+  <ul style="list-style:none; font-size:14px; line-height:1.8;">
+    <li><strong class="blue">🔹 外資 vs 投信對作：</strong>中鋼（外資買 3.2 億股 vs 投信賣 2.9 億股）、台塑（外資買 1.4 億 vs 投信賣 1.1 億）、聯電（外資買 6,577 萬 vs 投信賣 4,932 萬）——明顯的法人對作格局，需留意後續方向。</li>
+    <li style="margin-top:6px;"><strong class="blue">🔹 金融股投信大買：</strong>兆豐金（+3,537 萬股）、永豐金（+2,267 萬）、第一金（+2,034 萬）、華南金（+1,367 萬）——投信大舉佈局金融股，選後政策行情期待。</li>
+    <li style="margin-top:6px;"><strong class="blue">🔹 外資大買傳產：</strong>中鋼（+3.2 億股）、台塑（+1.4 億）為外資買超冠亞軍，傳產補漲行情發動。</li>
+    <li style="margin-top:6px;"><strong class="blue">🔹 電子權值賣壓：</strong>鴻海(-2,547 萬股)、緯創(-2,504 萬)、華邦電(-1,984 萬)遭外資調節，電子資金流向傳產跡象明顯。</li>
+    <li style="margin-top:6px;"><strong class="blue">🔹 台積電籌碼：</strong>投信賣超 727 萬股、自營商小幅賣超，但外資部位不明顯。股價 +1.05% 至 2,410 元，權值撐盤角色。</li>
+  </ul>
+</div>
+
+<!-- 當沖熱度 -->
+<div class="card">
+  <h2><span class="icon">⚡</span> 當沖熱門股（現股當沖排行）</h2>
+  <p class="section-desc">06/18 高成交值個股（推測為當沖標的）。資料來源：HiStock</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>代號</th><th>名稱</th><th>收盤</th><th>漲跌幅</th><th>振幅</th><th style="text-align:right;">成交值(億)</th></tr>
+    <tr><td>2330</td><td>台積電</td><td>2,410</td><td class="green">+1.05%</td><td>1.26%</td><td class="num">1,115</td></tr>
+    <tr><td>2327</td><td>國巨</td><td>1,080</td><td class="green">+9.76%</td><td>10.77%</td><td class="num">977</td></tr>
+    <tr><td>2454</td><td>聯發科</td><td>4,390</td><td class="red">-1.57%</td><td>4.82%</td><td class="num">531</td></tr>
+    <tr><td>3008</td><td>大立光</td><td>5,195</td><td class="green">+0.97%</td><td>3.98%</td><td class="num">145</td></tr>
+    <tr><td>3665</td><td>貿聯-KY</td><td>2,100</td><td class="green">+0.48%</td><td>2.87%</td><td class="num">144</td></tr>
+    <tr><td>6488</td><td>環球晶</td><td>1,110</td><td class="green">+0.91%</td><td>7.27%</td><td class="num">127</td></tr>
+    <tr><td>2345</td><td>智邦</td><td>2,435</td><td class="red">-2.40%</td><td>3.01%</td><td class="num">99</td></tr>
+    <tr><td>3661</td><td>世芯-KY</td><td>4,380</td><td class="green">+1.39%</td><td>6.02%</td><td class="num">92</td></tr>
+    <tr><td>8996</td><td>高力</td><td>1,590</td><td class="green">+4.95%</td><td>6.93%</td><td class="num">93</td></tr>
+    <tr><td>5274</td><td>信驊</td><td>18,960</td><td class="green">+2.57%</td><td>3.11%</td><td class="num">28</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- 外資期貨 -->
+<div class="card">
+  <h2><span class="icon">📉</span> 外資期貨動向</h2>
+  <p class="section-desc">台指期外資成本/留倉（資料來源：HiStock）</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>日期</th><th>外資成本</th><th>當日進出</th><th>累積淨部位</th></tr>
+    <tr><td>06/18</td><td>46,363.65</td><td class="green">+32,223</td><td class="red">-68,337</td></tr>
+    <tr><td>06/17</td><td>45,537.28</td><td class="red">-729</td><td class="red">-67,394</td></tr>
+    <tr><td>06/16</td><td>45,855.66</td><td class="red">-3,145</td><td class="red">-69,847</td></tr>
+    <tr><td>06/15</td><td>45,220.25</td><td class="red">-2,914</td><td class="red">-66,734</td></tr>
+    <tr><td>06/12</td><td>44,012.14</td><td class="red">-1,900</td><td class="red">-65,039</td></tr>
+  </table>
+  </div>
+  <p style="font-size:13px; color:#8b949e; margin-top:8px;">
+    🔍 外資期貨淨空單仍達 6.8 萬口，但 06/18 外資期貨 <strong class="green">買超 32,223 口</strong>，為近期最大單日回補，配合現貨大買 588 點，短線偏多訊號。
+  </p>
+</div>
+
+<!-- 外資進出成本 -->
+<div class="card">
+  <h2><span class="icon">💹</span> 外資成本分析</h2>
+  <p class="section-desc">近兩週外資台指期成本與進出變化</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>日期</th><th>外資成本</th><th>當日進出(口)</th><th>累積淨部位</th><th>成本差異</th></tr>
+    <tr><td>06/18</td><td>46,364</td><td class="green">+32,223</td><td class="red">-68,337</td><td>370</td></tr>
+    <tr><td>06/17</td><td>45,537</td><td class="red">-729</td><td class="red">-67,394</td><td>131</td></tr>
+    <tr><td>06/16</td><td>45,856</td><td class="red">-3,145</td><td class="red">-69,847</td><td>-92</td></tr>
+    <tr><td>06/15</td><td>45,220</td><td class="red">-2,914</td><td class="red">-66,734</td><td>377</td></tr>
+    <tr><td>06/12</td><td>44,012</td><td class="red">-1,900</td><td class="red">-65,039</td><td>205</td></tr>
+    <tr><td>06/11</td><td>43,040</td><td class="red">-1,182</td><td class="red">-63,168</td><td>179</td></tr>
+    <tr><td>06/10</td><td>43,851</td><td class="red">-81</td><td class="red">-61,949</td><td>-484</td></tr>
+    <tr><td>06/09</td><td>44,089</td><td class="green">+2,388</td><td class="red">-61,871</td><td>588</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- 執行記錄 -->
+<div class="exec-log">
+  <h4>📋 執行記錄</h4>
+  <ul>
+    <li>TWSE T86 API 三大法人買賣超：部長A（Mistral）10:14</li>
+    <li>HiStock 強弱勢/當沖排行爬取：部長B（Gemini Flash）10:14</li>
+    <li>Yahoo Finance 大盤數據驗證：部長C（Mistral Small）10:14</li>
+    <li>外資期貨成本/留倉數據：部長D（Mistral Small）10:15</li>
+    <li>HTML 統整產出：部長E（Gemini Flash）10:15</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
