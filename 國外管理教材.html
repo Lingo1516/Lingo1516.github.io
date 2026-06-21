@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>國外管理教材精選 · MIT Sloan &amp; Stanford Business</title>
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --card: #16213e;
+    --card-hover: #1c2a50;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --text: #eaeaea;
+    --text-dim: #9898b8;
+    --tag-mit: #a31f34;
+    --tag-stanford: #8b1517;
+    --border: #2a2a4a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, var(--accent2) 0%, #1a1a3e 100%);
+    padding: 48px 20px 36px;
+    text-align: center;
+    border-bottom: 3px solid var(--accent);
+  }
+  .header h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .header .sub {
+    color: var(--text-dim);
+    font-size: 0.95em;
+  }
+  .header .sources {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .header .sources span {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  .src-mit { background: var(--tag-mit); color: #fff; }
+  .src-stanford { background: var(--tag-stanford); color: #fff; }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .article {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .article:hover {
+    border-color: var(--accent);
+    background: var(--card-hover);
+  }
+  .article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .article .source-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .article .date {
+    color: var(--text-dim);
+    font-size: 0.82em;
+  }
+  .article .title-original {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 8px 0 2px;
+    line-height: 1.4;
+  }
+  .article .title-original a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .article .title-original a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .article .title-chinese {
+    font-size: 1.05em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 14px;
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+  }
+  .section-label {
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 16px 0 6px;
+  }
+  .section-label.summary-label { color: #64b5f6; }
+  .section-label.keypoints-label { color: #ffcc02; }
+  .section-label.quote-label { color: #81c784; }
+  .summary {
+    color: #d0d0e0;
+    font-size: 0.95em;
+    line-height: 1.85;
+  }
+  .keypoints {
+    list-style: none;
+    padding: 0;
+  }
+  .keypoints li {
+    position: relative;
+    padding: 6px 0 6px 22px;
+    font-size: 0.93em;
+    color: #ddd;
+  }
+  .keypoints li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7em;
+    top: 9px;
+  }
+  .quote-block {
+    background: rgba(233,69,96,0.08);
+    border-left: 3px solid #81c784;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #c8e6c9;
+    font-size: 0.9em;
+    line-height: 1.7;
+  }
+  .quote-block .attribution {
+    display: block;
+    margin-top: 4px;
+    font-style: normal;
+    font-size: 0.85em;
+    color: var(--text-dim);
+  }
+  .article-divider {
+    text-align: center;
+    margin: -8px 0 8px;
+    color: var(--text-dim);
+    font-size: 1.2em;
+    letter-spacing: 6px;
+    opacity: 0.4;
+  }
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-dim);
+    font-size: 0.82em;
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
+  }
+  .footer .logo {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 4px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 20px;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.4em; }
+    .article { padding: 20px 16px; }
+    .article .title-original { font-size: 1.05em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📘 國外管理教材精選</h1>
+  <div class="sub">MIT Sloan Management Review · Stanford Graduate School of Business</div>
+  <div class="sources">
+    <span class="src-mit">MIT Sloan</span>
+    <span class="src-stanford">Stanford GSB</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- Article 1 -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-mit">MIT Sloan Management Review</span>
+    <span class="date">2026.06.08</span>
+  </div>
+  <div class="title-original">
+    <a href="https://sloanreview.mit.edu/article/the-empathy-tax-female-leaders-pay/" target="_blank">The Empathy Tax Female Leaders Pay</a>
+  </div>
+  <div class="title-chinese">女性領導者付出的「同理稅」</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    在高壓力與不確定的時代，領導者必須花費愈來愈多的時間與精力來穩定團隊情緒——安撫被裁員嚇到的員工、解釋策略轉向的原因、在 AI 衝擊下給予信心。然而，這份情緒勞動（emotional labor）並不是平均分配的。MIT Sloan 的這篇文章與哈佛商學院合作研究發現，女性領導者承擔了不成比例的情緒照顧工作：在 350 多位專業女性的調查中，81.6% 表示每週至少花 30% 的工作時間在傾聽同事焦慮、給予鼓勵、監控團隊情緒等「照顧任務」（caring tasks）上，相當於每週多出一個兼職工作。研究者將此稱為「同理稅」（empathy tax）或「照顧稅」（care tax）：女性領導者為組織承擔大部分情緒勞動所付出的無形代價，最終導致「照顧疲勞」（care fatigue）。文章強調，同理心本身是優秀領導力的寶貴組成，能提升信任、投入度與韌性；問題在於負擔不均，以及組織未能正視這份隱形成本。作者建議組織應系統性地重新分配照顧工作，並將其納入績效評估與資源配置考量，而非繼續假設女性「天生擅長」做這些事。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>「同理稅」是指女性領導者在組織中承擔不成比例的情緒勞動（emotional labor）所付出的無形代價，包括傾聽、安撫、鼓勵等照顧任務。</li>
+    <li>81.6% 的女主管每週花至少 30% 工時在照顧任務上，相當於每週一整天多做一份兼職工作。</li>
+    <li>「照顧疲勞」（care fatigue）是極少被討論但廣泛存在的現象——不斷吸收他人的壓力、挫折與焦慮所導致的耗竭。</li>
+    <li>同理心是優秀領導力的核心要素，能提升信任、投入度與組織韌性；問題不在於同理心本身，而在於負擔的分配不均。</li>
+    <li>組織需正視這份隱形成本，將照顧工作系統性地納入資源配置與績效評估，而非默認女性「天生擅長」承擔這些任務。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "We call this the empathy tax, or care tax: the invisible emotional toll women leaders pay when they shoulder most of an organization's caring labor. This labor causes care fatigue — exhaustion that stems from constantly absorbing people's stress, frustration, and anxiety."
+    <span class="attribution">— Colleen Ammerman &amp; Deepa Purushothaman</span>
+  </div>
+  <div class="quote-block">
+    "Compassion is a valuable component of leadership; when employees feel seen and supported, that's a good thing. Compassion has positive organizational impacts, including increasing trust, engagement, and resilience."
+    <span class="attribution">— Ammerman &amp; Purushothaman</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Article 2 -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-mit">MIT Sloan Management Review</span>
+    <span class="date">2026.06.02</span>
+  </div>
+  <div class="title-original">
+    <a href="https://sloanreview.mit.edu/article/how-nespresso-builds-sustainability-into-its-business-model/" target="_blank">How Nespresso Builds Sustainability Into Its Business Model</a>
+  </div>
+  <div class="title-chinese">Nespresso 如何將永續發展融入商業模式</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    這篇 MIT Sloan 的 Radar 系列訪談中，Nespresso 北美區 CEO Jean-Christophe Jaunin 闡述了永續發展與商業績效之間的關係——它們並非相互妥協，而是密不可分。Jaunin 表示，永續不是需要「商業論證」（business case）的附屬品，它就是商業本身。Nespresso 的「永續品質計劃」（Sustainable Quality Program）已經涵蓋超過 15 萬個咖啡農家庭。他們培訓了 600 多位農藝師直接與農民合作，跳過中間商。最具啟發性的是他們對生態多樣性的投入：在哥倫比亞與養蜂專家合作，讓蜜蜂為咖啡樹授粉，同時農民可以透過蜂蜜開拓額外收入來源，使農民的經濟模式更具韌性。關於鋁製膠囊的回收，Nespresso 選擇自行承擔可觀成本，因為他們選擇鋁來真空保存咖啡新鮮度，而鋁是可以無限次回收的。Jaunin 說：「因為我們選擇了這種材料，我們就必須負責。」在全美超過 3 萬個行政區，他們與地方政府、回收商、堆肥業者合作，建立郵寄回郵、社區回收站、甚至郵差上門回收等多元方案，目標是 100% 膠囊可回收。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>永續發展不需要獨立的「商業論證」——如果永續就是商業模式的核心，兩者自然會互相強化。</li>
+    <li>Nespresso 的「永續品質計劃」以直接關係取代仲介，培訓 600+ 農藝師輔導超過 15 萬個農家，從土壤健康開始保障咖啡品質。</li>
+    <li>生態多樣性不只是環保——農民種植香蕉、酪梨、養蜂取蜜可分散收入來源，創造更具韌性的經濟模式。</li>
+    <li>企業應為自己的材料選擇負責：鋁製膠囊可無限回收，Nespresso 主動承擔回收成本，建立多通路回收系統。</li>
+    <li>永續策略需要長期視角與地方合作——美國有超過 3 萬個行政區，每一個都需要在地化的回收方案。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "It's the foundation of the quality we promise. Every time you're drinking an espresso from Costa Rica, it will taste like Costa Rica. Yet the inputs — the soil in which the coffee tree grows, the environment — are changing rapidly. Sustainability here means going deeper into taking care of the soil, the climate, the environment in which the coffee grows, so that we can proactively manage change and future-proof our business."
+    <span class="attribution">— Jean-Christophe Jaunin, CEO of Nespresso North America</span>
+  </div>
+  <div class="quote-block">
+    "It is costly, but it's core to our business model. We made the choice to use aluminum because it lets us vacuum-seal the coffee's freshness for a very long time. In addition, aluminum can be recycled indefinitely. But because we made the choice to use this material, we need to take care of it."
+    <span class="attribution">— Jaunin on capsule recycling</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Article 3 -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-mit">MIT Sloan Management Review</span>
+    <span class="date">2026.06.02</span>
+  </div>
+  <div class="title-original">
+    <a href="https://sloanreview.mit.edu/article/why-ai-isnt-transforming-finance-yet/" target="_blank">Why AI Isn't Transforming Finance Yet</a>
+  </div>
+  <div class="title-chinese">為什麼 AI 還沒有真正改變財務領域</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    AI 曾被預言將徹底改寫企業財務部門——預測更精準，結算週期縮短，風險提前識別，情境規劃從偶爾演練變成持續能力。許多 CFO 投入了大量資金。然而當他們私下交流時，故事截然不同：POC（概念驗證）永遠離不開沙盒；模型在試行階段表現亮眼，季度壓力來襲時卻無人使用；儀表板持續產出，但極少真正影響決策。財務部門確實變得更自動化，但在幫助組織適應變化方面並未更前瞻。作者們（來自 Vlerick Business School 與 KU Leuven）指出，問題不只在於技術——資料品質、工具整合、模型信任度固然重要，但更深層的原因是：組織內部的領導運作方式比技術進步得更慢。當新工具到來，人們仍然沿用舊的對話方式、決策習慣和行為模式——注意力集中在結算完成、解釋方差、捍衛單一預測數字，將偏差視為需修正的錯誤而非值得探索的信號。CFO 需要鼓勵團隊關注商業環境變化、在工作中實驗、以不同方式思考未來，才能真正釋放 AI 的價值。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>AI 在財務領域的落地瓶頸不是技術問題，而是領導者對財務部門角色定位的傳統認知——人們仍然按照舊方式做事。</li>
+    <li>財務團隊習慣將偏差視為「錯誤」來修正，而非將其視為值得探索的「信號」——這是 AI 轉型受阻的深層文化原因。</li>
+    <li>CFO 需要轉變心態：從「完成結算」轉向「持續感知商業環境變化」，從「捍衛一個預測數字」轉向「實驗與情境思維」。</li>
+    <li>POC 難以規模化、模型被擱置不用等現象的根源，是組織的「領導運作方式」（how leadership actually works）跟不上技術進步。</li>
+    <li>真正的 AI 轉型需要財務領導者同時重塑團隊的思考方式、決策流程與對未來的想像。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "In many organizations, the technology is moving faster than the way leadership actually works inside the finance function. When new tools arrive, people tend to talk, decide, and behave much as they did before."
+    <span class="attribution">— Stijn Viaene, Kristof Stouthuysen &amp; Bjorn Cumps</span>
+  </div>
+  <div class="quote-block">
+    "Attention gravitates toward getting the close done, explaining variances, defending a single forecast number, and treating deviations as errors to be corrected rather than signals to be explored."
+    <span class="attribution">— Viaene, Stouthuysen &amp; Cumps</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Article 4 -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-mit">MIT Sloan Management Review</span>
+    <span class="date">2026.06.02</span>
+  </div>
+  <div class="title-original">
+    <a href="https://sloanreview.mit.edu/article/scaling-ai-with-adaptive-governance/" target="_blank">Scaling AI With Adaptive Governance</a>
+  </div>
+  <div class="title-chinese">用調適型治理實現 AI 規模化</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    隨著企業大規模採用各種 AI 技術並將其部署到全組織，管理開發過程與應用中產生的新風險變得愈來愈複雜。傳統的 AI 治理往往被視為合規義務（compliance obligation），但三位學者（來自 City 倫敦大學、Skema 商學院與倫敦帝國學院）提出，治理應該是一種策略性的調適能力（strategic, adaptive capability），隨著 AI 系統規模擴大、使用場景擴張、風險型態轉變而不斷演進。文章介紹了「調適型 AI 治理」（adaptive AI governance）的兩大原則：第一，將治理控制措施與 AI 系統的類型及風險等級相匹配——並非所有 AI 系統都需要同樣嚴格的監管；第二，將這些控制措施直接嵌入工作流程、決策權限與問責結構中。例如，內部使用的生成式 AI 與面向消費者的高自主性 AI 需要截然不同的風險評估與監控機制。作者強調，有效的治理不是束縛創新的枷鎖，而是讓組織能夠在快速創新的同時，將利益相關者的風險降到最低的能力建設。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>AI 治理不應是合規義務，而應是策略性的調適能力——隨著 AI 系統規模、使用場景與風險動態變化而持續演化。</li>
+    <li>調適型治理的兩大原則：(1) 控制措施與 AI 系統類型及風險等級相匹配；(2) 將治理嵌入日常工作流程、決策權與問責結構。</li>
+    <li>不同 AI 系統需要不同的治理強度——內部工具 vs. 面向消費者的自主系統，風險差異極大。</li>
+    <li>有效的治理不是創新的障礙，而是讓組織能快速創新同時管理風險的能力基礎。</li>
+    <li>各國政府與監管機構已提出透明性（transparency）、公平性（fairness）、可問責性（accountability）等框架，關鍵在於如何落實到日常運作中。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "Leaders must frame that task not as a compliance obligation but as a strategic, adaptive capability that evolves as AI systems scale, use cases expand, and risks shift over time."
+    <span class="attribution">— Gianvito Lanzolla, Margherita Pagani &amp; Christopher L. Tucci</span>
+  </div>
+  <div class="quote-block">
+    "To design effective AI governance, leaders must first understand the multiple ways in which AI can fail and the corresponding risks. The nature and severity of these risks depend on the type of system, its level of autonomy, and the scope of domains affected by its decisions."
+    <span class="attribution">— Lanzolla, Pagani &amp; Tucci</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Article 5 -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-mit">MIT Sloan Management Review</span>
+    <span class="date">2026.06.02</span>
+  </div>
+  <div class="title-original">
+    <a href="https://sloanreview.mit.edu/article/create-generative-ai-value-at-scale/" target="_blank">Create Generative AI Value at Scale</a>
+  </div>
+  <div class="title-chinese">大規模創造生成式 AI 價值</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    生成式 AI（GenAI）面臨一個組織性的矛盾：企業已經投入了數十億美元讓員工使用通用大型語言模型（LLM）來提升個人生產力，但在開發更具策略性的應用上卻普遍陷入困境。來自瑞士聖加侖大學、加拿大 HEC Montréal 的研究團隊訪談了 23 家大型組織的 87 位實務工作者，發現能成功擴展 GenAI 價值的領導者遵循三個關鍵做法：第一，將使用案例的範圍從單一任務擴展到跨流程（cross-process）；第二，將每個使用案例視為持續改善中的「進行中工作」（work in progress）；第三，快速辨識並放棄無法帶來可衡量價值的案例。然而，傳統多部門組織（multidivisional organization）結構——多個利潤中心、部門重複、跨部門資訊流受限、內部資源競爭——使得這三種做法難以制度化。成功的企業正在超越傳統的「樞紐-輻射」（hub-and-spoke）模式，建立一種名為「AI 脊椎」（AI spine）的跨功能組織結構，它提供一個靈活的核心架構來實現、演進和淘汰 LLM 使用案例，使 GenAI 組合既專注又與時俱進。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>GenAI 規模化成功的三大關鍵：(1) 從單一任務擴展到跨流程；(2) 每個案例視為持續改善中的工作；(3) 快速放棄無價值的案例。</li>
+    <li>傳統多部門組織結構（利潤中心各自為政、跨部門資訊流受限）是規模化 GenAI 的主要障礙。</li>
+    <li>「AI 脊椎」（AI spine）是一種新興的跨功能組織結構，比傳統 hub-and-spoke 模式更靈活，能整合領域專業知識與用戶反馈。</li>
+    <li>有意義的 ROI 和競爭優勢來自於能跨功能、跨業務單位的創新流程改善，而非個人生產力工具。</li>
+    <li>嚴謹的專案治理（project governance）確保資源集中在最可能產生正面影響的領域。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "Our interviews with 87 practitioners in 23 large organizations revealed that leaders who scale value creation with generative AI cultivate three key practices. First, they expand the scope of use cases across processes rather than remaining focused on a specific task. Second, they treat each use case as a work in progress to be continually improved. And third, they quickly identify and abandon use cases that fail to bring measurable value."
+    <span class="attribution">— Kevin Schmitt, Gregory Vial &amp; Ivo Blohm</span>
+  </div>
+  <div class="quote-block">
+    "They are developing a new kind of internal resource that we call the AI spine. It provides a flexible core structure for implementing, evolving, and abandoning LLM use cases at scale, keeping the generative AI portfolio both focused and current."
+    <span class="attribution">— Schmitt, Vial &amp; Blohm</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Article 6 -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-mit">MIT Sloan Management Review</span>
+    <span class="date">2026.05.28</span>
+  </div>
+  <div class="title-original">
+    <a href="https://sloanreview.mit.edu/article/when-employees-are-drowning-in-change/" target="_blank">When Employees Are Drowning in Change</a>
+  </div>
+  <div class="title-chinese">當員工在變革中溺水</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    這是一篇關於變革管理（change management）的重量級文章。作者 David Grossman 是領導力與變革溝通顧問公司 CEO，他發現一個驚人的數據：83% 的企業領導者正面臨比以往更多的重大變革，而員工一年只能實際吸收 1-2 項重大變革——但領導者正計劃在 2027 年前推動 3-4 項。文章以加拿大製藥服務公司 CareRx 的案例開場：20 個月內併購讓業務翻三倍，員工被淹沒在變革中，離職率飆升、客訴堆積，某個地點的員工甚至直接對總部來的領導者說：「離我們遠一點，我們受夠了。」作者提出三個能讓領導者真正幫助團隊的方法：第一，讓對話成為不可妥協的紀律——領導者在變革期往往只發訊息而不傾聽，但變革是情緒性的，員工的反饋是最重要的策略資訊；第二，建立共同的變革故事——領導團隊需要先達成一致的敘事，回答「我們從哪裡來？現在在哪裡？要去哪裡？怎樣才能贏？」四個問題；第三，以員工的承受能力來排序變革——多數組織失敗不是因為做得太多，而是同時做太多。作者用尼加拉瀑布的比喻：起初壯麗、令人振奮，直到你發現自己快被淹死。成功的領導者會舉辦「解放派對」來明確終止不再適用的計劃，明白地說「這項嘗試到此為止」，讓員工不再恐懼下一個新想法。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>83% 領導者面臨前所未有的變革壓力，但員工一年只能有效吸收 1-2 項重大變革，領導者卻計劃在 2027 年前推動 3-4 項。</li>
+    <li>變革溝通的第一要務是「對話」（dialogue）而非「廣播」（broadcast）——傾聽後再行動，並讓員工知道他們的意見被聽見、被採納或為何不被採納。</li>
+    <li>領導團隊需先統一變革敘事，回答四個問題：我們從哪裡來？現在在哪裡？要去哪裡？怎樣才能贏？否則員工會自行填補空白，通常是往負面方向。</li>
+    <li>多數組織失敗不是因為做太多變革，而是同時做太多——領導者需要以員工的承受能力來排序和節奏變革。</li>
+    <li>「解放派對」（liberation parties）——明確終止已結束的計劃並慶祝——可以消除員工對下一個變革的恐懼，提升生產力。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "Employees can realistically absorb only one or two major changes per year, yet leaders are planning on three or four by 2027."
+    <span class="attribution">— David Grossman, CEO of The Grossman Group</span>
+  </div>
+  <div class="quote-block">
+    "Most organizations don't fail at change because they're doing too much. They fail because they're doing too much at the same time, without discipline."
+    <span class="attribution">— David Grossman</span>
+  </div>
+  <div class="quote-block">
+    "When change overwhelms people, it's like losing your Wi-Fi connection. You're standing there with all the capability in the world, but nothing connects. The job of leaders is to reset the router — to restore the conditions under which people can think clearly, engage, and do their best work."
+    <span class="attribution">— David Grossman</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Article 7 -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-mit">MIT Sloan Management Review</span>
+    <span class="date">2026.06.01</span>
+  </div>
+  <div class="title-original">
+    <a href="https://sloanreview.mit.edu/article/a-three-minute-protocol-to-reduce-ai-manipulation-risk/" target="_blank">A Three-Minute Protocol to Reduce AI Manipulation Risk</a>
+  </div>
+  <div class="title-chinese">三分鐘方案：降低 AI 操縱風險</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    AI 工具讓人類認知成為組織安全體系中最脆弱的一環。作者 Yuksel Aydin（RSM France 資安長）指出，企業面臨三種來自 AI 對人類認知影響的安全威脅：第一，武器化說服（weaponized persuasion）——攻擊者透過個人化、適應性的欺騙來操縱員工判斷；第二，看似合理的幻覺（plausible hallucinations）——AI 以自信口吻傳遞錯誤資訊，輕鬆通過粗略審查；第三，認知外包（cognitive offloading）——員工愈來愈依賴 AI 而減少獨立推理。針對這些威脅，作者提出一個名為「先思考，後驗證」（Think First, Verify Always, TFVA）的簡單協議。兩個步驟：先思考——在諮詢 AI 之前先形成自己的判斷；後驗證——在採取行動前，將 AI 生成的關鍵資訊與獨立來源交叉比對。在一項 151 人的隨機對照試驗中，三分鐘的 TFVA 微型課程將決策品質提升了 7.87 個百分點（從 57.4% 到 65.3%），倫理判斷進步 44%，資訊驗證進步 25%。RSM France 已將此方案導入 1,600 名員工的新人訓練與培訓計劃。管理者可以在入職、安全意識培訓、GenAI 使用政策中嵌入 TFVA，每次只需三分鐘。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>AI 時代人類認知面臨三大安全威脅：武器化說服、看似合理的幻覺、認知外包（減少獨立推理）。</li>
+    <li>TFVA 協議（Think First, Verify Always）提供簡單有效的應對：諮詢 AI 前先形成判斷，產出後與獨立來源交叉驗證。</li>
+    <li>隨機對照試驗顯示三分鐘微課程讓決策品質提升 7.87 個百分點，倫理判斷進步 44%，資訊驗證進步 25%。</li>
+    <li>管理者可在入職、安全訓練、GenAI 使用政策中嵌入 TFVA，每次培訓只需三分鐘。</li>
+    <li>目標是讓員工將 AI 視為需要判斷力的強大工具，而非需要服從的權威。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "The return is a workforce that treats AI as a powerful tool requiring judgment, not a trusted authority requiring obedience."
+    <span class="attribution">— Yuksel Aydin, Chief Information Security Officer at RSM France</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Article 8 -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-mit">MIT Sloan Management Review</span>
+    <span class="date">2026.05.27</span>
+  </div>
+  <div class="title-original">
+    <a href="https://sloanreview.mit.edu/video/what-ai-still-cant-do-for-leaders/" target="_blank">What AI Still Can't Do for Leaders</a>
+  </div>
+  <div class="title-chinese">AI 仍然無法為領導者做到的事</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    MIT Sloan 教授 Deborah Ancona 與 Katherine W. Isaacs 在這段訪談影片中探討了一個關鍵問題：當領導者將 ChatGPT、Claude 等生成式 AI 工具融入日常工作時，哪些地方 AI 的輸出有所不足？更重要的是，領導者在哪些地方因為將過多自主權交給 AI 而對組織造成傷害？兩位學者指出，目的感（purpose）與臨在感（presence）無法被自動化。AI 會悄悄地侵蝕使用者的判斷力（judgment）與真實性（authenticity）。她們特別強調「內感受」（interoception）——理解自身身體與情緒狀態的能力——在人類領導力中的價值。在 AI 驅動的世界中，保留自己的聲音（voice）至關重要：領導者必須清楚知道「我想分析什麼？我想產生什麼？什麼樣的假設、標準和邊界應該引導這項工作？」然後一步一步檢查：這是準確的嗎？符合脈絡嗎？聽起來像我嗎？這真的是我想說的嗎？AI 可以支援分析、結構與反思，但無法取代判斷、責任、目的、真實性與親身經驗。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>目的感（purpose）與臨在感（presence）是無法被 AI 自動化的核心領導能力。</li>
+    <li>過度依賴 AI 會悄悄侵蝕領導者的判斷力（judgment）與真實性（authenticity）。</li>
+    <li>「內感受」（interoception）——理解自身身體與情緒狀態的能力——是人性領導力的重要來源。</li>
+    <li>在 AI 時代，保留自己的聲音（voice）不只是一個軟性議題，而是專業判斷與領導誠信的一部分。</li>
+    <li>使用 AI 時應持續檢查：準確性、脈絡適合度、是否仍像自己、是否真的是自己想表達的內容。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "AI is not a human counterpart. It can support analysis, structure, and reflection, but it cannot replace judgment, responsibility, purpose, authenticity, or lived experience."
+    <span class="attribution">— Deborah Ancona &amp; Katherine W. Isaacs, MIT Sloan</span>
+  </div>
+  <div class="quote-block">
+    "Retaining one's own voice is not a soft issue. It is part of professional judgment, leadership integrity, and the ability to make sense of complex situations rather than simply accepting an output because it sounds convincing."
+    <span class="attribution">— Commenter Yael Blanka Rauová, echoed by the authors</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Article 9 - Stanford -->
+<!-- ============================================================ -->
+<div class="article">
+  <div class="article-header">
+    <span class="source-tag src-stanford">Stanford Graduate School of Business</span>
+    <span class="date">2026.04</span>
+  </div>
+  <div class="title-original">
+    <a href="https://www.gsb.stanford.edu/insights/how-ai-can-change-way-police-talk-people" target="_blank">How AI Can Change the Way Police Talk to People</a>
+  </div>
+  <div class="title-chinese">AI 如何改變警察與民眾的對話方式</div>
+
+  <div class="section-label summary-label">📖 摘要</div>
+  <div class="summary">
+    這篇 Stanford GSB 的深度報導講述了組織行為學教授 Jennifer Eberhardt 二十年來如何運用計算語言學（computational linguistics）與機器學習來改善警民關係。故事從 Eberhardt 個人的創傷經歷開始——她在 1993 年取得哈佛心理學博士的前一天被波士頓警察攔下，最終被拖出車外、摔在引擎蓋上、戴上手銬帶回警局——但這個經歷沒有讓她退縮，反而驅使她用科學去理解「簡單的言語如何導致衝突升級與武力使用」。她與 Oakland 警察局（OPD）合作，分析超過 28,000 次攔檢記錄，發現非裔居民構成不到城市人口的 30% 卻佔了 60% 的攔檢，且更容易被搜索、上手銬和逮捕。隨後她使用自然語言處理（NLP）分析 183 小時的隨身攝影機畫面，發現警察對非裔駕駛者說話時明顯較不尊重——即使控制警員種族因素後亦然。僅憑用詞，一個簡單的機器學習模型就能以三分之二的準確率預測駕駛者的種族。更驚人的是，攔檢中警察前 27 秒的語言可以預測衝突是否會升級，準確率超過 70%。Eberhardt 的團隊開發了培訓課程，讓警察學會在攔檢開始時先說明攔檢原因、用更尊重的語氣說話。評估研究顯示，受訓警員在真實互動中確實展現了更多尊重。Oakland 警察局局長表示：「我們真的改變了警政風格。」原告律師也指出，OPD 從灣區最差的警局之一變成了全美同級城市中最好的。
+  </div>
+
+  <div class="section-label keypoints-label">🎯 核心觀點</div>
+  <ul class="keypoints">
+    <li>語言的力量——警察前 27 秒的用語能以超過 70% 的準確率預測攔檢是否會升級為搜查或逮捕。</li>
+    <li>使用 NLP 分析隨身攝影機畫面可以大規模、系統性地發現種族差異模式，傳統行政資料無法做到。</li>
+    <li>改變從要求警察在攔檢時標註是否為「情報引導」（intelligence-led）開始——這個單純的資料收集動作就讓攔檢量下降了約 12,000 次，非裔駕駛攔檢下降 43%，犯罪率並未上升。</li>
+    <li>AI 與計算語言學不僅能診斷問題，還能評估解決方案的成效——培訓後的員警在真實攔檢中確實展現了更多尊重。</li>
+    <li>Eberhardt 的核心信念：偏見普遍存在，但並非無法改變。數據可以幫助組織變得更好。</li>
+  </ul>
+
+  <div class="section-label quote-label">💬 原文關鍵句</div>
+  <div class="quote-block">
+    "At the time of my arrest, I felt that I had no power in that situation at all. But doing research is a powerful thing — trying to understand how the simple use of words can lead to escalation and use of force."
+    <span class="attribution">— Jennifer Eberhardt, Professor of Organizational Behavior, Stanford GSB</span>
+  </div>
+  <div class="quote-block">
+    "We changed the style of policing. We actually used the data to get better. The culture is still built around the things we put in place."
+    <span class="attribution">— LeRonne Armstrong, former Oakland Police Chief</span>
+  </div>
+  <div class="quote-block">
+    "To the extent that researchers in general can use footage as data, we can actually leverage the technology to improve society."
+    <span class="attribution">— Jennifer Eberhardt</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- Footer -->
+<!-- ============================================================ -->
+<div class="footer">
+  <div class="logo">Lingo 小綠教材</div>
+  <p>資料來源：MIT Sloan Management Review · Stanford Graduate School of Business</p>
+  <p>精選編譯自 2026 年 5–6 月最新文章，內容經過繁體中文翻譯、摘要與觀點整理</p>
+  <p>© 2026.06.21 · Lingo 小綠教材</p>
+</div>
+
+</div>
+</body>
+</html>
