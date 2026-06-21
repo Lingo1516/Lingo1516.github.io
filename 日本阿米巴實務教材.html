@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本阿米巴經營（アメーバ経営）實務教材資源</title>
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --surface: #1a1a2e;
+    --card: #16213e;
+    --accent: #e94560;
+    --accent2: #0f3460;
+    --text: #e0e0e0;
+    --text2: #a0a0b0;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --info: #2196f3;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.7;
+    padding: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 1.6em;
+    margin: 20px 0 10px;
+    background: linear-gradient(135deg, var(--accent), #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  h2 {
+    font-size: 1.2em;
+    margin: 28px 0 12px;
+    padding: 8px 14px;
+    background: var(--surface);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    color: #fff;
+  }
+  h3 {
+    font-size: 1em;
+    margin: 18px 0 8px;
+    color: #ff8a80;
+  }
+  p, li { font-size: 0.92em; color: var(--text2); }
+  a { color: #64b5f6; text-decoration: none; word-break: break-all; }
+  a:hover { text-decoration: underline; color: #90caf9; }
+  .badge {
+    display: inline-block;
+    font-size: 0.7em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-practice { background: #4caf50; color: #fff; }
+  .badge-research { background: #2196f3; color: #fff; }
+  .badge-book { background: #ff9800; color: #fff; }
+  .badge-video { background: #9c27b0; color: #fff; }
+  .badge-lecture { background: #607d8b; color: #fff; }
+  .section-desc {
+    color: var(--text2);
+    margin-bottom: 10px;
+    font-size: 0.85em;
+    padding: 0 4px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: rgba(100,181,246,0.3); }
+  .card-title {
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.95em;
+    margin-bottom: 4px;
+  }
+  .card-meta {
+    font-size: 0.78em;
+    color: #7e8a9a;
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    font-size: 0.88em;
+    color: var(--text2);
+    margin-bottom: 6px;
+  }
+  .card-links { margin-top: 4px; }
+  .card-links a {
+    display: inline-block;
+    font-size: 0.82em;
+    margin-right: 12px;
+    margin-bottom: 3px;
+  }
+  .practice-highlight {
+    border-left: 3px solid var(--success);
+    background: rgba(76,175,80,0.07);
+  }
+  .practice-highlight .card-title::before {
+    content: "📝 ";
+    font-weight: 400;
+  }
+  .footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: #555;
+    font-size: 0.8em;
+  }
+  .subtitle { color: #7e8a9a; margin-bottom: 20px; font-size: 0.9em; }
+  .toc { 
+    background: var(--surface);
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+  }
+  .toc a {
+    display: inline-block;
+    margin: 2px 8px 2px 0;
+    font-size: 0.85em;
+  }
+  .toc h3 { margin: 0 0 8px; color: #aaa; font-size: 0.9em; }
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    h1 { font-size: 1.3em; }
+  }
+</style>
+</head>
+<body>
+
+<h1>📘 日本阿米巴經營（アメーバ経営）實務教材資源</h1>
+<p class="subtitle">涵蓋大學課程、學術研究、實務演練、數位圖書館等完整資源 · 繁體中文整理</p>
+
+<div class="toc">
+<h3>📑 目錄</h3>
+<a href="#kagoshima">鹿兒島大學</a>
+<a href="#kyoto">京都大學</a>
+<a href="#hitotsubashi">一橋大學</a>
+<a href="#keio">慶應義塾大學</a>
+<a href="#inamori">稻盛和夫官方網站</a>
+<a href="#digilib">稻盛數位圖書館</a>
+<a href="#research">研究組織</a>
+<a href="#papers">學術論文</a>
+<a href="#books">推薦書籍</a>
+</div>
+
+<!-- ============================== -->
+<h2 id="kagoshima">🏛 鹿兒島大學（Kagoshima University）</h2>
+<p class="section-desc">稻盛和夫出身地，設立「稻盛學術院（稲盛アカデミー）」專門研究稻盛經營哲學</p>
+
+<div class="card">
+  <div class="card-title">稻盛經營哲學課程（履修証明プログラム）</div>
+  <div class="card-meta">原文：稲盛経営哲学プログラム | 鹿兒島大學終身學習部門</div>
+  <div class="card-desc">系統化社會人課程，共60小時（10日×6小時），涵蓋7大科目：《稻盛和夫的企業變革史》《稻盛和夫的經營問答》《稻盛和夫的實學—經營與會計》《アメーバ経営論》《實踐經營論》《稻盛フィロソフィ》《組織運營中的領導者論》。第15期招生中（2026年9月開課）。線上授課可。受講費60,000日圓。</div>
+  <div class="card-links">
+    <a href="https://www.life.kagoshima-u.ac.jp/rena/inamori/" target="_blank">🔗 詳細頁面</a>
+    <a href="https://www.inamori.kagoshima-u.ac.jp/" target="_blank">🔗 稻盛學術院官網</a>
+  </div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">《アメーバ経営論》課程（實務練習教材）</div>
+  <div class="card-meta">鹿兒島大學稻盛經營哲學課程核心科目之一</div>
+  <div class="card-desc">直接教授アメーバ経営的理論與實務，包含時間當量核算（時間当たり採算）的計算練習、部門損益表製作、社內交易訂價（社内売買価格）設定演練。屬於可直接用的實務練習題來源。課程使用稻盛和夫原著《アメーバ経営》為教科書。</div>
+  <div class="card-links">
+    <a href="https://www.life.kagoshima-u.ac.jp/wp-content/uploads/2026/06/6861071e2c4d54295b36efddc9fbafb7.pdf" target="_blank">🔗 第15期招募說明PDF</a>
+  </div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">京セラ經営學講座（寄附講座）</div>
+  <div class="card-meta">原文：鹿児島大学京セラ経営学講座 | 2002-2003年</div>
+  <div class="card-desc">稻盛和夫親自回母校主講的講座，以《稻盛和夫的實學》為教材，詳細解說アメーバ経営的核心——「賣上最大、経費最小」原則、時間當量採算制度、以及會計七原則。包含大量實務案例和計算範例。可在稻盛和夫官網閱讀全文。</div>
+  <div class="card-links">
+    <a href="https://www.kyocera.co.jp/inamori/archive/lectures/accounting.html" target="_blank">🔗 講座全文</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">鹿兒島大學稻盛學術院研究紀要</div>
+  <div class="card-meta">原文：鹿児島大学稲盛アカデミー研究紀要 | ISSN 1884-6009</div>
+  <div class="card-desc">年刊學術期刊，收錄アメーバ経営、稻盛經營哲學等相關研究論文。已出版多期，可透過鹿兒島大學機構典藏（IR）免費下載PDF。</div>
+  <div class="card-links">
+    <a href="https://ir.kagoshima-u.ac.jp/" target="_blank">🔗 機構典藏查詢</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">稻盛學術院叢書</div>
+  <div class="card-meta">原文：鹿児島大学稲盛アカデミー叢書</div>
+  <div class="card-desc">已出版《日本航空の破綻と再生》《利他の構造》等學術叢書。另有英文版 "Learning Inamori Philosophy: Japan's Most Influential Social Philosophy" 可免費下載。</div>
+  <div class="card-links">
+    <a href="https://www.minervashobo.co.jp/book/b450199.html" target="_blank">🔗 叢書介紹（ミネルヴァ書房）</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">鹿兒島大學公開シンポジウム</div>
+  <div class="card-meta">第1回～第13回（2025年12月）</div>
+  <div class="card-desc">定期舉辦アメーバ経営及稻盛哲學相關公開研討會，邀請國內外學者發表最新研究成果，部分活動紀錄公開於官網。</div>
+  <div class="card-links">
+    <a href="https://www.inamori.kagoshima-u.ac.jp/" target="_blank">🔗 最新活動公告</a>
+  </div>
+</div>
+
+<!-- ============================== -->
+<h2 id="kyoto">🏛 京都大學（Kyoto University）</h2>
+<p class="section-desc">稻盛和夫長期活動地，經營管理大學院（GSM）為研究重鎮，設有稻盛大廳（Inamori Hall）</p>
+
+<div class="card practice-highlight">
+  <div class="card-title">經營管理大學院（GSM）課程</div>
+  <div class="card-meta">原文：京都大学経営管理大学院 | Graduate School of Management</div>
+  <div class="card-desc">以Case Method（ケースメソッド）為主的MBA教育。課程涵蓋管理會計（管理会計）、財務報告分析等，部分課程涉及アメーバ経営的會計實務。設有專用ケーススタディ演習室，定期舉辦管理會計相關學術研討會。</div>
+  <div class="card-links">
+    <a href="https://www.gsm.kyoto-u.ac.jp/" target="_blank">🔗 GSM官網</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">稻盛和夫研究會（Inamori Study Group）</div>
+  <div class="card-meta">原文：稲盛和夫研究会 | 紀要《稲盛和夫研究》</div>
+  <div class="card-desc">以京都大學為據點的研究組織，定期出版《稲盛和夫研究》（The Journal of Inamori Kazuo Studies），由京都大學學術出版會發行，第1～5號已出版（2022-2026）。可透過J-STAGE免費閱讀全文。</div>
+  <div class="card-links">
+    <a href="https://www.inamori-sg.org/" target="_blank">🔗 研究會官網</a>
+    <a href="https://www.jstage.jst.go.jp/browse/inamori/3/0/_contents/-char/ja" target="_blank">🔗 J-STAGE第3號</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">2024年シンポジウム特集「稻盛和夫的經營理念與アメーバ経営」</div>
+  <div class="card-meta">《稲盛和夫研究》第3號 | 2024年3月</div>
+  <div class="card-desc">特集主題為「稻盛和夫的經營理念與アメーバ経営——其起源與現代意義」。收錄多位學者的研究發表，是理解アメーバ経営學術前沿的重要資源。</div>
+  <div class="card-links">
+    <a href="https://www.jstage.jst.go.jp/article/inamori/3/1/3_89/_article/-char/ja" target="_blank">🔗 J-STAGE閱讀</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">京大GSM公開シンポジウム</div>
+  <div class="card-meta">2026年7月7日 | 線上 Zoom</div>
+  <div class="card-desc">主題：「誰のための企業価値向上か～株主・社会・従業員・顧客などと資本市場をどうつなぐか～」。涉及アメーバ経営強調的利害關係人觀點。</div>
+  <div class="card-links">
+    <a href="https://www.gsm.kyoto-u.ac.jp/event/175431/" target="_blank">🔗 活動詳情</a>
+  </div>
+</div>
+
+<!-- ============================== -->
+<h2 id="hitotsubashi">🏛 一橋大學（Hitotsubashi University）</h2>
+<p class="section-desc">日本管理學最高學府，商學研究科（Hitotsubashi ICS）以Case Method聞名</p>
+
+<div class="card">
+  <div class="card-title">一橋大學經營管理研究科（Hitotsubashi ICS）</div>
+  <div class="card-meta">原文：一橋大学大学院経営管理研究科 | School of International Corporate Strategy</div>
+  <div class="card-desc">日本頂尖MBA課程，管理會計（管理会計）為重點領域。與アメーバ経営研究相關的教授包括伊丹敬之（著有《現場が動き出す会計》《アメーバ経営と時間当たり採算》）。課程以ケースメソッド著稱，提供大量管理會計實務案例。</div>
+  <div class="card-links">
+    <a href="https://www.ics.hub.hit-u.ac.jp/" target="_blank">🔗 ICS官網</a>
+  </div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">《現場が動き出す会計》——實務演練資源</div>
+  <div class="card-meta">伊丹敬之・青木康晴 著 | 日本経済新聞出版社 2016年</div>
+  <div class="card-desc">第6章專門探討「アメーバ経営と時間当たり採算」，包含時間當量採算（時間当たり採算）的計算公式、損益分岐點分析、以及アメーバ組織間的社內交易訂價實務。附有大量圖表與計算例題，是直接可用於練習的教材。</div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">《組織行動の会計学》</div>
+  <div class="card-meta">青木康晴 編著 | 日経BP 2024年</div>
+  <div class="card-desc">最新出版，從組織行為觀點分析管理會計，包含アメーバ経営導入企業的實際案例。適合作為大學管理會計課程的補充教材。</div>
+</div>
+
+<!-- ============================== -->
+<h2 id="keio">🏛 慶應義塾大學（Keio University）</h2>
+<p class="section-desc">慶應義塾大學經營管理研究科（KBS）為日本歷史最悠久之商學院之一</p>
+
+<div class="card">
+  <div class="card-title">慶應義塾大學ビジネス・スクール（KBS）</div>
+  <div class="card-meta">原文：慶應義塾大学大学院経営管理研究科</div>
+  <div class="card-desc">提供MBA、EMBA、博士課程，管理會計為核心領域之一。教授太田康廣著《ビジネス・アナリシス》（中央経済社 2026年），為KBS EMBA「財務報告分析」課程教材。KBS也提供ケースメソッド教授法セミナー等實務教材開發服務。</div>
+  <div class="card-links">
+    <a href="https://www.kbs.keio.ac.jp/" target="_blank">🔗 KBS官網</a>
+  </div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">KBS公開講座</div>
+  <div class="card-meta">2026年度公開講座 | 線上/實體並行</div>
+  <div class="card-desc">每年舉辦公開講座（包含管理會計、財務分析等主題），部分講座可作為管理會計實務練習的參考資源。</div>
+  <div class="card-links">
+    <a href="https://www.kbs.keio.ac.jp/kbsforum2026/h1_1.html" target="_blank">🔗 公開講座資訊</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">ケースメソッド教授法セミナー</div>
+  <div class="card-meta">KBS提供 | ベーシック・モジュール</div>
+  <div class="card-desc">提供ケースメソッド教學法培訓，適合教師參考如何設計管理會計與アメーバ経営相關的案例教學。</div>
+  <div class="card-links">
+    <a href="https://www.kbs.keio.ac.jp/seminar/casemethod/outline.html" target="_blank">🔗 課程詳情</a>
+  </div>
+</div>
+
+<!-- ============================== -->
+<h2 id="inamori">📖 稻盛和夫官方網站（Kyocera）</h2>
+<p class="section-desc">稻盛和夫オフィシャルサイト，由京セラ維護，最權威的アメーバ経営資訊來源</p>
+
+<div class="card practice-highlight">
+  <div class="card-title">アメーバ経営とは</div>
+  <div class="card-desc">詳細介紹アメーバ経営的定義、目的、三項目的（①小集団獨立採算制、②經營者意識的育成、③全員參加經營）。包含稻盛和夫的原始發言和《アメーバ経営》一書的出處。</div>
+  <div class="card-links">
+    <a href="https://www.kyocera.co.jp/inamori/about/manager/amoeba/" target="_blank">🔗 頁面連結</a>
+  </div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">稲盛会計学 7つの基本原則</div>
+  <div class="card-desc">實務練習重點！七原則包括：キャッシュベース経営（現金基礎經營）、一対一対応（一一對應）、筋肉質経営（精實經營）、完璧主義（完美主義）、ダブルチェック（雙重核對）、採算向上（利潤提升）、ガラス張り経営（透明經營）。每個原則都有詳細解說與實務案例。</div>
+  <div class="card-links">
+    <a href="https://www.kyocera.co.jp/inamori/about/manager/accounting/" target="_blank">🔗 會計七原則總頁</a>
+    <a href="https://www.kyocera.co.jp/inamori/about/manager/accounting/accounting06.html" target="_blank">🔗 採算向上の原則</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">研究書・研究論文一覽</div>
+  <div class="card-desc">官網整理的研究書目與論文清單，涵蓋アメーバ経営、稻盛經營哲學、京セラ企業研究等領域。包含J-STAGE連結，可直接下載PDF。</div>
+  <div class="card-links">
+    <a href="https://www.kyocera.co.jp/inamori/research/thesis/" target="_blank">🔗 論文一覽</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">研究會・研究機関一覽</div>
+  <div class="card-desc">官網整理的アメーバ経営相關研究組織總覽，包括稻盛和夫研究會、アメーバ経営學術研究會、鹿兒島大學稻盛學術院。</div>
+  <div class="card-links">
+    <a href="https://www.kyocera.co.jp/inamori/research/research-institutes.html" target="_blank">🔗 研究組織一覽</a>
+  </div>
+</div>
+
+<!-- ============================== -->
+<h2 id="digilib">📚 稻盛數位圖書館（Inamori Digital Library）</h2>
+<p class="section-desc">原文：稲盛デジタル図書館 | 線上學習平台，影片+文稿+社群功能</p>
+
+<div class="card practice-highlight badge-video">
+  <div class="card-title">經營論系列（45講話）</div>
+  <div class="card-desc">包含アメーバ経営、時間當量採算、經營哲學等主題的演講影片與文字稿。每個講話都有詳細目次結構。重點講話包括：「アメーバ経営の実践」「売上最大経費最小」「時間当たり採算制度」等。影片+文稿形式，可直接作為學習教材。</div>
+  <div class="card-links">
+    <a href="https://www.inamori-dl.jp/" target="_blank">🔗 數位圖書館入口</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">全講話列表（Excel）</div>
+  <div class="card-desc">每月更新，可下載Excel查看所有講話內容清單（2026年5月版已公開）。</div>
+  <div class="card-links">
+    <a href="https://www.inamori-dl.jp/excel/【稲盛デジタル図書館】講話リスト_202605.xlsx" target="_blank">🔗 下載講話列表</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">PDF學習教材</div>
+  <div class="card-desc">平台上每段講話皆附文字稿PDF，可標記重點、寫筆記、與其他學員分享學習心得。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">定期IDL開放研討會</div>
+  <div class="card-meta">2026年7月22日（水）</div>
+  <div class="card-desc">定期舉辦的線上開放研討會，參加者可以交流アメーバ経営的學習心得。</div>
+  <div class="card-links">
+    <a href="https://forms.gle/kjjiTSqAWVofPurr5" target="_blank">🔗 報名表單</a>
+  </div>
+</div>
+
+<!-- ============================== -->
+<h2 id="research">🔬 アメーバ経営學術研究組織</h2>
+<p class="section-desc">專門研究アメーバ経営的學術團體</p>
+
+<div class="card">
+  <div class="card-title">アメーバ経営學術研究會（AM-AC）</div>
+  <div class="card-meta">原文：一般社団法人アメーバ経営学術研究会 | https://www.am-ac.org/</div>
+  <div class="card-desc">アメーバ経営專門學術研究會，已出版《アメーバ経営学》（2010）與《アメーバ経営の進化》（2017）兩本重要學術著作。不定期舉辦研究發表會與研討會。</div>
+  <div class="card-links">
+    <a href="https://www.am-ac.org/" target="_blank">🔗 官網</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">稻盛和夫研究會（Inamori Study Group）</div>
+  <div class="card-meta">https://www.inamori-sg.org/</div>
+  <div class="card-desc">以京都大學為中心，出版《稲盛和夫研究》學術期刊（J-STAGE免費閱讀）。每年舉辦研究シンポジウム。</div>
+  <div class="card-links">
+    <a href="https://www.inamori-sg.org/" target="_blank">🔗 官網</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">鹿兒島大學稻盛學術院（Inamori Academy）</div>
+  <div class="card-meta">https://www.inamori.kagoshima-u.ac.jp/</div>
+  <div class="card-desc">大學附設專門研究機構，開設履修証明プログラム、出版研究紀要與叢書、舉辦公開シンポジウム。</div>
+  <div class="card-links">
+    <a href="https://www.inamori.kagoshima-u.ac.jp/" target="_blank">🔗 官網</a>
+  </div>
+</div>
+
+<!-- ============================== -->
+<h2 id="papers">📄 重要學術論文（アメーバ経営相關）</h2>
+<p class="section-desc">可透過J-STAGE免費閱讀全文</p>
+
+<div class="card practice-highlight">
+  <div class="card-title">アメーバ経営と時間当たり採算</div>
+  <div class="card-meta">伊丹敬之・青木康晴 | 《現場が動き出す会計》第6章 | 日本経済新聞出版社 2016</div>
+  <div class="card-desc">アメーバ経営的核心計算實務——時間當量採算制度（時間当たり採算）的完整解說，包含計算公式、實務應用與案例。直接可作為練習教材。</div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">コントロール・システムの停滞を克服する—マルト水谷のアメーバ経営の進化</div>
+  <div class="card-meta">淺田拓史・上總康行 | 《原価計算研究》44巻1号 2020年</div>
+  <div class="card-desc">以實際企業案例探討アメーバ経営導入後的控制系統瓶頸克服方法，包含月次部門別採算管理等實務計算。</div>
+  <div class="card-links">
+    <a href="https://www.jstage.jst.go.jp/article/jcar/44/1/44_88/_article/-char/ja" target="_blank">🔗 J-STAGE閱讀</a>
+  </div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">親子間事業承継に管理会計システムが及ぼす影響—アメーバ経営の導入企業を例として</div>
+  <div class="card-meta">淺石梨沙・近藤大輔・黒木淳 | 《管理会計学》32巻1号 2024年</div>
+  <div class="card-desc">探討管理會計系統在企業繼承中的角色，以導入アメーバ経営的企業為案例。包含フィロソフィ如何強化管理會計效果的實證分析。</div>
+  <div class="card-links">
+    <a href="https://www.jstage.jst.go.jp/article/jma/32/1/32_185/_article/-char/ja" target="_blank">🔗 J-STAGE閱讀</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">マルト水谷におけるアメーバ経営の進化と使いこなしの条件</div>
+  <div class="card-meta">淺田拓史・上總康行 | 《會計》198巻1号 2020年</div>
+  <div class="card-desc">進一步探討アメーバ経営在實際企業中的成熟運用條件。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">稲盛経営哲学における美意識の問題</div>
+  <div class="card-meta">伊藤幸男 | 《鹿児島大学稲盛アカデミー研究紀要》第3号 2012年</div>
+  <div class="card-desc">探討稻盛經營哲學中的美學意識，可透過鹿兒島大學機構典藏下載PDF。</div>
+  <div class="card-links">
+    <a href="https://ir.kagoshima-u.ac.jp/records/4982" target="_blank">🔗 下載PDF</a>
+  </div>
+</div>
+
+<!-- ============================== -->
+<h2 id="books">📗 推薦書籍（アメーバ経営實務教材）</h2>
+<p class="section-desc">可直接用於アメーバ経営學習、教學與實務應用的重要書籍</p>
+
+<div class="card practice-highlight">
+  <div class="card-title">《アメーバ経営》</div>
+  <div class="card-meta">稻盛和夫 著 | 日本経済新聞出版社 2006年</div>
+  <div class="card-desc">アメーバ経営的原典。稻盛和夫親自撰寫的系統性著作，完整說明了アメーバ経営的誕生背景、三項目的、時間當量採算的具體計算方法。是鹿兒島大學稻盛經營哲學課程的核心教科書。</div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">《稲盛和夫の実学—経営と会計—》</div>
+  <div class="card-meta">稻盛和夫 著 | 1998年</div>
+  <div class="card-desc">會計學七原則的完整解說，與アメーバ経営相輔相成。鹿兒島大學京セラ經営學講座以本書為教材。</div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">《現場が動き出す会計》</div>
+  <div class="card-meta">伊丹敬之・青木康晴 著 | 日経BP 2016年</div>
+  <div class="card-desc">アメーバ経営の時間當量採算（第6章）為重點內容，附大量練習題與實務案例，最適合自學練習使用。</div>
+</div>
+
+<div class="card practice-highlight">
+  <div class="card-title">《組織行動の会計学》</div>
+  <div class="card-meta">青木康晴 編著 | 日経BP 2024年</div>
+  <div class="card-desc">最新アメーバ経営研究書，從組織行動與管理會計的交叉視角分析アメーバ経営導入企業。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">《アメーバ経営学》</div>
+  <div class="card-meta">アメーバ経営学術研究会編 | KCCSマネジメントコンサルティング 2010年</div>
+  <div class="card-desc">アメーバ経営學術研究會的集大成之作。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">《アメーバ経営の進化》</div>
+  <div class="card-meta">アメーバ経営学術研究会編 | 中央経済社 2017年</div>
+  <div class="card-desc">アメーバ経営的最新進化形態與研究成果。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">《経営理念が現場の心に火をつける》</div>
+  <div class="card-meta">伊丹敬之 著 | 日経BP 2024年</div>
+  <div class="card-desc">從經營理念對現場的影響探討アメーバ経営的成功關鍵。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">《ビジネス・アナリシス》</div>
+  <div class="card-meta">太田康広 著 | 中央経済社 2026年</div>
+  <div class="card-desc">慶應KBS EMBA教材，涵蓋財務報告分析、企業價值評價等，可作為管理會計補充練習。</div>
+</div>
+
+<div class="footer">
+  <p>Lingo 小綠教材 · 2026.06.21</p>
+  <p style="margin-top:4px;font-size:0.75em;color:#444;">資料來源：各機構官方網站、J-STAGE、Amazon JP｜整理：KK</p>
+</div>
+
+</body>
+</html>
