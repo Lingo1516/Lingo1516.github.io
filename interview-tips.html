@@ -3,625 +3,722 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>面試技巧互動式簡報</title>
+    <title>面試技巧互動簡報</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --bg-primary: #1a1a2e;
-            --bg-secondary: #16213e;
-            --accent: #e94560;
-            --text-primary: #eeffff;
-            --text-secondary: #a0a0c0;
-            --card-bg: #0f3460;
-            --success: #4caf50;
-            --warning: #ffc107;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --card-bg: #1c2128;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-pink: #bc8cff;
+            --accent-green: #3fb950;
+            --accent-orange: #d29922;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
-        
+
         body {
-            font-family: "Microsoft JhengHei", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
+            min-height: 100vh;
         }
-        
-        .slider-container {
-            max-width: 1000px;
+
+        .container {
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
-        
-        .slides {
-            position: relative;
-            height: calc(100vh - 120px);
-            overflow: hidden;
-        }
-        
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease;
-            transform: scale(0.95);
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+
+        header {
+            text-align: center;
             padding: 40px 20px;
-        }
-        
-        .slide.active {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-        }
-        
-        .slide.prev {
-            opacity: 0.3;
-        }
-        
-        .slide-number {
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            font-size: 18px;
-            color: var(--text-secondary);
-            background: rgba(0,0,0,0.5);
-            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 20px;
-            z-index: 100;
-        }
-        
-        .slide-title {
-            font-size: 2.2em;
-            font-weight: bold;
             margin-bottom: 30px;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
-            padding: 0 40px;
+            box-shadow: var(--shadow);
         }
-        
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            max-width: 800px;
-            width: 100%;
-            padding: 0 20px;
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            color: white;
         }
-        
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
-        }
-        
-        .card h3 {
-            font-size: 1.3em;
-            color: var(--accent);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(233, 69, 96, 0.3);
-        }
-        
-        .card p {
+
+        header p {
             font-size: 1.1em;
-            color: var(--text-secondary);
-            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
         }
-        
-        .example {
-            background: rgba(76, 175, 80, 0.2);
-            border-left: 4px solid var(--success);
-            padding: 15px 20px;
-            margin-top: 15px;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .example strong {
-            color: var(--success);
-        }
-        
-        .tip {
-            background: rgba(233, 69, 96, 0.2);
-            border-left: 4px solid var(--accent);
-            padding: 12px 20px;
-            margin-top: 15px;
-            border-radius: 0 8px 8px 0;
-            font-size: 1em;
-        }
-        
-        .tip strong {
-            color: var(--accent);
-        }
-        
-        .star-method {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .star-item {
-            text-align: center;
-            background: rgba(79, 172, 254, 0.2);
-            border-radius: 15px;
-            padding: 15px;
-        }
-        
-        .star-item .label {
-            font-size: 1.5em;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-        
-        .star-item .desc {
-            font-size: 0.95em;
-            color: var(--text-secondary);
-        }
-        
-        .navigaton-buttons {
-            position: fixed;
-            right: 30px;
-            bottom: 80px;
+
+        .navigation {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
-            z-index: 100;
-        }
-        
-        .nav-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            background: var(--card-bg);
-            color: var(--text-primary);
-            font-size: 20px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
+            margin-bottom: 30px;
             justify-content: center;
         }
-        
+
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid #30363d;
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            max-width: 150px;
+        }
+
         .nav-btn:hover {
             background: var(--accent);
-            transform: scale(1.1);
+            transform: translateY(-2px);
         }
-        
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+
+        .nav-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
         }
-        
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 5px;
-            background: var(--gradient-1);
-            transition: width 0.5s ease;
-            z-index: 101;
+
+        .slide {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            display: none;
+            animation: fadeIn 0.4s ease;
         }
-        
-        .slide-content h2 {
-            font-size: 2em;
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide h2 {
+            font-size: 1.8em;
+            color: var(--accent);
             margin-bottom: 25px;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #30363d;
         }
-        
-        .feature-list {
+
+        .content {
+            font-size: 1.1em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(88, 166, 255, 0.2) 0%, transparent 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .step-list {
             list-style: none;
             padding: 0;
         }
-        
-        .feature-list li {
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            display: flex;
-            align-items: start;
-            gap: 10px;
+
+        .step-list li {
+            margin-bottom: 18px;
+            padding-left: 30px;
+            position: relative;
         }
-        
-        .feature-list li::before {
+
+        .step-list li::before {
             content: "✓";
-            color: var(--success);
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
             font-weight: bold;
             font-size: 1.2em;
         }
-        
-        /* Media queries for mobile */
+
+        .star-box {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-pink);
+        }
+
+        .question-box {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .question-box strong {
+            color: var(--accent);
+        }
+
+        .tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tip-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .tip-icon.blue {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .tip-icon.green {
+            background: linear-gradient(135deg, #3fb950, #3d7950);
+        }
+
+        .tip-icon.purple {
+            background: linear-gradient(135deg, #bc8cff, #8b7aea);
+        }
+
+        .tip-icon.orange {
+            background: linear-gradient(135deg, #d29922, #b58220);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-pink));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .slide-counter {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+
         @media (max-width: 768px) {
-            .slide-title {
-                font-size: 1.8em;
-                padding: 0 20px;
-            }
-            
-            .slide-content h2 {
+            header h1 {
                 font-size: 1.6em;
             }
-            
-            .card {
-                padding: 20px;
+
+            header p {
+                font-size: 1em;
             }
-            
-            .star-method {
-                grid-template-columns: 1fr;
+
+            .slide {
+                padding: 25px;
             }
-            
-            .content-grid {
-                gap: 20px;
+
+            .slide h2 {
+                font-size: 1.4em;
             }
-            
-            .slide-number {
-                font-size: 16px;
-                padding: 6px 12px;
+
+            .content {
+                font-size: 1em;
             }
-            
-            .nav-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-            
-            .feature-list li {
-                font-size: 0.95em;
-                padding: 10px;
+
+            .tip {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
-    
-    <div class="slider-container">
-        <div class="slides">
-            <!-- Slide 1: 首頁 -->
-            <div class="slide active" data-index="0">
-                <div class="slide-content">
-                    <h2 style="text-align: center; margin-bottom: 20px; font-size: 3em;">面試技巧互動式簡報</h2>
-                    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
-                        <p style="font-size: 1.2em; color: var(--text-secondary); margin-bottom: 30px;">
-                            掌握面試關鍵技巧，提升面試成功率
-                        </p>
-                        <div style="display: inline-block; padding: 15px 30px; background: var(--gradient-2); border-radius: 30px; font-size: 1.3em; font-weight: bold;">
-                            共 9 頁內容
-                        </div>
-                        <div style="margin-top: 40px; color: var(--text-secondary);">
-                            <p>滑動或點擊左右箭頭瀏覽內容</p>
-                        </div>
+    <div class="container">
+        <header>
+            <h1>🎯 面試技巧互動簡報</h1>
+            <p>掌握面試高分技巧，從準備到跟進完整攻略</p>
+        </header>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 10%;"></div>
+        </div>
+
+        <nav class="navigation" id="navigation">
+            <button class="nav-btn active" data-slide="1">📋 面試前準備</button>
+            <button class="nav-btn" data-slide="2">🎤 自我介紹技巧</button>
+            <button class="nav-btn" data-slide="3">❓ 常見問題</button>
+            <button class="nav-btn" data-slide="4">⭐ STAR 法則</button>
+            <button class="nav-btn" data-slide="5">💰 薪資談判</button>
+            <button class="nav-btn" data-slide="6">👔 面試禮儀</button>
+            <button class="nav-btn" data-slide="7">❓ 反向提問</button>
+            <button class="nav-btn" data-slide="8">📧 面試後跟進</button>
+        </nav>
+
+        <div class="slide active" id="slide-1">
+            <h2>📋 面試前準備</h2>
+            <div class="content">
+                <div class="tip">
+                    <div class="tip-icon blue">🔍</div>
+                    <div>
+                        <h3>研究公司</h3>
+                        <ul class="step-list">
+                            <li><strong>官網浏览：</strong>了解公司文化、產品線上/下線產品</li>
+                            <li><strong>新闻舆情：</strong>最近的新聞、重大變動</li>
+                            <li><strong>競爭對手：</strong>了解市場格局</li>
+                            <li><strong>員工評價：</strong>查看 Glassdoor、溫度競爭等平台</li>
+                            <li><strong>面試團隊：</strong>如果知道面試官背景，做點功課</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Slide 2: 面試前準備 -->
-            <div class="slide" data-index="1">
-                <h2 class="slide-title">📋 面試前準備</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3>研究公司資訊</h3>
-                        <p>深入了解公司的業務、文化、產品和近期動態</p>
-                        <div class="example">
-                            <strong>實際做法：</strong>閱讀公司官網、LinkedIn、新聞報導，了解values和目標
-                        </div>
-                        <div class="tip">
-                            <strong>小技巧：</strong>準備 2-3 個對公司觀察的問題，展現真誠興趣
-                        </div>
-                    </div>
-                    <div class="card">
+
+                <div class="tip">
+                    <div class="tip-icon purple">📁</div>
+                    <div>
                         <h3>準備作品集</h3>
-                        <p>精選最能代表能力的作品，準備簡潔展示</p>
-                        <div class="example">
-                            <strong>實際做法：</strong>建立線上作品集網站，或準備簡潔 PDF 彙整
-                        </div>
-                        <div class="tip">
-                            <strong>小技巧：</strong>按從雇主任意角度排序，先呈現最相關作品
-                        </div>
-                    </div>
-                </div>
-                <div class="slide-number">1/9</div>
-            </div>
-            
-            <!-- Slide 3: 自我介紹技巧 -->
-            <div class="slide" data-index="2">
-                <h2 class="slide-title">🎤 自我介紹技巧</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3>30 秒版本（常規打招呼）</h3>
-                        <p>姓名 + 畢業學校 + 核心優勢 + 為什麼選擇這份工作</p>
-                        <div class="tip">
-                            <strong>重點：</strong>簡潔有力，不要背誦感太重
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>2 分鐘版本（深度介紹）</h3>
-                        <p>經歷脈絡 + 專業成果 + 學習成長 + 職涯目標</p>
-                        <div class="tip">
-                            <strong>技巧：</strong>使用 STAR 法則串聯，讓故事有邏輯性
-                        </div>
-                    </div>
-                </div>
-                <div class="slide-number">2/9</div>
-            </div>
-            
-            <!-- Slide 4: 常見問題與回答策略 -->
-            <div class="slide" data-index="3">
-                <h2 class="slide-title">❓ 常見問題與回答策略</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3>你最大的優點/缺點？</h3>
-                        <p>優點: 真實優勢 + 實際案例<br>缺點: 非致命缺點 + 改進行動</p>
-                    </div>
-                    <div class="card">
-                        <h3>為什麼選擇我們公司？</h3>
-                        <p>連結個人價值觀 + 公司文化 + 具體契機</p>
-                        <div class="tip">
-                            <strong>避免：</strong>說「穩定」或「附近」
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>未來 3-5 年規劃是什麼？</h3>
-                        <p>展現成長願景 + 願意與公司共經理想</p>
-                    </div>
-                </div>
-                <div class="slide-number">3/9</div>
-            </div>
-            
-            <!-- Slide 5: STAR 法則 -->
-            <div class="slide" data-index="4">
-                <h2 class="slide-title">🌟 STAR 法則</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3>情境 (Situation)</h3>
-                        <p>交代背景：什麼時間、什麼情境、什麼挑戰</p>
-                    </div>
-                    <div class="card">
-                        <h3>任務 (Task)</h3>
-                        <p>你的角色：你需要完成什麼目標</p>
-                    </div>
-                    <div class="card">
-                        <h3>行動 (Action)</h3>
-                        <p>你的做法：你具體做了什麼、如何處理</p>
-                    </div>
-                    <div class="card">
-                        <h3>結果 (Result)</h3>
-                        <p>量化的成果：達成率、省時、節省成本等</p>
-                    </div>
-                    <div class="tip" style="grid-column: 1 / -1; margin-top: 20px;">
-                        <strong>實用：</strong>準備 5-7 個符合 STAR 的故事，可套用於許多問題類型
-                    </div>
-                </div>
-                <div class="slide-number">4/9</div>
-            </div>
-            
-            <!-- Slide 6: 薪資談判技巧 -->
-            <div class="slide" data-index="5">
-                <h2 class="slide-title">💰 薪資談判技巧</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3>時機判斷</h3>
-                        <p>最佳時機：對方表達強烈興趣後、錄取名單階段</p>
-                        <div class="tip">
-                            <strong>建議：</strong>避免在第一輪就談薪水，先建立價值
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>準備工作</h3>
-                        <p>市場調查 + 個人價值評估 + 底線設定</p>
-                        <div class="example">
-                            <strong>工具：</strong>使用薪資調查網站了解市場行情
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>談判策略</h3>
-                        <p>表達意願 + 提供價值 + 提出合理範圍</p>
-                        <div class="tip">
-                            <strong>重點：</strong>語氣輕鬆、態度誠懇、保留彈性空間
-                        </div>
-                    </div>
-                </div>
-                <div class="slide-number">5/9</div>
-            </div>
-            
-            <!-- Slide 7: 面試禮儀 -->
-            <div class="slide" data-index="6">
-                <h2 class="slide-title">👔 面試禮儀</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3>著裝打扮</h3>
-                        <ul class="feature-list">
-                            <li>根據公司文化調整正式程度</li>
-                            <li>保持整潔、清爽、體力充沛</li>
-                            <li>避免過於搶眼的配飾</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>到達時間</h3>
-                        <ul class="feature-list">
-                            <li>提早 5-10 分鐘抵達</li>
-                            <li>改建網路測試與檔案確認</li>
-                            <li>避免匆忙、焦躁</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>眼神接觸</h3>
-                        <ul class="feature-list">
-                            <li>自然注視、避免過度移離</li>
-                            <li>使用 70%-30% 原則（70% 對看，30% 略過）</li>
-                            <li>展現自信和真誠</li>
+                        <ul class="step-list">
+                            <li><strong> concentra 關鍵字：</strong>成果、影響力可量化</li>
+                            <li><strong> 分類整理：</strong>個人最自豪的、類型分層、甚至分角色、團隊合作</li>
+                            <li><strong> 呈現方式：</strong>PDF（短片、輸出）、響應式網站（版本控制）、或其他版本管理</li>
                         </ul>
                     </div>
                 </div>
-                <div class="slide-number">6/9</div>
-            </div>
-            
-            <!-- Slide 8: 反向提問 -->
-            <div class="slide" data-index="7">
-                <h2 class="slide-title">🤔 反向提問技巧</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3>好的提問方向</h3>
-                        <ul class="feature-list">
-                            <li>團隊文化與工作氛圍</li>
-                            <li>職位成長與學習機會</li>
-                            <li>團隊合作模式</li>
-                            <li>成功員工特質</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>避免提問</h3>
-                        <ul class="feature-list">
-                            <li>薪資福利過早詢問</li>
-                            <li>Google 能找到的基礎資訊</li>
-                            <li>顯示缺乏準備的問題</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>實例提問</h3>
-                        <p>"您理想中的履約員工具備什麼特質？"<br>
-                           "這個团队最近達成什麼最讓你驕傲的成就？"</p>
-                    </div>
-                </div>
-                <div class="slide-number">7/9</div>
-            </div>
-            
-            <!-- Slide 9: 面試後跟進 -->
-            <div class="slide" data-index="8">
-                <h2 class="slide-title">📧 面試後跟進</h2>
-                <div class="content-grid">
-                    <div class="card">
-                        <h3>感謝信寫法</h3>
-                        <ul class="feature-list">
-                            <li>48 小時內發送</li>
-                            <li>感謝時間、表達興趣</li>
-                            <li>補充或澄清重點內容</li>
-                            <li>提及具體對話細節</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>內容重點</h3>
-                        <p>重寫開場：<br>
-                           重申職位興趣 + 說服當前履歷 + 補充亮點</p>
-                        <div class="tip">
-                            <strong>小例子：</strong>「在討論中證實我與 X 技能非常匹配」
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>後續行動</h3>
-                        <ul class="feature-list">
-                            <li>保持個人資料更新</li>
-                            <li>在 LinkedIn 上建立連結</li>
-                            <li>等待過程中保持耐心</li>
+
+                <div class="tip">
+                    <div class="tip-icon orange">📝</div>
+                    <div>
+                        <h3>模擬練習</h3>
+                        <ul class="step-list">
+                            <li><strong> 自我介紹：</strong>鏡前練習、錄影、找朋友模擬</li>
+                            <li><strong> 常見問題：</strong>寫好回答草稿、預習可能被問到的</li>
+                            <li><strong> 時間練習：</strong>自我介紹 30 秒、2 分鐘版本</li>
                         </ul>
                     </div>
                 </div>
-                <div class="slide-number">8/9</div>
             </div>
         </div>
-        
-        <div class="navigaton-buttons">
-            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">←</button>
-            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">→</button>
+
+        <div class="slide" id="slide-2">
+            <h2>🎤 自我介紹技巧</h2>
+            <div class="content">
+                <div class="star-box">
+                    <h3>🕐 30 秒版本（簡短版）</h3>
+                    <p style="margin-top: 10px;">
+                        <strong>目的：</strong>快速建立印象，讓面試官想聽更多<br>
+                        <strong>結構：</strong>我是誰 + 核心經歷 + 為什麼來這裡
+                    </p>
+                </div>
+
+                <div class="star-box">
+                    <h3>🕐 2 分鐘版本（詳細版）</h3>
+                    <p style="margin-top: 10px;">
+                        <strong>目的：</strong>完整展示背景，說服面試官聘用<br>
+                        <strong>結構：</strong>
+                        <div class="step-list">
+                            <li><strong>開頭（30 秒）：</strong>名字、現在職位、教育背景</li>
+                            <li><strong>中段（60 秒）：</strong>兩年/三年經歷重點、成長軌跡</li>
+                            <li><strong>後段（60 秒）：</strong>為什麼適合這個職位、(carrier goal)</li>
+                        </div>
+                    </p>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon green">💡</div>
+                    <div>
+                        <h3>💬 重要提示</h3>
+                        <ul class="step-list">
+                            <li>避免背誦，要自然流暢</li>
+                            <li>每分鐘練習 3-5 次直到背熟</li>
+                            <li>使用十足證據，展示成長</li>
+                            <li>结束時清演講者身份，邀請提問</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <h2>❓ 常見問題與回答策略</h2>
+            <div class="content">
+                <div class="question-box">
+                    <strong>Q1: 請簡短自我介紹</strong>
+                    <p class="highlight"><strong>策略：</strong>すぎ大きい pitch，重點放在和在職位的關聯性</p>
+                </div>
+
+                <div class="question-box">
+                    <strong>Q2: 你的優缺點是什麼？</strong>
+                    <p class="highlight"><strong>缺點策略：</strong></p>
+                    <ul class="step-list">
+                        <li>選擇真實但可改善的（別說「工作太拼命」）</li>
+                        <li>View 你努力改變，有具體行動</li>
+                        <li>畢業生是最好的求學期</li>
+                    </ul>
+                </div>
+
+                <div class="question-box">
+                    <strong>Q3: 為什麼選擇我們公司？</strong>
+                    <p class="highlight"><strong>完美回答：</strong></p>
+                    <ul class="step-list">
+                        <li>短期目標：想學什麼、公司什麼特色</li>
+                        <li>長期目標：要參與什麼、個人發展</li>
+                        <li>把公司和你的 goal 連結</li>
+                    </ul>
+                </div>
+
+                <div class="question-box">
+                    <strong>Q4: 未來五年規劃？</strong>
+                    <p class="highlight"><strong>重點：</strong></p>
+                    <ul class="step-list">
+                        <li>先服膺於公司對個人有期待</li>
+                        <li>短期先學習成長</li>
+                        <li>長期展示 commitment、stable intention</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <h2>⭐ STAR 法則</h2>
+            <div class="content">
+                <div class="star-box" style="border-left-color: var(--accent-green);">
+                    <h3>📖 什麼是 STAR？</h3>
+                    <div class="step-list">
+                        <li><strong>Situation（情境）：</strong>什麼背景、挑戰</li>
+                        <li><strong>Task（任務）：</strong>你的任務是什麼</li>
+                        <li><strong>Action（行動）：</strong>你具體做了什麼</li>
+                        <li><strong>Result（結果）：</strong>最後達成怎麼樣的成果</li>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon blue">💼</div>
+                    <div>
+                        <h3>💡 使用規則</h3>
+                        <ul class="step-list">
+                            <li>每題至少準備 2-3 個 example</li>
+                            <li>Result 要數字化（提升 %、省下多少時間、完成次數）</li>
+                            <li>Action 要強調「我」做的東西，不要只說團隊</li>
+                            <li>準備 GENERAL SKILLS：Leadership、Problem-solving、Communication、Innovation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <strong>範例：</strong>遇到困難如何解決？
+                    <p class="highlight">「(S) 專案截止日前發現當大公司延遲<br>
+                    (T) 需要重新排程、確保按期完成<br>
+                    (A) 我統一分配新任務、每日站會追蹤、優先處理關鍵路徑<br>
+                    (R) 提前 1 天交付、客戶滿意度提升 20%」</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <h2>💰 薪資談判技巧</h2>
+            <div class="content">
+                <div class="tip">
+                    <div class="tip-icon purple">⏰</div>
+                    <div>
+                        <h3>⏰ 最佳時機</h3>
+                        <ul class="step-list">
+                            <li><strong>延後面對：</strong>表示興趣、希望先確認 position fit</li>
+                            <li><strong>去 offer 後：</strong>雙向選址、避免談判在評估階段</li>
+                            <li><strong>過年或 end-of-year：</strong>公司比較有 budget</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon orange">📊</div>
+                    <div>
+                        <h3>💡 準備市場資訊</h3>
+                        <ul class="step-list">
+                            <li>了解市場薪水範圍</li>
+                            <li>參考同業、同級別、同位置</li>
+                            <li>問面試官：「公司對這個 position 的預期 budget 是多少？」</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon green">🔑</div>
+                    <div>
+                        <h3>💬 談判話術</h3>
+                        <ul class="step-list">
+                            <li><strong>避談 salary jump：</strong>先 ask 他們 offer 多少，再 negotiate</li>
+                            <li><strong>強調價值：</strong>「根據我的經驗和能力，我認為這個 range 比較合理」</li>
+                            <li><strong>顯然責任：</strong>使用 market data、對公司貢獻</li>
+                            <li><strong>et offer a counter offer：</strong>用主動、感謝態度</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <h2>👔 面試禮儀</h2>
+            <div class="content">
+                <div class="tip">
+                    <div class="tip-icon blue">👔</div>
+                    <div>
+                        <h3>📝 實體面試</h3>
+                        <ul class="step-list">
+                            <li><strong>服裝：</strong>正式、整潔、符合產業調性</li>
+                            <li><strong>時間：</strong>提前 10-15 分鐘到、展現 respect</li>
+                            <li><strong>眼神接觸：</strong>聽時專注、不斜眼看、不打斷</li>
+                            <li><strong>握手：</strong>堅定但不過力、微笑、眼神接觸</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon purple">📱</div>
+                    <div>
+                        <h3>💻 線上面試</h3>
+                        <ul class="step-list">
+                            <li><strong>環境：</strong>安靜、無干擾、背景整潔</li>
+                            <li><strong>設備：</strong>測試網路、麥克風、攝影機</li>
+                            <li><strong>視線：</strong>看著 camera，不是螢幕</li>
+                            <li><strong>文件：</strong>放在面前可參考，但要有狀態</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon orange">📋</div>
+                    <div>
+                        <h3>✅ 準備物品</h3>
+                        <ul class="step-list">
+                            <li>多幾份簡歷（實體面）</li>
+                            <li>門證、 pens、 notebook</li>
+                            <li>水瓶、手邊 config file</li>
+                            <li>防備技術相關問題：作品集 ready to show</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-7">
+            <h2>❓ 反向提問</h2>
+            <div class="content">
+                <div class="star-box">
+                    <h3>💡 什麼時間提問？</h3>
+                    <p>面試最後通常會問「有問題想問嗎？」，這是必須把握的機會！</p>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon blue">📊</div>
+                    <div>
+                        <h3>💼 關於職位與團隊</h3>
+                        <ul class="step-list">
+                            <li>這個團隊最近的最大目標是什麼？</li>
+                            <li>這個職位如何貢獻到團隊目標？</li>
+                            <li>團隊成員的構成和分工是什麼？</li>
+                            <li>成功的團隊成員有什么特質？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon purple">📈</div>
+                    <div>
+                        <h3>🎯 關於成長與評鑑</h3>
+                        <ul class="step-list">
+                            <li>這個職位的 career path 是什麼？</li>
+                            <li>性能評鑑的機制是什麼？多久一次？</li>
+                            <li>公司鼓勵 How to learn？</li>
+                            <li>團隊如何維護知識共享？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon green">🏢</div>
+                    <div>
+                        <h3>🚀 關於公司文化</h3>
+                        <ul class="step-list">
+                            <li>您在公司待了多久？（了解願意分享）</li>
+                            <li>公司ulture 中您覺得特別好的是什麼？</li>
+                            <li>公司面對困難時如何解決？</li>
+                            <li>您喜歡這裡最什麼部分？</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <strong>💬 不應該問：</strong>薪水福利（除非發了 offer）、怎麼搭捷運、公司除了.logo 還會做什麼
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-8">
+            <h2>📧 面試後跟進</h2>
+            <div class="content">
+                <div class="tip">
+                    <div class="tip-icon blue">⏰</div>
+                    <div>
+                        <h3>🕐 時間點</h3>
+                        <ul class="step-list">
+                            <li><strong>一般情況：</strong> interviews 後 1-2 週內、不要太早或太晚</li>
+                            <li><strong>明確期限：</strong>依照面試官給的時程</li>
+                            <li><strong>如果等太久：</strong>可以再 gentle check-in</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon purple">✉️</div>
+                    <div>
+                        <h3>📧 感謝信內容</h3>
+                        <ul class="step-list">
+                            <li><strong>稱呼：</strong>用面試官真名、盡量個別感謝</li>
+                            <li><strong>重申：</strong>感謝時間、迴溫 why you're good</li>
+                            <li><strong> complément：</strong>提及面試中討論的具體 point</li>
+                            <li><strong>近期資訊：</strong>如果有 company 新聞、可以引用</li>
+                            <li><strong>結束：</strong>期待回響、重申興趣</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <div class="tip-icon orange">🎯</div>
+                    <div>
+                        <h3>💡 附加價值</h3>
+                        <ul class="step-list">
+                            <li>如果可以，提供補充材料（作品集、專案說明）</li>
+                            <li>分享相關文章、連結（顯示持續 learning）</li>
+                            <li>如果有提到要帶樣作，儘快提供</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <strong>模板開頭：</strong><br>
+                    「尊敬的 [面試官姓名]，感謝您今天花時間和我討論 [職位名稱]。這次對 [公司名稱] 和職位特別感興趣，因為 [提及具體亮點]。」
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-counter">
+            <!-- Slide counter will be set by JavaScript -->
         </div>
     </div>
-    
+
     <script>
-        let currentSlide = 0;
-        const totalSlides = 9;
-        
-        function updateProgress() {
-            const progress = ((currentSlide + 1) / totalSlides) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-            updateSlideNumbers();
-        }
-        
-        function updateSlideNumbers() {
-            const slides = document.querySelectorAll('.slide');
-            slides.forEach((slide, index) => {
-                const number = document.querySelectorAll('.slide-num')[0];
-                slide.style.left = '0';
+        const slides = document.querySelectorAll('.slide');
+        const navBtns = document.querySelectorAll('.nav-btn');
+        const progressBar = document.querySelector('.progress-fill');
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function updateNavigation() {
+            // Update active button
+            navBtns.forEach((btn, index) => {
+                if (index + 1 === currentSlide) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
             });
+
+            // Update progress bar
+            const progress = (currentSlide / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+
+            return currentSlide;
         }
-        
-        function changeSlide(direction) {
-            const slides = document.querySelectorAll('.slide');
+
+        function showSlide(slideNum) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            navBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show current slide
+            document.querySelector(`#slide-${slideNum}`).classList.add('active');
             
-            if (direction === 1 && currentSlide < totalSlides - 1) {
-                slides[currentSlide].classList.remove('active');
-                slides[currentSlide].classList.add('prev');
-                currentSlide++;
-                slides[currentSlide].classList.add('active');
-            } else if (direction === -1 && currentSlide > 0) {
-                slides[currentSlide].classList.remove('active', 'prev');
-                currentSlide--;
-                slides[currentSlide].classList.add('active');
+            // Activate corresponding button
+            document.querySelector(`#slide-${slideNum}`)?.closest('.nav-btn')?.classList?.add('active');
+            navBtns[slideNum - 1].classList.add('active');
+
+            // Update progress
+            updateNavigation();
+            currentSlide = slideNum;
+            updateSlideCounter();
+        }
+
+        function updateSlideCounter() {
+            const counter = document.querySelector('.slide-counter');
+            if (counter) {
+                counter.textContent = `${currentSlide} / ${totalSlides} - ${getSlideName(currentSlide)}`;
             }
-            
-            updateProgress();
         }
-        
+
+        function getSlideName(slideNum) {
+            const names = [
+                '面試前準備',
+                '自我介紹技巧',
+                '常見問題',
+                'STAR 法則',
+                '薪資談判',
+                '面試禮儀',
+                '反向提問',
+                '面試後跟進'
+            ];
+            return names[slideNum - 1];
+        }
+
+        // Navigation click handler
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const slideNum = parseInt(btn.dataset.slide);
+                showSlide(slideNum);
+            });
+        });
+
         // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight' || e.key === ' ') {
-                changeSlide(1);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                if (currentSlide < totalSlides) {
+                    showSlide(currentSlide + 1);
+                }
             } else if (e.key === 'ArrowLeft') {
-                changeSlide(-1);
+                if (currentSlide > 1) {
+                    showSlide(currentSlide - 1);
+                }
             }
         });
-        
-        // Touch swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        document.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        document.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            const threshold = 50;
-            if (touchStartX - touchEndX > threshold) {
-                changeSlide(1);
-            } else if (touchEndX - touchStartX > threshold) {
-                changeSlide(-1);
-            }
-        }
-        
+
         // Initialize
-        updateProgress();
+        showSlide(1);
     </script>
 </body>
 </html>
