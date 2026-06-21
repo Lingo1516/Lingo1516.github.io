@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>經理人月刊管理教材｜領導・策略・組織・團隊</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --card-bg: #16213e;
+  --card-border: #0f3460;
+  --text: #e0e0e0;
+  --text-muted: #a0a0b0;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --accent3: #533483;
+  --link: #64b5f6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  padding: 16px;
+  min-height: 100vh;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  padding: 32px 0 24px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 32px;
+}
+.header h1 {
+  font-size: 1.6em;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header p {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  margin-top: 8px;
+}
+.header .subtitle {
+  color: var(--text-muted);
+  font-size: 0.8em;
+  margin-top: 4px;
+}
+.nav-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 20px 0 8px;
+}
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  background: var(--accent2);
+  color: var(--text);
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(233, 69, 96, 0.15);
+}
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.card-icon {
+  font-size: 1.8em;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.card-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.card-title a {
+  color: var(--link);
+  text-decoration: none;
+}
+.card-title a:hover {
+  text-decoration: underline;
+}
+.card-meta {
+  font-size: 0.82em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.card-meta .source {
+  color: var(--accent);
+}
+.card-summary {
+  font-size: 0.92em;
+  line-height: 1.8;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.card-points-title {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.card-points {
+  list-style: none;
+  padding: 0;
+}
+.card-points li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 0.88em;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.card-points li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  border-top: 1px solid var(--card-border);
+  margin-top: 8px;
+}
+@media (max-width: 480px) {
+  body { padding: 12px; }
+  .card { padding: 16px; }
+  .card-title { font-size: 1em; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📚 經理人月刊・管理實戰教材</h1>
+    <p>領導力・經營策略・組織管理・團隊協作・職場成長</p>
+    <div class="nav-tags">
+      <span class="tag">🏢 領導</span>
+      <span class="tag">📊 策略</span>
+      <span class="tag">🔄 組織</span>
+      <span class="tag">💡 創新</span>
+      <span class="tag">🚀 成長</span>
+    </div>
+    <div class="subtitle">選自經理人月刊深度文章｜2024–2025 年間</div>
+  </div>
+
+  <!-- Card 1 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏢</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/67904" target="_blank" rel="noopener">上任 5 年淨利成長 76％！永豐金總座：管理者不必樣樣通，但要做到 2 件事</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊</span>
+      <span>📅 2023-12-26</span>
+      <span>✍️ 吳美欣</span>
+      <span class="tag">🏢 領導</span>
+    </div>
+    <div class="card-summary">
+      永豐金控總經理朱士廷自 2017 年接任後，帶領公司實現淨利 5 年成長 76%，ROE 達 10.08% 為金控業第一。他以「樂團指揮」比喻管理者角色，認為主管不須樣樣精通，關鍵在於：找到對的人放在對的位置，以及遇到問題時不斷拆解分析直到解決。他成立績效管理委員會，針對每個事業單位進行數據盤點，將利息收入拆分到定存、活存、台幣、外幣等細項後與同業比對，藉此發現問題與商機。2019 年推出的數位帳戶「大戶 DAWHO」更是全台首家整合銀行與證券開戶的創新服務，展現跨部門協作與數據驅動決策的力量。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>管理者的角色如同樂團指揮，不必樣樣精通，但要能識人善任</li>
+      <li>績效管理要拆解到最細項，用數據和同業比對找出落差</li>
+      <li>跨部門協作是創新關鍵，「大戶投」整合銀證開戶展現整合力</li>
+      <li>金融本質不變但面貌改變，數位化經營才能接觸新客群</li>
+      <li>領導者應持續問「然後咧？」追根究柢解決問題</li>
+    </ul>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏢</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/68679" target="_blank" rel="noopener">台積電新任董事長魏哲家：挑接班人必備三要件</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊（經濟日報）</span>
+      <span>📅 2024-06-05</span>
+      <span>✍️ 尹慧中、蘇嘉維、簡永祥</span>
+      <span class="tag">🏢 領導</span>
+    </div>
+    <div class="card-summary">
+      台積電新任董事長魏哲家首次以新身分與媒體交流，暢談接班與領導哲學。他強調，未來的接班人必須擁有與公司一致的價值觀，一步都不能讓、不能打折：第一是誠信正直，第二是尊重與支持客戶、幫助客戶成功。台積電創立 30 多年來，三大原則——技術領先、卓越製造、客戶信任——始終不變。魏哲家表示將推動接班制度化，讓未來交接井然有序，同時朝年輕化、制度化發展，並建立訓練系統讓人才成長。他也坦承最擔憂的是人才培育速度趕不上擴廠速度。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>接班人的首要條件：誠信正直、客戶導向、認同公司價值</li>
+      <li>價值觀必須「一步都不能讓、不能打折」，是企業傳承的根本</li>
+      <li>領導者換屆不應改變核心價值與做事方法</li>
+      <li>推動繼承制度與年輕化，是企業永續經營的關鍵</li>
+      <li>人才培育速度跟不上擴張速度，是管理者最大的隱憂</li>
+    </ul>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏢</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/68677" target="_blank" rel="noopener">輝達擴大在台投資，黃仁勳：五年內招募千人！喜歡的員工特質？</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊</span>
+      <span>📅 2024-06-04</span>
+      <span>✍️ 經理人用戶成長中心</span>
+      <span class="tag">🏢 領導</span>
+    </div>
+    <div class="card-summary">
+      NVIDIA 執行長黃仁勳在 COMPUTEX 期間宣布五年內在台招募 1000 名工程師，並設立大型設計中心。他對台灣科技生態系給予高度評價，特別是台積電的客製化半導體製造能力。在人才選擇上，黃仁勳強調 NVIDIA 需要的絕不只是技術佼佼者，更重視樂觀態度、團隊合作精神、勇於創新與對工作的投入。他認為樂觀的人在面對困難時能保持積極心態，而喜歡與人合作則是解決複雜問題的關鍵。此外，他也鼓勵學生在校期間專注數學與電腦等基礎學科。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>領導者選擇人才首重態度：樂觀、合作、創新、投入</li>
+      <li>台灣科技生態系全球獨一無二，供應鏈協作是 NVIDIA 成功的關鍵</li>
+      <li>技術能力是基本門檻，人格特質才是脫穎而出的分水嶺</li>
+      <li>企業擴張需同時考慮在地投資與人才培育的平衡</li>
+      <li>創新文化來自於「喜歡做出改變」的組織氛圍</li>
+    </ul>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/66660" target="_blank" rel="noopener">東芝下市之路啟動｜曾為日本經濟之光，為何殞落至此？</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊（科技新報）</span>
+      <span>📅 2023-08-08</span>
+      <span>✍️ 藍弋丰</span>
+      <span class="tag">📊 策略</span>
+    </div>
+    <div class="card-summary">
+      日本工業巨擘東芝始於 1875 年明治時代，歷經百年發展為跨足半導體、能源、家電、國防的綜合性企業。然而自 2000 年代以來一連串策略失誤讓它走向衰敗：在 SED 電視技術上押錯寶、HD DVD 規格戰落敗、以市場估值 3 倍以上的 54 億美元高價收購西屋核能業務。福島核災重創核能夢想後，公司陷入假帳醜聞，迫使三任社長下台。為了填補核能巨虧，東芝陸續出售影像感測器、醫療系統、家電、記憶體等優質事業，最終走向被收購下市的命運。這是一個經典的「策略失焦 → 財務造假 → 公司治理崩壞」案例。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>孤注一擲式的策略押寶風險極高，特別是涉及巨額併購時</li>
+      <li>財務造假是惡性循環的起點：先為美化業績而造假，後為掩蓋造假而繼續造假</li>
+      <li>福島核災屬於「黑天鵝事件」，但過度集中的業務結構放大了衝擊</li>
+      <li>公司治理失靈是從「領導者對下屬施壓美化業績」開始的</li>
+      <li>變賣核心事業只能短期止血，無法解決根本的策略問題</li>
+      <li>引入外資後若無法建立有效的公司治理機制，衝突只會加劇</li>
+    </ul>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/68218" target="_blank" rel="noopener">Google 換執行長呼聲漸高！AI 產品出包，竟是因為「偶包太重」</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊（數位時代）</span>
+      <span>📅 2024-03-06</span>
+      <span>✍️ 陳建鈞</span>
+      <span class="tag">📊 策略｜💡 創新</span>
+    </div>
+    <div class="card-summary">
+      Google 的 Gemini 圖像生成功能因生成美國開國元老卻出現非裔與亞裔人物等嚴重失誤而暫停使用，引發外界對執行長皮蔡領導能力的質疑。知名分析師班・湯普森指出，Google 的問題根源是其「不做惡」的企業文化反而成了創新枷鎖——為了避免種族歧視指控而過度矯正。皮蔡雖帶領 Google 市值從 4000 萬美元成長到 1.7 兆美元，但外界將其與微軟巴爾默時代相比，認為 Google 需要一位如納德拉般的新領導者來推動變革。Google 對 AI 的謹慎態度反而讓競爭對手 OpenAI 取得先機。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>企業文化可成就成功，但也可能成為阻礙創新的牢籠</li>
+      <li>過度風險規避導致「完美主義癱瘓」，讓競爭對手取得先機</li>
+      <li>領導者需在「負責任」與「敢於推出產品」之間找到平衡</li>
+      <li>財務績效優異不等於領導力無懈可擊，戰略眼光同樣重要</li>
+      <li>組織需要像微軟納德拉這樣「大刀闊斧改革」的領導者來突破瓶頸</li>
+      <li>企業價值觀應服務於使命，而非反過來限制使命</li>
+    </ul>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/67286" target="_blank" rel="noopener">Nike 裁撤 2％ 員工，1600 人工作不保！資深品牌為何出師不利？</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊</span>
+      <span>📅 2024-02-16</span>
+      <span>✍️ 李心平</span>
+      <span class="tag">📊 策略</span>
+    </div>
+    <div class="card-summary">
+      運動品牌龍頭 Nike 宣布裁員 2%（約 1600 人），這是疫情後首度獲利不如預期後的應對措施。疫情期間 Nike 的 Air Jordan 1 在二手轉售市場溢價高達 61%，但疫情後泡沫消退、溢價僅剩 2%。Nike 面臨兩大難題：通膨導致消費者縮減非必要支出，以及自 2019 年 Nike React 後未再推出熱門鞋款。同時獨立運動鞋品牌崛起、精品業跨入鞋類市場，競爭加劇。庫存高達 85 億美元，迫使 Nike 以折扣清理庫存，進一步壓縮利潤。此案例說明了即使是市場龍頭，缺乏創新與市場變化應對不足也會陷入困境。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>疫情帶來的市場榮景可能只是泡沫，管理層需區分短期紅利與長期競爭力</li>
+      <li>自 2019 年後未推出熱門鞋款，凸顯了產品創新中斷的嚴重性</li>
+      <li>庫存失控（85 億美元）是供應鏈管理與需求預測的重大失誤</li>
+      <li>獨立品牌與精品跨界崛起，龍頭地位絕非牢不可破</li>
+      <li>中國市場反彈雖是亮點，但無法掩蓋全球策略層面的結構性問題</li>
+    </ul>
+  </div>
+
+  <!-- Card 7 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔄</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/68295" target="_blank" rel="noopener">公司內部小團體多、派系林立！主管該如何化解衝突、促成團隊合作？</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊</span>
+      <span>📅 2025-08-01</span>
+      <span>✍️ 王毓茹</span>
+      <span class="tag">🔄 組織｜🏢 領導</span>
+    </div>
+    <div class="card-summary">
+      辦公室政治與派系問題是管理者最棘手的挑戰之一。文章提出 6 個實戰技巧：首先搞清楚派系關係，透過觀察成員溝通互動釐清每個小團體的動機與需求；建立全員認同的基本原則與目標，透過破冰活動建立信任；用多元方式引導討論，如便利貼、Slido 等工具確保各團體參與平等；面對衝突時先找出共同點，保持中立與同理心；建立定期回報機制確保決策落實；專案完成後慶祝成功，細數各部門貢獻。更重要的是，管理者應認知到「派系不一定需要消滅」，而是要促進在派系存在下的順暢合作。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>先了解後行動：觀察釐清派系的成因與運作方式，才能拿捏管理分寸</li>
+      <li>建立共同目標與基本原則是推動跨部門合作的基石</li>
+      <li>引導討論時確保各團體參與平等，偏袒任何一方都是大忌</li>
+      <li>面對衝突先找共同點，避免指責，建立友善討論氛圍</li>
+      <li>派系不必消滅，關鍵是在派系存在的條件下促進順暢合作</li>
+      <li>慶祝成功時細數各部門貢獻，有助於延續合作文化</li>
+    </ul>
+  </div>
+
+  <!-- Card 8 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🚀</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/68682" target="_blank" rel="noopener">如何增加職場升遷機會？資深人資主管：千萬別做這 3 件事</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊</span>
+      <span>📅 2024-06-05</span>
+      <span>✍️ 王毓茹</span>
+      <span class="tag">🚀 成長</span>
+    </div>
+    <div class="card-summary">
+      資深人資主管瓦萊麗・羅德里格分享職場升遷的三大禁忌。第一，不要過度分享私事——她親身經歷因透露車子故障，主管反而因此把需要開車的工作交給別人。在職場只需一、兩個交情不錯的朋友，保有工作與私生活的界線。第二，不要太謙虛——成功者往往直接談論成就，過度謙虛容易錯過升遷機會。《哈佛商業評論》也指出，過度謙虛的領導者會被誤解為優柔寡斷。第三，公司聚會不要待太久——酒精催化下容易出現失態，建議露臉一、兩小時即可。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>同事不是真正的朋友，過度分享私人資訊可能反被用來做決定</li>
+      <li>適度展現自己不是驕傲，而是職業生存的必要技能</li>
+      <li>過度謙虛的領導者會被視為優柔寡斷，缺乏領導力</li>
+      <li>公司社交場合要拿捏分寸，過度投入反而不利職涯</li>
+      <li>善良必須有點鋒芒，該爭取時就要站出來為自己發聲</li>
+    </ul>
+  </div>
+
+  <!-- Card 9 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💡</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/68669" target="_blank" rel="noopener">日本豐田數據又造假，多款車停售！馬自達、本田 5 大廠也有不當行為</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊</span>
+      <span>📅 2024-06-03</span>
+      <span>✍️ 經理人用戶成長中心</span>
+      <span class="tag">💡 創新｜🔄 組織</span>
+    </div>
+    <div class="card-summary">
+      日本交通運輸省調查發現五大車廠——豐田、馬自達、山葉、本田、鈴木——在性能測試中有數據造假等不當行為，影響車型達 38 款。豐田被發現 Corolla 等車型在行人安全測試中提交虛假資料，並使用改造車輛進行碰撞安全測試；山葉在不合格環境下進行噪音測試，本田則有 22 款車輛涉及噪音測試數據造假。事件導致相關車型被禁止出貨，豐田會長豐田章男公開致歉。此案例再次凸顯了日本製造業在壓力下的合規與誠信問題。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>測試數據造假不是個別企業問題，而是日本製造業的系統性挑戰</li>
+      <li>組織文化若過度強調短期業績，員工可能在壓力下選擇造假</li>
+      <li>誠信管理是組織治理的根本，一旦崩壞將引發連鎖信任危機</li>
+      <li>重罰與政府監管是防止企業不當行為的必要手段</li>
+      <li>高層公開道歉是危機處理的第一步，但後續的制度改善才是關鍵</li>
+    </ul>
+  </div>
+
+  <!-- Card 10 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div class="card-title">
+        <a href="https://www.managertoday.com.tw/articles/view/68678" target="_blank" rel="noopener">上市公司員工年薪排行｜在這 23 家公司上班，年收入比台積電更厚！</a>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="source">📰 經理人月刊</span>
+      <span>📅 2024-06-05</span>
+      <span>✍️ 經理人用戶成長中心</span>
+      <span class="tag">📊 策略｜🚀 成長</span>
+    </div>
+    <div class="card-summary">
+      台灣證券交易所公布 2023 年度上市公司員工薪酬資訊，年薪前三分別是建材營造業的愛山林（552.6 萬元）、電子零組件的聯德（522.5 萬元）與貿易百貨的三商（494.9 萬元）。半導體業雖然有 8 家公司進榜（聯發科、聯詠、創意、祥碩、瑞昱、達發、嘉澤、台積電），但冠軍並非科技業而是營造代銷業。薪資數據反映各行業的競爭力與獲利能力，也為求職者提供重要的薪酬參考基準。此資料來自公開資訊觀測站的「公司治理專區」，是企業 ESG 資訊揭露的一環。
+    </div>
+    <div class="card-points-title">💡 核心觀點</div>
+    <ul class="card-points">
+      <li>年薪最高不一定是科技業——愛山林（營建代銷）名列第一</li>
+      <li>半導體業進榜家數最多（8 家），顯示該產業整體薪酬水準優異</li>
+      <li>員工薪酬是競爭力的關鍵指標，也是企業 ESG 揭露的重要項目</li>
+      <li>求職者應參考產業結構性差異，而非只看個別公司名氣</li>
+      <li>高薪產業的變化反映經濟結構轉型（房地產、半導體 vs 傳統製造）</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>📚 Lingo 小綠教材 · 2026.06.21</p>
+    <p style="font-size:0.8em; color:#666;">精選自經理人月刊（managertoday.com.tw）· 僅供學習參考</p>
+  </div>
+</div>
+</body>
+</html>
