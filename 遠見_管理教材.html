@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遠見雜誌管理文章教材 · 2026.06.21</title>
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --card: #1a1a2e;
+    --card-hover: #23234a;
+    --text: #e0e0f0;
+    --muted: #8888aa;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --border: #2a2a4a;
+    --emoji-bg: #2a2a4a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .container { max-width: 820px; margin: 0 auto; }
+  header {
+    text-align: center;
+    padding: 48px 16px 32px;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 10%;
+    width: 80%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 20px 0 32px;
+    font-size: 13px;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .stats span {
+    background: var(--emoji-bg);
+    padding: 4px 14px;
+    border-radius: 12px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    transition: all 0.25s ease;
+  }
+  .card:hover {
+    background: var(--card-hover);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(108, 99, 255, 0.15);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .card-emoji {
+    font-size: 28px;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: var(--emoji-bg);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .card-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    flex: 1;
+  }
+  .card-title a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .card-title a:hover {
+    color: var(--accent2);
+    text-decoration: underline;
+  }
+  .meta {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    padding-left: 58px;
+  }
+  .meta a {
+    color: var(--accent2);
+    text-decoration: none;
+  }
+  .meta a:hover { text-decoration: underline; }
+  .summary {
+    font-size: 15px;
+    color: #ccccee;
+    margin-bottom: 16px;
+    padding-left: 58px;
+    line-height: 1.75;
+  }
+  .points {
+    padding-left: 58px;
+  }
+  .points h3 {
+    font-size: 13px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .points ul {
+    list-style: none;
+    padding: 0;
+  }
+  .points li {
+    position: relative;
+    padding: 6px 0 6px 20px;
+    font-size: 14px;
+    color: #c0c0dd;
+    line-height: 1.6;
+  }
+  .points li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  footer {
+    text-align: center;
+    padding: 48px 16px 32px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer span {
+    display: inline-block;
+    background: var(--emoji-bg);
+    padding: 6px 18px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  @media (max-width: 480px) {
+    body { padding: 12px; }
+    .card { padding: 20px 16px; }
+    .card-title { font-size: 17px; }
+    .summary, .meta, .points { padding-left: 0; }
+    .card-header { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>📘 遠見雜誌 · 管理精選教材</h1>
+  <div class="subtitle">領導 × 策略 × 組織 × 創新 — 10 篇深度文章</div>
+  <div class="stats">
+    <span>📅 2026.06.21 更新</span>
+    <span>📰 來源：遠見雜誌</span>
+    <span>🏷️ 適讀：管理課程／讀書會</span>
+  </div>
+</header>
+
+<!-- 1 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">🏢</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130909" target="_blank" rel="noopener">橋水創辦人：我12歲就炒股討厭背課本，但建議兩件事仍得學</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：林士蕙 · 2026.06.19 · <a href="https://www.gvm.com.tw/article/130909" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    全球最大對沖基金橋水創辦人達利歐回母校長島大學畢業演講，分享從12歲當桿弟炒股、34歲因預測錯誤慘賠到向父親借4000美元付帳單，以及2020年喪子之痛的生命體悟。他認為人生最值得的兩件事：高品質思考與冥想，遠比死背課本重要。「痛苦+反思=進步」是他最推崇的原則。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>痛苦是成長訊號——「痛苦加上反思等於進步」，每個被解決的問題都像一顆珠寶</li>
+      <li>質疑自己的信念——從「我是對的嗎」轉為「我怎麼知道我是對的」，找聰明人挑戰你的判斷</li>
+      <li>人生的成功不是財富——「有意義的工作與有意義的關係」比擁有過多金錢更重要</li>
+      <li>多元分散的智慧——不管多相信自己，資產分散仍然非常重要（源自1982年慘賠教訓）</li>
+      <li>人生三階段——學習→工作（倚賴你）→自由（傳出去），畢業生正進入最關鍵的第二階段</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">📊</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130727" target="_blank" rel="noopener">企業成敗看「基因」？三得利、麒麟命運在出手前就決定</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：台灣董事學會 · 2026.06 · <a href="https://www.gvm.com.tw/article/130727" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    2010年麒麟與三得利合併破局後，幾乎同時押注海外併購。麒麟以39.1億美元高溢價收購巴西辛卡里歐，因日式共識制在巴西失靈、市場驟變，最終僅以770億日圓賤賣（回收不足25%）。三得利則先讓子公司上市籌資，再以160億美元收購美國Beam，維持Beam獨立運作並雙向極大化通路，十年烈酒營收翻倍至56億美元，躍居全球三巨頭。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>策略背後的企業基因決定成敗——公眾公司vs家族控股，短期績效vs長期願景的深層差異</li>
+      <li>麒麟求「快」+「單點突破」（數字導向），三得利「配速」+「布局思維」（價值思考）</li>
+      <li>跨文化管理不能硬套——日式共識制在強調「族長管理」的巴西完全失靈</li>
+      <li>重大交易在簽約當下成敗幾乎已定——「別人不可能比你更了解你的企業」</li>
+      <li>三得利忍受啤酒部門46年虧損的底氣，來自家族控股支撐的超長線投資能力</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">🔄</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130722" target="_blank" rel="noopener">要打造職場共融，先對齊世代價值觀落差</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：河泉老師（跨世代領導講師）· 2026.06 · <a href="https://www.gvm.com.tw/article/130722" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    企業主管花了20年理解公司的價值觀，卻從未花20分鐘理解年輕人的價值觀。文章揭示10組最需要被對齊的世代價值觀落差：忠誠vs自主、服從vs參與、吃苦vs意義、穩定vs彈性等。調查顯示89%的Z世代認為「工作意義」對滿意度至關重要，44%曾因感受不到意義而離職。「工作與生活平衡」已躍居Z世代最重視價值第一名。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>跨世代衝突並非「態度問題」，而是10組深層價值觀的根本落差未對齊</li>
+      <li>Z世代不是不能吃苦，是不願意吃「看不見意義的苦」——89%重視工作意義</li>
+      <li>老一輩「先做再要」vs新世代「先要再做」——把潛規則變成明規則才能和解</li>
+      <li>年輕人的職場動機已從「養家活口」轉變為「自我實現」，不認同就離開</li>
+      <li>對齊價值觀的關鍵：主管說清楚「做到什麼給什麼回報」，員工說清楚「需要什麼才能全力投入」</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">💡</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130831" target="_blank" rel="noopener">Codex簡報教學：PPT圖文全可改，附資安技巧</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：郭宇璇 · 2026.06.19 · <a href="https://www.gvm.com.tw/article/130831" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    OpenAI的Codex不只寫程式，還能做PPT簡報。文章拆解4步驟流程：連接Presentations外掛→啟用技能→指定專案資料夾→下指令。實測5分半鐘完成一份含圖表的業務簡報。Codex與其他AI簡報工具最大差異在於輸出的是可編輯元素（文字、圖表、色塊都是獨立物件），而非靜態圖片。文章同時點出3大資安防護要點。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>AI簡報工具的關鍵差異——Codex輸出可編輯PPT元素，勝過NotebookLM等靜態方案</li>
+      <li>AI Agent的「技能」（Skill）功能把固定流程封裝成可重複使用文件，大幅降低指令成本</li>
+      <li>三大資安原則：限制專屬資料夾權限、保留人工審查、Computer Use功能需監控</li>
+      <li>AI Agent的角色外掛（6大角色）讓工具更貼近專業場景，降低導入門檻</li>
+      <li>Codex的實戰表現：5分半鐘出稿，數據正確、視覺清晰、可編輯可匯出多元格式</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">📊</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130930" target="_blank" rel="noopener">花費7年從資本額3000萬到掛牌，台普威如何成為儲能新星？</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：遠見編輯部 · 2026.06.18 · <a href="https://www.gvm.com.tw/article/130930" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    會計師出身的馮浩翔，經歷航運創業失敗後加入台普威，從零自學儲能技術——半年啃完700頁電學教科書。他帶領台普威從3000萬資本額起家，7年後資本額衝破4億、2025年營收32.8億元（年增404%）。關鍵策略：不綁定設備商、自研AI預測模型使棄光量減少20%、工程及PM人員占7成以上，並成功拓展日本市場。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>跨領域創業者必修課：會計師自學儲能，半年啃完700頁電學教科書，技術變成真才實學</li>
+      <li>不綁定單一設備商的採購策略，保留選擇彈性，反而提升系統整合競爭力</li>
+      <li>AI模型動態預測系統讓棄光量減少20%——技術創新直接創造營運效益</li>
+      <li>工程+PM人力占7成以上，自主掌握技術核心與規格，這是台普威最難複製的護城河</li>
+      <li>國際化策略：透過收購在地公司快速打進日本，並布局南韓、澳洲、東歐</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">🏢</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130850" target="_blank" rel="noopener">頭銜是讓你進場的門票，但門票不能替你活！前時尚總編輯：放下後學會「這2字」</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：李瑜 Yu Lee · 2026.06.20 · <a href="https://www.gvm.com.tw/article/130850" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    前《Tatler》總編輯李瑜的真摯告白。她從追夢被「奈米米蘭達」工作追殺，到在最閃亮時刻選擇離職。她發現坐上高位後，熱情、專業、生活、隱私全部攪成一鍋粥。離開後學會的是「謙卑」——站在巨人肩膀上看世界，才意識到如果人生只剩「看起來很厲害」，其實很空洞。頭銜像門票，能讓你進場坐到好位置，但門票不能替你活。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>頭銜是門票，讓你進場看到好風景，但門票不能替你活、也不能替你快樂</li>
+      <li>當上領導者後，熱情、專業、生活、隱私會全部攪成一鍋粥——你得學會取捨</li>
+      <li>「達成願望不等於得到答案」，真正的答案在達成之後還敢不敢誠實面對自己想要的生活</li>
+      <li>放下不等於一無所有——只是把某種角色放下，把某段「必須」的人生放下</li>
+      <li>從高處俯瞰才明白：如果人生只剩「看起來很厲害」，其實很空洞</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">💡</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130920" target="_blank" rel="noopener">又一家隱形冠軍將上市！大鵬科靠技術打下歐洲智慧安防江山</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：遠見編輯部 · 2026.06.17 · <a href="https://www.gvm.com.tw/article/130920" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    創立40年的大鵬科技，台灣人幾乎沒聽過，但95%營收來自海外、歐洲占六成。核心技術「SF1」窄頻無線通訊，傳輸距離達1000公尺以上（對手300公尺），感測器電池壽命6年（同業2倍），影像傳輸24.1秒（對手36.63秒）。研發費用維持營收8%、128名工程師占員工總數21%，自有RF通訊研發中心規格等同歐美認證實驗室。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>隱形冠軍的共同特徵：高研發投入（8%→128人工程團隊占21%），技術領先對手數倍</li>
+      <li>自主研發專屬技術（SF1窄頻通訊）建立標竿——在業界提到F1/ SF1就等於大鵬的代名詞</li>
+      <li>自建等同歐美認證實驗室的RF研發中心，大幅縮短產品上市時程，搶佔市場先機</li>
+      <li>從電腦電報機起家，歷經飛利浦合作被騙，卻因LCD螢幕保全主機意外打開英國市場</li>
+      <li>因應高齡化社會轉型：從求救鈕到具GPS+跌倒偵測的智能手環，成功打入歐洲長照市場</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">📊</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130906" target="_blank" rel="noopener">股東嗨翻！王品配發股利16.11元創掛牌新高，陳正輝：今年專注做這三件事</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：中央社 · 2026.06.17 · <a href="https://www.gvm.com.tw/article/130906" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    王品集團2025年合併營收234.5億元（年增5.21%），連3年破200億，EPS 16.02元連續3年賺逾1.5個股本，超額配發股利16.11元創掛牌新高。董事長陳正輝提出2026年「三件事」戰略：品牌做強（20品牌各自在賽道做到第一）、會員做深（580萬會員貢獻55%營收）、供應鏈做精（牛肉進口全台最大+蔬果供應鏈）。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>專注策略三件事：品牌做強、會員做深、供應鏈做精——聚焦比什麼都做更重要</li>
+      <li>580萬會員（全台1/4人口）貢獻55%營收——會員經濟是餐飲業的成長飛輪</li>
+      <li>從進口到加工一條龍控管牛肉供應鏈——掌握稀缺資源建立競爭壁壘</li>
+      <li>大陸事業策略：高品質+高性價比+高「顏值」全面競爭，已連8季獲利</li>
+      <li>連3年營收破200億、EPS連續逾1.5個股本——穩健擴張的執行力才是企業的根本</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 9 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">💡</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130849" target="_blank" rel="noopener">正和思維的力量：母親選擇「賭」，教會我風險與成長的真諦</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：康海瑞（Hiram）· 2026.06.20 · <a href="https://www.gvm.com.tw/article/130849" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    前民航飛行員康海瑞分享單親公務員母親的「正和」教養思維。母親從不把他關在安全框裡——6歲買電腦教他用撥接上網、支持未滿20歲的他玩期貨選擇權（自付4萬學費）、要求「80分就好」，留下20分探索人生。這種把人生從零和競爭變成正和遊戲的思維，最終讓他走上飛行員之路，也成為「鷹式教養」的核心。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>80/20法則的創新應用：80分是生存地板價（責任），20分是價值天花板（探索）</li>
+      <li>正和思維vs零和思維——「看似浪費的時間，往往成為人生轉折的起點」</li>
+      <li>容忍失敗的勇氣：母親出資讓兒子在期貨市場繳4萬學費，賭孩子在風險中成長</li>
+      <li>選擇權在孩子手裡，焦慮扛在父母身上——真正的支持不是保護，而是讓孩子自己經歷</li>
+      <li>管理者與教育者的共通智慧：不要幫人排除風險，而是教人學會管理風險</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 10 -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-emoji">📊</div>
+    <div class="card-title">
+      <a href="https://www.gvm.com.tw/article/130950" target="_blank" rel="noopener">今日的價格不再是昨日的價格！成功人士金錢決策：真正的財富升級，從「放棄」開始</a>
+    </div>
+  </div>
+  <div class="meta">
+    作者：尼克．馬朱利 · 2026.06.18 · <a href="https://www.gvm.com.tw/article/130950" target="_blank" rel="noopener">原文連結 ↗</a>
+  </div>
+  <div class="summary">
+    從松下幸之助15歲當學徒到創立松下電器的傳奇，揭示「昨天有效的方法未必適用今天」的真理。核心概念是「機會成本」：盤點每個決策所放棄的其他選項。作者提出「1%法則」——若一個收入機會能使淨資產提高至少1%才值得做，否則果斷放棄。關鍵是要經常重新評估機會成本，因為「今日的價格不再是昨日的價格」。
+  </div>
+  <div class="points">
+    <h3>🎯 核心觀點</h3>
+    <ul>
+      <li>最常見的錯誤：達成目標後環境已改變，但決策習慣依舊——沒有重新評估機會成本</li>
+      <li>「1%法則」：對淨資產增加不到1%的收入機會就果斷放棄，專注更高價值的事</li>
+      <li>松下幸之助從受僱→創業→授權委任，每個階段都必須調整策略才能繼續進步</li>
+      <li>饒舌歌手名言：「今日的價格不再是昨日的價格」——你以前的賺錢之道未必適用當下</li>
+      <li>真正的財富升級不是賺更多，而是知道什麼該放棄——有意識地選擇機會成本</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <span>🌱 Lingo 小綠教材 · 2026.06.21 · 資料來源：遠見雜誌</span>
+</footer>
+
+</div>
+</body>
+</html>
