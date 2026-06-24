@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣帶狀皰疹疫苗比較</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Noto Sans TC', sans-serif; background: #f5f7fa; color: #1a202c; padding: 20px; line-height: 1.7; }
+  .container { max-width: 900px; margin: 0 auto; }
+  h1 { text-align: center; font-size: 1.8em; color: #1a365d; margin-bottom: 4px; }
+  .date { text-align: center; color: #a0aec0; font-size: 0.85em; margin-bottom: 24px; }
+
+  .section { background: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 20px; overflow: hidden; }
+  .section-title { background: #2b6cb0; color: #fff; padding: 14px 20px; font-size: 1.1em; font-weight: 700; }
+  .section-body { padding: 20px; }
+
+  .highlight { background: #ebf8ff; border-left: 4px solid #2b6cb0; padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-size: 0.95em; }
+  .highlight strong { color: #2b6cb0; }
+
+  .compare-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .compare-table th { background: #edf2f7; color: #2d3748; padding: 12px 14px; text-align: left; font-size: 0.9em; border-bottom: 2px solid #cbd5e0; width: 25%; }
+  .compare-table td { padding: 12px 14px; border-bottom: 1px solid #e2e8f0; font-size: 0.9em; vertical-align: top; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .vaccine-name { font-weight: 700; color: #2b6cb0; }
+
+  .price-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .price-table th { background: #2b6cb0; color: #fff; padding: 12px 14px; text-align: left; font-size: 0.9em; }
+  .price-table td { padding: 12px 14px; border-bottom: 1px solid #e2e8f0; font-size: 0.9em; }
+  .price-table tr:nth-child(even) td { background: #f7fafc; }
+  .price-table .price { font-weight: 700; color: #e53e3e; }
+
+  .warn-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .warn-table th { background: #c53030; color: #fff; padding: 12px 14px; text-align: left; font-size: 0.9em; }
+  .warn-table td { padding: 12px 14px; border-bottom: 1px solid #e2e8f0; font-size: 0.9em; }
+  .warn-table tr:nth-child(even) td { background: #fff5f5; }
+
+  .tip-list { list-style: none; padding: 0; }
+  .tip-list li { padding: 10px 0; border-bottom: 1px solid #e2e8f0; font-size: 0.95em; }
+  .tip-list li:last-child { border-bottom: none; }
+  .tip-list li::before { content: "💬"; margin-right: 8px; }
+
+  .source-list { list-style: none; padding: 0; }
+  .source-list li { padding: 6px 0; font-size: 0.85em; color: #4a5568; }
+  .source-list li a { color: #2b6cb0; text-decoration: none; }
+  .source-list li a:hover { text-decoration: underline; }
+
+  .footer { text-align: center; color: #a0aec0; font-size: 0.8em; margin-top: 16px; }
+
+  @media (max-width: 600px) {
+    .compare-table th { width: auto; }
+    .compare-table td, .compare-table th { padding: 8px 10px; font-size: 0.82em; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>💉 台灣帶狀皰疹疫苗比較</h1>
+  <p class="date">欣剋疹 Shingrix vs 伏帶疹 Zostavax｜資料整理日：2026-06-25</p>
+
+  <!-- 重點結論 -->
+  <div class="section">
+    <div class="section-title">⚡ 重點結論</div>
+    <div class="section-body">
+      <div class="highlight">
+        <strong>1.</strong> 目前疾管署建議主軸：2 劑「非活性基因重組蛋白帶狀皰疹疫苗」<strong>欣剋疹 Shingrix</strong>。
+      </div>
+      <div class="highlight">
+        <strong>2.</strong> Zostavax 屬舊款，實際供貨需問院所。
+      </div>
+      <div class="highlight">
+        <strong>3.</strong> 免疫功能低下、使用免疫抑制藥物者，<strong>不應自行選活性減毒疫苗</strong>，應先由醫師評估。
+      </div>
+    </div>
+  </div>
+
+  <!-- 快速選擇 -->
+  <div class="section">
+    <div class="section-title">🎯 快速選擇建議</div>
+    <div class="section-body">
+      <table class="price-table">
+        <tr><th>情境</th><th>建議</th></tr>
+        <tr><td>一般 50 歲以上成人</td><td>預算可接受時，優先詢問 Shingrix，完整打 2 劑</td></tr>
+        <tr><td>免疫低下 / 使用免疫抑制藥</td><td>不要自行選 Zostavax；請醫師評估 Shingrix 接種時機</td></tr>
+        <tr><td>很在意價格</td><td>先問戶籍地是否有補助，再問院所「總價是否含掛號、診察、注射費」</td></tr>
+      </table>
+      <p style="margin-top:12px;font-size:0.85em;color:#718096;">⚠️ 本文為衛教與決策整理，不取代醫師診斷或個別醫療建議。</p>
+    </div>
+  </div>
+
+  <!-- 兩種疫苗總比較 -->
+  <div class="section">
+    <div class="section-title">📋 兩種疫苗總比較</div>
+    <div class="section-body">
+      <table class="compare-table">
+        <tr>
+          <th>項目</th>
+          <th class="vaccine-name">欣剋疹 Shingrix</th>
+          <th class="vaccine-name">伏帶疹 Zostavax</th>
+        </tr>
+        <tr>
+          <th>疫苗型態</th>
+          <td>非活性、基因重組蛋白疫苗；含佐劑，免疫反應較強</td>
+          <td>活性減毒水痘帶狀皰疹疫苗；屬舊款一劑型</td>
+        </tr>
+        <tr>
+          <th>劑數 / 方式</th>
+          <td>2 劑；第 2 劑與第 1 劑間隔 2-6 個月。肌肉注射</td>
+          <td>1 劑。皮下注射。是否仍有供貨需詢問院所</td>
+        </tr>
+        <tr>
+          <th>適用對象</th>
+          <td>50 歲以上成人；18 歲以上且免疫不全或帶狀皰疹風險較高者</td>
+          <td>常見院所資料列為 50-79 歲成人；免疫不全或免疫抑制者不適合</td>
+        </tr>
+        <tr>
+          <th>保護力</th>
+          <td>50 歲以上約 90% 以上，對皰疹後神經痛保護力佳</td>
+          <td>約 50% 左右，年齡愈高效果愈弱，且會隨時間下降</td>
+        </tr>
+        <tr>
+          <th>優點</th>
+          <td>保護力高；非活疫苗；適合免疫低下族群評估接種；較符合疾管署建議</td>
+          <td>只需 1 劑；價格較低；接種流程較簡單</td>
+        </tr>
+        <tr>
+          <th>缺點</th>
+          <td>兩劑總費用較高；副作用較容易有感</td>
+          <td>活性減毒，限制多；保護力低且衰退快；需確認供貨</td>
+        </tr>
+        <tr>
+          <th>常見副作用</th>
+          <td>注射部位疼痛、紅腫；疲倦、肌肉痛、頭痛、畏寒、發燒、腸胃不適。多為短暫</td>
+          <td>注射部位紅、痛、腫、熱、癢；頭痛。通常 1-3 天</td>
+        </tr>
+        <tr>
+          <th>重要禁忌</th>
+          <td>曾嚴重過敏者不可接種；發燒或急性中重度疾病宜延後；懷孕應避免</td>
+          <td>免疫抑制 / 免疫缺陷、高劑量類固醇、未治療活動性結核病、懷孕、對成分嚴重過敏者不宜</td>
+        </tr>
+        <tr>
+          <th>自費牌價</th>
+          <td>約 NT$8,000-9,500/劑；完整 2 劑約 NT$16,000-19,000</td>
+          <td>約 NT$4,800-6,000/劑；完整 1 劑約 NT$4,800-6,000</td>
+        </tr>
+      </table>
+      <p style="margin-top:10px;font-size:0.82em;color:#718096;">※ 價格因院所、是否含掛號/診察/注射費、是否有縣市補助而異</p>
+    </div>
+  </div>
+
+  <!-- 優缺點與副作用 -->
+  <div class="section">
+    <div class="section-title">✅ 優缺點與副作用</div>
+    <div class="section-body">
+      <table class="compare-table">
+        <tr>
+          <th></th>
+          <th class="vaccine-name">欣剋疹 Shingrix</th>
+          <th class="vaccine-name">伏帶疹 Zostavax</th>
+        </tr>
+        <tr>
+          <th>優點</th>
+          <td>保護力較高；非活疫苗；較適合長期預防規劃</td>
+          <td>1 劑完成，費用較低</td>
+        </tr>
+        <tr>
+          <th>缺點</th>
+          <td>要打 2 劑，總價較高；副作用較容易有感</td>
+          <td>活性減毒疫苗；免疫低下者禁忌；保護力低且衰退</td>
+        </tr>
+        <tr>
+          <th>副作用</th>
+          <td>手臂疼痛、紅腫、疲倦、肌肉痛、頭痛、畏寒、發燒、胃部不適或噁心，通常 2-3 天內緩解</td>
+          <td>注射部位紅、痛、腫、熱、癢；頭痛；接種後 2-4 週若出現水泡紅疹、發燒，請就醫</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 哪些情況要先延後 -->
+  <div class="section">
+    <div class="section-title">🚫 哪些情況要先延後或不要打？</div>
+    <div class="section-body">
+      <table class="warn-table">
+        <tr><th>情況</th><th>處理建議</th></tr>
+        <tr><td>正在發燒或急性中重度疾病</td><td>先延後，病況穩定後再接種</td></tr>
+        <tr><td>曾對該疫苗或成分嚴重過敏</td><td>不可接種同一疫苗，需由醫師評估</td></tr>
+        <tr><td>懷孕</td><td>Shingrix：建議避免；Zostavax：活性減毒，懷孕禁忌</td></tr>
+        <tr><td>免疫功能低下或使用免疫抑制藥</td><td>不要自行接種 Zostavax；請醫師評估 Shingrix</td></tr>
+        <tr><td>接種後嚴重過敏或持續高燒</td><td>立刻就醫；呼吸困難、臉/喉腫脹、全身蕁麻疹屬警訊</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 自費牌價 -->
+  <div class="section">
+    <div class="section-title">💰 台灣自費牌價</div>
+    <div class="section-body">
+      <table class="price-table">
+        <tr><th>疫苗</th><th>每劑牌價</th><th>完整接種估算</th><th>備註</th></tr>
+        <tr><td><strong>Shingrix</strong></td><td class="price">NT$8,000-9,500/劑</td><td>2 劑約 NT$16,000-19,000<br>可先抓 NT$18,000</td><td>保護力佳；第二劑 2-6 個月內完成</td></tr>
+        <tr><td><strong>Zostavax</strong></td><td class="price">NT$4,800-6,000/劑</td><td>1 劑約 NT$4,800-6,000</td><td>活性減毒；免疫低下者不適合；需確認供貨</td></tr>
+        <tr><td>其他費用</td><td colspan="3">掛號費、診察費、注射費等，視院所收費方式。請問「櫃台總共要付多少」</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 詢價清單 -->
+  <div class="section">
+    <div class="section-title">📞 接種前直接問院所 6 句話</div>
+    <div class="section-body">
+      <ul class="tip-list">
+        <li>你們現在提供的是 Shingrix 還是 Zostavax？是否有現貨？</li>
+        <li>報價是否含掛號費、診察費、注射費與疫苗本身費用？</li>
+        <li>第二劑什麼時候回來打？會不會幫我保留第二劑？</li>
+        <li>我的慢性病或用藥是否需要調整接種時機？</li>
+        <li>我戶籍地是否有補助？需要到衛生所或指定院所嗎？</li>
+        <li>接種後若發燒或過敏，該打哪支電話或回哪個門診？</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 資料來源 -->
+  <div class="section">
+    <div class="section-title">📚 資料來源</div>
+    <div class="section-body">
+      <ul class="source-list">
+        <li>衛生福利部疾病管制署：帶狀疱疹疫苗 <a href="https://www.cdc.gov.tw/Category/Page/WzNj0ONng_AdPtlJc4XDhA" target="_blank">CDC</a></li>
+        <li>美國 CDC：Shingles Vaccination / Vaccine Safety</li>
+        <li>財團法人醫藥品查驗中心 / 衛福部函：Zostavax 風險警語資訊</li>
+        <li>郭綜合醫院：帶狀疱疹疫苗有兩種—有什麼不同</li>
+        <li>彰化基督教醫院：帶狀皰疹疫苗比較資訊</li>
+        <li>竹北市公所：帶狀疱疹疫苗價格與補助說明</li>
+        <li>TVBS 健康網：2026 帶狀皰疹疫苗費用與補助整理</li>
+      </ul>
+      <p style="margin-top:10px;font-size:0.82em;color:#718096;">查核日期：2026-06-25</p>
+    </div>
+  </div>
+
+  <p class="footer">資料僅供衛教參考，不取代醫療專業建議</p>
+</div>
+</body>
+</html>
