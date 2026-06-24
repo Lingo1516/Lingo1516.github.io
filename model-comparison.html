@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Price Comparison</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, "Noto Sans TC", sans-serif; background: #f5f5f5; color: #1a1a1a; padding: 20px; }
+.container { max-width: 900px; margin: 0 auto; }
+h1 { text-align: center; margin-bottom: 5px; font-size: 22px; }
+.subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 25px; }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+th { background: #0066cc; color: #fff; padding: 12px 15px; text-align: left; font-size: 14px; }
+td { padding: 10px 15px; border-bottom: 1px solid #eee; font-size: 13px; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f0f7ff; }
+.model { font-weight: 600; }
+.free { color: #2e7d32; font-weight: 600; }
+.note { margin-top: 15px; padding: 12px 15px; background: #fff8e1; border-left: 4px solid #ffc107; border-radius: 0 8px 8px 0; font-size: 12px; color: #666; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+.badge-free { background: #e8f5e9; color: #2e7d32; }
+.badge-paid { background: #fff3e0; color: #e65100; }
+.badge-relay { background: #e3f2fd; color: #1565c0; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>💰 Model 價格比較</h1>
+<p class="subtitle">vectorengine relay vs 原廠直連 · 2026-06-24</p>
+
+<table>
+<tr>
+  <th>Model</th>
+  <th>Provider</th>
+  <th>Input (per 1M tokens)</th>
+  <th>Output (per 1M tokens)</th>
+  <th>類型</th>
+</tr>
+<tr>
+  <td class="model">deepseek-v3.2</td>
+  <td>vectorengine</td>
+  <td colspan="2">從 $10.18 餘額扣（費率未公開）</td>
+  <td><span class="badge badge-relay">Relay</span></td>
+</tr>
+<tr>
+  <td class="model">gemini-2.5-flash</td>
+  <td>vectorengine</td>
+  <td class="free">$0（免費）</td>
+  <td class="free">$0（免費）</td>
+  <td><span class="badge badge-free">免費</span></td>
+</tr>
+<tr>
+  <td class="model">mimo-v2.5</td>
+  <td>vectorengine</td>
+  <td colspan="2">獨立配額，目前 429 不可用</td>
+  <td><span class="badge badge-paid">受限</span></td>
+</tr>
+<tr>
+  <td class="model">deepseek-v3.2</td>
+  <td>DeepSeek 直連</td>
+  <td>$0.27</td>
+  <td>$1.10</td>
+  <td><span class="badge badge-paid">原廠</span></td>
+</tr>
+<tr>
+  <td class="model">deepseek-v4-flash</td>
+  <td>DeepSeek 直連</td>
+  <td>$0.14</td>
+  <td>$0.28</td>
+  <td><span class="badge badge-paid">原廠</span></td>
+</tr>
+<tr>
+  <td class="model">mimo-v2.5</td>
+  <td>OpenRouter</td>
+  <td>$0.14</td>
+  <td>$0.56</td>
+  <td><span class="badge badge-relay">Relay</span></td>
+</tr>
+<tr>
+  <td class="model">gemini-2.5-flash</td>
+  <td>Google 直連</td>
+  <td>$0.15</td>
+  <td>$0.60</td>
+  <td><span class="badge badge-paid">原廠</span></td>
+</tr>
+</table>
+
+<div class="note">
+⚠️ vectorengine 的 deepseek-v3.2 費率未公開，從你的 $10.18 餘額扣。<br>
+gemini-2.5-flash 在 vectorengine 上免費，是最划算的選擇。<br>
+建議：日常用 gemini-2.5-flash（免費），需要更強推理時才用 deepseek-v3.2。
+</div>
+</div>
+</body>
+</html>
