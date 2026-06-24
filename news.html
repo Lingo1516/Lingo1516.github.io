@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日新聞 · 2026/06/22</title>
+<title>今日新聞摘要 2026-06-24</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --accent-intl: #2563eb;
+    --accent-tech: #7c3aed;
+    --accent-fin: #059669;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background: #1a1a2e;
-    color: #e0e0e0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
-    line-height: 1.7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
     padding: 16px;
-    max-width: 640px;
+    max-width: 720px;
     margin: 0 auto;
   }
   header {
     text-align: center;
     padding: 24px 0 16px;
-    border-bottom: 1px solid #333;
+    border-bottom: 2px solid var(--border);
     margin-bottom: 24px;
   }
   header h1 {
     font-size: 1.6rem;
-    color: #e94560;
-    letter-spacing: 2px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
   }
   header .date {
-    color: #888;
+    color: var(--muted);
     font-size: 0.9rem;
     margin-top: 4px;
   }
@@ -35,215 +45,183 @@
     margin-bottom: 28px;
   }
   .category-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     font-size: 1.15rem;
     font-weight: 700;
-    color: #e94560;
-    margin-bottom: 12px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid #e94560;
-  }
-  .category-title .icon {
-    font-size: 1.3rem;
-  }
-  .news-card {
-    background: #16213e;
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    border-left: 3px solid #0f3460;
-    transition: background 0.2s;
-  }
-  .news-card:active {
-    background: #1a2a4a;
-  }
-  .news-card h3 {
-    font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 8px;
     color: #fff;
-    margin-bottom: 6px;
-    line-height: 1.5;
-  }
-  .news-card p {
-    font-size: 0.88rem;
-    color: #aaa;
-    line-height: 1.6;
-  }
-  .news-card .tag {
+    margin-bottom: 14px;
     display: inline-block;
-    background: #e94560;
-    color: #fff;
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-right: 6px;
-    margin-top: 6px;
   }
-  .news-card .tag.green { background: #27ae60; }
-  .news-card .tag.blue { background: #2980b9; }
-  .news-card .tag.purple { background: #8e44ad; }
-  .news-card .tag.orange { background: #e67e22; }
+  .cat-intl { background: var(--accent-intl); }
+  .cat-tech { background: var(--accent-tech); }
+  .cat-fin { background: var(--accent-fin); }
+  .news-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.15s;
+  }
+  .news-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .news-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .news-item p {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .news-item .source {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
   footer {
     text-align: center;
-    padding: 20px 0;
-    color: #555;
-    font-size: 0.8rem;
-    border-top: 1px solid #333;
-    margin-top: 20px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    padding: 20px 0 8px;
+    border-top: 1px solid var(--border);
+    margin-top: 12px;
+  }
+  @media (max-width: 480px) {
+    body { padding: 10px; }
+    header h1 { font-size: 1.3rem; }
+    .news-item { padding: 12px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>📰 每日新聞速覽</h1>
-  <div class="date">2026 年 6 月 22 日（星期一）</div>
+  <h1>📰 今日新聞摘要</h1>
+  <div class="date">2026 年 6 月 24 日（三）</div>
 </header>
 
-<!-- 🇹🇼 台灣 -->
+<!-- 國際 -->
 <section class="category">
-  <div class="category-title"><span class="icon">🇹🇼</span> 台灣</div>
+  <div class="category-title cat-intl">🌍 國際</div>
 
-  <div class="news-card">
-    <h3>台積電股價衝破 2,500 元大關　台股寫多項新高紀錄</h3>
-    <p>台積電股價今日突破 2,500 元，帶動台股大漲 1,276 點，寫下多項歷史新高。外資單日買超 684 億元，為史上第 9 大買超紀錄，三大法人合計買超 708.97 億元。</p>
-    <span class="tag green">台股</span><span class="tag green">台積電</span>
+  <div class="news-item">
+    <h3>中國將 56 家美企列入黑名單，貿易戰升級</h3>
+    <p>中國商務部宣佈反制措施：46 家美國企業被禁止參與中國政府採購，10 家列入兩用物項出口管制清單。目標涵蓋稀土礦商（含 MP Materials）、無人機與航太國防公司，是美方擴大 1260H 軍事關聯企業名單後的直接報復。</p>
+    <div class="source">來源：AI Tools Recap / Bloomberg</div>
   </div>
 
-  <div class="news-card">
-    <h3>梁文傑為鳳梨釋迦失言致歉　買千支冰棒謝罪</h3>
-    <p>陸委會副主委梁文傑日前稱「鳳梨釋迦是台灣人幾乎不吃」引發各界批評，今日公開道歉承諾買 1,000 支鳳梨釋迦冰棒。台東縣長饒慶鈴也率藍綠議員大啖釋迦力挺農民。</p>
-    <span class="tag">政治</span><span class="tag blue">農業</span>
+  <div class="news-item">
+    <h3>法國出現首例伊波拉確診病例</h3>
+    <p>一名從剛果返回法國的醫生檢測出伊波拉病毒陽性，成為法國境內首例伊波拉病例。衛生當局已啟動隔離與接觸者追蹤程序。</p>
+    <div class="source">來源：Livemint</div>
   </div>
 
-  <div class="news-card">
-    <h3>新北市長選戰白熱化　蘇巧慧家族企業案遭連環攻擊</h3>
-    <p>民眾黨接連質疑蘇巧慧家族企業威如科技及 NFT 平台 akaSwap 爭議，提出 6 大疑點要求說明。李四川則回憶辛苦童年，呼籲「不要糟蹋艱苦人的家庭」。蘇辦回嗆李四川與網軍融為一體。</p>
-    <span class="tag">選舉</span>
+  <div class="news-item">
+    <h3>EU 等盟國加入美國 Pax Silica 協議，對抗中國 AI 供應鏈</h3>
+    <p>歐盟、荷蘭、德國、希臘成為最新加入 Pax Silica 的美國盟友，該協議旨在強化 AI 相關科技供應鏈，降低對中國的依賴。</p>
+    <div class="source">來源：Financial Times</div>
   </div>
 
-  <div class="news-card">
-    <h3>資安院內部遭駭侵　院長林盈達請辭</h3>
-    <p>國家資安研究院（資安院）內部發生資安事件，院長林盈達今日請辭院長職務，引發關注。</p>
-    <span class="tag purple">資安</span>
+  <div class="news-item">
+    <h3>美伊外交突破，霍爾木茲海峽重新開放</h3>
+    <p>上週美國與伊朗達成外交突破，霍爾木茲海峽航運恢復，額外原油供應重返全球市場。布蘭特原油從高點 $82 以上跌至 $71.92，跌幅逾 12%，為 2026 年最快油價修正之一。</p>
+    <div class="source">來源：DF Media / CNBC</div>
   </div>
 
-  <div class="news-card">
-    <h3>颱風米克拉接連往日本跑　估週五通過琉球群島</h3>
-    <p>今年颱風接連往日本方向移動，米克拉預估本週五將通過日本琉球群島附近海域，提醒近期赴日民眾留意最新動態。</p>
-    <span class="tag orange">氣象</span>
+  <div class="news-item">
+    <h3>中國副總理警告：保護主義將導致全球供應鏈碎片化</h3>
+    <p>中國副總理丁薛祥在國際供應鏈博覽會開幕致詞時表示，單邊主義和保護主義抬頭，全球供應鏈碎片化風險日益增大。</p>
+    <div class="source">來源：Bloomberg</div>
   </div>
 </section>
 
-<!-- 🌍 國際 -->
+<!-- 科技 -->
 <section class="category">
-  <div class="category-title"><span class="icon">🌍</span> 國際</div>
+  <div class="category-title cat-tech">💻 科技</div>
 
-  <div class="news-card">
-    <h3>英國首相施凱爾宣布請辭　工黨敗選後逼宮壓力下台</h3>
-    <p>英國首相施凱爾（Keir Starmer）今日宣布辭職，結束將近兩年任期。此前工黨在地方選舉中失去逾 1,000 席，引發黨內逼宮潮與內閣辭職連鎖效應，新任 MP 安迪·伯納姆預料將接任。</p>
-    <span class="tag orange">英國政治</span>
+  <div class="news-item">
+    <h3>Meta 推出自有品牌 AI 智慧眼鏡，起價 $299</h3>
+    <p>Meta 與 EssilorLuxottica 合作推出平價智慧眼鏡，搭載 Meta AI（Muse Spark 模型）、12MP 相機、開放式喇叭，並有 Kylie Jenner 聯名款。目標將 AI 穿戴裝置從高價市場推向主流消費者。</p>
+    <div class="source">來源：Reuters / Tech Startups</div>
   </div>
 
-  <div class="news-card">
-    <h3>美伊瑞士首輪會談落幕　同意 60 天內達成終戰路線圖</h3>
-    <p>美國副總統 Vance 與國會議員 Lawler 在瑞士與伊朗代表進行核談判，雙方同意 60 天內達成終戰路線圖。與此同時，卡達與巴基斯坦宣布 60 天和平推動計畫。但伊朗再度封鎖荷莫茲海峽，通行船隻驟減至 5 艘。</p>
-    <span class="tag orange">中東局勢</span>
+  <div class="news-item">
+    <h3>OpenAI 發表首款客製化 AI 晶片（與 Broadcom 合作）</h3>
+    <p>OpenAI 展示與 Broadcom 共同打造的首款自研 AI 晶片，專注於推理（inference）任務，旨在降低對 GPU 供應鏈的依賴。AI 競爭已從模型展示轉向掌控晶片、電力與資料中心。</p>
+    <div class="source">來源：Reuters</div>
   </div>
 
-  <div class="news-card">
-    <h3>韓國前法務部長涉助尹錫悅戒嚴行動　遭判 25 年徒刑</h3>
-    <p>韓國前法務部長因涉及協助前總統尹錫悅的戒嚴行動，今日被法院判處 25 年有期徒刑，為韓國政治風暴再添重大判決。</p>
-    <span class="tag">韓國</span>
+  <div class="news-item">
+    <h3>Getty Images × OpenAI：ChatGPT 內建授權照片搜尋</h3>
+    <p>Getty Images 與 OpenAI 簽訂多年授權協議，將高品質編輯攝影作品帶入 ChatGPT 搜尋與探索結果。GETY 股價暴漲 145%。此為展示授權，非訓練用途。</p>
+    <div class="source">來源：AI Tools Recap</div>
   </div>
 
-  <div class="news-card">
-    <h3>菲律賓校園槍擊案釀 3 死 7 傷　嫌犯疑遭長期霸凌</h3>
-    <p>菲律賓中部發生校園槍擊事件，造成 3 死 7 傷。警方表示兩名嫌犯疑似長期遭受校園霸凌後犯案，已全數落網。</p>
-    <span class="tag">國際社會</span>
+  <div class="news-item">
+    <h3>Google Home 升級 AI 辨識：可識別家人身形與衣著</h3>
+    <p>Google 更新 Google Home，智慧家居 AI 可透過身形、衣著顏色等信號識別熟悉的人，即使臉部不可見。AI 生成影片事件描述也將包含更精準的聲音偵測（狗叫、警報、腳步聲）。</p>
+    <div class="source">來源：The Verge</div>
+  </div>
+
+  <div class="news-item">
+    <h3>Alphabet AI 人才大流失：諾貝爾獎得主轉投 Anthropic</h3>
+    <p>Google DeepMind 諾貝爾獎研究者 John Jumper 宣布離開加入 Anthropic；Gemini AI 共同負責人 Noam Shazeer 轉投 OpenAI。Alphabet Q1 自由現金流年減 47%。</p>
+    <div class="source">來源：DF Media / CNBC</div>
+  </div>
+
+  <div class="news-item">
+    <h3>Nvidia 被禁 AI 晶片在中國黑市價格翻倍</h3>
+    <p>Nvidia 旗艦 DGX B300 伺服器在中國黑市價格半年內從 400 萬人民幣飆升至 800 萬人民幣（約 110 萬美元），反映美國出口管制下的供需失衡。</p>
+    <div class="source">來源：Financial Times</div>
   </div>
 </section>
 
-<!-- 💻 科技 -->
+<!-- 財經 -->
 <section class="category">
-  <div class="category-title"><span class="icon">💻</span> 科技</div>
+  <div class="category-title cat-fin">📈 財經</div>
 
-  <div class="news-card">
-    <h3>Alphabet 宣布 $800 億 AI 基礎建設投資計畫</h3>
-    <p>Google 母公司 Alphabet 宣布透過股票發行籌措 800 億美元，用於大規模投資 AI 基礎設施、運算能力與全球資料中心擴建。AI 投資已從軟體競爭轉型為基礎設施競爭，領先者與落後者之間的差距恐將急速擴大。</p>
-    <span class="tag purple">AI</span><span class="tag green">投資</span>
+  <div class="news-item">
+    <h3>Nasdaq 重挫 2.21%，AI 股票遭大拋售</h3>
+    <p>Nasdaq 下跌 2.21% 至 25,587，S&P 500 跌 1.44% 至 7,365。四大科技巨頭 2026 年資本支出合計已超 $4,520 億，機構投資人開始質疑 AI 投資報酬率。Alphabet 兩日跌 6-10%，Amazon 跌 4%。</p>
+    <div class="source">來源：DF Media / The Street</div>
   </div>
 
-  <div class="news-card">
-    <h3>Anthropic 秘密提交 IPO 申請　估值逼近 $965 億</h3>
-    <p>Claude 背後公司 Anthropic 已秘密提交 IPO 申請，此前最新一輪融資估值約 965 億美元。若成功上市，將成為史上最大科技 IPO 之一，也標誌著 AI 競爭進入資本市場新階段。</p>
-    <span class="tag purple">AI</span><span class="tag green">IPO</span>
+  <div class="news-item">
+    <h3>Micron 財報焦點：EPS 年增 932%，HBM 產能售罄至年底</h3>
+    <p>Micron Q3 財報即將公佈，分析師預期 EPS 約 $19.72-$20.57，營收 $345-$357.5 億（年增 271%）。高頻寬記憶體（HBM）產能已售罄至 2026 年底，盤前股價反彈 4.1%。</p>
+    <div class="source">來源：DF Media / Reuters</div>
   </div>
 
-  <div class="news-card">
-    <h3>Florida 成為首個起訴 OpenAI 的美國州</h3>
-    <p>佛羅里達州檢察長指控 ChatGPT 與多起暴力事件有關，批評 OpenAI 忽視安全警告、優先追求成長。OpenAI 否認指控並強調已採取廣泛安全措施。此案可能為 AI 責任建立法律先例。</p>
-    <span class="tag purple">AI 法規</span>
+  <div class="news-item">
+    <h3>黃金跌至兩週低點 $4,067，美元指數創 2026 新高</h3>
+    <p>現貨黃金跌 1% 至 $4,067.51/盎司。聯準會升息預期升溫推升美元指數至 101.65（2026 年新高），市場定價 12 月升息機率達 87%。高盛將年底金價目標從 $5,400 下調至 $4,900。</p>
+    <div class="source">來源：CNBC / DF Media</div>
   </div>
 
-  <div class="news-card">
-    <h3>SpaceX 警告投資者：水資源短缺是 AI 新風險</h3>
-    <p>SpaceX 在 IPO 檔案中警告，現代 AI 資料中心的冷卻系統消耗大量水資源，乾旱、水資源稀缺與監管限制可能威脅未來擴張。AI 繼晶片與電力之後，面臨第三個關鍵資源挑戰。</p>
-    <span class="tag purple">AI</span><span class="tag orange">環境</span>
+  <div class="news-item">
+    <h3>Elon Musk 一週身價蒸發 $3,500 億</h3>
+    <p>SpaceX 股價下挫，Musk 身價從 $1.45 兆跌至約 $1.1 兆，一週損失超過全球第二大富豪 Larry Page 的全部身價（$2,990 億）。</p>
+    <div class="source">來源：The Telegraph</div>
   </div>
 
-  <div class="news-card">
-    <h3>Nvidia 進軍 CPU 市場　推 AI Agent PC 挑戰 $2,000 億市場</h3>
-    <p>Nvidia 與微軟、Dell、HP 合作推出「AI Agent PC」，將進階 AI 工作負載從雲端搬到個人電腦，打造自主 AI 工作站。這可能根本性改變個人電腦的使用模式。</p>
-    <span class="tag purple">Nvidia</span>
+  <div class="news-item">
+    <h3>聯準會公佈 32 家銀行壓力測試結果</h3>
+    <p>聯準會下午 4 時發佈 2026 年度銀行壓力測試，模擬失業率升至 10%、房價跌 30%、商業地產跌 39% 的情境。測試結果不會影響 2027 年前的資本要求。</p>
+    <div class="source">來源：DF Media / Federal Reserve</div>
   </div>
 
-  <div class="news-card">
-    <h3>微軟執行長納德拉警告：不能任由 AI 巨頭吞噬經濟</h3>
-    <p>微軟執行長納德拉公開警告 AI 產業集中化風險，呼籲不應讓少數 AI 巨頭壟斷經濟利益，強調公平競爭與開放生態的重要性。</p>
-    <span class="tag purple">AI 治理</span>
-  </div>
-</section>
-
-<!-- 💰 財經 -->
-<section class="category">
-  <div class="category-title"><span class="icon">💰</span> 財經</div>
-
-  <div class="news-card">
-    <h3>黃金持穩 $4,200 附近　油價回落緩解通膨擔憂</h3>
-    <p>黃金（XAU/USD）週一早盤穩定在 $4,200 附近，結束連三日下跌。油價因卡達與巴基斯坦推動美伊 60 天和平計畫而回落，降低市場通膨擔憂。EUR/GBP 升至 0.8670，英鎊因英國政治不確定性走軟。</p>
-    <span class="tag green">黃金</span><span class="tag green">匯率</span>
-  </div>
-
-  <div class="news-card">
-    <h3>日經指數首破 7.2 萬點　AI 與半導體投資熱推動</h3>
-    <p>日本日經 225 指數在 AI 與半導體投資熱潮帶動下，收盤首度突破 72,000 點關卡，創歷史新高。外資持續加碼日本科技股。</p>
-    <span class="tag green">日股</span>
-  </div>
-
-  <div class="news-card">
-    <h3>瑞銀上修台灣 GDP 預測至 9.9%　滙豐看好出口成長</h3>
-    <p>瑞銀（UBS）大幅上修 2026 年台灣 GDP 增長預測至 9.9%，滙豐也看好台灣出口動能將持續帶動經濟成長。AI 與半導體需求為主要驅動力。</p>
-    <span class="tag green">台灣經濟</span>
-  </div>
-
-  <div class="news-card">
-    <h3>外資單日買超 684 億元　加碼 00981A 排第一</h3>
-    <p>外資今日大舉買超台股 684 億元，為史上第 9 大單日買超。其中 00981A（元大台灣 50 抵抗型 ETF）獲外資加碼最多，上週也買超 877 億元，以中鋼 31 萬張居首。</p>
-    <span class="tag green">台股</span>
-  </div>
-
-  <div class="news-card">
-    <h3>新台幣貶 4.3 分　收 31.631 元</h3>
-    <p>新台幣兌美元今日貶值 4.3 分，以 31.631 元作收。在全球匯率波動加劇背景下，台幣走勢相對穩健。</p>
-    <span class="tag green">匯率</span>
+  <div class="news-item">
+    <h3>美國提供 $175 億貸款加速 10 座核反應爐開發</h3>
+    <p>能源部長 Chris Wright 宣佈 175 億美元貸款計劃，用於加速 10 座大型核反應爐建設，以滿足資料中心暴增的電力需求。</p>
+    <div class="source">來源：PBS NewsHour</div>
   </div>
 </section>
 
 <footer>
-  每日新聞速覽 · 資料來源：中央社、聯合新聞網、Total News、IMFounder 等<br>
-  自動生成於 2026/06/22 17:20
+  由 OpenClaw 自動整理 · 資料來源為公開新聞，僅供參考
 </footer>
 
 </body>
