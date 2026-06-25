@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理知識與組織文獻講義</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+    background: #f8f9fa;
+    color: #1c1c1e;
+    line-height: 1.8;
+    padding: 16px;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, #1a365d, #2a4a7f);
+    color: #fff;
+    border-radius: 20px;
+    padding: 32px 24px;
+    margin-bottom: 24px;
+  }
+  .header h1 { font-size: 24px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub {
+    font-size: 14px;
+    opacity: 0.75;
+    margin-top: 8px;
+    font-weight: 400;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #a0c4ff;
+  }
+  .toc {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .toc h2 { font-size: 16px; margin-bottom: 12px; color: #2a4a7f; }
+  .toc a {
+    display: block;
+    padding: 6px 0;
+    color: #1a365d;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .toc a:last-child { border-bottom: none; }
+  .toc a:hover { color: #2a4a7f; text-decoration: underline; }
+  .section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s;
+  }
+  .section:target {
+    box-shadow: 0 0 0 3px rgba(26,54,93,0.15);
+  }
+  .section h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a365d;
+    margin-bottom: 8px;
+  }
+  .section .meta {
+    font-size: 13px;
+    color: #8e8e93;
+    margin-bottom: 12px;
+    word-break: break-all;
+  }
+  .section .meta a { color: #2a4a7f; text-decoration: none; }
+  .section .meta a:hover { text-decoration: underline; }
+  .section ul {
+    list-style: none;
+    padding: 0;
+  }
+  .section li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.6;
+  }
+  .section li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #2a4a7f;
+    font-weight: bold;
+  }
+  .tag {
+    display: inline-block;
+    background: #e8edf5;
+    color: #2a4a7f;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-right: 4px;
+    margin-top: 4px;
+  }
+  .theme-en { border-left: 4px solid #e53e3e; }
+  .theme-zh { border-left: 4px solid #2a4a7f; }
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: #8e8e93;
+    padding: 24px 0 12px;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .section { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .toc { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📖 管理知識與組織文獻講義</h1>
+  <div class="sub">知識管理 · 組織學習 · KSAO · 永續核心能力</div>
+  <div class="badge">2026 年 6 月 · 文獻回顧</div>
+</div>
+
+<div class="toc">
+  <h2>📋 目錄</h2>
+  <a href="#s1">1. KSAO for Startup Management</a>
+  <a href="#s2">2. An Assessment of Key Sustainability Competencies</a>
+  <a href="#s3">3. KSAOs — Step by Step Guide</a>
+  <a href="#s4">4. Key Success Factors of KMS</a>
+  <a href="#s5">5. 知識創造來源與創新績效</a>
+  <a href="#s6">6. 組織學習觀點下的高科技產業</a>
+  <a href="#s7">7. KM Practice and Organizational Performance</a>
+  <a href="#s8">8. Strategic Role of KM</a>
+  <a href="#s9">9. Organizational Knowledge Framework</a>
+  <a href="#s10">10. 韌性組織進化論</a>
+  <a href="#s11">11. 知識管理能力與組織績效</a>
+  <a href="#s12">12. 永續發展委員會與企業永續管理</a>
+</div>
+
+<div class="section theme-en" id="s1">
+  <h2>1. KSAO for Startup Management</h2>
+  <div class="meta">📎 <a href="https://www.sciencedirect.com/org/science/article/pii/S1750620425000299" target="_blank">ScienceDirect</a></div>
+  <ul>
+    <li>探討創業者 KSAO（知識、技能、能力與其他特質）如何影響策略管理決策</li>
+    <li>聚焦資源受限與高不確定環境下的組織韌性</li>
+    <li>提出 KSAO 變項與新創管理之間的關係架構</li>
+    <li>適用於商管永續核心能力研究的理論框架參考</li>
+  </ul>
+  <span class="tag">KSAO</span><span class="tag">創業管理</span><span class="tag">組織韌性</span>
+</div>
+
+<div class="section theme-en" id="s2">
+  <h2>2. An Assessment of Key Sustainability Competencies</h2>
+  <div class="meta">📎 <a href="https://www.sciencedirect.com/org/science/article/pii/S1467637021001395" target="_blank">ScienceDirect — Int'l J. of Sustainability in Higher Education</a></div>
+  <ul>
+    <li>結構化文獻回顧，分析永續能力的評量工具</li>
+    <li>概念化各項永續能力之間的相互影響關係</li>
+    <li>提出未來研究命題</li>
+    <li>直接相關於「商管永續核心能力 KSAO」主題</li>
+  </ul>
+  <span class="tag">永續能力</span><span class="tag">評量工具</span><span class="tag">文獻回顧</span>
+</div>
+
+<div class="section theme-en" id="s3">
+  <h2>3. KSAOs — Step by Step Guide</h2>
+  <div class="meta">📎 <a href="https://www.thehumancapitalhub.com/articles/ksaos-step-by-step-guide-to-understanding-ksaos" target="_blank">Human Capital Hub</a></div>
+  <ul>
+    <li>KSAO 定義：Knowledge（知識）、Skills（技能）、Abilities（能力）、Other Characteristics（其他特質）</li>
+    <li>廣泛應用於人員甄選、績效評估與職涯發展</li>
+    <li>知識通常透過教育和專業訓練獲得</li>
+    <li>組織透過職務分析來識別所需 KSAO</li>
+  </ul>
+  <span class="tag">KSAO 基礎</span><span class="tag">職務分析</span><span class="tag">人力資源</span>
+</div>
+
+<div class="section theme-en" id="s4">
+  <h2>4. Key Success Factors of KMS</h2>
+  <div class="meta">📎 <a href="https://www.sciencedirect.com/science/article/pii/S2405844025024983" target="_blank">ScienceDirect — Heliyon</a></div>
+  <ul>
+    <li>系統性文獻回顧知識管理系統（KMS）的關鍵成功因素</li>
+    <li>識別哪些因素影響組織績效（OP）</li>
+    <li>採用 PRISMA 方法進行系統性回顧</li>
+    <li>KMS 是提升組織效能的關鍵工具</li>
+  </ul>
+  <span class="tag">知識管理系統</span><span class="tag">組織績效</span><span class="tag">PRISMA</span>
+</div>
+
+<div class="section theme-zh" id="s5">
+  <h2>5. 知識創造來源、知識管理能力及知識屬性對創新績效影響之研究</h2>
+  <div class="meta">📎 <a href="https://mgtr.cm.nsysu.edu.tw/fulljournal_process.php?id=33&pno=21188&p=389" target="_blank">中山管理評論</a></div>
+  <ul>
+    <li>從組織學習理論觀點探討知識創造來源與管理能力</li>
+    <li>分析知識屬性如何調節創新績效</li>
+    <li>台灣管理學術界的經典實證研究</li>
+    <li>適合論文文獻回顧引用</li>
+  </ul>
+  <span class="tag">組織學習</span><span class="tag">知識創造</span><span class="tag">創新績效</span><span class="tag">實證研究</span>
+</div>
+
+<div class="section theme-zh" id="s6">
+  <h2>6. 以組織學習觀點探討高科技產業知識管理作法</h2>
+  <div class="meta">📎 <a href="https://review.management.ntu.edu.tw/paper/1175-P.pdf" target="_blank">國立臺灣大學管理論叢</a></div>
+  <ul>
+    <li>比較適應型學習與創新型學習的管理差異</li>
+    <li>探討組織內部員工創造新智慧的方式</li>
+    <li>強調學習類型對組織知識管理的影響</li>
+    <li>台灣高科技產業管理實證</li>
+  </ul>
+  <span class="tag">適應型學習</span><span class="tag">創新型學習</span><span class="tag">高科技產業</span>
+</div>
+
+<div class="section theme-en" id="s7">
+  <h2>7. KM Practice and Its Impact on Organizational Performance</h2>
+  <div class="meta">📎 <a href="https://www.researchgate.net/publication/387577355" target="_blank">ResearchGate</a></div>
+  <ul>
+    <li>概念性論文探討知識管理實務對組織績效的影響</li>
+    <li>回顧知識管理流程（創造、儲存、分享、應用）</li>
+    <li>提出知識管理與組織績效的關聯模型</li>
+    <li>為量化研究提供理論基礎</li>
+  </ul>
+  <span class="tag">KM 流程</span><span class="tag">組織績效</span><span class="tag">關聯模型</span>
+</div>
+
+<div class="section theme-en" id="s8">
+  <h2>8. The Strategic Role of KM in Modern Organizations</h2>
+  <div class="meta">📎 <a href="https://www.researchgate.net/publication/384898629" target="_blank">ResearchGate</a></div>
+  <ul>
+    <li>探討知識管理在現代組織中的策略重要性</li>
+    <li>強調 KM 在促進創新與組織敏捷性的角色</li>
+    <li>分析知識管理如何成為競爭優勢來源</li>
+    <li>適合 KM 理論基礎參考</li>
+  </ul>
+  <span class="tag">策略管理</span><span class="tag">競爭優勢</span><span class="tag">組織敏捷性</span>
+</div>
+
+<div class="section theme-en" id="s9">
+  <h2>9. Organizational Knowledge and KM — A New Framework</h2>
+  <div class="meta">📎 <a href="https://sciencepublishinggroup.com/article/10.11648/j.ajmse.20240901.11" target="_blank">American J. of Management Science and Engineering</a></div>
+  <ul>
+    <li>提出組織知識與知識流的新框架</li>
+    <li>探討知識在企業內部的流動機制</li>
+    <li>連結組織知識理論與實務應用</li>
+    <li>提供 KM 研究的整合性視角</li>
+  </ul>
+  <span class="tag">知識流</span><span class="tag">新框架</span><span class="tag">整合視角</span>
+</div>
+
+<div class="section theme-zh" id="s10">
+  <h2>10. 韌性組織進化論：人才、文化與永續成長</h2>
+  <div class="meta">📎 <a href="https://www.k-media.com.tw/archives/6056" target="_blank">K-media 知識傳媒</a></div>
+  <ul>
+    <li>探討 BANI 環境下組織如何建立韌性</li>
+    <li>連結人才策略、組織文化與永續成長</li>
+    <li>從管理實務角度分析組織進化路徑</li>
+    <li>繁體中文實務觀點參考</li>
+  </ul>
+  <span class="tag">BANI</span><span class="tag">組織韌性</span><span class="tag">永續成長</span><span class="tag">實務觀點</span>
+</div>
+
+<div class="section theme-zh" id="s11">
+  <h2>11. 知識管理能力與組織績效（文獻歸納）</h2>
+  <div class="meta">📎 Google Scholar / 國內期刊（多篇綜合）</div>
+  <ul>
+    <li>知識管理能力包含知識獲取、轉換、應用與保護四大構面</li>
+    <li>組織學習文化是 KM 成功的基礎條件</li>
+    <li>資訊科技基礎建設對 KM 實施有顯著影響</li>
+    <li>高階管理者支持是 KM 成效的關鍵驅動因子</li>
+    <li>KM 能力對組織創新績效有正向顯著影響</li>
+  </ul>
+  <span class="tag">KM 構面</span><span class="tag">學習文化</span><span class="tag">高階支持</span><span class="tag">創新績效</span>
+</div>
+
+<div class="section theme-zh" id="s12">
+  <h2>12. 永續發展委員會與企業永續管理</h2>
+  <div class="meta">📎 <a href="https://twse-regulation.twse.com.tw/m/LawContent.aspx?FID=FL103206" target="_blank">臺灣證券交易所法規分享知識庫</a></div>
+  <ul>
+    <li>上市櫃公司永續發展委員會設置規範</li>
+    <li>委員會成員須具備企業永續專業知識與能力</li>
+    <li>台灣永續治理的法規實務參考</li>
+    <li>連結 KSAO 概念於永續治理場景</li>
+  </ul>
+  <span class="tag">永續治理</span><span class="tag">法規實務</span><span class="tag">公司治理</span>
+</div>
+
+<div class="footer">
+  📚 管理知識與組織文獻講義 · 由主模型整理
+</div>
+
+</div>
+</body>
+</html>
