@@ -1,0 +1,2866 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)file:///Users/lingochen/Downloads/EMBA_100_Pages_Thompson_Organizations.html -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>EMBA頂尖管理學講義 - 行動中的組織 (100頁完整版)</title>
+    <style>
+        /* 基礎全域重設 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: #11141a;
+            font-family: "PingFang TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            display: block;
+        }
+
+        /* 簡報頁面硬規格鎖死 16:9 */
+        section.slide {
+            width: 1920px !important;
+            height: 1080px !important;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #151a24 0%, #0d1017 100%);
+            border-bottom: 4px solid #1a2333;
+            page-break-after: always;
+            display: block;
+        }
+
+        section.slide::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .slide-container {
+            width: 100%;
+            height: 100%;
+            padding: 60px 80px;
+            display: block;
+            position: relative;
+        }
+
+        .slide-header {
+            width: 100%;
+            height: 100px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 40px;
+            display: block;
+            position: relative;
+        }
+        .slide-header h2 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        .slide-header .tag {
+            position: absolute;
+            right: 0;
+            top: 10px;
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+            color: #ffffff;
+            padding: 8px 20px;
+            font-size: 26px;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .layout-split { width: 100%; height: 820px; display: block; position: relative; }
+        .col-left { width: 860px; height: 100%; position: absolute; left: 0; top: 0; padding-right: 40px; overflow: hidden; }
+        .col-right { width: 860px; height: 100%; position: absolute; right: 0; top: 0; padding-left: 40px; border-left: 2px dashed rgba(255, 255, 255, 0.08); overflow: hidden; }
+        .layout-full { width: 100%; height: 820px; position: relative; overflow: hidden; }
+
+        h1.main-title {
+            font-size: 100px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #ffffff;
+            text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            letter-spacing: 4px;
+        }
+        
+        .subtitle { font-size: 50px; color: #3b82f6; font-weight: 500; margin-bottom: 60px; letter-spacing: 2px; }
+        p.desc-large { font-size: 42px; line-height: 1.6; color: #cbd5e1; margin-bottom: 30px; word-wrap: break-word; }
+        
+        ul.list-large { list-style: none; margin-top: 20px; }
+        ul.list-large li { font-size: 40px; line-height: 1.6; color: #e2e8f0; margin-bottom: 25px; position: relative; padding-left: 45px; word-wrap: break-word; }
+        ul.list-large li::before { content: "■"; position: absolute; left: 0; top: 2px; color: #3b82f6; font-size: 32px; }
+
+        .case-box { background: rgba(30, 41, 59, 0.5); border-radius: 12px; padding: 40px; border: 2px solid rgba(59, 130, 246, 0.2); height: 100%; }
+        .case-title { font-size: 44px; font-weight: 700; color: #f59e0b; margin-bottom: 25px; display: flex; align-items: center; }
+        .case-title::before { content: "💡"; margin-right: 15px; }
+
+        /* Charts CSS */
+        .grid-2x2 { display: block; position: relative; width: 100%; height: 650px; margin-top: 40px; }
+        .grid-item { position: absolute; width: 800px; height: 300px; padding: 30px; border-radius: 8px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .grid-item-tl { left: 50px; top: 0; border-top: 5px solid #ef4444; }
+        .grid-item-tr { right: 50px; top: 0; border-top: 5px solid #3b82f6; }
+        .grid-item-bl { left: 50px; bottom: 0; border-top: 5px solid #10b981; }
+        .grid-item-br { right: 50px; bottom: 0; border-top: 5px solid #f59e0b; }
+        .grid-item h4 { font-size: 44px; font-weight: 700; margin-bottom: 20px; color: #fff; }
+        .grid-item p { font-size: 36px; color: #94a3b8; line-height: 1.5; }
+
+        .flow-container { display: block; position: relative; width: 100%; height: 600px; margin-top: 60px; }
+        .flow-step { position: absolute; width: 350px; height: 350px; background: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%); border: 3px solid #3b82f6; border-radius: 12px; padding: 40px; text-align: center; }
+        .flow-step-1 { left: 100px; top: 100px; }
+        .flow-step-2 { left: 700px; top: 100px; }
+        .flow-step-3 { left: 1300px; top: 100px; }
+        .flow-arrow { position: absolute; font-size: 60px; color: #3b82f6; top: 220px; font-weight: bold; }
+        .arrow-1 { left: 520px; }
+        .arrow-2 { left: 1120px; }
+        .flow-step .num { font-size: 60px; font-weight: 800; color: #3b82f6; margin-bottom: 20px; }
+        .flow-step .title { font-size: 44px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+        .flow-step .text { font-size: 34px; color: #cbd5e1; line-height: 1.4; }
+
+        .compare-box { display: block; position: relative; width: 100%; height: 650px; margin-top: 50px; }
+        .compare-side { position: absolute; width: 800px; height: 100%; padding: 50px; border-radius: 12px; }
+        .side-left { left: 50px; background: rgba(239, 68, 68, 0.08); border: 2px solid rgba(239, 68, 68, 0.3); }
+        .side-right { right: 50px; background: rgba(16, 185, 129, 0.08); border: 2px solid rgba(16, 185, 129, 0.3); }
+        .compare-side h3 { font-size: 50px; font-weight: 700; margin-bottom: 30px; text-align: center; }
+        .side-left h3 { color: #f87171; }
+        .side-right h3 { color: #34d399; }
+
+        .table-large { width: 90%; margin: 40px auto 0 auto; border-collapse: collapse; }
+        .table-large th { background-color: #1e3a8a; color: #ffffff; font-size: 42px; font-weight: 700; padding: 30px; text-align: left; border: 2px solid rgba(255, 255, 255, 0.1); }
+        .table-large td { font-size: 38px; padding: 30px; border: 2px solid rgba(255, 255, 255, 0.1); color: #cbd5e1; }
+        .table-large tr:nth-child(even) td { background-color: rgba(255, 255, 255, 0.03); }
+
+        .pyramid-container { width: 100%; height: 600px; display: block; position: relative; margin-top: 60px; }
+        .pyramid-layer { margin: 0 auto 20px auto; text-align: center; border-radius: 8px; display: block; padding: 30px; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .layer-1 { width: 600px; background: #1e3a8a; font-size: 46px; color: #fff; }
+        .layer-2 { width: 900px; background: #2563eb; font-size: 46px; color: #fff; }
+        .layer-3 { width: 1200px; background: #3b82f6; font-size: 46px; color: #fff; }
+
+        .slide-footer { position: absolute; bottom: 40px; left: 80px; right: 80px; display: block; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; }
+        .footer-text { font-size: 26px; color: #64748b; letter-spacing: 1px; }
+        .page-num { position: absolute; right: 0; bottom: 0; font-size: 30px; color: #3b82f6; font-weight: 700; }
+
+        [contenteditable="true"] { outline: none; transition: all 0.2s ease; }
+        [contenteditable="true"]:hover { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4); border-radius: 4px; }
+        [contenteditable="true"]:focus { background-color: rgba(59, 130, 246, 0.15) !important; box-shadow: 0 0 0 3px #3b82f6; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    
+<section class="slide">
+    <div class="slide-container" style="padding-top: 250px; text-align: center;">
+        <h1 class="main-title" style="font-size: 110px;" contenteditable="true" spellcheck="false">行動中的組織<div>&nbsp;(Organizations in Action)</div></h1>
+        <div class="subtitle" style="font-size: 55px; margin-bottom: 100px;">社會科學基礎之行政管理理論 - James D. Thompson</div>
+        <p class="desc-large" style="font-size: 44px; color: #94a3b8;" contenteditable="true" spellcheck="false"><br></p>
+        <div class="slide-footer">
+            <span class="footer-text" contenteditable="true" spellcheck="false"></span>
+            <span class="page-num" contenteditable="true" spellcheck="false">001 / 100</span>
+        </div>
+    </div>
+</section>
+
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">本書核心架構：探討組織整體的行為</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">OVERVIEW</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">視組織為一行動者(Actor)。</li><li contenteditable="true" spellcheck="false">在技術和任務環境的互動影響下，追求組織的理性。</li><li contenteditable="true" spellcheck="false">上篇重點：考量影響整體行為之『非人性的力量』。</li><li contenteditable="true" spellcheck="false">基本假設：組織的運作是合理及理性的。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">001 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">組織追求理性的最大挑戰：不確定性</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">UNCERTAINTY</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="flow-container"><div class="flow-step flow-step-1"><div class="num">1</div><div class="title">組織</div></div><div class="flow-arrow arrow-1">追求</div><div class="flow-step flow-step-2"><div class="num">2</div><div class="title">理性化</div></div><div class="flow-arrow arrow-2">遇挑戰</div><div class="flow-step flow-step-3" style="left: 440px; border-color: #ef4444;"><div class="num">3</div><div class="title" style="color:#ef4444;">不確定性</div><div class="text">來自環境與技術</div></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">002 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">研究組織的策略：兩大流派</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">STRATEGY</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="compare-box"><div class="compare-side side-left"><h3 contenteditable="true" spellcheck="false">封閉系統策略 (理性模型)</h3><p class="desc-large" contenteditable="true" spellcheck="false">假設變數可理解、控制與預測。追求效率最大化。</p></div><div class="compare-side side-right"><h3 contenteditable="true" spellcheck="false">開放系統策略 (自然系統)</h3><p class="desc-large" contenteditable="true" spellcheck="false">變數多且無法預測。追求組織的生存與適應。</p></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">003 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">Gouldner 的複雜組織分類</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CLASSIFICATION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>理性系統：</strong>將組織變數及目標達成作正向連接。</li><li contenteditable="true" spellcheck="false">藉由堅固的控制網路尋求組織運作的確定性。</li><li contenteditable="true" spellcheck="false"><strong>自然系統：</strong>認知組織與所處環境的互賴關係。</li><li contenteditable="true" spellcheck="false">掌握組織面臨的不確定性與干擾。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">統一超商 (7-11)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">極度標準化的作業流程(集中相依)配合強大的物流排程(順序相依)，在穩定的零售環境中實現效率極大化。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">004 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">人類心理對確定性的渴望</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PSYCHOLOGY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">人類心理存在強烈傾向，試圖將各種知識簡化為<strong>『封閉系統』</strong>下的知識形態。</p><p class="desc-large" contenteditable="true" spellcheck="false">目的在於消除重要的不確定性，以利於進行即期的準確預測。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">005 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">科學管理理論 (Taylor) 之封閉系統</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CLASSICAL</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">經濟效率為終極標準。</li><li contenteditable="true" spellcheck="false">以數據邏輯來規劃程序、設定標準。</li><li contenteditable="true" spellcheck="false">透過控制以確保對標準和技術邏輯的遵循。</li><li contenteditable="true" spellcheck="false">假設任務是重複且已知的。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">006 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">行政管理理論 (Gulick &amp; Urwick)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CLASSICAL</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">終極主導計劃存在，決定專業化與部門化。</li><li contenteditable="true" spellcheck="false">專業化任務集合到不同部門。</li><li contenteditable="true" spellcheck="false">依控制範圍原則或授權原則來固定責任。</li><li contenteditable="true" spellcheck="false">試圖將效率最大化。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">007 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">科層制理論 (Weber)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CLASSICAL</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">透過職員配置、結構優化解決問題。</li><li contenteditable="true" spellcheck="false">處理案例依循明確法規。</li><li contenteditable="true" spellcheck="false">假設資源總是可以獲得且具備標準質量。</li><li contenteditable="true" spellcheck="false">追求絕對的經濟效率。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">008 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">開放系統的自然系統模型</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">OPEN SYSTEM</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">整體在其相應層次上與更大的環境相互依存。</li><li contenteditable="true" spellcheck="false">每一個構成部分同時貢獻和受益於整體。</li><li contenteditable="true" spellcheck="false">在面對來自環境的干擾時，重點在於維持系統的生存。</li><li contenteditable="true" spellcheck="false">組織和環境的相互依賴是不可避免且有用的。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">玉山銀行 (E.SUN Bank)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">透過跨部門的矩陣型組織(任務小組)推動金融科技創新，解決傳統功能性部門在面對互惠相依任務時的協調瓶頸。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">009 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">Thompson 的新傳統：綜合與折衷</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SYNTHESIS</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" style="color:#f59e0b; font-weight:bold;" contenteditable="true" spellcheck="false">「每一種方法都能導向真理，但都不能單獨提供對於複雜組織的足夠理解。」</p><p class="desc-large" contenteditable="true" spellcheck="false">組織現象的核心：組織在有限理性下選擇其行動路線的過程。滿意成就替代最大效率。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鴻海科技集團 (Foxconn)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對高度變動的全球供應鏈，透過垂直與水平整合，將外部依賴內部化，展現強大的封閉系統效率與開放系統彈性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">010 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">Parsons 的組織層次論</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">HIERARCHY</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="pyramid-container"><div class="pyramid-layer layer-1">機構(制度)層級：聯結外界社會</div><div class="pyramid-layer layer-2">管理層級：獲取資源/媒介消費者</div><div class="pyramid-layer layer-3">技術層級：有效達成核心績效</div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">011 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第一章要點重述</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">組織需要創造專業化部門應付不確定性。</li><li contenteditable="true" spellcheck="false">視組織為一開放系統(面臨不確定)。</li><li contenteditable="true" spellcheck="false">同時服從理性標準(需要確定性)。</li><li contenteditable="true" spellcheck="false">專業化部門的連結(技術與環境)是關鍵。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">012 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">組織內的理性與有效行為</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">RATIONALITY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">技術理性取決於投入與產出的轉換。</li><li contenteditable="true" spellcheck="false"><strong>有效性：</strong>設定的行為是否產生預期產出。</li><li contenteditable="true" spellcheck="false"><strong>經濟性：</strong>預期產出是否在耗費資源最少下取得。</li><li contenteditable="true" spellcheck="false">依賴對因果關係的信念與對產出的預期。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">長榮海運 (Evergreen)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對全球航運的劇烈波動(偶發事件)，透過長期的聯盟(Coalescing)與合約(Contracting)策略來確保運能與貨源的穩定。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">013 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">三種核心技術型式之分類</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">TECHNOLOGY</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="grid-2x2"><div class="grid-item grid-item-tl"><h4 contenteditable="true" spellcheck="false">密集型 (Intensive)</h4><p contenteditable="true" spellcheck="false">針對特定對象結合多種技術(如醫院)</p></div><div class="grid-item grid-item-tr"><h4 contenteditable="true" spellcheck="false">媒介型 (Mediating)</h4><p contenteditable="true" spellcheck="false">連結互賴的顧客或對象(如銀行)</p></div><div class="grid-item grid-item-bl" style="width: 860px;"><h4 contenteditable="true" spellcheck="false">長鏈型 (Long-linked)</h4><p contenteditable="true" spellcheck="false">前一個行動產出為下一個行動投入(如裝配線)</p></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">014 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">長鏈型技術 (Long-linked Technology)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">TECH TYPE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false"><strong>特徵：</strong>前一個行動的產出是下一個行動的投入。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>需求：</strong>需要極高度的標準化與前後因果的確定性。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>案例：</strong>工廠大量生產裝配線、石化業上下游。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">015 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">媒介型技術 (Mediating Technology)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">TECH TYPE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false"><strong>特徵：</strong>媒介服務將互為依賴關係的顧客或對象連結起來。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>需求：</strong>標準化的分類與廣泛的服務範圍。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>案例：</strong>商業銀行、電信公司、人力銀行。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">016 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">密集型技術 (Intensive Technology)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">TECH TYPE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false"><strong>特徵：</strong>對特定目標對象，客製化選擇、結合不同技術共同應用。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>需求：</strong>高度的回饋與相互調整能力。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>案例：</strong>綜合醫院、急診室、高階研發專案。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">017 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">緩衝與平穩化 (Buffering &amp; Smoothing)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROTECTION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">組織試圖將技術核心置於投入和產出部門的包裹下，以緩衝環境影響。</li><li contenteditable="true" spellcheck="false">理順交易，使投入與產出趨於平穩(Smoothing)。</li><li contenteditable="true" spellcheck="false">藉此隔絕外界干擾，維持技術核心的封閉理性。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">018 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">預測與適應 (Anticipation &amp; Adaptation)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">ADAPTATION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">當環境變化無法被緩衝或調平時，組織必須進行預期和適應。</p><p class="desc-large" contenteditable="true" spellcheck="false">如果連適應都無法發揮作用，組織將被迫採取『定量分配(Rationing)』來保全核心。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">玉山銀行 (E.SUN Bank)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">透過跨部門的矩陣型組織(任務小組)推動金融科技創新，解決傳統功能性部門在面對互惠相依任務時的協調瓶頸。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">019 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">技術理性 vs 組織理性</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DIFFERENCE</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="compare-box"><div class="compare-side side-left"><h3 contenteditable="true" spellcheck="false">技術理性</h3><p class="desc-large" contenteditable="true" spellcheck="false">追求封閉系統內的絕對效率，遵循理性準則。</p></div><div class="compare-side side-right"><h3 contenteditable="true" spellcheck="false">組織理性</h3><p class="desc-large" contenteditable="true" spellcheck="false">面對開放系統的環境不穩定，尋求妥協與滿意解。</p></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">020 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第二章要點重述</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">技術是組織運作的重要變數。</li><li contenteditable="true" spellcheck="false">組織透過緩衝、平穩化、適應與分配來保護核心。</li><li contenteditable="true" spellcheck="false">技術理性(封閉)與組織理性(開放)的持續拉扯。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">021 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">組織必須建立「領域」(Domain)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DOMAIN</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">領域是組織宣稱致力的範圍。</li><li contenteditable="true" spellcheck="false">包含：①產品的範圍 ②提供的服務 ③服務的人群。</li><li contenteditable="true" spellcheck="false">領域認同：只有被任務環境認可，才有實質意義。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">022 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">任務環境 (Task Environment)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">ENVIRONMENT</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">環境中與組織目標設定和達成，有直接相關或潛在相關的部分：</p><ul class="list-large"><li contenteditable="true" spellcheck="false">① 消費者 (Customers)</li><li contenteditable="true" spellcheck="false">② 供應者 (Suppliers)</li><li contenteditable="true" spellcheck="false">③ 競爭者 (Competitors)</li><li contenteditable="true" spellcheck="false">④ 管制團體 (Regulatory Groups)</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">長榮海運 (Evergreen)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對全球航運的劇烈波動(偶發事件)，透過長期的聯盟(Coalescing)與合約(Contracting)策略來確保運能與貨源的穩定。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">023 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">依賴與權力 (Dependence &amp; Power)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">POWER</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織對環境的依賴，取決於需求是否集中，以及環境提供的支援能力是否分散。</p><p class="desc-large" contenteditable="true" spellcheck="false">組織為減少不確定性，會積極尋求『權力的獲取』以管理這些依賴關係。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">統一超商 (7-11)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">極度標準化的作業流程(集中相依)配合強大的物流排程(順序相依)，在穩定的零售環境中實現效率極大化。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">024 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">管理依賴的合作策略：合約 (Contracting)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">STRATEGY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false"><strong>情境：</strong>當雙方權力相對均衡，且需求集中時。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>作法：</strong>試圖以訂定「合約」的法律約束方式，來掌握其依賴性，確保未來交換的發生。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">025 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">管理依賴的合作策略：拉攏 (Coopting)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">STRATEGY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false"><strong>情境：</strong>當組織為比較弱勢的一方(權力不均等)。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>作法：</strong>經由「拉攏入夥」，將外部威脅力量的代表納入組織的決策核心(如董事會)，以換取生存空間。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">026 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">管理依賴的合作策略：聯盟 (Coalescing)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">STRATEGY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                     <p class="desc-large" contenteditable="true" spellcheck="false"><strong>情境：</strong>權力相對均衡，但環境高度不確定，合約不足以應付時。</p><p class="desc-large" contenteditable="true" spellcheck="false"><strong>作法：</strong>組織尋求合資或聯盟，共同承擔風險並共享利潤。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">027 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 3.1 &amp; 3.2：權力的尋求</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>3.1：</strong>組織尋求相對於其依賴的權力。增加本身威望以獲得更高權力。</li><li contenteditable="true" spellcheck="false"><strong>3.2：</strong>約束部門越多，組織越試圖從剩餘部門獲取更多權力來彌補。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">028 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 3.3：任務環境的擴大與最小化</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>3.3：</strong>不能從其他部門獲得權力的組織，會試圖擴大任務環境。</li><li contenteditable="true" spellcheck="false"><strong>3.3a/b：</strong>通過替代方案，將任務環境內單一要素的權力最小化(避免被掐脖子)。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">玉山銀行 (E.SUN Bank)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">透過跨部門的矩陣型組織(任務小組)推動金融科技創新，解決傳統功能性部門在面對互惠相依任務時的協調瓶頸。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">029 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">領域、依賴與約制的循環</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CYCLE</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="flow-container"><div class="flow-step flow-step-1"><div class="title">環境</div><div class="text">提供資源/制約</div></div><div class="flow-arrow arrow-1">形成</div><div class="flow-step flow-step-2"><div class="title">依賴</div><div class="text">產生不確定性</div></div><div class="flow-arrow arrow-2">運用</div><div class="flow-step flow-step-3"><div class="title">管理</div><div class="text">合作與權力策略</div></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">030 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第三章要點重述</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">為達成自我控制，組織必須對『依賴』進行政治性管理。</li><li contenteditable="true" spellcheck="false">透過合約、拉攏、聯盟來降低偶然事件衝擊。</li><li contenteditable="true" spellcheck="false">權力極大化與依賴極小化是理性組織的天性。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">031 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">組織設計與邊界擴展</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DESIGN</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織會在某些活動的周圍設置邊界，以便納入管理。</p><p class="desc-large" contenteditable="true" spellcheck="false">否則這些活動即成為組織不易控制的外部<strong>「關鍵情境因素 (Crucial Contingencies)」</strong>。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">032 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 4.1：混合體的邊界設計</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">在理性原則下，組織設計的主要變化，是對技術、任務環境與領域這三個因素的混合與調整。</p><p class="desc-large" contenteditable="true" spellcheck="false">目的在於去除或減少偶發事件的限制。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">長榮海運 (Evergreen)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對全球航運的劇烈波動(偶發事件)，透過長期的聯盟(Coalescing)與合約(Contracting)策略來確保運能與貨源的穩定。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">033 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 4.1a：長鏈型技術與垂直整合</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">使用長鏈型技術的組織，會經由「垂直整合」來擴展其運作領域。</li><li contenteditable="true" spellcheck="false">例如：石油公司將探勘、精煉、運輸到加油站全面整合，消除供應鏈斷鏈風險。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">統一超商 (7-11)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">極度標準化的作業流程(集中相依)配合強大的物流排程(順序相依)，在穩定的零售環境中實現效率極大化。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">034 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 4.1b：媒介型技術與擴展區域</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">使用媒介型技術的組織，會以「增加服務的人數或區域」來擴展運作領域。</li><li contenteditable="true" spellcheck="false">目的在於增大服務範圍，提高特定區域的覆蓋飽和度，降低單一市場風險。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">035 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 4.1c：密集型技術與吸納對象</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">使用密集型技術的組織，會以「吸納其工作對象」來擴展領域。</li><li contenteditable="true" spellcheck="false">例如：大學要求學生住宿、醫院要求病患住院，藉由建立全面環境來確保技術施展的有效性。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">036 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">成份間的平衡 (Balancing Components)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">BALANCE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">當組織擴展邊界獲取新能力時，常會取得原先核心使命未要求的能力(多餘產能)。</p><p class="desc-large" contenteditable="true" spellcheck="false">這就產生了『要素平衡(Balancing)』的重大管理挑戰。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">037 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">多重要素組織的難題</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">MULTI-COMPONENT</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">當擴展必須結合多項核心技術時，組織要素隨之增加。</p><p class="desc-large" contenteditable="true" spellcheck="false">這種多重要素組織面對的終極問題，就是如何避免內部資源的閒置與衝突，實現綜效。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">038 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 4.2：最稀少資源的極限</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">在理性原則下，組織會不斷擴張與成長。</li><li contenteditable="true" spellcheck="false">直到其「最不能減少的要素」(即最稀少的資源、瓶頸資源) 幾乎被完全占用為止。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">玉山銀行 (E.SUN Bank)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">透過跨部門的矩陣型組織(任務小組)推動金融科技創新，解決傳統功能性部門在面對互惠相依任務時的協調瓶頸。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">039 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 4.3：能力的溢出與領域再擴張</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">對於擁有要素能力「超過」任務環境所需支援的組織而言。</li><li contenteditable="true" spellcheck="false">它們會主動尋求跨界，擴大其運作領域，以消化這些過剩能力。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鴻海科技集團 (Foxconn)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對高度變動的全球供應鏈，透過垂直與水平整合，將外部依賴內部化，展現強大的封閉系統效率與開放系統彈性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">040 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第四章要點重述</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">組織有能力選擇哪些自己做(邊界內)，哪些交給外部(邊界外)。</li><li contenteditable="true" spellcheck="false">垂直整合、擴大服務、吸納對象是三大技術的對應策略。</li><li contenteditable="true" spellcheck="false">成長來自於解決內部資源不平衡的推力。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第四章 組織設計</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">041 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">技術與結構：區隔與部門化</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">STRUCTURE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織設計決定了構成要素，並將其進一步<strong>『區隔或部門化』</strong>，產生內部差異。</p><p class="desc-large" contenteditable="true" spellcheck="false">透過設計將其連接、定型化，即成為『組織結構』。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">042 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">三種相互依賴關係 (Interdependence)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">INTERDEPENDENCE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>集中相依 (Pooled):</strong> 各單位獨立貢獻給整體(如各分公司)。</li><li contenteditable="true" spellcheck="false"><strong>順序相依 (Sequential):</strong> 前者輸出為後者輸入(如裝配線)。</li><li contenteditable="true" spellcheck="false"><strong>互惠相依 (Reciprocal):</strong> 互為輸出與輸入，高度動態(如醫院會診)。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">長榮海運 (Evergreen)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對全球航運的劇烈波動(偶發事件)，透過長期的聯盟(Coalescing)與合約(Contracting)策略來確保運能與貨源的穩定。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">043 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">相依關係與協調成本</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">COORDINATION</span>
+            </div>
+    
+            <div class="layout-full">
+                <table class="table-large"><tbody><tr><th contenteditable="true" spellcheck="false">相依型態</th><th contenteditable="true" spellcheck="false">協調方式</th><th contenteditable="true" spellcheck="false">溝通決策成本</th></tr><tr><td contenteditable="true" spellcheck="false">集中相依</td><td contenteditable="true" spellcheck="false">標準化 / 規則</td><td contenteditable="true" spellcheck="false">最低</td></tr><tr><td contenteditable="true" spellcheck="false">順序相依</td><td contenteditable="true" spellcheck="false">計畫 / 排程</td><td contenteditable="true" spellcheck="false">適中</td></tr><tr><td contenteditable="true" spellcheck="false">互惠相依</td><td contenteditable="true" spellcheck="false">相互調整 / 團隊會議</td><td contenteditable="true" spellcheck="false">最高</td></tr></tbody></table>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">044 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">集中相依的協調：標準化</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">STANDARDIZATION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">經由「標準化」來協調。</li><li contenteditable="true" spellcheck="false">建立例行程序或規則，限制部門行為，確保行動一致。</li><li contenteditable="true" spellcheck="false">溝通和決策的成本最低。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">045 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">順序相依的協調：計畫與排程</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PLANNING</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">經由「規劃和排程」來協調。</li><li contenteditable="true" spellcheck="false">為互賴部門建立時間表，管理其行動節奏。</li><li contenteditable="true" spellcheck="false">溝通和決策的成本適中，需定期更新計畫。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">046 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">互惠相依的協調：相互調整</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">ADJUSTMENT</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">經由「相互調整 (Mutual Adjustment)」來協調。</li><li contenteditable="true" spellcheck="false">要求在行動過程中進行大量新訊息的即時傳遞。</li><li contenteditable="true" spellcheck="false">溝通和決策的成本極高，極度消耗管理資源。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">047 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 5.1：部門化的基本原則</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織對於部門之組成，是以<strong>「協調成本極小化」</strong>為最高原則，並給予適度自主權。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">048 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 5.1a-c：部門化的優先順序</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PRIORITY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>第一優先 (5.1a):</strong> 將互惠相依的單位組合起來(因協調成本最高)。</li><li contenteditable="true" spellcheck="false"><strong>第二優先 (5.1b):</strong> 將順序相依的單位組合起來。</li><li contenteditable="true" spellcheck="false"><strong>第三優先 (5.1c):</strong> 將集中相依的單位組合起來，實施標準化。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">玉山銀行 (E.SUN Bank)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">透過跨部門的矩陣型組織(任務小組)推動金融科技創新，解決傳統功能性部門在面對互惠相依任務時的協調瓶頸。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">049 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">層級的誕生 (Hierarchy)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">HIERARCHY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">互惠相依牽連範圍廣，無法一次組合完畢。</p><p class="desc-large" contenteditable="true" spellcheck="false">這些未解決的組合順序與剩餘協調問題，促使組織建立『層級(Hierarchy)』來進行高階統合。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鴻海科技集團 (Foxconn)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對高度變動的全球供應鏈，透過垂直與水平整合，將外部依賴內部化，展現強大的封閉系統效率與開放系統彈性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">050 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 5.2 &amp; 5.3：第二階組合</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">組織會將相關單位做第二階組合(層級)，維持適度自主性。</li><li contenteditable="true" spellcheck="false">層級不是單純高低之分，而是為了解決原先組合無法處理的殘餘協調問題。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">051 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 5.4a/b：打破界限與聯絡職位</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">LIAISON</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">在複雜組織中，為了解決跨群體合作，會打破界限建立總括單位。</li><li contenteditable="true" spellcheck="false">會發展『聯絡性職位 (Liaison Position)』作為群體與規則機構間的連結橋樑。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">052 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 5.4c/d：委員會與任務小組</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">COMMITTEE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>委員會 (Committee):</strong> 處理超出常規結構的順序相依協調問題。</li><li contenteditable="true" spellcheck="false"><strong>任務小組/專案 (Task Force):</strong> 處理最複雜、突發的互惠相依協調問題。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">長榮海運 (Evergreen)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對全球航運的劇烈波動(偶發事件)，透過長期的聯盟(Coalescing)與合約(Contracting)策略來確保運能與貨源的穩定。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">053 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第五章要點重述 (結構化統整)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="pyramid-container"><div class="pyramid-layer layer-1" style="width:400px;">互惠相依 (任務小組/相互調整)</div><div class="pyramid-layer layer-2" style="width:600px;">順序相依 (委員會/計畫排程)</div><div class="pyramid-layer layer-3" style="width:800px;">集中相依 (部門分工/標準化規則)</div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第五章 技術與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">054 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">組織理性與結構：邊界範圍單位</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">BOUNDARY SPANNING</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">當考慮環境影響時，如何設計<strong>「邊界範圍 (Boundary-Spanning)」</strong>單位，以調節環境中非組織所能控制的情境因素，是本章核心。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">055 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 6.1：異質任務環境的處理</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">面臨異質的任務環境時，組織會將其中同質的部份區隔出來。</li><li contenteditable="true" spellcheck="false">然後成立專屬的「結構性單位」來分別處理每一個區隔。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">056 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 6.2 &amp; 6.2a：環境穩定度與適應</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">同質部份會被進一步劃分，以匹配組織的監控能力。</li><li contenteditable="true" spellcheck="false"><strong>穩定的環境 (6.2a):</strong> 組織會高度依賴『規則(Rules)』來實現對環境的適應。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">057 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 6.2b/c：標準化 vs 計畫反應</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>穩定的同質環境 (6.2b):</strong> 透過一系列規則進行標準化適應。</li><li contenteditable="true" spellcheck="false"><strong>變動的異質環境 (6.2c):</strong> 邊界部門需高度差異化，透過即時監控和計畫反應(而非死板規則)來適應。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">058 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">四種任務環境構面分析</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">MATRIX</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="grid-2x2"><div class="grid-item grid-item-tl"><h4 contenteditable="true" spellcheck="false">穩定 + 同質</h4><p contenteditable="true" spellcheck="false">極少數功能部門，靠標準規則運作</p></div><div class="grid-item grid-item-tr"><h4 contenteditable="true" spellcheck="false">變動 + 同質</h4><p contenteditable="true" spellcheck="false">依地區細分部門，授權地區計畫反應</p></div><div class="grid-item grid-item-bl"><h4 contenteditable="true" spellcheck="false">穩定 + 異質</h4><p contenteditable="true" spellcheck="false">多樣化功能部門對應各區隔，各自依規則運作</p></div><div class="grid-item grid-item-br"><h4 contenteditable="true" spellcheck="false">變動 + 異質</h4><p contenteditable="true" spellcheck="false">高度分權，各專業部門隨時偵測並即時調適</p></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">059 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">總合分析：限制與情境因素</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">RESTRICTIONS</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" style="color:#ef4444;" contenteditable="true" spellcheck="false">任務環境愈異質 ➔ 組織限制愈多。</p><p class="desc-large" style="color:#f59e0b;" contenteditable="true" spellcheck="false">任務環境愈動態 ➔ 組織情境變數愈多。</p><p class="desc-large" contenteditable="true" spellcheck="false">結論：限制和情境愈多，結構性單位的範圍被限定得愈窄。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鴻海科技集團 (Foxconn)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對高度變動的全球供應鏈，透過垂直與水平整合，將外部依賴內部化，展現強大的封閉系統效率與開放系統彈性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">060 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 6.3：集權與總攬管理</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">在理性準則下，組織會建立由高階職能部門組成的『總攬管理層』。</li><li contenteditable="true" spellcheck="false">藉此在高度分權的邊界單位之上，維持某種程度的集權與資源調度。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">061 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 6.4：自給自足的功能群</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">這些成分將被分隔。</li><li contenteditable="true" spellcheck="false">安排成為自給自足、具備不同領域專業的「功能群 (Functional Groups)」。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">062 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 6.5：專家的部署與矩陣概念</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">處理特殊任務時，專家平時配置在同質部門維持專業與家政(Housekeeping)。</li><li contenteditable="true" spellcheck="false">為了操作目的，會打破建制，將不同專家部署成跨部門的任務小組。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">長榮海運 (Evergreen)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對全球航運的劇烈波動(偶發事件)，透過長期的聯盟(Coalescing)與合約(Contracting)策略來確保運能與貨源的穩定。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">063 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第六章要點重述</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">組織試圖識別環境同質部份，建立結構部門一一應對。</li><li contenteditable="true" spellcheck="false">穩定環境靠集權規則，動態環境靠分權計畫。</li><li contenteditable="true" spellcheck="false">矩陣式專案小組是應對極端複雜的最佳解。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">統一超商 (7-11)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">極度標準化的作業流程(集中相依)配合強大的物流排程(順序相依)，在穩定的零售環境中實現效率極大化。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第六章 組織理性與結構</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">064 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">複雜組織的評估 (Evaluation)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">EVALUATION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織是有目的的實體，必須被任務環境與內部要素所評估。</p><p class="desc-large" contenteditable="true" spellcheck="false">理性的規範下，評估的核心在於目的達成是否「極大化」或達「滿意狀態」。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第七章 組織的評估</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">065 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">四種評估狀況矩陣</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">TEST TYPES</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="grid-2x2"><div class="grid-item grid-item-tl"><h4 contenteditable="true" spellcheck="false">效率測試 (Efficiency)</h4><p contenteditable="true" spellcheck="false">標準明確 + 因果完全</p></div><div class="grid-item grid-item-tr"><h4 contenteditable="true" spellcheck="false">工具性測試 (Instrumental)</h4><p contenteditable="true" spellcheck="false">標準模糊 + 因果完全</p></div><div class="grid-item grid-item-bl"><h4 contenteditable="true" spellcheck="false">社會性測試 (Social)</h4><p contenteditable="true" spellcheck="false">標準明確 + 因果不完全</p></div><div class="grid-item grid-item-br"><h4 contenteditable="true" spellcheck="false">社會性測試 (Social)</h4><p contenteditable="true" spellcheck="false">標準模糊 + 因果不完全</p></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第七章 組織的評估</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">066 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">評估的核心：未來的配適性</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">FITNESS</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">評估的課題不在於『過去已完成的事項』。</p><p class="desc-large" contenteditable="true" spellcheck="false">而在於未來行動的適當性，即組織對未來的<strong>「配適性 (Fitness)」</strong>。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第七章 組織的評估</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">067 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">穩定與動態環境下的評估差異</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">ENVIRONMENT</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>相對穩定環境：</strong>以過去進步的實績來衡量未來。</li><li contenteditable="true" spellcheck="false"><strong>動態多變環境：</strong>無法依賴過去，只能與『其他相似組織』做橫向好壞比較。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第七章 組織的評估</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">068 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">組織內部單位的評估策略 (1)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">INTERNAL EVALUATION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">技術完備且環境穩定(或已緩衝)時：盡量使用<strong>「效率測試」</strong>來評估。</li><li contenteditable="true" spellcheck="false">因果知識不完整時：改以「組織理性」觀點，評估單位間的互賴貢獻。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">玉山銀行 (E.SUN Bank)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">透過跨部門的矩陣型組織(任務小組)推動金融科技創新，解決傳統功能性部門在面對互惠相依任務時的協調瓶頸。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第七章 組織的評估</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">069 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">組織內部單位的評估策略 (2)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">INTERNAL EVALUATION</span>
+            </div>
+    
+            <div class="layout-full">
+                <table class="table-large"><tbody><tr><th contenteditable="true" spellcheck="false">相依型態 (控制手段)</th><th contenteditable="true" spellcheck="false">評估衡量標準</th></tr><tr><td contenteditable="true" spellcheck="false">集中相依 (規則控制)</td><td contenteditable="true" spellcheck="false">是否偏離規則或標準</td></tr><tr><td contenteditable="true" spellcheck="false">順序相依 (排程控制)</td><td contenteditable="true" spellcheck="false">配額是否如期填滿或達成</td></tr><tr><td contenteditable="true" spellcheck="false">互惠相依 (相互調整)</td><td contenteditable="true" spellcheck="false">協調單位間是否展現高度信任</td></tr></tbody></table>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第七章 組織的評估</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">070 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第七章要點重述</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">當內部缺乏明確標準時，組織必依賴外部社會測試。</li><li contenteditable="true" spellcheck="false">多重評估標準賦予組織在動態環境中改變權重的彈性。</li><li contenteditable="true" spellcheck="false">高階職位往往無法用效率衡量，只能依靠社會信任評估。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第七章 組織的評估</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">071 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">下篇概述：探討組織內的行為</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PART II</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織在多大程度上，因其成員或任務環境中其他人的行為，而獲得確定性？</p><p class="desc-large" contenteditable="true" spellcheck="false">核心問題轉向：<strong>「行政裁量權 (Discretion)」</strong>的行使。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第八章 人的變數</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">072 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">人的變數：個體與狀況的交織</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">HUMAN VARIABLES</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>個體因素：</strong>秉持願望、標準，以及對於因果關係的信念。</li><li contenteditable="true" spellcheck="false"><strong>狀況因素：</strong>環境所提供的機會和限制。</li><li contenteditable="true" spellcheck="false">個體認知兩者交互作用後引發行動。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">長榮海運 (Evergreen)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對全球航運的劇烈波動(偶發事件)，透過長期的聯盟(Coalescing)與合約(Contracting)策略來確保運能與貨源的穩定。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第八章 人的變數</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">073 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">工作、職業與事業的區分</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CAREER</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="compare-box"><div class="compare-side side-left"><h3 contenteditable="true" spellcheck="false">例行性工作 (Job)</h3><p class="desc-large" contenteditable="true" spellcheck="false">早停頓(Early-ceiling)，發展受限，依賴集體協商與工會爭取權益。</p></div><div class="compare-side side-right"><h3 contenteditable="true" spellcheck="false">高階事業 (Career)</h3><p class="desc-large" contenteditable="true" spellcheck="false">晚停頓(Late-ceiling)，具備高裁量權，憑藉個人聲望與獨特解決能力進行談判。</p></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第八章 人的變數</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">074 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">誘因與貢獻合約 (Inducement / Contribution)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CONTRACT</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織與個人雙方共同訂定的心理與實質合約。</p><p class="desc-large" contenteditable="true" spellcheck="false">在情境邊界裡，合約優劣取決於個人對『組織關鍵依賴要素』的掌控能力。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第八章 人的變數</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">075 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第八章要點重述</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">組織行動是其成員行動的集合結果。</li><li contenteditable="true" spellcheck="false">權力來源不同，導致底層員工靠集結，高階主管靠聲望。</li><li contenteditable="true" spellcheck="false">組織必須設計不同的合約來留住能處理不確定性的人才。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第八章 人的變數</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">076 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">行政裁量權及其應用 (Discretion)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DISCRETION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">在理性規範下，組織成員處理『不確定性』時的關鍵武器，就是<strong>「行政裁量權」</strong>的運用。</p><p class="desc-large" contenteditable="true" spellcheck="false">組織必須發掘有能力者擔任此職，並激勵其行使。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">077 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 9.1 &amp; 9.2：逃避裁量權</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>9.1:</strong> 當個體認為資源不足以處理不確定性時，會尋求逃避裁量權。</li><li contenteditable="true" spellcheck="false"><strong>9.2:</strong> 若錯誤結果的懲罰嚴重性愈大，愈會尋求逃避。</li><li contenteditable="true" spellcheck="false">不適宜的結構與評估準則，會直接扼殺個人的裁量勇氣。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">078 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 9.3 &amp; 9.4：裁量權的濫用與防範</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>9.3:</strong> 高壓且以裁量為績效指標時，個人可能過度冒險，導致行政腐化或身心俱疲。</li><li contenteditable="true" spellcheck="false"><strong>9.4:</strong> 對於未經授權的偏差裁量，組織會動用管制(Policing)方法嚴格預防。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">玉山銀行 (E.SUN Bank)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">透過跨部門的矩陣型組織(任務小組)推動金融科技創新，解決傳統功能性部門在面對互惠相依任務時的協調瓶頸。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">079 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 9.5 &amp; 9.6：績效操弄與資源貯存</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>9.5:</strong> 面臨過載時，個人會優先選擇『能增強績效評估分數』或受上級注意的工作。</li><li contenteditable="true" spellcheck="false"><strong>9.6:</strong> 當資源變動不規則，個人會進行「貯存(Stockpile)」以減少未來依賴並建立勢力。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鴻海科技集團 (Foxconn)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對高度變動的全球供應鏈，透過垂直與水平整合，將外部依賴內部化，展現強大的封閉系統效率與開放系統彈性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">080 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 9.8：高度裁量職位的政治運作</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">高度裁量性職位(如CEO)的運作本質是『政治過程』。</li><li contenteditable="true" spellcheck="false"><strong>9.8:</strong> 他們會尋求維持自身權力大於對組織的依賴。若權力不足，即尋求聯盟(9.8a)。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">081 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">支配聯盟 (Dominant Coalition)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">COALITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織目標(未來期望的運作領域)並非單一個人決定，而是由<strong>『支配聯盟』</strong>所決定。</p><p class="desc-large" contenteditable="true" spellcheck="false">該聯盟包含內部掌權者與外部重要利益關係人。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">082 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 9.10：不確定性與政治職位</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">組織不確定性來源愈多，所需因應的權力基礎愈多。</li><li contenteditable="true" spellcheck="false">因此，需要安排的『政治性職位(高階主管)』數目也隨之急劇增加。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">長榮海運 (Evergreen)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對全球航運的劇烈波動(偶發事件)，透過長期的聯盟(Coalescing)與合約(Contracting)策略來確保運能與貨源的穩定。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">083 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 9.11 &amp; 9.12：環境變動與人事僵化</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROPOSITION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>9.11:</strong> 環境越動態，組織政治運作越快速，目標與聯盟改變越頻繁。</li><li contenteditable="true" spellcheck="false"><strong>9.12:</strong> 以『未來資源』換取『解決目前危機的方法(重金挖角)』，將嚴重降低組織未來適應力，造成尾大不掉。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">統一超商 (7-11)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">極度標準化的作業流程(集中相依)配合強大的物流排程(順序相依)，在穩定的零售環境中實現效率極大化。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">084 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">第九章要點重述</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SUMMARY</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">裁量權是雙面刃：需激勵以應付不確定，又需防範其偏差。</li><li contenteditable="true" spellcheck="false">高階管理本質是政治妥協與聯盟利益的分配。</li><li contenteditable="true" spellcheck="false">不確定性極大化了組織對『支配聯盟』的依賴。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第九章 行政裁量權及其應用</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">085 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">複雜組織的控制：超越單一個體</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CONTROL</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">當組織越複雜，就越不可能由單一個體主宰。</p><p class="desc-large" contenteditable="true" spellcheck="false">原因：技術複雜度超過理解、資源需求龐大、意外事件超出單人監控範圍。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第十章 複雜組織的控制</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">086 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">支配聯盟的決策策略</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DECISION</span>
+            </div>
+    
+            <div class="layout-full">
+                <table class="table-large"><tbody><tr><th contenteditable="true" spellcheck="false">因果關係 / 偏好結果</th><th contenteditable="true" spellcheck="false">偏好確定</th><th contenteditable="true" spellcheck="false">偏好不確定</th></tr><tr><td contenteditable="true" spellcheck="false">因果關係 確定</td><td contenteditable="true" spellcheck="false">計算策略 (電腦程式化)</td><td contenteditable="true" spellcheck="false">妥協策略 (政治協商)</td></tr><tr><td contenteditable="true" spellcheck="false">因果關係 不確定</td><td contenteditable="true" spellcheck="false">判斷策略 (專家會議)</td><td contenteditable="true" spellcheck="false">直覺策略 (領袖魅力)</td></tr></tbody></table>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第十章 複雜組織的控制</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">087 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">聯盟的管理與內圈 (Inner Circle)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">INNER CIRCLE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">權力越分散的巨型組織，支配聯盟會出現『內圈』團體來集中管理事務。</li><li contenteditable="true" spellcheck="false">權力分散的組織中，廣泛的聯盟往往只能『批准』決定，真正的權力在內圈掌權者手中。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第十章 複雜組織的控制</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">088 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">行政程序的雙重矛盾 (Paradox)</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PARADOX</span>
+            </div>
+    
+            <div class="layout-full">
+                <div class="compare-box"><div class="compare-side side-left"><h3 contenteditable="true" spellcheck="false">降低不確定性 (短期/高至低)</h3><p class="desc-large" contenteditable="true" spellcheck="false">符合技術理性，追求標準化、防禦與絕對效率。</p></div><div class="compare-side side-right"><h3 contenteditable="true" spellcheck="false">增加組織彈性 (長期/低至高)</h3><p class="desc-large" contenteditable="true" spellcheck="false">追求適應性，打破常規尋求創新與變革。</p></div></div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第十一章 行政程序</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">089 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">問題導向探查 vs 機會性監視</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">SEARCH</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false"><strong>問題導向探查：</strong>處理技術核心問題，找到解答即終止。</li><li contenteditable="true" spellcheck="false"><strong>機會性監視：</strong>處理機構層次問題，偵測環境機會與脆弱點，永無止境。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鴻海科技集團 (Foxconn)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對高度變動的全球供應鏈，透過垂直與水平整合，將外部依賴內部化，展現強大的封閉系統效率與開放系統彈性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第十一章 行政程序</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">090 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">行政管理之致命限制</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">LIMITATIONS</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <ul class="list-large"><li contenteditable="true" spellcheck="false">一味固守短期數量化要求，不能容忍長期定性創新。</li><li contenteditable="true" spellcheck="false">權力過度分散，缺乏穩定核心引導方向。</li><li contenteditable="true" spellcheck="false">核心團隊嚴重缺乏面對新環境的知識或 Know-how。</li></ul>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">聯發科 (MediaTek)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">在動態且異質的晶片設計環境中，透過高度授權的研發專案小組(互惠相依)來應對不確定性，並與客戶形成聯盟關係。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第十一章 行政程序</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">091 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">結論：處理普遍化的不確定性</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">CONCLUSION</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">複雜組織的一切結構與行為，皆源於對抗不確定性。</p><p class="desc-large" contenteditable="true" spellcheck="false">從封閉的技術核心，到開放的環境邊界，組織不斷在『理性效率』與『生存彈性』間尋求動態平衡。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">富邦金控 (Fubon)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">典型的媒介型技術(Mediating Technology)，透過擴大服務的客戶群體與地理疆界來增加對環境的掌控力與規模經濟。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第十二章 結論</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">092 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">Q &amp; A 與深度討論</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DISCUSSION</span>
+            </div>
+    
+            <div class="layout-full">
+                <p class="desc-large" style="text-align:center; font-size: 50px; margin-top: 100px;" contenteditable="true" spellcheck="false">如何將 Thompson 的理論，<br>套用於您目前的企業轉型挑戰中？</p><p class="desc-large" style="text-align:center; color:#3b82f6; margin-top: 40px;" contenteditable="true" spellcheck="false">本簡報支援 Live Edit，您可以直接點擊修改內容。</p>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 行動中的組織</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">093 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">組織作為開放系統的必然性</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DEEP DIVE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織無法真空存在，其生存依賴環境輸入資源。完全封閉只是理論上的烏托邦。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">統一超商 (7-11)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">極度標準化的作業流程(集中相依)配合強大的物流排程(順序相依)，在穩定的零售環境中實現效率極大化。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">094 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">技術核心的隔離需求</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DEEP DIVE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">為了實現古典理論的極致效率，組織必須在核心設立防火牆，阻絕一切環境干擾。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鼎泰豐 (Din Tai Fung)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">雖然屬於服務業，但在廚房端採用極度精確的長鏈型技術(Long-linked)，將生產流程拆解以確保全球品質一致性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第一章 研究組織的策略</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">095 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">投入與產出的平穩化機制</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DEEP DIVE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">透過建立庫存(原料與成品)，吸收市場供給與需求的波動，保護產線穩定運作。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">中華電信 (CHT)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">作為寡占基礎設施提供者，其任務環境相對穩定，組織結構呈現較為標準化的科層設計，並著重於防禦與守成。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">096 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">環境變動下的定量分配策略</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">DEEP DIVE</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">當資源極度匱乏時，組織被迫放棄部分市場，實施配給制以維持核心存續。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">台塑集團 (Formosa Plastics)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">經典的長鏈型技術應用，透過石化產業上中下游的徹底垂直整合(Vertical Integration)，將關鍵情境因素納入組織邊界。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第二章 組織內的理性</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">097 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 3.1 深度解析：權力與威望的轉換</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROP 3.1</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">組織增加威望(Prestige)能吸引更多依賴者，進而轉化為談判桌上的實質權力。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">趨勢科技 (Trend Micro)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面臨瞬息萬變的資安威脅(高度異質且動態的環境)，組織設計高度分權，依賴各區域的專業團隊進行即時的環境監控與反應。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">098 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 3.2 深度解析：約束的轉嫁</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROP 3.2</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">當組織在供應端受到嚴重約束，它會極力在消費端尋求壟斷或提價，以獲取補償性權力。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">玉山銀行 (E.SUN Bank)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">透過跨部門的矩陣型組織(任務小組)推動金融科技創新，解決傳統功能性部門在面對互惠相依任務時的協調瓶頸。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">099 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="slide">
+        <div class="slide-container">
+            <div class="slide-header">
+                <h2 contenteditable="true" spellcheck="false">命題 3.3 深度解析：領域的防禦性擴張</h2>
+                <span class="tag" contenteditable="true" spellcheck="false">PROP 3.3</span>
+            </div>
+    
+            <div class="layout-split">
+                <div class="col-left">
+                    <p class="desc-large" contenteditable="true" spellcheck="false">無路可退的組織會跨足全新領域，試圖分散風險並尋找新的權力支點。</p>
+                </div>
+                <div class="col-right">
+                    <div class="case-box">
+                        <div class="case-title">商業實務情境落地</div>
+                        <p class="desc-large" style="font-size: 38px; font-weight: bold; color: #60a5fa; margin-bottom: 20px;" contenteditable="true" spellcheck="false">鴻海科技集團 (Foxconn)</p>
+                        <p class="desc-large" style="font-size: 34px; line-height: 1.5;" contenteditable="true" spellcheck="false">面對高度變動的全球供應鏈，透過垂直與水平整合，將外部依賴內部化，展現強大的封閉系統效率與開放系統彈性。</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+            <div class="slide-footer">
+                <span class="footer-text" contenteditable="true" spellcheck="false">J.D. Thompson 理論轉譯 - 第三章 組織行動的領域</span>
+                <span class="page-num" contenteditable="true" spellcheck="false">100 / 100</span>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        (function() {
+            function initLiveEdit() {
+                const selectors = 'h1, h2, h3, h4, p, li, td, th, span';
+                document.querySelectorAll(selectors).forEach(el => {
+                    el.setAttribute('contenteditable', 'true');
+                    el.setAttribute('spellcheck', 'false');
+                });
+            }
+            function startSanitizationEngine() {
+                const config = { childList: true, subtree: true };
+                const callback = function() {
+                    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
+                        acceptNode: function(node) {
+                            if (['cite', 'code'].includes(node.tagName.toLowerCase()) || node.hasAttribute('cite')) return NodeFilter.FILTER_ACCEPT;
+                            return NodeFilter.FILTER_SKIP;
+                        }
+                    });
+                    const nodesToRemove = [];
+                    let currentNode;
+                    while(currentNode = walker.nextNode()) nodesToRemove.push(currentNode);
+                    nodesToRemove.forEach(node => {
+                        if (node.parentNode) {
+                            const parent = node.parentNode;
+                            while (node.firstChild) parent.insertBefore(node.firstChild, node);
+                            parent.removeChild(node);
+                        }
+                    });
+                    const textWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+                    let textNode;
+                    while(textNode = textWalker.nextNode()) {
+                        if (textNode.nodeValue && /\]*\]/gi.test(textNode.nodeValue)) {
+                            textNode.nodeValue = textNode.nodeValue.replace(/\]*\]/gi, '');
+                        }
+                    }
+                };
+                new MutationObserver(callback).observe(document.body, config);
+            }
+            window.addEventListener('DOMContentLoaded', () => { initLiveEdit(); startSanitizationEngine(); });
+        })();
+    </script>
+
+
+</body></html>
