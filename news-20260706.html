@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+ <title>今日新聞 2026/7/6</title>
+ <style>
+  :root {
+   --bg: #0e0e12;
+   --card: #1a1a24;
+   --card2: #212130;
+   --text: #eaeef2;
+   --dim: #8a8a9a;
+   --accent: #6fa3ff;
+   --accent2: #b388ff;
+   --red: #ff6b6b;
+   --orange: #ffa94d;
+   --green: #69db7c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+   background: var(--bg);
+   color: var(--text);
+   font-family: -apple-system, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+   line-height: 1.65;
+   padding: 16px 14px 60px;
+   min-height: 100vh;
+  }
+  .header {
+   margin-bottom: 20px;
+   padding: 18px 4px;
+  }
+  .header h1 {
+   font-size: 28px;
+   font-weight: 700;
+   letter-spacing: 0.02em;
+   background: linear-gradient(135deg, var(--accent), var(--accent2));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+  }
+  .header .date {
+   color: var(--dim);
+   font-size: 15px;
+   margin-top: 4px;
+  }
+  .section-title {
+   font-size: 16px;
+   font-weight: 600;
+   color: var(--accent2);
+   margin: 24px 0 12px 4px;
+   letter-spacing: 0.06em;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+  }
+  .section-title::before {
+   content: '';
+   display: inline-block;
+   width: 4px;
+   height: 18px;
+   border-radius: 4px;
+   background: var(--accent2);
+  }
+  .card {
+   background: var(--card);
+   border-radius: 16px;
+   padding: 16px;
+   margin-bottom: 10px;
+   border: 1px solid rgba(255,255,255,0.04);
+  }
+  .card .tag {
+   display: inline-block;
+   font-size: 12px;
+   padding: 2px 10px;
+   border-radius: 999px;
+   margin-bottom: 6px;
+   font-weight: 500;
+  }
+  .tag-world { background: #264653; color: #a8d8ea; }
+  .tag-tw { background: #3d2b1f; color: #f0c987; }
+  .tag-finance { background: #1e3a3a; color: #7ec8a3; }
+  .tag-tech { background: #1e2a4a; color: #a3b8ff; }
+  .tag-war { background: #3a1a1a; color: #ff9e9e; }
+  .card h3 {
+   font-size: 17px;
+   font-weight: 600;
+   margin-bottom: 6px;
+   line-height: 1.4;
+  }
+  .card p {
+   font-size: 14px;
+   color: var(--dim);
+   line-height: 1.6;
+  }
+  .card .source {
+   display: block;
+   font-size: 12px;
+   color: var(--dim);
+   margin-top: 8px;
+   opacity: 0.6;
+  }
+  .empty-state {
+   text-align: center;
+   padding: 40px 20px;
+   color: var(--dim);
+  }
+ </style>
+</head>
+<body>
+ <div class="header">
+  <h1>📰 今日新聞</h1>
+  <div class="date">2026 年 7 月 6 日（一）</div>
+ </div>
+
+ <div class="section-title">國際重點</div>
+
+ <div class="card">
+  <span class="tag tag-world">中東</span>
+  <h3>伊朗前最高領袖哈米尼盛大國葬展開</h3>
+  <p>伊朗估千萬人送別，一個時代終結。川普關注哈米尼國葬，稱喪禮期間美伊不會交火。伊朗總統率官員靈前弔唁。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-war">俄烏</span>
+  <h3>俄軍無人機與飛彈襲基輔　至少 8 死數十傷</h3>
+  <p>北約峰會在土耳其登場前夕，俄羅斯對基輔發動大規模攻擊，造成至少 8 人死亡、數十人受傷。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-world">歐洲</span>
+  <h3>歐盟 EES 出入境大塞車　今夏可暫停生物辨識登記</h3>
+  <p>歐盟出入境系統上路後造成嚴重排隊，今夏可能暫停生物辨識強制登記，以緩解機場與港口壅塞。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-world">菲律賓</span>
+  <h3>菲律賓副總統薩拉·杜特蒂彈劾審判　安全戒備</h3>
+  <p>菲律賓進入高度戒備，薩拉·杜特蒂若被彈劾定罪，將喪失 2028 年總統參選資格。</p>
+  <span class="source">BBC</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-world">天災</span>
+  <h3>超級颱風巴威橫掃美屬羅塔島　通訊塔倒塌災情慘</h3>
+  <p>超級颱風巴威侵襲美屬北馬里亞納群島的羅塔島，吹倒通訊塔，傳出重大災情。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="section-title">台灣焦點</div>
+
+ <div class="card">
+  <span class="tag tag-tw">政治</span>
+  <h3>賴總統祝賀達賴喇嘛 91 歲華誕　強調持續支持藏人</h3>
+  <p>外交部表示巴拿馬國會議員 2 年 3 度組團訪台，奠定共榮基礎。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-tw">食安</span>
+  <h3>中聯油脂問題油波及新北 50 校　籲建立學童健康追蹤</h3>
+  <p>中聯油品案持續發酵，沙拉油苯駢芘超標，藍綠齊籲衛福部公布品名效期並設資訊專區。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-tw">社會</span>
+  <h3>基隆幼兒園虐童案　童子瑋要求謝國樑向家長道歉</h3>
+  <p>跟騷法修法爭議持續，立委提案刪除性或性別要件；內政部劉世芳表示恐影響實務運作。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-tw">國防</span>
+  <h3>國軍恢復反共愛國教育　綠：不容主權受侵犯</h3>
+  <p>中共中紀委人事變動，港媒指出王岐山嫡系出局；中國 7 艘軍艦部署西太平洋，一週內穿越日本 4 條要道。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="section-title">財經股市</div>
+
+ <div class="card">
+  <span class="tag tag-finance">台股</span>
+  <h3>台股開高走低翻黑　震盪逾 900 點資金快速輪動</h3>
+  <p>新台幣重貶摜破 32 元整數大關。法人：資金緊俏與台積電 7/16 法說，台股可能箱型整理。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-finance">產業</span>
+  <h3>鴻海 Q2 營收攀歷年同期新高　Q3 可望季增年增</h3>
+  <p>大立光 6 月營收創 13 個月低；八貫 Q2 營收 9.95 億創高，接單滿載到 10 月底。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-finance">國際</span>
+  <h3>OPEC+ 擬再度調升石油產量　中東局勢降溫</h3>
+  <p>伊朗大使表示荷莫茲海峽將收取服務費，友好國享特殊待遇；日圓走弱，台灣資金湧入日本房市。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="section-title">科技與其他</div>
+
+ <div class="card">
+  <span class="tag tag-tech">AI</span>
+  <h3>傳阿里巴巴因員工套取 AI 模型遭處分　被禁用 Claude</h3>
+  <p>微軟亞馬遜工程師前進企業，手把手教學用 AI 獲利；歐盟報告示警晶片供應鏈受中美牽制。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-tech">遊戲</span>
+  <h3>Sony 宣布 2028 年起停產 PS 實體遊戲光碟</h3>
+  <p>玩家憂失去二手交易空間，數位化時代更進一步。</p>
+  <span class="source">中央社</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-world">國際</span>
+  <h3>澳洲首相為「不當評論」Kylie Minogue 道歉</h3>
+  <p>艾巴尼斯為其失言「毫不含糊地道歉」；澳洲斥資 10 億澳元與斐濟簽署新國防聯盟。</p>
+  <span class="source">BBC</span>
+ </div>
+
+ <div class="card">
+  <span class="tag tag-world">體育</span>
+  <h3>英格蘭 2-0 勝墨西哥　貝林漢姆雙響晉級八強</h3>
+  <p>世界盃 16 強賽，貝林漢姆獨進兩球，英格蘭晉級八強。</p>
+  <span class="source">BBC</span>
+ </div>
+</body>
+</html>
