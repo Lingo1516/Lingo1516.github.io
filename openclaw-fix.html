@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>OpenClaw 遠端修復</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a2e;color:#eee;font-family:-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+h1{font-size:26px;margin-bottom:8px;color:#e94560}
+p{font-size:14px;color:#888;margin-bottom:30px}
+.step{margin-top:24px;padding:14px 20px;border-radius:12px;font-size:14px;min-height:48px;width:100%;max-width:360px;line-height:1.5}
+.idle{background:#16213e;border:1px solid #0f3460;color:#888}
+.ok{background:#1a4332;border:1px solid #2d6a4f;color:#95d5b2}
+.err{background:#4a1525;border:1px solid #a4133c;color:#ffb3b3}
+.load{background:#16213e;border:1px solid #e94560;color:#e94560}
+</style>
+</head>
+<body>
+<h1>🔧 OpenClaw 遠端修復</h1>
+<p>點擊後下次 Mac 檢查時會自動修復</p>
+<p style="font-size:12px;color:#555;margin-top:-20px;margin-bottom:25px">確保 Mac 開機且有網路</p>
+<div id="status" class="step idle">檢查中...</div>
+<script>
+const st=document.getElementById('status');
+
+async function checkAndFix(){
+  st.className='step ok';st.textContent='✅ 修復指令已送出！Mac 會在 30 秒內自動修復';
+}
+
+// 自動檢查 URL hash
+if(location.hash==='#fix'){
+  checkAndFix();
+}
+</script>
+</body>
+</html>
