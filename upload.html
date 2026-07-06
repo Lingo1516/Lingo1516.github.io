@@ -16,6 +16,7 @@
     --accent-bg: rgba(88,166,255,0.12);
     --green: #3fb950;
     --orange: #d29922;
+    --red: #f85149;
     --radius: 14px;
   }
   body {
@@ -30,34 +31,12 @@
     -webkit-font-smoothing: antialiased;
   }
   .container { max-width: 420px; width: 100%; }
-
-  /* Header */
-  .header {
-    text-align: center;
-    padding: 28px 0 20px;
-  }
+  .header { text-align: center; padding: 28px 0 20px; }
   .header .icon { font-size: 40px; }
-  .header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: 8px;
-  }
-  .header p {
-    font-size: 14px;
-    color: var(--dim);
-    margin-top: 4px;
-  }
+  .header h1 { font-size: 22px; font-weight: 700; margin-top: 8px; }
+  .header p { font-size: 14px; color: var(--dim); margin-top: 4px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 12px; }
 
-  /* Card base */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px;
-    margin-bottom: 12px;
-  }
-
-  /* Upload area */
   .drop-zone {
     border: 2px dashed var(--border);
     border-radius: var(--radius);
@@ -66,19 +45,13 @@
     cursor: pointer;
     transition: all 0.25s;
     background: transparent;
-    position: relative;
   }
-  .drop-zone:hover,
-  .drop-zone.dragover {
-    border-color: var(--accent);
-    background: var(--accent-bg);
-  }
+  .drop-zone:hover, .drop-zone.dragover { border-color: var(--accent); background: var(--accent-bg); }
   .drop-zone .icon { font-size: 42px; display: block; margin-bottom: 8px; }
   .drop-zone .label { font-size: 15px; font-weight: 600; }
   .drop-zone .hint { font-size: 13px; color: var(--dim); margin-top: 4px; }
   .drop-zone input[type="file"] { display: none; }
 
-  /* File list */
   .file-list { margin-top: 12px; }
   .file-item {
     display: flex;
@@ -90,31 +63,10 @@
     margin-bottom: 6px;
     font-size: 14px;
   }
-  .file-item .name {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-right: 8px;
-  }
-  .file-item .size {
-    color: var(--dim);
-    font-size: 12px;
-    flex-shrink: 0;
-  }
-  .file-item .remove {
-    color: #f85149;
-    cursor: pointer;
-    font-size: 18px;
-    line-height: 1;
-    margin-left: 8px;
-    padding: 0 4px;
-  }
-  .file-item.dir-item {
-    border-left: 3px solid var(--orange);
-  }
+  .file-item .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .file-item.dir-item { border-left: 3px solid var(--orange); }
+  .file-count { font-size: 12px; color: var(--dim); margin-top: 4px; text-align: center; }
 
-  /* Options */
   .option-row {
     display: flex;
     align-items: center;
@@ -135,111 +87,39 @@
     outline: none;
     transition: border-color 0.2s;
   }
-  .option-row input[type="text"]:focus {
-    border-color: var(--accent);
-  }
-  .option-row input[type="text"]::placeholder {
-    color: var(--dim);
-    font-size: 12px;
-  }
+  .option-row input[type="text"]:focus { border-color: var(--accent); }
+  .option-row input[type="text"]::placeholder { color: var(--dim); font-size: 12px; }
 
-  /* Toggle */
-  .toggle-wrap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .toggle-wrap span { font-size: 13px; }
-  .toggle {
-    position: relative;
-    width: 44px;
-    height: 24px;
-    background: #21262d;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background 0.25s;
-    flex-shrink: 0;
-  }
-  .toggle.active { background: var(--accent); }
-  .toggle::after {
-    content: "";
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 18px;
-    height: 18px;
-    background: #fff;
-    border-radius: 50%;
-    transition: transform 0.25s;
-  }
-  .toggle.active::after { transform: translateX(20px); }
-
-  /* Buttons */
   .btn {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
+    display: block; width: 100%; padding: 14px;
+    border: none; border-radius: var(--radius);
+    font-size: 16px; font-weight: 600;
+    cursor: pointer; transition: opacity 0.2s, transform 0.1s;
     text-align: center;
   }
   .btn:active { transform: scale(0.97); }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-  }
-  .btn-primary:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
   .btn-primary:disabled:active { transform: none; }
-  .btn-secondary {
-    background: #21262d;
-    color: var(--text);
-    border: 1px solid var(--border);
-    margin-top: 8px;
-  }
+  .btn-secondary { background: #21262d; color: var(--text); border: 1px solid var(--border); margin-top: 8px; }
 
-  /* Progress */
-  .progress-wrap {
-    margin-top: 12px;
-    display: none;
-  }
+  .progress-wrap { margin-top: 12px; display: none; }
   .progress-wrap.show { display: block; }
   .progress-bar {
-    height: 6px;
-    background: #21262d;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-top: 10px;
+    height: 6px; background: #21262d; border-radius: 3px; overflow: hidden; margin-top: 10px;
   }
   .progress-bar .fill {
-    height: 100%;
-    width: 0%;
+    height: 100%; width: 0%;
     background: linear-gradient(90deg, var(--accent), var(--green));
     border-radius: 3px;
     transition: width 0.4s;
   }
-  .progress-text {
-    font-size: 13px;
-    color: var(--dim);
-    text-align: center;
-  }
+  .progress-text { font-size: 13px; color: var(--dim); text-align: center; }
 
-  /* Result */
-  .result {
-    display: none;
-    margin-top: 12px;
-  }
+  .result { display: none; margin-top: 12px; }
   .result.show { display: block; }
   .result .url-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
     background: rgba(63,185,80,0.1);
     border: 1px solid rgba(63,185,80,0.3);
     border-radius: 10px;
@@ -247,114 +127,65 @@
     margin-top: 8px;
   }
   .result .url-box a {
-    color: var(--green);
-    font-size: 14px;
-    word-break: break-all;
-    text-decoration: none;
-    flex: 1;
+    color: var(--green); font-size: 14px; word-break: break-all;
+    text-decoration: none; flex: 1;
   }
   .result .url-box a:hover { text-decoration: underline; }
   .result .url-box .copy-btn {
-    background: none;
-    border: 1px solid rgba(63,185,80,0.4);
-    color: var(--green);
-    border-radius: 6px;
-    padding: 4px 8px;
-    font-size: 12px;
-    cursor: pointer;
-    flex-shrink: 0;
+    background: none; border: 1px solid rgba(63,185,80,0.4);
+    color: var(--green); border-radius: 6px;
+    padding: 4px 8px; font-size: 12px; cursor: pointer; flex-shrink: 0;
   }
-  .result .url-box .copy-btn.copied {
-    background: var(--green);
-    color: #000;
-    border-color: var(--green);
-  }
-  .error {
+  .result .url-box .copy-btn.copied { background: var(--green); color: #000; border-color: var(--green); }
+
+  .error { display: none; margin-top: 8px; }
+  .error.show { display: block; }
+  .error-box {
     background: rgba(248,81,73,0.1);
     border: 1px solid rgba(248,81,73,0.3);
-    border-radius: 10px;
-    padding: 12px 14px;
-    color: #f85149;
-    font-size: 14px;
-    margin-top: 8px;
-    display: none;
+    border-radius: 10px; padding: 12px 14px; color: var(--red); font-size: 14px;
   }
-  .error.show { display: block; }
 
-  /* Steps guide */
-  .steps {
-    margin-top: 20px;
-  }
-  .steps h3 {
-    font-size: 13px;
-    color: var(--dim);
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  .step-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 8px 0;
-    font-size: 13px;
-    color: var(--dim);
-  }
+  .steps { margin-top: 20px; }
+  .steps h3 { font-size: 13px; color: var(--dim); margin-bottom: 8px; font-weight: 600; }
+  .step-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 13px; color: var(--dim); }
   .step-item .num {
-    width: 20px;
-    height: 20px;
-    background: #21262d;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text);
-    flex-shrink: 0;
-    margin-top: 1px;
+    width: 20px; height: 20px; background: #21262d; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--text); flex-shrink: 0; margin-top: 1px;
   }
 
-  /* Toast */
+  .footer { margin-top: 24px; text-align: center; font-size: 12px; color: var(--dim); }
+
   .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: #21262d;
-    color: var(--text);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 14px;
-    opacity: 0;
-    transition: all 0.35s;
-    pointer-events: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    max-width: 90%;
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: #21262d; color: var(--text); padding: 10px 20px; border-radius: 10px;
+    font-size: 14px; opacity: 0; transition: all 0.35s;
+    pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.4); max-width: 90%;
   }
-  .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  .footer {
-    margin-top: 24px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--dim);
+  .status-badge {
+    display: inline-block;
+    background: rgba(88,166,255,0.15);
+    color: var(--accent);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 8px;
   }
 </style>
 </head>
 <body>
-
 <div class="container">
 
   <div class="header">
     <div class="icon">☁️</div>
     <h1>小綠快傳</h1>
     <p>拖曳上傳 → 自動推送 GitHub Pages</p>
+    <div class="status-badge" id="statusBadge">⚡ 線上</div>
   </div>
 
-  <!-- Drop Zone -->
   <div class="drop-zone" id="dropZone">
     <span class="icon">📁</span>
     <div class="label">選擇檔案或資料夾</div>
@@ -362,34 +193,22 @@
     <input type="file" id="fileInput" webkitdirectory multiple>
   </div>
 
-  <!-- File List -->
   <div class="file-list" id="fileList"></div>
 
-  <!-- Options Card -->
   <div class="card">
-    <div class="option-row">
-      <label>資料夾模式</label>
-      <div class="toggle-wrap">
-        <span id="dirModeLabel">單一檔案</span>
-        <div class="toggle" id="dirToggle"></div>
-      </div>
-    </div>
     <div class="option-row">
       <label>自訂名稱</label>
       <input type="text" id="customName" placeholder="留空 = 自動時間戳" maxlength="60">
     </div>
   </div>
 
-  <!-- Upload Button -->
   <button class="btn btn-primary" id="uploadBtn" disabled>選擇檔案以上傳</button>
 
-  <!-- Progress -->
   <div class="progress-wrap" id="progressWrap">
     <div class="progress-text" id="progressText">準備中...</div>
     <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
   </div>
 
-  <!-- Result -->
   <div class="result" id="result">
     <div class="url-box">
       <a id="resultUrl" href="#" target="_blank"></a>
@@ -398,15 +217,13 @@
     <button class="btn btn-secondary" onclick="resetAll()">🔄 再上傳一個</button>
   </div>
 
-  <!-- Error -->
-  <div class="error" id="error"></div>
+  <div class="error" id="error"><div class="error-box" id="errorMsg"></div></div>
 
-  <!-- How to use -->
   <div class="steps">
     <h3>📖 使用說明</h3>
     <div class="step-item"><span class="num">1</span> 選擇你要上傳的檔案或整個資料夾</div>
     <div class="step-item"><span class="num">2</span> 可選：自訂路徑名稱（不填就用時間戳）</div>
-    <div class="step-item"><span class="num">3</span> 按下上傳，推送到 GitHub Pages</div>
+    <div class="step-item"><span class="num">3</span> 按下上傳，自動推送 GitHub Pages</div>
     <div class="step-item"><span class="num">4</span> 自動產生網址，點擊打開或複製</div>
   </div>
 
@@ -416,12 +233,15 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const siteUrl = "https://lingo1516.github.io";
+// ─── Config ───
+const API_URL = 'https://inspiration-unity-drivers-thanks.trycloudflare.com';
+const FALLBACK_URL = 'http://192.168.1.108:3456';
+const siteUrl = 'https://lingo1516.github.io';
+
+// ─── DOM refs ───
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const fileList = document.getElementById('fileList');
-const dirToggle = document.getElementById('dirToggle');
-const dirModeLabel = document.getElementById('dirModeLabel');
 const customName = document.getElementById('customName');
 const uploadBtn = document.getElementById('uploadBtn');
 const progressWrap = document.getElementById('progressWrap');
@@ -431,159 +251,88 @@ const result = document.getElementById('result');
 const resultUrl = document.getElementById('resultUrl');
 const copyBtn = document.getElementById('copyBtn');
 const error = document.getElementById('error');
+const errorMsg = document.getElementById('errorMsg');
 const toast = document.getElementById('toast');
+const statusBadge = document.getElementById('statusBadge');
 
 let selectedFiles = [];
-let dirMode = false;
+let isDir = false;
 
-// ── Toggle dir mode ──
-dirToggle.addEventListener('click', () => {
-  dirMode = !dirMode;
-  dirToggle.classList.toggle('active', dirMode);
-  dirModeLabel.textContent = dirMode ? '上傳資料夾' : '單一檔案';
-  fileInput.webkitdirectory = dirMode;
-  fileInput.removeAttribute('multiple');
-  // Reset selection
-  selectedFiles = [];
-  renderFileList();
-  updateUploadBtn();
-});
+// ─── Check server status ───
+async function checkServer() {
+  const urls = [API_URL, FALLBACK_URL];
+  for (const url of urls) {
+    try {
+      const res = await fetch(url + '/ping', { signal: AbortSignal.timeout(3000) });
+      if (res.ok) {
+        statusBadge.textContent = '⚡ 線上';
+        statusBadge.style.background = 'rgba(63,185,80,0.15)';
+        statusBadge.style.color = '#3fb950';
+        return url;
+      }
+    } catch(e) {}
+  }
+  statusBadge.textContent = '⚠️ 離線';
+  statusBadge.style.background = 'rgba(248,81,73,0.15)';
+  statusBadge.style.color = '#f85149';
+  return null;
+}
 
-// ── Click to select ──
+let activeApiUrl = API_URL;
+
+// ─── Drop zone ───
 dropZone.addEventListener('click', () => fileInput.click());
-fileInput.addEventListener('change', (e) => {
-  handleFiles(e.target.files);
-});
+fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
 
-// ── Drag & Drop ──
-dropZone.addEventListener('dragover', (e) => {
-  e.preventDefault();
-  dropZone.classList.add('dragover');
-});
-dropZone.addEventListener('dragleave', () => {
-  dropZone.classList.remove('dragover');
-});
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
 dropZone.addEventListener('drop', (e) => {
   e.preventDefault();
   dropZone.classList.remove('dragover');
-  const items = e.dataTransfer.items;
-  if (items && items.length > 0) {
-    // Check if any item is a directory
-    let hasDir = false;
-    for (let item of items) {
-      if (item.webkitGetAsEntry && item.webkitGetAsEntry().isDirectory) {
-        hasDir = true;
-        break;
-      }
-    }
-    if (hasDir) {
-      dirMode = true;
-      dirToggle.classList.add('active');
-      dirModeLabel.textContent = '上傳資料夾';
-      fileInput.webkitdirectory = true;
-    }
-    handleFiles(e.dataTransfer.files);
-  }
+  handleFiles(e.dataTransfer.files);
 });
 
-// ── Handle selected files ──
 function handleFiles(files) {
   if (!files || files.length === 0) return;
-  
-  // For directory mode, collect unique top-level paths
-  if (dirMode) {
-    const dirs = new Set();
-    for (let f of files) {
-      const parts = f.webkitRelativePath.split('/');
-      if (parts.length > 1) dirs.add(parts[0]);
-    }
-    selectedFiles = Array.from(dirs).map(d => ({
-      name: d + '/',
-      isDir: true,
-      webkitRelativePath: d
-    }));
-  } else {
-    selectedFiles = Array.from(files).slice(0, 10).map(f => ({
-      name: f.name,
-      size: f.size,
-      isDir: false,
-      file: f
-    }));
-  }
-  renderFileList();
-  updateUploadBtn();
-}
-
-// ── Render file list ──
-function renderFileList() {
-  fileList.innerHTML = '';
-  if (selectedFiles.length === 0) return;
-  
-  selectedFiles.forEach((item, idx) => {
-    const div = document.createElement('div');
-    div.className = 'file-item' + (item.isDir ? ' dir-item' : '');
-    
-    const nameSpan = document.createElement('span');
-    nameSpan.className = 'name';
-    nameSpan.textContent = item.isDir ? '📂 ' + item.name : (item.isDir ? '' : '📄 ' + item.name);
-    
-    const sizeSpan = document.createElement('span');
-    sizeSpan.className = 'size';
-    if (!item.isDir && item.size != null) {
-      sizeSpan.textContent = formatSize(item.size);
-    }
-    
-    const remBtn = document.createElement('span');
-    remBtn.className = 'remove';
-    remBtn.textContent = '✕';
-    remBtn.addEventListener('click', () => {
-      selectedFiles.splice(idx, 1);
-      renderFileList();
-      updateUploadBtn();
-    });
-    
-    div.appendChild(nameSpan);
-    if (!item.isDir) div.appendChild(sizeSpan);
-    div.appendChild(remBtn);
-    fileList.appendChild(div);
-  });
-}
-
-function formatSize(bytes) {
-  if (bytes < 1024) return bytes + 'B';
-  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + 'KB';
-  return (bytes/1024/1024).toFixed(1) + 'MB';
-}
-
-// ── Update button ──
-function updateUploadBtn() {
-  if (selectedFiles.length === 0) {
-    uploadBtn.disabled = true;
-    uploadBtn.textContent = '選擇檔案以上傳';
-    return;
+  isDir = files.length > 1 || (files[0].webkitRelativePath && files[0].webkitRelativePath.includes('/'));
+  selectedFiles = Array.from(files);
+  const label = isDir ? `📂 資料夾 (${files.length} 個檔案)` : `📄 ${files[0].name}`;
+  fileList.innerHTML = `<div class="file-item${isDir ? ' dir-item' : ''}">
+    <span class="name">${label}</span>
+  </div>`;
+  if (isDir) {
+    const count = document.createElement('div');
+    count.className = 'file-count';
+    count.textContent = `共 ${files.length} 個檔案`;
+    fileList.appendChild(count);
   }
   uploadBtn.disabled = false;
-  const label = dirMode ? '📂 上傳資料夾' : `📄 上傳 ${selectedFiles.length} 個檔案`;
-  uploadBtn.textContent = label;
+  uploadBtn.textContent = isDir ? '📂 上傳資料夾' : '📄 上傳檔案';
 }
 
-// ── Upload via API ──
+// ─── Upload ───
 uploadBtn.addEventListener('click', async () => {
   if (selectedFiles.length === 0) return;
-  
-  // Hide previous results/errors
+
   result.classList.remove('show');
   error.classList.remove('show');
   progressWrap.classList.add('show');
   uploadBtn.disabled = true;
-  
+  progressFill.style.width = '0%';
+
+  const nameInput = customName.value.trim() || '';
+
   try {
-    const nameInput = customName.value.trim() || '';
-    
-    if (dirMode) {
-      await uploadDir(nameInput);
+    // Check server
+    activeApiUrl = await checkServer();
+    if (!activeApiUrl) {
+      throw new Error('上傳伺服器離線，請確認電腦已開機');
+    }
+
+    if (isDir) {
+      await uploadFolder(nameInput);
     } else {
-      await uploadFiles(nameInput);
+      await uploadSingle(nameInput);
     }
   } catch (e) {
     showError(e.message || '上傳失敗');
@@ -592,133 +341,71 @@ uploadBtn.addEventListener('click', async () => {
   }
 });
 
-// ── Upload single file via GitHub API ──
-async function uploadFiles(nameInput) {
-  const file = selectedFiles[0].file;
-  if (!file) { showError('找不到檔案'); return; }
-  
+async function uploadSingle(nameInput) {
+  const file = selectedFiles[0];
   progressText.textContent = '⏳ 讀取檔案...';
   const content = await readFileAsBase64(file);
-  
-  const ext = file.name.includes('.') ? file.name.split('.').pop() : '';
-  const destName = nameInput 
-    ? (ext ? `${nameInput}.${ext}` : nameInput)
-    : (ext ? `${timestamp()}.${ext}` : timestamp());
-  
+
+  const ext = file.name.includes('.') ? '.' + file.name.split('.').pop() : '';
+  const baseName = nameInput || timestamp();
+  const destName = baseName + ext;
+
   progressText.textContent = `⬆️ 上傳 ${destName}...`;
   progressFill.style.width = '40%';
-  
-  await pushToGithub(destName, content);
-  
+
+  const res = await fetch(activeApiUrl + '/upload', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: destName, content })
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+
   progressFill.style.width = '100%';
   progressText.textContent = '✅ 上傳成功！';
-  
-  showResult(`${siteUrl}/${destName}`);
+  showResult(data.url);
 }
 
-// ── Upload directory via GitHub API ──
-async function uploadDir(nameInput) {
+async function uploadFolder(nameInput) {
   const dirName = nameInput || timestamp();
-  const relPath = selectedFiles[0].webkitRelativePath;
-  
-  progressText.textContent = `📂 準備上傳資料夾 ${dirName}/...`;
-  progressFill.style.width = '20%';
-  
-  // We need to re-trigger a directory read. For simplicity,
-  // guide user to use the terminal tool instead for folders.
-  // But we can still try: re-read files from input
-  const allFiles = fileInput.files;
-  if (!allFiles || allFiles.length === 0) {
-    showError('請重新選擇資料夾');
-    return;
-  }
-  
-  const total = allFiles.length;
-  let done = 0;
-  
-  for (let f of allFiles) {
-    const rel = f.webkitRelativePath;
+  progressText.textContent = `📂 準備上傳 ${dirName}/...`;
+  progressFill.style.width = '10%';
+
+  const files = [];
+  for (const f of selectedFiles) {
+    const rel = f.webkitRelativePath || f.name;
     const parts = rel.split('/');
-    const path = dirName + '/' + parts.slice(1).join('/');
-    
+    const path = parts.slice(1).join('/');
+    if (!path) continue;
+
+    progressText.textContent = `📖 讀取 ${path}...`;
     const content = await readFileAsBase64(f);
-    await pushToGithub(path, content);
-    
-    done++;
-    const pct = Math.round((done / total) * 70) + 20;
-    progressFill.style.width = Math.min(pct, 95) + '%';
-    progressText.textContent = `⬆️ ${done}/${total} 個檔案...`;
+    files.push({ path, content });
   }
-  
+
+  progressText.textContent = `⬆️ 上傳 ${dirName}/ (${files.length} 個檔案)...`;
+  progressFill.style.width = '30%';
+
+  const res = await fetch(activeApiUrl + '/upload-batch', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ dirName, files })
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+
   progressFill.style.width = '100%';
   progressText.textContent = '✅ 資料夾上傳成功！';
-  
-  showResult(`${siteUrl}/${dirName}/`);
+  showResult(data.url);
 }
 
-// ── Push file content to GitHub ──
-async function pushToGithub(path, content) {
-  // First, check if file exists
-  const getUrl = `https://api.github.com/repos/Lingo1516/Lingo1516.github.io/contents/${encodeURIComponent(path)}`;
-  
-  let sha = null;
-  try {
-    const getRes = await fetch(getUrl);
-    if (getRes.ok) {
-      const data = await getRes.json();
-      sha = data.sha;
-    }
-  } catch (e) { /* file doesn't exist, that's fine */ }
-  
-  // Create/update file using Personal Access Token
-  // NOTE: This requires a GitHub token. We'll check for it.
-  // The page will store it in sessionStorage for the session.
-  
-  const token = sessionStorage.getItem('github_token') || promptForToken();
-  if (!token) {
-    throw new Error('需要 GitHub Token 才能上傳');
-  }
-  
-  const body = {
-    message: `upload: ${path}`,
-    content: content,
-    branch: 'main'
-  };
-  if (sha) body.sha = sha;
-  
-  const putRes = await fetch(getUrl, {
-    method: 'PUT',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      'Accept': 'application/vnd.github.v3+json'
-    },
-    body: JSON.stringify(body)
-  });
-  
-  if (!putRes.ok) {
-    const errData = await putRes.json().catch(() => ({}));
-    throw new Error(errData.message || `HTTP ${putRes.status}`);
-  }
-}
-
-function promptForToken() {
-  const t = prompt('請輸入 GitHub Personal Access Token：\n（只需輸入一次，本次瀏覽有效）');
-  if (t) {
-    sessionStorage.setItem('github_token', t);
-    return t;
-  }
-  return null;
-}
-
-// ── Utilities ──
+// ─── Utilities ───
 function readFileAsBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = () => {
-      const base64 = reader.result.split(',')[1];
-      resolve(base64);
-    };
+    reader.onload = () => resolve(reader.result.split(',')[1]);
     reader.onerror = reject;
     reader.readAsDataURL(file);
   });
@@ -727,7 +414,9 @@ function readFileAsBase64(file) {
 function timestamp() {
   const d = new Date();
   const pad = n => String(n).padStart(2, '0');
-  return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+  const tz = d.getTimezoneOffset();
+  const local = new Date(d.getTime() - tz * 60000);
+  return local.toISOString().replace(/[T:]/g, '').slice(0, 15);
 }
 
 function showResult(url) {
@@ -736,11 +425,10 @@ function showResult(url) {
   result.classList.add('show');
   copyBtn.textContent = '📋 複製';
   copyBtn.classList.remove('copied');
-  uploadBtn.disabled = true;
 }
 
 function showError(msg) {
-  error.textContent = '❌ ' + msg;
+  errorMsg.textContent = '❌ ' + msg;
   error.classList.add('show');
 }
 
@@ -757,37 +445,19 @@ function resetAll() {
   fileInput.value = '';
 }
 
-// ── Copy ──
 copyBtn.addEventListener('click', () => {
   const url = resultUrl.textContent;
   if (navigator.clipboard) {
     navigator.clipboard.writeText(url).then(() => {
       copyBtn.textContent = '✅ 已複製';
       copyBtn.classList.add('copied');
-      setTimeout(() => {
-        copyBtn.textContent = '📋 複製';
-        copyBtn.classList.remove('copied');
-      }, 2000);
+      setTimeout(() => { copyBtn.textContent = '📋 複製'; copyBtn.classList.remove('copied'); }, 2000);
     });
-  } else {
-    // fallback
-    const ta = document.createElement('textarea');
-    ta.value = url;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    copyBtn.textContent = '✅ 已複製';
   }
 });
 
-// ── Toast ──
-function showToast(msg) {
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2200);
-}
+// Initial server check
+checkServer();
 </script>
 </body>
 </html>
-
