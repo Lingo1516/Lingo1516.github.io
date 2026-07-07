@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>一人公司 AI 團隊架構</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang TC','Noto Sans TC',sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 12px}
+.container{max-width:1200px;width:100%}
+h1{font-size:clamp(22px,5vw,36px);text-align:center;margin:20px 0 6px;background:linear-gradient(135deg,#58a6ff,#bc8cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#8b949e;font-size:14px;margin-bottom:30px}
+.tagline{text-align:center;color:#f0883e;font-size:13px;margin-bottom:24px;background:rgba(240,136,62,.1);padding:6px 16px;border-radius:20px;display:inline-block;width:auto;margin-left:auto;margin-right:auto}
+/* Row system */
+.row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:20px}
+/* Org node */
+.node{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 14px;flex:1;min-width:140px;max-width:220px;text-align:center;position:relative;transition:.2s}
+.node:hover{border-color:rgba(88,166,255,.4);background:rgba(88,166,255,.06);transform:translateY(-2px)}
+.node .icon{font-size:28px;margin-bottom:6px}
+.node .title{font-size:13px;font-weight:600;color:#f0f6fc}
+.node .desc{font-size:11px;color:#8b949e;margin-top:4px;line-height:1.4}
+.node .tools{font-size:10px;color:#58a6ff;margin-top:6px;background:rgba(88,166,255,.08);padding:3px 8px;border-radius:6px;display:inline-block}
+.node.ceo{border-color:#f0883e;background:rgba(240,136,62,.06)}
+.node.ceo .icon{font-size:34px}
+.node.ceo .title{font-size:15px;color:#f0883e}
+.node.core{border-color:rgba(88,166,255,.3)}
+.node.core .icon{font-size:26px}
+.node.support{border-color:rgba(188,140,255,.2)}
+.node.support .icon{font-size:24px}
+/* Connector */
+.connector{width:2px;height:24px;background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.05));margin:0 auto}
+.h-connector{height:2px;flex:1;max-width:60px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.08),rgba(255,255,255,.05));margin:10px auto 0}
+/* Section label */
+.section-label{text-align:center;font-size:12px;color:#8b949e;margin:24px 0 12px;letter-spacing:2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.06);padding-top:24px}
+/* Stats */
+.stats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px 0 12px}
+.stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:8px 14px;text-align:center}
+.stat .num{font-size:20px;font-weight:700;color:#58a6ff}
+.stat .label{font-size:11px;color:#8b949e;margin-top:2px}
+/* Responsive */
+@media(max-width:600px){
+  .node{min-width:120px;max-width:180px;padding:12px 10px}
+  .row{gap:8px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🤖 一人公司 · AI 團隊</h1>
+  <div class="tagline">你一個人 + N 個 AI 同事 = 完整組織</div>
+  <div class="subtitle">CEO 視角 · 2026 AI 原生團隊架構</div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat"><div class="num">1</div><div class="label">人類 CEO</div></div>
+    <div class="stat"><div class="num">8</div><div class="label">AI 團隊成員</div></div>
+    <div class="stat"><div class="num">3</div><div class="label">核心部門</div></div>
+    <div class="stat"><div class="num">∞</div><div class="label">24/7 運作</div></div>
+  </div>
+
+  <!-- CEO -->
+  <div class="row"><div class="node ceo"><div class="icon">👑</div><div class="title">CEO 你</div><div class="desc">策略決策 · 品牌方向 · 最終把關</div><div class="tools">人類智慧</div></div></div>
+  <div class="connector"></div>
+  <div class="connector"></div>
+
+  <!-- COO Layer -->
+  <div class="row">
+    <div class="node core"><div class="icon">🧠</div><div class="title">AI COO</div><div class="desc">任務排程 · 資源分配 · 進度追蹤</div><div class="tools">Claude / GPT</div></div>
+    <div class="node core"><div class="icon">📋</div><div class="title">AI PM</div><div class="desc">需求拆解 · 專案管理 · 風險預警</div><div class="tools">Linear + AI</div></div>
+  </div>
+
+  <div class="h-connector"></div>
+
+  <!-- Department: Product & Tech -->
+  <div class="section-label">🛠️ 產品技術部</div>
+  <div class="row">
+    <div class="node"><div class="icon">💻</div><div class="title">前端工程師</div><div class="desc">UI/UX · Web App · Mobile</div><div class="tools">Claude Code</div></div>
+    <div class="node"><div class="icon">⚙️</div><div class="title">後端工程師</div><div class="desc">API · 資料庫 · 自動化</div><div class="tools">GPT / Cursor</div></div>
+    <div class="node"><div class="icon">📊</div><div class="title">數據分析師</div><div class="desc">用戶分析 · 報表 · 洞察</div><div class="tools">Python + AI</div></div>
+  </div>
+
+  <!-- Department: Marketing & Growth -->
+  <div class="section-label">📣 行銷成長部</div>
+  <div class="row">
+    <div class="node"><div class="icon">✍️</div><div class="title">內容創作</div><div class="desc">文案 · 社群 · SEO</div><div class="tools">Claude / Midjourney</div></div>
+    <div class="node"><div class="icon">🎨</div><div class="title">視覺設計</div><div class="desc">Logo · Banner · 影片</div><div class="tools">Canva + AI</div></div>
+    <div class="node"><div class="icon">📈</div><div class="title">成長駭客</div><div class="desc">投放 · 轉換 · A/B Test</div><div class="tools">AI 投放</div></div>
+  </div>
+
+  <!-- Department: Operations & Legal -->
+  <div class="section-label">📁 營運法務部</div>
+  <div class="row">
+    <div class="node"><div class="icon">📬</div><div class="title">客服專員</div><div class="desc">自動應答 · 客戶反饋</div><div class="tools">Chatbot + AI</div></div>
+    <div class="node"><div class="icon">⚖️</div><div class="title">法務顧問</div><div class="desc">合約 · 條款 · 合規</div><div class="tools">Harvey / AI</div></div>
+    <div class="node"><div class="icon">💰</div><div class="title">財務助手</div><div class="desc">記帳 · 發票 · 報稅</div><div class="tools">QuickBooks + AI</div></div>
+  </div>
+
+  <!-- Bottom note -->
+  <div style="margin:40px 0 20px;text-align:center;font-size:12px;color:#484f58;line-height:1.8">
+    <p>一人公司 = 你當 CEO，每個 AI 角色都是你的員工，24 小時不休息</p>
+    <p>關鍵不是取代人，而是用最小成本組建最強團隊 🚀</p>
+  </div>
+</div>
+</body>
+</html>
