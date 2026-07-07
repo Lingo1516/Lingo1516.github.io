@@ -1,8 +1,194 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta http-equiv="refresh" content="0;url=今天早上新聞.html">
-<title>Lingo Chen News</title></head>
-<body><a href="今天早上新聞.html">📰 每日新聞懶人包 2026-06-21</a><br>
-<a href="tw-stock-report-20260621.html">📊 台股深度報告 2026-06-21</a></body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Lingo 的小綠工具庫</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.7}
+
+.header{max-width:1000px;margin:0 auto;padding:60px 24px 40px;text-align:center}
+.header h1{font-size:36px;font-weight:700;color:#fff;margin-bottom:8px}
+.header p{font-size:15px;color:rgba(255,255,255,.4)}
+
+.search-bar{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.95);backdrop-filter:blur(12px);padding:14px 24px;border-bottom:1px solid rgba(255,255,255,.05)}
+.search-bar input{width:100%;max-width:600px;display:block;margin:0 auto;padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#fff;font-size:15px;outline:none;font-family:inherit}
+.search-bar input:focus{border-color:rgba(212,163,115,.4);background:rgba(255,255,255,.08)}
+.search-bar input::placeholder{color:rgba(255,255,255,.25)}
+
+.container{max-width:1000px;margin:0 auto;padding:24px}
+
+/* Category tabs */
+.cat-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
+.cat-btn{padding:8px 18px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.4);font-size:13px;cursor:pointer;transition:all .2s;font-family:inherit}
+.cat-btn:hover{border-color:rgba(255,255,255,.2);color:#fff}
+.cat-btn.active{background:rgba(212,163,115,.2);border-color:#d4a373;color:#d4a373}
+
+/* Category section */
+.category{margin-bottom:40px}
+.category.hidden{display:none}
+.cat-title{font-size:20px;font-weight:700;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.cat-title .count{font-size:13px;color:rgba(255,255,255,.3);font-weight:400}
+
+/* Card grid */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px 18px;transition:all .25s;cursor:pointer}
+.card:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);transform:translateY(-1px)}
+.card a{text-decoration:none;color:inherit;display:block}
+.card .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:8px;margin-bottom:6px}
+.card h3{font-size:16px;font-weight:600;color:#fff;margin-bottom:4px}
+.card .url{font-size:12px;color:rgba(255,255,255,.2);margin-bottom:4px;word-break:break-all}
+.card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5}
+
+/* Footer */
+.footer{text-align:center;padding:40px 24px;color:rgba(255,255,255,.15);font-size:13px}
+.footer .btn{display:inline-block;margin-top:12px;padding:8px 20px;border-radius:20px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);text-decoration:none;font-size:12px;transition:all .3s}
+.footer .btn:hover{border-color:rgba(255,255,255,.2);color:#fff}
+
+@media(max-width:600px){
+  .card-grid{grid-template-columns:1fr}
+  .header h1{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🟢 小綠工具庫</h1>
+  <p>Lingo 的 GitHub Pages · 所有頁面總覽</p>
+</div>
+
+<div class="search-bar">
+  <input type="text" id="search" placeholder="搜尋頁面名稱或關鍵字..." oninput="filterPages()">
+</div>
+
+<div class="container">
+
+<div class="cat-nav" id="catNav"></div>
+<div id="content"></div>
+
+</div>
+
+<div class="footer">
+  <p>小綠工具庫 · Lingo1516.github.io</p>
+  <a class="btn" href="https://github.com/Lingo1516/Lingo1516.github.io" target="_blank">GitHub Repo</a>
+</div>
+
+<script>
+const pages = [
+  // ====== 福岡旅遊 ======
+  {cat:"旅行", tags:"福岡 旅遊 九州 日本", title:"🏠 福岡部落格首頁", url:"blog/", desc:"五天四夜九州慢行 · 時間軸總覽"},
+  {cat:"旅行", tags:"福岡 旅遊 Day1", title:"✈️ Day 1 — 啟程", url:"blog/福岡之旅-·-啟程.html", desc:"桃園→福岡，一幸舍拉麵、大東園燒肉、櫛田神社夜參"},
+  {cat:"旅行", tags:"福岡 旅遊 Day2", title:"☀️ Day 2 — 晨光中的博多", url:"blog/福岡之旅-·-晨光中的博多.html", desc:"太宰府天滿宮、柳川遊船、雷山觀音、中洲屋台"},
+  {cat:"旅行", tags:"福岡 旅遊 Day3", title:"🌅 Day 3 — 同一扇窗・不同風景", url:"blog/福岡之旅-·-day-3-同一扇窗・不同風景.html", desc:"天神散策、華味鳥水炊雞、博多街頭"},
+  {cat:"旅行", tags:"福岡 旅遊 Day4", title:"🌙 Day 4 — 前田屋牛腸鍋之夜", url:"blog/福岡之旅-·-day-4-前田屋牛腸鍋之夜.html", desc:"六本松、前田屋もつ鍋、福岡最後一夜"},
+  {cat:"旅行", tags:"福岡 美食 拉麵", title:"🍜 福岡拉麵地圖", url:"blog/福岡拉麵地圖-五家必吃名店.html", desc:"五家必吃名店：一幸舍、一風堂、博多だるま、暖暮、元祖赤のれん"},
+  {cat:"旅行", tags:"福岡 美食 屋台", title:"🌙 福岡屋台與明太子", url:"blog/福岡屋台與明太子-在地人帶路.html", desc:"中洲屋台文化 + 明太子創意吃法"},
+  {cat:"旅行", tags:"福岡 美食 水炊雞", title:"🐔 華味鳥 — 博多水炊雞老字號", url:"blog/福岡·華味鳥-博多水炊雞老字號.html", desc:"創業70年，雞白湯鍋底的極致"},
+  {cat:"旅行", tags:"福岡 美食 車站", title:"🥩 博多車站周邊美食", url:"blog/牛肉-博多車站周邊-燒肉．牛腸鍋．甜點.html", desc:"燒肉・もつ鍋・甜點濃縮攻略"},
+
+  // ====== 每日新聞 ======
+  {cat:"新聞", tags:"新聞 每日 懶人包", title:"📰 今日新聞", url:"news-today.html", desc:"每日新聞懶人包"},
+  {cat:"新聞", tags:"新聞 每日 懶人包", title:"📰 新聞總覽", url:"news.html", desc:"新聞彙整"},
+  {cat:"新聞", tags:"新聞 2026-07-06", title:"📰 新聞 2026-07-06", url:"news-20260706.html", desc:""},
+  {cat:"新聞", tags:"新聞 2026-07-05", title:"📰 新聞 2026-07-05", url:"news-20260705.html", desc:""},
+  {cat:"新聞", tags:"新聞 2026-06-24", title:"📰 新聞 2026-06-24", url:"today-news-2026-06-24.html", desc:""},
+  {cat:"新聞", tags:"新聞 2026-06-21", title:"📰 新聞 2026-06-21", url:"news-20260621.html", desc:""},
+  {cat:"新聞", tags:"新聞 2026-06-21", title:"📰 今日新聞 20260621", url:"今日新聞_20260621.html", desc:""},  
+  {cat:"新聞", tags:"新聞", title:"📰 今天早上新聞", url:"今天早上新聞.html", desc:"新聞彙整"},
+
+  // ====== 股票 / 投資 ======
+  {cat:"股票", tags:"股票 投資 台股", title:"📈 台股報告 2026-06-21", url:"tw-stock-report-20260621.html", desc:"台股技術分析報告"},
+
+  // ====== 論文 / 學術 ======
+  {cat:"學術", tags:"論文 企業倫理 PPT", title:"📚 企業倫理_15頁簡報", url:"企業倫理_15頁簡報.html", desc:"企業倫理案例分析簡報"},
+
+  // ====== 管理教材 ======
+  {cat:"教材", tags:"管理 教材 阿米巴", title:"📖 日本阿米巴實務教材", url:"日本阿米巴實務教材.html", desc:"阿米巴經營實戰"},
+  {cat:"教材", tags:"管理 教材 阿米巴 計算", title:"📖 阿米巴計算練習題", url:"阿米巴計算練習題.html", desc:"阿米巴計算練習題目"},
+  {cat:"教材", tags:"管理 教材 行動中的組織", title:"📖 行動中的組織 (100頁)", url:"行動中的組織 (100頁完整版).html", desc:"組織行為學教材完整版"},
+  {cat:"教材", tags:"管理 教材 組織理論", title:"📖 組織理論教材", url:"org-theory-materials.html", desc:"組織理論相關教材"},
+  {cat:"教材", tags:"管理 教材 經理人", title:"📖 經理人管理教材", url:"經理人_管理教材.html", desc:"經理人管理知識"},
+  {cat:"教材", tags:"管理 教材 國外", title:"📖 國外管理教材", url:"國外管理教材.html", desc:"國外管理學參考資料"},
+  {cat:"教材", tags:"管理 教材 知識管理", title:"📖 知識組織講義", url:"knowledge-org-handout.html", desc:"知識組織課程講義"},
+  {cat:"教材", tags:"管理 教材 遠見", title:"📖 遠見管理教材", url:"遠見_管理教材.html", desc:"遠見雜誌管理專題整理"},
+
+  // ====== 工具 / 其他 ======
+  {cat:"工具", tags:"工具 疫苗 健康", title:"💉 帶狀皰疹疫苗資訊", url:"shingles-vaccine.html", desc:"帶狀皰疹疫苗懶人包"},
+  {cat:"工具", tags:"工具 航班", title:"✈️ 台灣→加拿大航班", url:"flight-taiwan-canada.html", desc:"台灣直飛加拿大航班查詢"},
+  {cat:"工具", tags:"工具 面試", title:"💼 面試技巧", url:"interview-tips.html", desc:"面試準備與技巧"},
+  {cat:"工具", tags:"工具 維生素", title:"💊 維生素補充指南", url:"vitamin-ex-premium.html", desc:"維生素補充計劃 Premium"},
+  {cat:"工具", tags:"工具 比較", title:"🔍 模型比較", url:"model-comparison.html", desc:"AI模型對比"},
+  {cat:"工具", tags:"工具 OpenClaw", title:"🔧 OpenClaw 修復記錄", url:"openclaw-fix.html", desc:"OpenClaw 故障排除"},
+  {cat:"工具", tags:"工具 上傳", title:"📤 檔案上傳頁", url:"upload.html", desc:"檔案上傳測試"},
+  {cat:"工具", tags:"工具", title:"📝 test-upload", url:"test-upload.html", desc:"上傳測試"},
+];
+
+// Extract categories
+const cats = [...new Set(pages.map(p=>p.cat))];
+
+// Render category nav
+const navEl = document.getElementById('catNav');
+navEl.innerHTML = `<button class="cat-btn active" onclick="switchCat('all',this)">📋 全部</button>` +
+  cats.map(c=>`<button class="cat-btn" onclick="switchCat('${c}',this)">${c}</button>`).join('');
+
+// Render all pages
+function render(filterCat='all', query=''){
+  const el = document.getElementById('content');
+  const q = query.toLowerCase().trim();
+  
+  // Group by category
+  let groups = {};
+  cats.forEach(c=>groups[c]=[]);
+  
+  pages.forEach(p=>{
+    if(filterCat!=='all' && p.cat!==filterCat) return;
+    if(q && !p.title.toLowerCase().includes(q) && !p.tags.toLowerCase().includes(q) && !p.desc.toLowerCase().includes(q)) return;
+    (groups[p.cat] || (groups[p.cat]=[])).push(p);
+  });
+  
+  let html='';
+  cats.forEach(c=>{
+    const list=groups[c];
+    if(!list||!list.length) return;
+    html+=`<div class="category">
+      <div class="cat-title">${c}<span class="count">${list.length}</span></div>
+      <div class="card-grid">`;
+    list.forEach(p=>{
+      const tagColors={旅行:'rgba(212,163,115,.15)',新聞:'rgba(231,111,81,.15)',股票:'rgba(42,157,143,.15)',學術:'rgba(233,196,106,.15)',教材:'rgba(102,126,234,.15)',工具:'rgba(130,130,130,.15)'};
+      const tc=tagColors[p.cat]||'rgba(255,255,255,.06)';
+      const tn={旅行:'#d4a373',新聞:'#e76f51',股票:'#2a9d8f',學術:'#e9c46a',教材:'#667eea',工具:'#888'};
+      html+=`<div class="card"><a href="${p.url}">
+        <span class="tag" style="background:${tc};color:${tn[p.cat]||'#999'}">${p.cat}</span>
+        <h3>${p.title}</h3>
+        <div class="url">${p.url}</div>
+        ${p.desc ? `<p>${p.desc}</p>` : ''}
+      </a></div>`;
+    });
+    html+=`</div></div>`;
+  });
+  
+  el.innerHTML = html || '<p style="text-align:center;color:rgba(255,255,255,.3);padding:60px 0">找不到符合的頁面</p>';
+}
+
+// Switch category
+function switchCat(cat, btn){
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render(cat, document.getElementById('search').value);
+}
+
+// Search
+function filterPages(){
+  render(document.querySelector('.cat-btn.active')?.textContent.includes('全部')?'all':document.querySelector('.cat-btn.active')?.textContent||'all',
+    document.getElementById('search').value);
+}
+
+render();
+</script>
+
+</body>
 </html>
