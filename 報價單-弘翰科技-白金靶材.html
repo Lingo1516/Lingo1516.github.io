@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鄰哥實業 — 報價單</title>
+<style>
+@page { size: A4; margin: 1.5cm; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.paper {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    padding: 1.5cm;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.company-info { font-size: 11pt; line-height: 1.6; color: #333; }
+.company-name { font-size: 16pt; font-weight: bold; color: #000; }
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 8px;
+}
+.to-section { font-size: 11pt; line-height: 1.6; }
+.to-label { font-weight: bold; display: inline; }
+.to-name { display: inline; font-weight: bold; margin-left: 4px; }
+.quote-title { font-size: 20pt; font-weight: bold; letter-spacing: 4px; color: #000; }
+.quote-meta { font-size: 10pt; color: #333; text-align: right; line-height: 1.8; margin-top: 4px; }
+.quote-meta span { display: inline-block; min-width: 60px; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+    margin-top: 10px;
+}
+thead th {
+    background: #e8e8e8;
+    border: 1px solid #999;
+    padding: 6px 4px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 10pt;
+}
+thead th.num { width: 28px; }
+thead th.our { width: 58px; }
+thead th.code { width: 55px; }
+thead th.qty { width: 40px; }
+thead th.price { width: 48px; }
+thead th.total { width: 55px; }
+thead th.note { width: 60px; }
+tbody td {
+    border: 1px solid #999;
+    padding: 5px 4px;
+    text-align: center;
+    vertical-align: middle;
+    height: 28px;
+}
+tbody td.desc { text-align: left; font-size: 10pt; line-height: 1.3; }
+tbody td.detail-line { font-size: 9pt; color: #555; padding-left: 8px; }
+.notes-section {
+    margin-top: 20px;
+    font-size: 10pt;
+    line-height: 1.6;
+    display: flex;
+    justify-content: space-between;
+}
+.notes-left {
+    border: 1px solid #999;
+    padding: 8px 10px;
+    width: 48%;
+    min-height: 80px;
+}
+.notes-left .label { font-weight: bold; margin-right: 6px; }
+.notes-right {
+    border: 1px solid #999;
+    padding: 8px 10px;
+    width: 48%;
+    min-height: 80px;
+    font-size: 9.5pt;
+}
+.notes-right .contact-row { margin-bottom: 3px; }
+.terms {
+    margin-top: 18px;
+    font-size: 9.5pt;
+    line-height: 1.8;
+    color: #333;
+    padding: 8px 0;
+    border-top: 1px solid #ddd;
+}
+.terms ol { list-style: none; counter-reset: item; }
+.terms ol li { counter-increment: item; margin-bottom: 2px; }
+.terms ol li::before { content: counter(item) ". "; font-weight: bold; }
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 10px;
+    font-size: 10pt;
+}
+.business { font-weight: bold; }
+.footer-code { font-size: 14pt; font-weight: bold; color: #000; letter-spacing: 2px; }
+.controls { margin-top: 20px; text-align: center; }
+.controls button {
+    padding: 10px 30px;
+    font-size: 16px;
+    background: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 6px;
+}
+@media print {
+    body { background: white; padding: 0; }
+    .paper { box-shadow: none; padding: 1.5cm; }
+    .controls { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="paper" id="paper">
+
+    <div class="header">
+        <div class="company-info">
+            <div class="company-name">鄰哥實業有限公司</div>
+            <div>桃園縣中壢市文化二路 326 號 9 樓</div>
+        </div>
+    </div>
+
+    <div class="meta-row">
+        <div class="to-section">
+            <div><span class="to-label">TO：</span><span class="to-name" id="toCompany">弘翰科技股份有限公司</span></div>
+            <div style="margin-left: 28px;" id="toPerson"></div>
+        </div>
+        <div style="text-align: right;">
+            <div class="quote-title">報 價 單</div>
+            <div class="quote-meta">
+                <div>幣別 <span id="currency">NT</span></div>
+                <div>報價單號：<span id="quoteNo">1150723-1</span></div>
+                <div>報價日期：<span id="quoteDate">1150723</span></div>
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="num">No.</th>
+                <th class="our">鄰哥實業料號</th>
+                <th class="code">客戶料號</th>
+                <th>品 名</th>
+                <th class="qty">數量</th>
+                <th class="price">單價</th>
+                <th class="total">合計</th>
+                <th class="note">備註</th>
+            </tr>
+        </thead>
+        <tbody id="itemsBody">
+            <tr>
+                <td>1</td>
+                <td id="ourPart1"></td>
+                <td id="custPart1"></td>
+                <td class="desc">
+                    <div id="item1">白金靶材</div>
+                    <div class="detail-line" id="spec1">直徑50mm × 厚度0.1mmT</div>
+                </td>
+                <td id="qty1">1 片</td>
+                <td id="price1">16,000</td>
+                <td id="total1">16,000</td>
+                <td id="note1">未稅</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td id="ourPart2"></td>
+                <td id="custPart2"></td>
+                <td class="desc"><div id="item2"></div></td>
+                <td id="qty2"></td>
+                <td id="price2"></td>
+                <td id="total2"></td>
+                <td id="note2"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td id="ourPart3"></td>
+                <td id="custPart3"></td>
+                <td class="desc"><div id="item3"></div></td>
+                <td id="qty3"></td>
+                <td id="price3"></td>
+                <td id="total3"></td>
+                <td id="note3"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td id="ourPart4"></td>
+                <td id="custPart4"></td>
+                <td class="desc"><div id="item4"></div></td>
+                <td id="qty4"></td>
+                <td id="price4"></td>
+                <td id="total4"></td>
+                <td id="note4"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="notes-section">
+        <div class="notes-left">
+            <div><span class="label">備註</span></div>
+            <div style="margin-top:6px;" id="notes">以上報價未稅，稅外加 5%</div>
+        </div>
+        <div class="notes-right">
+            <div class="contact-row"><strong>聯絡人：</strong><span id="contactPerson">陳旭麟</span></div>
+            <div class="contact-row"><strong>行動電話：</strong><span id="phone">0983-879138</span></div>
+            <div class="contact-row"><strong>統編：</strong><span id="taxId">53975698</span></div>
+            <div class="contact-row"><strong>Email：</strong><span id="email">lingo@lingo-tw.com</span></div>
+            <div style="margin-top:8px;" id="recipientNote">弘翰科技股份有限公司</div>
+        </div>
+    </div>
+
+    <div class="terms">
+        <ol>
+            <li id="term1">本報價單有效期間 30 天</li>
+            <li id="term2">以上報價未含 5% 營業稅</li>
+            <li id="term3">交期另議</li>
+        </ol>
+    </div>
+
+    <div class="footer-row">
+        <div class="business">業務：<span id="salesPerson">陳旭麟</span></div>
+        <div class="footer-code" id="footerCode"></div>
+    </div>
+
+</div>
+
+<div class="controls">
+    <button onclick="window.print()">🖨️ 儲存為 PDF</button>
+</div>
+
+</body>
+</html>
