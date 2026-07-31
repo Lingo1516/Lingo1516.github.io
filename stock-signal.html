@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>開盤 30 分鐘判斷 — 2026-08-01</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0d1117; color:#e6edf3; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif; padding:16px; max-width:640px; margin:0 auto; }
+.header { text-align:center; padding:20px 0 16px; border-bottom:1px solid #21262d; }
+.header h1 { font-size:20px; color:#58a6ff; margin-bottom:4px; }
+.header .date { font-size:13px; color:#8b949e; }
+.stats { display:flex; justify-content:center; gap:16px; padding:12px 0; border-bottom:1px solid #21262d; }
+.stat { text-align:center; }
+.stat .num { font-size:24px; font-weight:700; }
+.stat .label { font-size:11px; color:#8b949e; }
+.section { margin:16px 0; }
+.section-title { font-size:14px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.card { background:#161b22; border:1px solid #21262d; border-radius:8px; padding:12px 14px; margin-bottom:8px; }
+.card-header { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.label { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; color:#fff; }
+.code { font-weight:700; font-size:14px; }
+.name { color:#8b949e; font-size:13px; }
+.price { font-weight:700; font-size:15px; margin-left:auto; }
+.score { font-weight:700; font-size:14px; min-width:40px; text-align:right; }
+.zone { margin-top:8px; padding:6px 10px; border-radius:6px; font-size:12px; font-weight:600; }
+.buy-zone { background:#1B5E20; color:#81C784; }
+.sell-zone { background:#B71C1C; color:#EF9A9A; }
+.reasons { margin-top:6px; display:flex; gap:4px; flex-wrap:wrap; }
+.reason { background:#21262d; color:#8b949e; padding:2px 8px; border-radius:10px; font-size:11px; }
+.bar-chart { margin:16px 0; }
+.bar-row { display:flex; align-items:center; margin:4px 0; }
+.bar-label { width:140px; font-size:12px; text-align:right; padding-right:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.bar-wrapper { flex:1; height:24px; position:relative; }
+.bar { height:100%; border-radius:4px; position:relative; }
+.bar-text { position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:11px; font-weight:600; color:#fff; }
+.footer { text-align:center; padding:16px 0; color:#484f58; font-size:11px; border-top:1px solid #21262d; margin-top:16px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📊 開盤 30 分鐘判斷</h1>
+  <div class="date">2026-08-01 更新</div>
+</div>
+<div class="stats">
+  <div class="stat"><div class="num" style="color:#4CAF50">6</div><div class="label">🟢 進場</div></div>
+  <div class="stat"><div class="num" style="color:#F44336">0</div><div class="label">🔴 出場</div></div>
+  <div class="stat"><div class="num" style="color:#607D8B">16</div><div class="label">⚪ 觀望</div></div>
+</div>
+
+<!-- 長條圖 -->
+<div class="section">
+  <div class="section-title">📈 綜合得分排行</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">5302 太欣</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#4CAF50; width:50.0%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+4.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">3481 群創</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#4CAF50; width:50.0%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+4.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">6658 聯策</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#4CAF50; width:38.88888888888889%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+3.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">1785 光洋科</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#4CAF50; width:38.88888888888889%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+3.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">1815 富喬</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#4CAF50; width:38.88888888888889%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+3.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">3714 富采</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#4CAF50; width:38.88888888888889%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+3.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">3231 緯創</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:27.77777777777778%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+2.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">6532 瑞耘</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:27.77777777777778%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+2.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">00919 群益台灣精選高息</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:27.77777777777778%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+2.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">1714 和桐</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:16.666666666666664%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+1.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">8150 南茂</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:16.666666666666664%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+1.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">00940 元大台灣價值高息</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:16.666666666666664%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+1.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">6530 創威</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">2313 華通</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">2332 友訊</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">3576 聯合再生</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">2634 漢翔</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">00982A 主動台新龍頭成長</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">00980T 平衡凱基美國TOP</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">00966 台新新光金</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:0.0%; left:calc(50% + 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.0</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">2455 全新</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% - 5.555555555555555% - 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:auto; left:8px; top:50%; transform:translateY(-50%);">-0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">8039 台虹</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% - 5.555555555555555% - 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:auto; left:8px; top:50%; transform:translateY(-50%);">-0.5</span>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">4763 材料-KY</div>
+      <div class="bar-wrapper">
+        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% - 5.555555555555555% - 2px); position:absolute;"></div>
+        <span class="bar-text" style="position:absolute; right:auto; left:8px; top:50%; transform:translateY(-50%);">-0.5</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 進場 -->
+<div class="section">
+  <div class="section-title">🟢 進場訊號</div>
+        <div class="card" style="border-left: 4px solid #4CAF50">
+            <div class="card-header">
+                <span class="label" style="background:#1B5E20">進場</span>
+                <span class="code">5302</span>
+                <span class="name">太欣</span>
+                <span class="price">10.0</span>
+                <span class="score" style="color:#4CAF50">+4.5</span>
+            </div>
+            <div class="zone buy-zone">📍 9.6 ~ 10.0（支撐:11.8）</div>
+            <div class="reasons"><span class="reason">RSI=12超賣</span><span class="reason">KD黃金交叉</span><span class="reason">K=14超賣</span><span class="reason">量能萎縮</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #4CAF50">
+            <div class="card-header">
+                <span class="label" style="background:#1B5E20">進場</span>
+                <span class="code">3481</span>
+                <span class="name">群創</span>
+                <span class="price">45.5</span>
+                <span class="score" style="color:#4CAF50">+4.5</span>
+            </div>
+            <div class="zone buy-zone">📍 40.5 ~ 45.5（支撐:54.6）</div>
+            <div class="reasons"><span class="reason">RSI=25超賣</span><span class="reason">KD黃金交叉</span><span class="reason">K=18超賣</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #4CAF50">
+            <div class="card-header">
+                <span class="label" style="background:#1B5E20">進場</span>
+                <span class="code">6658</span>
+                <span class="name">聯策</span>
+                <span class="price">140.0</span>
+                <span class="score" style="color:#4CAF50">+3.5</span>
+            </div>
+            <div class="zone buy-zone">📍 128.5 ~ 140.0（支撐:166.8）</div>
+            <div class="reasons"><span class="reason">RSI=26超賣</span><span class="reason">KD黃金交叉</span><span class="reason">K=17超賣</span><span class="reason">空頭排列</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #4CAF50">
+            <div class="card-header">
+                <span class="label" style="background:#1B5E20">進場</span>
+                <span class="code">1785</span>
+                <span class="name">光洋科</span>
+                <span class="price">99.4</span>
+                <span class="score" style="color:#4CAF50">+3.5</span>
+            </div>
+            <div class="zone buy-zone">📍 89.6 ~ 99.4（支撐:118.0）</div>
+            <div class="reasons"><span class="reason">RSI=27超賣</span><span class="reason">KD黃金交叉</span><span class="reason">量能萎縮</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #4CAF50">
+            <div class="card-header">
+                <span class="label" style="background:#1B5E20">進場</span>
+                <span class="code">1815</span>
+                <span class="name">富喬</span>
+                <span class="price">66.3</span>
+                <span class="score" style="color:#4CAF50">+3.5</span>
+            </div>
+            <div class="zone buy-zone">📍 59.1 ~ 66.3（支撐:82.8）</div>
+            <div class="reasons"><span class="reason">RSI=24超賣</span><span class="reason">KD黃金交叉</span><span class="reason">K=15超賣</span><span class="reason">空頭排列</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #4CAF50">
+            <div class="card-header">
+                <span class="label" style="background:#1B5E20">進場</span>
+                <span class="code">3714</span>
+                <span class="name">富采</span>
+                <span class="price">48.0</span>
+                <span class="score" style="color:#4CAF50">+3.5</span>
+            </div>
+            <div class="zone buy-zone">📍 44.5 ~ 48.0（支撐:55.6）</div>
+            <div class="reasons"><span class="reason">RSI=26超賣</span><span class="reason">KD黃金交叉</span><span class="reason">K=18超賣</span><span class="reason">空頭排列</span></div>
+        </div></div>
+<div class="section">
+  <div class="section-title">🔴 出場訊號</div><div class="card" style="text-align:center;color:#8b949e">今日無出場訊號</div></div>
+<div class="section">
+  <div class="section-title">⚪ 觀望</div>
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">3231</span>
+                <span class="name">緯創</span>
+                <span class="price">176.0</span>
+                <span class="score" style="color:#607D8B">+2.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">RSI=69偏高</span><span class="reason">KD黃金交叉</span><span class="reason">多頭排列</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">6532</span>
+                <span class="name">瑞耘</span>
+                <span class="price">65.5</span>
+                <span class="score" style="color:#607D8B">+2.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">RSI=33偏低</span><span class="reason">KD黃金交叉</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">00919</span>
+                <span class="name">群益台灣精選高息</span>
+                <span class="price">29.6</span>
+                <span class="score" style="color:#607D8B">+2.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">KD黃金交叉</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">1714</span>
+                <span class="name">和桐</span>
+                <span class="price">13.1</span>
+                <span class="score" style="color:#607D8B">+1.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">RSI=23超賣</span><span class="reason">K=11超賣</span><span class="reason">空頭排列</span><span class="reason">量能萎縮</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">8150</span>
+                <span class="name">南茂</span>
+                <span class="price">72.6</span>
+                <span class="score" style="color:#607D8B">+1.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">RSI=28超賣</span><span class="reason">K=8超賣</span><span class="reason">空頭排列</span><span class="reason">量能萎縮</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">00940</span>
+                <span class="name">元大台灣價值高息</span>
+                <span class="price">12.1</span>
+                <span class="score" style="color:#607D8B">+1.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">KD黃金交叉</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">6530</span>
+                <span class="name">創威</span>
+                <span class="price">67.6</span>
+                <span class="score" style="color:#607D8B">+0.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">RSI=35偏低</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">2313</span>
+                <span class="name">華通</span>
+                <span class="price">169.0</span>
+                <span class="score" style="color:#607D8B">+0.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">RSI=31偏低</span><span class="reason">K=14超賣</span><span class="reason">空頭排列</span><span class="reason">量能萎縮</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">2332</span>
+                <span class="name">友訊</span>
+                <span class="price">21.2</span>
+                <span class="score" style="color:#607D8B">+0.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">RSI=36偏低</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">3576</span>
+                <span class="name">聯合再生</span>
+                <span class="price">16.3</span>
+                <span class="score" style="color:#607D8B">+0.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">K=17超賣</span><span class="reason">量能萎縮</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">2634</span>
+                <span class="name">漢翔</span>
+                <span class="price">61.9</span>
+                <span class="score" style="color:#607D8B">+0.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">K=17超賣</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">00982A</span>
+                <span class="name">主動台新龍頭成長</span>
+                <span class="price">20.4</span>
+                <span class="score" style="color:#607D8B">+0.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">RSI=36偏低</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">00980T</span>
+                <span class="name">平衡凱基美國TOP</span>
+                <span class="price">11.6</span>
+                <span class="score" style="color:#607D8B">+0.5</span>
+            </div>
+            
+            <div class="reasons"><span class="reason">量能萎縮</span></div>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">2455</span>
+                <span class="name">全新</span>
+                <span class="price">292.0</span>
+                <span class="score" style="color:#607D8B">-0.5</span>
+            </div>
+            
+            
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">8039</span>
+                <span class="name">台虹</span>
+                <span class="price">173.5</span>
+                <span class="score" style="color:#607D8B">-0.5</span>
+            </div>
+            
+            
+        </div>
+
+        <div class="card" style="border-left: 4px solid #607D8B">
+            <div class="card-header">
+                <span class="label" style="background:#37474F">觀望</span>
+                <span class="code">4763</span>
+                <span class="name">材料-KY</span>
+                <span class="price">48.2</span>
+                <span class="score" style="color:#607D8B">-0.5</span>
+            </div>
+            
+            
+        </div>
+</div>
+<div class="footer">
+  自動生成 by 小綠 🟢 ｜ 資料來源：FinMind<br>
+  更新時間：2026-08-01 00:14
+</div>
+</body></html>
