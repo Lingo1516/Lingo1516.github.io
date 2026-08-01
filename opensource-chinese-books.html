@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>開源中文電子書資源大全</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card-bg: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+    --accent-purple: #bc8cff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+
+  .header-stats {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .stat-item strong {
+    color: var(--text);
+  }
+
+  .intro {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .intro strong {
+    color: var(--text);
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 2rem 0 1.2rem;
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--accent);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(88, 166, 255, 0.1);
+  }
+
+  .card-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .badge-tech { background: rgba(88, 166, 255, 0.15); color: var(--accent); }
+  .badge-lit { background: rgba(188, 140, 255, 0.15); color: var(--accent-purple); }
+  .badge-novel { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+  .badge-general { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+  .badge-poetry { background: rgba(210, 153, 34, 0.15); color: var(--accent-orange); }
+
+  .card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .card h3 a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .card .meta {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .card .meta .stars {
+    color: var(--accent-orange);
+    font-weight: 600;
+  }
+
+  .card .desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+  }
+
+  .card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .card .tags span {
+    background: rgba(48, 54, 61, 0.6);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  .footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  .footer a { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.8rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .card { padding: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>📚 開源中文電子書資源大全</h1>
+    <p>GitHub 及其他開源平台上可公開獲取的中文書籍收藏</p>
+    <div class="header-stats">
+      <span class="stat-item">📖 收錄 <strong>10+</strong> 個優質來源</span>
+      <span class="stat-item">📦 涵蓋 <strong>10,000+</strong> 冊中文書</span>
+      <span class="stat-item">⭐ 合計 <strong>300k+</strong> GitHub Stars</span>
+    </div>
+  </header>
+
+  <div class="intro">
+    <p>
+      <strong>🔍 搜尋說明：</strong> 以下收集了 GitHub 上最具代表性的開源中文電子書專案，以及知名的公有領域中文書網站。
+      涵蓋<strong>技術書籍、古典文學、現代小說、科普讀物、古詩詞庫</strong>等類型。
+      所有資源皆為合法共享或公有領域內容，部分專案提供直接下載連結或索引。
+    </p>
+  </div>
+
+  <h2 class="section-title">📕 GitHub 開源中文書專案</h2>
+
+  <div class="card-grid">
+
+    <!-- 1. justjavac/free-programming-books-zh_CN -->
+    <div class="card">
+      <span class="card-badge badge-tech">💻 技術</span>
+      <h3><a href="https://github.com/justjavac/free-programming-books-zh_CN" target="_blank">free-programming-books-zh_CN</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 118,000</span> &middot; justjavac
+      </div>
+      <div class="desc">
+        最知名的免費中文程式設計書籍索引，涵蓋前端、後端、AI、資料結構、作業系統等數百本電腦技術書籍的中文版或中文翻譯。
+      </div>
+      <div class="tags">
+        <span>#程式設計</span>
+        <span>#計算機科學</span>
+        <span>#免費書籍</span>
+        <span>#數百冊</span>
+      </div>
+    </div>
+
+    <!-- 2. chinese-poetry/chinese-poetry -->
+    <div class="card">
+      <span class="card-badge badge-poetry">📜 詩詞</span>
+      <h3><a href="https://github.com/chinese-poetry/chinese-poetry" target="_blank">chinese-poetry</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 53,000</span> &middot; chinese-poetry
+      </div>
+      <div class="desc">
+        最全中華古詩詞數據庫。收錄唐宋兩朝近 14,000 位詩人、5.5 萬首唐詩、26 萬首宋詩、兩宋 1,564 位詞人、21,050 首詞。JSON 格式，可直接使用。
+      </div>
+      <div class="tags">
+        <span>#唐詩</span>
+        <span>#宋詞</span>
+        <span>#古詩詞</span>
+        <span>#資料庫</span>
+        <span>#JSON</span>
+      </div>
+    </div>
+
+    <!-- 3. fortspada/CS-Books -->
+    <div class="card">
+      <span class="card-badge badge-tech">💻 技術</span>
+      <h3><a href="https://github.com/forthespada/CS-Books" target="_blank">CS-Books</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 27,000</span> &middot; forthespada
+      </div>
+      <div class="desc">
+        超過 1,000 本電腦經典書籍，涵蓋 C/C++、Java、Python、Go、資料結構與演算法、作業系統、後端架構、資料庫、網路、設計模式、前端、匯編等。
+      </div>
+      <div class="tags">
+        <span>#電腦科學</span>
+        <span>#千冊</span>
+        <span>#面試</span>
+        <span>#經典書籍</span>
+      </div>
+    </div>
+
+    <!-- 4. Dujltqzv/Some-Many-Books -->
+    <div class="card">
+      <span class="card-badge badge-general">📚 綜合</span>
+      <h3><a href="https://github.com/Dujltqzv/Some-Many-Books" target="_blank">Some-Many-Books</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 21,800</span> &middot; Dujltqzv
+      </div>
+      <div class="desc">
+        個人收藏書籍列表，涵蓋數百本各類中文電子書，包含文學、歷史、科普、技術等多個領域，提供直接下載連結。
+      </div>
+      <div class="tags">
+        <span>#綜合</span>
+        <span>#文學</span>
+        <span>#歷史</span>
+        <span>#科普</span>
+        <span>#技術</span>
+      </div>
+    </div>
+
+    <!-- 5. jbiaojerry/ebook-treasure-chest -->
+    <div class="card">
+      <span class="card-badge badge-general">📚 綜合</span>
+      <h3><a href="https://github.com/jbiaojerry/ebook-treasure-chest" target="_blank">ebook-treasure-chest</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 15,100</span> &middot; jbiaojerry
+      </div>
+      <div class="desc">
+        電子書下載寶庫。匯集帆書(樊登讀書)、微信讀書、京東讀書、喜馬拉雅等平台的電子書，涵蓋文學、歷史、科普、管理、社會、推理等數十個分類，每本提供 epub / mobi / azw3 格式。
+      </div>
+      <div class="tags">
+        <span>#電子書</span>
+        <span>#文學</span>
+        <span>#商業</span>
+        <span>#科普</span>
+        <span>#epub</span>
+        <span>#mobi</span>
+      </div>
+    </div>
+
+    <!-- 6. ruanyf/free-books -->
+    <div class="card">
+      <span class="card-badge badge-tech">💻 技術</span>
+      <h3><a href="https://github.com/ruanyf/free-books" target="_blank">free-books (阮一峰)</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 15,900</span> &middot; ruanyf
+      </div>
+      <div class="desc">
+        知名技術部落客阮一峰整理的網際網路免費書籍清單。涵蓋 Web 開發、系統管理、程式語言、資料庫、軟體開發、人工智慧等領域的免費技術書籍（部分有中文版）。
+      </div>
+      <div class="tags">
+        <span>#Web開發</span>
+        <span>#程式語言</span>
+        <span>#AI</span>
+        <span>#系統管理</span>
+      </div>
+    </div>
+
+    <!-- 7. doocs/technical-books -->
+    <div class="card">
+      <span class="card-badge badge-tech">💻 技術</span>
+      <h3><a href="https://github.com/doocs/technical-books" target="_blank">technical-books</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 7,000</span> &middot; doocs
+      </div>
+      <div class="desc">
+        國內外網際網路技術大牛們撰寫的書籍清單。涵蓋電腦基礎、網路、前端、後端、資料庫、架構、大數據、深度學習等領域的中文技術書籍。
+      </div>
+      <div class="tags">
+        <span>#技術書籍</span>
+        <span>#架構</span>
+        <span>#大數據</span>
+        <span>#深度學習</span>
+      </div>
+    </div>
+
+    <!-- 8. sorenduan/awesome-java-books -->
+    <div class="card">
+      <span class="card-badge badge-tech">💻 技術</span>
+      <h3><a href="https://github.com/sorenduan/awesome-java-books" target="_blank">awesome-java-books</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 7,100</span> &middot; sorenduan
+      </div>
+      <div class="desc">
+        Java 開發者技術書籍大全。從 Java 入門到基礎及進階、框架與中介軟體、架構設計、設計模式、JVM、數學與演算法等全方位覆蓋。
+      </div>
+      <div class="tags">
+        <span>#Java</span>
+        <span>#架構設計</span>
+        <span>#JVM</span>
+        <span>#設計模式</span>
+      </div>
+    </div>
+
+    <!-- 9. ian-shuaidi/CS-Book -->
+    <div class="card">
+      <span class="card-badge badge-tech">💻 技術</span>
+      <h3><a href="https://github.com/iamshuaidi/CS-Book" target="_blank">CS-Book</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 11,600</span> &middot; iamshuaidi
+      </div>
+      <div class="desc">
+        電腦類常用電子書整理，含下載連結。包括 Java、Python、Linux、Go、C/C++、資料結構與演算法、人工智慧、電腦基礎、面試、設計模式、資料庫、前端等。
+      </div>
+      <div class="tags">
+        <span>#電腦科學</span>
+        <span>#電子書</span>
+        <span>#面試</span>
+        <span>#演算法</span>
+      </div>
+    </div>
+
+    <!-- 10. jobbole/awesome-programming-books -->
+    <div class="card">
+      <span class="card-badge badge-tech">💻 技術</span>
+      <h3><a href="https://github.com/jobbole/awesome-programming-books" target="_blank">awesome-programming-books</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 15,500</span> &middot; jobbole
+      </div>
+      <div class="desc">
+        經典程式設計書籍大全。涵蓋電腦系統與網路、系統架構、演算法與資料結構、前端開發、後端開發、移動開發、資料庫、測試設計模式等。
+      </div>
+      <div class="tags">
+        <span>#經典書籍</span>
+        <span>#系統架構</span>
+        <span>#前端</span>
+        <span>#後端</span>
+        <span>#資料庫</span>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">🌐 公有領域／開放獲取網站</h2>
+
+  <div class="card-grid">
+
+    <!-- 11. Project Gutenberg Chinese -->
+    <div class="card">
+      <span class="card-badge badge-lit">📖 文學</span>
+      <h3><a href="https://www.gutenberg.org/browse/languages/zh" target="_blank">Project Gutenberg — 中文書</a></h3>
+      <div class="meta">
+        Project Gutenberg
+      </div>
+      <div class="desc">
+        古騰堡計畫是全球最古老的電子書庫。中文部分收錄數百本公有領域經典，包括《紅樓夢》《三國志》《詩經》《易經》《水滸後傳》《山海經》等古籍及古典小說。免費 EPUB 下載。
+      </div>
+      <div class="tags">
+        <span>#公有領域</span>
+        <span>#古典文學</span>
+        <span>#紅樓夢</span>
+        <span>#古籍</span>
+        <span>#EPUB</span>
+      </div>
+    </div>
+
+    <!-- 12. Standard Ebooks -->
+    <div class="card">
+      <span class="card-badge badge-lit">📖 文學</span>
+      <h3><a href="https://standardebooks.org/" target="_blank">Standard Ebooks</a></h3>
+      <div class="meta">
+        Standard Ebooks
+      </div>
+      <div class="desc">
+        高品質精校電子書計畫。以古騰堡文本為基礎，精心排版與校對。中文書數量有限但品質極高，提供精美 EPUB 格式下載。適合追求閱讀體驗的讀者。
+      </div>
+      <div class="tags">
+        <span>#精校</span>
+        <span>#高品質</span>
+        <span>#EPUB</span>
+        <span>#排版精美</span>
+      </div>
+    </div>
+
+    <!-- 13. 古籍館 (online) -->
+    <div class="card">
+      <span class="card-badge badge-lit">📖 古籍</span>
+      <h3><a href="https://www.gujiguan.com/" target="_blank">古籍館</a></h3>
+      <div class="meta">
+        古籍館
+      </div>
+      <div class="desc">
+        線上古籍數位圖書館，專注於中華經典古籍的數位化。收錄經、史、子、集各部經典，提供原文閱讀。涵蓋《二十四史》《資治通鑑》等數千種古籍。
+      </div>
+      <div class="tags">
+        <span>#古籍</span>
+        <span>#線上閱讀</span>
+        <span>#經史子集</span>
+        <span>#免費</span>
+      </div>
+    </div>
+
+    <!-- 14. 書伴 (shuban) -->
+    <div class="card">
+      <span class="card-badge badge-general">📚 綜合</span>
+      <h3><a href="https://www.shuban.com/" target="_blank">書伴</a></h3>
+      <div class="meta">
+        書伴
+      </div>
+      <div class="desc">
+        中文電子書分享社群平台。提供各類中文電子書的下載與交流，涵蓋小說、文學、科普、商業、歷史等多元類型。註冊後可獲取大量資源。
+      </div>
+      <div class="tags">
+        <span>#電子書</span>
+        <span>#社群</span>
+        <span>#小說</span>
+        <span>#綜合</span>
+      </div>
+    </div>
+
+    <!-- 15. Z-Library 替代方案 / Anna's Archive -->
+    <div class="card">
+      <span class="card-badge badge-general">📚 綜合</span>
+      <h3><a href="https://annas-archive.org/" target="_blank">Anna's Archive</a></h3>
+      <div class="meta">
+        Anna's Archive
+      </div>
+      <div class="desc">
+        大型開放圖書館搜尋引擎，聚合 Shadow Library 元數據。收錄大量中文電子書（小說、文學、技術書、學術文獻），可搜尋並直接下載。作為 Z-Library 的主要替代方案之一。
+      </div>
+      <div class="tags">
+        <span>#搜尋引擎</span>
+        <span>#海量</span>
+        <span>#綜合</span>
+        <span>#Z-Lib替代</span>
+      </div>
+    </div>
+
+    <!-- 16. 中國哲學書電子化計劃 -->
+    <div class="card">
+      <span class="card-badge badge-lit">📖 古典</span>
+      <h3><a href="https://ctext.org/zh" target="_blank">中國哲學書電子化計劃 (ctext)</a></h3>
+      <div class="meta">
+        ctext.org
+      </div>
+      <div class="desc">
+        最大的中文古籍數位化計畫之一。收錄先秦至明清的哲學、歷史、文學典籍，包括《論語》《孟子》《道德經》《周易》以及《二十四史》等數萬篇文獻。提供原文、翻譯、註釋。
+      </div>
+      <div class="tags">
+        <span>#古籍</span>
+        <span>#哲學</span>
+        <span>#先秦</span>
+        <span>#經典</span>
+        <span>#免費</span>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">📋 其他值得關注的相關專案</h2>
+
+  <div class="card-grid">
+
+    <!-- 17. esbatmop/MNBVC -->
+    <div class="card">
+      <span class="card-badge badge-general">📊 語料庫</span>
+      <h3><a href="https://github.com/esbatmop/MNBVC" target="_blank">MNBVC 超大规模中文语料集</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 4,200</span> &middot; esbatmop
+      </div>
+      <div class="desc">
+        超大規模中文語料集，對標 ChatGPT 訓練的 40T 數據。包括新聞、作文、小說、書籍、雜誌等各類中文文本，也包含小眾文化與火星文數據。
+      </div>
+      <div class="tags">
+        <span>#語料庫</span>
+        <span>#大規模</span>
+        <span>#NLP</span>
+        <span>#AI訓練</span>
+      </div>
+    </div>
+
+    <!-- 18. FudanNLPLAB/CBook-150K -->
+    <div class="card">
+      <span class="card-badge badge-general">📊 語料庫</span>
+      <h3><a href="https://github.com/FudanNLPLAB/CBook-150K" target="_blank">CBook-150K 中文图书语料</a></h3>
+      <div class="meta">
+        <span class="stars">⭐ 217</span> &middot; FudanNLPLAB
+      </div>
+      <div class="desc">
+        復旦大學 NLP 實驗室釋出的中文圖書語料 MD5 連結。包含約 15 萬本中文圖書的語料索引。
+      </div>
+      <div class="tags">
+        <span>#語料</span>
+        <span>#復旦大學</span>
+        <span>#學術</span>
+        <span>#NLP</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p>📝 最後更新：2026年8月 &middot; 資料來源：GitHub API、各專案首頁</p>
+    <p>💡 提示：部分專案僅提供索引或下載連結，使用時請遵守相關授權條款。</p>
+    <p>
+      <a href="https://github.com/justjavac/free-programming-books-zh_CN">⭐ 免費程式設計中文書籍</a> &middot;
+      <a href="https://github.com/chinese-poetry/chinese-poetry">📜 中華古詩詞</a> &middot;
+      <a href="https://www.gutenberg.org/browse/languages/zh">🏛️ 古騰堡中文書</a>
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
