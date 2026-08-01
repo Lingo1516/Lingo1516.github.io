@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📰 新聞懶人包 — 2026.08.01（六）</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    padding: 16px;
+    min-height: 100vh;
+  }
+  .container { max-width: 640px; margin: 0 auto; }
+  header {
+    text-align: center;
+    padding: 28px 16px 20px;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+  header p {
+    font-size: 14px;
+    color: #8b949e;
+  }
+  header .date-badge {
+    display: inline-block;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+    color: #c9d1d9;
+    margin-top: 8px;
+  }
+  .news-grid { display: flex; flex-direction: column; gap: 14px; padding: 8px 0 24px; }
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 18px 16px 16px;
+    transition: border-color 0.2s, transform 0.15s;
+    position: relative;
+  }
+  .card:hover {
+    border-color: #58a6ff;
+    transform: translateY(-2px);
+  }
+  .card-source {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #58a6ff;
+    background: rgba(88,166,255,0.1);
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #f0f6fc;
+    margin-bottom: 14px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-time {
+    font-size: 12px;
+    color: #6e7681;
+  }
+  .card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #f0f6fc;
+    background: #238636;
+    padding: 6px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .card-btn:hover { background: #2ea043; }
+  .card-btn:active { background: #1e7e34; }
+
+  /* source colors */
+  .card[data-source="中央社"] .card-source { color: #79c0ff; background: rgba(121,192,255,0.1); }
+  .card[data-source="自由時報"] .card-source { color: #ff7b72; background: rgba(255,123,114,0.1); }
+  .card[data-source="聯合新聞網"] .card-source { color: #d2a8ff; background: rgba(210,168,255,0.1); }
+  .card[data-source="鉅亨網"] .card-source { color: #ffa657; background: rgba(255,166,87,0.1); }
+
+  footer {
+    text-align: center;
+    padding: 20px 0 32px;
+    font-size: 12px;
+    color: #484f58;
+    border-top: 1px solid #21262d;
+  }
+  footer a { color: #58a6ff; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📰 新聞懶人包</h1>
+    <p>為你精選今日重點新聞</p>
+    <div class="date-badge">2026 年 8 月 1 日（星期六）</div>
+  </header>
+
+  <div class="news-grid">
+
+    <!-- 1. 台指期夜盤重挫 -->
+    <div class="card" data-source="鉅亨網">
+      <span class="card-source">鉅亨網</span>
+      <div class="card-title">台股史上最狂反彈！一表看18檔主被動ETF齊亮紅燈 0050、00981A入列</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://news.cnyes.com/news/id/6555360" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 2. 伊朗戰事／美軍空襲 -->
+    <div class="card" data-source="中央社">
+      <span class="card-source">中央社</span>
+      <div class="card-title">美媒：川普下令對伊朗發動新一輪攻擊　最快週末展開</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://www.cna.com.tw/news/aopl/202608010011.aspx" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 3. 台積電曾繁城贈股 -->
+    <div class="card" data-source="聯合新聞網">
+      <span class="card-source">聯合新聞網</span>
+      <div class="card-title">台積電董事曾繁城大手筆申報贈與妻子陳韓5,000張股票 市值逾121億元</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://udn.com/news/story/7251/9663599?from=udn-catehotnews_ch2" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 4. 熊本強震 -->
+    <div class="card" data-source="中央社">
+      <span class="card-source">中央社</span>
+      <div class="card-title">熊本強震36死逾9200人避難　未來高溫恐達40度</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://www.cna.com.tw/news/aopl/202608010080.aspx" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 5. 苦茶油致癌風波 -->
+    <div class="card" data-source="自由時報">
+      <span class="card-source">自由時報</span>
+      <div class="card-title">知悉致癌油仍不主動通報！中聯廠長陳明榮交保翻盤 羈押禁見理由曝</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://news.ltn.com.tw/news/society/breakingnews/5525446" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 6. 凱道集會 -->
+    <div class="card" data-source="中央社">
+      <span class="card-source">中央社</span>
+      <div class="card-title">民團上凱道　訴求拒毒酒駕、爭取司法正義</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://www.cna.com.tw/news/asoc/202608010132.aspx" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 7. 黃崇仁辭世 -->
+    <div class="card" data-source="中央社">
+      <span class="card-source">中央社</span>
+      <div class="card-title">力積電創辦人黃崇仁辭世　享壽77歲　龔明鑫：生前促售廠給美光是重要貢獻</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://www.cna.com.tw/news/afe/202608010110.aspx" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 8. 自由：中國木拱廊橋坍塌 -->
+    <div class="card" data-source="自由時報">
+      <span class="card-source">自由時報</span>
+      <div class="card-title">之前垮過2次！中國最長木拱廊橋坍塌釀1死1傷</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://news.ltn.com.tw/news/world/breakingnews/5525389" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 9. 俄烏／基輔遭襲 -->
+    <div class="card" data-source="中央社">
+      <span class="card-source">中央社</span>
+      <div class="card-title">俄軍飛彈襲擊基輔至少9死　另有23人受傷</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://www.cna.com.tw/news/aopl/202608010072.aspx" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <!-- 10. 鉅亨：達利歐警告 -->
+    <div class="card" data-source="鉅亨網">
+      <span class="card-source">鉅亨網</span>
+      <div class="card-title">達利歐警告：台灣若遭封鎖恐引爆「全球股災」、5天就足以重創供應鏈</div>
+      <div class="card-footer">
+        <span class="card-time">2026-08-01</span>
+        <a class="card-btn" href="https://news.cnyes.com/news/id/6555666" target="_blank" rel="noopener">📖 閱讀全文</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    資料來源：中央社 · 聯合新聞網 · 自由時報 · 鉅亨網<br>
+    <a href="https://github.com/Lingo1516">Lingo1516</a> 自動產製
+  </footer>
+</div>
+</body>
+</html>
