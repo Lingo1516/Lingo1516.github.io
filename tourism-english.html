@@ -295,7 +295,19 @@ if(/lost|find|search|missing|look for/.test(lo))return{t:"Don't worry! Let me ta
 if(/wait|how long|time|minute|hour/.test(lo))return{t:"The wait is approximately 15 minutes. I will call you when your table is ready.",c:"大約需要等候15分鐘，準備好位子我會叫您。"};
 if(/recommend|suggestion|popular|best/.test(lo))return{t:"I highly recommend the mango sticky rice — it's a local favorite! Would you like to try it?",c:"我強烈推薦芒果糯米飯，當地人最愛的！要試試嗎？"};
 if(/scenic|spot|attraction|must-see|landmark/.test(lo))return{t:"The night market and the old temple are must-see spots. I can give you a map if you like.",c:"夜市和古廟是必訪景點，我可以給您地圖。"};
-return{t:"Interesting! Tell me more about that — I'm ready to help.",c:"有意思，跟我多說一點，我在聽。"};
+if(/photo|camera|picture|take.?a.?picture/.test(lo))return{t:"Of course! Stand over there by the fountain and say cheese!",c:"沒問題！站到噴泉那邊說 Cheese！"};
+if(/bathroom|toilet|restroom|washroom/.test(lo))return{t:"The restroom is on the second floor, next to the information desk.",c:"洗手間在二樓，服務台旁邊。"};
+if(/room.?key|room.?card|key.?card/.test(lo))return{t:"Here is your room key — Room 512 on the fifth floor.",c:"這是您的房卡，512房在五樓。"};
+if(/luggage|baggage|bag|bags|suitcase/.test(lo))return{t:"No problem! Let me help you with those bags. The luggage cart is right here.",c:"沒問題！我幫您拿行李，行李推車就在這裡。"};
+if(/delay|cancel|refund|change|delay/.test(lo))return{t:"I'm sorry about the inconvenience. Let me check alternative arrangements.",c:"抱歉造成不便，我立刻查詢替代方案。"};
+if(/vegetarian|vegan|allergy|allergic|diet/.test(lo))return{t:"We have a vegetarian set meal today. I will also note your allergy to the kitchen.",c:"今天有素食套餐，我也會告知廚房您的過敏資訊。"};
+if(/seat|table|window|aisle|smoking/.test(lo))return{t:"A window seat? Let me check — Row 8, seat A is available!",c:"靠窗座位？第8排A座可以！"};
+if(/credit.?card|pay|cash|payment|dollar/.test(lo))return{t:"We accept both cash and major credit cards. The total is $35.60. How would you like to pay?",c:"現金和信用卡都收，總共35.60美元，您想怎麼支付？"};
+if(/exchange|money|currency|rate|change.?money/.test(lo))return{t:"The currency exchange counter is in the arrival hall. Today the rate is 1 USD to 32.5 NTD.",c:"外幣兌換在入境大廳，今日匯率1美元兌32.5台幣。"};
+if(/wait|how.?long|minute|hour|time/.test(lo))return{t:"The wait is approximately 15 minutes. I will call you when your table is ready.",c:"大約等15分鐘，準備好會叫您。"};
+if(/recommend|suggestion|popular|best|favorite/.test(lo))return{t:"I highly recommend the mango sticky rice — it's a local favorite! Would you like to try it?",c:"我強烈推薦芒果糯米飯，當地人最愛！要試試嗎？"};
+if(/scenic|spot|attraction|must.?see|landmark/.test(lo))return{t:"The night market and the old temple are must-see spots! I can give you a map.",c:"夜市和古廟是必訪景點，我可以給您地圖。"};
+if(/lost|find|search|missing/.test(lo))return{t:"Don't worry! Let me take you to the Lost & Found counter. Please describe what you lost.",c:"別擔心！我帶您去失物招領處，請描述您遺失的物品。"};return{t:"Interesting! Tell me more about that — I'm ready to help.",c:"有意思，跟我多說一點，我在聽。"};
 }
 
 function check(t){
@@ -317,7 +329,7 @@ if(!t||!window.speechSynthesis)return;
 var u=new SpeechSynthesisUtterance(t);
 u.lang="en-US";
 u.rate=0.9;
-speechSynthesis.speak(u);
+window.speechSynthesis.speak(u);
 }
 
 function save(){
