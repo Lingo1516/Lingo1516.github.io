@@ -3,363 +3,545 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>高中觀光英文 — 互動式學習</title>
+<title>✈️ 高中觀光英文 — 互動練習</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;height:100vh;display:flex;flex-direction:column}
-.hdr{background:#f59e0b;color:#0f172a;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
-.hdr h1{font-size:18px;font-weight:700}
-.pg{display:none;flex:1;overflow-y:auto;padding:16px}
-.pg.on{display:flex;flex-direction:column}
-.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.scard{background:#1e293b;border:2px solid #334155;border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all .15s}
-.scard:active{border-color:#f59e0b;background:#1e3a5f;transform:scale(.97)}
-.scard .ic{font-size:36px;margin-bottom:6px}
-.scard .ti{font-size:14px;font-weight:600;color:#e2e8f0}
-.scard .de{font-size:11px;color:#94a3b8;margin-top:3px}
-.carea{flex:1;overflow-y:auto;padding:4px;display:flex;flex-direction:column;gap:8px}
-.msg{max-width:82%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.55;word-break:break-word}
-.ai{background:#2563eb;color:#fff;align-self:flex-start;border-bottom-left-radius:4px}
-.usr{background:#334155;color:#e2e8f0;align-self:flex-end;border-bottom-right-radius:4px}
-.sys{background:#f59e0b;color:#0f172a;align-self:center;font-size:11px;padding:5px 10px;border-radius:20px;font-weight:600}
-.hint{font-size:11px;opacity:.8;margin-top:4px;font-style:italic}
-.alt{font-size:11px;opacity:.6;margin-top:4px}
-.inp{padding:8px 12px;border-top:1px solid #334155;background:#1e293b;display:flex;gap:8px}
-.inp input{flex:1;padding:12px 16px;border:1px solid #334155;border-radius:24px;font-size:15px;outline:none;background:#0f172a;color:#e2e8f0}
-.inp input::placeholder{color:#64748b}
-.inp button{background:#f59e0b;color:#0f172a;border:none;width:42px;height:42px;border-radius:50%;font-size:18px;cursor:pointer;font-weight:700}
-.cat{margin-bottom:14px}
-.cat h3{font-size:13px;color:#f59e0b;margin-bottom:8px;border-bottom:1px solid #334155;padding-bottom:4px}
-.pi{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:10px 12px;margin-bottom:6px;cursor:pointer;transition:all .1s;display:flex;align-items:center;justify-content:space-between}
-.pi:active{background:#1e3a5f;border-color:#f59e0b}
-.pi .left{flex:1}
-.pi .en{font-size:13px;font-weight:500}
-.pi .cn{font-size:11px;color:#94a3b8;margin-top:2px}
-.pi .spk{background:none;border:none;font-size:18px;cursor:pointer;color:#94a3b8;padding:4px 6px;border-radius:50%;transition:all .1s;flex-shrink:0}
-.pi .spk:active{color:#f59e0b;background:#1e3a5f}
-.pi .cpy{background:none;border:none;font-size:14px;cursor:pointer;color:#94a3b8;padding:4px 6px;border-radius:50%;transition:all .1s;flex-shrink:0}
-.pi .cpy:active{color:#f59e0b;background:#1e3a5f}
-.sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.sc{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px;text-align:center}
-.sc .n{font-size:30px;font-weight:700;color:#f59e0b}
-.sc .l{font-size:11px;color:#94a3b8;margin-top:4px}
-.bnav{display:flex;background:#1e293b;border-top:1px solid #334155;padding:8px 0}
-.bnav div{flex:1;text-align:center;padding:8px 0;cursor:pointer;font-size:12px;color:#94a3b8}
-.bnav div.on{color:#f59e0b;font-weight:600}
-.back{background:none;border:none;font-size:20px;cursor:pointer;color:#f59e0b;margin-right:8px}
-.btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
-.btns button{background:#1e3a5f;color:#e2e8f0;border:1px solid #334155;border-radius:16px;padding:4px 10px;font-size:11px;cursor:pointer}
-.btns button:active{background:#2563eb;border-color:#2563eb}
-.bnav.hide{display:none}
-@media(max-width:480px){.sgrid{grid-template-columns:1fr}}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column}
+
+/* Header */
+.header{background:linear-gradient(135deg,#f59e0b,#d97706);padding:16px 20px;display:flex;align-items:center;gap:10px}
+.header h1{font-size:20px;font-weight:700;color:#0f172a;flex:1}
+.header span{font-size:12px;color:#78350f;background:rgba(0,0,0,.1);padding:2px 8px;border-radius:10px}
+
+/* Pages */
+.page{display:none;flex:1;flex-direction:column;padding:16px 16px 0}
+.page.active{display:flex}
+
+/* Topic Grid */
+.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;padding-bottom:16px}
+.topic-card{background:linear-gradient(145deg,#1e293b,#1a2332);border:1.5px solid #334155;border-radius:16px;padding:20px 12px;text-align:center;cursor:pointer;transition:all .15s}
+.topic-card:active{border-color:#f59e0b;background:#1e3a5f;transform:scale(.97)}
+.topic-card .icon{font-size:36px;margin-bottom:8px}
+.topic-card .title{font-size:14px;font-weight:600}
+.topic-card .desc{font-size:11px;color:#94a3b8;margin-top:4px}
+
+/* Phrase Panel */
+.phrase-panel{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-bottom:16px}
+.phrase-card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:14px;cursor:pointer;transition:all .12s}
+.phrase-card:active{border-color:#f59e0b;background:#1e3a5f}
+.phrase-card .en{font-size:14px;font-weight:500;margin-bottom:6px}
+.phrase-card .cn{font-size:11px;color:#94a3b8}
+.phrase-card .actions{display:flex;gap:6px;margin-top:8px;justify-content:flex-end}
+.phrase-card .actions button{background:#334155;border:none;border-radius:6px;padding:4px 8px;font-size:11px;cursor:pointer;color:#cbd5e1;transition:all .1s}
+.phrase-card .actions button:active{background:#f59e0b;color:#0f172a}
+
+/* Chat */
+.chat-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.chat-header .back-btn{background:none;border:none;font-size:24px;cursor:pointer;color:#94a3b8;padding:4px}
+.chat-header .back-btn:active{color:#f59e0b}
+.chat-area{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px 0}
+.msg{max-width:85%;padding:12px 16px;border-radius:18px;font-size:15px;line-height:1.6;word-break:break-word}
+.msg.ai{background:#2563eb;color:#fff;align-self:flex-start;border-bottom-left-radius:4px}
+.msg.ai .hint{font-size:12px;opacity:.75;margin-top:6px;font-style:italic}
+.msg.usr{background:#334155;color:#e2e8f0;align-self:flex-end;border-bottom-right-radius:4px}
+.msg.sys{background:rgba(245,158,11,.15);color:#fbbf24;align-self:center;font-size:12px;padding:6px 14px;border-radius:20px;font-weight:500}
+.chat-input{padding:12px 0;display:flex;gap:8px;align-items:center}
+.chat-input input{flex:1;padding:14px 18px;border:1.5px solid #334155;border-radius:28px;font-size:16px;outline:none;background:#0f172a;color:#e2e8f0}
+.chat-input input:focus{border-color:#f59e0b}
+.chat-input input::placeholder{color:#64748b}
+.chat-input button{background:#f59e0b;color:#0f172a;border:none;width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer;font-weight:700;transition:all .1s}
+.chat-input button:active{transform:scale(.92)}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.stat-card{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:20px;text-align:center}
+.stat-card .num{font-size:28px;font-weight:700;color:#f59e0b}
+.stat-card .label{font-size:12px;color:#94a3b8;margin-top:6px}
+
+/* Bottom Nav */
+.bottom-nav{display:flex;background:#1e293b;border-top:1px solid #334155;padding:8px 0;flex-shrink:0}
+.bottom-nav .nav-item{flex:1;text-align:center;padding:10px 0;cursor:pointer;font-size:12px;color:#64748b;transition:all .1s}
+.bottom-nav .nav-item.active{color:#f59e0b;font-weight:600}
+.bottom-nav .nav-item:active{color:#fbbf24}
+
+/* Category Headers */
+.cat-header{font-size:14px;font-weight:600;color:#f59e0b;margin:16px 0 8px 4px;border-bottom:1px solid #334155;padding-bottom:6px}
+
+/* Section title */
+.section-title{font-size:18px;font-weight:600;margin-bottom:4px}
+.section-sub{font-size:12px;color:#94a3b8;margin-bottom:12px}
+
+/* Toast */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#334155;color:#e2e8f0;padding:8px 16px;border-radius:20px;font-size:13px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:99}
+.toast.show{opacity:1}
+
+/* Tab switching in phrase page */
+.tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tab-btn{background:#1e293b;border:1px solid #334155;border-radius:20px;padding:6px 14px;font-size:12px;cursor:pointer;color:#94a3b8;transition:all .1s}
+.tab-btn.active{background:#f59e0b;color:#0f172a;border-color:#f59e0b;font-weight:600}
+.tab-btn:active{transform:scale(.95)}
+.phrase-group{display:none}
+.phrase-group.active{display:block}
+
+@media(max-width:480px){
+  .topic-grid{grid-template-columns:1fr 1fr}
+  .phrase-panel{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<div class="hdr"><h1>✈️ 高中觀光英文</h1></div>
 
-<div class="pg on" id="p0">
-<h2 style="font-size:16px;margin-bottom:4px">選擇情境</h2>
-<p style="font-size:12px;color:#94a3b8">選一個觀光場景開始對話練習</p>
-<div class="sgrid" id="sg"></div>
+<div class="header">
+  <h1>✈️ 高中觀光英文</h1>
+  <span>互動練習</span>
 </div>
 
-<div class="pg" id="p1">
-<div style="display:flex;align-items:center;border-bottom:1px solid #334155;padding-bottom:8px;margin-bottom:8px">
-<button class="back" onclick="go(0)">←</button>
-<div><div id="ct" style="font-size:14px;font-weight:600"></div><div id="cs" style="font-size:11px;color:#94a3b8"></div></div>
-</div>
-<div class="carea" id="ca"></div>
-<div class="inp"><input type="text" id="ui" placeholder="輸入英文..." onkeydown="if(event.key==='Enter')send()"><button onclick="send()">➤</button></div>
+<!-- Page 0: Topics -->
+<div class="page active" id="page-topics">
+  <div class="section-title">選擇情境</div>
+  <div class="section-sub">選一個場景開始對話練習</div>
+  <div class="topic-grid" id="topic-grid"></div>
 </div>
 
-<div class="pg" id="p2">
-<h2 style="font-size:16px;margin-bottom:12px">觀光實用句型</h2>
-<div id="pl"></div>
+<!-- Page 1: Chat -->
+<div class="page" id="page-chat">
+  <div class="chat-header">
+    <button class="back-btn" onclick="goTopics()">‹</button>
+    <div>
+      <div id="chat-title" style="font-size:16px;font-weight:600"></div>
+      <div id="chat-sub" style="font-size:12px;color:#94a3b8"></div>
+    </div>
+  </div>
+  <div class="chat-area" id="chat-area"></div>
+  <div class="chat-input">
+    <input type="text" id="chat-input" placeholder="輸入英文句子..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button onclick="sendMsg()">➤</button>
+  </div>
 </div>
 
-<div class="pg" id="p3">
-<h2 style="font-size:16px;margin-bottom:12px">學習進度</h2>
-<div class="sgrid2">
-<div class="sc"><div class="n" id="s1">0</div><div class="l">練習次數</div></div>
-<div class="sc"><div class="n" id="s2">0</div><div class="l">句子數</div></div>
-<div class="sc"><div class="n" id="s3">0</div><div class="l">連續天數</div></div>
-<div class="sc"><div class="n" id="s4">0</div><div class="l">已學句型</div></div>
-</div>
+<!-- Page 2: Phrases -->
+<div class="page" id="page-phrases">
+  <div class="section-title">📚 實用句型</div>
+  <div class="section-sub">點擊 🔊 聽發音 · 點擊 📋 複製</div>
+  <div class="tabs" id="phrase-tabs"></div>
+  <div id="phrase-content"></div>
 </div>
 
-<div class="bnav" id="bnav">
-<div class="on" onclick="go(0)">🎯情境</div>
-<div onclick="go(2)">📚句型</div>
-<div onclick="go(3)">📊進度</div>
+<!-- Page 3: Stats -->
+<div class="page" id="page-stats">
+  <div class="section-title">📊 學習進度</div>
+  <div class="section-sub">你的觀光英文練習記錄</div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num" id="stat-practice">0</div><div class="label">練習次數</div></div>
+    <div class="stat-card"><div class="num" id="stat-sentences">0</div><div class="label">句子數</div></div>
+    <div class="stat-card"><div class="num" id="stat-streak">0</div><div class="label">連續天數</div></div>
+    <div class="stat-card"><div class="num" id="stat-learned">0</div><div class="label">已學句型</div></div>
+  </div>
+  <p style="font-size:12px;color:#64748b;text-align:center;margin-top:4px">練習越多，累積越多 💪</p>
 </div>
+
+<!-- Bottom Nav -->
+<div class="bottom-nav">
+  <div class="nav-item active" data-page="topics" onclick="switchPage('topics')">🎯 情境</div>
+  <div class="nav-item" data-page="phrases" onclick="switchPage('phrases')">📚 句型</div>
+  <div class="nav-item" data-page="stats" onclick="switchPage('stats')">📊 進度</div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-var S=[
-{id:"a",ic:"✈️",ti:"機場報到",de:"Check-in at airport",g:"Good morning! Welcome to check-in. May I see your passport and booking reference, please?",gc:"早安！歡迎辦理報到，請出示護照和訂位代號。"},
-{id:"b",ic:"🛂",ti:"海關通關",de:"Going through customs",g:"Good morning. Passport and boarding pass, please. What is the purpose of your visit? How long will you be staying?",gc:"早安，請出示護照和登機證。請問來訪目的？要待多久？"},
-{id:"c",ic:"🏨",ti:"飯店入住",de:"Hotel check-in",g:"Good evening! Welcome to Grand International Hotel. Do you have a reservation with us? Under what name?",gc:"晚安！歡迎來到大國際飯店，請問有訂房嗎？用什麼名字訂的？"},
-{id:"d",ic:"🍽️",ti:"餐廳點餐",de:"Ordering at a restaurant",g:"Welcome to our restaurant! Here is the menu. Are you ready to order, or would you like a few more minutes?",gc:"歡迎！這是菜單，您準備好點餐了嗎，還是需要再看一下？"},
-{id:"e",ic:"🚕",ti:"叫計程車",de:"Taking a taxi",g:"Good day! Where would you like to go? Do you have luggage you need help with?",gc:"你好！你要去哪裡？需要幫忙搬行李嗎？"},
-{id:"f",ic:"🗺️",ti:"問路指引",de:"Asking for directions",g:"Hi! Are you looking for something? I know this area pretty well. Where are you trying to go?",gc:"嗨！你在找地方嗎？我對這區域很熟，你想去哪裡？"},
-{id:"g",ic:"🛍️",ti:"購物逛街",de:"Shopping for souvenirs",g:"Welcome! Feel free to look around. Are you shopping for yourself or looking for gifts to take home?",gc:"歡迎！隨便看看。是買給自己還是要帶回去的禮物？"},
-{id:"h",ic:"🆘",ti:"緊急狀況",de:"Emergency situation",g:"What kind of emergency do you have? Please stay calm and tell me what happened.",gc:"什麼樣的緊急狀況？請保持冷靜，告訴我發生什麼事。"},
-{id:"i",ic:"🚆",ti:"買車票",de:"Buying train tickets",g:"Hello! Where are you heading to? Would you like a one-way or a round-trip ticket?",gc:"你好！你要去哪裡？單程票還是來回票？"},
-{id:"j",ic:"🎫",ti:"導覽景點",de:"Sightseeing tour",g:"Good morning, everyone! Welcome to today's sightseeing tour. I will be your tour guide. Are there any questions before we start?",gc:"大家早安！歡迎參加今天的導覽，我是你們的導遊，出發前有問題嗎？"}
+// ========== DATA ==========
+var topics = [
+  {id:"a", icon:"✈️", title:"機場報到", desc:"Check-in at airport",
+   greeting:"Good morning! Welcome to check-in. May I see your passport and booking reference, please?",
+   hint:"早安！歡迎辦理報到，請出示護照和訂位代號。"},
+  {id:"b", icon:"🛂", title:"海關通關", desc:"Going through customs",
+   greeting:"Good morning. Passport and boarding pass, please. What is the purpose of your visit?",
+   hint:"早安，請出示護照和登機證。請問來訪目的？"},
+  {id:"c", icon:"🏨", title:"飯店入住", desc:"Hotel check-in",
+   greeting:"Good evening! Welcome to Grand International Hotel. Do you have a reservation?",
+   hint:"晚安！歡迎來到大國際飯店，請問有訂房嗎？"},
+  {id:"d", icon:"🍽️", title:"餐廳點餐", desc:"Ordering at a restaurant",
+   greeting:"Welcome to our restaurant! Here is the menu. Are you ready to order?",
+   hint:"歡迎！這是菜單，您準備好點餐了嗎？"},
+  {id:"e", icon:"🚕", title:"叫計程車", desc:"Taking a taxi",
+   greeting:"Good day! Where would you like to go? Do you need help with your luggage?",
+   hint:"你好！你要去哪裡？需要幫忙搬行李嗎？"},
+  {id:"f", icon:"🗺️", title:"問路指引", desc:"Asking for directions",
+   greeting:"Hi! Are you looking for something? I know this area well. Where are you going?",
+   hint:"嗨！你在找地方嗎？我對這很熟，你想去哪裡？"},
+  {id:"g", icon:"🛍️", title:"購物逛街", desc:"Shopping",
+   greeting:"Welcome! Feel free to look around. Are you shopping for yourself or for gifts?",
+   hint:"歡迎！隨便看看。買給自己還是禮物？"},
+  {id:"h", icon:"🆘", title:"緊急狀況", desc:"Emergency",
+   greeting:"What kind of emergency? Please stay calm and tell me what happened.",
+   hint:"什麼狀況？請保持冷靜，告訴我發生什麼事。"},
+  {id:"i", icon:"🚆", title:"買車票", desc:"Buying train tickets",
+   greeting:"Hello! Where are you heading? One-way or round-trip?",
+   hint:"你好！要去哪裡？單程還是來回？"},
+  {id:"j", icon:"🎫", title:"導覽景點", desc:"Sightseeing tour",
+   greeting:"Good morning everyone! Welcome to today's tour. I'll be your guide.",
+   hint:"大家早安！歡迎參加今天的導覽，我是你們的導遊。"}
 ];
 
-var P=[
-{cat:"機場用語 Airport",items:[
-{en:"Where is the check-in counter for China Airlines?",cn:"華航的報到櫃檯在哪裡？"},
-{en:"I would like to check in two suitcases.",cn:"我要託運兩個行李箱。"},
-{en:"What is the weight limit for carry-on luggage?",cn:"手提行李限重多少？"},
-{en:"Which gate should I go to?",cn:"我應該去哪個登機門？"},
-{en:"What time does boarding start?",cn:"什麼時候開始登機？"},
-{en:"My flight has been delayed.",cn:"我的航班延誤了。"}
-]},
-{cat:"飯店住宿 Hotel",items:[
-{en:"I have a reservation under the name Chen.",cn:"我用陳這個名字訂了房。"},
-{en:"Could I have a wake-up call at 7:00 AM?",cn:"可以早晨七點叫我起床嗎？"},
-{en:"Is breakfast included?",cn:"含早餐嗎？"},
-{en:"What time is check-out?",cn:"幾點退房？"},
-{en:"The air conditioner is not working.",cn:"冷氣壞掉了。"},
-{en:"Could you keep my luggage until I check out?",cn:"退房前可以寄放行李嗎？"}
-]},
-{cat:"餐廳用餐 Restaurant",items:[
-{en:"I would like to make a reservation for 6:30.",cn:"我要訂晚上六點半的位。"},
-{en:"What is the chef's special?",cn:"主廚推薦是什麼？"},
-{en:"Can I see the dessert menu?",cn:"甜品菜單可以給我看嗎？"},
-{en:"Medium-rare, please.",cn:"五分熟，謝謝。"},
-{en:"Could we have the bill, please?",cn:"可以結帳了嗎？"},
-{en:"Do you accept credit cards?",cn:"信用卡可以嗎？"}
-]},
-{cat:"交通用語 Transportation",items:[
-{en:"How long does it take to get there?",cn:"到那邊要多久？"},
-{en:"Please take me to the train station.",cn:"請載我去火車站。"},
-{en:"Is there a bus that goes to the city center?",cn:"有去市中心的公車嗎？"},
-{en:"Where can I rent a bike?",cn:"哪裡可以租腳踏車？"},
-{en:"Does this train stop at Taipei Main Station?",cn:"這班車有停台北車站嗎？"},
-{en:"Excuse me, am I on the right bus for the airport?",cn:"請問這公車是去機場的嗎？"}
-]},
-{cat:"購物 Shopping",items:[
-{en:"How much is this?",cn:"這個多少錢？"},
-{en:"Do you have this in a larger size?",cn:"有更大的尺寸嗎？"},
-{en:"Can I try this on?",cn:"我可以試穿嗎？"},
-{en:"Is there any discount?",cn:"有折扣嗎？"},
-{en:"I will take it.",cn:"我要買這個。"},
-{en:"Do you offer tax refund for tourists?",cn:"有觀光客退稅嗎？"}
-]},
-{cat:"緊急與健康 Emergency",items:[
-{en:"I need to see a doctor.",cn:"我需要看醫生。"},
-{en:"I think I lost my wallet.",cn:"我的錢包好像不見了。"},
-{en:"Where is the nearest pharmacy?",cn:"最近的藥局在哪裡？"},
-{en:"I am allergic to peanuts.",cn:"我對花生過敏。"},
-{en:"Please call the police.",cn:"請幫我報警。"},
-{en:"I feel sick. Is there a hospital nearby?",cn:"我覺得不舒服，附近有醫院嗎？"}
-]},
-{cat:"觀光對話實用句",items:[
-{en:"Could you speak more slowly, please?",cn:"可以說慢一點嗎？"},
-{en:"I am sorry, I don't understand.",cn:"不好意思，我聽不懂。"},
-{en:"How do you say this in Chinese?",cn:"這個中文怎麼說？"},
-{en:"Could you take a picture for us?",cn:"可以幫我們拍照嗎？"},
-{en:"Where is the restroom?",cn:"洗手間在哪？"},
-{en:"Thank you very much. You've been very helpful.",cn:"非常感謝你，幫了大忙"}
-]}
+var categories = [
+  {id:"airport", name:"✈️ 機場", phrases:[
+    "Where is the check-in counter for China Airlines?",
+    "I would like to check in two suitcases.",
+    "What is the weight limit for carry-on luggage?",
+    "Which gate should I go to?",
+    "What time does boarding start?",
+    "My flight has been delayed.",
+    "Is this the right line for boarding?",
+    "Can I have a window seat, please?"
+  ]},
+  {id:"hotel", name:"🏨 飯店", phrases:[
+    "I have a reservation under the name Chen.",
+    "Could I have a wake-up call at 7 AM?",
+    "Is breakfast included?",
+    "What time is check-out?",
+    "The air conditioner is not working.",
+    "Can you keep my luggage until checkout?",
+    "Is there Wi-Fi in the room?",
+    "Could I get an extra towel, please?"
+  ]},
+  {id:"restaurant", name:"🍽️ 餐廳", phrases:[
+    "I would like to make a reservation for 6:30.",
+    "What is the chef's special?",
+    "Can I see the dessert menu?",
+    "Medium-rare, please.",
+    "Could we have the bill, please?",
+    "Do you accept credit cards?",
+    "Can I have the check?",
+    "This is delicious! What is it called?"
+  ]},
+  {id:"transport", name:"🚆 交通", phrases:[
+    "How long does it take to get there?",
+    "Please take me to the train station.",
+    "Is there a bus to the city center?",
+    "Where can I rent a bike?",
+    "Does this train stop at Taipei Main Station?",
+    "Am I on the right bus for the airport?",
+    "How much is a one-way ticket?",
+    "Which platform should I go to?"
+  ]},
+  {id:"shopping", name:"🛍️ 購物", phrases:[
+    "How much is this?",
+    "Do you have this in a larger size?",
+    "Can I try this on?",
+    "Is there any discount?",
+    "I will take it.",
+    "Do you offer tax refund for tourists?",
+    "Can I pay with credit card?",
+    "Could you wrap it as a gift, please?"
+  ]},
+  {id:"emergency", name:"🆘 緊急", phrases:[
+    "I need to see a doctor.",
+    "I think I lost my wallet.",
+    "Where is the nearest pharmacy?",
+    "I am allergic to peanuts.",
+    "Please call the police.",
+    "I feel sick. Is there a hospital nearby?",
+    "I need an ambulance, please!",
+    "Can you help me? I'm lost."
+  ]},
+  {id:"general", name:"💬 實用", phrases:[
+    "Could you speak more slowly, please?",
+    "I'm sorry, I don't understand.",
+    "How do you say this in English?",
+    "Could you take a picture for us?",
+    "Where is the restroom?",
+    "Thank you very much. You've been very helpful.",
+    "Excuse me, could you help me?",
+    "What does this word mean?"
+  ]}
 ];
 
-var cur=null,hist=[],st={ss:0,sn:0,sk:0,ld:"",h:[]};
-try{var d=localStorage.getItem("te6");if(d)st=JSON.parse(d);}catch(e){}
+// ========== STATE ==========
+var stats = {practice:0, sentences:0, streak:0, lastDate:"", learnedIds:[]};
+try {
+  var saved = localStorage.getItem("travelEngStats");
+  if (saved) stats = JSON.parse(saved);
+} catch(e) {}
 
-function go(n){
-document.querySelectorAll(".pg").forEach(function(p){p.classList.remove("on")});
-document.querySelectorAll(".bnav div").forEach(function(d){d.classList.remove("on")});
-document.getElementById("p"+n).classList.add("on");
-var bnav=document.getElementById("bnav");
-if(n===1){bnav.classList.add("hide");}else{bnav.classList.remove("hide");}
-var navs=[].slice.call(document.querySelectorAll(".bnav div"));
-var map=[0,2,3][n]||n;
-if(navs[map])navs[map].classList.add("on");
-}
+var currentTopic = null;
+var chatHistory = [];
+var learnedThisSession = [];
 
-function init(){
-var g=document.getElementById("sg");
-g.innerHTML=S.map(function(s){
-return "<div class=\"scard\" onclick=\"start('" + s.id + "')\"><div class=\"ic\">" + s.ic + "</div><div class=\"ti\">" + s.ti + "</div><div class=\"de\">" + s.de + "</div></div>";
-}).join("");
-var pl=document.getElementById("pl");
-pl.innerHTML=P.map(function(p){
-return "<div class=\"cat\"><h3>" + p.cat + "</h3>" + p.items.map(function(q){
-var enEsc=q.en.replace(/'/g,"\\'").replace(/"/g,"&quot;");
-return "<div class=\"pi\" data-en=\"" + enEsc + "\"><div class=\"left\"><div class=\"en\">" + q.en + "</div><div class=\"cn\">" + (q.cn||"") + "</div></div><div style=\"display:flex;gap:4px;align-items:center\"><button class=\"spk\" onclick=\"speak(this.parentElement.parentElement.dataset.en)\" title=\"聽發音\">🔊</button><button class=\"cpy\" onclick=\"copy(this.parentElement.parentElement.dataset.en)\" title=\"複製\">📋</button></div></div>";
-}).join("") + "</div>";
-}).join("");
-loadStats();
+// ========== INIT ==========
+function init() {
+  renderTopics();
+  renderPhrases();
+  updateStatsUI();
 }
 
-function start(id){
-if(typeof id==="undefined")return;
-var m=null;
-for(var i=0;i<S.length;i++){if(S[i].id===id){m=S[i];break;}}
-if(!m)return;
-cur=m;
-hist=[];
-document.getElementById("ct").textContent=m.ic+" "+m.ti;
-document.getElementById("cs").textContent=m.gc;
-document.getElementById("ca").innerHTML="";
-if(!st.ss&&st.ss!==0)st={ss:0,sn:0,sk:0,ld:"",h:[]};
-st.ss++;
-save();
-go(1);
-addAI(m.g,m.gc);
-document.getElementById("ui").focus();
+// ========== TOPICS ==========
+function renderTopics() {
+  var grid = document.getElementById("topic-grid");
+  grid.innerHTML = topics.map(function(t) {
+    return '<div class="topic-card" onclick="startChat(\''+t.id+'\')">' +
+      '<div class="icon">'+t.icon+'</div>' +
+      '<div class="title">'+t.title+'</div>' +
+      '<div class="desc">'+t.desc+'</div>' +
+      '</div>';
+  }).join("");
 }
 
-function addAI(t,cn){
-var d=document.createElement("div");
-d.className="msg ai";
-d.innerHTML=t+(cn?"<div class=\"hint\">"+cn+"</div>":"");
-document.getElementById("ca").appendChild(d);
-document.getElementById("ca").scrollTop=document.getElementById("ca").scrollHeight;
+// ========== CHAT ==========
+function startChat(id) {
+  var t = topics.find(function(x){return x.id===id});
+  if (!t) return;
+  currentTopic = t;
+  chatHistory = [];
+  document.getElementById("chat-title").textContent = t.icon + " " + t.title;
+  document.getElementById("chat-sub").textContent = t.desc;
+  document.getElementById("chat-area").innerHTML = "";
+  stats.practice++;
+  saveStats();
+  switchPage("chat", true);
+  addAIMsg(t.greeting, t.hint);
+  setTimeout(function(){document.getElementById("chat-input").focus();}, 200);
 }
 
-function addU(t){
-var d=document.createElement("div");
-d.className="msg usr";
-d.textContent=t;
-document.getElementById("ca").appendChild(d);
-document.getElementById("ca").scrollTop=document.getElementById("ca").scrollHeight;
+function sendMsg() {
+  var inp = document.getElementById("chat-input");
+  var text = inp.value.trim();
+  if (!text) return;
+  inp.value = "";
+  addUserMsg(text);
+  stats.sentences++;
+  saveStats();
+  setTimeout(function(){respond(text);}, 400);
 }
 
-function addS(t){
-var d=document.createElement("div");
-d.className="msg sys";
-d.innerHTML=t;
-document.getElementById("ca").appendChild(d);
-document.getElementById("ca").scrollTop=document.getElementById("ca").scrollHeight;
+function addAIMsg(text, hint) {
+  var area = document.getElementById("chat-area");
+  var div = document.createElement("div");
+  div.className = "msg ai";
+  div.innerHTML = text + (hint ? '<div class="hint">💡 '+hint+'</div>' : "");
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
 }
 
-function send(){
-var inp=document.getElementById("ui");
-var t=inp.value.trim();
-if(!t)return;
-inp.value="";
-addU(t);
-st.sn++;
-save();
-setTimeout(function(){resp(t);},500);
+function addUserMsg(text) {
+  var area = document.getElementById("chat-area");
+  var div = document.createElement("div");
+  div.className = "msg usr";
+  div.textContent = text;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
 }
 
-function resp(t){
-var cn=/[\u4e00-\u9fff]/.test(t);
-var r,fb;
-if(cn){
-var tr={"你好":"Hello!","謝謝":"Thank you!","多少錢":"How much is it?","我要點餐":"I would like to order, please.","再見":"Goodbye!","這個":"This one, please.","可以便宜一點嗎":"Can you give me a discount?","我想要":"I would like...","有沒有":"Do you have...?","在哪裡":"Where is it?","我要":"I want...","好吃":"This is delicious."};
-r={t:tr[t]||("I want to say: " + t),c:"已翻譯你的中文"};
-if(!tr[t])fb="你可以直接輸入英文試試看！";
-}else{
-r=reply(t);
-fb=check(t);
-}
-addAI(r.t,r.c);
-if(fb)addS(fb);
+function addSysMsg(text) {
+  var area = document.getElementById("chat-area");
+  var div = document.createElement("div");
+  div.className = "msg sys";
+  div.textContent = text;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
 }
 
-function reply(t){
-var lo=t.toLowerCase();
-// 情境感知回覆 — 觀光
-if(/hello|hi|hey|greeting/.test(lo))return{t:"Hello! How can I help you with your travel today?",c:"你好！今天需要什麼旅遊協助？"};
-if(/please|can you help|need help|assist/.test(lo))return{t:"Of course! I would be happy to help. What do you need?",c:"當然！我很樂意幫忙，你需要什麼？"};
-if(/how much|price|cost|how many/.test(lo))return{t:"The total comes to $85.50 after tax. Would you like an itemized receipt?",c:"總共85.50美元含稅，需要收據明細嗎？"};
-if(/check.?in|reservation|book|under the name/.test(lo))return{t:"Let me look up your reservation. Yes, I have found it — one room for two nights. Is that correct?",c:"我來查您的訂房記錄，是的，我看到一間雙人房兩晚？"};
-if(/passport|customs|immigration|boarding/.test(lo))return{t:"Please place your bags on the scanner and walk through the metal detector. Do you have any liquids or electronics to declare?",c:"請把行李放上掃描器，走過金屬探測門，有液體或電子產品需要申報嗎？"};
-if(/menu|order|I would like|I want|dining/.test(lo))return{t:"Excellent choices! I recommend the grilled salmon. It comes with seasonal vegetables and a side salad.",c:"好選擇！推薦烤鮭魚，附時蔬和沙拉。"};
-if(/where|directions|how do I|how to get|nearest/.test(lo))return{t:"Keep going straight for about two blocks. You will see a big clock tower — the station is just behind it.",c:"往前直走兩條街，會看到大鐘樓，車站就在它後面。"};
-if(/souvenir|gift|buy|shopping|shirt/.test(lo))return{t:"We have a special collection of handmade items over on this side. They make perfect gifts, and yes, we offer tourist tax refund.",c:"這邊有限定手工紀念品，很適合當禮物，也有觀光退稅。"};
-if(/emergency|lost|steal|sick|help|doctor/.test(lo))return{t:"Please don't panic. I'm calling for medical assistance now. Can you tell me your name and any allergies?",c:"請別驚慌，我正在叫緊急醫療，請告訴我你的名字跟過敏史。"};
-if(/ticket|train|bus|one.?way|round.?trip/.test(lo))return{t:"That will be $12 for a one-way ticket to the city center. Boarding is at Platform 3.",c:"單程票市中心12美元，在三號月台上車。"};
-if(/wifi|internet|connection|app|download/.test(lo))return{t:"The password is printed on your room key card — or there's a free Wi-Fi zone on the first floor lobby.",c:"WiFi密碼在您的房卡上，或一樓大廳有免費Wi-Fi。"};
-if(/weather|sun|rain|umbrella/.test(lo))return{t:"It is a beautiful sunny day — around 78°F. A light jacket should be fine.",c:"今天天氣很棒，約合26°C，薄外套就夠了。"};
-if(/yes|yeah|ok|sure|no/.test(lo))return{t:"Great! Let me know if you need anything else.",c:"好的！有需要隨時跟我說。"};
-if(/bye|goodbye|see you|thank you/.test(lo))return{t:"Have a wonderful trip! Safe travels.",c:"祝你旅途愉快，一路平安！"};
-if(/what|when|how long|why/.test(lo))return{t:"That is a very common question among travelers — let me look it up for you.",c:"很多旅客也問這一點，幫您查一下。"};
-// 新增 10 組觀光常用語回覆
-if(/photo|camera|picture|take a picture/.test(lo))return{t:"Of course! Just stand over there by the fountain — say cheese!",c:"沒問題！站到噴泉那邊，說 Cheese！"};
-if(/bathroom|toilet|restroom|washroom/.test(lo))return{t:"The restroom is on the second floor, next to the information desk.",c:"洗手間在二樓，服務台旁邊。"};
-if(/room|key|room key|room card/.test(lo))return{t:"Here is your room key — Room 512 on the fifth floor. The elevator is to your right.",c:"這是您的房卡，512房在五樓，電梯在右手邊。"};
-if(/luggage|baggage|bag|bags|suitcase/.test(lo))return{t:"No problem! I can help you with those bags. The luggage cart is right over here.",c:"沒問題！我來幫您拿行李，行李推車就在這裡。"};
-if(/delay|cancel|overbook|refund|change/.test(lo))return{t:"I'm sorry about the inconvenience. Let me check alternative arrangements for you right away.",c:"抱歉造成不便，我立刻查詢替代方案。"};
-if(/vegetarian|vegan|allergy|allergic|diet/.test(lo))return{t:"We have a vegetarian set meal today. I will also note your allergy for the kitchen staff.",c:"今天有素食套餐，我也會告知廚房您的過敏資訊。"};
-if(/seat|table|window|aisle|smoking/.test(lo))return{t:"A window seat? Let me see what is available. How about Row 8, seat A — is that all right?",c:"靠窗座位？我來看看，第8排A座可以嗎？"};
-if(/card|credit card|pay|cash|payment|dollar/.test(lo))return{t:"We accept both cash and major credit cards. The total is $35.60. How would you like to pay?",c:"現金和主要信用卡都收，總共35.60美元，您想怎麼支付？"};
-if(/exchange|money|currency|rate|change money/.test(lo))return{t:"The currency exchange counter is in the arrival hall. Today's rate is 1 USD to 32.5 NTD.",c:"外幣兌換在入境大廳，今日匯率1美元兌32.5台幣。"};
-if(/lost|find|search|missing|look for/.test(lo))return{t:"Don't worry! Let me take you to the Lost & Found counter. Please describe what you lost.",c:"別擔心！我帶您去失物招領處，請描述您遺失的物品。"};
-if(/wait|how long|time|minute|hour/.test(lo))return{t:"The wait is approximately 15 minutes. I will call you when your table is ready.",c:"大約需要等候15分鐘，準備好位子我會叫您。"};
-if(/recommend|suggestion|popular|best/.test(lo))return{t:"I highly recommend the mango sticky rice — it's a local favorite! Would you like to try it?",c:"我強烈推薦芒果糯米飯，當地人最愛的！要試試嗎？"};
-if(/scenic|spot|attraction|must-see|landmark/.test(lo))return{t:"The night market and the old temple are must-see spots. I can give you a map if you like.",c:"夜市和古廟是必訪景點，我可以給您地圖。"};
-if(/photo|camera|picture|take.?a.?picture/.test(lo))return{t:"Of course! Stand over there by the fountain and say cheese!",c:"沒問題！站到噴泉那邊說 Cheese！"};
-if(/bathroom|toilet|restroom|washroom/.test(lo))return{t:"The restroom is on the second floor, next to the information desk.",c:"洗手間在二樓，服務台旁邊。"};
-if(/room.?key|room.?card|key.?card/.test(lo))return{t:"Here is your room key — Room 512 on the fifth floor.",c:"這是您的房卡，512房在五樓。"};
-if(/luggage|baggage|bag|bags|suitcase/.test(lo))return{t:"No problem! Let me help you with those bags. The luggage cart is right here.",c:"沒問題！我幫您拿行李，行李推車就在這裡。"};
-if(/delay|cancel|refund|change|delay/.test(lo))return{t:"I'm sorry about the inconvenience. Let me check alternative arrangements.",c:"抱歉造成不便，我立刻查詢替代方案。"};
-if(/vegetarian|vegan|allergy|allergic|diet/.test(lo))return{t:"We have a vegetarian set meal today. I will also note your allergy to the kitchen.",c:"今天有素食套餐，我也會告知廚房您的過敏資訊。"};
-if(/seat|table|window|aisle|smoking/.test(lo))return{t:"A window seat? Let me check — Row 8, seat A is available!",c:"靠窗座位？第8排A座可以！"};
-if(/credit.?card|pay|cash|payment|dollar/.test(lo))return{t:"We accept both cash and major credit cards. The total is $35.60. How would you like to pay?",c:"現金和信用卡都收，總共35.60美元，您想怎麼支付？"};
-if(/exchange|money|currency|rate|change.?money/.test(lo))return{t:"The currency exchange counter is in the arrival hall. Today the rate is 1 USD to 32.5 NTD.",c:"外幣兌換在入境大廳，今日匯率1美元兌32.5台幣。"};
-if(/wait|how.?long|minute|hour|time/.test(lo))return{t:"The wait is approximately 15 minutes. I will call you when your table is ready.",c:"大約等15分鐘，準備好會叫您。"};
-if(/recommend|suggestion|popular|best|favorite/.test(lo))return{t:"I highly recommend the mango sticky rice — it's a local favorite! Would you like to try it?",c:"我強烈推薦芒果糯米飯，當地人最愛！要試試嗎？"};
-if(/scenic|spot|attraction|must.?see|landmark/.test(lo))return{t:"The night market and the old temple are must-see spots! I can give you a map.",c:"夜市和古廟是必訪景點，我可以給您地圖。"};
-if(/lost|find|search|missing/.test(lo))return{t:"Don't worry! Let me take you to the Lost & Found counter. Please describe what you lost.",c:"別擔心！我帶您去失物招領處，請描述您遺失的物品。"};return{t:"Interesting! Tell me more about that — I'm ready to help.",c:"有意思，跟我多說一點，我在聽。"};
+function respond(text) {
+  var isCn = /[\u4e00-\u9fff]/.test(text);
+  var reply, feedback;
+
+  if (isCn) {
+    // Quick Chinese → English translation map
+    var dict = {
+      "你好":"Hello!", "謝謝":"Thank you!", "多少錢":"How much is it?",
+      "我要點餐":"I'd like to order, please.", "再見":"Goodbye!",
+      "可以便宜嗎":"Can you give me a discount?",
+      "我想要":"I would like...", "有沒有":"Do you have...?",
+      "在哪裡":"Where is it?", "幫我":"Could you help me?",
+      "這個":"This one, please.", "好吃":"This is delicious!",
+      "對不起":"I'm sorry.", "請問":"Excuse me..."
+    };
+    var matched = false;
+    for (var key in dict) {
+      if (text.indexOf(key) !== -1) {
+        reply = dict[key];
+        addAIMsg(reply, "對應的英文是："+reply);
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) {
+      addAIMsg("Try saying it in English! I'll help you.", "試試用英文說，我會幫你！");
+    }
+    addSysMsg("💡 試試用英文回答看看！");
+    feedback = true;
+  } else {
+    var lo = text.toLowerCase();
+    var hasGood = checkGrammar(text);
+    if (hasGood !== false) {
+      feedback = hasGood;
+    }
+    // Context-aware replies
+         if (/hello|hi|hey/.test(lo))  reply = {t:"Hello! How can I help you with your trip?", h:"你好！有什麼旅遊問題需要協助？"}
+    else if (/thank|thanks/.test(lo)) reply = {t:"You're welcome! Have a wonderful day!", h:"不客氣！祝你有美好的一天！"}
+    else if (/bye|goodbye|see you/.test(lo)) reply = {t:"Goodbye! Safe travels and enjoy your trip!", h:"再見！旅途愉快！"}
+    else if (/please|help|can you/.test(lo)) reply = {t:"Of course! I'm happy to help. What do you need?", h:"當然！我很樂意幫忙，你需要什麼？"}
+    else if (/how much|price|cost/.test(lo)) reply = {t:"The total comes to $85.50 after tax. Would you like a receipt?", h:"含稅總共85.50美元，需要收據嗎？"}
+    else if (/passport|customs|immigration/.test(lo)) reply = {t:"Please put your bags on the scanner and walk through. Any liquids or electronics to declare?", h:"請放行李過掃描器，有液體或電子產品要申報嗎？"}
+    else if (/menu|order|i('d| would) like|i want/.test(lo)) reply = {t:"Great choices! I recommend the grilled salmon with vegetables.", h:"好選擇！推薦烤鮭魚附時蔬。"}
+    else if (/where|direction|how (do|can) i/.test(lo)) reply = {t:"Go straight for two blocks. You'll see a big tower — the station is behind it.", h:"直走兩條街，看到大塔樓，車站就在後面。"}
+    else if (/souvenir|gift|buy|shopping/.test(lo)) reply = {t:"We have handmade items here. They make great gifts! We also offer tax refund.", h:"這邊有限定手工紀念品，很適合當禮物，也有退稅。"}
+    else if (/emergency|lost|sick|doctor|help!/.test(lo)) reply = {t:"Stay calm. I'm calling for medical help. Tell me your name and any allergies.", h:"保持冷靜，我正在叫醫療協助。告訴我名字和過敏史。"}
+    else if (/ticket|train|bus|one.?way/.test(lo)) reply = {t:"That's $12 for a one-way ticket to the city center. Boarding at Platform 3.", h:"單程票市中心12美元，三號月台上車。"}
+    else if (/wifi|internet|password/.test(lo)) reply = {t:"The Wi-Fi password is on your room key card. Or use the free Wi-Fi in the lobby.", h:"WiFi密碼在房卡上，或大廳有免費Wi-Fi。"}
+    else if (/weather|rain|sun|umbrella/.test(lo)) reply = {t:"It's a beautiful sunny day — around 78°F. A light jacket should be fine.", h:"今天天氣很棒，約26°C，薄外套就夠了。"}
+    else if (/photo|camera|picture/.test(lo)) reply = {t:"Of course! Stand by the fountain — say cheese!", h:"沒問題！站到噴泉那邊說Cheese！"}
+    else if (/restroom|bathroom|toilet/.test(lo)) reply = {t:"The restroom is on the second floor, next to the information desk.", h:"洗手間在二樓，服務台旁邊。"}
+    else if (/room.?key|key.?card/.test(lo)) reply = {t:"Here's your key card — Room 512, fifth floor. Elevator is to your right.", h:"這是您的房卡，512房在五樓，電梯在右手邊。"}
+    else if (/luggage|baggage|suitcase/.test(lo)) reply = {t:"Let me help you with those. The luggage cart is right here.", h:"我來幫您拿，行李推車就在這裡。"}
+    else if (/delay|cancel|change|refund/.test(lo)) reply = {t:"I'm sorry for the inconvenience. Let me check alternatives for you.", h:"抱歉造成不便，我立刻查詢替代方案。"}
+    else if (/vegetarian|vegan|allergy|diet/.test(lo)) reply = {t:"We have a vegetarian set meal today. I'll note your allergy for the kitchen.", h:"今天有素食套餐，我會告知廚房您的過敏資訊。"}
+    else if (/seat|table|window|aisle/.test(lo)) reply = {t:"A window seat? Row 8, seat A — that's available!", h:"靠窗座位？第8排A座可以！"}
+    else if (/credit|pay|cash|payment/.test(lo)) reply = {t:"We accept cash and credit cards. That's $35.60. How would you like to pay?", h:"現金和信用卡都收，總共35.60美元。"}
+    else if (/exchange|currency|money/.test(lo)) reply = {t:"The exchange counter is in the arrival hall. Today: 1 USD = 32.5 NTD.", h:"外幣兌換在入境大廳，今日1:32.5。"}
+    else if (/recommend|suggestion|popular|best/.test(lo)) reply = {t:"I highly recommend the mango sticky rice — it's a local favorite!", h:"強烈推薦芒果糯米飯，當地人最愛！"}
+    else if (/lost|find|missing/.test(lo)) reply = {t:"Don't worry! I'll take you to the Lost & Found counter. What did you lose?", h:"別擔心！帶您去失物招領處，遺失了什麼？"}
+    else if (/wait|how long|minute|hour/.test(lo)) reply = {t:"The wait is about 15 minutes. I'll call you when your table is ready.", h:"大約等15分鐘，準備好會叫您。"}
+    else if (/scenic|spot|attraction|must.?see/.test(lo)) reply = {t:"The night market and the old temple are must-sees! Here's a map for you.", h:"夜市和古廟是必訪景點！這是地圖給您。"}
+    else if (/excuse me|sorry|pardon/.test(lo)) reply = {t:"No problem at all! How can I help you?", h:"沒關係！需要什麼協助？"}
+    else if (/yes|yeah|ok|sure/.test(lo)) reply = {t:"Great! Let me know if you need anything else.", h:"好的！有需要隨時跟我說。"}
+    else if (/no/.test(lo) && text.length < 10) reply = {t:"Okay, no problem! Is there anything you'd like to ask?", h:"好的沒問題！有什麼想問的嗎？"}
+    else reply = {t:"Interesting! Tell me more — I'm here to help you practice.", h:"有意思，多說一點！我在這裡陪你練習。"}
+
+    addAIMsg(reply.t, reply.h);
+  }
+
+  if (typeof feedback === "string") addSysMsg(feedback);
+  updateStatsUI();
 }
 
-function check(t){
-var n=[];
-if(/i [a-z]/.test(t))n.push("'I' 記得大寫");
-if(t.length>0&&!/[.!?]$/.test(t)&&t.split(" ").length>=4)n.push("句尾加標點");
-if(n.length===0&&t.split(" ").length>=5)return"句子不錯！繼續練習✈️";
-if(n.length===0&&t.split(" ").length>=2)return"多說一點！很好";
-return n.length>0?"✏️ "+n.join("，"):"加油！多說一點！";
+function checkGrammar(text) {
+  var tips = [];
+  if (/^i [a-z]/.test(text)) tips.push("記得 'I' 要大寫");
+  if (text.split(" ").length >= 4 && !/[.!?]$/.test(text)) tips.push("句尾加標點 ( . ! ? )");
+  if (/i (is|are|am) /.test(text) && !/i am /.test(text)) tips.push("I 搭配 am，不是 is/are");
+  if (/you (is|are) /.test(text) && !/you are /.test(text)) tips.push("You 搭配 are");
+  if (tips.length > 0) return "✏️ 小提示：" + tips.join("，");
+  if (text.split(" ").length >= 5) return "👍 句子不錯！繼續練習！";
+  return false;
 }
 
-function copy(t){
-if(!t)return;
-navigator.clipboard.writeText(t).then(function(){alert("已複製："+t);}).catch(function(){alert("複製失敗，請手動選取");});
+// ========== PHRASES ==========
+function renderPhrases() {
+  var tabs = document.getElementById("phrase-tabs");
+  var content = document.getElementById("phrase-content");
+  tabs.innerHTML = categories.map(function(c, i){
+    return '<div class="tab-btn'+(i===0?' active':'')+'" onclick="switchTab('+i+')">'+c.name+'</div>';
+  }).join("");
+  content.innerHTML = categories.map(function(c, i){
+    return '<div class="phrase-group'+(i===0?' active':'')+'" data-tab="'+i+'">' +
+      c.phrases.map(function(p){
+        return '<div class="phrase-card" onclick="copyPhrase(\''+p.replace(/'/g,"\\'")+'\')">' +
+          '<div class="en">'+p+'</div>' +
+          '<div class="actions">' +
+            '<button onclick="event.stopPropagation();speakPhrase(\''+p.replace(/'/g,"\\'")+'\')">🔊 發音</button>' +
+            '<button onclick="event.stopPropagation();copyPhrase(\''+p.replace(/'/g,"\\'")+'\')">📋 複製</button>' +
+          '</div></div>';
+      }).join("") + '</div>';
+  }).join("");
 }
 
-function speak(t){
-if(!t||!window.speechSynthesis)return;
-var u=new SpeechSynthesisUtterance(t);
-u.lang="en-US";
-u.rate=0.9;
-window.speechSynthesis.speak(u);
+function switchTab(idx) {
+  document.querySelectorAll(".tab-btn").forEach(function(b,i){b.classList.toggle("active",i==idx);});
+  document.querySelectorAll(".phrase-group").forEach(function(g,i){g.classList.toggle("active",i==idx);});
 }
 
-function save(){
-var today=new Date().toDateString();
-if(st.ld!==today){
-if(st.ld===new Date(Date.now()-86400000).toDateString())st.sk++;
-else st.sk=1;
-st.ld=today;
-}
-localStorage.setItem("te6",JSON.stringify(st));
-document.getElementById("s1").textContent=st.ss||0;
-document.getElementById("s2").textContent=st.sn||0;
-document.getElementById("s3").textContent=st.sk||0;
-document.getElementById("s4").textContent=st.h?st.h.length:0;
+function speakPhrase(text) {
+  if (!window.speechSynthesis) { showToast("瀏覽器不支援語音"); return; }
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US";
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
 }
 
-function loadStats(){
-document.getElementById("s1").textContent=st.ss||0;
-document.getElementById("s2").textContent=st.sn||0;
-document.getElementById("s3").textContent=st.sk||0;
-document.getElementById("s4").textContent=st.h?st.h.length:0;
+function copyPhrase(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function(){
+      showToast("✅ 已複製：" + text);
+    }).catch(function(){
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+  // Mark as learned
+  if (stats.learnedIds.indexOf(text) === -1) {
+    stats.learnedIds.push(text);
+    saveStats();
+    updateStatsUI();
+  }
 }
 
-window.onbeforeunload=function(){
-if(document.getElementById("ca").children.length>0){
-st.ss++;
-save();
+function fallbackCopy(text) {
+  var ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand("copy");
+  document.body.removeChild(ta);
+  showToast("✅ 已複製：" + text);
 }
-};
 
+// ========== PAGE SWITCHING ==========
+function switchPage(name, fromChat) {
+  // Hide all pages
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
+  // Show target
+  document.getElementById("page-"+name).classList.add("active");
+  // Update nav
+  document.querySelectorAll(".nav-item").forEach(function(n){
+    n.classList.toggle("active", n.dataset.page === name);
+  });
+  // If leaving chat, reset
+  if (name !== "chat") {
+    currentTopic = null;
+  }
+}
+
+function goTopics() {
+  switchPage("topics");
+}
+
+// ========== STATS ==========
+function saveStats() {
+  try {
+    localStorage.setItem("travelEngStats", JSON.stringify(stats));
+  } catch(e) {}
+}
+
+function updateStatsUI() {
+  var today = new Date().toDateString();
+  if (stats.lastDate !== today) {
+    var yesterday = new Date(Date.now() - 86400000).toDateString();
+    if (stats.lastDate === yesterday) stats.streak++;
+    else stats.streak = 1;
+    stats.lastDate = today;
+    saveStats();
+  }
+  document.getElementById("stat-practice").textContent = stats.practice || 0;
+  document.getElementById("stat-sentences").textContent = stats.sentences || 0;
+  document.getElementById("stat-streak").textContent = stats.streak || 0;
+  document.getElementById("stat-learned").textContent = stats.learnedIds.length || 0;
+}
+
+// ========== TOAST ==========
+function showToast(msg) {
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function(){t.classList.remove("show");}, 2000);
+}
+
+// ========== START ==========
 init();
 </script>
 </body>
