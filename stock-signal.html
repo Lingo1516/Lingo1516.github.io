@@ -29,11 +29,6 @@ body { background:#0d1117; color:#e6edf3; font-family:-apple-system,BlinkMacSyst
 .reasons { margin-top:6px; display:flex; gap:4px; flex-wrap:wrap; }
 .reason { background:#21262d; color:#8b949e; padding:2px 8px; border-radius:10px; font-size:11px; }
 .bar-chart { margin:16px 0; }
-.bar-row { display:flex; align-items:center; margin:4px 0; }
-.bar-label { width:140px; font-size:12px; text-align:right; padding-right:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.bar-wrapper { flex:1; height:24px; position:relative; }
-.bar { height:100%; border-radius:4px; position:relative; }
-.bar-text { position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:11px; font-weight:600; color:#fff; }
 .footer { text-align:center; padding:16px 0; color:#484f58; font-size:11px; border-top:1px solid #21262d; margin-top:16px; }
 </style>
 </head>
@@ -48,173 +43,331 @@ body { background:#0d1117; color:#e6edf3; font-family:-apple-system,BlinkMacSyst
   <div class="stat"><div class="num" style="color:#607D8B">16</div><div class="label">⚪ 觀望</div></div>
 </div>
 
-<!-- 長條圖 -->
+<!-- 價格區間圖 -->
 <div class="section">
-  <div class="section-title">📈 綜合得分排行</div>
+  <div class="section-title">📈 進出場價格區間</div>
   <div class="bar-chart">
-    <div class="bar-row">
-      <div class="bar-label">5302 太欣</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#4CAF50; width:50.0%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+4.5</span>
+    <style>
+      .price-row { margin:10px 0; }
+      .price-row .name-line { font-size:12px; color:#8b949e; margin-bottom:2px; display:flex; align-items:center; gap:6px; }
+      .price-row .signal-tag { font-size:10px; padding:1px 6px; border-radius:8px; font-weight:600; color:#fff; }
+      .price-bar-wrap { position:relative; height:20px; background:#161b22; border-radius:4px; overflow:visible; }
+      .price-bar-zone { position:absolute; height:100%; border-radius:4px; opacity:0.35; }
+      .price-bar-current { position:absolute; width:3px; height:100%; top:0; border-radius:2px; z-index:2; }
+      .price-bar-dot { position:absolute; width:10px; height:10px; border-radius:50%; top:50%; transform:translateY(-50%); z-index:3; border:2px solid #fff; }
+      .price-label { font-size:10px; position:absolute; top:-14px; transform:translateX(-50%); font-weight:600; white-space:nowrap; }
+      .price-axis { display:flex; justify-content:space-between; font-size:9px; color:#484f58; padding:0 2px; margin-top:2px; }
+    </style>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#1B5E20">進場</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">6658 聯策</span>
+        <span style="color:#81C784;font-size:10px;">支撐:166.8</span>
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#4CAF50; left:19.7%; width:58.8%;"></div>
+        <div class="price-bar-current" style="background:#4CAF50; left:78.5%;"></div>
+        <div class="price-bar-dot" style="background:#4CAF50; left:78.5%;"></div>
+        <div class="price-label" style="left:78.5%; color:#4CAF50;">140.0</div>
+      </div>
+      <div class="price-axis"><span>128.5</span><span>140.0</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">3481 群創</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#4CAF50; width:50.0%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+4.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">6530 創威</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">67.6</div>
+      </div>
+      <div class="price-axis"><span>64.2</span><span>71.0</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">6658 聯策</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#4CAF50; width:38.88888888888889%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+3.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">2313 華通</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">169.0</div>
+      </div>
+      <div class="price-axis"><span>160.5</span><span>177.5</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">1785 光洋科</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#4CAF50; width:38.88888888888889%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+3.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">3231 緯創</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">176.0</div>
+      </div>
+      <div class="price-axis"><span>167.2</span><span>184.8</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">1815 富喬</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#4CAF50; width:38.88888888888889%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+3.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">6532 瑞耘</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">65.5</div>
+      </div>
+      <div class="price-axis"><span>62.2</span><span>68.8</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">3714 富采</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#4CAF50; width:38.88888888888889%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+3.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">1714 和桐</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">13.1</div>
+      </div>
+      <div class="price-axis"><span>12.4</span><span>13.7</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">3231 緯創</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:27.77777777777778%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+2.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#1B5E20">進場</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">1785 光洋科</span>
+        <span style="color:#81C784;font-size:10px;">支撐:118.0</span>
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#4CAF50; left:17.4%; width:63.3%;"></div>
+        <div class="price-bar-current" style="background:#4CAF50; left:80.7%;"></div>
+        <div class="price-bar-dot" style="background:#4CAF50; left:80.7%;"></div>
+        <div class="price-label" style="left:80.7%; color:#4CAF50;">99.4</div>
+      </div>
+      <div class="price-axis"><span>89.6</span><span>99.4</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">6532 瑞耘</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:27.77777777777778%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+2.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#1B5E20">進場</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">5302 太欣</span>
+        <span style="color:#81C784;font-size:10px;">支撐:11.8</span>
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#4CAF50; left:29.1%; width:40.5%;"></div>
+        <div class="price-bar-current" style="background:#4CAF50; left:69.6%;"></div>
+        <div class="price-bar-dot" style="background:#4CAF50; left:69.6%;"></div>
+        <div class="price-label" style="left:69.6%; color:#4CAF50;">10.0</div>
+      </div>
+      <div class="price-axis"><span>9.6</span><span>10.0</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">00919 群益台灣精選高息</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:27.77777777777778%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+2.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">2332 友訊</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">21.2</div>
+      </div>
+      <div class="price-axis"><span>20.2</span><span>22.3</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">1714 和桐</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:16.666666666666664%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+1.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#1B5E20">進場</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">1815 富喬</span>
+        <span style="color:#81C784;font-size:10px;">支撐:82.8</span>
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#4CAF50; left:16.2%; width:65.7%;"></div>
+        <div class="price-bar-current" style="background:#4CAF50; left:81.9%;"></div>
+        <div class="price-bar-dot" style="background:#4CAF50; left:81.9%;"></div>
+        <div class="price-label" style="left:81.9%; color:#4CAF50;">66.3</div>
+      </div>
+      <div class="price-axis"><span>59.1</span><span>66.3</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">8150 南茂</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:16.666666666666664%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+1.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">2455 全新</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">292.0</div>
+      </div>
+      <div class="price-axis"><span>277.4</span><span>306.6</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">00940 元大台灣價值高息</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:16.666666666666664%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+1.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#1B5E20">進場</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">3714 富采</span>
+        <span style="color:#81C784;font-size:10px;">支撐:55.6</span>
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#4CAF50; left:21.1%; width:56.1%;"></div>
+        <div class="price-bar-current" style="background:#4CAF50; left:77.2%;"></div>
+        <div class="price-bar-dot" style="background:#4CAF50; left:77.2%;"></div>
+        <div class="price-label" style="left:77.2%; color:#4CAF50;">48.0</div>
+      </div>
+      <div class="price-axis"><span>44.5</span><span>48.0</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">6530 創威</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#1B5E20">進場</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">3481 群創</span>
+        <span style="color:#81C784;font-size:10px;">支撐:54.6</span>
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#4CAF50; left:16.0%; width:66.0%;"></div>
+        <div class="price-bar-current" style="background:#4CAF50; left:82.0%;"></div>
+        <div class="price-bar-dot" style="background:#4CAF50; left:82.0%;"></div>
+        <div class="price-label" style="left:82.0%; color:#4CAF50;">45.5</div>
+      </div>
+      <div class="price-axis"><span>40.5</span><span>45.5</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">2313 華通</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">3576 聯合再生</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">16.3</div>
+      </div>
+      <div class="price-axis"><span>15.5</span><span>17.1</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">2332 友訊</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">8150 南茂</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">72.6</div>
+      </div>
+      <div class="price-axis"><span>69.0</span><span>76.2</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">3576 聯合再生</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">8039 台虹</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">173.5</div>
+      </div>
+      <div class="price-axis"><span>164.8</span><span>182.2</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">2634 漢翔</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">4763 材料-KY</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">48.2</div>
+      </div>
+      <div class="price-axis"><span>45.8</span><span>50.7</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">00982A 主動台新龍頭成長</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">2634 漢翔</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">61.9</div>
+      </div>
+      <div class="price-axis"><span>58.8</span><span>65.0</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">00980T 平衡凱基美國TOP</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">00940 元大台灣價值高息</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">12.1</div>
+      </div>
+      <div class="price-axis"><span>11.5</span><span>12.7</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">00966 台新新光金</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:0.0%; left:calc(50% + 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:8px; left:auto; top:50%; transform:translateY(-50%);">+0.0</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">00982A 主動台新龍頭成長</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">20.4</div>
+      </div>
+      <div class="price-axis"><span>19.4</span><span>21.4</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">2455 全新</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% - 5.555555555555555% - 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:auto; left:8px; top:50%; transform:translateY(-50%);">-0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">00980T 平衡凱基美國TOP</span>
+        
       </div>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">11.6</div>
+      </div>
+      <div class="price-axis"><span>11.0</span><span>12.2</span></div>
     </div>
-    <div class="bar-row">
-      <div class="bar-label">8039 台虹</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% - 5.555555555555555% - 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:auto; left:8px; top:50%; transform:translateY(-50%);">-0.5</span>
+    <div class="price-row">
+      <div class="name-line">
+        <span class="signal-tag" style="background:#37474F">觀望</span>
+        <span style="font-weight:700;font-size:13px;color:#e6edf3">00919 群益台灣精選高息</span>
+        
       </div>
-    </div>
-    <div class="bar-row">
-      <div class="bar-label">4763 材料-KY</div>
-      <div class="bar-wrapper">
-        <div class="bar" style="background:#607D8B; width:5.555555555555555%; left:calc(50% - 5.555555555555555% - 2px); position:absolute;"></div>
-        <span class="bar-text" style="position:absolute; right:auto; left:8px; top:50%; transform:translateY(-50%);">-0.5</span>
+      <div class="price-bar-wrap">
+        <div class="price-bar-zone" style="background:#607D8B; left:17.8%; width:62.5%;"></div>
+        <div class="price-bar-current" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-bar-dot" style="background:#607D8B; left:49.1%;"></div>
+        <div class="price-label" style="left:49.1%; color:#607D8B;">29.6</div>
       </div>
+      <div class="price-axis"><span>28.1</span><span>31.0</span></div>
     </div>
   </div>
-</div>
+</div>"
 
 <!-- 進場 -->
 <div class="section">
@@ -488,6 +641,6 @@ body { background:#0d1117; color:#e6edf3; font-family:-apple-system,BlinkMacSyst
 </div>
 <div class="footer">
   自動生成 by 小綠 🟢 ｜ 資料來源：FinMind<br>
-  更新時間：2026-08-01 00:14
+  更新時間：2026-08-01 08:42
 </div>
 </body></html>
