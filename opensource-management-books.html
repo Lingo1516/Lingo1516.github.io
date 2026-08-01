@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>開源組織管理學書庫</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card-bg: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    padding: 1rem;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .notice {
+    background: rgba(63, 185, 80, 0.1);
+    border: 1px solid rgba(63, 185, 80, 0.3);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .notice strong {
+    color: var(--accent-green);
+  }
+
+  /* 課程內容區 */
+  .chapter-section {
+    margin-bottom: 2rem;
+  }
+
+  .chapter-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chapter-title:hover {
+    border-color: var(--accent);
+  }
+
+  .chapter-title .arrow {
+    transition: transform 0.2s;
+    color: var(--text-secondary);
+  }
+
+  .chapter-title.open .arrow {
+    transform: rotate(180deg);
+  }
+
+  .chapter-content {
+    display: none;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    margin-top: -1px;
+  }
+
+  .chapter-content.open {
+    display: block;
+  }
+
+  .chapter-content p {
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .chapter-content h2 {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin: 1.2rem 0 0.8rem;
+  }
+
+  .chapter-content h3 {
+    font-size: 1.05rem;
+    color: var(--accent-orange);
+    margin: 1rem 0 0.5rem;
+  }
+
+  .chapter-content ul, .chapter-content ol {
+    margin: 0.5rem 0 1rem 1.5rem;
+    color: var(--text-secondary);
+  }
+
+  .chapter-content li {
+    margin-bottom: 0.4rem;
+  }
+
+  .chapter-content .ref-note {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-left: 3px solid var(--border);
+    padding-left: 1rem;
+    margin: 1rem 0;
+  }
+
+  /* 章節目錄 */
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .toc h2 {
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .toc a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: block;
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+  }
+
+  .toc a:last-child { border-bottom: none; }
+
+  .toc a:hover {
+    color: var(--accent);
+  }
+
+  /* 資源卡片 */
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--accent);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .card h3 a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .card h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .card .meta {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card .desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.6rem;
+  }
+
+  .card .tags span {
+    background: rgba(48, 54, 61, 0.6);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  .footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .chapter-content { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>📖 開源組織管理學書庫</h1>
+    <p>CC 授權 · 免費閱讀 · 商學院適用</p>
+  </header>
+
+  <div class="notice">
+    <strong>📘 內容來源：</strong>University of Minnesota《Principles of Management》（CC BY-NC-SA 4.0）
+    · 全文取自 <a href="https://biz.libretexts.org/Bookshelves/Management/Principles_of_Management" style="color:var(--accent);" target="_blank">Business LibreTexts</a>
+  </div>
+
+  <!-- 目錄 -->
+  <div class="toc">
+    <h2>📋 課程大綱（17 章）</h2>
+    <a href="#ch1" onclick="toggleChapter('ch1'); return false;">第 1 章 · 管理學導論 Introduction to Principles of Management</a>
+    <a href="#ch2" onclick="toggleChapter('ch2'); return false;">第 2 章 · 人格、態度與工作行為 Personality, Attitudes, and Work Behaviors</a>
+    <a href="#ch3" onclick="toggleChapter('ch3'); return false;">第 3 章 · 歷史、全球化與價值領導 History, Globalization, and Values-Based Leadership</a>
+    <a href="#ch4" onclick="toggleChapter('ch4'); return false;">第 4 章 · 使命、願景與價值 Developing Mission, Vision, and Values</a>
+    <a href="#ch5" onclick="toggleChapter('ch5'); return false;">第 5 章 · 策略制定 Strategizing</a>
+    <a href="#ch6" onclick="toggleChapter('ch6'); return false;">第 6 章 · 目標與目標設定 Goals and Objectives</a>
+    <a href="#ch7" onclick="toggleChapter('ch7'); return false;">第 7 章 · 組織結構 Organizational Structure and Change</a>
+    <a href="#ch8" onclick="toggleChapter('ch8'); return false;">第 8 章 · 組織文化 Organizational Culture</a>
+    <a href="#ch9" onclick="toggleChapter('ch9'); return false;">第 9 章 · 人力資源管理 Human Resource Management</a>
+    <a href="#ch10" onclick="toggleChapter('ch10'); return false;">第 10 章 · 溝通 Communication</a>
+    <a href="#ch11" onclick="toggleChapter('ch11'); return false;">第 11 章 · 團隊 Decision Making and Creative Problem Solving</a>
+    <a href="#ch12" onclick="toggleChapter('ch12'); return false;">第 12 章 · 倫理 Diversity in Organizations</a>
+    <a href="#ch13" onclick="toggleChapter('ch13'); return false;">第 13 章 · 領導 Leadership</a>
+    <a href="#ch14" onclick="toggleChapter('ch14'); return false;">第 14 章 · 控制ing Power and Politics</a>
+    <a href="#ch15" onclick="toggleChapter('ch15'); return false;">第 15 章 · 變革管理 Organizational Change and Development</a>
+    <a href="#ch16" onclick="toggleChapter('ch16'); return false;">第 16 章 · 創業精神 Entrepreneurship and Innovation</a>
+    <a href="#ch17" onclick="toggleChapter('ch17'); return false;">第 17 章 · 全球管理 Managing in a Global Environment</a>
+  </div>
+
+  <!-- 教材內容 -->
+  <div class="chapter-section" id="ch1">
+    <div class="chapter-title open" onclick="toggleChapter('ch1')">
+      <span>📘 第 1 章 · 管理學導論</span>
+      <span class="arrow">▾</span>
+    </div>
+    <div class="chapter-content open">
+      <h2>1.1 管理學導論 Introduction to Principles of Management</h2>
+
+      <h3>本章學習目標</h3>
+      <ul>
+        <li>了解管理者是誰以及他們工作的本質</li>
+        <li>知道為什麼你應該關注領導力、創業精神和策略</li>
+        <li>認識規劃-組織-領導-控制（P-O-L-C）架構的各個面向</li>
+        <li>了解經濟表現如何帶動社會與環境表現</li>
+        <li>理解個人與群體層面的績效意義</li>
+        <li>創建你自己的管理原則學習與發展生存指南</li>
+      </ul>
+
+      <h3>什麼是管理？</h3>
+      <p>管理者的主要挑戰是創造性地解決問題，你應該將管理視為「透過他人的努力來完成事情的藝術」。管理原則，就是你實際上進行管理的方式——透過他人（個人、群體或組織）來完成事情。</p>
+
+      <p>正式定義：管理原則是「規劃、組織和控制[人員]、材料、機器、方法、資金和市場等基本元素的運作，提供方向與協調，並對人類努力給予領導，以實現企業目標」的活動。</p>
+
+      <p>基於這個原因，管理原則通常使用稱為 <strong>P-O-L-C</strong> 的架構來討論或學習：</p>
+      <ul>
+        <li><strong>P</strong>lanning — 規劃</li>
+        <li><strong>O</strong>rganizing — 組織</li>
+        <li><strong>L</strong>eading — 領導</li>
+        <li><strong>C</strong>ontrolling — 控制</li>
+      </ul>
+
+      <h3>誰需要管理？</h3>
+      <p>組織中的所有活動都需要管理者：預算、設計、銷售、創作、融資、會計和藝術呈現；組織越大，所需的管理者就越多。每個在組織中受僱的人都受到管理原則、流程、政策和實務的影響——他們要不是管理者，就是管理者的下屬，而且通常兩者都是。</p>
+
+      <p>管理者並非一直從事管理工作。當編舞者在跳舞時，他們不是在管理；當辦公室經理親自檢查客戶的信用時，他們也不是在管理。有些員工只執行部分被描述為管理性的功能——就此而言，他們主要是有限領域的管理者。</p>
+
+      <p>即使是獨立顧問也是管理者，因為他們大部分工作是透過他人完成——那些「他人」恰好是他們的客戶！當然，如果顧問有自己的下屬員工，他們就成為最完整意義上的管理者。</p>
+
+      <div class="ref-note">
+        <strong>參考來源：</strong><br>
+        1. 此定義取自 Mary Parker Follett (1868–1933) 的傳記。Follett 是美國社會工作者、顧問，也是民主、人際關係和管理學書籍的作者，提出了「衝突解決」、「權威與權力」和「領導任務」等術語。<br>
+        2. 管理原則的基本概念由法國管理理論家 Henri Fayol (1841–1925) 提出。他創立了 P-O-L-C 架構，至今仍是全球主導的管理架構。
+      </div>
+
+      <h3>本章其他主題</h3>
+      <ul>
+        <li><strong>1.2</strong> 案例分析：以行善為核心商業策略（Goodwill Industries）</li>
+        <li><strong>1.3</strong> 誰是管理者？ — 管理者類型與 Mintzberg 的 10 種管理角色</li>
+        <li><strong>1.4</strong> 領導力、創業精神與策略</li>
+        <li><strong>1.5</strong> 規劃、組織、領導與控制（P-O-L-C 深度解析）</li>
+        <li><strong>1.6</strong> 經濟、社會與環境績效（三重底線 Triple Bottom Line）</li>
+        <li><strong>1.7</strong> 個人與群體績效</li>
+        <li><strong>1.8</strong> 你的管理原則生存指南</li>
+      </ul>
+
+      <p style="margin-top:1rem; color:var(--text-secondary); font-size:0.85rem;">
+        🔗 完整原文：<a href="https://biz.libretexts.org/Bookshelves/Management/Principles_of_Management/01%3A_Introduction_to_Principles_of_Management/01.1%3A_Introduction_to_Principles_of_Management" target="_blank" style="color:var(--accent);">閱讀完整 Chapter 1.1</a>
+        · <a href="https://biz.libretexts.org/@api/deki/files/24367/Principles%2bof%2bManagement.pdf" target="_blank" style="color:var(--accent);">下載全書 PDF</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- 更多管理資源 -->
+  <h2 class="section-title">📚 更多免費管理學資源</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-badge badge-text" style="display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:0.6rem;background:rgba(63,185,80,0.15);color:var(--accent-green);">📖 策略</span>
+      <h3><a href="https://biz.libretexts.org/Bookshelves/Management/Book%3A_Mastering_Strategic_Management" target="_blank">策略管理 Mastering Strategic Management</a></h3>
+      <div class="meta">Virginia Tech Publishing · CC BY-NC-SA</div>
+      <div class="desc">策略管理的核心主題：如何使用案例分析、衡量組織績效、進行外部與內部環境分析。</div>
+      <div class="tags"><span>#策略管理</span><span>#個案分析</span><span>#競爭優勢</span></div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-text" style="display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:0.6rem;background:rgba(210,153,34,0.15);color:var(--accent-orange);">🏢 組織</span>
+      <h3><a href="https://biz.libretexts.org/Bookshelves/Management/Book%3A_Organizational_Behavior" target="_blank">組織行為 Organizational Behavior</a></h3>
+      <div class="meta">OpenStax · CC BY-NC-SA</div>
+      <div class="desc">涵蓋個人、群體與組織層面的行為分析，包括人格、動機、團隊動力、組織文化與變革管理。</div>
+      <div class="tags"><span>#組織行為</span><span>#動機</span><span>#團隊</span><span>#組織文化</span></div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-text" style="display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:0.6rem;background:rgba(88,166,255,0.15);color:var(--accent);">📊 人力</span>
+      <h3><a href="https://biz.libretexts.org/Bookshelves/Management/Book%3A_Human_Resource_Management" target="_blank">人力資源管理 Human Resource Management</a></h3>
+      <div class="meta">OpenStax · CC BY-NC-SA</div>
+      <div class="desc">招募、培訓、績效評估、薪酬設計、員工關係等人資核心主題，適合商學院 HR 課程。</div>
+      <div class="tags"><span>#人力資源</span><span>#招募</span><span>#薪酬</span><span>#績效</span></div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-text" style="display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:0.6rem;background:rgba(188,140,255,0.15);color:#bc8cff;">📈 創業</span>
+      <h3><a href="https://biz.libretexts.org/Bookshelves/Management/Book%3A_Entrepreneurship" target="_blank">創業精神 Entrepreneurship</a></h3>
+      <div class="meta">OpenStax · CC BY-NC-SA</div>
+      <div class="desc">從創業機會識別、商業模式設計、資金籌措到企業成長管理的完整創業教材。</div>
+      <div class="tags"><span>#創業</span><span>#商業模式</span><span>#募資</span><span>#成長</span></div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-text" style="display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:0.6rem;background:rgba(63,185,80,0.15);color:var(--accent-green);">📋 專案</span>
+      <h3><a href="https://biz.libretexts.org/Bookshelves/Management/Book%3A_Project_Management_from_Simple_to_Complex" target="_blank">專案管理 Project Management</a></h3>
+      <div class="meta">University of Minnesota · CC BY-NC-SA</div>
+      <div class="desc">專案管理的基礎：啟動、規劃、執行、監控與結案，適合商學院專案管理課程。</div>
+      <div class="tags"><span>#專案管理</span><span>#敏捷</span><span>#PMP</span></div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-text" style="display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:0.6rem;background:rgba(210,153,34,0.15);color:var(--accent-orange);">🌍 全球</span>
+      <h3><a href="https://biz.libretexts.org/Bookshelves/Management/Book%3A_Leading_with_Cultural_Intelligence" target="_blank">文化智慧領導 Leading with Cultural Intelligence</a></h3>
+      <div class="meta">Saylor Foundation · CC BY-NC-SA</div>
+      <div class="desc">21世紀組織需要具備文化智慧的領導者，本書教你如何在全球化環境中有效領導。</div>
+      <div class="tags"><span>#文化智慧</span><span>#全球領導</span><span>#跨文化</span></div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-text" style="display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:0.6rem;background:rgba(88,166,255,0.15);color:var(--accent);">🏪 中小企業</span>
+      <h3><a href="https://biz.libretexts.org/Bookshelves/Management/Book%3A_Small_Business_Management_in_the_21st_Century" target="_blank">21 世紀中小企業管理 Small Business Management</a></h3>
+      <div class="meta">Saylor Foundation · CC BY-NC-SA</div>
+      <div class="desc">以「少即是多」的方式，將中小企業管理視為實務人類活動而非抽象理論概念。</div>
+      <div class="tags"><span>#中小企業</span><span>#創業管理</span><span>#實務</span></div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-text" style="display:inline-block;padding:0.2rem 0.6rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:0.6rem;background:rgba(188,140,255,0.15);color:#bc8cff;">📚 全面</span>
+      <h3><a href="https://open.umn.edu/opentextbooks/subjects/management" target="_blank">Open Textbook Library · 管理學區</a></h3>
+      <div class="meta">Open Textbook Network</div>
+      <div class="desc">Open Textbook Library 收錄數十本經過同儕審查的免費管理學教材，涵蓋策略、組織行為、HR、創業等。</div>
+      <div class="tags"><span>#管理學</span><span>#開放教材</span><span>#CC授權</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>📝 所有教材皆為 Creative Commons 授權（CC BY-NC-SA / CC BY）</p>
+    <p>來源：<a href="https://biz.libretexts.org" style="color:var(--accent);" target="_blank">Business LibreTexts</a> · <a href="https://open.umn.edu/opentextbooks" style="color:var(--accent);" target="_blank">Open Textbook Library</a></p>
+    <p>💡 點擊章節標題可展開/收合內容 · 手機友善 · 深色主題</p>
+  </div>
+
+</div>
+
+<script>
+function toggleChapter(id) {
+  const section = document.getElementById(id);
+  const title = section.querySelector('.chapter-title');
+  const content = section.querySelector('.chapter-content');
+  title.classList.toggle('open');
+  content.classList.toggle('open');
+}
+</script>
+</body>
+</html>
