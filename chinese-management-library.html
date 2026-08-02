@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中文組織管理學書庫</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card-bg: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-orange: #d29922;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    padding: 1rem;
+    min-height: 100vh;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  header {
+    text-align: center; margin-bottom: 2rem; padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 { font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+  header p { color: var(--text-secondary); font-size: 0.95rem; }
+  
+  .toc {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2rem;
+  }
+  .toc h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: 0.8rem; }
+  .toc a {
+    color: var(--text-secondary); text-decoration: none;
+    display: block; padding: 0.3rem 0; font-size: 0.9rem;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+  }
+  .toc a:last-child { border-bottom: none; }
+  .toc a:hover { color: var(--accent); }
+
+  .chapter-section { margin-bottom: 1.5rem; }
+  .chapter-title {
+    font-size: 1.1rem; font-weight: 600; color: var(--accent);
+    padding: 0.8rem 1rem;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .chapter-title:hover { border-color: var(--accent); }
+  .chapter-title .arrow { transition: transform 0.2s; color: var(--text-secondary); }
+  .chapter-title.open .arrow { transform: rotate(180deg); }
+  
+  .chapter-content {
+    display: none;
+    padding: 1.2rem; background: var(--card-bg);
+    border: 1px solid var(--border); border-top: none;
+    border-radius: 0 0 8px 8px; margin-top: -1px;
+  }
+  .chapter-content.open { display: block; }
+  .chapter-content p { margin-bottom: 0.8rem; }
+  .chapter-content .slide-text {
+    color: var(--text); padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(48,54,61,0.3);
+  }
+  .chapter-content .slide-text:last-child { border-bottom: none; }
+  .chapter-content .bullet { color: var(--text-secondary); padding-left: 1.2rem; }
+  
+  .footer {
+    text-align: center; color: var(--text-secondary);
+    font-size: 0.8rem; padding: 2rem 0;
+    border-top: 1px solid var(--border); margin-top: 2rem;
+  }
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    .chapter-content { padding: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>📖 中文組織管理學書庫</h1>
+  <p>來自課堂教材 · 124 頁中文內容 · 可閱讀可搜尋</p>
+</header>
+
+<div class="toc">
+  <h2>📋 教材目錄</h2>
+  <a href="#book-組織理論" onclick="toggleBook('book-組織理論'); return false;">📗 組織理論（9 頁）— 組織理論</a>
+  <a href="#book-組織管理概要" onclick="toggleBook('book-組織管理概要'); return false;">📗 組織管理概要（35 頁）— 組織管理概要</a>
+  <a href="#book-組織設計" onclick="toggleBook('book-組織設計'); return false;">📗 組織設計（27 頁）— 組織設計</a>
+  <a href="#book-行動中的組織" onclick="toggleBook('book-行動中的組織'); return false;">📗 行動中的組織（20 頁）— 行動中的組織</a>
+  <a href="#book-管理學概論" onclick="toggleBook('book-管理學概論'); return false;">📗 管理學概論（13 頁）— 管理學概論</a>
+  <a href="#book-管理學概論v3" onclick="toggleBook('book-管理學概論v3'); return false;">📗 管理學概論v3（20 頁）— 管理學概論</a>
+</div>
+<div class="chapter-section" id="book-組織理論">
+<div class="chapter-title" onclick="toggleBook('book-組織理論')">
+  <span>📗 組織理論（9 頁）</span>
+  <span class="arrow">▾</span>
+</div>
+<div class="chapter-content">
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 1 頁</strong>
+  <div>組織理論</div>
+  <div>Organization Theory</div>
+  <div>從古典到現代的理論演進</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 2 頁</strong>
+  <div>課程大綱</div>
+  <div>01</div>
+  <div>古典組織理論</div>
+  <div>韋伯、泰勒、法約爾</div>
+  <div>02</div>
+  <div>行為科學理論</div>
+  <div>梅約、馬斯洛、赫茲伯格</div>
+  <div>03</div>
+  <div>系統與權變理論</div>
+  <div>卡斯特、羅森威格</div>
+  <div>04</div>
+  <div>現代組織理論</div>
+  <div>學習型組織、網絡組織</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 3 頁</strong>
+  <div>01  古典組織理論</div>
+  <div>馬克斯·韋伯</div>
+  <div>官僚體制理論</div>
+  <div class="bullet">▸  專業分工：每人專責特定職務</div>
+  <div class="bullet">▸  層級節制：明確的上下級關係</div>
+  <div class="bullet">▸  規章制度：以規則管理組織</div>
+  <div class="bullet">▸  非人格化：排除個人情感因素</div>
+  <div class="bullet">▸  量才用人：依能力和資格任用</div>
+  <div class="bullet">▸  職業導向：管理者是專業全職人員</div>
+  <div>弗雷德里克·泰勒</div>
+  <div>科學管理理論</div>
+  <div class="bullet">▸  工作科學化：用科學方法取代經驗法則</div>
+  <div class="bullet">▸  科學選擇工人：依能力分配工作</div>
+  <div class="bullet">▸  管理者與工人合作：共同完成任務</div>
+  <div class="bullet">▸  職能區分：管理與執行分離</div>
+  <div class="bullet">▸  時間研究：找出標準作業時間</div>
+  <div class="bullet">▸  差別計件工資：效率越高報酬越高</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 4 頁</strong>
+  <div>01  法約爾的管理功能</div>
+  <div>亨利·法約爾 — 現代管理之父</div>
+  <div>📋</div>
+  <div>計畫 Planning</div>
+  <div>預見未來，制定行動方案</div>
+  <div>🏗️</div>
+  <div>組織 Organizing</div>
+  <div>建立結構，配置資源</div>
+  <div>指挥 Command</div>
+  <div>指挥 Commanding</div>
+  <div>指導員工，下達指令</div>
+  <div>🤝</div>
+  <div>協調 Coordinating</div>
+  <div>統一努力，和諧運作</div>
+  <div>🔍</div>
+  <div>控制 Controlling</div>
+  <div>監督檢查，糾正偏差</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 5 頁</strong>
+  <div>02  行為科學理論</div>
+  <div>霍桑實驗 (1924-1932)</div>
+  <div>艾爾頓·梅約</div>
+  <div class="bullet">▸  照明實驗：光線好壞不影響產量</div>
+  <div class="bullet">▸  福利實驗：改善待遇不直接提升效率</div>
+  <div class="bullet">▸  訪談實驗：傾聽員工不滿可改善態度</div>
+  <div class="bullet">▸  團體實驗：非正式組織影響產出</div>
+  <div>核心發現：人不是「經濟人」，而是「社會人」</div>
+  <div>馬斯洛需求層次</div>
+  <div>自我實現</div>
+  <div>尊重需求</div>
+  <div>社交需求</div>
+  <div>安全需求</div>
+  <div>生理需求</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 6 頁</strong>
+  <div>03  系統與權變理論</div>
+  <div>系統理論</div>
+  <div>卡斯特 &amp; 羅森威格</div>
+  <div class="bullet">▸  組織是開放系統，與環境互動</div>
+  <div class="bullet">▸  輸入 → 轉換 → 輸出 → 回饋</div>
+  <div class="bullet">▸  次系統相互依賴、相互影響</div>
+  <div class="bullet">▸  等終性：不同途徑可達相同結果</div>
+  <div class="bullet">▸  負熵：組織從環境獲取資源維持秩序</div>
+  <div>權變理論</div>
+  <div>沒有最好的管理方式</div>
+  <div class="bullet">▸  環境穩定 → 機械式組織</div>
+  <div class="bullet">▸  環境不穩定 → 有機式組織</div>
+  <div class="bullet">▸  規模大小影響結構選擇</div>
+  <div class="bullet">▸  技術複雜度決定分權程度</div>
+  <div class="bullet">▸  目標與策略決定組織設計</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 7 頁</strong>
+  <div>04  現代組織理論</div>
+  <div>學習型組織</div>
+  <div>彼得·聖吉</div>
+  <div class="bullet">▸  系統思考</div>
+  <div class="bullet">▸  自我超越</div>
+  <div class="bullet">▸  心智模式</div>
+  <div class="bullet">▸  共同願景</div>
+  <div class="bullet">▸  團隊學習</div>
+  <div>網絡組織</div>
+  <div>虛擬組織</div>
+  <div class="bullet">▸  核心競爭力集中</div>
+  <div class="bullet">▸  外包非核心業務</div>
+  <div class="bullet">▸  靈活彈性結構</div>
+  <div class="bullet">▸  資訊科技驅動</div>
+  <div class="bullet">▸  跨組織合作</div>
+  <div>平台組織</div>
+  <div>生態系統思維</div>
+  <div class="bullet">▸  雙邊市場</div>
+  <div class="bullet">▸  網絡效應</div>
+  <div class="bullet">▸  去中心化</div>
+  <div class="bullet">▸  數據驅動</div>
+  <div class="bullet">▸  共創價值</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 8 頁</strong>
+  <div>理論比較總覽</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 9 頁</strong>
+  <div>重點回顧</div>
+  <div>1.  古典理論奠定了組織管理的基礎框架</div>
+  <div>2.  行為科學揭示了「人」在組織中的核心地位</div>
+  <div>3.  系統理論將組織視為與環境互動的開放系統</div>
+  <div>4.  權變理論強調「因地制宜」的管理哲學</div>
+  <div>5.  現代組織走向扁平化、網絡化、學習化</div>
+  <div>組織理論的演進，是人類對「如何有效協作」的持續探索</div>
+</div>
+</div>
+</div>
+<div class="chapter-section" id="book-組織管理概要">
+<div class="chapter-title" onclick="toggleBook('book-組織管理概要')">
+  <span>📗 組織管理概要（35 頁）</span>
+  <span class="arrow">▾</span>
+</div>
+<div class="chapter-content">
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 1 頁</strong>
+  <div>組織管理概要</div>
+  <div>從理論到實踐的完整指南</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 2 頁</strong>
+  <div>課程大綱</div>
+  <div>第一章　組織與管理的基礎概念</div>
+  <div>第二章　計畫與決策管理</div>
+  <div>第三章　組織設計與結構</div>
+  <div>第四章　領導與激勵</div>
+  <div>第五章　控制與績效管理</div>
+  <div>第六章　組織變革與創新</div>
+  <div>綜合案例：台積電的組織管理實踐</div>
+  <div>總結與討論</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 3 頁</strong>
+  <div>為什麼要學組織管理？</div>
+  <div>組織管理是所有管理活動的基礎，不論你是創業者、主管或基層員工，都需要理解組織如何運作。</div>
+  <div class="bullet">▸ 全球有超過 70% 的企業轉型失敗，主要原因來自「管理不當」而非「技術不足」</div>
+  <div class="bullet">▸ 台積電之所以能成為全球半導體龍頭，關鍵不在技術，而在「組織管理能力」</div>
+  <div class="bullet">▸ 好的管理能让 1+1&gt;2，壞的管理會讓 1+1&lt;0.5</div>
+  <div>本課程將從五個面向，帶你理解組織管理的核心概念，並搭配真實案例，讓你「學了就能用」。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 4 頁</strong>
+  <div>學習目標</div>
+  <div>完成本課程後，你將能夠：</div>
+  <div>✓ 理解組織管理的五大功能：計畫、組織、領導、控制、變革</div>
+  <div>✓ 識別不同組織結構的優缺點，並能選擇適合的設計</div>
+  <div>✓ 運用激勵理論提升團隊士氣</div>
+  <div>✓ 建立有效的績效控制系統</div>
+  <div>✓ 主動推動組織變革與創新</div>
+  <div>記住：管理不是天賦，是技能。技能可以學，學了就能用。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 5 頁</strong>
+  <div>課程地圖：五大理論</div>
+  <div>組織管理的五大功能，形成一個持續循環的系統：</div>
+  <div>┌─────────────────────────────────────────┐</div>
+  <div>│  計畫 → 組織 → 領導 → 控制 → 變革  │</div>
+  <div>│    ↑                              ↓    │</div>
+  <div>│    └──────────────────────────────┘    │</div>
+  <div>└─────────────────────────────────────────┘</div>
+  <div class="bullet">• 計畫：設定目標、制定策略</div>
+  <div class="bullet">• 組織：分配資源、建立結構</div>
+  <div class="bullet">• 領導：激勵團隊、引導方向</div>
+  <div class="bullet">• 控制：監控績效、修正偏差</div>
+  <div class="bullet">• 變革：推動創新、適應環境</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 6 頁</strong>
+  <div>第一章</div>
+  <div>組織與管理的基礎概念</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 7 頁</strong>
+  <div>什麼是組織？</div>
+  <div>組織是由兩人以上，為達成共同目標而分工協作的社會實體。</div>
+  <div>組織的三要素：</div>
+  <div class="bullet">→ 共同目標： everyone knows where we are going</div>
+  <div class="bullet">→ 分工協作：每人做擅長的事，組合起來完成大任務</div>
+  <div class="bullet">→ 權責結構：誰負責什麼、誰向誰報告</div>
+  <div>生活類比：一支足球隊就是一個組織</div>
+  <div class="bullet">→ 球員有分工（前鋒、中場、後衛、守門員）</div>
+  <div class="bullet">→ 有共同目標（贏球）</div>
+  <div class="bullet">→ 有權責結構（隊長、教練、經理）</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 8 頁</strong>
+  <div>管理的五大功能</div>
+  <div>管理就是「透過他人完成工作」的藝術與科學。</div>
+  <div>① 計畫（Planning）：決定做什麼、怎麼做</div>
+  <div>② 組織（Organizing）：分配資源、建立結構</div>
+  <div>③ 領導（Leading）：激勵團隊、指引方向</div>
+  <div>④ 控制（Controlling）：監督績效、修正偏差</div>
+  <div>⑤ 變革（Changing）：推動創新、適應環境</div>
+  <div>這五個功能不是獨立的，而是相互連結、持續循環的。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 9 頁</strong>
+  <div>【案例】從工匠到蘋果</div>
+  <div>情境：1910年代，福特汽車用「科學管理」讓汽車從奢侈品變平民商品。</div>
+  <div>衝突：1980年代，蘋果用「人性化工學」讓電腦從工具變玩具。</div>
+  <div>解法：賈伯斯回歸蘋果時，廢除傳統組織圖，改用「功能型組織」，讓硬件、軟件、設計各自由專家主導。</div>
+  <div>關鍵學到什麼？</div>
+  <div>管理理論會隨時代演進，但核心都是：如何讓一群人有效率地完成共同目標。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 10 頁</strong>
+  <div>第二章</div>
+  <div>計畫與決策管理</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 11 頁</strong>
+  <div>計畫的層次與功能</div>
+  <div>計畫是管理的起點，沒有計畫就沒有方向。</div>
+  <div>計畫的三個層次：</div>
+  <div class="bullet">→ 策略計畫（3-5年）：公司要去哪裡？例如台積電的「全球化布局」</div>
+  <div class="bullet">→ 戰術計畫（1-3年）：怎麼到那裡？例如「赴美設廠」</div>
+  <div class="bullet">→ 作業計畫（每月/每週）：今天做什麼？例如「產線排程」</div>
+  <div>計畫的功能：</div>
+  <div>✓ 降低不確定性</div>
+  <div>✓ 減少浪費</div>
+  <div>✓ 設定標準以利控制</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 12 頁</strong>
+  <div>決策的四大步驟</div>
+  <div>決策是管理的核心，每天都在做。</div>
+  <div>① 識別問題：發生什麼事？（例如業績下滑10%）</div>
+  <div>② 發展方案：可以怎麼做？（A方案：降價；B方案：促銷；C方案：新品）</div>
+  <div>③ 選擇方案：哪個最好？（用數據分析、SWOT、成本效益）</div>
+  <div>④ 實施與評估：做了沒效就調整</div>
+  <div>名言：好的決策不是「對的決策」，而是「在當下最合理的決策」。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 13 頁</strong>
+  <div>【案例】Zara 的快速決策</div>
+  <div>情境：Zara 從設計到上架只需2週，而傳統服飾業需要6個月。</div>
+  <div>衝突：原因是 Zara 建立了「快速決策機制」：門市每天回報銷售數據，設計師即時調整設計。</div>
+  <div>解法：決策權下放給最接近市場的人，而不是等總部批准。</div>
+  <div>關鍵學到什麼？</div>
+  <div>好的決策系統 = 正確的人 + 正確的資訊 + 正確的速度。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 14 頁</strong>
+  <div>第三章</div>
+  <div>組織設計與結構</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 15 頁</strong>
+  <div>組織結構的四大類型</div>
+  <div>組織結構決定「誰向誰報告、資訊怎麼流動」。</div>
+  <div>① 功能型：依專業分組（研發部、行銷部、財務部）</div>
+  <div>優點：專業分工、效率高　缺點：跨部門溝通難</div>
+  <div>② 產品型：依產品分組（iPhone部門、Mac部門）</div>
+  <div>優點：產品專注　缺點：資源重複</div>
+  <div>③ 地區型：依地區分組（北美、歐洲、亞太）</div>
+  <div>優點：在地化　缺點：標準化困難</div>
+  <div>④ 矩陣型：功能+產品雙線匯報</div>
+  <div>優點：彈性大　缺點：權責衝突</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 16 頁</strong>
+  <div>台積電的組織設計</div>
+  <div>台積電採用「功能型組織」+「專案小組」的混合模式。</div>
+  <div>為什麼選擇功能型？</div>
+  <div class="bullet">→ 半導體製程極度複雜，需要高度專業分工</div>
+  <div class="bullet">→ 研發、製造、品保各自需要深厚專業</div>
+  <div>為什麼加專案小組？</div>
+  <div class="bullet">→ 客戶需求差異大（蘋果、NVIDIA、高通各不同）</div>
+  <div class="bullet">→ 需要跨部門協作才能滿足客戶</div>
+  <div>張忠謀的管理哲學：「專業分工、團隊合作」</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 17 頁</strong>
+  <div>【案例】蘋果的功能型組織</div>
+  <div>情境：蘋果是全球市值最高的公司，卻採用「功能型組織」而非「事業部制」。</div>
+  <div>衝突：1997年賈伯斯回歸時，蘋果有30多個產品，他砍到只剩4個，並廢除事業部制。</div>
+  <div>解法：改由硬件、軟件、設計三大功能部門主導，由資深副總直接向CEO報告。</div>
+  <div>關鍵學到什麼？</div>
+  <div>結果：蘋果的創新速度遠超對手，因為決策集中在最懂的人手中。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 18 頁</strong>
+  <div>第四章</div>
+  <div>領導與激勵</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 19 頁</strong>
+  <div>領導 vs 管理</div>
+  <div>領導和管理不同，但同等重要：</div>
+  <div>管理：讓事情「正確地發生」</div>
+  <div class="bullet">→ 規劃、組織、控制</div>
+  <div class="bullet">→ 關注效率、流程、制度</div>
+  <div>領導：讓「正確的事情」發生</div>
+  <div class="bullet">→ 激勵、願景、變革</div>
+  <div class="bullet">→ 關注方向、人心、創新</div>
+  <div>好的組織需要「管理者」和「領導者」兼具。</div>
+  <div>張忠謀說：「董事長要花75%的時間思考未來。」</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 20 頁</strong>
+  <div>激勵理論的三大面向</div>
+  <div>怎麼讓員工「自動自發」？</div>
+  <div>① 需求理論（Maslow）：</div>
+  <div>生理→安全→社交→尊重→自我實現</div>
+  <div>啟示：先滿足基本需求，再談理想</div>
+  <div>② 雙因子理論（Herzberg）：</div>
+  <div>保健因子（薪水、環境）→ 沒有會不滿</div>
+  <div>激勵因子（成就感、認可）→ 有了才會滿意</div>
+  <div>啟示：加薪只能「止痛」，成就感才能「激勵」</div>
+  <div>③ 目標設定理論（Locke）：</div>
+  <div>具體、有挑戰性的目標，能提升績效20-25%</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 21 頁</strong>
+  <div>【案例】全聯的「平凡不平凡」</div>
+  <div>情境：全聯員工人數超過1萬人，流動率卻遠低於業界平均。</div>
+  <div>衝突：原因是全聯建立了「平凡人的不平凡舞台」文化。</div>
+  <div>解法：他們不追求明星員工，而是讓每個人都能在崗位上找到成就感。</div>
+  <div>關鍵學到什麼？</div>
+  <div>激勵不是只有錢，「被看見、被尊重、被需要」才是最強的激勵。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 22 頁</strong>
+  <div>第五章</div>
+  <div>控制與績效管理</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 23 頁</strong>
+  <div>控制的四大步驟</div>
+  <div>控制是確保「計畫能落地」的機制。</div>
+  <div>① 設定標準：例如「每月營收成長5%」</div>
+  <div>② 衡量績效：例如「實際只成長3%」</div>
+  <div>③ 比較分析：差異2%，為什麼？</div>
+  <div>④ 採取行動：修正策略或調整資源</div>
+  <div>常見的控制工具：</div>
+  <div class="bullet">→ 平衡計分卡（BSC）：財務、顧客、流程、學習四個面向</div>
+  <div class="bullet">→ KPI：關鍵績效指標</div>
+  <div class="bullet">→ OKR：目標與關鍵結果</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 24 頁</strong>
+  <div>績效管理的誤區</div>
+  <div>很多公司把「績效考核」當成「績效管理」，這是最大的誤區。</div>
+  <div>❌ 錯誤：年底打個分數就結束</div>
+  <div>✅ 正確：持續性的回饋與輔導</div>
+  <div>績效管理的循環：</div>
+  <div class="bullet">→ 設定目標（年初）</div>
+  <div class="bullet">→ 定期檢視（每季/每月）</div>
+  <div class="bullet">→ 即時回饋（發生就說）</div>
+  <div class="bullet">→ 年終評估（年底）</div>
+  <div class="bullet">→ 發展計畫（明年）</div>
+  <div>記住：考核是「算總帳」，管理是「日常功夫」。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 25 頁</strong>
+  <div>【案例】台積電的「持續改善」</div>
+  <div>情境：台積電每年超過10萬名員工，卻能保持高效率，關鍵在「持續改善」文化。</div>
+  <div>衝突：他們用「提案制度」讓每個員工都能提出改善建議，每年超過10萬件提案。</div>
+  <div>解法：不只是控制績效，更是「讓員工參與改善」，這就是「控制」和「激勵」的結合。</div>
+  <div>關鍵學到什麼？</div>
+  <div>最好的控制系統，是讓員工「自己想做得更好」。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 26 頁</strong>
+  <div>第六章</div>
+  <div>組織變革與創新</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 27 頁</strong>
+  <div>為什麼組織必須變革？</div>
+  <div>環境在變，組織不變就是等死。</div>
+  <div>迫使變革的五種力量：</div>
+  <div>① 技術變革：AI、自動化、數位轉型</div>
+  <div>② 市場競爭：新競爭者、全球化</div>
+  <div>③ 法規改變：ESG、數位稅、個資法</div>
+  <div>④ 客戶期望：要求更快、更好、更便宜</div>
+  <div>⑤ 內部問題：效率低落、人才流失</div>
+  <div>名言：「唯一的不變就是變。」</div>
+  <div>但變革最大的阻力，往往來自組織內部。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 28 頁</strong>
+  <div>變革管理的八步驟</div>
+  <div>Kotter 的變革八步驟：</div>
+  <div>① 建立緊迫感：讓大家覺得「不變不行」</div>
+  <div>② 組織領導團隊：找到支持變革的核心團隊</div>
+  <div>③ 發展願景：清楚描述「變完會長什麼樣」</div>
+  <div>④ 溝通願景：讓 everyone know</div>
+  <div>⑤ 授權行動：消除障礙、鼓勵嘗試</div>
+  <div>⑥ 創造短期成果：先贏一場小勝仗</div>
+  <div>⑦ 鞏固成果、再接再厲</div>
+  <div>⑧ 將變革制度化：融入文化</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 29 頁</strong>
+  <div>【案例】微軟的重生</div>
+  <div>情境：2014年Satya Nadella接任微軟CEO時，微軟被認為是「過氣的巨人」。</div>
+  <div>衝突：他推動三大變革：從「Windows優先」→「Cloud優先」；從「無所不知」→「無所不學」；從「內部競爭」→「團隊合作」。</div>
+  <div>解法：結果：微軟市值從3000億美元成長到超過3兆美元。</div>
+  <div>關鍵學到什麼？</div>
+  <div>變革的關鍵：領導者的願景 + 全員的參與 + 持之以恆的執行。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 30 頁</strong>
+  <div>第台積電章</div>
+  <div>綜合案例</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 31 頁</strong>
+  <div>台積電的組織管理實踐</div>
+  <div>台積電是台灣之光，也是全球組織管理的標竿。</div>
+  <div>五大管理特色：</div>
+  <div>① 計畫：「全球化布局」的長期策略</div>
+  <div>② 組織：功能型組織 + 專案小組的混合模式</div>
+  <div>③ 領導：「誠信正直、承諾客戶」的文化</div>
+  <div>④ 控制：「持續改善」的提案制度</div>
+  <div>⑤ 變革：從「製造代工」到「技術領先」的轉型</div>
+  <div>張忠謀的管理智慧：「做世界上最有聲譽、最服務導向的專業晶圓製造公司。」</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 32 頁</strong>
+  <div>台積電的關鍵成功因素</div>
+  <div>為什麼台積電能打敗英特爾、三星？</div>
+  <div class="bullet">→ 客戶信任：絕不與客戶競爭（純代工模式）</div>
+  <div class="bullet">→ 技術領先：每年投入超過3000億研發費用</div>
+  <div class="bullet">→ 人才培育：台積電大學、輪調制度</div>
+  <div class="bullet">→ 組織文化：「誠信、承諾、創新、顧客信任」</div>
+  <div class="bullet">→ 持續改善：每年10萬件以上的員工提案</div>
+  <div>結論：技術可以複製，但「組織管理能力」很難被模仿。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 33 頁</strong>
+  <div>第章</div>
+  <div>總結與討論</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 34 頁</strong>
+  <div>五大重點回顧</div>
+  <div>本課程的五個核心 takeaway：</div>
+  <div>① 管理是技能，不是天賦 → 可以學，學了就能用</div>
+  <div>② 組織結構要配合策略 → 沒有最好的結構，只有最適合的</div>
+  <div>③ 領導 ≠ 管理 → 兩者都需要，但角色不同</div>
+  <div>④ 績效管理是日常功夫 → 不是年底算總帳</div>
+  <div>⑤ 變革是常態 → 不變就是等死</div>
+  <div>記住：好的組織管理，是讓「平凡人做出不平凡的事」。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 35 頁</strong>
+  <div>討論問題</div>
+  <div>思考題（適合課堂討論）：</div>
+  <div>① 你目前的組織是哪種結構？優缺點是什麼？</div>
+  <div>② 如果你是CEO，你會怎麼激勵員工？</div>
+  <div>③ 你的組織最近一次變革是什麼？成功了嗎？為什麼？</div>
+  <div>④ 台積電的「純代工模式」在你的產業適用嗎？</div>
+  <div>⑤ 你覺得「好的管理者」應該具備什麼特質？</div>
+  <div>下次見！</div>
+</div>
+</div>
+</div>
+<div class="chapter-section" id="book-組織設計">
+<div class="chapter-title" onclick="toggleBook('book-組織設計')">
+  <span>📗 組織設計（27 頁）</span>
+  <span class="arrow">▾</span>
+</div>
+<div class="chapter-content">
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 1 頁</strong>
+  <div>組織設計</div>
+  <div>策略、結構與效能的系統性整合</div>
+  <div>專業管理顧問簡報 | 2026</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 2 頁</strong>
+  <div>簡報大綱</div>
+  <div>01</div>
+  <div>組織設計基礎</div>
+  <div>定義、目的與核心原則</div>
+  <div>02</div>
+  <div>組織結構類型</div>
+  <div>機能、事業部、矩陣、網路型</div>
+  <div>03</div>
+  <div>設計驅動因素</div>
+  <div>策略、規模、技術、環境</div>
+  <div>04</div>
+  <div>權責與協調機制</div>
+  <div>集權分權、整合性角色、溝通管道</div>
+  <div>05</div>
+  <div>趨勢與個案</div>
+  <div>敏捷組織、平台化、台灣實踐</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 3 頁</strong>
+  <div>什麼是組織設計？</div>
+  <div class="bullet">▸ 決定權責歸屬與報告關係</div>
+  <div class="bullet">▸ 設計跨部門協調機制</div>
+  <div class="bullet">▸ 配置人力、預算與技術資源</div>
+  <div class="bullet">▸ 回應外部環境變化與策略需求</div>
+  <div>核心公式</div>
+  <div>結構 = 策略 × 環境 × 規模</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 4 頁</strong>
+  <div>為什麼組織設計很重要？</div>
+  <div>策略執行力</div>
+  <div>再好的策略，沒有對的組織結構來承載，最終只是紙上談兵。</div>
+  <div>人才效能</div>
+  <div>對的結構讓對的人在對的位置，發揮最大戰力。</div>
+  <div>反應速度</div>
+  <div>扁平、靈活的結構讓組織更快回應市場變化。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 5 頁</strong>
+  <div>組織設計的演進</div>
+  <div>1900s</div>
+  <div>古典理論</div>
+  <div>費堯、韋伯提出官僚體制與管理原則，強調分工與層級</div>
+  <div>1950s</div>
+  <div>行為學派</div>
+  <div>馬斯洛、赫茲伯格關注人的動機與非正式組織</div>
+  <div>1980s</div>
+  <div>權變理論</div>
+  <div>沒有唯一最佳結構，組織設計必須回應環境與策略</div>
+  <div>2000s</div>
+  <div>網路與平台</div>
+  <div>跨組織邊界、生態系協作、虛擬整合</div>
+  <div>2020s+</div>
+  <div>敏捷與去中心化</div>
+  <div>自組織團隊、OKR、敏捷 Scrum、AI 輔助決策</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 6 頁</strong>
+  <div>組織結構類型</div>
+  <div>不同結構適用不同情境，關鍵是結構必須服務於策略，而非制約策略。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 7 頁</strong>
+  <div>機能型組織</div>
+  <div class="bullet">▸ 研發、生產、行銷、財務各自獨立</div>
+  <div class="bullet">▸ 專業深度高，規模經濟明顯</div>
+  <div class="bullet">▸ 決策集中，跨部門協調成本高</div>
+  <div class="bullet">▸ 適合：穩定環境、單一產品線</div>
+  <div>01</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 8 頁</strong>
+  <div>事業部型組織</div>
+  <div class="bullet">▸ 各事業部擁有完整機能（研產銷人財）</div>
+  <div class="bullet">▸ 利潤責任明確，回應市場速度快</div>
+  <div class="bullet">▸ 資源重複配置，規模經濟降低</div>
+  <div class="bullet">▸ 適合：多產品線、跨國企業</div>
+  <div>02</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 9 頁</strong>
+  <div>矩陣型組織</div>
+  <div class="bullet">▸ 兼顧專業深度與產品回應速度</div>
+  <div class="bullet">▸ 資源可跨專案共享</div>
+  <div class="bullet">▸ 雙重報告關係造成權責模糊</div>
+  <div class="bullet">▸ 適合：專案導向、技術複雜產業</div>
+  <div>03</div>
+  <div>矩陣核心矛盾</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 10 頁</strong>
+  <div>網路型 / 平台型組織</div>
+  <div class="bullet">▸ 核心能力保留，非核心外包</div>
+  <div class="bullet">▸ 彈性極高，資本投入低</div>
+  <div class="bullet">▸ 品質與供應鏈風險較高</div>
+  <div class="bullet">▸ 適合：新創、時尚、科技服務</div>
+  <div>04</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 11 頁</strong>
+  <div>四種結構比較</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 12 頁</strong>
+  <div>組織設計驅動因素</div>
+  <div>組織結構不是隨意畫的，它受到四大因素驅動：策略、規模、技術與環境。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 13 頁</strong>
+  <div>策略決定結構</div>
+  <div class="bullet">▸ 成本領導 → 集中化、標準化、規模經濟</div>
+  <div class="bullet">▸ 差異化 → 分散化、跨部門協作、創新彈性</div>
+  <div class="bullet">▸ 聚焦策略 → 小型精實、快速回應</div>
+  <div class="bullet">▸ 多角化 → 事業部制、獨立核算</div>
+  <div>關鍵提問</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 14 頁</strong>
+  <div>規模與組織生命週期</div>
+  <div>創業期</div>
+  <div>1~50 人</div>
+  <div>扁平、非正式、創辦人主導一切，溝通靠口耳相傳</div>
+  <div>成長期</div>
+  <div>50~500 人</div>
+  <div>開始需要制度、部門化、中階主管出現</div>
+  <div>成熟期</div>
+  <div>500~5000 人</div>
+  <div>官僚化風險，流程繁瑣，創新速度下降</div>
+  <div>轉型期</div>
+  <div>5000+ 人</div>
+  <div>重組、併購、事業部化，或回歸精實扁平</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 15 頁</strong>
+  <div>集權 vs 分權</div>
+  <div>決策集中在高階，命令自上而下。一致性高但回應慢。</div>
+  <div>決策下放到第一線，回應快速但需成熟的管控機制。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 16 頁</strong>
+  <div>跨部門協調機制</div>
+  <div>整合性角色</div>
+  <div>設立專案經理、產品經理或流程負責人，專責跨部門協調。</div>
+  <div>跨部門委員會</div>
+  <div>定期召開協調會議，處理資源分配與衝突解決。</div>
+  <div>標準化流程</div>
+  <div>建立SOP、資訊系統與共用平台，減少人為協調需求。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 17 頁</strong>
+  <div>敏捷組織設計</div>
+  <div class="bullet">▸ 小型跨功能團隊（Squad / Tribe）</div>
+  <div class="bullet">▸ OKR 取代 KPI，聚焦成果而非活動</div>
+  <div class="bullet">▸ 授權第一線決策，縮短回應循環</div>
+  <div class="bullet">▸ 容忍失敗，鼓勵實驗與快速學習</div>
+  <div>敏捷宣言精神</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 18 頁</strong>
+  <div>數位時代的組織變革</div>
+  <div class="bullet">▸ 遠端協作打破地理限制</div>
+  <div class="bullet">▸ 數據驅動取代經驗直覺</div>
+  <div class="bullet">▸ 平台化讓組織從「管控」走向「赋能」</div>
+  <div class="bullet">▸ AI 輔助決策，中階主管角色轉型</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 19 頁</strong>
+  <div>組織結構與文化的關係</div>
+  <div class="bullet">▸ 扁平結構 → 需要信任與授權文化</div>
+  <div class="bullet">▸ 官僚結構 → 需要服從與紀律文化</div>
+  <div class="bullet">▸ 矩陣結構 → 需要協作與溝通文化</div>
+  <div class="bullet">▸ 敏捷結構 → 需要學習與容錯文化</div>
+  <div>結構改了，文化沒改</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 20 頁</strong>
+  <div>組織設計常見錯誤</div>
+  <div>別人的結構是别人策略與文化的產物，照搬往往水土不服。</div>
+  <div>策略轉型了，組織結構還停在原地，新策略無法落地。</div>
+  <div>層級太多、委員會太多、流程太長，導致效率低落。</div>
+  <div>只調整框圖，不處理能力、動機與文化，最終回到原點。</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 21 頁</strong>
+  <div>台灣企業的組織設計挑戰</div>
+  <div class="bullet">▸ 中小企業為主，資源有限，結構調整成本高</div>
+  <div class="bullet">▸ 創辦人文化深，分權意願低</div>
+  <div class="bullet">▸ 代工思維重視效率，輕視跨部門創新</div>
+  <div class="bullet">▸ 缺工與高齡化迫使組織精簡與自動化</div>
+  <div class="bullet">▸ 數位轉型需要新的協作模式與權責劃分</div>
+  <div>台灣的機會</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 22 頁</strong>
+  <div>組織設計導入五步驟</div>
+  <div>1</div>
+  <div>診斷現狀</div>
+  <div>組織圖、權責矩陣、流程效率、員工滿意度調查</div>
+  <div>2</div>
+  <div>釐清策略</div>
+  <div>未來 3~5 年策略方向，結構必須服務於策略</div>
+  <div>3</div>
+  <div>設計方案</div>
+  <div>繪製多個結構選項，評估優缺點與風險</div>
+  <div>4</div>
+  <div>導入轉型</div>
+  <div>溝通、教育訓練、試行、調整，管理變革阻力</div>
+  <div>5</div>
+  <div>持續優化</div>
+  <div>定期檢視結構有效性，因應環境變化動態調整</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 23 頁</strong>
+  <div>組織設計的績效指標</div>
+  <div>決策速度</div>
+  <div>↑ 40%</div>
+  <div>跨部門協作</div>
+  <div>↑ 35%</div>
+  <div>員工滿意</div>
+  <div>↑ 28%</div>
+  <div>營運效率</div>
+  <div>↓ 22%</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 24 頁</strong>
+  <div>個案：科技公司從機能型轉矩陣型</div>
+  <div class="bullet">▸ 導入產品線矩陣結構</div>
+  <div class="bullet">▸ 每位工程師同時歸屬職能部門與產品團隊</div>
+  <div class="bullet">▸ 設立 PMO（專案管理辦公室）統籌資源</div>
+  <div class="bullet">▸ 半年內產品上市時間縮短 30%</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 25 頁</strong>
+  <div>「組織 structure follows strategy。但如果策略模糊，結構只會讓混亂更有秩序。」</div>
+  <div>— 改寫自 Alfred Chandler</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 26 頁</strong>
+  <div>核心摘要</div>
+  <div class="bullet">▸ 組織設計是策略執行的基礎建設</div>
+  <div class="bullet">▸ 沒有唯一最佳結構，只有最適合的結構</div>
+  <div class="bullet">▸ 結構、策略、文化三者必須一致</div>
+  <div class="bullet">▸ 設計後需要持續檢視與動態調整</div>
+  <div class="bullet">▸ 數位工具是放大器，流程優化才是前提</div>
+  <div>一句話總結</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 27 頁</strong>
+  <div>組織設計 — 策略、結構與效能的系統性整合</div>
+</div>
+</div>
+</div>
+<div class="chapter-section" id="book-行動中的組織">
+<div class="chapter-title" onclick="toggleBook('book-行動中的組織')">
+  <span>📗 行動中的組織（20 頁）</span>
+  <span class="arrow">▾</span>
+</div>
+<div class="chapter-content">
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 1 頁</strong>
+  <div>行動中的組織</div>
+  <div>Organizations in Action</div>
+  <div>James D. Thompson (1967)</div>
+  <div>教材簡報 ｜ 20頁精要版</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 2 頁</strong>
+  <div>全書導讀：在不確定性中追求理性</div>
+  <div>核心問題：複雜組織如何在充滿不確定性的環境中，追求組織的理性？</div>
+  <div>三個基本命題：</div>
+  <div class="bullet">• 組織為開放系統，同時為理性組織</div>
+  <div class="bullet">• 組織行動在於處理不確定性</div>
+  <div class="bullet">• 技術决定結構，結構必須匹配環境</div>
+  <div>分析層次：</div>
+  <div>Part I（Ch1-7）— 組織整體的行為</div>
+  <div>Part II（Ch8-12）— 組織內部的行為（人的變數）</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 3 頁</strong>
+  <div>兩種組織研究的策略觀點</div>
+  <div>理性系統（封閉系統）</div>
+  <div class="bullet">• 假設變數可理解、可控、可預測</div>
+  <div class="bullet">• 追求的目標：效率（Efficiency）</div>
+  <div class="bullet">• 策略邏輯：掌控 — 找出確定性</div>
+  <div class="bullet">• 代表學派：科學管理、行政管理、科層制</div>
+  <div>自然系統（開放系統）</div>
+  <div class="bullet">• 承認變數多且超過預期或控制</div>
+  <div class="bullet">• 追求的目標：生存（Survival）</div>
+  <div class="bullet">• 策略邏輯：適應 — 接受不確定性</div>
+  <div>Thompson 的立場：折衷而非擇一</div>
+  <div>理性模型與自然系統都導向部分真理，</div>
+  <div>但都不能單獨提供對複雜組織的完整理解</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 4 頁</strong>
+  <div>封閉系統策略的三個學派</div>
+  <div>科學管理（Taylor, 1911）</div>
+  <div class="bullet">• 以經濟效率為終極標準 → 數據邏輯規劃程序</div>
+  <div class="bullet">• 假設：任務重複且已知、標準質量總可獲得</div>
+  <div>行政管理理論（Gulick &amp; Urwick, 1937）</div>
+  <div class="bullet">• 以經濟效率為終極標準 → POSDCORB</div>
+  <div class="bullet">• 依控制範圍原則或授權原則來固定責任</div>
+  <div>科層制理論（Weber, 1947）</div>
+  <div class="bullet">• 以經濟效率為終極標準 → 結構優化</div>
+  <div class="bullet">• 假設任務已知、標準質量可以獲得</div>
+  <div>共同假設：環境可控、任務已知、效率可最大化</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 5 頁</strong>
+  <div>組織的理性行為與技術理性</div>
+  <div>技術理性（Technical Rationality）</div>
+  <div class="bullet">• 有效性（Effectiveness）— 對因果關係的信念：投入產出邏輯</div>
+  <div class="bullet">• 經濟性（Economy）— 投少產多</div>
+  <div>緩衝機制（命題 2.1-2.5）</div>
+  <div>為保護技術核心免受環境干擾，組織發展出：</div>
+  <div>(1) 隔絕外界不確定性</div>
+  <div>(2) 緩衝環境影響（如儲存材料）</div>
+  <div>(3) 平穩投入與產出交易</div>
+  <div>(4) 預測變化並適應</div>
+  <div>(5) 定量分配資源</div>
+  <div>組織理性的三個層次：</div>
+  <div>技術層次 → 管理層次 → 機構層次</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 6 頁</strong>
+  <div>三種技術型式（本書核心命題）</div>
+  <div>長鏈型技術</div>
+  <div>多步驟依序進行</div>
+  <div>投入→產出→投入→產出</div>
+  <div>例：工廠生產線</div>
+  <div>長鏈型技術</div>
+  <div>媒介型技術</div>
+  <div>連結不同群體</div>
+  <div>扮演中間人角色</div>
+  <div>例：銀行、電信公司</div>
+  <div>媒介型技術</div>
+  <div>密集型技術</div>
+  <div>針對特定對象</div>
+  <div>彈性整合不同技術</div>
+  <div>例：醫院、諮詢公司</div>
+  <div>密集型技術</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 7 頁</strong>
+  <div>領域、依賴與權力</div>
+  <div>領域（Domain）：組織的產品範圍、服務人群與服務種類</div>
+  <div class="bullet">• 領域大小取決於組織與環境的權力關係</div>
+  <div class="bullet">• 環境提供「支援能力」，組織提供產出</div>
+  <div>權力與依賴（命題 3.1-3.3）</div>
+  <div class="bullet">• 降低任務環境的權力 → 尋求多個替代方案</div>
+  <div class="bullet">• 增加組織威望 → 取得較高權力</div>
+  <div class="bullet">• 增加相對權力 → 降低對任務環境依賴</div>
+  <div>三種合作策略：</div>
+  <div class="bullet">• 合約（Contracting）— 權力均衡時訂立正式合約</div>
+  <div class="bullet">• 攏絡（Coopting）— 弱勢方拉攏強勢方入夥</div>
+  <div class="bullet">• 聯盟（Coalescing）— 非正式策略聯盟</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 8 頁</strong>
+  <div>組織設計：邊界設置與擴展策略</div>
+  <div>邊界設置：核心目的是控制不確定性</div>
+  <div class="bullet">• 將關鍵活動納入組織內部管理</div>
+  <div class="bullet">• 避免關鍵情境因素不受控制</div>
+  <div>三種技術的擴展策略：</div>
+  <div class="bullet">• 長鏈型 → 垂直整合（如石油公司合併原油供應）</div>
+  <div class="bullet">• 媒介型 → 增加服務人數（如鐵路、銀行擴大服務區域）</div>
+  <div class="bullet">• 密集型 → 吸納工作對象（如大學、醫院圍繞客戶設置邊界）</div>
+  <div>成份間平衡（命題 4.2-4.3）</div>
+  <div class="bullet">• 組織會成長到「最不能減少的要素」幾乎被完全占用為止</div>
+  <div class="bullet">• 組織會擴大運作領域以充分利用剩餘支援能力</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 9 頁</strong>
+  <div>技術與結構：三種相互依賴型式</div>
+  <div>集中相依</div>
+  <div>(Pooled)</div>
+  <div>各單位分別貢獻給全體</div>
+  <div>溝通協調成本：低</div>
+  <div>協調機制：標準化</div>
+  <div>例：事業部關係</div>
+  <div>順序相依</div>
+  <div>(Sequential)</div>
+  <div>前單位輸出=後單位輸入</div>
+  <div>溝通協調成本：中</div>
+  <div>協調機制：規劃排程</div>
+  <div>例：裝配線</div>
+  <div>互惠相依</div>
+  <div>(Reciprocal)</div>
+  <div>彼此互為輸入輸出</div>
+  <div>溝通協調成本：高</div>
+  <div>協調機制：相互調整</div>
+  <div>例：醫院</div>
+  <div>部門化原則（協調成本極小化）</div>
+  <div>互惠相依 → 順序相依 → 集中相依（成本高→低）</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 10 頁</strong>
+  <div>組織理性與結構：四種任務環境</div>
+  <div>Thompson 以「異質/同質」×「穩定/變化」劃分任務環境：</div>
+  <div>同質+穩定 → 少數功能部門 + 標準化規則</div>
+  <div>異質+穩定 → 多樣化功能部門各自對應</div>
+  <div>同質+變化 → 以地理區域為基礎，規劃性反應</div>
+  <div>異質+變化 → 功能差異化設計 + 分權 + 各自偵測</div>
+  <div>結構性涵義（命題 6.3-6.5）</div>
+  <div class="bullet">• 組織會建立由職能部門組成的總攬管理層來實現集權</div>
+  <div class="bullet">• 異質中同質的部分被劃分隔離為自足功能群</div>
+  <div class="bullet">• 特殊任務組織將專家配置到同質單位維持「家政」</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 11 頁</strong>
+  <div>組織評估：滿意化而非極大化</div>
+  <div>組織評估的兩種構面：欲求標準 × 因果關係知識</div>
+  <div>明確標準 + 明確因果 → 效率測試（最能評估）</div>
+  <div>明確標準 + 不明因果 → 工具性測試（次之）</div>
+  <div>模糊標準 + 明確因果 → 社會性測試（較難）</div>
+  <div>模糊標準 + 不明因果 → 最難評估</div>
+  <div>前瞻性評估</div>
+  <div class="bullet">• 組織以「滿意與否」衡量未來的配適性</div>
+  <div class="bullet">• 會將精力投入在最依賴的任務環境因素</div>
+  <div class="bullet">• 當內在準則難以評估時，轉向外在衡量標準</div>
+  <div>核心：組織評估追求「夠好」而非「最好」</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 12 頁</strong>
+  <div>Part II：人的變數與組織行動</div>
+  <div>人類行動的兩個來源：</div>
+  <div>個體（願望、標準、因果信念） × 狀況（機會、限制）</div>
+  <div class="bullet">→ 交互作用後引發行動</div>
+  <div>工作中的三個層次：</div>
+  <div class="bullet">• 工作（Job）— 基於誘因/貢獻合約</div>
+  <div class="bullet">• 職業（Occupation）— 涉及升遷與同儕評估</div>
+  <div class="bullet">• 事業（Career）— 長期發展路徑</div>
+  <div>誘因/貢獻合約的決定因素：</div>
+  <div>任務環境要素的權力大小 × 個人對關鍵要素的掌控能力</div>
+  <div class="bullet">→ 個人權力越大，合約談判能力越強</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 13 頁</strong>
+  <div>不同技術下的個體行為差異</div>
+  <div>密集型技術（如醫院、顧問公司）</div>
+  <div class="bullet">• Early-ceiling 職業者 → 集體行動集結權力</div>
+  <div class="bullet">• Late-ceiling 職業者 → 基於個人知名度爭取合約</div>
+  <div>管理性技術</div>
+  <div class="bullet">• 基於個人解決組織理性問題的稀有能力聲望</div>
+  <div>關鍵命題：</div>
+  <div class="bullet">• 若個人能控制情境的程度越高，在合約訂定中的權力越大</div>
+  <div class="bullet">• 若組織權力超過環境要素的程度越大</div>
+  <div class="bullet">→ 愈能減少組織對那些要素的依賴</div>
+  <div class="bullet">• 不同技術型式下的個體有不同的權力基礎</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 14 頁</strong>
+  <div>行政裁量權：理性與不確定性的介面</div>
+  <div>裁量權的使用原則：</div>
+  <div>規章辦法 → 往例慣例 → 會議決議 → 行政裁量權</div>
+  <div>逃避裁量權（命題 9.1-9.2）</div>
+  <div class="bullet">• 個人認為因果資源不足以處理不確定性時</div>
+  <div class="bullet">• 造成錯誤的嚴重性越大，逃避傾向越強</div>
+  <div class="bullet">• 不適當的評估準則也會阻礙裁量權行使</div>
+  <div>壓力下的裁量權（命題 9.3）</div>
+  <div class="bullet">• 工作壓力大、成敗以裁量權大小衡量時</div>
+  <div class="bullet">→ 個人寧犧牲利益也要運用裁量權</div>
+  <div class="bullet">• 若對不確定性缺乏容忍度的人被派至高度裁量性工作</div>
+  <div class="bullet">→ 造成行政腐化</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 15 頁</strong>
+  <div>裁量權的選擇、貯存與政治運作</div>
+  <div>選擇性表現（命題 9.5）</div>
+  <div class="bullet">• 超負荷時傾向選擇能增強績效分數的工作</div>
+  <div class="bullet">• 努力投向受上級注意的項目</div>
+  <div>貯存行為（命題 9.6-9.7）</div>
+  <div class="bullet">• 資源不規則時進行貯存以減少未來依賴</div>
+  <div class="bullet">• 傾向報告成功、隱瞞失敗</div>
+  <div>高度裁量性職位（命題 9.8-9.8c）</div>
+  <div class="bullet">• 維持權力 ≥ 對外依賴</div>
+  <div class="bullet">• 權力不足時尋求聯盟</div>
+  <div class="bullet">• 與任務環境關鍵要素結盟</div>
+  <div>政治運作（命題 9.9-9.12）</div>
+  <div class="bullet">• 依賴關係改變 → 威脅舊聯盟、催生新聯盟</div>
+  <div class="bullet">• 不確定性越多 → 所需政治職位越多</div>
+  <div class="bullet">• 技術和環境越動態 → 政治過程越快</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 16 頁</strong>
+  <div>複雜組織的控制與支配聯盟</div>
+  <div>控制的限度（Cyert &amp; March）</div>
+  <div class="bullet">• 來自金字塔頂端的控制有限</div>
+  <div class="bullet">• 高度複雜組織無法由單一個體主宰</div>
+  <div>原因：</div>
+  <div>(1) 技術複雜性超過個體理解範圍</div>
+  <div>(2) 資源需要量超過個體所能獲得</div>
+  <div>(3) 意外事件超出個體監控能力</div>
+  <div>支配聯盟（Dominant Coalition）</div>
+  <div class="bullet">• 權力集中於單位而非個人</div>
+  <div class="bullet">• 透過決策前提的操控來控制各階層（Simon）</div>
+  <div class="bullet">• 技術越不完備、任務環境越多變 → 支配聯盟越大</div>
+  <div class="bullet">• 聯盟成員的專業背景越多樣 → 潛在衝突越大</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 17 頁</strong>
+  <div>內圈管理與掌權者的角色</div>
+  <div>內圈（Inner Circle）</div>
+  <div class="bullet">• 組織越複雜 → 支配聯盟越大 → 權力越分散 → 出現內圈</div>
+  <div class="bullet">• 內圈可能是正式或非正式的</div>
+  <div class="bullet">• 權力分散的組織必須有高效能內圈才能帶動運作</div>
+  <div class="bullet">• 在權力分散的組織中，聯盟無權作決定，只能批准決定</div>
+  <div>掌權者的重要性</div>
+  <div class="bullet">• 掌握重要資源，對外展現權力，對內發揮領導</div>
+  <div class="bullet">• 缺乏掌權者 → 組織發展停滯不前</div>
+  <div class="bullet">• 權力分散的組織中，最高權力者就是能掌握聯盟的人</div>
+  <div class="bullet">• 科層組織的主導權在最高當局</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 18 頁</strong>
+  <div>行政管理程序：共同合作與兩難</div>
+  <div>行政管理的基本功能：共同合作（Co-alignment）</div>
+  <div class="bullet">• 每個要素皆有變動比率，受外部力量影響</div>
+  <div class="bullet">• 求生存需要適應性與指示性行動</div>
+  <div class="bullet">• 行動的時機至關重要</div>
+  <div>POSDCORB — 七大基本功能：</div>
+  <div>Planning（規劃）→ Organizing（組織）</div>
+  <div>Staffing（人事）→ Directing（指揮）</div>
+  <div>Coordinating（協調）→ Reporting（報告）</div>
+  <div>Budgeting（預算）</div>
+  <div>行政管理的根本兩難：</div>
+  <div>穩定結構（維持運作） vs. 彈性變化（適應環境）</div>
+  <div>問題處理方式：探查症狀鄰近區域 → 現有方案 → 脆弱之處</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 19 頁</strong>
+  <div>行政管理的限制與結論</div>
+  <div>行政管理難以實現的四種情況：</div>
+  <div>(1) 理性規範力量不夠（如獨佔事業重守成勝過高成就）</div>
+  <div>(2) 固守確定、短期、數量的要求，不容忍創新與定性議題</div>
+  <div>(3) 權力不夠分散，沒有穩定權力核心引導方向</div>
+  <div>(4) 知識或 know-how 缺乏</div>
+  <div>組織間差異的來源：</div>
+  <div>技術 → 任務環境 → 制度化類型 → 對理性規範的採納程度</div>
+  <div>比較不同社會中行政管理者的資源、才能和行為</div>
+  <div class="bullet">→ 可幫助了解組織運作，甚至進行更有效的控制</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 20 頁</strong>
+  <div>總結：在不確定性中尋找秩序</div>
+  <div>三條主線貫穿全書：</div>
+  <div>1. 組織為開放系統，意圖追求理性</div>
+  <div class="bullet">→ 在不確定的環境中尋找確定性</div>
+  <div>2. 技術决定結構，結構必須匹配環境</div>
+  <div class="bullet">→ 長鏈型 / 媒介型 / 密集型各有不同的組織設計</div>
+  <div>3. 行政裁量權是處理不確定性的關鍵</div>
+  <div class="bullet">→ 支配聯盟 + 內圈管理 + 政治運作</div>
+  <div>「複雜組織的運作，在本質上就是處理不確定性的過程。」</div>
+</div>
+</div>
+</div>
+<div class="chapter-section" id="book-管理學概論">
+<div class="chapter-title" onclick="toggleBook('book-管理學概論')">
+  <span>📗 管理學概論（13 頁）</span>
+  <span class="arrow">▾</span>
+</div>
+<div class="chapter-content">
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 1 頁</strong>
+  <div>管理學概論</div>
+  <div>從基礎概念到現代趨勢，一次掌握管理學的核心框架</div>
+  <div>小綠 AI 製作  🍀</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 2 頁</strong>
+  <div>什麼是管理？</div>
+  <div>管理（Management）：透過 planning（計畫）、organizing（組織）、leading（領導）、controlling（控制）等程序，有效地運用人力、財力、物力、資訊等資源，以達成組織目標的過程。</div>
+  <div>📋 動態意義（作為動詞）</div>
+  <div>對資源作有效的計畫、組織、領導、運用、控制，以達成既定目的的「過程」。</div>
+  <div>📦 靜態意義（作為名詞）</div>
+  <div>指一個組織中，負責達成目標的「管理者群體」及其制度化的運作體系。</div>
+  <div>💡 簡單說：管理 = 讓事情有效率、有效果地完成的學問</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 3 頁</strong>
+  <div>管理的四大功能（POLC）</div>
+  <div>由法約爾（Henri Fayol）提出，後經學者簡化為四大核心功能</div>
+  <div>📐</div>
+  <div>Planning計畫</div>
+  <div>設定目標與策略，規劃行動方案</div>
+  <div>🏛️</div>
+  <div>Organizing組織</div>
+  <div>配置資源、分配職責，建立組織結構</div>
+  <div>👥</div>
+  <div>Leading領導</div>
+  <div>激勵成員、溝通協調，引導團隊朝目標前進</div>
+  <div>📊</div>
+  <div>Controlling控制</div>
+  <div>監督績效、比較標準，採取矯正措施</div>
+  <div>📌 這四個功能是循環的：計畫 → 組織 → 領導 → 控制 → 再計畫……</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 4 頁</strong>
+  <div>📐 計畫（Planning）</div>
+  <div>管理的首要功能 — 決定「做什麼」和「怎麼做」</div>
+  <div>目標設定</div>
+  <div>確立組織的短期與長期目標（SMART 原則）</div>
+  <div>環境分析</div>
+  <div>SWOT 分析：了解優勢、劣勢、機會、威脅</div>
+  <div>策略制定</div>
+  <div>選擇達成目標的最佳途徑與行動方案</div>
+  <div>資源規劃</div>
+  <div>分配人力、預算、時間等資源</div>
+  <div>風險評估</div>
+  <div>預見可能障礙，制定應變計畫</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 5 頁</strong>
+  <div>🏛️ 組織（Organizing）</div>
+  <div>建立結構，讓資源發揮最大效用</div>
+  <div>工作分工</div>
+  <div>將任務依專業分配給合適的人員（專業化）</div>
+  <div>部門化</div>
+  <div>依功能、產品、地區或客戶分組</div>
+  <div>指揮鏈</div>
+  <div>建立明確的上下級報告關係（階層結構）</div>
+  <div>權責劃分</div>
+  <div>賦予責任的同時授予相應的權限</div>
+  <div>協調機制</div>
+  <div>確保各部門間的溝通與合作順暢</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 6 頁</strong>
+  <div>👥 領導（Leading）</div>
+  <div>影響他人自願朝共同目標努力的過程</div>
+  <div>激勵</div>
+  <div>了解成員需求，運用馬斯洛、赫茲伯格等激勵理論</div>
+  <div>溝通</div>
+  <div>雙向資訊交流，確保訊息傳遞清楚無誤</div>
+  <div>領導風格</div>
+  <div>獨裁、民主、放任；或情境領導、轉型領導</div>
+  <div>團隊建設</div>
+  <div>培養信任、合作文化，提升團隊凝聚力</div>
+  <div>衝突管理</div>
+  <div>識別衝突來源，採取協調或談判策略化解</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 7 頁</strong>
+  <div>📊 控制（Controlling）</div>
+  <div>確保一切按計畫進行，偏離時及時修正</div>
+  <div>建立標準</div>
+  <div>設定可衡量的績效指標（KPI）</div>
+  <div>衡量績效</div>
+  <div>收集實際表現數據，與標準對照</div>
+  <div>比較分析</div>
+  <div>找出差距，分析偏差原因</div>
+  <div>採取行動</div>
+  <div>矯正偏差、修改計畫或調整標準</div>
+  <div>回饋機制</div>
+  <div>將控制結果回饋到下一轮計畫中</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 8 頁</strong>
+  <div>法約爾 14 條管理原則（精選 7 條）</div>
+  <div>Henri Fayol（1916）— 現代管理學之父</div>
+  <div>1. 工作分工</div>
+  <div>專業化提升效率與產出</div>
+  <div>2. 權責對等</div>
+  <div>有權力的人必須承擔相對責任</div>
+  <div>3. 紀律</div>
+  <div>組織成員必須遵守規範與協議</div>
+  <div>4. 統一指揮</div>
+  <div>每位成員只接受一位上級的命令</div>
+  <div>5. 統一方向</div>
+  <div>同一目標的活動應只有一個計畫</div>
+  <div>6. 秩序</div>
+  <div>人與物都應在正確的時間與位置</div>
+  <div>7. 公平</div>
+  <div>管理者應以友善公正的態度對待下屬</div>
+  <div>📌 14 條中還有：個人利益服從整體、報酬、集中化、等級鏈、主動性、團隊精神</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 9 頁</strong>
+  <div>明茲伯格的 10 個管理角色</div>
+  <div>Henry Mintzberg — 管理者實際上在做什麼？</div>
+  <div>人際角色</div>
+  <div class="bullet">• 代表人 — 出席典禮、簽署文件</div>
+  <div class="bullet">• 領導者 — 招募、訓練、激勵下屬</div>
+  <div class="bullet">• 聯絡者 — 建立外部關係網絡</div>
+  <div>資訊角色</div>
+  <div class="bullet">• 監控者 — 收集內外部資訊</div>
+  <div class="bullet">• 傳播者 — 將資訊轉發給成員</div>
+  <div class="bullet">• 發言者 — 對外傳達組織訊息</div>
+  <div>決策角色</div>
+  <div class="bullet">• 企業家 — 發起變革與創新</div>
+  <div class="bullet">• 資源分配者 — 決定預算與資源配置</div>
+  <div class="bullet">• 談判者 — 代表組織進行談判</div>
+  <div class="bullet">• 危機處理者 — 處理突發狀況</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 10 頁</strong>
+  <div>管理的三個層級</div>
+  <div>高階管理</div>
+  <div>CEO、總經理、副總</div>
+  <div>佔比約 10%</div>
+  <div>📌 職責</div>
+  <div>制定長期策略、重大決策</div>
+  <div>🎯 核心技能</div>
+  <div>概念技能為主</div>
+  <div>中階管理</div>
+  <div>部門經理、處長、廠長</div>
+  <div>佔比約 25%</div>
+  <div>📌 職責</div>
+  <div>將策略轉化為部門目標</div>
+  <div>🎯 核心技能</div>
+  <div>人際+概念技能</div>
+  <div>基層管理</div>
+  <div>主任、組長、領班</div>
+  <div>佔比約 65%</div>
+  <div>📌 職責</div>
+  <div>監督日常作業、執行計畫</div>
+  <div>🎯 核心技能</div>
+  <div>技術技能為主</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 11 頁</strong>
+  <div>現代管理趨勢</div>
+  <div>🤖</div>
+  <div>AI 與數位轉型</div>
+  <div>AI 輔助決策、自動化流程、數據驅動管理</div>
+  <div>🌍</div>
+  <div>ESG 與永續管理</div>
+  <div>環境、社會、治理成為企業核心策略</div>
+  <div>🏠</div>
+  <div>遠端與混合工作</div>
+  <div>後疫情時代的工作模式轉型</div>
+  <div>📊</div>
+  <div>敏捷管理</div>
+  <div>Scrum、看板、快速迭代的管理方式</div>
+  <div>🧠</div>
+  <div>以人為本</div>
+  <div>員工體驗、心理健康、多元共融</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 12 頁</strong>
+  <div>📌 管理學重點回顧</div>
+  <div>✅  管理 = 有效率、有效果地運用資源達成目標</div>
+  <div>✅  四大功能：計畫 → 組織 → 領導 → 控制（循環不已）</div>
+  <div>✅  法約爾奠定管理原則基礎（分工、權責、紀律...）</div>
+  <div>✅  明茲伯格發現管理者身兼 10 種角色</div>
+  <div>✅  管理分三層級：高階策略、中階執行、基層監督</div>
+  <div>✅  現代趨勢：AI、ESG、遠端、敏捷、以人為本</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 13 頁</strong>
+  <div>掌握管理學，就掌握了組織運作的底層邏輯！</div>
+  <div>小綠 AI 製作  🍀</div>
+</div>
+</div>
+</div>
+<div class="chapter-section" id="book-管理學概論v3">
+<div class="chapter-title" onclick="toggleBook('book-管理學概論v3')">
+  <span>📗 管理學概論v3（20 頁）</span>
+  <span class="arrow">▾</span>
+</div>
+<div class="chapter-content">
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 1 頁</strong>
+  <div>管理學概論</div>
+  <div>Introduction to Management</div>
+  <div>從古典理論到現代實務 — 10篇企業案例分析</div>
+  <div>2026年5月</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 2 頁</strong>
+  <div>目錄</div>
+  <div>管理基礎</div>
+  <div>3. 四大管理功能</div>
+  <div>古典管理理論</div>
+  <div>4-5. Taylor 科學管理 → 案例</div>
+  <div>行為管理理論</div>
+  <div>6-7. McGregor XY理論 → 案例</div>
+  <div>組織結構</div>
+  <div>8-9. 結構類型 → 案例</div>
+  <div>組織文化</div>
+  <div>10-11. 文化三層次 → 案例</div>
+  <div>激勵理論</div>
+  <div>12-13. Maslow 需求 → 案例</div>
+  <div>領導風格</div>
+  <div>14-15. 轉型領導 → 案例</div>
+  <div>決策流程</div>
+  <div>16-17. A3 決策法 → 案例</div>
+  <div>企業社會責任</div>
+  <div>18-19. ESG → 案例</div>
+  <div>結語</div>
+  <div>20. 總結</div>
+  <div>2/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 3 頁</strong>
+  <div>管理的四大功能</div>
+  <div>規劃（Planning）</div>
+  <div>設定目標、制定策略、擬定計畫</div>
+  <div>組織（Organizing）</div>
+  <div>配置資源、設計結構、分配任務</div>
+  <div>領導（Leading）</div>
+  <div>激勵員工、引導方向、建立文化</div>
+  <div>控制（Controlling）</div>
+  <div>監督進度、評估績效、修正偏差</div>
+  <div>四大功能構成一個管理循環，相互影響、持續運作</div>
+  <div>3/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 4 頁</strong>
+  <div>情境案例</div>
+  <div>Apple iPhone 開發流程 — 管理四大功能的完美循環</div>
+  <div>每年新一代 iPhone 的誕生，完整體現了規劃、組織、領導、控制四大管理功能：</div>
+  <div>【規劃】Apple 在產品開發前 2~3 年就開始規劃下一代規格：螢幕尺寸、晶片效能、相機升級方向。這些規劃基於市場研究、技術趨勢與競爭分析。</div>
+  <div>【組織】全球供應鏈的配置是一項巨型組織工程：台灣台積電生產 A 系列晶片、韓國三星提供 OLED 面板、中國富士康負責組裝。庫存管理採用 JIT（及時生產），將庫存天數壓到 5 天以下。</div>
+  <div>【領導】Tim Cook 的領導風格是「供應鏈大師」—— 他親自飛往各國供應商、建立長期合作關係。而 Jony Ive 的設計領導力則確保了產品的極簡美學。</div>
+  <div>【控制】Apple 對品質的要求近乎苛求：出貨前經過數百項測試（摔落、防水、按壓壽命），上市後透過 iOS 數據回饋持續監控產品表現，發現問題立刻修正（如 iPhone 12 的綠螢幕事件）。</div>
+  <div>啟示：管理不是線性流程，而是反覆迭代的循環。Apple 每年都在這個循環中持續優化。</div>
+  <div>11/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 5 頁</strong>
+  <div>古典管理理論</div>
+  <div class="bullet">•  科學管理（Taylor）：以科學方法分析工作流程，提升效率</div>
+  <div class="bullet">•  一般行政管理（Fayol）：提出管理五大功能，影響深遠</div>
+  <div class="bullet">•  科層體制（Weber）：以層級結構、規則制度為基礎</div>
+  <div class="bullet">•  共同特點：強調理性、效率、標準化</div>
+  <div class="bullet">•  批評：過度機械化，忽略人性因素</div>
+  <div class="bullet">•  古典學派為現代管理奠定了基礎框架</div>
+  <div>5/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 6 頁</strong>
+  <div>情境案例</div>
+  <div>McDonald's 標準化作業 — 科學管理的極致體現</div>
+  <div>在全球 119 個國家、超過 38,000 家門市，麥當勞的每一份餐點都遵循著近乎一致的作業流程。這是科學管理在餐飲業的經典案例。</div>
+  <div>【SOP 拆解到秒】薯條從炸爐撈起來後，在保溫燈下只能放 7 分鐘；漢堡的組裝順序是：下麵包→醬料→生菜→肉片→上麵包，每一步都有標準動作。</div>
+  <div>【泰勒制的精髓】Frederick Taylor 主張將工作拆解為最小單元、找出最佳方法。麥當勞的「漢堡大學」就是在全球培訓這種標準化作業，讓任何國家的員工都能快速上手。</div>
+  <div>【效率 vs 人性】標準化的反面是單調。麥當勞的離職率長期高於行業平均，這正是古典學派忽略「人性因素」的後果。</div>
+  <div>【演進】近年麥當勞導入自助點餐機和廚房顯示系統（KVS），將從業人員從記憶菜單的腦力負擔中解放出來，讓員工更能專注在服務品質上。</div>
+  <div>啟示：標準化帶來了效率，但不能犧牲人的尊嚴。管理需要在制度與人性之間找到平衡。</div>
+  <div>12/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 7 頁</strong>
+  <div>行為管理理論</div>
+  <div class="bullet">•  霍桑實驗（Mayo）：社會因素對生產力的影響</div>
+  <div class="bullet">•  人際關係運動：重視員工感受、團隊互動</div>
+  <div class="bullet">•  X理論與Y理論（McGregor）：人性假設決定管理風格</div>
+  <div class="bullet">•  X理論：員工天生懶惰，需要嚴格監督</div>
+  <div class="bullet">•  Y理論：員工主動負責，需要授權與信任</div>
+  <div class="bullet">•  行為學派讓管理從「管人」走向「帶人」</div>
+  <div>7/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 8 頁</strong>
+  <div>情境案例</div>
+  <div>Google 20% 時間政策 — Y 理論的最佳實踐</div>
+  <div>在 Google 創立初期，創辦人 Larry Page 和 Sergey Brin 推出了一個大膽的政策：工程師可以將 20% 的工作時間（即每週一天）投入自己感興趣的專案，不需要主管批准。</div>
+  <div>【誕生於 20% 的產品】Gmail、Google News、Google Maps 的交通資訊功能、AdSense 廣告平台，都是從 20% 時間專案誕生。如果沒有這個政策，這些產品可能永遠不會出現。</div>
+  <div>【Y 理論的印證】Douglas McGregor 的 Y 理論假設：員工內在驅動力強、願意承擔責任、具有創造力。Google 的政策正是基於這樣的信念 —— 相信員工會把時間用在有意義的事情上。</div>
+  <div>【制度的精髓】20% 時間不是完全放任，Google 設有內部創業平台，員工可以展示專案、尋找跨部門合作者，讓好想法有機會被看見。</div>
+  <div>【後來怎麼了？】隨著公司規模成長到 10 萬名員工，20% 時間在實務上難以嚴格執行。但 Google 仍保留了「創新時間」的文化，例如每年舉辦的 Google Science Fair 和內部的 Demo Day。</div>
+  <div>啟示：信任是最好的管理工具。當你給員工自由，他們往往會超越你的期待。</div>
+  <div>13/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 9 頁</strong>
+  <div>組織結構類型</div>
+  <div class="bullet">•  直線組織：最簡單的結構，指揮鏈清晰</div>
+  <div class="bullet">•  功能式組織：按專業分工（行銷、財務、生產等）</div>
+  <div class="bullet">•  事業部制：按產品或區域劃分，大型企業常見</div>
+  <div class="bullet">•  矩陣式組織：雙重指揮線，兼顧功能與專案</div>
+  <div class="bullet">•  網絡式組織：核心企業連結外部合作夥伴</div>
+  <div class="bullet">•  沒有完美的結構，只有適合的結構</div>
+  <div>9/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 10 頁</strong>
+  <div>情境案例</div>
+  <div>Zappos 的 Holacracy 實驗 — 組織結構的激進創新</div>
+  <div>2013 年，Zappos CEO Tony Hsieh 做了一個大膽的決定：全面廢除傳統組織層級，導入 Holacracy（合弄制）。</div>
+  <div>【什麼是 Holacracy？】沒有主管、沒有職稱、沒有部門。組織由「Circle（圈）」組成，員工可以同時參與多個 Circle。決策權分散到每個人身上。</div>
+  <div>【為什麼這麼做？】傳統組織的層級決策太慢。Zappos 希望建立一個更敏捷、更有彈性的組織，讓員工像創業家一樣思考。</div>
+  <div>【結果如何？】推行一年後，14% 的員工選擇離職（不適應這種制度），留下來的員工則回報更高的自主性和成就感。但營運效率沒有顯著提升，客戶服務品質反而略降。</div>
+  <div>【2016 年轉折】Zappos 調整策略：不再強制全面適用 Holacracy，允許部分團隊回歸傳統管理方式。最終形成 Hybrid 模式 —— 部分 Circle 用合弄制，部分維持層級制。</div>
+  <div>啟示：組織結構沒有銀彈。最好的結構是符合當下需求的結構。Zappos 的實驗價值不在於成功或失敗，而在於它打開了人們對組織形式的想像。</div>
+  <div>14/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 11 頁</strong>
+  <div>組織文化</div>
+  <div class="bullet">•  文化三層次：人工製品 → 宣揚價值 → 基本假設（Schein）</div>
+  <div class="bullet">•  強勢文化 vs 弱勢文化：影響員工行為與績效</div>
+  <div class="bullet">•  文化塑造：創辦人理念、故事儀式、獎懲制度</div>
+  <div class="bullet">•  文化變革：最困難的管理挑戰之一</div>
+  <div class="bullet">•  「文化把策略當早餐吃掉」— Peter Drucker</div>
+  <div>11/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 12 頁</strong>
+  <div>情境案例</div>
+  <div>海底撈的服務文化 — 從四川簡陽走向全球的品牌信仰</div>
+  <div>1994 年，張勇在四川簡陽開了第一間只有四張桌子的火鍋店。30 年後，海底撈在全球擁有超過 1,500 家門市，被稱為「餐飲界的迪士尼」</div>
+  <div>【文化的起點】張勇出身農村，深信「雙手改變命運」。這個信念成為海底撈文化的核心假設（Schein 第三層次）—— 只要努力，每個人都有機會。</div>
+  <div>【人工製品層次】（Schein 第一層）免費美甲、擦鞋、按摩椅、兒童遊樂區、生日驚喜、甩麵表演。這些都是看得見的文化符號。</div>
+  <div>【宣揚價值層次】（Schein 第二層）顧客至上、以人為本。海底撈賦予員工高度自主權 —— 服務員可以自行決定贈送菜餚、給予折扣，不需要請示主管。</div>
+  <div>【基本假設層次】（Schein 第三層）張勇相信：公司照顧員工 → 員工照顧顧客 → 顧客照顧公司。這個因果鏈是海底撈一切管理決策的基礎。</div>
+  <div>【挑戰】2020 年後快速擴張導致品質稀釋，老鼠門、小便門等事件顯示：強勢文化也需要制度支撐。海底撈的下一步是將文化制度化。</div>
+  <div>啟示：文化不是口號，是每一個管理決策的選擇。</div>
+  <div>15/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 13 頁</strong>
+  <div>激勵理論：Maslow 需求層次</div>
+  <div class="bullet">•  生理需求：薪水、基本生活保障</div>
+  <div class="bullet">•  安全需求：工作穩定、健康保險</div>
+  <div class="bullet">•  社交需求：團隊歸屬、人際關係</div>
+  <div class="bullet">•  尊重需求：認可、地位、成就感</div>
+  <div class="bullet">•  自我實現：發揮潛能、實現理想</div>
+  <div class="bullet">•  管理者需了解員工所處階段，提供對應激勵</div>
+  <div>13/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 14 頁</strong>
+  <div>情境案例</div>
+  <div>台積電的員工激勵體系 — Maslow 五層次的全面覆蓋</div>
+  <div>台積電不只是全球最先進的半導體公司，它在員工照顧上的投入，也堪稱標竿。從 Maslow 理論來看，台積電幾乎覆蓋了所有層次。</div>
+  <div>【生理需求】台積電提供業界頂尖薪資，碩士起薪超過 6 萬元，工程師年薪中位數約 200 萬元。2022 年員工分紅總額高達 1,214 億元。</div>
+  <div>【安全需求】完整的勞健保加上額外的團體保險；退休制度完善；設有廠區醫護中心，提供 24 小時醫療服務。疫情期間率先設立員工篩檢站。</div>
+  <div>【社交需求】台積電有數十個社團活動（登山、攝影、羽球等），廠區設有健身房、游泳池、咖啡廳。每季舉辦部門聚餐和家庭日。</div>
+  <div>【尊重需求】技術職等晉升制度明確（31~36 職等），每年有優秀員工表揚。研發人員的論文發表和專利申請都受到公開表彰。</div>
+  <div>【自我實現】提供海外輪調機會（美國亞利桑那廠、日本熊本廠、德國廠），鼓勵員工跨領域學習。內部創業提案機制讓好點子可以被實現。</div>
+  <div>啟示：當員工各層次需求都被滿足時，他們會全心全意投入工作。台積電的高效產能某種程度上來自於這套完整的激勵體系。</div>
+  <div>16/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 15 頁</strong>
+  <div>領導風格比較</div>
+  <div>風格</div>
+  <div>特徵</div>
+  <div>適合場景</div>
+  <div>專權式</div>
+  <div>領導者單獨決策</div>
+  <div>危機處理、軍隊</div>
+  <div>民主式</div>
+  <div>團隊參與討論決策</div>
+  <div>創意團隊</div>
+  <div>放任式</div>
+  <div>給予團隊高度自主權</div>
+  <div>研發部門</div>
+  <div>轉型領導</div>
+  <div>激發團隊超越自我</div>
+  <div>蘋果、微軟</div>
+  <div>交易領導</div>
+  <div>以獎懲換取績效</div>
+  <div>銷售團隊</div>
+  <div>15/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 16 頁</strong>
+  <div>情境案例</div>
+  <div>Satya Nadella 的微軟復興 — 轉型領導的典範</div>
+  <div>2014 年 Satya Nadella 接任微軟 CEO 時，微軟被認為是「失落的巨人」— 錯過行動市場、內部山頭林立、市值徘徊在 3,000 億美元。</div>
+  <div>【上任初期挑戰】內部文化充滿政治鬥爭（Windows 部門 vs Office 部門）、工程師只關注內部競爭而非客戶需求、對開源社群充滿敵意。</div>
+  <div>【領導力一：統一文化】Nadella 提出的核心口號是「無所不學（Learn-it-all）」，取代過去的「無所不知（Know-it-all）」。他要求所有高階主管讀《非暴力溝通》一書，從語言開始改變文化。</div>
+  <div>【領導力二：擁抱開源】過去微軟視 Linux 為威脅，Nadella 上任後宣布「Microsoft Loves Linux」，將 .NET 開源、收購 GitHub、支援 Linux 上 Azure。這個決定讓開發者社群重新接納微軟。</div>
+  <div>【領導力三：聚焦雲端】Nadella 將公司戰略從「Windows 優先」轉向「雲端優先」，Azure 如今是僅次於 AWS 的第二大雲端平台。微軟市值也從 3,000 億成長到突破 3 兆美元。</div>
+  <div>【啟示】Nadella 證明了：轉型領導不是在順境中錦上添花，而是在逆境中重新定義組織的靈魂。他不靠裁員與壓榨，而是靠改變文化與戰略來翻轉一家公司。</div>
+  <div>17/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 17 頁</strong>
+  <div>決策制定流程</div>
+  <div class="bullet">•  步驟一：確認問題 — 定義核心問題而非症狀</div>
+  <div class="bullet">•  步驟二：擬定方案 — 建立多項可行選項</div>
+  <div class="bullet">•  步驟三：評估方案 — 優缺點、風險、資源需求</div>
+  <div class="bullet">•  步驟四：選擇方案 — 根據標準做出最佳決策</div>
+  <div class="bullet">•  步驟五：執行決策 — 分配資源、溝通、行動</div>
+  <div class="bullet">•  步驟六：評估結果 — 回饋與修正</div>
+  <div>17/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 18 頁</strong>
+  <div>情境案例</div>
+  <div>Toyota A3 報告制度 — 一張紙搞定決策流程</div>
+  <div>Toyota 發展出一種獨特的管理工具：A3 報告。用一張 A3 大小的紙（297×420mm），把完整的決策過程寫在上面。這個方法強迫管理者在有限的空間內完成六個步驟。</div>
+  <div>【A3 的六個區域】</div>
+  <div>① 左上：背景與問題描述 — 發生了什麼事？為什麼重要？</div>
+  <div>② 左中：現況分析 — 數據、圖表、現場觀察</div>
+  <div>③ 左下：根本原因分析 — 用「5個為什麼」追根究柢</div>
+  <div>④ 右上：對策方案 — 具體的行動計畫</div>
+  <div>⑤ 右中：執行計畫 — 誰做？何時完成？</div>
+  <div>⑥ 右下：追蹤 — 如何驗證效果？何時覆核？</div>
+  <div>【實務案例：生產線停機】</div>
+  <div>當 Toyota 某條生產線因零件短缺而停機，不會立刻補貨了事，而是用 A3 流程追根究柢：</div>
+  <div class="bullet">- 真正問題不是零件不夠，而是供應商的送貨路線設計不良</div>
+  <div class="bullet">- 根本原因是交通尖峰時間與送貨時間重疊</div>
+  <div class="bullet">- 對策：調整送貨時間到離峰時段 + 建立安全庫存</div>
+  <div>【A3 的深層意義】這個制度不是為了寫報告，而是培養管理者的思考習慣：看到問題 → 分析原因 → 提出對策 → 追蹤結果。這是 Toyota 持續改善（Kaizen）文化的核心工具。</div>
+  <div>18/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 19 頁</strong>
+  <div>企業社會責任（CSR）</div>
+  <div class="bullet">•  經濟責任：賺取利潤，創造股東價值</div>
+  <div class="bullet">•  法律責任：遵守法規，合法經營</div>
+  <div class="bullet">•  倫理責任：做對的事，超越法律要求</div>
+  <div class="bullet">•  慈善責任：回饋社會，公益投入</div>
+  <div class="bullet">•  ESG 時代：環境、社會、治理已成主流</div>
+  <div class="bullet">•  CSR 不是成本，而是長期競爭力的來源</div>
+  <div>19/20</div>
+</div>
+<div class="slide-text">
+  <strong style="color:var(--accent-orange);">第 20 頁</strong>
+  <div>結語</div>
+  <div class="bullet">•  管理理論不是教條，是思考的工具</div>
+  <div class="bullet">•  每個企業的案例都獨一無二 —— 情境比理論更重要</div>
+  <div class="bullet">•  好的管理者既要懂理論，也要懂人性</div>
+  <div class="bullet">•  在 AI 時代，管理者的價值更加凸顯</div>
+  <div class="bullet">•  管理的最終目的：讓組織與人都變得更好</div>
+  <div>「管理是關於人的。」— Mary Parker Follett</div>
+  <div>20/20</div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+  <p>📝 來源：課堂教材 PPT · 全部中文內容 · 深色主題 · 手機友善</p>
+  <p>💡 點擊教材標題可展開/收合 · 共 6 份教材 124 頁</p>
+</div>
+</div>
+
+<script>
+function toggleBook(id) {
+  const section = document.getElementById(id);
+  const title = section.querySelector('.chapter-title');
+  const content = section.querySelector('.chapter-content');
+  title.classList.toggle('open');
+  content.classList.toggle('open');
+}
+</script>
+</body>
+</html>
