@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans TC",sans-serif;background:#F2F0EB;color:#1A1A2E;line-height:1.7}
-.container{max-width:720px;margin:0 auto;padding:20px 16px 60px}
+.container{max-width:800px;margin:0 auto;padding:20px 16px 60px}
 .hero{text-align:center;padding:40px 0 20px;border-bottom:2px solid #1A3A5C;margin-bottom:28px}
 .hero-tag{display:inline-block;font-size:13px;font-weight:600;padding:4px 14px;border-radius:20px;background:#1A3A5C;color:#fff;margin-bottom:12px;letter-spacing:0.5px}
 .hero h1{font-size:28px;color:#1A3A5C;line-height:1.4;margin-bottom:10px}
@@ -21,15 +21,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .section p{margin-bottom:10px;font-size:15px;color:#333}
 .section ul{margin:8px 0 12px 18px}
 .section li{margin-bottom:6px;font-size:15px;color:#333}
-.label{font-size:14px;font-weight:700;color:#1A3A5C;margin-bottom:2px}
-.label small{font-weight:400;color:#888;font-size:12px}
-.example{background:#F0F4F8;border-radius:6px;padding:8px 12px;font-size:15px;color:#1A3A5C;font-family:monospace;margin-bottom:12px;border:1px dashed #BCD}
-.field-group{background:#F8F6F2;border-radius:10px;padding:14px;margin-bottom:10px}
-.field-group .field-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
-.field-group .field-label{font-size:14px;font-weight:600;color:#1A3A5C;min-width:100px}
-.field-group .field-label small{font-weight:400;color:#888;font-size:12px;display:block}
-.field-group .field-val{font-size:15px;color:#333}
-.question{background:#FFF9F0;border-left:4px solid #E8A838;padding:12px 14px;margin:12px 0;border-radius:0 8px 8px 0;font-size:14px;color:#5D4E37}
 .info-box{background:#DBEAFE;border-left:4px solid #1A3A5C;padding:12px 14px;margin:12px 0;border-radius:0 8px 8px 0;font-size:14px;color:#1E3A5F}
 .alert-box{background:#FEE2E2;border-left:4px solid #D94F4F;padding:12px 14px;margin:12px 0;border-radius:0 8px 8px 0;font-size:14px;color:#7F1D1D}
 .success-box{background:#D1FAE5;border-left:4px solid #2E8B57;padding:12px 14px;margin:12px 0;border-radius:0 8px 8px 0;font-size:14px;color:#14532D}
@@ -48,14 +39,44 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .abc-card{border-radius:10px;padding:14px;color:#fff}
 .abc-card h4{font-size:16px;margin-bottom:6px}
 .abc-card p{font-size:14px;opacity:0.9;line-height:1.5}
+
+/* ========== 入境卡表格 ========== */
+.card-replica{background:#fff;border:2px solid #1A3A5C;border-radius:8px;padding:20px;margin:16px 0;font-family:'Courier New',monospace;font-size:13px;position:relative}
+.card-replica .card-header{text-align:center;border-bottom:1px solid #1A3A5C;padding-bottom:10px;margin-bottom:14px}
+.card-replica .card-header .title{font-size:16px;font-weight:700;color:#1A3A5C;letter-spacing:1px}
+.card-replica .card-header .sub{font-size:11px;color:#888;margin-top:2px}
+.card-replica .card-side{position:absolute;top:10px;right:14px;font-size:11px;font-weight:700;color:#1A3A5C;border:1px solid #1A3A5C;padding:1px 8px;border-radius:4px}
+.card-field{margin-bottom:10px;border-bottom:1px dotted #ddd;padding-bottom:6px}
+.card-field .cf-label{font-size:11px;font-weight:700;color:#1A3A5C;display:inline}
+.card-field .cf-label small{font-weight:400;color:#888}
+.card-field .cf-value{font-size:14px;font-weight:700;color:#1A3A5C;margin-top:2px;font-family:'Courier New',monospace;letter-spacing:1px}
+.card-field .cf-box{display:inline-block;border:1px solid #1A3A5C;height:22px;min-width:140px;background:#f9f7f2;vertical-align:middle;margin-left:4px}
+.card-field-row{display:flex;gap:10px;flex-wrap:wrap}
+.card-field-row .cf-item{flex:1;min-width:120px;margin-bottom:8px}
+.card-field-row .cf-item .cf-label{font-size:11px;font-weight:700;color:#1A3A5C;display:block}
+.card-field-row .cf-item .cf-label small{font-weight:400;color:#888}
+.card-field-row .cf-item .cf-value{font-size:13px;font-weight:700;color:#1A3A5C;margin-top:1px}
+.card-field-row .cf-item .cf-box{display:inline-block;border:1px solid #1A3A5C;height:20px;min-width:80px;background:#f9f7f2}
+.card-q-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0}
+.card-q-item{font-size:11px;padding:4px 6px;border:1px solid #ddd;border-radius:4px;display:flex;justify-content:space-between;align-items:center}
+.card-q-item .qnum{color:#1A8A8A;font-weight:700}
+.card-q-item .qans{font-weight:700;font-size:12px}
+.card-q-item .qyes{color:#2E8B57}
+.card-q-item .qno{color:#D94F4F}
+.card-q-item .qmaybe{color:#E8A838}
+.card-sign-area{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid #1A3A5C}
+.card-sign-area .sign-line{display:inline-block;border-bottom:1px solid #1A3A5C;min-width:180px;height:20px}
+.card-sign-area .sign-label{font-size:11px;color:#1A3A5C}
+
+/* ========== 填寫欄位 ========== */
 .form-section{background:#F8F6F2;border-radius:10px;padding:16px;margin:12px 0}
-.form-section .input-group{margin-bottom:14px}
+.form-section .input-group{margin-bottom:12px}
 .form-section .input-group label{display:block;font-size:14px;font-weight:600;color:#1A3A5C;margin-bottom:3px}
 .form-section .input-group label small{font-weight:400;color:#888;font-size:12px}
-.form-section .input-group input{width:100%;padding:10px 12px;font-size:15px;border:1px solid #d0c8b8;border-radius:8px;background:#fff;outline:0}
+.form-section .input-group input{width:100%;padding:9px 12px;font-size:15px;border:1px solid #d0c8b8;border-radius:8px;background:#fff;outline:0}
 .form-section .input-group input:focus{border-color:#1A3A5C;box-shadow:0 0 0 2px rgba(26,58,92,0.15)}
-.form-actions{display:flex;gap:10px;margin-top:16px}
-.form-actions button{flex:1;padding:10px;font-size:15px;font-weight:600;border:none;border-radius:8px;cursor:pointer}
+.form-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.form-actions button{flex:1;min-width:100px;padding:10px;font-size:15px;font-weight:600;border:none;border-radius:8px;cursor:pointer}
 .btn-print{background:#1A3A5C;color:#fff}
 .btn-print:hover{background:#2A4A6C}
 .btn-clear{background:#eee;color:#666}
@@ -68,13 +89,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
   .hero h1{font-size:22px}
   .section{padding:16px}
   .section h2{font-size:18px}
-  .abc-grid{grid-template-columns:1fr}
+  .card-q-grid{grid-template-columns:1fr}
+  .card-sign-area{flex-direction:column;align-items:flex-start;gap:8px}
 }
 </style>
 </head>
 <body>
 
 <div class="container">
+
+<!-- 實際入境卡圖片 -->
+<div class="card-images" style="text-align:center;margin-bottom:20px">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+    <div style="flex:1;min-width:280px;max-width:380px">
+      <img src="australia-card-front.jpg" alt="澳洲入境卡正面" style="width:100%;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.15);border:1px solid #ddd">
+      <div style="font-size:13px;color:#888;margin-top:4px">正面 FRONT</div>
+    </div>
+    <div style="flex:1;min-width:280px;max-width:380px">
+      <img src="australia-card-back.jpg" alt="澳洲入境卡背面" style="width:100%;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.15);border:1px solid #ddd">
+      <div style="font-size:13px;color:#888;margin-top:4px">背面 BACK</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#888;margin-top:8px">📱 對照上圖填寫入境卡</div>
+</div>
 
 <!-- QR Code -->
 <div class="qr-area">
@@ -91,6 +128,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 
 <!-- 導覽 -->
 <div class="nav">
+  <a href="#replica">📋 實際表格</a>
   <a href="#front">① 正面</a>
   <a href="#questions">② 11題申報</a>
   <a href="#back">③ 背面</a>
@@ -102,64 +140,193 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 <div class="section">
   <h2>基本原則</h2>
   <p>
-    <b>基本原則：</b>
-    澳洲入境卡請使用
-    <b>英文</b>
-    填寫，可用
-    <b>藍筆或黑筆</b>。
+    <b>澳洲入境卡請使用英文填寫</b>，可用藍筆或黑筆，大寫小寫均可。
   </p>
   <div class="alert-box">
     ⚠️ 入境卡上的資料必須與護照及航班資訊一致。如有不實申報，最高可罰 AUD 6,600 或面臨刑事起訴。
   </div>
 </div>
 
-<!-- 正面 -->
-<div class="section" id="front">
-  <h2>① 正面（FRONT）</h2>
-  <span class="tag tag-blue">Incoming Passenger Card · Australia</span>
-  <span class="tag tag-green">FRONT</span>
+<!-- ========== 實際入境卡表格 ========== -->
+<div class="section" id="replica">
+  <h2>📋 實際入境卡長這樣（照著填）</h2>
+  <p>以下為模擬入境卡正面表格，直接對照著填即可。</p>
 
-  <div style="margin-top:14px">
-
-    <div class="field-group">
-      <div class="label">姓 <small>Family / surname</small></div>
-      <div class="example">WANG</div>
+  <!-- 入境卡正面 -->
+  <div class="card-replica">
+    <div class="card-side">FRONT</div>
+    <div class="card-header">
+      <div class="title">Incoming Passenger Card · Australia</div>
+      <div class="sub">澳洲入境卡</div>
     </div>
 
-    <div class="field-group">
-      <div class="label">名 <small>Given names</small></div>
-      <div class="example">XIAO MING</div>
+    <div class="card-field">
+      <span class="cf-label">姓 Family / surname</span>
+      <div class="cf-value">WANG</div>
     </div>
 
-    <div class="field-group">
-      <div class="label">護照號碼 <small>Passport number</small></div>
-      <div class="example">E12345678</div>
+    <div class="card-field">
+      <span class="cf-label">名 Given names</span>
+      <div class="cf-value">XIAO MING</div>
     </div>
 
-    <div class="field-group">
-      <div class="label">航班號碼 <small>Flight number</small></div>
-      <div class="example">CI051</div>
+    <div class="card-field-row">
+      <div class="cf-item">
+        <span class="cf-label">護照號碼 Passport number</span>
+        <div class="cf-value">E12345678</div>
+      </div>
+      <div class="cf-item">
+        <span class="cf-label">航班號碼 Flight number</span>
+        <div class="cf-value">CI051</div>
+      </div>
     </div>
 
-    <div class="field-group">
-      <div class="label">澳洲住宿地址 <small>Intended address in Australia</small></div>
-      <div class="example">123 George Street<br>Sydney NSW 2000<br>Australia</div>
+    <div class="card-field">
+      <span class="cf-label">澳洲住宿地址 Intended address in Australia</span>
+      <div class="cf-value">123 George Street, Sydney NSW 2000, Australia</div>
     </div>
 
-    <div class="field-group">
-      <div class="label">州別 <small>State</small></div>
-      <div class="example">NSW</div>
+    <div class="card-field">
+      <span class="cf-label">州別 State</span>
+      <div class="cf-value">NSW</div>
     </div>
 
-    <div class="info-box">
-      <b>州別快速對照：</b><br>
-      Sydney → NSW ｜ Melbourne → VIC ｜ Brisbane → QLD<br>
-      Perth → WA ｜ Adelaide → SA
+    <div style="border-top:1px solid #1A3A5C;padding-top:10px;margin-top:10px;font-size:11px;font-weight:700;color:#1A3A5C">
+      11 題申報（全填 NO 為一般旅遊範例）
     </div>
+
+    <div class="card-q-grid">
+      <div class="card-q-item"><span class="qnum">Q1</span> 違禁品/藥物/武器 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q2</span> 酒/菸超過額度 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q3</span> 商品超過 AUD 900 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q4</span> 商業貨物/樣品 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q5</span> 貨幣達 AUD 10,000 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q6</span> 肉/蛋/奶/水果/蔬菜 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q7</span> 種子/植物/藥材 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q8</span> 動物/動物產品 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q9</span> 泥土/沾土物品 <span class="qans qno">NO</span></div>
+      <div class="card-q-item"><span class="qnum">Q10</span> 接觸農場/荒野 <span class="qans qno">NO</span></div>
+      <div class="card-q-item" style="grid-column:span 2"><span class="qnum">Q11</span> 6天內到非洲/南美/中美/加勒比 <span class="qans qno">NO</span></div>
+    </div>
+
+    <div class="card-sign-area">
+      <div>
+        <div class="sign-label">你的簽名 <small>Your signature</small></div>
+        <div class="sign-line"></div>
+      </div>
+      <div>
+        <div class="sign-label">日期 <small>Day / Month / Year</small></div>
+        <div class="sign-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 入境卡背面 -->
+  <div class="card-replica" style="margin-top:16px">
+    <div class="card-side">BACK</div>
+    <div class="card-header">
+      <div class="title">Incoming Passenger Card · Australia</div>
+      <div class="sub">背面 — 旅客資料</div>
+    </div>
+
+    <div class="card-field">
+      <span class="cf-label">在哪個國家登上這班飛機？</span>
+      <div class="cf-value">TAIWAN</div>
+    </div>
+
+    <div class="card-field-row">
+      <div class="cf-item">
+        <span class="cf-label">職業 Occupation</span>
+        <div class="cf-value">STUDENT</div>
+      </div>
+      <div class="cf-item">
+        <span class="cf-label">國籍 Nationality</span>
+        <div class="cf-value">TAIWANESE</div>
+      </div>
+    </div>
+
+    <div class="card-field">
+      <span class="cf-label">出生日期 Date of birth</span>
+      <div class="cf-value">15 / 06 / 1990</div>
+    </div>
+    <div class="alert-box" style="margin:4px 0 10px;font-size:12px">
+      ⚠️ 出生日期，不是填卡日期
+    </div>
+
+    <div class="card-field">
+      <span class="cf-label">澳洲聯絡方式</span>
+      <div class="cf-value">123 George Street, Sydney NSW 2000, Australia</div>
+    </div>
+
+    <div class="card-field">
+      <span class="cf-label">緊急聯絡人</span>
+      <div class="cf-value">WANG XIAO HUA / +886 912 345 678 / TAIWAN</div>
+    </div>
+
+    <div style="border-top:1px solid #1A3A5C;padding-top:10px;margin-top:10px;font-weight:700;color:#1A3A5C;font-size:12px">
+      選擇 A / B / C（一般旅遊選 B）
+    </div>
+    <div style="font-size:12px;margin:6px 0 10px;line-height:1.7">
+      ☐ A — 永久移民 Australia<br>
+      <span style="background:#1A8A8A;color:#fff;padding:0 6px;border-radius:4px;font-weight:700">☑ B</span> — Visitor or temporary entrant<br>
+      ☐ C — Resident returning to Australia
+    </div>
+
+    <div style="background:#F0F4F8;padding:10px;border-radius:6px;font-size:12px;line-height:1.6">
+      <b>B 欄填寫：</b><br>
+      預計停留多久：<b>21 DAYS</b><br>
+      Country of residence：<b>TAIWAN</b><br>
+      Main reason for visit：<b>HOLIDAY</b>
+    </div>
+  </div>
+
+  <div class="info-box">
+    📌 以上為一般台灣觀光客的填寫範例。如果你有攜帶食品、藥品、超過額度的商品，請依實際情況調整 YES/NO。
   </div>
 </div>
 
-<!-- 11題申報 -->
+<!-- ========== 正面詳細解說 ========== -->
+<div class="section" id="front">
+  <h2>① 正面（FRONT）各欄位解說</h2>
+
+  <div class="card-field">
+    <span class="cf-label">姓 <small>Family / surname</small></span>
+    <div class="cf-value">WANG</div>
+  </div>
+
+  <div class="card-field">
+    <span class="cf-label">名 <small>Given names</small></span>
+    <div class="cf-value">XIAO MING</div>
+  </div>
+
+  <div class="card-field">
+    <span class="cf-label">護照號碼 <small>Passport number</small></span>
+    <div class="cf-value">E12345678</div>
+  </div>
+
+  <div class="card-field">
+    <span class="cf-label">航班號碼 <small>Flight number</small></span>
+    <div class="cf-value">CI051</div>
+  </div>
+
+  <div class="card-field">
+    <span class="cf-label">澳洲住宿地址 <small>Intended address in Australia</small></span>
+    <div class="cf-value">123 George Street<br>Sydney NSW 2000<br>Australia</div>
+  </div>
+
+  <div class="card-field">
+    <span class="cf-label">州別 <small>State</small></span>
+    <div class="cf-value">NSW</div>
+  </div>
+
+  <div class="info-box">
+    <b>州別快速對照：</b><br>
+    Sydney → NSW ｜ Melbourne → VIC ｜ Brisbane → QLD<br>
+    Perth → WA ｜ Adelaide → SA
+  </div>
+</div>
+
+<!-- ========== 11題申報 ========== -->
 <div class="section" id="questions">
   <h2>② 11 題申報（YES／NO）</h2>
   <div class="info-box">
@@ -172,153 +339,123 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
     <div class="q-text">違禁或受限制物品，例如藥物、類固醇、槍械、武器或非法毒品</div>
     <div class="q-advice">有相關物品 → <span class="yes">YES</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q2</div>
     <div class="q-text">酒類超過 2250 ml，或香菸超過 25 支，或菸草超過 25 g</div>
     <div class="q-advice">超過標準 → <span class="yes">YES</span> ｜ 一般旅遊者通常 <span class="no">NO</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q3</div>
     <div class="q-text">海外取得或免稅商品，包括禮物，總值超過 AUD 900</div>
     <div class="q-advice">超過 AUD 900 → <span class="yes">YES</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q4</div>
     <div class="q-text">商業、生意用途貨物或樣品</div>
     <div class="q-advice">有 → <span class="yes">YES</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q5</div>
     <div class="q-text">澳幣或等值外幣總額達 AUD 10,000 或以上</div>
     <div class="q-advice">達 AUD 10,000 → <span class="yes">YES</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q6</div>
     <div class="q-text">肉類、家禽、魚、海鮮、蛋、乳製品、水果、蔬菜</div>
     <div class="q-advice">有帶 → <span class="yes">YES</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q7</div>
     <div class="q-text">穀物、種子、球莖、稻草、堅果、植物、植物部分、傳統藥材、草藥、木製品</div>
     <div class="q-advice">有帶 → <span class="yes">YES</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q8</div>
     <div class="q-text">動物、動物產品、寵物食品、蛋、生物製品、標本、鳥、魚、昆蟲、貝殼、蜂產品</div>
     <div class="q-advice">有帶 → <span class="yes">YES</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q9</div>
-    <div class="q-text">泥土、沾有泥土的物品，或曾在淡水地區使用過的鞋子、運動／休閒設備</div>
+    <div class="q-text">泥土、沾有泥土的物品，或曾在淡水地區使用過的鞋子、運動/休閒設備</div>
     <div class="q-advice">有 → <span class="yes">YES</span> ｜ 一般市區旅遊通常 <span class="no">NO</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q10</div>
     <div class="q-text">過去 30 天是否接觸過農場、農場動物、荒野地區、淡水溪流或湖泊？</div>
     <div class="q-advice">有 → <span class="yes">YES</span></div>
   </div>
-
   <div class="q-item">
     <div class="q-no">📌 Q11</div>
     <div class="q-text">過去 6 天是否曾到非洲、南美洲、中美洲或加勒比海？</div>
     <div class="q-advice">有 → <span class="yes">YES</span></div>
   </div>
 
-  <div class="question">
+  <div class="info-box">
     <b>常見食品申報判斷：</b><br>
     • 牛肉乾 → 屬肉類，<span class="yes">申報</span><br>
     • 鳳梨酥（含蛋）→ 含蛋類食品，<span class="tag tag-orange">建議申報</span><br>
     • 中藥粉 → 屬傳統藥物或草藥類，<span class="yes">申報</span><br>
     • 餅乾、泡麵（不含肉）→ 通常 <span class="no">不用</span>
   </div>
-
-  <div class="info-box">
-    <b>鞋底泥土判斷：</b><br>
-    沒有泥土、沒有在農場或淡水區使用：通常 <span class="no">NO</span><br>
-    若鞋底有泥土：<span class="yes">YES</span>（先清乾淨再決定）
-  </div>
 </div>
 
-<!-- 背面 -->
+<!-- ========== 背面 ========== -->
 <div class="section" id="back">
-  <h2>③ 背面（BACK）</h2>
+  <h2>③ 背面（BACK）各欄位解說</h2>
 
-  <div class="field-group">
-    <div class="label">在哪個國家登上這班飛機？</div>
-    <div class="example">TAIWAN</div>
+  <div class="card-field">
+    <span class="cf-label">在哪個國家登上這班飛機？</span>
+    <div class="cf-value">TAIWAN</div>
   </div>
-
-  <div class="field-group">
-    <div class="label">職業 <small>Occupation</small></div>
-    <div class="example">STUDENT</div>
+  <div class="card-field">
+    <span class="cf-label">職業 <small>Occupation</small></span>
+    <div class="cf-value">STUDENT</div>
   </div>
-
-  <div class="field-group">
-    <div class="label">護照上的國籍 <small>Nationality</small></div>
-    <div class="example">TAIWANESE</div>
+  <div class="card-field">
+    <span class="cf-label">護照上的國籍 <small>Nationality</small></span>
+    <div class="cf-value">TAIWANESE</div>
   </div>
-
-  <div class="field-group">
-    <div class="label">出生日期 <small>Date of birth</small></div>
-    <div class="example">15 / 06 / 1990</div>
+  <div class="card-field">
+    <span class="cf-label">出生日期 <small>Date of birth</small></span>
+    <div class="cf-value">15 / 06 / 1990</div>
   </div>
   <div class="alert-box">
-    ⚠️ 「Date of birth」是你的出生日期，不是填卡日期。
+    ⚠️ 「Date of birth」是你的出生日期，不是填卡日期。格式：日／月／年
   </div>
-
-  <div class="field-group">
-    <div class="label">澳洲聯絡方式</div>
-    <div class="example">123 George Street<br>Sydney NSW 2000<br>Australia</div>
+  <div class="card-field">
+    <span class="cf-label">澳洲聯絡方式</span>
+    <div class="cf-value">123 George Street, Sydney NSW 2000, Australia</div>
   </div>
-
-  <div class="field-group">
-    <div class="label">緊急聯絡人</div>
-    <div class="example">WANG XIAO HUA<br>+886 912 345 678<br>TAIPEI, TAIWAN</div>
+  <div class="card-field">
+    <span class="cf-label">緊急聯絡人</span>
+    <div class="cf-value">WANG XIAO HUA / +886 912 345 678 / TAIWAN</div>
   </div>
-
-  <div class="field-group">
-    <div class="label">是否在未來 12 個月內居住於澳洲？</div>
-    <div class="example">一般短期旅遊：<span class="no">☑ NO</span></div>
+  <div class="card-field">
+    <span class="cf-label">是否在未來 12 個月內居住於澳洲？</span>
+    <div class="cf-value">一般短期旅遊：<span class="no">☑ NO</span></div>
   </div>
-
-  <div class="field-group">
-    <div class="label">是否患有肺結核？</div>
-    <div class="example">沒有：<span class="no">☑ NO</span></div>
+  <div class="card-field">
+    <span class="cf-label">是否患有肺結核？</span>
+    <div class="cf-value">沒有：<span class="no">☑ NO</span></div>
   </div>
-
-  <div class="field-group">
-    <div class="label">是否有刑事犯罪定罪紀錄？</div>
-    <div class="example">沒有：<span class="no">☑ NO</span></div>
+  <div class="card-field">
+    <span class="cf-label">是否有刑事犯罪定罪紀錄？</span>
+    <div class="cf-value">沒有：<span class="no">☑ NO</span></div>
   </div>
-
-  <div class="field-group">
-    <div class="label">本人簽名 <small>Your signature</small></div>
-    <div class="example">（簽名，中英文皆可）</div>
+  <div class="card-field">
+    <span class="cf-label">本人簽名 <small>Your signature</small></span>
+    <div class="cf-value">（簽名，中英文皆可）</div>
   </div>
-
-  <div class="field-group">
-    <div class="label">日期 <small>Day / Month / Year</small></div>
-    <div class="example">日／月／年 e.g. 03 / 09 / 2026</div>
-  </div>
-  <div class="info-box">
-    ⚠️ 日期格式：<b>日／月／年</b>，不是月／日／年。
+  <div class="card-field">
+    <span class="cf-label">日期 <small>Day / Month / Year</small></span>
+    <div class="cf-value">日／月／年 e.g. 03 / 09 / 2026</div>
   </div>
 </div>
 
-<!-- A/B/C -->
+<!-- ========== A/B/C ========== -->
 <div class="section" id="abc">
   <h2>④ 背面 A／B／C 欄</h2>
   <p>如果是一般去澳洲玩，最常見就是：</p>
-
   <div class="abc-grid">
     <div class="abc-card" style="background:#D94F4F">
       <h4>A — Migrating permanently to Australia</h4>
@@ -333,19 +470,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
       <p>澳洲居民返回澳洲使用。一般台灣觀光旅客不是這個。</p>
     </div>
   </div>
-
   <div class="success-box">
     <b>B 欄填寫範例：</b><br>
     預計停留多久：<b>21 DAYS</b><br>
-    居住國家：<b>TAIWAN</b><br>
-    主要目的：<b>HOLIDAY / TOURISM</b>
+    Country of residence：<b>TAIWAN</b><br>
+    Main reason：<b>HOLIDAY</b>
   </div>
 </div>
 
-<!-- 個人資料表 -->
+<!-- ========== 個人資料表 ========== -->
 <div class="section" id="personal">
-  <h2>⑤ 我的資料（填寫範例）</h2>
-  <p>以下為一般台灣觀光客的常見填法，直接參考即可。</p>
+  <h2>⑤ 我的資料（填寫練習）</h2>
+  <p>以下為一般台灣觀光客的常見填法，直接參考或修改成自己的資料。</p>
 
   <div class="form-section">
     <div class="input-group">
@@ -400,7 +536,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 
   <div class="form-actions">
     <button class="btn-print" onclick="window.print()">🖨️ 列印／另存 PDF</button>
-    <button class="btn-clear" onclick="location.reload()">🗑️ 清除</button>
+    <button class="btn-clear" onclick="location.reload()">🗑️ 清除資料</button>
   </div>
 </div>
 
@@ -413,7 +549,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 </div>
 
 <script>
-// 自動生成 QR Code（用 API）
 (function(){
   var url = encodeURIComponent('https://lingo1516.github.io/case/australia-card.html');
   var img = document.getElementById('qrImg');
