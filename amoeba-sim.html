@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>阿米巴組織互動模擬</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#111;color:#e0e0e0;font-family:"Helvetica Neue","PingFang TC",sans-serif;padding:16px;max-width:680px;margin:0 auto;line-height:1.6}
+h1{color:#f0a500;text-align:center;font-size:22px;margin-bottom:4px}
+.sub{text-align:center;color:#777;font-size:13px;margin-bottom:20px}
+.section{background:#1a1a2e;border-radius:12px;padding:16px;margin-bottom:14px;border-left:4px solid #f0a500}
+h2{color:#f0a500;font-size:16px;margin-bottom:8px}
+p{font-size:14px;margin-bottom:6px;color:#bbb}
+.amoeba{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.unit{background:#16213e;border-radius:10px;padding:12px;text-align:center}
+.unit h3{color:#4fc3f7;font-size:15px}
+.unit .val{font-size:24px;color:#f0a500;font-weight:bold;margin:4px 0}
+.unit .label{font-size:11px;color:#888}
+.controls{margin-top:12px}
+.controls label{display:block;font-size:13px;color:#aaa;margin-top:8px}
+.controls input{width:100%;padding:8px;border-radius:8px;border:1px solid #333;background:#0d0d0d;color:#fff;font-size:14px;margin-top:2px}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+.btn{flex:1;padding:10px;border-radius:20px;border:none;font-size:14px;font-weight:bold;cursor:pointer}
+.btn-calc{background:#f0a500;color:#000}
+.btn-reset{background:#333;color:#fff}
+.result{background:#0d0d0d;border-radius:10px;padding:14px;margin-top:12px;display:none}
+.result.show{display:block}
+.result table{width:100%;border-collapse:collapse;margin-top:8px}
+.result td, .result th{padding:6px 8px;border-bottom:1px solid #222;font-size:13px;text-align:right}
+.result th{color:#f0a500;text-align:left}
+.per-hour{color:#4fc3f7;font-weight:bold}
+.total-row td{color:#f0a500;font-weight:bold;font-size:15px;border-top:2px solid #f0a500}
+.note{font-size:12px;color:#666;margin-top:10px;line-height:1.5}
+.highlight{color:#f0a500;font-weight:bold}
+.chart-bar{height:8px;background:#222;border-radius:4px;margin:6px 0;overflow:hidden}
+.chart-fill{height:100%;border-radius:4px;transition:width .5s}
+.c1{background:#f0a500}
+.c2{background:#4fc3f7}
+.c3{background:#81c784}
+.c4{background:#ce93d8}
+</style>
+</head>
+<body>
+
+<h1>🟢 阿米巴組織 互動模擬</h1>
+<p class="sub">京瓷 Amoeba Management — 稻盛和夫</p>
+
+<div class="section">
+<h2>📖 什麼是阿米巴組織？</h2>
+<p>阿米巴（Amoeba）是稻盛和夫在京瓷創立的管理制度。公司切成多個 <span class="highlight">獨立核算的小單位</span>（5-50人），每個單位都是一個「微型公司」，有自己的收入、成本、利潤。</p>
+<p>🔑 <span class="highlight">核心公式：單位時間附加價值</span></p>
+<p style="font-size:16px;text-align:center;margin:8px 0">（總生產額 − 總經費）÷ 總勞動時間 = 每小時附加價值</p>
+<p>各阿米巴之間買賣產品/服務（內部轉撥計價），每個月結算一次。</p>
+</div>
+
+<div class="section">
+<h2>🏭 情境：工廠有三個阿米巴</h2>
+<p>零件部 → 組裝部 → 銷售部，各為獨立核算單位，試算本月績效：</p>
+
+<div class="amoeba" id="amoebaView">
+<div class="unit">
+<h3>🔧 零件部</h3>
+<div class="val" id="rev1">$0</div>
+<div class="label">收入</div>
+<div class="val" style="color:#e57373;font-size:18px" id="cost1">$0</div>
+<div class="label">經費</div>
+<div class="val" style="color:#4fc3f7;font-size:20px" id="profit1">$0</div>
+<div class="label">附加價值</div>
+<div class="label" style="margin-top:4px;color:#888" id="hour1">0h · $0/時</div>
+</div>
+<div class="unit">
+<h3>⚙️ 組裝部</h3>
+<div class="val" id="rev2">$0</div>
+<div class="label">收入</div>
+<div class="val" style="color:#e57373;font-size:18px" id="cost2">$0</div>
+<div class="label">經費</div>
+<div class="val" style="color:#4fc3f7;font-size:20px" id="profit2">$0</div>
+<div class="label">附加價值</div>
+<div class="label" style="margin-top:4px;color:#888" id="hour2">0h · $0/時</div>
+</div>
+</div>
+<div class="amoeba" style="grid-template-columns:1fr">
+<div class="unit">
+<h3>📦 銷售部</h3>
+<div class="val" id="rev3">$0</div>
+<div class="label">收入</div>
+<div class="val" style="color:#e57373;font-size:18px" id="cost3">$0</div>
+<div class="label">經費</div>
+<div class="val" style="color:#4fc3f7;font-size:20px" id="profit3">$0</div>
+<div class="label">附加價值</div>
+<div class="label" style="margin-top:4px;color:#888" id="hour3">0h · $0/時</div>
+</div>
+</div>
+
+<div class="controls">
+<label>外部銷售額（銷售部收入）$</label>
+<input type="number" id="sales" value="5000000" placeholder="銷售額">
+<label>零件部 經費 $</label>
+<input type="number" id="cost1in" value="800000" placeholder="零件部支出">
+<label>零件部 → 組裝部 轉撥價格 $</label>
+<input type="number" id="transfer1" value="1500000" placeholder="零件→組裝">
+<label>組裝部 經費 $</label>
+<input type="number" id="cost2in" value="600000" placeholder="組裝部支出">
+<label>組裝部 → 銷售部 轉撥價格 $</label>
+<input type="number" id="transfer2" value="3500000" placeholder="組裝→銷售">
+<label>銷售部 經費 $</label>
+<input type="number" id="cost3in" value="700000" placeholder="銷售部支出">
+<label>零件部 勞動時間 (hr)</label>
+<input type="number" id="hours1" value="320" placeholder="工時">
+<label>組裝部 勞動時間 (hr)</label>
+<input type="number" id="hours2" value="280" placeholder="工時">
+<label>銷售部 勞動時間 (hr)</label>
+<input type="number" id="hours3" value="240" placeholder="工時">
+</div>
+<div class="btn-row">
+<button class="btn btn-calc" onclick="calc()">💰 結算本月績效</button>
+<button class="btn btn-reset" onclick="resetAll()">↺ 重置</button>
+</div>
+</div>
+
+<div class="section result" id="resultSec">
+<h2>📊 本月阿米巴結算結果</h2>
+<div id="resultTable"></div>
+<div id="chartArea"></div>
+</div>
+
+<div class="section" style="border-left-color:#4fc3f7">
+<h2>🧠 阿米巴管理的關鍵原則</h2>
+<p>1️⃣ <span class="highlight">透明經營</span> — 每個阿米巴的數字全公司公開，像玻璃一樣透明</p>
+<p>2️⃣ <span class="highlight">單位時間核算</span> — 不只比總利潤，比每小時效率</p>
+<p>3️⃣ <span class="highlight">內部市場機制</span> — 上下游阿米巴之間議價，模擬真實市場</p>
+<p>4️⃣ <span class="highlight">全員經營意識</span> — 每個人都像老闆一樣看數字</p>
+<p>5️⃣ <span class="highlight">即時回饋</span> — 每月結算，不是等年底才看財報</p>
+<br>
+<p style="color:#f0a500;font-weight:bold;font-size:15px">稻盛和夫的名言：</p>
+<p>「把組織切成小單位，讓每個人都能看見自己努力的成果。銷售最大化、經費最小化。」</p>
+</div>
+
+<p style="text-align:center;color:#444;font-size:11px;margin:24px 0">🤖 OpenClaw 製作 · 阿米巴組織互動模擬</p>
+
+<script>
+function fmt(n){return n.toLocaleString('zh-TW')}
+function calc(){
+const sales=+document.getElementById('sales').value
+const c1=+document.getElementById('cost1in').value
+const c2=+document.getElementById('cost2in').value
+const c3=+document.getElementById('cost3in').value
+const t1=+document.getElementById('transfer1').value
+const t2=+document.getElementById('transfer2').value
+const h1=+document.getElementById('hours1').value
+const h2=+document.getElementById('hours2').value
+const h3=+document.getElementById('hours3').value
+
+const rev1=t1
+const rev2=t2
+const rev3=sales
+
+const profit1=rev1-c1
+const profit2=rev2-c2
+const profit3=rev3-c3
+
+const perH1=profit1/h1
+const perH2=profit2/h2
+const perH3=profit3/h3
+
+const totalProfit=profit1+profit2+profit3
+const totalH=h1+h2+h3
+const totalPerH=totalProfit/totalH
+
+document.getElementById('rev1').textContent='$'+fmt(rev1)
+document.getElementById('rev2').textContent='$'+fmt(rev2)
+document.getElementById('rev3').textContent='$'+fmt(rev3)
+document.getElementById('cost1').textContent='$'+fmt(c1)
+document.getElementById('cost2').textContent='$'+fmt(c2)
+document.getElementById('cost3').textContent='$'+fmt(c3)
+document.getElementById('profit1').textContent='$'+fmt(profit1)
+document.getElementById('profit2').textContent='$'+fmt(profit2)
+document.getElementById('profit3').textContent='$'+fmt(profit3)
+document.getElementById('hour1').innerHTML=h1+'h · <span class="per-hour">$'+fmt(Math.round(perH1))+'/時</span>'
+document.getElementById('hour2').innerHTML=h2+'h · <span class="per-hour">$'+fmt(Math.round(perH2))+'/時</span>'
+document.getElementById('hour3').innerHTML=h3+'h · <span class="per-hour">$'+fmt(Math.round(perH3))+'/時</span>'
+
+let tbody=`<table>
+<tr><th>阿米巴</th><th>收入</th><th>經費</th><th>附加價值</th><th>工時</th><th>每小時</th></tr>
+<tr><td>🔧 零件部</td><td>$${fmt(rev1)}</td><td>$${fmt(c1)}</td><td>$${fmt(profit1)}</td><td>${h1}h</td><td class="per-hour">$${fmt(Math.round(perH1))}/時</td></tr>
+<tr><td>⚙️ 組裝部</td><td>$${fmt(rev2)}</td><td>$${fmt(c2)}</td><td>$${fmt(profit2)}</td><td>${h2}h</td><td class="per-hour">$${fmt(Math.round(perH2))}/時</td></tr>
+<tr><td>📦 銷售部</td><td>$${fmt(rev3)}</td><td>$${fmt(c3)}</td><td>$${fmt(profit3)}</td><td>${h3}h</td><td class="per-hour">$${fmt(Math.round(perH3))}/時</td></tr>
+<tr class="total-row"><td>🏢 公司合計</td><td>$${fmt(rev1+rev2+rev3)}</td><td>$${fmt(c1+c2+c3)}</td><td>$${fmt(totalProfit)}</td><td>${totalH}h</td><td class="per-hour">$${fmt(Math.round(totalPerH))}/時</td></tr>
+</table>`
+
+document.getElementById('resultTable').innerHTML=tbody
+
+const maxVal=Math.max(totalProfit,profile*1.2)
+const maxH=Math.max(perH1,perH2,perH3,10000)
+document.getElementById('chartArea').innerHTML=`
+<p style="margin-top:12px;font-size:13px;color:#aaa">📈 附加價值佔比</p>
+<div class="chart-bar"><div class="chart-fill c1" style="width:${Math.round(profit1/totalProfit*100)}%"></div></div>
+<span style="font-size:12px">🔧 零件部 ${Math.round(profit1/totalProfit*100)}%</span>
+<div class="chart-bar"><div class="chart-fill c2" style="width:${Math.round(profit2/totalProfit*100)}%"></div></div>
+<span style="font-size:12px">⚙️ 組裝部 ${Math.round(profit2/totalProfit*100)}%</span>
+<div class="chart-bar"><div class="chart-fill c3" style="width:${Math.round(profit3/totalProfit*100)}%"></div></div>
+<span style="font-size:12px">📦 銷售部 ${Math.round(profit3/totalProfit*100)}%</span>
+
+<p style="margin-top:16px;font-size:13px;color:#aaa">⏱️ 每小時效率比較</p>
+<div class="chart-bar"><div class="chart-fill c1" style="width:${Math.round(perH1/maxH*100)}%"></div></div>
+<span style="font-size:12px">🔧 零件部 $${Math.round(perH1)}/時</span>
+<div class="chart-bar"><div class="chart-fill c2" style="width:${Math.round(perH2/maxH*100)}%"></div></div>
+<span style="font-size:12px">⚙️ 組裝部 $${Math.round(perH2)}/時</span>
+<div class="chart-bar"><div class="chart-fill c3" style="width:${Math.round(perH3/maxH*100)}%"></div></div>
+<span style="font-size:12px">📦 銷售部 $${Math.round(perH3)}/時</span>
+`
+
+document.getElementById('resultSec').classList.add('show')
+}
+
+function resetAll(){
+document.getElementById('sales').value=5000000
+document.getElementById('cost1in').value=800000
+document.getElementById('cost2in').value=600000
+document.getElementById('cost3in').value=700000
+document.getElementById('transfer1').value=1500000
+document.getElementById('transfer2').value=3500000
+document.getElementById('hours1').value=320
+document.getElementById('hours2').value=280
+document.getElementById('hours3').value=240
+calc()
+}
+
+calc()
+</script>
+</body>
+</html>
