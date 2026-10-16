@@ -3,111 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>今日新聞 2026/10/16</title>
+<title>2026-10-16 深度新聞總覽與專業分析</title>
 <style>
+:root{--bg:#090d16;--card-bg:rgba(25, 33, 50, 0.7);--border:rgba(255,255,255,0.08);--text:#f3f4f6;--text-sub:#9ca3af;--accent:#3b82f6}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d0d0d;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;line-height:1.6;padding:16px}
-h1{color:#fff;text-align:center;margin-bottom:24px;font-size:1.3rem;letter-spacing:1px}
-.subtitle{text-align:center;color:#888;margin-bottom:20px;font-size:.85rem}
-.card{background:#1a1a1a;border-radius:12px;padding:16px;margin-bottom:12px;border-left:4px solid #3b82f6;transition:transform .15s}
-.card:hover{transform:translateX(4px)}
-.card h2{font-size:1rem;color:#fff;margin-bottom:6px}
-.card .cat{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:4px;margin-right:6px;font-weight:600}
-.cat-politics{background:#7c3aed;color:#fff}
-.cat-world{background:#059669;color:#fff}
-.cat-sports{background:#dc2626;color:#fff}
-.cat-life{background:#d97706;color:#fff}
-.cat-ent{background:#ec4899;color:#fff}
-.cat-finance{background:#0891b2;color:#fff}
-.card p{color:#aaa;font-size:.85rem;margin-bottom:8px}
-.btn-read{display:inline-block;background:#2563eb;color:#fff;padding:6px 14px;border-radius:6px;text-decoration:none;font-size:.8rem;font-weight:500}
-.btn-read:hover{background:#1d4ed8}
-footer{text-align:center;margin-top:24px;color:#555;font-size:.75rem}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;line-height:1.7;padding:20px}
+.container{max-width:850px;margin:0 auto}
+header{text-align:center;padding:30px 0;border-bottom:1px solid var(--border);margin-bottom:30px}
+header h1{font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:0.5px}
+header p{color:var(--text-sub);font-size:0.9rem}
+.section{margin-bottom:35px}
+.section-title{font-size:1.2rem;font-weight:600;color:#60a5fa;border-left:4px solid #3b82f6;padding-left:12px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between}
+.grid{display:grid;gap:16px}
+.card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:14px;padding:20px;transition:all .2s ease}
+.card:hover{transform:translateY(-2px);border-color:rgba(59,130,246,0.4);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.badge{font-size:0.75rem;padding:3px 10px;border-radius:20px;font-weight:600}
+.b-politics{background:rgba(124,58,237,0.2);color:#c084fc;border:1px solid rgba(124,58,237,0.3)}
+.b-finance{background:rgba(8,145,178,0.2);color:#22d3ee;border:1px solid rgba(8,145,178,0.3)}
+.b-world{background:rgba(5,150,105,0.2);color:#34d399;border:1px solid rgba(5,150,105,0.3)}
+.b-life{background:rgba(217,119,6.2);color:#fbbf24;border:1px solid rgba(217,119,6,0.3)}
+.time{font-size:0.75rem;color:var(--text-sub)}
+h3{font-size:1.05rem;color:#fff;margin-bottom:10px;font-weight:600;line-height:1.4}
+.summary{color:#d1d5db;font-size:0.9rem;margin-bottom:14px}
+.footer-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:12px;margin-top:12px}
+.source{font-size:0.8rem;color:var(--text-sub)}
+.btn{background:rgba(59,130,246,0.15);color:#93c5fd;border:1px solid rgba(59,130,246,0.3);padding:6px 14px;border-radius:8px;text-decoration:none;font-size:0.8rem;font-weight:500;transition:all .15s}
+.btn:hover{background:#3b82f6;color:#fff}
+footer.page-foot{text-align:center;padding:30px 0;color:var(--text-sub);font-size:0.8rem;border-top:1px solid var(--border);margin-top:40px}
+@media(max-width:600px){body{padding:12px}header h1{font-size:1.4rem}.card{padding:16px}}
 </style>
 </head>
 <body>
+<div class="container">
+<header>
+  <h1>📊 2026年10月16日 深度焦點新聞總覽</h1>
+  <p>智慧政經、科技產業與國際情勢關鍵情報解析</p>
+</header>
 
-<h1>📰 今日新聞摘要</h1>
-<p class="subtitle">2026年10月16日（週五）</p>
+<!-- 政治要聞 -->
+<div class="section">
+  <div class="section-title">🏛️ 政治與選戰動態</div>
+  <div class="grid">
+    
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-politics">政治</span>
+        <span class="time">23:25</span>
+      </div>
+      <h3>江永雄連署開除趙少康黨籍，被起底曾緬懷毛澤東</h3>
+      <p class="summary">國民黨中央委員江永雄不滿趙少康二度專訪民進黨台北市長候選人沈伯洋，發起連署鑒請考紀會開除其黨籍。隨後江永雄遭起底為中國台商黨代表，過去曾有緬懷毛澤東、祝賀中國國慶言論，引發政壇議論與陣營攻防。</p>
+      <div class="footer-row">
+        <span class="source">自由時報</span>
+        <a class="btn" href="https://news.ltn.com.tw/news/politics/breakingnews/5609025" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
 
-<!-- 政治 -->
-<div class="card">
-  <span class="cat cat-politics">政治</span>
-  <h2>江永雄連署開除趙少康黨籍，被起底曾緬懷毛澤東</h2>
-  <p>國民黨中央委員江永雄不滿趙少康二度專訪沈伯洋，發起連署要求開除黨籍。然而江永雄是中國台商黨代表，曾被起底曾緬懷毛澤東、祝賀中國國慶。</p>
-  <a class="btn-read" href="https://news.ltn.com.tw/news/politics/breakingnews/5609025" target="_blank">📖 閱讀全文</a>
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-politics">政治</span>
+        <span class="time">23:10</span>
+      </div>
+      <h3>蔡康永被說「京都人」啥意思？暗黑內幕與說話藝術解析</h3>
+      <p class="summary">作家蔡康永出席沈伯洋競總成立後，面對蔣萬安邀約以「京都人」話中有話的高度婉轉語氣婉拒。網友與政論紛紛解構其高級酸語法，讚嘆其處事與說話藝術，成為選戰外的熱門話題。</p>
+      <div class="footer-row">
+        <span class="source">自由時報</span>
+        <a class="btn" href="https://news.ltn.com.tw/news/politics/breakingnews/5608948" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-politics">政治</span>
+        <span class="time">23:17</span>
+      </div>
+      <h3>藍白聯手通過老人健保全免，王必勝嘆：體制崩壞的開始</h3>
+      <p class="summary">立法院藍白陣營三讀通過《老人福利法》修正案，65歲以上長者健保費由中央全額買單，引發世代公平與財政負擔辯論。前衛福部次長王必勝直言聽到年輕人喊不想繳健保費，感嘆是體制崩壞開端。</p>
+      <div class="footer-row">
+        <span class="source">自由時報</span>
+        <a class="btn" href="https://news.ltn.com.tw/news/politics/breakingnews/5609016" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="card">
-  <span class="cat cat-politics">政治</span>
-  <h2>蔡康永被說「京都人」啥意思？暗黑內幕曝光</h2>
-  <p>蔡康永日前婉拒蔣萬安邀約，以「京都人」話中有話暗酸。網友化身柯南拆解用詞，讚嘆說話藝術高超。</p>
-  <a class="btn-read" href="https://news.ltn.com.tw/news/politics/breakingnews/5608948" target="_blank">📖 閱讀全文</a>
+<!-- 財經科技 -->
+<div class="section">
+  <div class="section-title">📈 財經與科技產業</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-finance">財經</span>
+        <span class="time">22:46</span>
+      </div>
+      <h3>台積電ADR再跌、夜盤狂殺逾500點，台股下週嚴陣以待</h3>
+      <p class="summary">資金持續撤出全球科技股，美股那斯達克與費半走跌，輝達、台積電ADR、AMD盤中全面下挫，記憶體美光持續暴跌。台指期夜盤重挫超過500點，為下週台股增添修正壓力。</p>
+      <div class="footer-row">
+        <span class="source">自由財經</span>
+        <a class="btn" href="https://ec.ltn.com.tw/article/breakingnews/5609012" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-finance">財經</span>
+        <span class="time">19:06</span>
+      </div>
+      <h3>鴻海斥資235億元買股權，與日本三菱電機簽訂策略聯盟</h3>
+      <p class="summary">鴻海集團宣布砸下235億元與日本三菱電機建立策略聯盟，雙方將共同經營汽車設備事業，結合三菱在電子動力系統、軟體控制優勢，以及鴻海的速度與大規模落地能力，打造日系高品質電動車平台。</p>
+      <div class="footer-row">
+        <span class="source">自由財經</span>
+        <a class="btn" href="https://ec.ltn.com.tw/article/breakingnews/5608830" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-finance">財經</span>
+        <span class="time">20:57</span>
+      </div>
+      <h3>地表最強AI PC登場！輝達 RTX Spark 筆電 11.9 萬起跳</h3>
+      <p class="summary">輝達攜手華碩、宏碁、技嘉、微星等夥伴舉辦「RTX Spark Launch Party」，正式開賣搭載地表最強AI PC架構的RTX Spark筆記型電腦，開啟AI終端裝置新浪潮。</p>
+      <div class="footer-row">
+        <span class="source">自由財經</span>
+        <a class="btn" href="https://ec.ltn.com.tw/article/breakingnews/5608933" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="card">
-  <span class="cat cat-politics">政治</span>
-  <h2>莊競程邊跑邊聽需求，跑友讚：首次有候選人這樣</h2>
-  <p>民進黨新竹市長候選人莊競程到田徑場跟跑友一起跑步，現場聽取意見，跑友反映希望市府加裝販賣機、改善照明。</p>
-  <a class="btn-read" href="https://news.ltn.com.tw/news/politics/breakingnews/5608988" target="_blank">📖 閱讀全文</a>
+<!-- 國際地緣政治 -->
+<div class="section">
+  <div class="section-title">🌍 國際與地緣政治</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-world">國際</span>
+        <span class="time">23:05</span>
+      </div>
+      <h3>南韓擬擴大亞丁灣任務至荷姆茲海峽，國防部強調不介入戰爭</h3>
+      <p class="summary">南韓研擬將駐守亞丁灣的反海盜部隊行動範圍擴大至鄰近荷姆茲海峽的阿曼灣。面對外界質疑是變相向中東派兵，國防部正式回應南韓立場為不介入戰爭，僅基於維安與國際合作考量。</p>
+      <div class="footer-row">
+        <span class="source">自由時報</span>
+        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5609015" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-world">國際</span>
+        <span class="time">22:13</span>
+      </div>
+      <h3>川普未否認動用「炸彈之母」，伊朗鎬山核設施引關注</h3>
+      <p class="summary">美國總統川普受訪時，針對是否考慮在11月期中選舉後對伊朗動用重型空爆炸彈（MOAB）炸彈之母未予否認，暗示伊朗地下核設施可能成為潛在戰略打擊目標，中東局勢持續緊繃。</p>
+      <div class="footer-row">
+        <span class="source">自由時報</span>
+        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5608986" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<!-- 財經 -->
-<div class="card">
-  <span class="cat cat-finance">財經</span>
-  <h2>台股下週小心？台積電ADR又跌，夜盤狂殺逾500點</h2>
-  <p>資金持續撤出科技股，費城半導體走跌，輝達、台積電ADR、AMD盤中下跌，記憶體美光持續暴跌。</p>
-  <a class="btn-read" href="https://ec.ltn.com.tw/article/breakingnews/5609012" target="_blank">📖 閱讀全文</a>
+<!-- 生活社會 -->
+<div class="section">
+  <div class="section-title">🌟 生活與社會動態</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="meta">
+        <span class="badge b-life">生活</span>
+        <span class="time">23:31</span>
+      </div>
+      <h3>「全球極限體能鋼鐵大賽」明台中開戰，3000好手爭百萬獎金</h3>
+      <p class="summary">由運動部支持、台中市府打造的旗艦賽事「2026全球極限體能鋼鐵大賽」將於10月17至18日在台中市政府廣場重磅登場，吸引10國近3000名頂尖好手角逐百萬總獎金。</p>
+      <div class="footer-row">
+        <span class="source">自由時報</span>
+        <a class="btn" href="https://news.ltn.com.tw/news/life/breakingnews/5609001" target="_blank">📖 閱讀全文</a>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<!-- 國際 -->
-<div class="card">
-  <span class="cat cat-world">國際</span>
-  <h2>南韓擬擴大亞丁灣任務範圍到荷姆茲海峽，國防部：不會介入戰爭</h2>
-  <p>南韓國防部16日表示，擴大反海盜任務區域至阿曼灣不意味介入戰爭，外界質疑為「迂迴派兵」。</p>
-  <a class="btn-read" href="https://news.ltn.com.tw/news/world/breakingnews/5609015" target="_blank">📖 閱讀全文</a>
+<footer class="page-foot">
+  <p>Data Source: 自由時報 / 自由財經 | Generated by 小綠 AI 助手</p>
+</footer>
 </div>
-
-<!-- 社會 -->
-<div class="card">
-  <span class="cat cat-politics">社會</span>
-  <h2>王必勝嘆年輕人不想繳健保：體制崩壞的開始</h2>
-  <p>藍白聯手通過老人健保全免修法，前衛福部次長王必勝不小心聽到年輕人聊天說也不想繳健保，感嘆這是體制崩壞的開始。</p>
-  <a class="btn-read" href="https://news.ltn.com.tw/news/politics/breakingnews/5609016" target="_blank">📖 閱讀全文</a>
-</div>
-
-<!-- 生活 -->
-<div class="card">
-  <span class="cat cat-life">生活</span>
-  <h2>全球極限體能鋼鐵大賽明台中開戰，百萬獎金吸引3000好手</h2>
-  <p>由運動部支持、台中市府打造的品牌賽事，10/17-18在台中市政府廣場舉行，10國選手爭奪百萬總獎金。</p>
-  <a class="btn-read" href="https://news.ltn.com.tw/news/life/breakingnews/5609001" target="_blank">📖 閱讀全文</a>
-</div>
-
-<div class="card">
-  <span class="cat cat-life">生活</span>
-  <h2>週六多雲到晴飆34度，西半部空品差</h2>
-  <p>天氣穩定，高溫34度，紫外線過量、竹苗以南空品橘色提醒。</p>
-  <a class="btn-read" href="https://news.ltn.com.tw/news/life/breakingnews/5608822" target="_blank">📖 閱讀全文</a>
-</div>
-
-<!-- 娛樂 -->
-<div class="card">
-  <span class="cat cat-ent">娛樂</span>
-  <h2>張秀卿自爆二度離婚，曾借給前夫王國贊3400萬</h2>
-  <p>台語歌后張秀卿今晚節目中自曝二度離婚，並透露借給前夫王國贊3400萬元，張菲也出席去年世紀婚禮。</p>
-  <a class="btn-read" href="https://news.ltn.com.tw/news/breakingnews/5609004" target="_blank">📖 閱讀全文</a>
-</div>
-
-<!-- 體育 -->
-<div class="card">
-  <span class="cat cat-sports">體育</span>
-  <h2>周天成丹麥公開賽不敵法國好手，無緣4強</h2>
-  <p>台灣一哥周天成在超級750丹麥羽球公開賽，第二局連掉12分仍奮力追分，最終16:21、12:21敗給21歲世界冠軍法國選手。</p>
-  <a class="btn-read" href="https://sports.ltn.com.tw/news/breakingnews/5609018" target="_blank">📖 閱讀全文</a>
-</div>
-
-<footer>來源：自由時報電子報 | 生成時間：2026/10/16 23:42</footer>
-
 </body>
 </html>
