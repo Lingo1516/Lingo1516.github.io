@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣新聞整理 — 2026/10/20</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    text-align: center;
+    padding: 48px 20px 36px;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  header p {
+    font-size: 1rem;
+    opacity: 0.85;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+
+  section {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  section h2 {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  section ul {
+    list-style: none;
+    padding: 16px 20px;
+  }
+
+  section ul li {
+    padding: 10px 0 10px 28px;
+    position: relative;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  section ul li:last-child { border-bottom: none; }
+
+  section ul li::before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    color: #4a90d9;
+    font-weight: 700;
+  }
+
+  /* 重點標示 */
+  .highlight {
+    background: #fff8e1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  /* 各 section 不同色彩 */
+  .typhoon h2   { background: #e74c3c; }
+  .typhoon li::before { color: #e74c3c; }
+
+  .tsmc h2   { background: #8e44ad; }
+  .tsmc li::before { color: #8e44ad; }
+
+  .finance h2 { background: #f39c12; }
+  .finance li::before { color: #f39c12; }
+
+  .politics h2 { background: #2c3e50; }
+  .politics li::before { color: #2c3e50; }
+
+  .social h2 { background: #16a085; }
+  .social li::before { color: #16a085; }
+
+  .world h2 { background: #2980b9; }
+  .world li::before { color: #2980b9; }
+
+  .tech h2 { background: #6c5ce7; }
+  .tech li::before { color: #6c5ce7; }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-hot { background: #ffe0e0; color: #c0392b; }
+  .badge-new { background: #d4edda; color: #155724; }
+
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #999;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🇹🇼 台灣新聞整理</h1>
+  <p>2026年10月20日（二）｜來源：中央社、台視</p>
+</header>
+
+<div class="container">
+
+  <!-- 颱風薔琵 -->
+  <section class="typhoon">
+    <h2>🌀 颱風「薔琵」逼近 <span class="badge badge-hot">重点关注</span></h2>
+    <ul>
+      <li>颱風持續增強、長胖，預計最快 <span class="highlight">明天（21日）深夜發海上風警</span></li>
+      <li>暴風恐籠罩 <span class="highlight">5 縣市政府</span>，颱風眼清晰可見，最新路徑已曝光</li>
+      <li>基隆、馬祖等航線 <span class="highlight">21 日停航</span>，連江縣海上交通異動</li>
+      <li>蔣萬安估算 <span class="highlight">23 日對北市影響最顯著</span>，港湖區台北大洋流車掃已延期</li>
+    </ul>
+  </section>
+
+  <!-- 台積電高雄廠 -->
+  <section class="tsmc">
+    <h2>🏭 台積電高雄廠工安事故 <span class="badge badge-hot">重大</span></h2>
+    <ul>
+      <li><span class="highlight">4 名工人高处坠落</span>，1 人宣告死亡、2 人 OHCA、2 人輕重傷</li>
+      <li>相關工程已自主停工，台積電表示將全面檢討安全程序</li>
+    </ul>
+  </section>
+
+  <!-- 財經 -->
+  <section class="finance">
+    <h2>💰 財經</h2>
+    <ul>
+      <li><span class="highlight">外資連 10 日賣超台股</span>，今年累計賣超規模逾 <strong>2.1 兆元</strong>，台積電科技股領跌</li>
+      <li>前 9 月外銷訂單累計 <span class="highlight">8,192 億美元</span>，提前改寫全年新高</li>
+      <li>達麗擴大赴美投資，瞄準台積電供應鏈商機</li>
+      <li>金管會前 3 季開罰 1.6 億元，銀行業裁罰金額占 91%</li>
+      <li>Google Cloud 英國宕機，影響銀行與公共服務大規模中斷</li>
+      <li>路透：字節、阿里、騰訊訂購總值逾 <strong>350 億美元</strong> 輝達晶片</li>
+      <li>研調：電視面板零件成本增加、需求降，10 月報價持平</li>
+      <li>日韓股雙雙收跌，AI 交易情緒謹慎，靜待財報考驗</li>
+    </ul>
+  </section>
+
+  <!-- 政治 -->
+  <section class="politics">
+    <h2>🗳️ 政治</h2>
+    <ul>
+      <li><span class="highlight">九合一選舉</span>：蔣萬安與沈伯洋激戰，民調顯示蔣萬安落後；王金平呼籲應調整戰略認清情勢變化</li>
+      <li>陳水扁發想 6 組號次口號，沈伯洋讚「很棒」</li>
+      <li>國安局：網駭、爭議訊息暴增，<span class="highlight">不排除中共為介選情蒐</span></li>
+      <li>邱垂正：中共對台複合施壓，持續推進「未統先治」</li>
+      <li>川普稱願與習近平、普丁三方會談，中方未公開表態</li>
+      <li>林佳龍午宴馬紹爾群島部長，盼台馬經合協定促成共榮</li>
+      <li>副總統：台灣致力確保民主制度穩健運作，捍衛言論自由</li>
+      <li>賴總統：山巔之城要固若金湯，續投入國防建設守護民主</li>
+      <li>立委籲訂賄選金額標準，法務部：手法多元隱匿難量化</li>
+    </ul>
+  </section>
+
+  <!-- 社會 -->
+  <section class="social">
+    <h2>🏥 社會</h2>
+    <ul>
+      <li><span class="highlight">澎湖冒領千萬中獎發票案</span>，3 名涉案男子羈押禁見</li>
+      <li>清華大學化學館實驗室火警，疑化學反應引燃，無人受傷</li>
+      <li>彰化縣議長謝典霖涉貪遭羈押，11/8 成立競選總部</li>
+      <li>台灣女遊客在日本河口湖飯店命案，死者與被捕女子分別報名參團</li>
+      <li>中國漁船越界拖網，澎湖海巡查扣人船</li>
+      <li>北市清潔隊員女廁偷拍同事，二審判賠 32 萬</li>
+      <li>仲介失聯移工當看護 7 年牟利逾 4 千萬，主嫌起訴求刑 3 年</li>
+    </ul>
+  </section>
+
+  <!-- 國際 -->
+  <section class="world">
+    <h2>🌍 國際</h2>
+    <ul>
+      <li>烏克蘭<span class="highlight">首次用無人機空中救援傷兵</span>，創全球首例</li>
+      <li>日本 MMX 探測器升空，啟程奔向火星衛星 Phobos，將取回 10 克火星月塵</li>
+      <li>法國各地爆發大規模抗議與暴動，馬賽最嚴重；多地實施部分宵禁</li>
+      <li>加拿大阿爾伯塔省獨立公投 <span class="highlight">75% 選民拒絕獨立</span>，總理卡尼宣布為「明確選擇」</li>
+      <li>韓國官員證實金正恩健康狀況，否認網傳腦溢血逝世傳言</li>
+      <li>以色列 Gen Z 選民傾向極右，超過 50 萬年輕選民將在下周投票</li>
+      <li>澳洲國會議員海恩斯遭車兩度衝撞，一腿截肢仍命危</li>
+      <li>大塊鋁板從天而降掉進印尼油棕園，疑為中國朱雀二號 E 火箭殘骸</li>
+    </ul>
+  </section>
+
+  <!-- 科技/生活 -->
+  <section class="tech">
+    <h2>💡 科技／生活</h2>
+    <ul>
+      <li>清大校務會議討論高為元海外遴選爭議，人數不足散會</li>
+      <li>國研院發布 AI 技術：<span class="highlight">拍照即可測房屋耐震度</span>，開放民眾使用</li>
+      <li>國內虛擬資產轉帳新規上路，移轉逾 3 萬要附生日住址</li>
+      <li>資策會 MIC：87% 網友曾用 AI 客服，金融保險排行首位</li>
+      <li>新社花海 10/31 登場，農業部估參訪逾 400 萬人次</li>
+      <li>台鐵寶可夢彩繪列車平日也有機會搭，最新班次出爐</li>
+      <li>法國抗議波及古謠工作坊停課，排灣族佳興部落盼再訪巴黎</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>
+  新聞來源：中央社 CNA、台視 TTV ｜ 整理日期：2026年10月20日
+</footer>
+
+</body>
+</html>
