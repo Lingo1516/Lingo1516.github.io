@@ -1,459 +1,509 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>2026-10-20 每日新聞總覽</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日新聞懶人包 | 2026年10月20日</title>
 <style>
-:root{--bg:#090d16;--card-bg:rgba(25,33,50,0.7);--border:rgba(255,255,255,0.08);--text:#f3f4f6;--text-sub:#9ca3af}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;line-height:1.7;padding:20px}
-.container{max-width:850px;margin:0 auto}
-header{text-align:center;padding:30px 0;border-bottom:1px solid var(--border);margin-bottom:30px}
-header h1{font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:0.5px}
-header p{color:var(--text-sub);font-size:0.9rem}
-.section{margin-bottom:35px}
-.section-title{font-size:1.2rem;font-weight:600;color:#60a5fa;border-left:4px solid #3b82f6;padding-left:12px;margin-bottom:18px}
-.grid{display:grid;gap:16px}
-.card{background:var(--card-bg);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:14px;padding:20px;transition:all .2s ease}
-.card:hover{transform:translateY(-2px);border-color:rgba(59,130,246,0.4);box-shadow:0 8px 24px rgba(0,0,0,0.4)}
-.meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.badge{font-size:0.75rem;padding:3px 10px;border-radius:20px;font-weight:600}
-.b-tw{background:rgba(124,58,237,0.2);color:#c084fc;border:1px solid rgba(124,58,237,0.3)}
-.b-world{background:rgba(5,150,105,0.2);color:#34d399;border:1px solid rgba(5,150,105,0.3)}
-.b-finance{background:rgba(8,145,178,0.2);color:#22d3ee;border:1px solid rgba(8,145,178,0.3)}
-.b-hot{background:rgba(217,119,6,0.2);color:#fbbf24;border:1px solid rgba(217,119,6,0.3)}
-.time{font-size:0.75rem;color:var(--text-sub)}
-h3{font-size:1.05rem;margin-bottom:0;font-weight:600;line-height:1.4}
-.title-link{color:#fff;text-decoration:none}
-.title-link:hover{color:#93c5fd;text-decoration:underline}
-.footer-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:12px;margin-top:12px}
-.source{font-size:0.8rem;color:var(--text-sub)}
-.btn{background:rgba(59,130,246,0.15);color:#93c5fd;border:1px solid rgba(59,130,246,0.3);padding:6px 14px;border-radius:8px;text-decoration:none;font-size:0.8rem;font-weight:500;transition:all .15s}
-.btn:hover{background:#3b82f6;color:#fff}
-footer.page-foot{text-align:center;padding:30px 0;color:var(--text-sub);font-size:0.8rem;border-top:1px solid var(--border);margin-top:40px}
-@media(max-width:600px){body{padding:12px}header h1{font-size:1.4rem}.card{padding:16px}}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang TC","Microsoft JhengHei",sans-serif;background:#0d1117;color:#e6edf3;line-height:1.6;padding:0;min-height:100vh}
+  .container{max-width:680px;margin:0 auto;padding:16px}
+  .header{text-align:center;padding:28px 0 20px;border-bottom:1px solid #21262d;margin-bottom:20px}
+  .header h1{font-size:22px;font-weight:700;background:linear-gradient(135deg,#58a6ff,#bc8cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .header .date{font-size:13px;color:#8b949e;margin-top:4px}
+  .header .update{font-size:11px;color:#484f58;margin-top:2px}
+  .section{margin-bottom:24px}
+  .section-title{font-size:16px;font-weight:600;padding:8px 12px;border-radius:8px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .section-taiwan{background:linear-gradient(135deg,#1a3a2a,#0d2818);color:#3fb950;border:1px solid #238636}
+  .section-world{background:linear-gradient(135deg,#1a2a3a,#0d1828);color:#58a6ff;border:1px solid #1f6feb}
+  .section-china{background:linear-gradient(135deg,#3a1a1a,#280d0d);color:#f85149;border:1px solid #da3633}
+  .section-tech{background:linear-gradient(135deg,#3a2a1a,#28180d);color:#d29922;border:1px solid #9e6a03}
+  .section-us{background:linear-gradient(135deg,#2a1a3a,#180d28);color:#bc8cff;border:1px solid #8957e5}
+  .card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:14px;margin-bottom:10px;transition:border-color .2s}
+  .card:hover{border-color:#30363d}
+  .card-title{font-size:14px;font-weight:600;color:#f0f6fc;line-height:1.5;margin-bottom:4px}
+  .card-meta{font-size:11px;color:#484f58;display:flex;gap:8px;flex-wrap:wrap}
+  .card-meta .source{color:#8b949e}
+  .card-meta .date{color:#58a6ff}
+  .card-body{font-size:12px;color:#8b949e;margin-top:6px;line-height:1.7}
+  .tag{display:inline-block;font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;font-weight:500}
+  .tag-tw{background:#23863620;color:#3fb950;border:1px solid #238636}
+  .tag-wd{background:#1f6feb20;color:#58a6ff;border:1px solid #1f6feb}
+  .tag-cn{background:#da363320;color:#f85149;border:1px solid #da3633}
+  .tag-tech{background:#9e6a0320;color:#d29922;border:1px solid #9e6a03}
+  .tag-us{background:#8957e520;color:#bc8cff;border:1px solid #8957e5}
+  .footer{text-align:center;padding:20px 0;border-top:1px solid #21262d;margin-top:20px}
+  .footer p{font-size:12px;color:#484f58}
+  .summary-box{background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:14px;margin-bottom:16px;font-size:13px;color:#8b949e}
+  .summary-box strong{color:#e6edf3;display:block;margin-bottom:6px;font-size:14px}
+  .pill{display:inline-block;font-size:10px;padding:2px 8px;border-radius:12px;background:#21262d;color:#8b949e;margin:2px}
 </style>
 </head>
 <body>
 <div class="container">
-<header>
-  <h1>📰 2026年10月20日 每日新聞總覽</h1>
-  <p>台灣、國際、財經與熱門話題重點整理（共 32 則）｜點標題或按鈕直接開啟新聞原文</p>
-</header>
 
-<!-- 台灣要聞 -->
+<div class="header">
+  <h1>📰 每日新聞懶人包</h1>
+  <div class="date">2026 年 10 月 20 日（星期二）</div>
+  <div class="update">更新時間 21:30 (GMT+8)</div>
+</div>
+
+<div class="summary-box">
+  <strong>📌 今日重點</strong>
+  法國巴黎大規模騷亂持續，宵禁延長；美國下令聯邦機構禁用 DeepSeek；Google 雲端大斷線波及歐洲銀行；澳洲國會議員遭車撞重傷；以色列即將大選，美國國防部長秘密訪問；川普推俄烏談判引發烏克蘭不滿。
+</div>
+
+<!-- ============ 台灣新聞 ============ -->
 <div class="section">
-  <div class="section-title">🇹🇼 台灣要聞</div>
-  <div class="grid">
-    
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-tw">台灣要聞</span>
-        <span class="time">03:06</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/%E6%9B%BF%E4%BB%A3%E5%BD%B9%E6%95%99%E8%81%B7%E8%BB%8D%E9%81%AD%E9%85%B8-%E9%A1%A7%E7%AB%8B%E9%9B%84%E6%8C%BA%E6%9E%97%E9%A3%9B%E5%B8%86%E5%9C%8B%E9%98%B2%E5%A4%A7%E5%AD%B8%E6%BC%94%E8%AC%9B-%E9%81%A9%E5%88%87%E5%AE%89%E6%8E%92-030640293.html" target="_blank" rel="noopener">替代役教職軍遭酸　顧立雄挺林飛帆國防大學演講：適切安排</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/%E6%9B%BF%E4%BB%A3%E5%BD%B9%E6%95%99%E8%81%B7%E8%BB%8D%E9%81%AD%E9%85%B8-%E9%A1%A7%E7%AB%8B%E9%9B%84%E6%8C%BA%E6%9E%97%E9%A3%9B%E5%B8%86%E5%9C%8B%E9%98%B2%E5%A4%A7%E5%AD%B8%E6%BC%94%E8%AC%9B-%E9%81%A9%E5%88%87%E5%AE%89%E6%8E%92-030640293.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
+  <div class="section-title section-taiwan">🇹🇼 台灣新聞</div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-tw">台灣要聞</span>
-        <span class="time">03:04</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/138%E5%AD%97-%E9%A0%81%E5%A0%B1%E5%91%8A-%E6%8C%A8%E8%BD%9F-%E5%83%91%E5%A7%94%E6%9C%83%E5%96%8A%E5%86%A4-%E9%8C%AF%E8%AA%A4%E8%A7%A3%E8%AE%80%E8%88%87%E4%BA%8B%E5%AF%A6%E4%B8%8D%E7%AC%A6-030456396.html" target="_blank" rel="noopener">138字「一頁報告」挨轟　僑委會喊冤：錯誤解讀與事實不符</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/138%E5%AD%97-%E9%A0%81%E5%A0%B1%E5%91%8A-%E6%8C%A8%E8%BD%9F-%E5%83%91%E5%A7%94%E6%9C%83%E5%96%8A%E5%86%A4-%E9%8C%AF%E8%AA%A4%E8%A7%A3%E8%AE%80%E8%88%87%E4%BA%8B%E5%AF%A6%E4%B8%8D%E7%AC%A6-030456396.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">台灣將迎來四年一度九合一地方選舉</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC中文</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-tw">政治</span>
     </div>
+    <div class="card-body">11月底台灣將舉行地方選舉，藍綠兩大政黨在地方執政版圖的消長備受關注，「北藍南綠」的政治版圖正在發生變化，中間選民的流向可能左右大局。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-tw">台灣要聞</span>
-        <span class="time">03:04</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/%E4%B8%AD%E5%A4%AE%E6%AD%A3%E5%9C%A8%E6%AF%80%E5%B0%8F%E6%B8%AF-%E9%99%B3%E9%BA%97%E5%A8%9C%E6%89%B9%E8%B3%B4%E7%91%9E%E9%9A%86%E5%8F%88%E8%A3%9D%E7%9D%A1-030451474.html" target="_blank" rel="noopener">中央正在毀小港？陳麗娜批賴瑞隆又裝睡</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/%E4%B8%AD%E5%A4%AE%E6%AD%A3%E5%9C%A8%E6%AF%80%E5%B0%8F%E6%B8%AF-%E9%99%B3%E9%BA%97%E5%A8%9C%E6%89%B9%E8%B3%B4%E7%91%9E%E9%9A%86%E5%8F%88%E8%A3%9D%E7%9D%A1-030451474.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">台灣 AV 產業盛極而衰 中国市场因素受質疑</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC中文</span>
+      <span class="date">📅 2026-10</span>
+      <span class="tag tag-tw">社會</span>
     </div>
-
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-tw">台灣要聞</span>
-        <span class="time">03:00</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/%E6%9D%BE%E5%B1%B1%E6%A9%9F%E5%A0%B4%E9%81%B7%E4%B8%8D%E9%81%B7-%E5%8A%89%E4%B8%96%E8%8A%B3%E7%A8%B1-%E5%BD%B1%E9%9F%BF%E7%A9%BA%E5%8B%A4%E6%95%91%E6%8F%B4-%E7%9B%AE%E5%89%8D%E6%B2%92%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88-030022687.html" target="_blank" rel="noopener">松山機場遷不遷？劉世芳稱「影響空勤救援」：目前沒替代方案</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/%E6%9D%BE%E5%B1%B1%E6%A9%9F%E5%A0%B4%E9%81%B7%E4%B8%8D%E9%81%B7-%E5%8A%89%E4%B8%96%E8%8A%B3%E7%A8%B1-%E5%BD%B1%E9%9F%BF%E7%A9%BA%E5%8B%A4%E6%95%91%E6%8F%B4-%E7%9B%AE%E5%89%8D%E6%B2%92%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88-030022687.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-tw">台灣要聞</span>
-        <span class="time">03:00</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/%E4%B8%AD%E5%85%B1%E4%BB%8B%E9%81%B8%E6%93%8D%E4%BD%9C%E8%B5%B0%E5%90%91%E5%AE%A2%E8%A3%BD%E5%8C%96-%E5%9C%8B%E5%AE%89%E4%BA%BA%E5%A3%AB%E6%8F%90%E9%86%92%E6%B0%91%E7%9C%BE%E6%B3%A8%E6%84%8F-030000319.html" target="_blank" rel="noopener">中共介選操作走向客製化　國安人士提醒民眾注意</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/%E4%B8%AD%E5%85%B1%E4%BB%8B%E9%81%B8%E6%93%8D%E4%BD%9C%E8%B5%B0%E5%90%91%E5%AE%A2%E8%A3%BD%E5%8C%96-%E5%9C%8B%E5%AE%89%E4%BA%BA%E5%A3%AB%E6%8F%90%E9%86%92%E6%B0%91%E7%9C%BE%E6%B3%A8%E6%84%8F-030000319.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-tw">台灣要聞</span>
-        <span class="time">03:00</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9C%80%E6%96%B0%E6%B0%91%E8%AA%BF-%E6%B2%88%E4%BC%AF%E6%B4%8B%E9%A0%98%E5%85%88%E8%94%A3%E8%90%AC%E5%AE%8917-030000385.html" target="_blank" rel="noopener">台北市最新民調 沈伯洋領先蔣萬安17%</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9C%80%E6%96%B0%E6%B0%91%E8%AA%BF-%E6%B2%88%E4%BC%AF%E6%B4%8B%E9%A0%98%E5%85%88%E8%94%A3%E8%90%AC%E5%AE%8917-030000385.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-tw">台灣要聞</span>
-        <span class="time">02:59</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/%E8%94%A3%E8%90%AC%E5%AE%89%E6%8B%8B%E6%9D%BE%E6%A9%9F%E9%81%B7%E5%BB%BA-%E5%8A%89%E4%B8%96%E8%8A%B3%E7%A4%BA%E8%AD%A6%E7%A9%BA%E5%8B%A4%E6%95%91%E6%8F%B4%E5%8F%97%E5%BD%B1%E9%9F%BF-%E9%99%B3%E4%B8%96%E5%87%B1-%E5%85%88%E8%AB%87%E6%B8%85%E6%A5%9A%E4%BB%80%E9%BA%BC%E6%98%AF-%E7%B6%A0%E8%89%B2%E9%80%9A%E9%81%93-025900724.html" target="_blank" rel="noopener">蔣萬安拋松機遷建！劉世芳示警空勤救援受影響　陳世凱：先談清楚什麼是「綠色通道」</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/%E8%94%A3%E8%90%AC%E5%AE%89%E6%8B%8B%E6%9D%BE%E6%A9%9F%E9%81%B7%E5%BB%BA-%E5%8A%89%E4%B8%96%E8%8A%B3%E7%A4%BA%E8%AD%A6%E7%A9%BA%E5%8B%A4%E6%95%91%E6%8F%B4%E5%8F%97%E5%BD%B1%E9%9F%BF-%E9%99%B3%E4%B8%96%E5%87%B1-%E5%85%88%E8%AB%87%E6%B8%85%E6%A5%9A%E4%BB%80%E9%BA%BC%E6%98%AF-%E7%B6%A0%E8%89%B2%E9%80%9A%E9%81%93-025900724.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-tw">台灣要聞</span>
-        <span class="time">02:58</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/%E6%B1%90%E6%9D%B1%E6%8D%B7%E9%81%8B%E9%A0%90%E8%A8%882032%E5%B9%B4%E5%AE%8C%E5%B7%A5-%E5%BC%B5%E9%8C%A6%E8%B1%AA%E6%8F%905%E5%A4%A7%E9%85%8D%E5%A5%97-%E5%88%A5%E8%AE%93%E6%B1%90%E6%AD%A2%E9%99%B7%E4%BA%A4%E9%80%9A%E9%BB%91%E6%9A%97%E6%9C%9F-025830408.html" target="_blank" rel="noopener">汐東捷運預計2032年完工　張錦豪提5大配套：別讓汐止陷交通黑暗期</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/%E6%B1%90%E6%9D%B1%E6%8D%B7%E9%81%8B%E9%A0%90%E8%A8%882032%E5%B9%B4%E5%AE%8C%E5%B7%A5-%E5%BC%B5%E9%8C%A6%E8%B1%AA%E6%8F%905%E5%A4%A7%E9%85%8D%E5%A5%97-%E5%88%A5%E8%AE%93%E6%B1%90%E6%AD%A2%E9%99%B7%E4%BA%A4%E9%80%9A%E9%BB%91%E6%9A%97%E6%9C%9F-025830408.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
+    <div class="card-body">台灣曾被視為亞洲唯一能合法拍攝無碼成人影片的地區，2020年前後快速擴張。隨著片商「麻豆傳媒」停運，外界開始質疑這波繁榮是否與中國市場及博弈資金有關。</div>
   </div>
 </div>
 
-<!-- 國際情勢 -->
+<!-- ============ 中國相關 ============ -->
 <div class="section">
-  <div class="section-title">🌍 國際情勢</div>
-  <div class="grid">
-    
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-world">國際情勢</span>
-        <span class="time">10:21</span>
-      </div>
-      <h3><a class="title-link" href="https://news.ltn.com.tw/news/world/breakingnews/5611832" target="_blank" rel="noopener">精品店急封門窗！義大利米蘭爆騷亂 副總理：增派500軍人維安</a></h3>
-      <div class="footer-row">
-        <span class="source">自由時報</span>
-        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5611832" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
+  <div class="section-title section-china">🇨🇳 中國相關</div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-world">國際情勢</span>
-        <span class="time">10:12</span>
-      </div>
-      <h3><a class="title-link" href="https://news.ltn.com.tw/news/world/breakingnews/5611896" target="_blank" rel="noopener">以色列大選倒數8天 傳赫格塞斯會晤納坦雅胡</a></h3>
-      <div class="footer-row">
-        <span class="source">自由時報</span>
-        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5611896" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">DeepSeek 開源推理引擎 DeepInfer 引爆技術圈熱議</div>
+    <div class="card-meta">
+      <span class="source">📡 Hacker News / BBC</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-cn">AI · 科技</span>
+      <span class="tag tag-cn">開源</span>
     </div>
+    <div class="card-body">DeepSeek 正式開源其 DeepInfer 推理引擎，在 Hacker News 上以 1036 票榮登第一。同時 DeepSeek 免費聊天機器人仍在 Apple App Store 下載榜名列前茅。中美 AI 競爭持續升溫。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-world">國際情勢</span>
-        <span class="time">09:54</span>
-      </div>
-      <h3><a class="title-link" href="https://news.ltn.com.tw/news/world/breakingnews/5611885" target="_blank" rel="noopener">日航客機出發前駕駛艙驚見「小動物」 遍尋不著取消航班</a></h3>
-      <div class="footer-row">
-        <span class="source">自由時報</span>
-        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5611885" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">美國下令聯邦政府系統全面禁用 DeepSeek</div>
+    <div class="card-meta">
+      <span class="source">📡 Reuters / BBC</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-cn">政策</span>
+      <span class="tag tag-cn">AI安全</span>
     </div>
+    <div class="card-body">美國國土安全部下令聯邦民用政府系統禁用 DeepSeek AI。Snowflake、Vercel、OpenRouter 等美國科技公司先前已將 DeepSeek 整合至服務中。中美 AI 競爭從技術競賽延伸為國家安全議題。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-world">國際情勢</span>
-        <span class="time">09:29</span>
-      </div>
-      <h3><a class="title-link" href="https://news.ltn.com.tw/news/world/breakingnews/5611853" target="_blank" rel="noopener">法國示威變暴亂 川普再將問題歸咎移民</a></h3>
-      <div class="footer-row">
-        <span class="source">自由時報</span>
-        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5611853" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">中國三季度 GDP 增長 4.5% 出口暴增三成 樓市新开工面積暴跌 25%</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC中文</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-cn">經濟</span>
     </div>
+    <div class="card-body">中國三季度經濟增長 4.5%，9月出口暴增三成，但房地產市場持續低迷，新開工面積較去年同期暴跌 25%，經濟呈現明顯冷熱不均狀態。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-world">國際情勢</span>
-        <span class="time">09:26</span>
-      </div>
-      <h3><a class="title-link" href="https://news.ltn.com.tw/news/world/breakingnews/5611860" target="_blank" rel="noopener">摩洛哥首位女總理引反彈 保守派搬伊斯蘭教條：女人治國必敗</a></h3>
-      <div class="footer-row">
-        <span class="source">自由時報</span>
-        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5611860" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">華為與江淮合作尊界 V800 「煞車門」延燒 從產品爭議到政治論戰</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC中文</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-cn">科技 · 社會</span>
     </div>
+    <div class="card-body">華為旗下尊界 V800 因煞車系統安全問題引發廣泛爭議，事件從產品安全之爭迅速演變為涉及愛國情懷的政治論戰，引發中國社會高度關注。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-world">國際情勢</span>
-        <span class="time">09:25</span>
-      </div>
-      <h3><a class="title-link" href="https://news.ltn.com.tw/news/world/breakingnews/5611857" target="_blank" rel="noopener">法國示威演變成洗劫 二手平台下架贓品</a></h3>
-      <div class="footer-row">
-        <span class="source">自由時報</span>
-        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5611857" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">前重慶市長黃奇帆涉嫌嚴重違法違紀接受調查</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC中文</span>
+      <span class="date">📅 2026-10-13</span>
+      <span class="tag tag-cn">反腐</span>
     </div>
+    <div class="card-body">中共中央紀委宣布，已退出政壇多年的前重慶市長黃奇帆因涉嫌嚴重違法違紀，正接受調查。此消息正值中共五中全會前夕，引發外界關注。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-world">國際情勢</span>
-        <span class="time">08:27</span>
-      </div>
-      <h3><a class="title-link" href="https://news.ltn.com.tw/news/world/breakingnews/5611816" target="_blank" rel="noopener">直奔火衛一！日本探測器MMX升空 拚帶回首份火星樣本</a></h3>
-      <div class="footer-row">
-        <span class="source">自由時報</span>
-        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5611816" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">新鴨綠江大橋通車12年後正式啟用 中朝關係回暖跡象</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC中文</span>
+      <span class="date">📅 2026-10-15</span>
+      <span class="tag tag-cn">外交</span>
     </div>
+    <div class="card-body">連接中國丹東與朝鮮新義州的新鴨綠江大橋在閒置12年後正式通車。近年朝鮮與俄羅斯關係愈走愈近，專家分析中方需透過開通大橋鞏固對朝關係，亦被視為關係回暖的象徵。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-world">國際情勢</span>
-        <span class="time">08:23</span>
-      </div>
-      <h3><a class="title-link" href="https://news.ltn.com.tw/news/world/breakingnews/5611780" target="_blank" rel="noopener">施壓澤倫斯基！川普喊話「換人談判」：俄羅斯表現還不錯</a></h3>
-      <div class="footer-row">
-        <span class="source">自由時報</span>
-        <a class="btn" href="https://news.ltn.com.tw/news/world/breakingnews/5611780" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">韓國脫北者接連收到警方赴華警告 擔憂安全</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC中文</span>
+      <span class="date">📅 2026-10-17</span>
+      <span class="tag tag-cn">兩岸</span>
     </div>
+    <div class="card-body">多位韓國脫北者表示接獲警方警告，擔心前往中國可能面臨安全風險，引發對脫北者在中國境內處境的關注。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">用 AI「撒網」求職為何弄巧成拙？</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC中文</span>
+      <span class="date">📅 2026-10-18</span>
+      <span class="tag tag-cn">社會</span>
+    </div>
+    <div class="card-body">越來越多人使用 AI 輔助履歷投遞，但有人申請了 200 份工作卻未獲回應。專家提醒 AI 求職工具使用不當可能適得其反。</div>
   </div>
 </div>
 
-<!-- 財經科技 -->
+<!-- ============ 國際新聞 ============ -->
 <div class="section">
-  <div class="section-title">💰 財經科技</div>
-  <div class="grid">
-    
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-finance">財經科技</span>
-        <span class="time">03:03</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.news.yahoo.com/%E6%96%B0%E5%8F%B0%E5%B9%A3%E9%9B%A3%E6%93%8B%E5%A4%96%E8%B3%87%E8%B3%A3%E5%A3%93-%E8%B2%B6%E9%80%BE16%E8%A7%92-030325514.html" target="_blank" rel="noopener">新台幣難擋外資賣壓 貶逾1.6角</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo奇摩新聞</span>
-        <a class="btn" href="https://tw.news.yahoo.com/%E6%96%B0%E5%8F%B0%E5%B9%A3%E9%9B%A3%E6%93%8B%E5%A4%96%E8%B3%87%E8%B3%A3%E5%A3%93-%E8%B2%B6%E9%80%BE16%E8%A7%92-030325514.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
+  <div class="section-title section-world">🌍 國際新聞</div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-finance">財經科技</span>
-        <span class="time">03:02</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.stock.yahoo.com/news/ai%E8%9E%8D%E8%B3%87%E8%88%87%E6%94%B6%E8%B3%BC%E6%93%94%E6%86%82%E5%8A%A0%E5%8A%87-%E8%BB%9F%E9%8A%805%E5%B9%B4%E6%9C%9Fcds%E7%A0%B4432%E5%9F%BA%E9%BB%9E-%E5%89%B5%E8%BF%91%E5%9B%9B%E5%B9%B4%E6%9C%80%E9%AB%98-030242014.html" target="_blank" rel="noopener">AI融資與收購擔憂加劇，軟銀5年期CDS破432基點，創近四年最高</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo股市</span>
-        <a class="btn" href="https://tw.stock.yahoo.com/news/ai%E8%9E%8D%E8%B3%87%E8%88%87%E6%94%B6%E8%B3%BC%E6%93%94%E6%86%82%E5%8A%A0%E5%8A%87-%E8%BB%9F%E9%8A%805%E5%B9%B4%E6%9C%9Fcds%E7%A0%B4432%E5%9F%BA%E9%BB%9E-%E5%89%B5%E8%BF%91%E5%9B%9B%E5%B9%B4%E6%9C%80%E9%AB%98-030242014.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">法國巴黎持續騷亂 宵禁延長 警方承認「失去控制」</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT / BBC</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">歐洲</span>
+      <span class="tag tag-wd">騷亂</span>
     </div>
+    <div class="card-body">法國全國大規模騷亂持續，巴黎實施局部宵禁，劫掠商品已在二手平台出現。法國內政部長承認部分城市警方「失去控制」。分析指出歐洲中間派政黨在年輕人和工人中流失嚴重，民粹主義持續上升。意大利也爆發了南北同步的抗議與暴力事件。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-finance">財經科技</span>
-        <span class="time">03:02</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.stock.yahoo.com/news/%E8%B2%B7%E6%88%BF%E8%B6%8A%E4%BE%86%E8%B6%8A%E5%B0%8F%EF%BC%9F%E8%BF%917%E6%88%90%E4%BD%8F%E5%AE%85%E4%BA%A4%E6%98%93%E4%B8%8D%E5%88%B035%E5%9D%AA-%E8%B3%B4%E6%AD%A3%E9%8E%B0%E6%89%B9%E9%9D%92%E5%AE%8930%E9%96%80%E6%AA%BB%EF%BC%9A%E4%B8%8D%E8%BF%91%E4%BA%BA%E6%83%85-030404401.html" target="_blank" rel="noopener">買房越來越小？近7成住宅交易不到35坪 賴正鎰批青安3.0門檻：不近人情</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo股市</span>
-        <a class="btn" href="https://tw.stock.yahoo.com/news/%E8%B2%B7%E6%88%BF%E8%B6%8A%E4%BE%86%E8%B6%8A%E5%B0%8F%EF%BC%9F%E8%BF%917%E6%88%90%E4%BD%8F%E5%AE%85%E4%BA%A4%E6%98%93%E4%B8%8D%E5%88%B035%E5%9D%AA-%E8%B3%B4%E6%AD%A3%E9%8E%B0%E6%89%B9%E9%9D%92%E5%AE%8930%E9%96%80%E6%AA%BB%EF%BC%9A%E4%B8%8D%E8%BF%91%E4%BA%BA%E6%83%85-030404401.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">馬克宏執政十年幾乎一無所成 學生抗議雪崩成全國騷亂</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-wd">歐洲</span>
     </div>
+    <div class="card-body">學生抗議活動蔓延成暴力騷亂，凸顯馬克宏近十年執政未能解決法國深層問題。極右派國民聯盟領袖勒龐趁勢崛起，法國政治版圖劇烈洗牌。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-finance">財經科技</span>
-        <span class="time">03:00</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.stock.yahoo.com/news/%E6%B3%B0%E5%90%88%E4%BB%8A%E6%8E%9B%E7%89%8C%E9%A3%86%E6%BC%B2%E9%80%BE%E5%80%8D-beqia%E5%8F%96%E8%AD%89%E5%9C%A8%E5%8D%B3-%E9%95%B7%E6%95%88%E6%96%B0%E8%97%A5%E6%8E%A5%E6%A3%92%E7%AC%AC%E4%BA%8C%E6%88%90%E9%95%B7%E6%9B%B2%E7%B7%9A%E6%88%90%E5%BD%A2-030027428.html" target="_blank" rel="noopener">泰合今掛牌飆漲逾倍，BEQIA取證在即，長效新藥接棒第二成長曲線成形</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo股市</span>
-        <a class="btn" href="https://tw.stock.yahoo.com/news/%E6%B3%B0%E5%90%88%E4%BB%8A%E6%8E%9B%E7%89%8C%E9%A3%86%E6%BC%B2%E9%80%BE%E5%80%8D-beqia%E5%8F%96%E8%AD%89%E5%9C%A8%E5%8D%B3-%E9%95%B7%E6%95%88%E6%96%B0%E8%97%A5%E6%8E%A5%E6%A3%92%E7%AC%AC%E4%BA%8C%E6%88%90%E9%95%B7%E6%9B%B2%E7%B7%9A%E6%88%90%E5%BD%A2-030027428.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">普京提議中美俄三方會談 特朗普響應 北京未表態</div>
+    <div class="card-meta">
+      <span class="source">📡 BBC</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">外交</span>
+      <span class="tag tag-wd">大國關係</span>
     </div>
+    <div class="card-body">普京建議於 APEC 期間進行中美俄三方會談，特朗普表示願意參與，強調重點將在無核化問題。目前中國尚未就三方會談正式表態，基輔則表示反對。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-finance">財經科技</span>
-        <span class="time">03:00</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.stock.yahoo.com/news/pcb%E7%B4%85%E9%80%9A%E9%80%9A-%E9%80%99%E6%AA%94-%E9%80%A36%E6%BC%B258-%E6%94%9C%E5%BE%B7%E5%AE%8F-%E5%8F%B0%E8%99%B9%E7%AD%894%E6%AA%94%E6%BC%B2%E5%81%9C-030000647.html" target="_blank" rel="noopener">PCB紅通通！「這檔」連6漲58%攜德宏、台虹等4檔漲停　建榮飆8%、臻鼎攻4%</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo股市</span>
-        <a class="btn" href="https://tw.stock.yahoo.com/news/pcb%E7%B4%85%E9%80%9A%E9%80%9A-%E9%80%99%E6%AA%94-%E9%80%A36%E6%BC%B258-%E6%94%9C%E5%BE%B7%E5%AE%8F-%E5%8F%B0%E8%99%B9%E7%AD%894%E6%AA%94%E6%BC%B2%E5%81%9C-030000647.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">澤倫斯基指責特朗普正迫使烏克蘭向俄羅斯投降</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">俄乌戰爭</span>
     </div>
+    <div class="card-body">澤倫斯基公開批評特朗普近期的政策傾向俄羅斯，認為美國正逐步放棄烏克蘭。特朗普希望與普京改善關係，甚至不惜犧牲烏克蘭利益。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-finance">財經科技</span>
-        <span class="time">02:54</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.stock.yahoo.com/news/%E7%BF%B0%E6%A3%AE%E8%A3%BD%E8%97%A5%E8%88%87%E7%BE%85%E6%B0%8F%E9%81%94%E6%88%90%E6%88%B0%E7%95%A5%E5%90%88%E4%BD%9C%E5%8F%8A%E6%8E%88%E6%AC%8A%E5%8D%94%E8%AD%B0-%E6%97%A9%E7%9B%A4%E8%82%A1%E5%83%B9%E5%A4%A7%E6%BC%B2%E9%80%BE8-025428393.html" target="_blank" rel="noopener">翰森製藥與羅氏達成戰略合作及授權協議，早盤股價大漲逾8%</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo股市</span>
-        <a class="btn" href="https://tw.stock.yahoo.com/news/%E7%BF%B0%E6%A3%AE%E8%A3%BD%E8%97%A5%E8%88%87%E7%BE%85%E6%B0%8F%E9%81%94%E6%88%90%E6%88%B0%E7%95%A5%E5%90%88%E4%BD%9C%E5%8F%8A%E6%8E%88%E6%AC%8A%E5%8D%94%E8%AD%B0-%E6%97%A9%E7%9B%A4%E8%82%A1%E5%83%B9%E5%A4%A7%E6%BC%B2%E9%80%BE8-025428393.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">伊朗試探性挑釁 警告可能影響油價 等待美國中期選舉結果</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">中東</span>
+      <span class="tag tag-wd">能源</span>
     </div>
+    <div class="card-body">伊朗在中選前對特朗普放軟硬話，試探性地威脅可能影響油價。分析認為伊朗正利用美國國內政治週期尋找籌碼。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-finance">財經科技</span>
-        <span class="time">02:54</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.stock.yahoo.com/news/%E9%87%91%E8%9E%8D%E8%A9%95%E5%83%B9%E6%90%8D%E5%A4%B1%E5%BD%B1%E9%9F%BF-%E4%B8%8A%E5%A5%87q3%E7%8D%B2%E5%88%A9%E5%B9%B4%E6%B8%9B11-%E5%89%8D%E4%B8%89%E5%AD%A3eps-2-50%E5%85%83-025426309.html" target="_blank" rel="noopener">金融評價損失影響，上奇Q3獲利年減11%，前三季EPS 2.50元</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo股市</span>
-        <a class="btn" href="https://tw.stock.yahoo.com/news/%E9%87%91%E8%9E%8D%E8%A9%95%E5%83%B9%E6%90%8D%E5%A4%B1%E5%BD%B1%E9%9F%BF-%E4%B8%8A%E5%A5%87q3%E7%8D%B2%E5%88%A9%E5%B9%B4%E6%B8%9B11-%E5%89%8D%E4%B8%89%E5%AD%A3eps-2-50%E5%85%83-025426309.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">胡塞武裝封鎖也門大城市塔伊茲 人道危機一觸即發</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT / BBC</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">中東</span>
+      <span class="tag tag-wd">人道危機</span>
     </div>
+    <div class="card-body">伊朗支持的胡塞武裝切斷也門大城市塔伊茲的道路，形成包圍之勢。官員警告即將發生人道災難。胡塞軍同時以彈道導彈襲擊沙烏地阿拉伯支持的政府軍營地，造成數十人死傷。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-finance">財經科技</span>
-        <span class="time">02:53</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.stock.yahoo.com/news/%E6%9D%B1%E5%85%83%E6%90%B6%E6%94%BBai%E8%B3%87%E6%96%99%E4%B8%AD%E5%BF%83-%E4%BC%B0%E6%98%8E%E5%B9%B4%E5%95%86%E7%A9%BA%E8%88%87%E6%95%B8%E6%93%9A%E4%B8%AD%E5%BF%83%E7%87%9F%E6%94%B6%E5%8D%A0%E7%A9%BA%E8%AA%BF%E4%BA%8B%E6%A5%AD%E6%AF%94%E9%87%8D%E9%81%9460-025328000.html" target="_blank" rel="noopener">東元搶攻AI資料中心，估明年商空與數據中心營收占空調事業比重達60%</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo股市</span>
-        <a class="btn" href="https://tw.stock.yahoo.com/news/%E6%9D%B1%E5%85%83%E6%90%B6%E6%94%BBai%E8%B3%87%E6%96%99%E4%B8%AD%E5%BF%83-%E4%BC%B0%E6%98%8E%E5%B9%B4%E5%95%86%E7%A9%BA%E8%88%87%E6%95%B8%E6%93%9A%E4%B8%AD%E5%BF%83%E7%87%9F%E6%94%B6%E5%8D%A0%E7%A9%BA%E8%AA%BF%E4%BA%8B%E6%A5%AD%E6%AF%94%E9%87%8D%E9%81%9460-025328000.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">英國派遣颱風戰機保護沙烏地阿拉伯基礎設施</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">中東</span>
+      <span class="tag tag-wd">軍事</span>
     </div>
+    <div class="card-body">英國宣布派遣皇家空軍颱風戰鬥機部署至沙烏地阿拉伯，以保護當地基礎設施免受胡塞武裝攻擊。這是英國直接介入中東局勢的最新舉動。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">美國國防部長 Hegseth 秘密訪問以色列與內塔尼亞胡會談</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">中東</span>
+      <span class="tag tag-wd">外交</span>
+    </div>
+    <div class="card-body">美國國防部長 Pete Hegseth 在未事先宣布的情況下訪問以色列，與總理內塔尼亞胡舉行會談。以色列將於一週後舉行全國選舉，此次訪問時機引發關注。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">立陶宛 Starlink 基地發生火災 官方判定為破壞行為</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-wd">歐洲</span>
+      <span class="tag tag-wd">網路戰</span>
+    </div>
+    <div class="card-body">立陶宛一座 Starlink 衛星通訊基地發生火災，官方認定為破壞行為。這是該服務在波蘭和保加利亞遭遇類似事件後的第三起事故，Starlink 是烏克蘭軍隊關鍵的防衛工具。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">澳洲國會議員 Helen Haines 遭汽車蓄意撞擊 昏迷不醒</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT / BBC</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">大洋洲</span>
+      <span class="tag tag-wd">犯罪</span>
+    </div>
+    <div class="card-body">澳洲獨立國會議員 Helen Haines 在維多利亞州 Wangaratta 的辦公室外遭汽車蓄意撞擊，目前仍在墨爾本醫院生命垂危。一名 43 歲男子已被控並以謀殺罪起訴。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">海地市長警告大屠殺無人理會 最終遇害</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">美洲</span>
+    </div>
+    <div class="card-body">海地首都附近 Kenscoff 市長 Jean Massillon 曾數百次写信政府官員警告幫派威脅，但無人理會。隨後幫派襲擊造成47人死亡，市長本人也在兩週後遇害。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">肯亞終審法院判定邪教領袖 Paul Mackenzie 犯有集體謀殺罪</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-wd">非洲</span>
+    </div>
+    <div class="card-body">Paul Nthenge Mackenzie 曾向其末日邪教追隨者在偏遠森林中下令絕食以求救贖，導致數百人死亡。法院終於判定其犯有集體謀殺罪。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">加拿大 艾伯塔省公民投票 拒絕脫離加拿大</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">美洲</span>
+    </div>
+    <div class="card-body">油氣大省艾伯塔省的居民就是否留在加拿大舉行公民投票，結果以多數票選擇留在聯邦內，但獨立派與統一派均對結果不滿意。</div>
   </div>
 </div>
 
-<!-- 熱門話題 -->
+<!-- ============ 美國新聞 ============ -->
 <div class="section">
-  <div class="section-title">🔥 熱門話題</div>
-  <div class="grid">
-    
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-hot">熱門話題</span>
-        <span class="time">02:40</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.sports.yahoo.com/news/mlb-18%E5%B9%B4%E5%89%8D%E7%9A%84%E4%BB%8A%E5%A4%A9%E4%B8%BB%E5%A0%B4%E5%A5%AA%E7%BE%8E%E8%81%AF%E5%86%A0%E8%BB%8D-%E5%85%89%E8%8A%92%E5%86%8D%E9%81%87%E5%91%BD%E9%81%8B%E5%B7%A7%E5%90%88-%E8%80%81%E6%88%B0%E5%8F%8B%E4%B9%9F%E5%9B%9E%E4%BE%86%E4%BA%86-024014464.html" target="_blank" rel="noopener">MLB》18年前的今天主場奪美聯冠軍！光芒再遇命運巧合 老戰友也回來了</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo運動</span>
-        <a class="btn" href="https://tw.sports.yahoo.com/news/mlb-18%E5%B9%B4%E5%89%8D%E7%9A%84%E4%BB%8A%E5%A4%A9%E4%B8%BB%E5%A0%B4%E5%A5%AA%E7%BE%8E%E8%81%AF%E5%86%A0%E8%BB%8D-%E5%85%89%E8%8A%92%E5%86%8D%E9%81%87%E5%91%BD%E9%81%8B%E5%B7%A7%E5%90%88-%E8%80%81%E6%88%B0%E5%8F%8B%E4%B9%9F%E5%9B%9E%E4%BE%86%E4%BA%86-024014464.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
-    </div>
+  <div class="section-title section-us">🇺🇸 美國要聞</div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-hot">熱門話題</span>
-        <span class="time">02:34</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.sports.yahoo.com/news/%E5%8B%87%E5%A3%AB%E7%95%B6%E5%AE%B6%E5%B7%A8%E6%98%9F-%E5%92%96%E5%93%A9%E5%A4%A7%E7%A5%9E-%E6%9F%AF%E7%91%9E%E8%85%B3%E8%B8%9D%E6%89%AD%E5%82%B7%E7%84%A1%E7%A4%99-%E9%96%8B%E5%B9%95%E6%88%B0%E5%87%BA%E8%B3%BD%E7%A2%BA%E8%AA%8D-023440102.html" target="_blank" rel="noopener">勇士當家巨星「咖哩大神」柯瑞腳踝扭傷無礙！開幕戰出賽確認</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo運動</span>
-        <a class="btn" href="https://tw.sports.yahoo.com/news/%E5%8B%87%E5%A3%AB%E7%95%B6%E5%AE%B6%E5%B7%A8%E6%98%9F-%E5%92%96%E5%93%A9%E5%A4%A7%E7%A5%9E-%E6%9F%AF%E7%91%9E%E8%85%B3%E8%B8%9D%E6%89%AD%E5%82%B7%E7%84%A1%E7%A4%99-%E9%96%8B%E5%B9%95%E6%88%B0%E5%87%BA%E8%B3%BD%E7%A2%BA%E8%AA%8D-023440102.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">美國中期選舉白熱化 特朗普親自到紅州拉抬選情</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-us">政治</span>
+      <span class="tag tag-us">選舉</span>
     </div>
+    <div class="card-body">距離中期選舉還有兩週，共和黨全國委員會動員 5,000 萬美元援助候選人。特朗普親自前往南卡羅來納、堪薩斯等非傳統競爭州拉抬選情，反映共和黨對保住參眾兩院的擔憂。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-hot">熱門話題</span>
-        <span class="time">02:25</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.sports.yahoo.com/news/nba-%E5%A4%96%E7%95%8C%E7%9C%8B%E5%A5%BD%E4%BB%96%E6%8B%BF%E5%B9%B4%E5%BA%A6mvp-%E6%BA%AB%E7%8F%AD%E4%BA%9E%E7%91%AA-%E6%98%AF%E7%9B%AE%E6%A8%99%E4%BD%86%E4%B8%8D%E6%98%AF%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B-022546467.html" target="_blank" rel="noopener">NBA》外界看好他拿年度MVP 溫班亞瑪：是目標但不是最重要的事</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo運動</span>
-        <a class="btn" href="https://tw.sports.yahoo.com/news/nba-%E5%A4%96%E7%95%8C%E7%9C%8B%E5%A5%BD%E4%BB%96%E6%8B%BF%E5%B9%B4%E5%BA%A6mvp-%E6%BA%AB%E7%8F%AD%E4%BA%9E%E7%91%AA-%E6%98%AF%E7%9B%AE%E6%A8%99%E4%BD%86%E4%B8%8D%E6%98%AF%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B-022546467.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">共和黨廣告「回避特朗普」 分析：怕拖累選情</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-us">政治</span>
     </div>
+    <div class="card-body">紐約時報分析發現，近期共和黨電視及串流廣告中，提及特朗普的比例極低，顯示黨內策略性地避免讓總統形象拖累候補選情。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-hot">熱門話題</span>
-        <span class="time">02:25</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.sports.yahoo.com/news/%E6%97%A5%E8%81%B7%E4%B8%89%E5%86%A0%E7%8E%8B%E5%B0%87%E6%8C%91%E6%88%B0%E5%A4%A7%E8%81%AF%E7%9B%9F-%E9%98%AA%E7%A5%9E%E8%99%8E%E5%90%8C%E6%84%8F%E4%BD%90%E8%97%A4%E8%BC%9D%E6%98%8E%E5%85%A5%E6%9C%AD-%E6%9C%9F%E6%9C%9B%E5%B0%81%E9%A4%A8%E5%89%8D%E6%9C%89%E8%90%BD%E8%85%B3%E8%99%95-022501026.html" target="_blank" rel="noopener">日職三冠王將挑戰大聯盟！阪神虎同意佐藤輝明入札！期望封館前有落腳處</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo運動</span>
-        <a class="btn" href="https://tw.sports.yahoo.com/news/%E6%97%A5%E8%81%B7%E4%B8%89%E5%86%A0%E7%8E%8B%E5%B0%87%E6%8C%91%E6%88%B0%E5%A4%A7%E8%81%AF%E7%9B%9F-%E9%98%AA%E7%A5%9E%E8%99%8E%E5%90%8C%E6%84%8F%E4%BD%90%E8%97%A4%E8%BC%9D%E6%98%8E%E5%85%A5%E6%9C%AD-%E6%9C%9F%E6%9C%9B%E5%B0%81%E9%A4%A8%E5%89%8D%E6%9C%89%E8%90%BD%E8%85%B3%E8%99%95-022501026.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">川普推俄烏談判 烏克蘭總統澤倫斯基公開批評</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-us">外交</span>
     </div>
+    <div class="card-body">澤倫斯基公開指責特朗普正迫使烏克蘭向俄羅斯投降。特朗普近期的系列舉動似乎偏向普京，反映出他渴望與莫斯科恢復正常關係，即使犧牲烏克蘭利益也在所不惜。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-hot">熱門話題</span>
-        <span class="time">02:13</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.sports.yahoo.com/news/tpvl%E5%8F%B0%E9%8B%BC%E5%A4%A9%E9%B7%B9%E4%B8%BB%E5%A0%B4%E9%96%8B%E5%B9%95%E7%AC%AC%E4%BA%8C%E6%88%B0%E9%96%8B%E7%B4%85%E7%9B%A4-%E6%BC%A2%E4%BD%B3%E7%8D%A8%E5%BE%9714%E5%88%86%E7%9B%B4%E8%90%BD%E4%B8%89%E5%8B%9D%E8%87%BA%E5%8C%97%E4%BC%8A%E6%96%AF%E7%89%B9-233444227.html" target="_blank" rel="noopener">TPVL台鋼天鷹主場開幕第二戰開紅盤！漢佳獨得14分直落三勝臺北伊斯特</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo運動</span>
-        <a class="btn" href="https://tw.sports.yahoo.com/news/tpvl%E5%8F%B0%E9%8B%BC%E5%A4%A9%E9%B7%B9%E4%B8%BB%E5%A0%B4%E9%96%8B%E5%B9%95%E7%AC%AC%E4%BA%8C%E6%88%B0%E9%96%8B%E7%B4%85%E7%9B%A4-%E6%BC%A2%E4%BD%B3%E7%8D%A8%E5%BE%9714%E5%88%86%E7%9B%B4%E8%90%BD%E4%B8%89%E5%8B%9D%E8%87%BA%E5%8C%97%E4%BC%8A%E6%96%AF%E7%89%B9-233444227.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">最高法院駁回九一一被告認罪協議 死刑審判可望繼續</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-us">司法</span>
     </div>
+    <div class="card-body">美國最高法院拒絕恢復哈立德·謝赫·穆罕默德等九一一主犯的認罪協議，清除了死刑審判的法律障礙。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-hot">熱門話題</span>
-        <span class="time">02:02</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.sports.yahoo.com/news/%E6%B3%95%E5%9C%8B%E7%BE%BD%E7%90%83%E5%85%AC%E9%96%8B%E8%B3%BD%E5%B0%87%E9%96%8B%E6%89%93-%E5%91%A8%E5%A4%A9%E6%88%90%E5%8A%9B%E6%8B%9A12%E5%B9%B4%E5%BE%8C%E7%94%B7%E5%96%AE%E5%86%A0%E8%BB%8D-020255578.html" target="_blank" rel="noopener">法國羽球公開賽將開打　周天成力拚12年後男單冠軍</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo運動</span>
-        <a class="btn" href="https://tw.sports.yahoo.com/news/%E6%B3%95%E5%9C%8B%E7%BE%BD%E7%90%83%E5%85%AC%E9%96%8B%E8%B3%BD%E5%B0%87%E9%96%8B%E6%89%93-%E5%91%A8%E5%A4%A9%E6%88%90%E5%8A%9B%E6%8B%9A12%E5%B9%B4%E5%BE%8C%E7%94%B7%E5%96%AE%E5%86%A0%E8%BB%8D-020255578.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">哥倫比亞金礦坍塌 至少 14 人死亡</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-us">災難</span>
     </div>
+    <div class="card-body">哥倫比亞一座黃金礦坑坍塌，造成至少14人死亡。該礦屬於日益增多的小型非法採礦運營之一，受全球金價上漲驅動。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-hot">熱門話題</span>
-        <span class="time">01:41</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.sports.yahoo.com/news/nba-%E6%B9%96%E4%BA%BA%E8%A3%81%E6%8E%89%E9%A6%96%E8%BC%AA%E5%B0%84%E6%89%8B-%E7%9A%87%E5%AD%90-%E5%B8%83%E6%9C%97%E5%B0%BC%E6%93%A0%E9%80%B2%E9%96%8B%E5%AD%A3%E5%90%8D%E5%96%AE-014134073.html" target="_blank" rel="noopener">NBA》湖人裁掉首輪射手！「皇子」布朗尼擠進開季名單</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo運動</span>
-        <a class="btn" href="https://tw.sports.yahoo.com/news/nba-%E6%B9%96%E4%BA%BA%E8%A3%81%E6%8E%89%E9%A6%96%E8%BC%AA%E5%B0%84%E6%89%8B-%E7%9A%87%E5%AD%90-%E5%B8%83%E6%9C%97%E5%B0%BC%E6%93%A0%E9%80%B2%E9%96%8B%E5%AD%A3%E5%90%8D%E5%96%AE-014134073.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">梅蘭妮亞·川普宣布白宮女性健康倡議</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-us">政治</span>
     </div>
+    <div class="card-body">第一夫人梅蘭妮亞·川普宣布啟動白宮女性健康倡議，此舉正值共和黨在中選前努力爭取女性選民支持之際。</div>
+  </div>
 
-    <div class="card">
-      <div class="meta">
-        <span class="badge b-hot">熱門話題</span>
-        <span class="time">01:29</span>
-      </div>
-      <h3><a class="title-link" href="https://tw.sports.yahoo.com/news/%E6%81%90%E6%80%95%E5%9B%9E%E4%B8%8D%E4%BE%86%E4%BA%86-%E9%81%93%E5%A5%87-%E5%8D%81%E6%9C%88%E5%85%88%E7%94%9F-%E6%84%9F%E6%80%A7%E7%99%BC%E6%96%87%E6%84%9F%E8%AC%9D%E6%B4%9B%E6%9D%89%E7%A3%AF%E7%90%83%E8%BF%B7-043503633.html" target="_blank" rel="noopener">恐怕回不來了？道奇「十月先生」感性發文感謝洛杉磯球迷</a></h3>
-      <div class="footer-row">
-        <span class="source">Yahoo運動</span>
-        <a class="btn" href="https://tw.sports.yahoo.com/news/%E6%81%90%E6%80%95%E5%9B%9E%E4%B8%8D%E4%BE%86%E4%BA%86-%E9%81%93%E5%A5%87-%E5%8D%81%E6%9C%88%E5%85%88%E7%94%9F-%E6%84%9F%E6%80%A7%E7%99%BC%E6%96%87%E6%84%9F%E8%AC%9D%E6%B4%9B%E6%9D%89%E7%A3%AF%E7%90%83%E8%BF%B7-043503633.html" target="_blank" rel="noopener">📖 閱讀全文</a>
-      </div>
+  <div class="card">
+    <div class="card-title">司法部對加州 28 名居民提起選民舞弊指控</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-19</span>
+      <span class="tag tag-us">司法</span>
+      <span class="tag tag-us">選舉</span>
     </div>
+    <div class="card-body">特朗普政府對加州28名居民提起與選民舞弊相關的刑事指控，這是該政府與加州官員在選民名單問題上持續爭端的最新進展。</div>
   </div>
 </div>
-<footer class="page-foot">直接連結至 Yahoo奇摩新聞、自由時報等新聞網站原文 ｜ 2026-10-20</footer>
+
+<!-- ============ 科技熱門 ============ -->
+<div class="section">
+  <div class="section-title section-tech">🤖 科技熱門</div>
+
+  <div class="card">
+    <div class="card-title">谷歌雲端服務歐洲區大斷線 多家銀行業務受影響</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT / Neowin</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-tech">雲端</span>
+      <span class="tag tag-tech">金融</span>
+    </div>
+    <div class="card-body">谷歌雲端服務於倫敦時間上午7點起出現中斷，原因是「電力事件」。汇丰銀行、瑞銀、蘇格蘭銀行、勞埃德銀行、Equifax 等多家金融機構業務受到影響。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">OpenBSD 8.0 發布 支援 Linux 6.18 顯示驅動</div>
+    <div class="card-meta">
+      <span class="source">📡 Hacker News</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-tech">開源</span>
+      <span class="tag tag-tech">作業系統</span>
+    </div>
+    <div class="card-body">OpenBSD 8.0 正式發布，包含來自 Linux 6.18 的 inteldrm、radeondrm 和 amdgpu 圖形驅動程式，大幅改善硬體相容性。同時 Wine 也成功移植至 OpenBSD。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">MiniMax 發布 M3.1 Flash 模型 引發熱議</div>
+    <div class="card-meta">
+      <span class="source">📡 Hacker News</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-tech">AI</span>
+    </div>
+    <div class="card-body">中國 AI 公司 MiniMax 發布 M3.1 Flash 模型，在 Hacker News 以 495 票位居前列。該模型主打高效能與低成本並存。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Apple 破壞 iPad 關鍵簡報功能 引發用戶不滿</div>
+    <div class="card-meta">
+      <span class="source">📡 Hacker News</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-tech">Apple</span>
+    </div>
+    <div class="card-body">Apple 在新版 iPadOS 中移除了重要的簡報功能，引發專業用戶強烈不滿，Hacker News 上討論熱烈。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">WhatsApp 幫助頁面暗藏 AI 指令 被揭發後引發監管爭議</div>
+    <div class="card-meta">
+      <span class="source">📡 Hacker News / redact.dev</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-tech">AI · 隱私</span>
+    </div>
+    <div class="card-body">研究人員發現 WhatsApp 的帮助頁面中隱藏了 AI 指令，被揭露後引發關於 AI 使用透明度的廣泛討論。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">單引擎無人機設計引發關注 1個月內突破 100K 瀏覽</div>
+    <div class="card-meta">
+      <span class="source">📡 Hacker News</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-tech">航空</span>
+    </div>
+    <div class="card-body">一名工程師展示了一款僅配備單馬達的無人機設計，在 YouTube 發布短片後迅速引起廣泛關注與討論。</div>
+  </div>
+</div>
+
+<!-- ============ 綜合 ============ -->
+<div class="section">
+  <div class="section-title" style="background:linear-gradient(135deg,#1a2a2a,#0d1818);color:#7ee787;border:1px solid #3fb950">📋 其他重點</div>
+
+  <div class="card">
+    <div class="card-title">日本泉州蟬祭典連續兩年發生 Fatalities 引發安全質疑</div>
+    <div class="card-meta">
+      <span class="source">📡 NYT</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">文化</span>
+    </div>
+    <div class="card-body">日本大阪地區著名的「泉崎祭」（Danjiri Festival）連續兩年發生參與者死亡事件，引發社會對這項三百年傳統祭典安全性的廣泛質疑與討論。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">烏克蘭宣布首次使用無人機空運傷兵</div>
+    <div class="card-meta">
+      <span class="source">📡 NBC News / Hacker News</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-wd">軍事科技</span>
+    </div>
+    <div class="card-body">烏克蘭軍隊宣布首次使用六旋翼無人機將受傷士兵從前線撤離，這項技術突破可能改變未來戰場醫療後送的方式。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">微軟 Surface Pro 11 上手體驗：平板與筆電的完美結合</div>
+    <div class="card-meta">
+      <span class="source">📡 Hacker News</span>
+      <span class="date">📅 2026-10-20</span>
+      <span class="tag tag-tech">硬體</span>
+    </div>
+    <div class="card-body">微軟推出新一代 Surface Pro 11，進一步強化平板與筆電的整合體驗，引發技術社群討論。</div>
+  </div>
+</div>
+
+<!-- ============ 執行記錄 ============ -->
+<div class="footer">
+  <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:14px;margin-bottom:16px;text-align:left">
+    <h4 style="font-size:14px;color:#8b949e;margin-bottom:8px">📋 執行記錄</h4>
+    <ul style="list-style:none;padding:0;font-size:12px;color:#484f58;line-height:1.8">
+      <li>🇹🇼 台灣新聞：BBC中文 + Hacker News 整理</li>
+      <li>🇨🇳 中國相關：BBC中文 + Reuters + NYT 整理</li>
+      <li>🌍 國際新聞：NYT World RSS + BBC中文 整合</li>
+      <li>🇺🇸 美國要聞：NYT US RSS 整理</li>
+      <li>🤖 科技熱門：Hacker News Front Page 整理</li>
+      <li>📰 內容審查與排版：Agnes-2.5-Flash 自動生成</li>
+    </ul>
+  </div>
+  <p>🤖 自動生成 · 資料來源：NYT、BBC中文、Reuters、Hacker News 等</p>
+  <p style="margin-top:4px">Generated for Lingo Chen · 2026-10-20 21:30 GMT+8</p>
+</div>
+
 </div>
 </body>
 </html>
