@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>組織理論：從經典到現代</title>
+<style>
+:root{--navy:#1f3864;--blue:#2e74b5;--orange:#e8830c;--light:#f4f7fb;--dark:#333945;--gray:#8a93a3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:#e9edf3;color:var(--dark);line-height:1.65}
+.wrap{max-width:760px;margin:0 auto;padding:10px}
+.slide{background:#fff;border-radius:16px;box-shadow:0 2px 10px rgba(31,56,100,.12);padding:26px 22px;margin:14px 0;position:relative;overflow:hidden}
+.slide::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--navy)}
+.snum{position:absolute;right:16px;top:14px;font-size:12px;color:var(--gray);font-weight:600}
+h1{font-size:1.9rem;color:#fff;line-height:1.3}
+h2{font-size:1.35rem;color:var(--navy);margin-bottom:6px;padding-right:44px}
+.rule{width:64px;height:5px;background:var(--orange);border-radius:3px;margin:8px 0 16px}
+h3{font-size:1.02rem;color:var(--orange);margin:14px 0 6px}
+ul{list-style:none}
+li{font-size:.95rem;margin:7px 0;padding-left:1.1em;position:relative}
+li::before{content:"▸";position:absolute;left:0;color:var(--blue);font-weight:700}
+li.hl{color:var(--blue);font-weight:600}
+.note{background:var(--light);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:.88rem}
+.note b{color:var(--navy)}
+.tag{display:inline-block;background:var(--light);color:var(--blue);font-weight:600;font-size:.72rem;padding:3px 12px;border-radius:20px;margin-left:8px;vertical-align:middle}
+.cover{background:var(--navy);color:#fff}
+.cover::before{background:var(--orange)}
+.cover h2{color:#fff}
+.cover .sub{color:#b9c6dc;font-size:.95rem;margin-top:6px}
+.cover .foot{color:#9aacc9;font-size:.8rem;margin-top:26px}
+.parts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+@media(max-width:520px){.parts{grid-template-columns:1fr}}
+.part{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:12px 14px}
+.part b{color:#fff;font-size:.95rem}
+.part span{display:block;color:#b9c6dc;font-size:.8rem;margin-top:3px}
+.sect{background:var(--navy)}
+.sect::before{background:var(--orange)}
+.sect .pno{color:var(--orange);font-weight:800;letter-spacing:2px;font-size:.9rem}
+.sect h2{color:#fff;font-size:1.8rem;margin:10px 0 4px;padding-right:0}
+.sect .sub{color:#b9c6dc;font-size:.92rem}
+.tbl{margin-top:12px}
+.tbl .row{display:flex;gap:10px;padding:10px 12px;border-radius:10px;margin:8px 0;background:var(--light);align-items:flex-start}
+.tbl .row:nth-child(even){background:#fff;border:1px solid #e3eaf4}
+.tbl .k{flex:0 0 30%;font-weight:700;color:var(--navy);font-size:.9rem}
+.tbl .v{font-size:.86rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+.col{border-radius:12px;padding:14px 16px}
+.col h3{margin-top:0}
+.col.good{background:#e9f3ea}.col.bad{background:#fbece3}.col.mech{background:#e8eef8}.col.org{background:#e7f4e9}
+.col li{font-size:.88rem}
+.steps{counter-reset:st}
+.steps li::before{counter-increment:st;content:counter(st);background:var(--orange);color:#fff;width:1.5em;height:1.5em;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;left:0;top:.12em;padding-left:0}
+.toc li{background:var(--light);border-radius:10px;padding:9px 12px 9px 2.2em;margin:7px 0;font-size:.9rem}
+.toc li b{color:var(--navy)}
+.toc li::before{top:.7em}
+.flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.flow .f{background:var(--blue);color:#fff;border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:600}
+.flow .f:last-child{background:var(--orange)}
+.top-link{position:fixed;right:14px;bottom:14px;background:var(--navy);color:#fff;text-decoration:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.dl{display:block;text-align:center;background:var(--orange);color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:12px;margin:16px 0 6px}
+.dl small{display:block;font-weight:400;font-size:.75rem;opacity:.9;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1 封面 -->
+<div class="slide cover">
+  <div class="snum">1</div>
+  <h2 style="margin-top:30px">組織理論</h2>
+  <div style="width:70px;height:6px;background:var(--orange);border-radius:3px;margin:14px 0"></div>
+  <div class="sub" style="font-size:1.1rem">從經典到現代</div>
+  <div class="sub">Organization Theory: Classic to Contemporary</div>
+  <div class="foot">教學簡報 · 共 31 頁 ｜ 2026 年 10 月</div>
+</div>
+
+<a class="dl" href="組織理論_從經典到現代.pptx" download>⬇️ 下載完整 PPT 檔（.pptx）<small>手機可下載後用 PowerPoint / Keynote 開啟</small></a>
+
+<!-- 2 學習地圖 -->
+<div class="slide sect">
+  <div class="snum">2</div>
+  <div class="pno">學習地圖</div>
+  <h2>七大主題</h2>
+  <div class="parts">
+    <div class="part"><b>① 古典學派</b><span>Weber 官僚制 · Taylor 科學管理 · Fayol 行政管理</span></div>
+    <div class="part"><b>② 人際關係學派</b><span>霍桑實驗 · Barnard 協作系統</span></div>
+    <div class="part"><b>③ 開放系統與權變</b><span>開放系統 · 機械/有機 · Thompson 三種技術</span></div>
+    <div class="part"><b>④ 組織結構與設計</b><span>Mintzberg 五種結構 · 設計槓桿 · 結構對照</span></div>
+    <div class="part"><b>⑤ 學習與動態能力</b><span>核心 vs 動態能力 · 雙環學習 · 五項修練</span></div>
+    <div class="part"><b>⑥ 組織變革</b><span>Lewin 三階段 · Kotter 八步驟</span></div>
+    <div class="part"><b>⑦ 當代議題</b><span>平台組織 · 敏捷×AI×遠距 · 台灣企業案例</span></div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="slide">
+  <div class="snum">3</div>
+  <h2>什麼是組織？什麼是組織理論？</h2><div class="rule"></div>
+  <h3>組織（Organization）</h3>
+  <ul>
+    <li>兩人以上、為達成共同目標而形成的協調性活動系統</li>
+    <li>三個永恆難題：如何分工？如何協調？如何適應環境？</li>
+  </ul>
+  <h3>組織理論（Organization Theory）</h3>
+  <ul>
+    <li>解釋「組織為何如此設計、如何運作、為何成功或失敗」的知識體系</li>
+    <li>不同學派 = 不同時代環境下的最佳答案（理論是時代的產物）</li>
+  </ul>
+  <h3>為什麼管理者需要它？</h3>
+  <ul><li>診斷組織問題 → 選擇合適的結構與管理方式 → 預期變革的阻力</li></ul>
+  <div class="note"><b>貫穿全場的視角：</b>封閉系統（只看組織內部，古典學派）→ 開放系統（組織與環境互動，權變、學習、變革）</div>
+</div>
+
+<!-- 4 PART1 -->
+<div class="slide sect">
+  <div class="snum">4</div>
+  <div class="pno">PART 1</div>
+  <h2>古典學派</h2>
+  <div class="sub">1910s–1930s｜Weber · Taylor · Fayol — 組織管理的制度化起點</div>
+</div>
+
+<!-- 5 Weber -->
+<div class="slide">
+  <div class="snum">5</div>
+  <h2>Weber 官僚制（Bureaucracy）<span class="tag">古典學派</span></h2><div class="rule"></div>
+  <h3>權威的三種類型</h3>
+  <ul><li>傳統型（世襲）｜魅力型（領袖）｜<b>理性合法型（職位與規則）</b>——官僚制建立在第三種</li></ul>
+  <h3>五大特徵</h3>
+  <ul><li>明確分工 • 層級節制 • 成文規章 • 非人情化 • 依資格任用與升遷</li></ul>
+  <h3>貢獻與批評</h3>
+  <ul>
+    <li>✓ 可預測、穩定、公平——大型組織效率的基礎（至今仍是政府、企業骨幹）</li>
+    <li>✗ 過度規則化 → 形式主義、僵化；Weber 稱之為「鐵牢籠（iron cage）」</li>
+  </ul>
+</div>
+
+<!-- 6 Taylor -->
+<div class="slide">
+  <div class="snum">6</div>
+  <h2>Taylor 科學管理<span class="tag">古典學派</span></h2><div class="rule"></div>
+  <h3>以科學取代經驗法則</h3>
+  <ul>
+    <li>動作與時間研究 → 找出「最佳方法」並標準化</li>
+    <li>科學選才與訓練 • 差別計件工資（產能掛鉤的激因）</li>
+    <li>計畫與執行分離：管理者負責規劃，工人負責操作</li>
+  </ul>
+  <h3>歷史定位</h3>
+  <ul><li>把「管理」變成一門可以研究、教學的學問</li></ul>
+  <h3>批評</h3>
+  <ul><li>把人視為生產要素；忽視心理與社會需求 → 為霍桑實驗埋下反思伏筆</li></ul>
+  <div class="note"><b>一句話記憶：</b>「用科學方法，把對的事做對。」適用於工作可標準化、產量可衡量的現場。</div>
+</div>
+
+<!-- 7 Fayol -->
+<div class="slide">
+  <div class="snum">7</div>
+  <h2>Fayol 行政管理理論<span class="tag">古典學派</span></h2><div class="rule"></div>
+  <h3>管理五大職能（至今教科書仍沿用）</h3>
+  <div class="flow"><span class="f">計劃</span><span class="f">組織</span><span class="f">指揮</span><span class="f">協調</span><span class="f">控制</span></div>
+  <h3>14 原則精選</h3>
+  <ul>
+    <li>分工 • 權責一致 • 統一指揮（一人只聽一個上司）• 統一方向</li>
+    <li>層級鏈（跳板原則可例外）• 公平 • 人員穩定 • 團隊精神（esprit de corps）</li>
+  </ul>
+  <h3>與 Taylor 的差異</h3>
+  <ul><li>Taylor 由「車間」往上看重視作業效率；Fayol 由「董事長」往下看整體管理</li></ul>
+</div>
+
+<!-- 8 總評 -->
+<div class="slide">
+  <div class="snum">8</div>
+  <h2>古典學派總評</h2><div class="rule"></div>
+  <div class="two">
+    <div class="col good"><h3 style="color:#3e7c4f">✓ 貢獻</h3>
+      <ul>
+        <li>確立組織設計基本元件：分工、層級、規章、職權</li>
+        <li>讓大型組織「可管理、可複製」</li>
+        <li>Fayol 職能架構至今仍是管理教育的骨架</li>
+      </ul>
+    </div>
+    <div class="col bad"><h3>✗ 限制</h3>
+      <ul>
+        <li>封閉系統假設：不看環境變化</li>
+        <li>把人當機器：忽略非正式組織與社會心理需求</li>
+        <li>「一體適用」的最佳解，被權變學派推翻</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 9 PART2 -->
+<div class="slide sect">
+  <div class="snum">9</div>
+  <div class="pno">PART 2</div>
+  <h2>人際關係學派</h2>
+  <div class="sub">1930s–1950s｜從「經濟人」到「社會人」的轉向</div>
+</div>
+
+<!-- 10 霍桑 -->
+<div class="slide">
+  <div class="snum">10</div>
+  <h2>霍桑實驗（1924–1932）<span class="tag">人際關係</span></h2><div class="rule"></div>
+  <h3>實驗三部曲（Western Electric 霍桑廠）</h3>
+  <ul>
+    <li>照明實驗：光線變強變弱，產出都上升 → 原因不在「光」</li>
+    <li>繼電器裝配實驗：被關注、被尊重的小團體，產能持續攀升</li>
+    <li>大規模訪談計畫：讓員工「說出來」，士氣與抱怨結構被看見</li>
+  </ul>
+  <h3>三大啟示</h3>
+  <ul>
+    <li>人是「社會人」：歸屬感與被認可，影響力不亞於金錢</li>
+    <li>非正式組織真實存在，且會左右正式制度的成效</li>
+    <li>霍桑效應：被觀察本身就會改變行為（研究方法經典提醒）</li>
+  </ul>
+</div>
+
+<!-- 11 Barnard -->
+<div class="slide">
+  <div class="snum">11</div>
+  <h2>Barnard 協作系統<span class="tag">1938《高階主管的功能》</span></h2><div class="rule"></div>
+  <h3>組織的本質：協作系統</h3>
+  <ul><li class="hl">三要素缺一不可：共同目標 ｜ 協同意願 ｜ 溝通</li></ul>
+  <h3>顛覆性觀點</h3>
+  <ul>
+    <li>權威接受論：命令是否有效，取決於「下屬是否接受」，不是職位本身</li>
+    <li>非正式組織不是敵人，是維持溝通與凝聚力的必要潤滑</li>
+    <li>主管關鍵功能：建立溝通體系、帶來必要的努力、形成共同目標</li>
+  </ul>
+  <div class="note"><b>定位：</b>把正式組織與人性面「接起來」——通往現代組織行為與系統觀的橋樑。</div>
+</div>
+
+<!-- 12 PART3 -->
+<div class="slide sect">
+  <div class="snum">12</div>
+  <div class="pno">PART 3</div>
+  <h2>開放系統與權變</h2>
+  <div class="sub">1960s–｜環境進入理論中心：沒有最佳解，只有配適解</div>
+</div>
+
+<!-- 13 開放系統 -->
+<div class="slide">
+  <div class="snum">13</div>
+  <h2>開放系統觀點（Open Systems）</h2><div class="rule"></div>
+  <h3>組織 = 與環境不斷交換資源的系統</h3>
+  <div class="flow"><span class="f">輸入</span><span class="f">轉換</span><span class="f">輸出</span><span class="f">環境回饋</span></div>
+  <h3>關鍵意涵</h3>
+  <ul>
+    <li>生存靠「負熵」：持續從環境取得資源、消化變化，避免僵化</li>
+    <li>子系統相互依賴：動一個部門，全身都會痛</li>
+    <li>Thompson 的綜合：組織「對內追求理性封閉，對外必須開放適應」</li>
+  </ul>
+  <div class="note"><b>《行動中的組織》的提醒：</b>組織最大的敵人是不確定性 → 用緩衝、平滑、預測去「爭取確定性」。</div>
+</div>
+
+<!-- 14 權變 -->
+<div class="slide">
+  <div class="snum">14</div>
+  <h2>權變理論（Contingency Theory）</h2><div class="rule"></div>
+  <h3>核心命題：It depends —— 結構要與情境「配適（fit）」</h3>
+  <ul><li>情境變數：環境不確定性、技術、規模、策略</li></ul>
+  <h3>Burns & Stalker：兩種結構原型</h3>
+  <ul>
+    <li>機械式：集權、正式化高 → 適合穩定環境</li>
+    <li>有機式：分權、橫向溝通、彈性角色 → 適合動盪環境</li>
+  </ul>
+  <h3>Lawrence & Lorsch</h3>
+  <ul><li>環境越多樣 → 部門「差異化」越高，越需要「整合」機制（跨部門團隊、整合者）</li></ul>
+  <div class="note"><b>考試熱點：</b>錯配的症狀——穩定環境用有機式 → 混亂；動盪環境用機械式 → 遲鈍。</div>
+</div>
+
+<!-- 15 Thompson -->
+<div class="slide">
+  <div class="snum">15</div>
+  <h2>Thompson：三種核心技術<span class="tag">《行動中的組織》</span></h2><div class="rule"></div>
+  <div class="tbl">
+    <div class="row"><div class="k">長鏈型技術</div><div class="v">大量生產、流水線（汽車、電子組裝）<br>→ 標準化 + 層級計畫與排程</div></div>
+    <div class="row"><div class="k">媒介型技術</div><div class="v">連結客戶的標準服務（銀行、物流、電信）<br>→ 標準化規則，分類處理</div></div>
+    <div class="row"><div class="k">密集型技術</div><div class="v">客製化變數高（醫院、研發、顧問）<br>→ 相互調整：團隊、橫向協調</div></div>
+  </div>
+  <div class="note"><b>洞見：</b>技術決定「依賴關係」的型態，進而決定該用哪種協調與結構。</div>
+</div>
+
+<!-- 16 PART4 -->
+<div class="slide sect">
+  <div class="snum">16</div>
+  <div class="pno">PART 4</div>
+  <h2>組織結構與設計</h2>
+  <div class="sub">把策略與技術「畫」成組織：Mintzberg 與設計槓桿</div>
+</div>
+
+<!-- 17 Mintzberg -->
+<div class="slide">
+  <div class="snum">17</div>
+  <h2>Mintzberg：五種組織形貌</h2><div class="rule"></div>
+  <div class="tbl">
+    <div class="row"><div class="k">簡單結構</div><div class="v">策略頂峰直接指揮 ｜ 例：新創、小型家族企業</div></div>
+    <div class="row"><div class="k">機器官僚</div><div class="v">技術官僚制定標準 ｜ 例：公營事業、量產工廠</div></div>
+    <div class="row"><div class="k">專業官僚</div><div class="v">營運核心自主專業 ｜ 例：醫院、大學、事務所</div></div>
+    <div class="row"><div class="k">事業部制</div><div class="v">中層管理者市場導向 ｜ 例：多元集團（統一、鴻海）</div></div>
+    <div class="row"><div class="k">臨時團隊</div><div class="v">Adhocracy：支援幕僚與專案團隊 ｜ 例：顧問公司、AI 團隊</div></div>
+  </div>
+  <div class="note"><b>Mintzberg 洞見：</b>組織 = 策略頂峰＋中層＋營運核心＋技術官僚＋支援幕僚，誰主導就長成哪種形。</div>
+</div>
+
+<!-- 18 槓桿 -->
+<div class="slide">
+  <div class="snum">18</div>
+  <h2>組織設計的五個基本槓桿</h2><div class="rule"></div>
+  <div class="tbl">
+    <div class="row"><div class="k">分工與部門化</div><div class="v">按功能／產品／地區／客群切分——切法決定大家「眼睛看哪裡」</div></div>
+    <div class="row"><div class="k">控制幅度</div><div class="v">一位主管帶幾人：越寬越扁平，越窄越層級</div></div>
+    <div class="row"><div class="k">集權 ↔ 分權</div><div class="v">決策權放哪一層？速度與在地反應 vs 控制與一致性</div></div>
+    <div class="row"><div class="k">正式化</div><div class="v">規則、SOP 多寡：高正式化 = 可預測，低正式化 = 可應變</div></div>
+    <div class="row"><div class="k">協調機制</div><div class="v">層級命令 → 標準化 → 橫向團隊／矩陣／整合者</div></div>
+  </div>
+</div>
+
+<!-- 19 對照 -->
+<div class="slide">
+  <div class="snum">19</div>
+  <h2>機械式 vs 有機式組織</h2><div class="rule"></div>
+  <div class="two">
+    <div class="col mech"><h3 style="color:var(--navy)">⚙ 機械式</h3>
+      <ul><li>高正式化、高集權</li><li>嚴格層級與明確職掌</li><li>縱向溝通為主</li><li class="hl">適合：穩定環境、大量生產</li></ul>
+    </div>
+    <div class="col org"><h3 style="color:#3e7c4f">🌿 有機式</h3>
+      <ul><li>低正式化、分權</li><li>角色彈性、跨功能團隊</li><li>橫向與斜向溝通</li><li class="hl">適合：動盪環境、創新業務</li></ul>
+    </div>
+  </div>
+  <div class="note"><b>現實：</b>多半是混合體——核心事業機械化保效率，新事業有機化保速度。</div>
+</div>
+
+<!-- 20 PART5 -->
+<div class="slide sect">
+  <div class="snum">20</div>
+  <div class="pno">PART 5</div>
+  <h2>學習與動態能力</h2>
+  <div class="sub">組織如何「變聰明」：能力與學習的現代視角</div>
+</div>
+
+<!-- 21 能力 -->
+<div class="slide">
+  <div class="snum">21</div>
+  <h2>核心能力 vs 動態能力</h2><div class="rule"></div>
+  <div class="two">
+    <div class="col mech"><h3 style="color:var(--navy)">核心能力（Prahalad & Hamel）</h3>
+      <ul><li>三個檢核：對顧客有價值＋競爭者難模仿＋可延展</li>
+      <li>例：豐田精實製造、3M 膠合技術平台</li>
+      <li>風險：環境劇變時「核心」可能變「僵性」</li></ul>
+    </div>
+    <div class="col bad"><h3>動態能力（Teece）</h3>
+      <ul><li>感測 Sensing：察覺機會與威脅</li>
+      <li>把握 Seizing：動員資源抓住它</li>
+      <li>重構 Reconfiguring：改組織、改資產</li>
+      <li class="hl">例：台積電持續重構製程與組織能力</li></ul>
+    </div>
+  </div>
+  <div class="note"><b>一句話：</b>核心能力讓你「贏在今天」，動態能力讓你「活到明天」。</div>
+</div>
+
+<!-- 22 Argyris -->
+<div class="slide">
+  <div class="snum">22</div>
+  <h2>Argyris：單環 vs 雙環學習</h2><div class="rule"></div>
+  <div class="two">
+    <div class="col mech"><h3 style="color:var(--navy)">單環學習</h3>
+      <ul><li>誤差 → 修正「行為」</li><li>在既有目標與規範內改善</li><li>例：業務沒達標 → 加強話術訓練</li></ul>
+    </div>
+    <div class="col org"><h3 style="color:#3e7c4f">雙環學習</h3>
+      <ul><li>誤差 → 檢視「前提與規範」</li><li>連目標本身都拿出來重新問</li><li>例：業務沒達標 → 是否該換客群與價值主張？</li></ul>
+    </div>
+  </div>
+  <div class="note"><b>組織防衛慣例：</b>大家心照不宣地「不談真正的問題」，是雙環學習最大的殺手。</div>
+</div>
+
+<!-- 23 Senge -->
+<div class="slide">
+  <div class="snum">23</div>
+  <h2>Senge 五項修練：學習型組織</h2><div class="rule"></div>
+  <div class="tbl">
+    <div class="row"><div class="k">1. 系統思考</div><div class="v">第五修練：看整體、看因果環，而非片段事件</div></div>
+    <div class="row"><div class="k">2. 自我超越</div><div class="v">個人持續釐清願景、拉開現實與願景的張力</div></div>
+    <div class="row"><div class="k">3. 心智模式</div><div class="v">覺察並檢驗內在假設與成見</div></div>
+    <div class="row"><div class="k">4. 共同願景</div><div class="v">由「我要做」變成「我們要做」</div></div>
+    <div class="row"><div class="k">5. 團隊學習</div><div class="v">對話與討論，讓團隊智商 > 個人智商總和</div></div>
+  </div>
+</div>
+
+<!-- 24 PART6 -->
+<div class="slide sect">
+  <div class="snum">24</div>
+  <div class="pno">PART 6</div>
+  <h2>組織變革</h2>
+  <div class="sub">理論落地的戰場：怎麼讓組織真正動起來</div>
+</div>
+
+<!-- 25 Lewin -->
+<div class="slide">
+  <div class="snum">25</div>
+  <h2>Lewin 三階段變革模型</h2><div class="rule"></div>
+  <div class="flow">
+    <span class="f" style="background:var(--navy)">① 解凍：製造不滿現狀的理由</span>
+    <span class="f">② 改變：導入新做法＋訓練支持</span>
+    <span class="f" style="background:#3e7c4f">③ 再凍結：用制度獎酬文化固定</span>
+  </div>
+  <h3>力場分析（Force Field Analysis）</h3>
+  <ul><li>驅動力 vs 抑制力同時存在；變革不是「推更用力」，而是<b>減少抑制力</b>（恐懼、誘因錯置、既得利益）</li></ul>
+</div>
+
+<!-- 26 Kotter -->
+<div class="slide">
+  <div class="snum">26</div>
+  <h2>Kotter 八步驟</h2><div class="rule"></div>
+  <ol class="steps toc">
+    <li><b>建立急迫感</b></li>
+    <li><b>組成領導聯盟</b></li>
+    <li><b>提出願景與策略</b></li>
+    <li><b>溝通願景</b></li>
+    <li><b>授權行動、掃除障礙</b></li>
+    <li><b>創造短期戰果</b></li>
+    <li><b>鞏固成果、深化推進</b></li>
+    <li><b>深植於文化</b></li>
+  </ol>
+  <div class="note"><b>關鍵差異：</b>Lewin 說「變什麼」，Kotter 說「怎麼帶」——前四步都在處理「人心」，不是制度。</div>
+</div>
+
+<!-- 27 PART7 -->
+<div class="slide sect">
+  <div class="snum">27</div>
+  <div class="pno">PART 7</div>
+  <h2>當代議題與台灣案例</h2>
+  <div class="sub">平台 · 敏捷 · AI · 遠距 — 組織理論的現在進行式</div>
+</div>
+
+<!-- 28 平台 -->
+<div class="slide">
+  <div class="snum">28</div>
+  <h2>平台組織（Platform Organization）</h2><div class="rule"></div>
+  <h3>特徵</h3>
+  <ul>
+    <li>連結兩邊以上市場（供給 × 需求），價值來自網絡效應</li>
+    <li>輕資產、以資料與演算法協調，而非層級命令</li>
+    <li>內部平台化：中台提供共用工能，前端小團隊快速實驗</li>
+  </ul>
+  <h3>挑戰</h3>
+  <ul>
+    <li>治理：生態系夥伴的規則、抽成與公平性</li>
+    <li>依賴風險：關鍵平台政策一改，商業模式立即受衝擊</li>
+    <li>法規與社會責任：獨占疑慮、零工勞動者權益</li>
+  </ul>
+</div>
+
+<!-- 29 敏捷AI遠距 -->
+<div class="slide">
+  <div class="snum">29</div>
+  <h2>敏捷 × AI × 遠距：三股改造力量</h2><div class="rule"></div>
+  <div class="tbl">
+    <div class="row"><div class="k">敏捷組織</div><div class="v">小隊（squad）＋短週期迭代；決策下放到最接近市場的一線</div></div>
+    <div class="row"><div class="k">AI 與組織</div><div class="v">AI 吸收分析與監控工作；中層管理「資訊傳遞」角色被壓縮、必須轉型</div></div>
+    <div class="row"><div class="k">遠距／混合</div><div class="v">人才池跨地理擴大；但非正式互動、文化傳承與信任更難經營</div></div>
+  </div>
+  <div class="note"><b>共同命題：</b>協調成本下降 → 組織可以更小、更扁、更快；但「信任與意義」變得更貴。</div>
+</div>
+
+<!-- 30 台灣案例 -->
+<div class="slide">
+  <div class="snum">30</div>
+  <h2>台灣企業案例：理論照進現實</h2><div class="rule"></div>
+  <div class="tbl">
+    <div class="row"><div class="k">台積電 TSMC</div><div class="v">製程標準化（機器官僚的極致）＋ 研發雙環學習與動態能力重構</div></div>
+    <div class="row"><div class="k">統一集團</div><div class="v">多角化下的「事業部制」：食品、零售、流通各自面對不同市場 → 差異化＋總部整合</div></div>
+    <div class="row"><div class="k">鴻海 Foxconn</div><div class="v">全球長鏈型技術＋軍事化效率；規模巔峰後面臨自動化、AI 伺服器與治理轉型壓力</div></div>
+  </div>
+  <div class="note"><b>課堂練習：</b>各用「一個學派概念」診斷一家你最熟悉的台灣企業。</div>
+</div>
+
+<!-- 31 總結 -->
+<div class="slide sect">
+  <div class="snum">31</div>
+  <div class="pno">總結</div>
+  <h2>一條主線看懂組織理論</h2>
+  <div class="flow" style="margin-top:18px">
+    <span class="f" style="background:#2e74b5">古典</span>
+    <span class="f" style="background:#2e74b5">人際</span>
+    <span class="f" style="background:#2e74b5">開放</span>
+    <span class="f" style="background:#2e74b5">權變</span>
+    <span class="f" style="background:#2e74b5">學習</span>
+    <span class="f" style="background:#2e74b5">變革</span>
+    <span class="f">數位</span>
+  </div>
+  <h3 style="color:#fff;margin-top:22px">帶走的三個問題</h3>
+  <ul>
+    <li style="color:#fff">① 我們的環境是穩定還是動盪？結構配得上嗎？（權變）</li>
+    <li style="color:#fff">② 資訊怎麼流動？協調靠命令還是靠對話？（設計）</li>
+    <li style="color:#fff">③ 我們會檢討「做法」，但敢檢討「前提」嗎？（雙環學習）</li>
+  </ul>
+  <div class="foot" style="color:#9aacc9;font-size:.8rem;margin-top:20px">組織理論｜從經典到現代 · 完</div>
+</div>
+
+</div>
+<a class="top-link" href="#">↑</a>
+</body>
+</html>
