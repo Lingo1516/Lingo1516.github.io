@@ -53,18 +53,21 @@ sudo tee /home/ubuntu/.openclaw/openclaw.json > /dev/null <<'EOF'
 EOF
 
 # 5. systemd 服務（開機自啟 + 24h）
+OC_BIN="$(command -v openclaw || echo /usr/local/bin/openclaw)"
 sudo tee /etc/systemd/system/openclaw.service > /dev/null <<EOF
 [Unit]
-Description=OpenClaw Gateway
+Description=OpenClaw Gateway (Tencent Lighthouse)
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 User=ubuntu
 WorkingDirectory=/home/ubuntu/.openclaw/workspace
-ExecStart=$(which openclaw) gateway --port 8443
+Environment="HOME=/home/ubuntu"
+ExecStart=${OC_BIN} gateway --port 8443
 Restart=always
 RestartSec=5
+LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
@@ -73,9 +76,17 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable openclaw.service
 sudo systemctl restart openclaw.service
-
-# 6. 驗證
 sleep 3
-echo "=== 部署完成 ==="
-echo "查狀態: sudo journalctl -u openclaw -n 30 --no-pager"
-echo "查 openclaw: sudo -u ubuntu openclaw status"
+
+# 6. 綁定 Mac 桌面金鑰（讓外部 SSH 直接可用，不用再靠 TAT）
+MAC_PUB="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICnLLhe60poNJLly1fxT943SRqMkIrZDNYoVOuqXBwBu lingochen@LingodeMacBook-Air.local"
+sudo mkdir -p /home/ubuntu/.ssh
+sudo grep -qF "$MAC_PUB" /home/ubuntu/.ssh/authorized_keys 2>/dev/null || sudo tee -a /home/ubuntu/.ssh/authorized_keys > /dev/null <<< "$MAC_PUB"
+sudo chmod 700 /home/ubuntu/.ssh
+sudo chmod 600 /home/ubuntu/.ssh/authorized_keys
+echo "=== 金鑰已綁定 ==="
+
+# 7. 驗證
+echo "=== 部署完成 $(date) ==="
+sudo systemctl status openclaw --no-pager | head -10
+echo "log: sudo journalctl -u openclaw -n 30 --no-pager"
