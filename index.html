@@ -2,200 +2,337 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Lingo 的小綠工具庫</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📰 今日新聞 2026-10-29</title>
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.7}
-
-.header{max-width:1000px;margin:0 auto;padding:60px 24px 40px;text-align:center}
-.header h1{font-size:36px;font-weight:700;color:#fff;margin-bottom:8px}
-.header p{font-size:15px;color:rgba(255,255,255,.4)}
-
-.search-bar{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.95);backdrop-filter:blur(12px);padding:14px 24px;border-bottom:1px solid rgba(255,255,255,.05)}
-.search-bar input{width:100%;max-width:600px;display:block;margin:0 auto;padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#fff;font-size:15px;outline:none;font-family:inherit}
-.search-bar input:focus{border-color:rgba(212,163,115,.4);background:rgba(255,255,255,.08)}
-.search-bar input::placeholder{color:rgba(255,255,255,.25)}
-
-.container{max-width:1000px;margin:0 auto;padding:24px}
-
-/* Category tabs */
-.cat-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
-.cat-btn{padding:8px 18px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.4);font-size:13px;cursor:pointer;transition:all .2s;font-family:inherit}
-.cat-btn:hover{border-color:rgba(255,255,255,.2);color:#fff}
-.cat-btn.active{background:rgba(212,163,115,.2);border-color:#d4a373;color:#d4a373}
-
-/* Category section */
-.category{margin-bottom:40px}
-.category.hidden{display:none}
-.cat-title{font-size:20px;font-weight:700;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.cat-title .count{font-size:13px;color:rgba(255,255,255,.3);font-weight:400}
-
-/* Card grid */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px 18px;transition:all .25s;cursor:pointer}
-.card:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);transform:translateY(-1px)}
-.card a{text-decoration:none;color:inherit;display:block}
-.card .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:8px;margin-bottom:6px}
-.card h3{font-size:16px;font-weight:600;color:#fff;margin-bottom:4px}
-.card .url{font-size:12px;color:rgba(255,255,255,.2);margin-bottom:4px;word-break:break-all}
-.card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5}
-
-/* Footer */
-.footer{text-align:center;padding:40px 24px;color:rgba(255,255,255,.15);font-size:13px}
-.footer .btn{display:inline-block;margin-top:12px;padding:8px 20px;border-radius:20px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);text-decoration:none;font-size:12px;transition:all .3s}
-.footer .btn:hover{border-color:rgba(255,255,255,.2);color:#fff}
-
-@media(max-width:600px){
-  .card-grid{grid-template-columns:1fr}
-  .header h1{font-size:28px}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #f5f5f7; color: #1d1d1f; line-height: 1.7; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 32px 20px; text-align: center; border-radius: 0 0 16px 16px; margin-bottom: 24px; }
+header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 4px; }
+header .date { font-size: 0.9rem; opacity: 0.7; }
+.section { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.section h2 { font-size: 1.15rem; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #e5e5e5; display: flex; align-items: center; gap: 8px; }
+.section.international h2 { color: #2563eb; border-color: #2563eb; }
+.section.taiwan h2 { color: #dc2626; border-color: #dc2626; }
+.section.technology h2 { color: #059669; border-color: #059669; }
+.article { padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+.article:last-child { border-bottom: none; }
+.article .num { background: #f0f0f0; color: #666; font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 6px; min-width: 24px; text-align: center; display: inline-block; margin-right: 8px; vertical-align: top; }
+.article .content { display: inline-block; width: calc(100% - 40px); }
+.article .title { font-size: 1rem; font-weight: 600; color: #1d1d1f; margin-bottom: 8px; }
+.article .title a { color: inherit; text-decoration: none; }
+.article .title a:hover { color: #2563eb; text-decoration: underline; }
+.article .desc { font-size: 0.9rem; color: #333; margin-bottom: 4px; line-height: 1.7; }
+.article .source { font-size: 0.75rem; color: #999; margin-bottom: 8px; display: block; }
+.article .link { font-size: 0.8rem; color: #2563eb; word-break: break-all; }
+.article .link a { color: inherit; text-decoration: none; }
+.article .link a:hover { text-decoration: underline; }
+.badge { display: inline-block; font-size: 0.7rem; padding: 1px 6px; border-radius: 4px; font-weight: 600; margin-left: 6px; }
+.badge.breaking { background: #fef2f2; color: #dc2626; }
+.badge.tech { background: #ecfdf5; color: #059669; }
+.badge.politics { background: #eff6ff; color: #2563eb; }
+footer { text-align: center; padding: 20px; color: #999; font-size: 0.8rem; }
+@media (max-width: 600px) {
+  .container { padding: 10px; }
+  header h1 { font-size: 1.3rem; }
 }
 </style>
 </head>
 <body>
-
-<div class="header">
-  <h1>🟢 小綠工具庫</h1>
-  <p>Lingo 的 GitHub Pages · 所有頁面總覽</p>
-</div>
-
-<div class="search-bar">
-  <input type="text" id="search" placeholder="搜尋頁面名稱或關鍵字..." oninput="filterPages()">
-</div>
-
 <div class="container">
+<header>
+<h1>📰 今日新聞</h1>
+<div class="date">2026年10月29日（週四）</div>
+</header>
 
-<div class="cat-nav" id="catNav"></div>
-<div id="content"></div>
-
+<div class="section international">
+<h2>🌍 國際</h2>
+<div class="article">
+<span class="num">1</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Watch: 'Chaotic scenes' at site of Spain's deadly train crash A high-speed train crash has killed at least 68 people and injured dozens more in central Spain. It occurred when a train travelling from Madrid to Seville barrelled into another train - which was stationary on the tracks - on Wednesday morning. The force saw several carriages fall down an embankment. The transport minister said a computer failure followed by human error caused the crash, which is one of the worst in Europe's modern history, and Spain's deadliest train disaster in 13 years. Survivors described harrowing scenes of passengers being thrown into the air, trapped in the wreckage and smashing windows to get out.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/c6p3g84kjqjlo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">2</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Survivor describes being onboard when trains collided It was approaching 08:30 (07:30 GMT) on a normal Wednesday. Two high-speed trains were travelling south from the Spanish capital, Madrid, to Seville. One, run by state-owned operator Renfe had 397 passengers on board. Ahead of it on the same line was a train of Iryo private operator with 147 passengers. A reported issue with the automatic signalling system - a computer failure - had forced all trains to halt on the affected stretch. Then the impossible happened, Spain's transport minister said, as the Renfe train was ordered to proceed in "error". It crashed into the back of the other train between municipalities Mora and Orgaz, about 140km (87 miles) south of Madrid.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/cm9qzd47ng98o" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">3</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Watch: Has Flávio Bolsonaro fled Brazil to evade justice? Brazilian Senator Flávio Bolsonaro, who landed in Miami after losing the presidential election on Sunday, has said it was never his intention to "leave my homeland". "I did not flee Brazil; I left for the sake of Brazil," he said in his first statement since his departure. The US provided visas to him and his family after Brazil cancelled his passports as part of a criminal investigation. Bolsonaro denies any wrongdoing. On Wednesday, US President Donald Trump told reporters: "We gave him a pass to come into the country". Newly re-elected President Luiz Inácio Lula da Silva has criticised Bolsonaro's secretive exit from the country, saying "those who have nothing to hide have nothing to fear".</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/c6kglwe4lxwzo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">4</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Israel's election result is messy - here's why Partial results from Israel's general election show veteran Prime Minister Benjamin Netanyahu is leading his rival, former military chief Gadi Eisenkot, but is still short of a majority in parliament. With 85% of ballots counted, Netanyahu's Likud party and its far-right and ultra-Orthodox Jewish allies were on track to win 53 seats in the 120-seat Knesset. Eisenkot's Yashar party and three other Jewish opposition parties in his bloc were set for 48. Both leaders have said they will try to form a governing coalition. Arab-led parties, who are on course to win an unprecedented 19 seats, could emerge as kingmakers, but all but one of the Jewish parties have pledged not to work with them.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/cmdx3knq1xexo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">5</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Image source, AFP via Getty ImagesImage caption, Neither Gadi Eisenkot (left) or Benjamin Netanyahu (right) are projected to win enough seats for a majority Israel looks to be in political deadlock. With 85% of votes counted after Tuesday's election, neither the incumbent Prime Minister Benjamin Netanyahu's coalition, nor the bloc of his key challenger Gadi Eisenkot look set to win a majority. In order to form a government, it looks likely one of the leading parties would have to break their campaign promises - meaning the most probable outcome may well be new elections. Here are four possible scenarios.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/cm62y46d97wwo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
 </div>
 
-<div class="footer">
-  <p>小綠工具庫 · Lingo1516.github.io</p>
-  <a class="btn" href="https://github.com/Lingo1516/Lingo1516.github.io" target="_blank">GitHub Repo</a>
+<div class="section taiwan">
+<h2>🇹🇼 台灣</h2>
+<div class="article">
+<span class="num">1</span>
+<div class="content">
+<div class="title">蔣萬安競辦深夜報警！因「除三害」海報</div>
+<div class="desc">蔣萬安競選辦公室深夜報警，因為競選海報被指控抄襲沈伯洋的「除三害」海報設計。蔣團隊急切割，稱是參考AI生成。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261029/3262545.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">2</span>
+<div class="content">
+<div class="title">Toyz傳已出獄遣返香港！妻子篠崎泫發文了</div>
+<div class="desc">前職棒選手 Toyz（陳傑翰）傳出已出獄並被遣返香港，妻子篠崎泫在社交媒體發文回應。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261029/3262547.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">3</span>
+<div class="content">
+<div class="title">還原藍白合被罵翻！趙少康喊話民眾黨「無意檢討」</div>
+<div class="desc">藍白合被罵翻，趙少康喊話民眾黨「無意檢討」，引發熱議。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261029/3262528.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">4</span>
+<div class="content">
+<div class="title">河口湖詐保主嫌「聞妻過世」一句回應　外交人員發毛</div>
+<div class="desc">河口湖詐保案主嫌聞妻過世時僅一句回應，外交人員表示發毛。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261029/3262549.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">5</span>
+<div class="content">
+<div class="title">河口湖主嫌遊說「一日女助理」賣他2年賺3000萬：我就弄妳而已</div>
+<div class="desc">河口湖詐保案主嫌遊說一日女助理，稱賣他2年賺3000萬，話語間毫無悔意。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261029/3262560.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">6</span>
+<div class="content">
+<div class="title">西班牙高鐵相撞68死　交長：下了錯誤指令</div>
+<div class="desc">西班牙高鐵相撞事故造成68人死亡，交通部長表示是調度中心下了錯誤指令。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261029/3262532.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">7</span>
+<div class="content">
+<div class="title">巴基斯坦改口　恢復我國航空公司飛越領空</div>
+<div class="desc">巴基斯坦改口，恢復我國航空公司飛越其領空的許可。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261029/3262524.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">8</span>
+<div class="content">
+<div class="title">抓到！蔣萬安網站竟是下AI指令「參考」沈伯洋　蔣團隊急切割</div>
+<div class="desc">蔣萬安競選網站被發現竟是下AI指令「參考」沈伯洋的設計，蔣團隊急切割稱不知情。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261028/3262486.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">9</span>
+<div class="content">
+<div class="title">李碩彬黑歷史+1！手把手教助理「殺夫詐保」</div>
+<div class="desc">李碩彬被爆出黑歷史，手把手教助理殺夫詐保。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261028/3262293.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">10</span>
+<div class="content">
+<div class="title">短短8天！蔣萬安「2專訪問同1題」答案大不同</div>
+<div class="desc">蔣萬安在短短8天內，兩次專訪同一題目，答案卻大不同，引發質疑。</div>
+<div class="source">ETtoday</div>
+<div class="link"><a href="https://www.ettoday.net/news/20261029/3262543.htm" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">11</span>
+<div class="content">
+<div class="title">蔣粉喊凍蒜反被喝斥「吵什麼」！蔣萬安尬笑 陳揮文：危機處理不及格</div>
+<div class="desc">蔣萬安的支持者喊凍蒜反被喝斥，蔣萬安尬笑，陳揮文評價危機處理不及格。</div>
+<div class="source">自由時報</div>
+<div class="link"><a href="https://news.ltn.com.tw/news/politics/breakingnews/5622110" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">12</span>
+<div class="content">
+<div class="title">「他們」都遭中共伸黑手！美國務院：中國跨國鎮壓威脅海外批評者</div>
+<div class="desc">美國務院發布聲明，指出中國跨國鎮壓威脅海外批評者，蔣萬安的競選團隊也被列為目標。</div>
+<div class="source">自由時報</div>
+<div class="link"><a href="https://news.ltn.com.tw/news/politics/breakingnews/5622145" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">13</span>
+<div class="content">
+<div class="title">沈伯洋競選網站遭境外攻擊！吳思瑤：我們會穩住</div>
+<div class="desc">沈伯洋的競選網站遭境外攻擊，吳思瑤表示會穩住，不影響選舉。</div>
+<div class="source">自由時報</div>
+<div class="link"><a href="https://news.ltn.com.tw/news/politics/breakingnews/5622094" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">14</span>
+<div class="content">
+<div class="title">王小棣轟「萬安除三害」海報世界少見！蔣競辦深夜急澄清</div>
+<div class="desc">王小棣轟蔣萬安的「萬安除三害」海報設計「世界少見」，蔣競辦深夜急澄清。</div>
+<div class="source">自由時報</div>
+<div class="link"><a href="https://news.ltn.com.tw/news/politics/breakingnews/5622054" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">15</span>
+<div class="content">
+<div class="title">直指2026選情很惡劣 藍營：「這4縣市」非常危險</div>
+<div class="desc">藍營指出2026選情很惡劣，這4個縣市非常危險，需要全力抗敵。</div>
+<div class="source">自由時報</div>
+<div class="link"><a href="https://news.ltn.com.tw/news/politics/breakingnews/5622074" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">16</span>
+<div class="content">
+<div class="title">英美日等國好手齊聚四湖 雲林風箏衝浪公開賽10/31拚速度</div>
+<div class="desc">英美日等國的好手齊聚雲林四湖，風箏衝浪公開賽將於10月31日舉行。</div>
+<div class="source">自由時報</div>
+<div class="link"><a href="https://news.ltn.com.tw/news/life/breakingnews/5622162" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
 </div>
 
-<script>
-const pages = [
-  // ====== 福岡旅遊 ======
-  {cat:"旅行", tags:"福岡 旅遊 九州 日本", title:"🏠 福岡部落格首頁", url:"blog/", desc:"五天四夜九州慢行 · 時間軸總覽"},
-  {cat:"旅行", tags:"福岡 旅遊 Day1", title:"✈️ Day 1 — 啟程", url:"blog/福岡之旅-·-啟程.html", desc:"桃園→福岡，一幸舍拉麵、大東園燒肉、櫛田神社夜參"},
-  {cat:"旅行", tags:"福岡 旅遊 Day2", title:"☀️ Day 2 — 晨光中的博多", url:"blog/福岡之旅-·-晨光中的博多.html", desc:"太宰府天滿宮、柳川遊船、雷山觀音、中洲屋台"},
-  {cat:"旅行", tags:"福岡 旅遊 Day3", title:"🌅 Day 3 — 同一扇窗・不同風景", url:"blog/福岡之旅-·-day-3-同一扇窗・不同風景.html", desc:"天神散策、華味鳥水炊雞、博多街頭"},
-  {cat:"旅行", tags:"福岡 旅遊 Day4", title:"🌙 Day 4 — 前田屋牛腸鍋之夜", url:"blog/福岡之旅-·-day-4-前田屋牛腸鍋之夜.html", desc:"六本松、前田屋もつ鍋、福岡最後一夜"},
-  {cat:"旅行", tags:"福岡 美食 拉麵", title:"🍜 福岡拉麵地圖", url:"blog/福岡拉麵地圖-五家必吃名店.html", desc:"五家必吃名店：一幸舍、一風堂、博多だるま、暖暮、元祖赤のれん"},
-  {cat:"旅行", tags:"福岡 美食 屋台", title:"🌙 福岡屋台與明太子", url:"blog/福岡屋台與明太子-在地人帶路.html", desc:"中洲屋台文化 + 明太子創意吃法"},
-  {cat:"旅行", tags:"福岡 美食 水炊雞", title:"🐔 華味鳥 — 博多水炊雞老字號", url:"blog/福岡·華味鳥-博多水炊雞老字號.html", desc:"創業70年，雞白湯鍋底的極致"},
-  {cat:"旅行", tags:"福岡 美食 車站", title:"🥩 博多車站周邊美食", url:"blog/牛肉-博多車站周邊-燒肉．牛腸鍋．甜點.html", desc:"燒肉・もつ鍋・甜點濃縮攻略"},
+<div class="section technology">
+<h2>💻 科技</h2>
+<div class="article">
+<span class="num">1</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Technology giant Microsoft says its profits for the three months to the end of September jumped to more than $36.6bn (£27.5bn), just days after announcing plans to cut its workforce by more than a quarter. On Monday, the Windows developer said it would offer buyouts to around 60,000 of its workers to cut costs as it pours billions of dollars into artificial intelligence (AI). Like other tech firms, Microsoft is investing heavily in the infrastructure that powers AI even as questions remain over whether such huge spending will pay off. Microsoft shares rose by almost 2.9% in after hours trading in New York on Wednesday. The recent financial results of tech companies have been closely watched by investors as they gauge whether the heavy spending on AI is sustainable.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/c6m24klyjr8no" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">2</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Details of more than 41,000 personnel working for the US Department of Homeland Security (DHS), including thousands involved in immigration enforcement, have been leaked to the public. The leak includes names, work addresses and phone numbers of DHS staff, including agents working with Immigration and Customs Enforcement (ICE) and Customs and Border Protection, along with descriptions of the work they do for each agency. Wednesday's leak marks the third time in recent weeks a government agency has been targeted by leaks or hacks. A representative of the DHS did not immediately respond to a request for comment. The seemingly unprecedented breach of employee information was put online on Wednesday by a group called the Department of Peace alongside cybersecurity researcher and hacker maia crimew.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/cq8jzkpjr28vo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">3</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Elon Musk is a "real genius", Russian President Vladimir Putin said on Wednesday after revealing the two are in "close" contact about satellite technology. The remarks came during the Russia-Africa Summit in Moscow, during which Putin discussed Russia's own satellite internet project Rassvet, which provides internet connections to people from satellites. "He's a genius, a real genius," Putin said of Musk, according to a translation of his remarks by the BBC. "We are in close contact with our American partners, including Mr. Musk." Starlink is part of Musk's company SpaceX. The company did not respond to a request for comment. Putin added that it was important for Russia to be in contact with Musk so Rassvet and Starlink satellites do not "interfere with each other in orbit".</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/c63djl148n3eo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">4</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Apple has acknowledged some of its iPhone Duo handsets have developed problems with their screens, just days after the highly-anticipated smartphone went on sale. Photos posted on social media show lines that appeared on the screens of the technology giant's first ever foldable device, which has a starting price of £1,999 ($2,668) in the UK. Apple said it was aware of "an issue impacting the inner display on a small number" of the phones and urged affected users to contact the company for a replacement. The Duo's launch, which attracted crowds at Apple stores around the world last week, is an attempt to reinvigorate the brand's device range and challenge the foldable phones made by rivals. Some Duo owners also posted photos online showing cracks along the screen's centre crease, while others reported a crunching noise when opening the device.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/c893zwlev2xpo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+</div>
 
-  // ====== 每日新聞 ======
-  {cat:"新聞", tags:"新聞 每日 懶人包 2026-10-20", title:"📰 新聞 2026-10-20（今日）", url:"news-2026-10-20.html", desc:"法國騷亂 / DeepSeek開源+禁用 / Google雲端斷線 / 澳洲議員撞車重傷"},
-  {cat:"新聞", tags:"新聞 每日 懶人包 2026-10-16", title:"📰 新聞 2026-10-16", url:"news-2026-10-16.html", desc:""},
-  {cat:"新聞", tags:"新聞 每日 懶人包 2026-10-10", title:"📰 新聞 2026-10-10", url:"news-2026-10-10.html", desc:""},
-  {cat:"新聞", tags:"新聞 每日 懶人包 2026-10-03", title:"📰 新聞 2026-10-03", url:"news-2026-10-03.html", desc:""},
-  {cat:"新聞", tags:"新聞 每日 懶人包 2026-09-11", title:"📰 新聞 2026-09-11", url:"news-2026-09-11.html", desc:""},
-  {cat:"新聞", tags:"新聞 每日 懶人包 2026-08-22", title:"📰 新聞 2026-08-22", url:"news-20260822.html", desc:""},
-  {cat:"新聞", tags:"新聞 每日 懶人包", title:"📰 今日新聞", url:"news-today.html", desc:"每日新聞懶人包"},
-  {cat:"新聞", tags:"新聞 每日 懶人包", title:"📰 新聞總覽", url:"news.html", desc:"新聞彙整"},
-  {cat:"新聞", tags:"新聞 2026-07-09", title:"📰 每日新聞 2026-07-09", url:"每日新聞_20260709.html", desc:""},
-  {cat:"新聞", tags:"新聞 2026-07-06", title:"📰 新聞 2026-07-06", url:"news-20260706.html", desc:""},
-  {cat:"新聞", tags:"新聞 2026-07-05", title:"📰 新聞 2026-07-05", url:"news-20260705.html", desc:""},
-  {cat:"新聞", tags:"新聞 2026-06-24", title:"📰 新聞 2026-06-24", url:"today-news-2026-06-24.html", desc:""},
-  {cat:"新聞", tags:"新聞 2026-06-21", title:"📰 新聞 2026-06-21", url:"news-20260621.html", desc:""},
-  {cat:"新聞", tags:"新聞 2026-06-21", title:"📰 今日新聞 20260621", url:"今日新聞_20260621.html", desc:""},  
-  {cat:"新聞", tags:"新聞", title:"📰 今天早上新聞", url:"今天早上新聞.html", desc:"新聞彙整"},
+<div class="section international">
+<h2>🌏 亞太</h2>
+<div class="article">
+<span class="num">1</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">A luxury cruise ship on a years-long voyage around the world said it suspended operations due to extraordinarily high fuel costs, leaving passengers stranded in Cambodia. The US-based operator of the Villa Vie Odyssey said it was working with passengers on disembarkation plans and "temporary living arrangements". It is unclear how many were on board but the nearly 200m (656ft) vessel can carry up to 650 passengers. It departed Belfast in October 2024 for a "continuous voyage around the world". Global fuel prices have soared since the Iran war started earlier this year. The ship's operator said the monthly fuel cost per cabin in parts of Asia has risen to as much as $8,000 (£6,000) from $1,800. Villa Vie Residences said it had taken "significant steps to reduce fuel consumption, including slowing the itinerary and spending more time in port". But those measures turned out to be insufficient to "offset the extraordinary increase in fuel costs".</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/cwj342k62exyo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">2</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">CloseMyanmar's representative to the United Nations has urged member states "stop their silence on our suffering" and help end the crisis in the country. Kyar Moe Tun, who was appointed as the country's UN ambassador before the democratically elected government was ousted in 2021, made an emotional appeal saying the international community had "failed the people of Myanmar again and again." During his speech, Moe Tun held up a scarf bearing the names and ages of Myanmar's "fallen heroes and innocent civilians." Shareclose panelShare pageCopy linkAbout sharingRelated topicsAsiaFollow Asia</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/videos/cqz0ve10jxn2o" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">3</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Official data released in the last week, external show the ratio of China's dependent elderly people compared to the working age population rose to 23% last year, overtaking the figure for children, which stood at 22%. The numbers are closely watched for signs of how China's shrinking workforce will impact both the world's second largest economy and global growth as a whole. The latest figures mark a significant milestone as China grapples with an ageing population that could have implications for families, pensions and healthcare spending, analysts say. China has been preparing for a growing proportion of elderly people in recent years, while urging younger generations to get married and for couples to have more children. The latest data from China's National Bureau of Statistics show there are now more than 223 million people in China aged 65 and above, accounting for nearly 16% of the country's total population.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/cr20wzwyzl1qo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">4</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">For much of the past year, India-China relations appeared to be on a cautious path to recovery. The two countries have seen ups and downs in their ties over decades - especially over the disputed Himalayan frontier. But events of the past few days suggest that the thaw which has followed their most recent clashes in 2020 may be more fragile than it seems. The latest concerns began when India's border police chief said Chinese troops had returned to disputed areas along the Himalayan frontier in large numbers earlier this year, pitching tents several kilometres inside territory claimed by India. The remarks by Shatrujeet Singh Kapur, director general of the Indo-Tibetan Border Police (ITBP), have triggered a political controversy in Delhi.</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/cj3vq7nkzr0qo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+<div class="article">
+<span class="num">5</span>
+<div class="content">
+<div class="title"></div>
+<div class="desc">Kylian Mbappé has apologised for "ill-judged" comments he made about late Chinese leader Mao Zedong which led to him being dropped by several Chinese brands. The meme is part of a running joke about the Real Madrid forward being called a "dictator" because of his huge influence in football. "My comment was ill-judged, and I now understand that it hurt many people in China and in Chinese communities around the world," Mbappé said in a statement. "I apologise to everyone my words have upset." Spain's La Liga also apologised, saying it "deeply regrets the offence that Kylian Mbappé's recent comments have caused among Chinese fans".</div>
+<div class="source">BBC News</div>
+<div class="link"><a href="https://www.bbc.co.uk/news/articles/cv62yg0erp8zo" target="_blank">🔗 原文連結</a></div>
+</div>
+</div>
+</div>
 
-  // ====== 股票 / 投資 ======
-  {cat:"股票", tags:"股票 投資 台股", title:"📈 台股報告 2026-06-21", url:"tw-stock-report-20260621.html", desc:"台股技術分析報告"},
-
-  // ====== 論文 / 學術 ======
-  {cat:"學術", tags:"論文 企業倫理 PPT", title:"📚 企業倫理_15頁簡報", url:"企業倫理_15頁簡報.html", desc:"企業倫理案例分析簡報"},
-
-  // ====== 管理教材 ======
-  {cat:"教材", tags:"管理 教材 阿米巴", title:"📖 日本阿米巴實務教材", url:"日本阿米巴實務教材.html", desc:"阿米巴經營實戰"},
-  {cat:"教材", tags:"管理 教材 阿米巴 計算", title:"📖 阿米巴計算練習題", url:"阿米巴計算練習題.html", desc:"阿米巴計算練習題目"},
-  {cat:"教材", tags:"管理 教材 行動中的組織", title:"📖 行動中的組織 (100頁)", url:"行動中的組織 (100頁完整版).html", desc:"組織行為學教材完整版"},
-  {cat:"教材", tags:"管理 教材 組織理論", title:"📖 組織理論教材", url:"org-theory-materials.html", desc:"組織理論相關教材"},
-  {cat:"教材", tags:"管理 教材 經理人", title:"📖 經理人管理教材", url:"經理人_管理教材.html", desc:"經理人管理知識"},
-  {cat:"教材", tags:"管理 教材 國外", title:"📖 國外管理教材", url:"國外管理教材.html", desc:"國外管理學參考資料"},
-  {cat:"教材", tags:"管理 教材 知識管理", title:"📖 知識組織講義", url:"knowledge-org-handout.html", desc:"知識組織課程講義"},
-  {cat:"教材", tags:"管理 教材 遠見", title:"📖 遠見管理教材", url:"遠見_管理教材.html", desc:"遠見雜誌管理專題整理"},
-
-  // ====== 工具 / 其他 ======
-  {cat:"工具", tags:"工具 疫苗 健康", title:"💉 帶狀皰疹疫苗資訊", url:"shingles-vaccine.html", desc:"帶狀皰疹疫苗懶人包"},
-  {cat:"工具", tags:"工具 航班", title:"✈️ 台灣→加拿大航班", url:"flight-taiwan-canada.html", desc:"台灣直飛加拿大航班查詢"},
-  {cat:"工具", tags:"工具 面試", title:"💼 面試技巧", url:"interview-tips.html", desc:"面試準備與技巧"},
-  {cat:"工具", tags:"工具 維生素", title:"💊 維生素補充指南", url:"vitamin-ex-premium.html", desc:"維生素補充計劃 Premium"},
-  {cat:"工具", tags:"工具 比較", title:"🔍 模型比較", url:"model-comparison.html", desc:"AI模型對比"},
-  {cat:"工具", tags:"工具 OpenClaw", title:"🔧 OpenClaw 修復記錄", url:"openclaw-fix.html", desc:"OpenClaw 故障排除"},
-  {cat:"工具", tags:"工具 上傳", title:"📤 檔案上傳頁", url:"upload.html", desc:"檔案上傳測試"},
-  {cat:"工具", tags:"工具", title:"📝 test-upload", url:"test-upload.html", desc:"上傳測試"},
-];
-
-// Extract categories
-const cats = [...new Set(pages.map(p=>p.cat))];
-
-// Render category nav
-const navEl = document.getElementById('catNav');
-navEl.innerHTML = `<button class="cat-btn active" onclick="switchCat('all',this)">📋 全部</button>` +
-  cats.map(c=>`<button class="cat-btn" onclick="switchCat('${c}',this)">${c}</button>`).join('');
-
-// Render all pages
-function render(filterCat='all', query=''){
-  const el = document.getElementById('content');
-  const q = query.toLowerCase().trim();
-  
-  // Group by category
-  let groups = {};
-  cats.forEach(c=>groups[c]=[]);
-  
-  pages.forEach(p=>{
-    if(filterCat!=='all' && p.cat!==filterCat) return;
-    if(q && !p.title.toLowerCase().includes(q) && !p.tags.toLowerCase().includes(q) && !p.desc.toLowerCase().includes(q)) return;
-    (groups[p.cat] || (groups[p.cat]=[])).push(p);
-  });
-  
-  let html='';
-  cats.forEach(c=>{
-    const list=groups[c];
-    if(!list||!list.length) return;
-    html+=`<div class="category">
-      <div class="cat-title">${c}<span class="count">${list.length}</span></div>
-      <div class="card-grid">`;
-    list.forEach(p=>{
-      const tagColors={旅行:'rgba(212,163,115,.15)',新聞:'rgba(231,111,81,.15)',股票:'rgba(42,157,143,.15)',學術:'rgba(233,196,106,.15)',教材:'rgba(102,126,234,.15)',工具:'rgba(130,130,130,.15)'};
-      const tc=tagColors[p.cat]||'rgba(255,255,255,.06)';
-      const tn={旅行:'#d4a373',新聞:'#e76f51',股票:'#2a9d8f',學術:'#e9c46a',教材:'#667eea',工具:'#888'};
-      html+=`<div class="card"><a href="${p.url}">
-        <span class="tag" style="background:${tc};color:${tn[p.cat]||'#999'}">${p.cat}</span>
-        <h3>${p.title}</h3>
-        <div class="url">${p.url}</div>
-        ${p.desc ? `<p>${p.desc}</p>` : ''}
-      </a></div>`;
-    });
-    html+=`</div></div>`;
-  });
-  
-  el.innerHTML = html || '<p style="text-align:center;color:rgba(255,255,255,.3);padding:60px 0">找不到符合的頁面</p>';
-}
-
-// Switch category
-function switchCat(cat, btn){
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  render(cat, document.getElementById('search').value);
-}
-
-// Search
-function filterPages(){
-  render(document.querySelector('.cat-btn.active')?.textContent.includes('全部')?'all':document.querySelector('.cat-btn.active')?.textContent||'all',
-    document.getElementById('search').value);
-}
-
-render();
-</script>
-
+<footer>📰 新聞來源：BBC News、ETtoday、自由時報 · 自動整理於 2026-10-29<br>點擊「原文連結」可前往原始網站閱讀完整內容</footer>
+</div>
 </body>
 </html>
