@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沖繩行程 2026年11月</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 1em;
+        }
+        
+        /* 住宿摘要 */
+        .hotel-summary {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .hotel-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .hotel-tag span { font-weight: bold; }
+        .h1 { color: #2ecc71; }
+        .h2 { color: #3498db; }
+        .h3 { color: #e67e22; }
+        
+        /* 時間軸 */
+        .timeline { position: relative; padding-left: 50px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #2ecc71, #3498db, #9b59b6, #e67e22, #e74c3c);
+            border-radius: 2px;
+        }
+        
+        .day-card {
+            position: relative;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .day-card::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 25px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid;
+        }
+        .day1::before { border-color: #2ecc71; background: #2ecc71; }
+        .day2::before { border-color: #3498db; background: #3498db; }
+        .day3::before { border-color: #9b59b6; background: #9b59b6; }
+        .day4::before { border-color: #e67e22; background: #e67e22; }
+        .day5::before { border-color: #e74c3c; background: #e74c3c; }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .day-num {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 60px;
+        }
+        .day1 .day-num { color: #2ecc71; }
+        .day2 .day-num { color: #3498db; }
+        .day3 .day-num { color: #9b59b6; }
+        .day4 .day-num { color: #e67e22; }
+        .day5 .day-num { color: #e74c3c; }
+        .day-info h2 { font-size: 1.2em; margin-bottom: 3px; }
+        .day-info p { font-size: 0.85em; color: #aaa; }
+        
+        /* 活動項目 */
+        .activity {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        .activity-icon {
+            font-size: 1.5em;
+            margin-right: 12px;
+            min-width: 30px;
+            text-align: center;
+        }
+        .activity-content { flex: 1; }
+        .activity-time {
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        .activity-title {
+            font-weight: bold;
+            font-size: 1em;
+            margin-bottom: 3px;
+        }
+        .activity-desc {
+            font-size: 0.9em;
+            color: #ccc;
+            line-height: 1.4;
+        }
+        .highlight {
+            background: linear-gradient(90deg, #f39c12, #e74c3c);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+        
+        /* 住宿標籤 */
+        .hotel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .day1 .hotel-badge { background: rgba(46,204,113,0.2); color: #2ecc71; }
+        .day2 .hotel-badge { background: rgba(52,152,219,0.2); color: #3498db; }
+        .day3 .hotel-badge { background: rgba(155,89,182,0.2); color: #9b59b6; }
+        .day4 .hotel-badge { background: rgba(230,126,34,0.2); color: #e67e22; }
+        .day5 .hotel-badge { background: rgba(231,76,60,0.2); color: #e74c3c; }
+        
+        /* 移動資訊 */
+        .move-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(243,156,18,0.15);
+            border-radius: 10px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .move-info .icon { font-size: 1.3em; }
+        
+        /* 備註 */
+        .note {
+            background: rgba(255,255,255,0.05);
+            border-left: 3px solid #f39c12;
+            padding: 10px 15px;
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: #aaa;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* 結尾 */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.85em;
+        }
+        
+        @media (max-width: 600px) {
+            .timeline { padding-left: 40px; }
+            .day-card::before { left: -28px; }
+            .hotel-summary { gap: 10px; }
+            .hotel-tag { font-size: 0.8em; padding: 8px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌴 沖繩 4天3夜 詳細行程</h1>
+        <p class="subtitle">2026年11月9日～13日 ｜ 長榮航空 07:00 抵達</p>
+        
+        <!-- 住宿摘要 -->
+        <div class="hotel-summary">
+            <div class="hotel-tag"><span class="h1">Day 1</span> 那霸大和飯店</div>
+            <div class="hotel-tag"><span class="h2">Day 2-3</span> 沖繩紫藤飯店</div>
+            <div class="hotel-tag"><span class="h3">Day 4</span> 沖繩日航飯店</div>
+        </div>
+        
+        <div class="timeline">
+            <!-- Day 1 -->
+            <div class="day-card day1">
+                <div class="day-header">
+                    <div class="day-num">D1</div>
+                    <div class="day-info">
+                        <h2>11月9日 星期一</h2>
+                        <p>抵達那霸 → 市區逛街</p>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">✈️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">07:00</div>
+                        <div class="activity-title">抵達那霸機場</div>
+                        <div class="activity-desc">長榮航空 EVA Air 抵達</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🏨</span>
+                    <div class="activity-content">
+                        <div class="activity-time">上午～中午</div>
+                        <div class="activity-title">前往那霸大和飯店</div>
+                        <div class="activity-desc">機場 → 那霸市區（約30-40分鐘車程）</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🛍️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">下午～晚上</div>
+                        <div class="activity-title">國際通逛街</div>
+                        <div class="activity-desc">那霸最熱鬧的商店街，伴手禮、藥妝、美食一應俱全</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🍽️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">晚上</div>
+                        <div class="activity-title">美榮橋市場晚餐</div>
+                        <div class="activity-desc">沖繩在地海鮮市場，推薦試試看魚糕、海產丼</div>
+                    </div>
+                </div>
+                
+                <div class="hotel-badge">🏨 住宿：那霸大和飯店</div>
+            </div>
+            
+            <!-- Day 2 -->
+            <div class="day-card day2">
+                <div class="day-header">
+                    <div class="day-num">D2</div>
+                    <div class="day-info">
+                        <h2>11月10日 星期二</h2>
+                        <p>租車北上 → 美麗海水族館 → 紫藤</p>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🚗</span>
+                    <div class="activity-content">
+                        <div class="activity-time">早上</div>
+                        <div class="activity-title">美麗島租車</div>
+                        <div class="activity-desc">那霸市區或機場取車，開始北部之旅</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🐠</span>
+                    <div class="activity-content">
+                        <div class="activity-time">08:30</div>
+                        <div class="activity-title">美麗海水族館</div>
+                        <div class="activity-desc">沖繩人氣景點，黑潮之海鯨鯊水槽必看！建議一開門就去避開人潮</div>
+                    </div>
+                </div>
+                
+                <div class="note">💡 水族館營運時間：10月～2月 08:30-18:30</div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🍱</span>
+                    <div class="activity-content">
+                        <div class="activity-time">中午</div>
+                        <div class="activity-title">水族館附近午餐</div>
+                        <div class="activity-desc">海洋博公園內或附近餐廳用餐</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🚗</span>
+                    <div class="activity-content">
+                        <div class="activity-time">下午</div>
+                        <div class="activity-title">沿國道沿途玩 → 紫藤飯店</div>
+                        <div class="activity-desc">從美麗海往本部町方向，沿途經過海灘、風景區，抵達沖繩紫藤飯店</div>
+                    </div>
+                </div>
+                
+                <div class="move-info">
+                    <span class="icon">📍</span>
+                    <span>美麗海 → 紫藤約 10-15 分鐘車程（同區域）</span>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🍖</span>
+                    <div class="activity-content">
+                        <div class="activity-time">晚上</div>
+                        <div class="activity-title"><span class="highlight">百年古家阿古豬</span></div>
+                        <div class="activity-desc">沖繩名產黑豬料理，歷史悠久的老字號餐廳，推薦烤豬排、豬肉涮涮鍋</div>
+                    </div>
+                </div>
+                
+                <div class="note">⚠️ 建議提前預約，營業時間可能需要確認</div>
+                
+                <div class="hotel-badge">🏨 住宿：沖繩紫藤飯店（北部本部町）</div>
+            </div>
+            
+            <!-- Day 3 -->
+            <div class="day-card day3">
+                <div class="day-header">
+                    <div class="day-num">D3</div>
+                    <div class="day-info">
+                        <h2>11月11日 星期三</h2>
+                        <p>美麗海周邊景點 → 返回那霸</p>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🏨</span>
+                    <div class="activity-content">
+                        <div class="activity-time">早上</div>
+                        <div class="activity-title">紫藤飯店出發</div>
+                        <div class="activity-desc">輕鬆起床，享受北部晨間</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🐠</span>
+                    <div class="activity-content">
+                        <div class="activity-time">上午</div>
+                        <div class="activity-title">美麗海水族館 + 海洋博公園</div>
+                        <div class="activity-desc">再次進入水族館（或補逛昨天沒看完的展區），海洋博公園散步</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🛍️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">中午～下午</div>
+                        <div class="activity-title">Premium Outlet 購物</div>
+                        <div class="activity-desc">步行可達！約200家品牌，運動休閒名牌出清好去處</div>
+                    </div>
+                </div>
+                
+                <div class="note">💡 Outlet營業時間：10:00-20:00（全年無休）</div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🍱</span>
+                    <div class="activity-content">
+                        <div class="activity-time">下午</div>
+                        <div class="activity-title">Outlet附近午餐</div>
+                        <div class="activity-desc">Outlet內或周邊餐廳用餐</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🚗</span>
+                    <div class="activity-content">
+                        <div class="activity-time">傍晚</div>
+                        <div class="activity-title">南下返回那霸</div>
+                        <div class="activity-desc">本部町 → 那霸市區（約40-50分鐘車程）</div>
+                    </div>
+                </div>
+                
+                <div class="move-info">
+                    <span class="icon">📍</span>
+                    <span>北部本部町 → 那霸市區 約 40-50 分鐘</span>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🏨</span>
+                    <div class="activity-content">
+                        <div class="activity-time">傍晚</div>
+                        <div class="activity-title">沖繩日航飯店 check-in</div>
+                        <div class="activity-desc">那霸市區，靠近機場</div>
+                    </div>
+                </div>
+                
+                <div class="hotel-badge">🏨 住宿：沖繩日航飯店（那霸市區）</div>
+            </div>
+            
+            <!-- Day 4 -->
+            <div class="day-card day4">
+                <div class="day-header">
+                    <div class="day-num">D4</div>
+                    <div class="day-info">
+                        <h2>11月12日 星期四</h2>
+                        <p>中部美國村 → 古宇利島 → 萬座毛</p>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🚗</span>
+                    <div class="activity-content">
+                        <div class="activity-time">早上</div>
+                        <div class="activity-title">那霸市區出發往南</div>
+                        <div class="activity-desc">繼續租車，前往中部地區</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🪨</span>
+                    <div class="activity-content">
+                        <div class="activity-time">上午</div>
+                        <div class="activity-title">萬座毛</div>
+                        <div class="activity-desc">沖繩著名海蝕崖景點，形狀像大象鼻子，可遠眺太平洋</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🗼</span>
+                    <div class="activity-content">
+                        <div class="activity-time">上午</div>
+                        <div class="activity-title">殘波岬燈塔</div>
+                        <div class="activity-desc">沖繩最北端的燈塔，白色燈塔配藍天白雲，拍照超美</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🏝️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">中午</div>
+                        <div class="activity-title">古宇利島</div>
+                        <div class="activity-desc">過海峽跨海纜車（或古宇利大橋），藍色海水超夢幻，島上有古宇利海洋度假村</div>
+                    </div>
+                </div>
+                
+                <div class="note">💡 古宇利島是沖繩熱門婚紗拍摄地，景色非常美</div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🏖️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">下午</div>
+                        <div class="activity-title">美國村</div>
+                        <div class="activity-desc">沖繩最著名的海灘休閒區，美式風格建築、衝浪海灘、各種遊樂設施</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">⏰</span>
+                    <div class="activity-content">
+                        <div class="activity-time">19:00前</div>
+                        <div class="activity-title"><span class="highlight">還車</span></div>
+                        <div class="activity-desc">務必在晚上7點前還車，建議預留緩衝時間</div>
+                    </div>
+                </div>
+                
+                <div class="move-info">
+                    <span class="icon">📍</span>
+                    <span>還車後 → 返回日航飯店（那霸市區）</span>
+                </div>
+                
+                <div class="hotel-badge">🏨 住宿：沖繩日航飯店（那霸市區）</div>
+            </div>
+            
+            <!-- Day 5 -->
+            <div class="day-card day5">
+                <div class="day-header">
+                    <div class="day-num">D5</div>
+                    <div class="day-info">
+                        <h2>11月13日 星期五</h2>
+                        <p>返程日</p>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">☀️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">09:30</div>
+                        <div class="activity-title">起床</div>
+                        <div class="activity-desc">享受在沖繩的最後早晨</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🏨</span>
+                    <div class="activity-content">
+                        <div class="activity-time">10:00</div>
+                        <div class="activity-title">日航飯店 check-out</div>
+                        <div class="activity-desc">辦理退房</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🧳</span>
+                    <div class="activity-content">
+                        <div class="activity-time">上午</div>
+                        <div class="activity-title">那霸機場寄放行李</div>
+                        <div class="activity-desc">機場有投幣式行李箱寄放櫃，輕裝逛街無負擔</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🛍️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">白天</div>
+                        <div class="activity-title">那霸市區最後採購</div>
+                        <div class="activity-desc">國際通補買伴手禮、藥妝、沖繩特產（紅芋餅、燒酒、海鹽等）</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">🍽️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">中午</div>
+                        <div class="activity-title">那霸市區午餐</div>
+                        <div class="activity-desc">沖繩拉面、阿古豬定食、海鮮粥等</div>
+                    </div>
+                </div>
+                
+                <div class="activity">
+                    <span class="activity-icon">✈️</span>
+                    <div class="activity-content">
+                        <div class="activity-time">19:00 左右</div>
+                        <div class="activity-title">抵達機場搭機回程</div>
+                        <div class="activity-desc">長榮航空晚间班機，結束愉快的沖繩之旅</div>
+                    </div>
+                </div>
+                
+                <div class="note">⚠️ 建議提前2小時到機場（17:00左右）</div>
+            </div>
+        </div>
+        
+        <!-- 重要提醒 -->
+        <div style="background: rgba(231,76,60,0.2); border: 1px solid #e74c3c; border-radius: 12px; padding: 20px; margin-top: 30px;">
+            <h3 style="color: #e74c3c; margin-bottom: 15px;">⚠️ 重要提醒</h3>
+            <ul style="color: #ccc; line-height: 1.8; padding-left: 20px;">
+                <li>租車時間：Day 2 取車 → Day 4 19:00 前還車</li>
+                <li>美麗海水族館：10月～2月 08:30-18:30（最後入場 17:30）</li>
+                <li>Premium Outlet：10:00-20:00（全年無休）</li>
+                <li>百年古家阿古豬：建議提前預約</li>
+                <li>古宇利島：可搭跨海纜車或走古宇利大橋</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>沖繩行程攻略 | 2026年11月9日～13日</p>
+            <p style="margin-top: 5px; font-size: 0.8em;">如有問題隨時詢問</p>
+        </div>
+    </div>
+</body>
+</html>
