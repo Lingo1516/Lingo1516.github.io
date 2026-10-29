@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>組織行為學 - Organizational Behavior</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #333; }
+  .header { background: #1F4E79; color: white; padding: 16px 20px; text-align: center; position: sticky; top: 0; z-index: 100; }
+  .header h1 { font-size: 20px; font-weight: 700; }
+  .header p { font-size: 12px; opacity: 0.85; margin-top: 4px; }
+  .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+  .slide { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 20px; overflow: hidden; }
+  .slide-header { background: #2E75B6; color: white; padding: 12px 20px; font-size: 18px; font-weight: 700; }
+  .slide-body { padding: 20px; }
+  .slide-body ul { list-style: none; padding: 0; }
+  .slide-body li { padding: 6px 0; padding-left: 20px; position: relative; font-size: 15px; line-height: 1.6; border-bottom: 1px solid #f0f0f0; }
+  .slide-body li:last-child { border-bottom: none; }
+  .slide-body li::before { content: "•"; position: absolute; left: 0; color: #2E75B6; font-weight: bold; }
+  .slide-body li.level2 { padding-left: 36px; font-size: 14px; color: #555; }
+  .slide-body li.level2::before { content: "–"; color: #2E75B6; }
+  .slide-number { display: inline-block; background: #1F4E79; color: white; width: 28px; height: 28px; line-height: 28px; text-align: center; border-radius: 50%; font-size: 13px; font-weight: bold; margin-right: 8px; }
+  .slide-title { display: flex; align-items: center; margin-bottom: 12px; }
+  .slide-title h2 { font-size: 20px; color: #1F4E79; }
+  .footer { text-align: center; padding: 20px; font-size: 12px; color: #999; }
+  .toc { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 20px; margin-bottom: 20px; }
+  .toc h3 { font-size: 16px; color: #1F4E79; margin-bottom: 12px; }
+  .toc a { display: block; padding: 6px 0; color: #2E75B6; text-decoration: none; font-size: 14px; border-bottom: 1px solid #f5f5f5; }
+  .toc a:hover { color: #1F4E79; }
+  @media (max-width: 600px) {
+    .header h1 { font-size: 16px; }
+    .slide-header { font-size: 15px; padding: 10px 14px; }
+    .slide-body { padding: 14px; }
+    .slide-body li { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📊 組織行為學 / Organizational Behavior</h1>
+  <p>16 張投影片 · 基礎概念與核心理論</p>
+</div>
+<div class="container">
+<div class="toc">
+  <h3>📋 目錄</h3>
+  <a href="#slide-1">第 1 張：組織行為學</a>
+  <a href="#slide-2">第 2 張：本講程大綱</a>
+  <a href="#slide-3">第 3 張：組織行為學是什麼？</a>
+  <a href="#slide-4">第 4 張：組織行為學的三個分析層次</a>
+  <a href="#slide-5">第 5 張：核心理論概覽</a>
+  <a href="#slide-6">第 6 張：Hawthorne Effect — 霍桑效應</a>
+  <a href="#slide-7">第 7 張：Maslow's Hierarchy of Needs — 需求層次理論</a>
+  <a href="#slide-8">第 8 張：Herzberg's Two-Factor Theory — 雙因素理論</a>
+  <a href="#slide-9">第 9 張：Tuckman's Team Development — 團隊發展階段</a>
+  <a href="#slide-10">第 10 張：領導風格與決策</a>
+  <a href="#slide-11">第 11 張：動機理論與應用</a>
+  <a href="#slide-12">第 12 張：組織文化與結構</a>
+  <a href="#slide-13">第 13 張：群體決策與認知偏誤</a>
+  <a href="#slide-14">第 14 張：組織變革管理</a>
+  <a href="#slide-15">第 15 張：總結與關鍵啟示</a>
+  <a href="#slide-16">第 16 張：參考資料</a>
+</div>
+
+<div class="slide" id="slide-1">
+  <div class="slide-header">
+    <span class="slide-number">1</span> 組織行為學
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>Organizational Behavior — 基礎概念與核心理論</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-2">
+  <div class="slide-header">
+    <span class="slide-number">2</span> 本講程大綱
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>什麼是組織行為學？</li>
+      <li>組織行為學的核心層次：個人、群體、組織</li>
+      <li>主要理論概覽</li>
+      <li>領導風格與決策</li>
+      <li>組織文化與結構</li>
+      <li>動機與績效</li>
+      <li>團隊發展與群體動態</li>
+      <li>總結與應用</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-3">
+  <div class="slide-header">
+    <span class="slide-number">3</span> 組織行為學是什麼？
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>研究組織中個人與群體行為的學科</li>
+      <li>目標：理解、預測並改善工作場所的行為</li>
+      <li>跨領域：心理學、社會學、管理學、經濟學</li>
+      <li>核心問題：</li>
+      <li>• 個人為什麼在組織中這樣行動？</li>
+      <li>• 群體如何影響個人決策？</li>
+      <li>• 組織文化如何塑造行為？</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-4">
+  <div class="slide-header">
+    <span class="slide-number">4</span> 組織行為學的三個分析層次
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>個人層次（Individual Level）</li>
+      <li>• 態度、感知、學習、動機、人格</li>
+      <li>• 決策過程與認知偏誤</li>
+      <li>群體層次（Group Level）</li>
+      <li>• 團隊動態、溝通、衝突、領導</li>
+      <li>• 群體思維與社會惰化</li>
+      <li>組織層次（Organizational Level）</li>
+      <li>• 組織文化、結構、變革</li>
+      <li>• 制度設計與戰略匹配</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-5">
+  <div class="slide-header">
+    <span class="slide-number">5</span> 核心理論概覽
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>Hawthorne Effect（霍桑效應）</li>
+      <li>Maslow&#x27;s Hierarchy of Needs（需求層次理論）</li>
+      <li>Herzberg&#x27;s Two-Factor Theory（雙因素理論）</li>
+      <li>Tuckman&#x27;s Team Development Stages</li>
+      <li>Vroom&#x27;s Expectancy Theory</li>
+      <li>Adams&#x27; Equity Theory</li>
+      <li>Kotter&#x27;s 8-Step Change Model</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-6">
+  <div class="slide-header">
+    <span class="slide-number">6</span> Hawthorne Effect — 霍桑效應
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>1920s–30s，美國 Western Electric 工廠實驗</li>
+      <li>發現：當員工知道自己被觀察時，產出會提高</li>
+      <li>核心啟示：關注與參與感本身就能提升績效</li>
+      <li>對管理的啟示：</li>
+      <li>• 管理者的一視同仁與關注很重要</li>
+      <li>• 員工感受到被重視時會更投入</li>
+      <li>• 不要忽視「被觀察」這一心理因素</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-7">
+  <div class="slide-header">
+    <span class="slide-number">7</span> Maslow&#x27;s Hierarchy of Needs — 需求層次理論
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>需求由低到高分為五個層次：</li>
+      <li>1. 生理需求（薪資、工作環境）</li>
+      <li>2. 安全需求（職業穩定性、福利）</li>
+      <li>3. 社交需求（團隊歸屬感、人際關係）</li>
+      <li>4. 尊重需求（認可、成就感、地位）</li>
+      <li>5. 自我實現（成長、創造力、使命感）</li>
+      <li>管理應用：</li>
+      <li>• 不同員工處於不同層次，激勵方式應個別化</li>
+      <li>• 基層需求未滿時，高層次激勵效果有限</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-8">
+  <div class="slide-header">
+    <span class="slide-number">8</span> Herzberg&#x27;s Two-Factor Theory — 雙因素理論
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>保健因素（Hygiene Factors）— 消除不滿</li>
+      <li>• 薪資、公司政策、監督、工作條件</li>
+      <li>• 缺乏時會導致不滿，但充足也不會讓人滿意</li>
+      <li>激勵因素（Motivators）— 產生滿意</li>
+      <li>• 成就感、認可、工作本身、責任、成長</li>
+      <li>• 這些才能真正驅動員工投入</li>
+      <li>啟示：提高薪資只能消除不滿，不能激發動力</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-9">
+  <div class="slide-header">
+    <span class="slide-number">9</span> Tuckman&#x27;s Team Development — 團隊發展階段
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>Forming（形成期）</li>
+      <li>• 團隊成員互相認識，依賴領導者</li>
+      <li>Storming（衝突期）</li>
+      <li>• 意見分歧、衝突、挑戰領導</li>
+      <li>Norming（規範期）</li>
+      <li>• 建立共識、角色明確、信任形成</li>
+      <li>Performing（執行期）</li>
+      <li>• 高效合作、自主決策、聚焦目標</li>
+      <li>Adjourning（解散期）</li>
+      <li>• 任務完成，團隊解散或轉型</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-10">
+  <div class="slide-header">
+    <span class="slide-number">10</span> 領導風格與決策
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>Autocratic（專制型）</li>
+      <li>• 單獨決策，效率高但員工參與度低</li>
+      <li>Democratic（民主型）</li>
+      <li>• 團隊參與決策，滿意度高但速度較慢</li>
+      <li>Laissez-faire（放任型）</li>
+      <li>• 賦予高度自主，適合成熟團隊</li>
+      <li>• 缺乏方向時易導致混亂</li>
+      <li>情境領導（Situational Leadership）</li>
+      <li>• 沒有萬能的領導風格，應根據團隊成熟度調整</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-11">
+  <div class="slide-header">
+    <span class="slide-number">11</span> 動機理論與應用
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>Vroom&#x27;s Expectancy Theory</li>
+      <li>• 動機 = 期望 × 工具性 × 效價</li>
+      <li>• 員工相信努力→績效→獎勵→有價值，才會有動力</li>
+      <li>Adams&#x27; Equity Theory</li>
+      <li>• 人們比較自己的投入/產出比與他人</li>
+      <li>• 不公平感會導致不滿或減少投入</li>
+      <li>實際應用：</li>
+      <li>• 透明的績效考核制度</li>
+      <li>• 公平的獎勵分配</li>
+      <li>• 個人化的激勵方案</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-12">
+  <div class="slide-header">
+    <span class="slide-number">12</span> 組織文化與結構
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>組織文化的四個層次（Schein 模型）</li>
+      <li>1. 可見的象徵與行為（Artifacts）</li>
+      <li>2. 宣揚的價值觀（Espoused Values）</li>
+      <li>3. 基本假設（Basic Assumptions）</li>
+      <li>組織結構類型</li>
+      <li>• 機械式（Mechanistic）：階層分明、規章嚴格</li>
+      <li>• 有機式（Organic）：扁平、靈活、自主</li>
+      <li>文化與結構的匹配決定組織效能</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-13">
+  <div class="slide-header">
+    <span class="slide-number">13</span> 群體決策與認知偏誤
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>群體決策的優勢</li>
+      <li>• 更多資訊與觀點</li>
+      <li>• 增加承諾感與接受度</li>
+      <li>常見問題</li>
+      <li>• 群體思維（Groupthink）：追求和諧壓制異見</li>
+      <li>• 極端化現象：群體討論後立場更極端</li>
+      <li>• 社會惰化（Social Loafing）：個人努力降低</li>
+      <li>改善方法</li>
+      <li>• 指定反對者角色</li>
+      <li>• 匿名提報意見</li>
+      <li>• 領導者最後發言</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-14">
+  <div class="slide-header">
+    <span class="slide-number">14</span> 組織變革管理
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>Kotter&#x27;s 8-Step Change Model</li>
+      <li>1. 建立緊迫感</li>
+      <li>2. 組建領導聯盟</li>
+      <li>3. 形成願景</li>
+      <li>4. 溝通願景</li>
+      <li>5. 移除障礙</li>
+      <li>6. 創造短期勝利</li>
+      <li>7. 巩固改進</li>
+      <li>8. 制度化變革</li>
+      <li>變革阻力來源</li>
+      <li>• 習慣性、安全感、誤解、利益衝突</li>
+      <li>• 應對：參與式改革、充分溝通、適當補償</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-15">
+  <div class="slide-header">
+    <span class="slide-number">15</span> 總結與關鍵啟示
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>組織行為學幫助我理解人為什麼在工作中這樣行動</li>
+      <li>個人層次：認知、動機、人格驅動行為</li>
+      <li>群體層次：團隊動態、溝通、衝突影響績效</li>
+      <li>組織層次：文化與結構塑造長期行為模式</li>
+      <li>核心啟示：</li>
+      <li>• 好的管理是理解人性，而非控制</li>
+      <li>• 制度設計應匹配人性需求</li>
+      <li>• 持續觀察與反思是領導者的基本功</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide" id="slide-16">
+  <div class="slide-header">
+    <span class="slide-number">16</span> 參考資料
+  </div>
+  <div class="slide-body">
+    <ul>
+      <li>Robbins, S. P., &amp; Judge, T. A. (2023). Organizational Behavior. Pearson.</li>
+      <li>Maslow, A. H. (1943). A Theory of Human Motivation. Psychological Review.</li>
+      <li>Herzberg, F. (1959). The Motivation to Work. Wiley.</li>
+      <li>Tuckman, B. W. (1965). Developmental sequence in small groups. Psychological Bulletin.</li>
+      <li>Vroom, V. H. (1964). Work and Motivation. Wiley.</li>
+      <li>Kotter, J. P. (1996). Leading Change. Harvard Business Review Press.</li>
+      <li>Schein, E. H. (2010). Organizational Culture and Leadership. Jossey-Bass.</li>
+      <li>投影片僅供參考，詳情請見原書</li>
+      <li>組織行為學 | Organizational Behavior</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+<div class="footer">
+  <p>投影片僅供參考，詳情請見原書 | Robbins & Judge, Organizational Behavior (Pearson)</p>
+  <p>Generated from PPTX → HTML conversion</p>
+</div>
+</body>
+</html>
