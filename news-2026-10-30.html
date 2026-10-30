@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0F0A1E">
+<meta name="color-scheme" content="dark">
+<title>台灣新聞深度日報 — 2026/10/30（五）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: #0F0A1E;
+    color: #E8E4F3;
+    line-height: 1.85;
+    font-size: 16px;
+  }
+
+  header {
+    background: linear-gradient(160deg, #1A1233 0%, #0F0A1E 70%);
+    border-bottom: 1px solid #2C2150;
+    padding: 46px 20px 34px;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 1.62rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+  header .sub {
+    font-size: 0.92rem;
+    color: #9A8FC0;
+    letter-spacing: 0.04em;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 26px 16px 70px; }
+
+  /* ── 市場速覽 ── */
+  .market {
+    background: #1A1233;
+    border: 1px solid #2C2150;
+    border-radius: 14px;
+    padding: 20px 18px;
+    margin-bottom: 28px;
+  }
+  .market h2 {
+    font-size: 1rem;
+    color: #FFB84D;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .mkt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+    gap: 12px;
+  }
+  .mkt-card {
+    background: #0F0A1E;
+    border-left: 3px solid #FF4D8D;
+    border-radius: 8px;
+    padding: 11px 13px;
+  }
+  .mkt-card .label { font-size: 0.76rem; color: #9A8FC0; letter-spacing: 0.05em; }
+  .mkt-card .value { font-size: 1.12rem; font-weight: 800; color: #FFFFFF; margin: 3px 0 1px; }
+  .mkt-card .chg { font-size: 0.82rem; font-weight: 700; }
+  .down { color: #3DDC97; }   /* 台股慣例：跌綠 */
+  .up { color: #FF4D5E; }
+
+  /* ── 分區 ── */
+  section { margin-bottom: 40px; }
+  .sec-title {
+    font-size: 1.16rem;
+    font-weight: 800;
+    padding: 0 0 12px 14px;
+    border-left: 5px solid #FF4D8D;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+    color: #FFFFFF;
+  }
+  .sec-note {
+    font-size: 0.8rem;
+    color: #8A7FB5;
+    padding-left: 19px;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  article {
+    background: #1A1233;
+    border-radius: 12px;
+    border-left: 4px solid #FF4D8D;
+    padding: 20px 20px 18px;
+    margin-bottom: 16px;
+  }
+  article h3 {
+    font-size: 1.04rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.55;
+    margin-bottom: 11px;
+  }
+  article .time {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #0F0A1E;
+    background: #9A8FC0;
+    border-radius: 4px;
+    padding: 1px 7px;
+    margin-right: 8px;
+    vertical-align: 2px;
+    letter-spacing: 0.04em;
+  }
+  article p {
+    font-size: 0.94rem;
+    color: #C9C2E2;
+    margin-bottom: 11px;
+    line-height: 1.9;
+  }
+  article .watch {
+    font-size: 0.88rem;
+    color: #7FE3C0;
+    border-top: 1px dashed #33285A;
+    padding-top: 11px;
+    margin-top: 4px;
+    line-height: 1.75;
+  }
+  article .watch b { color: #3DDC97; font-weight: 700; margin-right: 4px; }
+
+  /* 各區配色 */
+  .pol  .sec-title { border-left-color: #FF4D8D; }
+  .pol  article    { border-left-color: #FF4D8D; }
+  .eco  .sec-title { border-left-color: #FF7A3D; }
+  .eco  article    { border-left-color: #FF7A3D; }
+  .intl .sec-title { border-left-color: #3DDC97; }
+  .intl article    { border-left-color: #3DDC97; }
+  .tech .sec-title { border-left-color: #00C9DB; }
+  .tech article    { border-left-color: #00C9DB; }
+  .fin  .sec-title { border-left-color: #FFB84D; }
+  .fin  article    { border-left-color: #FFB84D; }
+  .ent  .sec-title { border-left-color: #FF6FB5; }
+  .ent  article    { border-left-color: #FF6FB5; }
+  .mgmt .sec-title { border-left-color: #9B5DE5; }
+  .mgmt article    { border-left-color: #9B5DE5; }
+
+  .focus {
+    background: linear-gradient(150deg, #241A44, #1A1233);
+    border: 1px solid #3D2E6B;
+    border-radius: 14px;
+    padding: 24px 20px;
+    margin-top: 8px;
+  }
+  .focus h2 {
+    color: #FFB84D;
+    font-size: 1.02rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .focus p { font-size: 0.95rem; color: #D5CEEA; line-height: 1.95; }
+
+  footer {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #6B5F94;
+    padding: 26px 16px 40px;
+    line-height: 1.9;
+  }
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.32rem; }
+    .wrap { padding: 20px 13px 56px; }
+    article { padding: 17px 16px 15px; margin-bottom: 15px; }
+    article p { font-size: 0.92rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>台灣新聞深度日報</h1>
+  <div class="sub">2026 年 10 月 30 日（五）· 晚間版</div>
+</header>
+
+<div class="wrap">
+
+  <!-- 市場速覽 -->
+  <div class="market">
+    <h2>━━ 今日市場速覽 ━━</h2>
+    <div class="mkt-grid">
+      <div class="mkt-card">
+        <div class="label">加權指數</div>
+        <div class="value">45,211.83</div>
+        <div class="chg down">▼ 1,156.50（−2.49%）</div>
+      </div>
+      <div class="mkt-card">
+        <div class="label">成交金額</div>
+        <div class="value">8,777 億</div>
+        <div class="chg">三大法人賣超 1,398 億</div>
+      </div>
+      <div class="mkt-card">
+        <div class="label">台積電</div>
+        <div class="value">跌 45 元</div>
+        <div class="chg down">本週兩日累跌 1,824 點</div>
+      </div>
+      <div class="mkt-card">
+        <div class="label">新台幣</div>
+        <div class="value">32.478</div>
+        <div class="chg up">▲ 1.4 分</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 政治 -->
+  <section class="pol">
+    <div class="sec-title">政治</div>
+    <div class="sec-note">立法院法案攻防 × 2026 九合一選舉前哨</div>
+
+    <article>
+      <h3><span class="time">16:50</span>立院三讀水利法　擅墾國有林最重罰 1 億</h3>
+      <p>立法院今日三讀通過《水土保持法》修正案，大幅提高未經同意擅自墾殖、占用國有林班地與山坡地保育區的罰鍰上限至 1 億元，並增訂按次連續處罰與限期拆除回復原狀條款。</p>
+      <p>此次修法背景是近年山區違法墾殖、露營區濫闢層出不窮，包括環團日前揭露的白河關子嶺濫墾案，台南市政府已就違法部分開罰。修法把「行為人」擴及「土地所有權人與實際使用人」負連帶責任，等於堵住過去地主推稱不知情的漏洞。</p>
+      <div class="watch"><b>後續觀察</b>：罰則大幅加重後，實務上能否執行會是關鍵——地方稽查人力長期不足，且 1 億元上限在個案中如何裁量，預料成為下一波朝野質詢焦點。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">14:24</span>毒駕刑責加重　累犯 10 年內致死最重可判死</h3>
+      <p>立院同日三讀《刑法》第 185 條之 3 修正案，將毒駕致人於死的法定刑大幅提高；若行為人在 10 年內再犯且造成死亡結果，最重可判處死刑。這是繼酒駕修法後，國內對「藥物駕駛」最嚴厲的一次立法。</p>
+      <p>藍白陣營原提案更為嚴格，主張一律以殺人罪論處；綠營則認為須保留法官裁量空間、避免罪責失衡。最終通過版本是折衷產物：以「10 年內累犯」為加重條件，同時維持個案判斷餘地。提案時正值多起毒駕致死社會案件延燒，輿論壓力是加速三讀的主因。</p>
+      <div class="watch"><b>後續觀察</b>：死刑條款的合憲性與司法實務適用，將是法律界下一個爭點；同時警方毒駕快篩工具與檢驗能量是否跟上，決定條文能否真正落地。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">16:36</span>賴總統偕沈伯洋參拜　宣示拒外來勢力介選</h3>
+      <p>賴清德總統下午陪同民進黨台北市長參選人沈伯洋，前往天母三玉宮參香。現場支持者踴躍，「洋流」聲勢被媒體形容為爆棚，並送上應援法批。賴在致詞時強調，面對境外勢力透過資訊戰、假訊息介入國內選舉，台灣必須守住民主防線。</p>
+      <p>沈伯洋長期研究認知作戰與統戰手法，此次投入首都選戰，被視為民進黨把「國安」議題地方化的策略布局。天母屬士林北投選區，向來是台北市中間選民指標區，賴親自陪同被解讀為拉抬基本盤士氣。</p>
+      <div class="watch"><b>後續觀察</b>：境外介選議題在九合一選戰後期是否成為綠營主軸，將牽動兩岸議題與地方選情的連動。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">13:22</span>鞏固無人機供應鏈　副總統提 3 大支柱</h3>
+      <p>蕭美琴副總統出席無人機產業活動時指出，台灣要鞏固在亞洲無人機供應鏈的中心地位，需靠「非紅供應鏈信任基礎」、「關鍵零組件自主」與「國際市場對接」三大支柱。她強調，民主國家對無人載具的需求正快速增長，台灣具備資通訊與精密機械的複合優勢。</p>
+      <p>無人機已成國防與商用雙軌產業，從軍用偵察、農業噴灑到物流配送皆在擴張。政府近年推動「無人機產業發展方案」，目標建立從馬達到飛控晶片的完整在地供應鏈，避免關鍵環節受制於中國。</p>
+      <div class="watch"><b>後續觀察</b>：廠商能否取得歐美訂單將是檢驗指標，接單量比政策宣示更能反映供應鏈是否成形。</div>
+    </article>
+  </section>
+
+  <!-- 經濟 -->
+  <section class="eco">
+    <div class="sec-title">經濟</div>
+    <div class="sec-note">AI 投資變現疑慮 × 產業政策</div>
+
+    <article>
+      <h3><span class="time">14:56</span>總統：助企業組聯合艦隊布局海外</h3>
+      <p>賴清德總統出席「榮邦啟航 鏈動全球 經濟外交高峰論壇」時表示，地緣政治、科技發展與經濟安全考量正全面改變全球經貿秩序，企業布局海外不能只算市場、成本與生產效率，更要兼顧供應鏈韌性。他提出由政府協助企業「組聯合艦隊」打團體戰，共同穩固國內產業發展。</p>
+      <p>此番談話對應台商在美國對等關稅、各國在地化要求下，被迫重新配置產能的現實。單一企業赴海外設廠常面臨融資、法規與人才三大障礙，「聯合艦隊」即借鏡日本商社組團投資模式，讓金融、工程與製造業一起出海。</p>
+      <div class="watch"><b>後續觀察</b>：具體工具（如海外信用保證、產業園區合作開發）是否落實，決定這項宣示的實質效果。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">12:47</span>服務業占 GDP 逾五成　AI 應用普及率升至 35%</h3>
+      <p>經濟部公布統計指出，台灣服務業產值占 GDP 已超過五成，服務業導入 AI 的普及率也從去年的低基期攀升至 35%。官員表示，服務業是吸納就業的主體，其數位化程度將直接影響整體生產力成長。</p>
+      <p>值得注意的是，AI 應用率 35% 雖有成長，但相較製造業仍有明顯落差，且多集中在大型企業；中小型服務業者在資料治理、雲端成本與人才三方面仍卡關。政府正透過中小企業數位轉型補助引導。</p>
+      <div class="watch"><b>後續觀察</b>：AI 從「試用」走向「規模化部署」的比率，比普及率更能反映真實競爭力。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">13:33</span>全國研發經費破 1.1 兆　占 GDP 比率略降</h3>
+      <p>114 年度全國研發經費續創新高、突破 1.1 兆元，但占 GDP 比率較前一年略為下滑。主計與科技主管機關分析，主要是 GDP 分母（尤其出口與投資）成長太快所致，並非投入縮減。</p>
+      <p>台灣研發強度長期維持在 3% 以上、居全球前段班，但結構高度集中於半導體與資通訊。企業研發占七成以上，政府在基礎研究占比偏低的問題，一直是學界提醒的隱憂。</p>
+      <div class="watch"><b>後續觀察</b>：基礎研究經費占比是否提升，關係到台灣在下世代技術（量子、生醫、材料）的話語權。</div>
+    </article>
+  </section>
+
+  <!-- 國際 -->
+  <section class="intl">
+    <div class="sec-title">國際</div>
+    <div class="sec-note">美期中選舉倒數 × 加國安戰略 × 亞洲市場連動</div>
+
+    <article>
+      <h3><span class="time">—</span>美期中選舉倒數 4 天　新國會對台政策受矚</h3>
+      <p>美國 11 月 3 日舉行期中選舉，將決定國會兩院權力分布，並牽動華府外交政策走向。美台學者普遍認為，國會跨黨派支持台灣的基本共識短期不易改變，但對選後影響看法分歧：一派認為民主黨拿下任一院，美台關係也不會明顯轉向；另一派擔心共和黨若失利，川普可能更強化個人主導的外交路線，繞過國會既有框架。</p>
+      <p>選戰期間，川普陣營接連拋出選務爭議訴求，向多州發出傳票並祭出懸賞，外界憂心選後可能出現法律戰延長賽，進而拖慢包括軍售與貿易談判在內的行政節奏。</p>
+      <div class="watch"><b>後續觀察</b>：觀察重點不只是席次，更在於川普在選後是否加大對外強硬動作（含中東與伊朗議題），那將是全球風險資產波動的主要來源。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">—</span>加拿大首份國安戰略　點名台灣為可信賴夥伴</h3>
+      <p>加拿大發布 20 多年來首份國家安全戰略，多位出席溫哥華國際安全峰會的專家肯定台灣面對中國威脅時展現的經濟韌性與反制假訊息能力，並將台灣定位為加拿大強化國安與供應鏈韌性的可信賴夥伴。</p>
+      <p>加國長期在對中政策上相對謹慎，此次戰略文件把供應鏈韌性與外國干預並列為核心議題，被視為中等強國（middle power）集體轉向的訊號。對台灣而言，這是繼美日之後，在民主夥伴圈中又一次制度性肯定。</p>
+      <div class="watch"><b>後續觀察</b>：加拿大是否在實務上跟進（如關鍵礦物、半導體合作備忘錄），比戰略文件文字更具意義。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">15:14</span>美科技大廠財報不如預期　日經重挫逾 2%</h3>
+      <p>美國科技巨頭財報普遍不如市場預期，加上 AI 資本支出能否轉化為營收的疑慮升溫，日經指數今日重挫逾 2%，亞股全面走弱。Alphabet 財報失色、自由現金流轉負，Marvell 單日暴跌逾 13%，成為拖累費城半導體的關鍵。</p>
+      <p>這波修正的核心並非景氣衰退，而是市場對「AI 投資報酬率」的重新定價：過去一年以來的估值擴張建立在算力需求無限成長的假設上，一旦雲端業者開始質疑回收期，資金便快速撤出高本益比族群。</p>
+      <div class="watch"><b>後續觀察</b>：觀察 Hyperscaler 資本支出指引是否下修，這是判斷本波是「技術性回檔」或「趨勢反轉」的分水嶺。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">12:02</span>巴基斯坦一度對台關閉領空　林佳龍：損人不利己</h3>
+      <p>外交部長林佳龍證實，巴基斯坦近期一度對台灣航班關閉領空，衝擊部分歐亞航線的飛行時間與燃油成本。他表示，此舉「損人不利己」，並強調我方已透過外交管道交涉。</p>
+      <p>巴基斯坦領空是歐亞長程航線的關鍵通道，過去在印巴衝突期間即曾多次關閉，導致全球航空業繞道成本大增。此次直接點名台灣，被解讀帶有政治訊號，而非單純的空域管理措施。</p>
+      <div class="watch"><b>後續觀察</b>：是否形成常態化限制，將影響國籍航空歐洲線的營運成本與票價結構。</div>
+    </article>
+  </section>
+
+  <!-- 科技 -->
+  <section class="tech">
+    <div class="sec-title">科技</div>
+    <div class="sec-note">輝達併購 × 蘋果新品 × AI 監管</div>
+
+    <article>
+      <h3><span class="time">12:24</span>路透：輝達逾 4 千億併 Hugging Face　面臨反壟斷調查</h3>
+      <p>路透報導，輝達以逾 4,000 億元規模併購開源 AI 社群平台 Hugging Face，正面臨反壟斷主管機關調查。Hugging Face 是全球最大的開源模型與資料集集散地，開發者生態系龐大，交易若完成，輝達將同時掌握算力硬體與模型分發的關鍵節點。</p>
+      <p>監管關注點在於：輝達是否可能透過平台地位，對競爭對手的模型取得不對稱的能見度或資料優勢。開源社群亦擔憂平台中立性受損，部分開發者已討論分散式備援方案。</p>
+      <div class="watch"><b>後續觀察</b>：調查結果將成為「AI 垂直整合」監管尺度的標竿案例，影響後續雲端與晶片業者的併購策略。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">08:46</span>MacBook Pro 首搭觸控螢幕　M5 晶片售價 9.79 萬起</h3>
+      <p>蘋果發表新款 MacBook Pro，首度搭載觸控螢幕與動態島設計，並採用 M5 系列晶片，售價自 9.79 萬元起。這是蘋果在 Mac 產品線近十年最大的互動介面變革，象徵 iPad 與 Mac 的操作邏輯進一步融合。</p>
+      <p>M5 晶片主打裝置端 AI 推論效能，蘋果持續以自研晶片與統一記憶體架構強化本地 LLM 執行能力，成為其在 AI 競賽中與雲端陣營差異化的路線。</p>
+      <div class="watch"><b>後續觀察</b>：台廠供應鏈（散熱、機殼、觸控模組）受惠程度，以及換機潮是否真實發酵。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">19:01</span>紐約州新法　限制未滿 18 歲使用 AI 聊天機器人</h3>
+      <p>美國紐約州祭出新法，限制未滿 18 歲兒少使用 AI 聊天機器人，成為美國州層級針對 AI 兒少保護最積極的立法之一。法案要求平台實施年齡驗證、預設關閉擬人化人格設定，並對情緒依賴型對話設計加以限制。</p>
+      <p>背景是多起青少年因過度依賴 AI 伴侶而發生心理危機的案例，引發家長與兒少團體強烈壓力。科技業者則憂心各州法規碎片化，將大幅提高合規成本。</p>
+      <div class="watch"><b>後續觀察</b>：其他州是否跟進形成骨牌效應，以及聯邦層級是否出手統一標準。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">15:20</span>幣安遭駭 63 億美元　北韓駭客涉嫌</h3>
+      <p>區塊鏈分析公司 TRM Labs 指出，交易所幣安遭竊約 63 億美元資產，幕後疑為北韓相關駭客組織。這是加密貨幣史上規模最大的竊案之一，資金流向已被鏈上追蹤標記。</p>
+      <p>北韓駭客長期以加密資產竊取作為規避國際制裁的財源，此次規模再創新高，將使各國對交易所資安監理與 KYC 要求進一步收緊。</p>
+      <div class="watch"><b>後續觀察</b>：交易所準備金與用戶賠付安排，以及是否引發資金大規模撤出中心化平台。</div>
+    </article>
+  </section>
+
+  <!-- 財經投資 -->
+  <section class="fin">
+    <div class="sec-title">財經投資</div>
+    <div class="sec-note">台股重挫千點 × 外資賣超 × 金管會回應</div>
+
+    <article>
+      <h3><span class="time">15:26</span>台股挫跌 1,156 點失守半年線　週線月線同步收黑</h3>
+      <p>台股今日開低震盪，盤中一度暴跌逾 1,600 點、連破 46,000 與 45,000 兩大整數關卡，終場下跌 1,156.5 點收 45,211.83 點、跌幅 2.49%，成交金額 8,777.3 億元。電子權值股全面走弱，台積電單日下跌 45 元，台達電更爆冷跌停。上市櫃總市值單日蒸發逾 5 兆元。</p>
+      <p>導火線來自美股：Alphabet 財報失色、自由現金流轉負，Marvell 暴跌逾 13%，四大指數全面收黑。但更深層的原因是市場對 AI 資本支出變現能力的信心鬆動——過去一年推升台股創高的正是 AI 伺服器與先進封裝題材，一旦估值邏輯鬆動，權值股自然成為提款機。本週兩個交易日合計已狂瀉 1,824 點。</p>
+      <div class="watch"><b>後續觀察</b>：半年線失守後技術面轉弱，觀察外資賣超是否連續、以及 45,000 點整數關卡能否守住。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">15:05</span>三大法人賣超 1,398 億　外資單日砍 1,124 億</h3>
+      <p>三大法人今日合計賣超台股 1,398.44 億元，其中外資單日賣超約 1,124 億元，改寫近期紀錄。外資今年以來累計賣超已突破 2 兆元，籌碼面壓力沉重。</p>
+      <p>外資賣超並非台灣獨有，而是全球資金在 AI 估值修正下的同步減碼。不過台股電子權重極高，對外資動向的敏感度遠高於其他亞股，這也是台股跌幅常大於區域市場的結構性原因。</p>
+      <div class="watch"><b>後續觀察</b>：留意期貨淨空單部位變化，這是判斷外資是否轉為趨勢性撤出的先行指標。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">18:37</span>金管會信心喊話：基本面仍強勁</h3>
+      <p>面對台股重挫，金管會出面安定軍心，強調上市櫃公司基本面與營收表現依然強勁，累計營收寫下佳績，呼籲投資人理性看待國際股市連動。對於立委關切是否祭出「限空令」，金管會主委彭金隆先前已表態「尊重市場機制」，認為市場資訊仍能充分反映、跌勢屬全球共同現象。</p>
+      <p>金管會的態度反映政策取向：除非出現非理性下跌或系統性風險，否則不以行政手段干預。這與過去幾次股災時的操作邏輯一致，也意味著短期內政策面難有實質護盤措施。</p>
+      <div class="watch"><b>後續觀察</b>：若跌勢延續，金管會可動用的工具包括調降融資比率、限制借券等，觀察是否由「口頭喊話」升級為「實際措施」。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">18:17</span>華通連三年大擴產　衛星與光模塊成兩大動能</h3>
+      <p>PCB 廠華通宣布連續第三年大舉擴產，資本支出聚焦衛星通訊板與光模塊（光收發模組）兩大產品線，明年 AI 與衛星營收占比可望過半，力拚從消費電子板廠轉型為高階通訊板供應商。</p>
+      <p>在消費電子需求成熟、毛利承壓下，PCB 業者積極往低軌衛星與 AI 資料中心高速傳輸領域移動。衛星板對耐候與高頻特性要求高，進入門檻較高，是近年台廠差異化的重點戰場。</p>
+      <div class="watch"><b>後續觀察</b>：訂單能見度與良率爬坡速度，是這類擴產題材能否兌現的關鍵。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">12:32</span>公平會：台灣 App Store 佣金降至 26%　10/31 生效</h3>
+      <p>公平會宣布，蘋果在台灣的 App Store 佣金費率自 10 月 31 日起由現行水準調降至 26%，這是公平會對蘋果應用商店生態系調查的具體成果。對本地 App 開發者而言，直接降低抽成成本。</p>
+      <p>此案的意義在於：台灣成為少數透過競爭法主管機關實質調整蘋果抽成結構的市場，與歐盟 DMA 的監管路徑互為呼應。開發者團體長期主張的「平台稅」議題，首次在本地取得制度性回應。</p>
+      <div class="watch"><b>後續觀察</b>：佣金調降是否擴及訂閱制與第三方支付規則，將是下一階段爭點。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">12:27</span>日本央行維持利率 1.25%　宣布通膨達標</h3>
+      <p>日本央行宣布通膨率已達成 2% 目標，同時維持政策利率於 1.25% 不變。這是日銀在退出負利率與 YCC 之後，首次明確宣告通膨目標達成，但選擇按兵不動以避免衝擊景氣。</p>
+      <p>日圓走向牽動全球套利交易（carry trade）規模，也影響台灣出口業的匯率競爭力。日銀若啟動下一波升息，資金回流日本可能對亞洲資產造成新一輪壓力。</p>
+      <div class="watch"><b>後續觀察</b>：日銀下次會議對升息路徑的措辭，以及日圓是否再度貶破關鍵價位。</div>
+    </article>
+  </section>
+
+  <!-- 影劇娛樂 -->
+  <section class="ent">
+    <div class="sec-title">影劇娛樂</div>
+    <div class="sec-note">金鐘 61 收視 × 同志遊行 × 影視產業動態</div>
+
+    <article>
+      <h3><span class="time">18:49</span>蔡康永挺同志平權　Karencici 登遊行花車</h3>
+      <p>蔡康永公開表態「不忍同志平權倒退」，引發社群廣泛回響；歌手 Karencici 接棒響應，登上本屆同志遊行花車。本週末登場的台灣同志遊行是亞洲規模最大的平權活動，今年在部分法案與政策氛圍出現變化下，社會動員格外受到關注。</p>
+      <p>蔡康永長年為同志平權發聲，此次發言被網友整理成「8 大金句」瘋傳，顯示名人表態在社群時代仍具強大擴散力。演藝圈與社會議題的連結，已成台灣公共討論的重要一環。</p>
+      <div class="watch"><b>後續觀察</b>：遊行參與人數與企業響應程度，往往被視為社會接受度的溫度計。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">—</span>金鐘 61 收視出爐　楊貴媚封后瞬間飆 4.85</h3>
+      <p>第 61 屆金鐘獎戲劇類頒獎結果揭曉，莊凱勛奪下視帝、楊貴媚二度封后，她獲獎瞬間收視飆至 4.85，破百萬人同時收看，成為全場最高點。沈玉琳則首度獲獎，出道 32 年的致詞成為話題。</p>
+      <p>本屆入圍作品以《我們與惡的距離》系列延伸與多部串流原創劇為主，顯示台灣戲劇的製作規模與題材深度持續提升，OTT 平台已成為台劇主要資金與播出通路。</p>
+      <div class="watch"><b>後續觀察</b>：金鐘得獎作品能否帶動後續收視與海外版權銷售，是台劇產業能否形成正向循環的指標。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">18:46</span>奇哥罹漸凍人罕病　近況曝光</h3>
+      <p>資深藝人奇哥確診漸凍人症（ALS）罕病，近況曝光後引發各界關心，多位大咖歌后公開聲援。他在受訪中提及過往與友人互動的往事，包括因遲到被關在門外的趣事，語氣仍舊豁達。</p>
+      <p>漸凍人症為運動神經元退化疾病，目前無法治癒，病友照護與藥物給付一直是台灣罕病政策的重要議題。名人公開病況有助提升社會對罕病的認識與資源關注。</p>
+      <div class="watch"><b>後續觀察</b>：罕病藥物納入健保給付的審議進度，是病友團體持續争取的方向。</div>
+    </article>
+
+    <article>
+      <h3><span class="time">—</span>《Doctor X》收視飆 19.5%　韓劇強勢　ViuTV 收視墊底</h3>
+      <p>韓劇《Doctor X》播出僅 6 集，全國收視率已飆至 19.5% 創新高，成為近期亞洲最強戲劇；香港方面，《你的保安李寶安》收視破《大叔的愛》紀錄，而 ViuTV 在 3 台競爭中收視墊底，反映港劇市場版圖持續重整。</p>
+      <p>韓國內容產業以「高概念＋快節奏」模式持續輸出，對亞洲各市場的本地戲劇形成擠壓。台灣影視圈近年以類型劇與國際合製因應，試圖在串流平台上爭取能見度。</p>
+      <div class="watch"><b>後續觀察</b>：台劇在國際串流榜單的表現，將直接影響平台投資意願。</div>
+    </article>
+  </section>
+
+  <!-- 管理趨勢 -->
+  <section class="mgmt">
+    <div class="sec-title">管理趨勢 · EMBA 觀察</div>
+    <div class="sec-note">AI 轉型 × 永續治理 × 組織韌性</div>
+
+    <article>
+      <h3>AI 投資的「變現焦慮」：從資本支出到組織能力</h3>
+      <p>今日台股與美股的重挫，表面上是財報不如預期，本質卻是市場對 AI 投資報酬率的重新定價。Alphabet 自由現金流轉負，凸顯一個管理課題：企業正處於「資本支出已大、營收尚未跟上」的J曲線低谷期。這對企業經營者的啟示是，AI 投資的成敗不在採購了多少算力，而在組織是否具備把算力轉為流程改善與產品創新的能力。</p>
+      <p>學理上，這對應到「IT 投資悖論」（ productivity paradox）：技術投入與生產力提升之間存在時滯，關鍵中介變數是流程再造與人力資本。對正在進行 AI 轉型的中小企業而言，先做流程盤點與資料治理，往往比追逐最新模型更能創造報酬。</p>
+      <div class="watch"><b>研究切口</b>：可用 DEMATEL 分析「AI 採購／資料治理／流程再造／人才培訓／績效指標」之間的因果權重，找出企業 AI 轉型的關鍵驅動構面。</div>
+    </article>
+
+    <article>
+      <h3>永續從合規走向競爭力：中小企業的 ESG 新考題</h3>
+      <p>近日多場永續論壇與企業永續獎項聚焦同一主題：ESG 已從「法規遵循」轉向「競爭力來源」。尤其 IFRS 永續揭露準則（IFRS S1/S2）逐步接軌後，供應鏈上的中小企業被迫回應下游客戶的碳盤查與揭露要求，形成「合規壓力由上而下傳導」的現象。</p>
+      <p>對台灣中小企業而言，最現實的挑戰不是撰寫報告，而是缺乏盤查人力與方法論。顧問陪跑計畫（如銀行體系的 ESG Ready Program）成為主要解方，但也衍生「依賴外部顧問、內部能力未沉澱」的風險。</p>
+      <div class="watch"><b>研究切口</b>：適合以 AHP 建構中小企業 ESG 準備度評估層級，權重可涵蓋治理架構、碳盤查能力、揭露品質與供應鏈協作。</div>
+    </article>
+
+    <article>
+      <h3>供應鏈韌性成為董事會層級議題</h3>
+      <p>總統今日談話與加拿大國安戰略同時指向同一關鍵詞：供應鏈韌性。從地緣政治（巴基斯坦關閉領空）、科技管制（輝達併購審查）到自然風險，企業的營運持續管理（BCM）已從廠務層級上升到董事會治理層級。過去以「成本最低」為唯一目標的供應鏈設計，正被「成本×韌性」的雙目標最佳化取代。</p>
+      <p>管理實務上，這意味著雙供應商策略、區域化生產與庫存緩衝的重新評價——短期看似犧牲效率，長期卻是風險定價後的理性選擇。</p>
+      <div class="watch"><b>研究切口</b>：可探討「韌性投資」與「財務績效」的中介效果，檢驗其是否透過交期穩定度與客戶留存率發揮作用。</div>
+    </article>
+  </section>
+
+  <!-- 今日焦點 -->
+  <div class="focus">
+    <h2>━━ 今日焦點 ━━</h2>
+    <p>台股單日重挫 1,156 點、兩日累跌 1,824 點，導火線是美國科技巨頭財報與 AI 變現疑慮，但真正被重新定價的是「AI 資本支出的回收期」。同一時間，立院三讀通過水保法與加重毒駕刑責，內政治理議題推進；國際上美期中選舉倒數 4 天、加拿大首度把台灣寫進國安戰略。<br><br>
+    對經營者的啟示很清楚：<strong>當市場開始要求 AI 投資拿出報酬，組織能力（流程、資料、人才）比算力規模更決定勝負</strong>——這也是今日財經震盪背後最值得帶回公司思考的一句話。</p>
+  </div>
+
+  <footer>
+    資料來源：中央社、自由時報、聯合新聞網、經濟日報、工商時報等公開報導綜合整理<br>
+    生成時間：2026/10/30 19:00 · 內容僅供參考，不構成投資建議
+  </footer>
+
+</div>
+</body>
+</html>
