@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>行情看板｜台股日盤・夜盤即時</title>
+<style>
+:root{--bg:#F7F5F0;--card:#fff;--line:#E4DFD5;--ink:#2D2A26;--sub:#6B655C;
+--accent:#B8860B;--up:#D64545;--down:#2F9E63;--upbg:#FDF1F1;--downbg:#EFF8F2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);line-height:1.55;
+font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,"Segoe UI",sans-serif;
+-webkit-font-smoothing:antialiased;padding:16px 14px 44px}
+.wrap{max-width:760px;margin:0 auto}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
+border-bottom:2px solid var(--accent);padding-bottom:10px;margin-bottom:14px;flex-wrap:wrap}
+h1{font-size:1.16rem;letter-spacing:.02em}
+h1 small{font-size:.7rem;color:var(--sub);font-weight:400;letter-spacing:0}
+.clock{font-size:.74rem;color:var(--sub);text-align:right;font-variant-numeric:tabular-nums}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.chip{font-size:.73rem;border:1px solid var(--line);background:#fff;border-radius:999px;
+padding:3px 11px;color:var(--sub);white-space:nowrap}
+.chip.live{border-color:#EBD9A8;background:#FBF6E9;color:#8A6A0B;font-weight:600}
+.chip.live b{color:#C0392B}
+.btn{margin-left:auto;font-size:.75rem;border:1px solid var(--line);background:#fff;color:var(--ink);
+border-radius:999px;padding:4px 13px;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:wait}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+box-shadow:0 1px 2px rgba(0,0,0,.03);padding:16px 18px;margin-bottom:14px}
+.card.head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+h2{font-size:.82rem;letter-spacing:.1em;color:var(--sub);font-weight:700}
+h2 span{color:var(--accent)}
+.stamp{font-size:.72rem;color:var(--sub);font-variant-numeric:tabular-nums}
+.row{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:6px}
+.nm{font-size:.86rem;font-weight:600}
+.nm em{font-style:normal;color:var(--sub);font-weight:400;font-size:.74rem;margin-left:6px}
+.px{font-size:2.1rem;font-weight:700;line-height:1.1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.chg{font-size:.95rem;font-weight:600;margin-top:2px;font-variant-numeric:tabular-nums}
+.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--sub)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.cols{grid-template-columns:1fr}.px{font-size:1.8rem}}
+table{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:6px}
+th,td{padding:7px 4px;text-align:right;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+th{font-size:.72rem;color:var(--sub);font-weight:600;letter-spacing:.03em}
+th:first-child,td:first-child{text-align:left}
+tbody tr:last-child td{border-bottom:none}
+.tail{color:var(--sub);font-size:.76rem;margin-left:4px}
+.badge{display:inline-block;font-size:.68rem;padding:1px 7px;border-radius:5px;background:#F1EEE7;
+color:#6B655C;border:1px solid var(--line);margin-left:6px;font-weight:600}
+.badge.night{background:#EEF2F8;color:#40536E;border-color:#D6E0EE}
+.badge.day{background:#FBF6E9;color:#8A6A0B;border-color:#EBD9A8}
+.loading{color:var(--sub);font-size:.84rem;font-style:italic}
+.err{color:#B4453F;font-size:.8rem}
+footer{margin-top:8px;font-size:.72rem;color:var(--sub);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>行情看板 <small>台股日盤・夜盤 ／ 美股四大指數</small></h1>
+  <div class="clock"><div id="clock">--:--:--</div><div id="phase">判斷盤別中…</div></div>
+</header>
+
+<div class="chips">
+  <span class="chip" id="sessChip">場次：—</span>
+  <span class="chip" id="twseChip">台股：—</span>
+  <span class="chip" id="usChip">美股：—</span>
+  <button class="btn" id="refreshBtn" onclick="refreshAll(true)">↻ 更新</button>
+</div>
+
+<!-- 台股指數主卡 -->
+<div class="card">
+  <div class="card head">
+    <h2><span>台股</span> 加權指數 TAIEX</h2>
+    <div class="stamp" id="taiexStamp">—</div>
+  </div>
+  <div id="taiexBox"><div class="loading">載入中…</div></div>
+</div>
+
+<!-- 台股主場（日盤 or 夜盤） -->
+<div class="card">
+  <div class="card head">
+    <h2 id="twSecTitle">台指期</h2>
+    <div class="stamp" id="twSecStamp">—</div>
+  </div>
+  <div id="twSecBox"><div class="loading">載入中…</div></div>
+</div>
+
+<!-- 美股四大指數 -->
+<div class="card">
+  <div class="card head">
+    <h2><span>美股</span> 四大指數（即時）</h2>
+    <div class="stamp" id="usStamp">—</div>
+  </div>
+  <div id="usBox"><div class="loading">載入中…</div></div>
+</div>
+
+<!-- 個股查詢（原台股查詢功能，收在下面） -->
+<div class="card">
+  <div class="card head" style="margin-bottom:8px">
+    <h2><span>個股</span> 即時報價查詢</h2>
+    <div class="stamp">上市＋上櫃</div>
+  </div>
+  <div style="display:flex;gap:8px">
+    <input id="stockInput" placeholder="輸入代號，如 2330、2317、0050"
+      maxlength="6" autocomplete="off"
+      style="flex:1;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:.95rem;background:#fff;color:var(--ink)">
+    <button class="btn" id="qBtn" style="margin:0;padding:9px 18px;border-radius:8px" onclick="doQuery()">查詢</button>
+  </div>
+  <div id="stockResult" style="margin-top:10px"></div>
+</div>
+
+<footer id="foot">
+  資料：證交所 MIS（加權指數／個股，經 r.jina.ai 代理）· 期交所 OpenAPI（台指期日盤・夜盤）· 奇摩股市（美股四大指數，延遲約 15 分鐘）<br>
+  本頁每 60 秒自動更新；數值為最近成交，非逐筆饋送。紅漲綠跌。僅供參考，不構成投資建議。
+</footer>
+</div>
+
+<script>
+/* ========== 個股查詢 ========== */
+async function doQuery(){
+  const input=document.getElementById('stockInput');
+  const btn=document.getElementById('qBtn');
+  const out=document.getElementById('stockResult');
+  const q=input.value.trim().replace(/[^0-9a-zA-Z]/g,'');
+  if(!q){input.focus();return;}
+  out.innerHTML='<div class="loading">查詢中…</div>';
+  btn.disabled=true;
+  try{
+    const arr=await misQuotes([q]);
+    const m=arr.find(x=>x.c===q)||arr[0];
+    if(!m)throw new Error('查無此代號');
+    const z=m.z&&m.z!=='-'?parseFloat(m.z):null;
+    const y=m.y&&m.y!=='-'?parseFloat(m.y):null;
+    const k=cls(z!==null&&y!==null?z-y:null);
+    out.innerHTML=`<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+        <span style="font-size:.88rem;font-weight:600">${m.n||m.c}</span>
+        <span class="tail">${m.c}　${m.ex==='otc'?'上櫃':'上市'}</span>
+      </div>
+      <div class="row" style="margin-top:2px">
+        <div>
+          <div class="px ${k}" style="font-size:1.7rem">${fmt(z)}</div>
+          <div class="chg">${chgHtml(z,y)}</div>
+        </div>
+        <div style="font-size:.78rem;color:var(--sub);text-align:right;font-variant-numeric:tabular-nums">
+          開 ${fmt(m.o)}　高 ${fmt(m.h)}<br>低 ${fmt(m.l)}　昨收 ${fmt(y)}<br>量 ${m.v&&m.v!=='-'?fmt(m.v,0):'—'}　資料日 ${dstr(m.d)}
+        </div>
+      </div>`;
+  }catch(e){
+    out.innerHTML=`<div class="err">查詢失敗：${e.message}</div>`;
+  }finally{btn.disabled=false;}
+}
+document.getElementById('stockInput').addEventListener('keypress',e=>{if(e.key==='Enter')doQuery();});
+</script>
+
+<script>
+/* ========== 共用 ========== */
+const PROXY='https://r.jina.ai/';
+const MIS='https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=';
+const TAIFEX='https://openapi.taifex.com.tw/v1/DailyMarketReportFut';
+
+function fmt(n,d=2){
+  if(n===null||n===undefined||n===''||n==='-')return '—';
+  const v=Number(n); if(isNaN(v))return '—';
+  return v.toLocaleString('zh-TW',{minimumFractionDigits:d,maximumFractionDigits:d});
+}
+function cls(v){const n=parseFloat(v);return isNaN(n)?'flat':(n>0?'up':n<0?'down':'flat');}
+function sgn(v){const n=parseFloat(v);return isNaN(n)?'':(n>0?'+':'');}
+function dstr(d){ // 20261031 -> 10/31
+  if(!d||d.length!==8)return d||'—';
+  return d.slice(4,6)+'/'+d.slice(6,8);
+}
+function chgHtml(z,y,unit='',dp=2){
+  if(z===null||y===null)return '<span class="flat">—</span>';
+  const c=z-y, p=y?c/y*100:null, k=cls(c);
+  return `<span class="${k}">${sgn(c)+fmt(c,dp)}${unit}　${p===null?'':sgn(p)+fmt(p)+'%'}</span>`;
+}
+
+async function jinaGet(url,timeoutMs=22000){
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),timeoutMs);
+  try{
+    const r=await fetch(PROXY+url,{headers:{'Accept':'text/plain'},signal:ctl.signal});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return await r.text();
+  }catch(e){
+    if(e.name==='AbortError')throw new Error('逾時');
+    throw e;
+  }finally{clearTimeout(timer);}
+}
+function sliceJson(txt,marker){
+  const i=txt.indexOf(marker); if(i<0)return null;
+  let j=txt.slice(i); const end=j.lastIndexOf('}');
+  if(end>0)j=j.slice(0,end+1);
+  try{return JSON.parse(j);}catch(e){return null;}
+}
+// 同時抓上市＋上櫃
+async function misQuotes(codes){
+  const ex=codes.map(c=>'tse_'+c+'.tw').concat(codes.map(c=>'otc_'+c+'.tw')).join('|');
+  const txt=await jinaGet(MIS+encodeURIComponent(ex));
+  const d=sliceJson(txt,'{"msgArray"');
+  if(!d||!d.msgArray)throw new Error('解析失敗');
+  return d.msgArray.filter(m=>m&&m.c);
+}
+
+/* ========== 盤別判斷（台北時間） ========== */
+function taipeiNow(){
+  const s=new Date().toLocaleString('en-US',{timeZone:'Asia/Taipei'});
+  return new Date(s);
+}
+function dayInfo(now){
+  const wd=now.getDay();                    // 0 Sun,6 Sat
+  const mins=now.getHours()*60+now.getMinutes();
+  const weekend=(wd===0||wd===6);
+  const dayOpen=!weekend&&mins>=540&&mins<=825;                  // 09:00–13:45
+  const nightOpen=mins>=900||mins<=300;                          // 15:00–05:00
+  return {weekend,dayOpen,nightOpen,mins,wd};
+}
+function currentPhase(now){
+  const {dayOpen,nightOpen}=dayInfo(now);
+  if(dayOpen)return 'day';
+  if(nightOpen)return 'night';
+  return 'closed';
+}
+
+/* ========== 加權指數 ========== */
+async function loadTaiex(){
+  const box=document.getElementById('taiexBox'), st=document.getElementById('taiexStamp');
+  try{
+    const arr=await misQuotes(['t00']);
+    const m=arr.find(x=>x.c==='t00')||arr[0];
+    if(!m)throw new Error('無資料');
+    const z=m.z&&m.z!=='-'?parseFloat(m.z):null;
+    const y=m.y&&m.y!=='-'?parseFloat(m.y):null;
+    const o=m.o&&m.o!=='-'?parseFloat(m.o):null;
+    const h=m.h&&m.h!=='-'?parseFloat(m.h):null;
+    const l=m.l&&m.l!=='-'?parseFloat(m.l):null;
+    const k=cls(z!==null&&y!==null?z-y:null);
+    box.innerHTML=`
+      <div class="row">
+        <div>
+          <div class="nm">發行量加權股價指數<em>TAIEX</em></div>
+          <div class="px ${k}">${fmt(z)}</div>
+          <div class="chg">${chgHtml(z,y)}</div>
+        </div>
+        <div style="font-size:.8rem;color:var(--sub);text-align:right;font-variant-numeric:tabular-nums">
+          開 ${fmt(o)}　高 ${fmt(h)}<br>低 ${fmt(l)}　昨收 ${fmt(y)}
+        </div>
+      </div>`;
+    st.textContent=`成交時間 ${m['%']||m.t||'—'}　資料日 ${dstr(m.d)}`;
+  }catch(e){
+    box.innerHTML=`<div class="err">加權指數讀取失敗（${e.message}），點右上 ↻ 重試</div>`;
+    st.textContent='—';
+  }
+}
+
+/* ========== 台指期：盤別決定顯示哪一場 ========== */
+let FUT_CACHE=null, FUT_TS=0;
+async function loadTaifex(force){
+  if(!force && FUT_CACHE && Date.now()-FUT_TS<60000)return FUT_CACHE;
+  const ctl=new AbortController();
+  const timer=setTimeout(()=>ctl.abort(),40000);
+  try{
+    const r=await fetch(TAIFEX,{signal:ctl.signal});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    FUT_CACHE=await r.json(); FUT_TS=Date.now();
+    return FUT_CACHE;
+  }finally{clearTimeout(timer);}
+}
+function pickFut(rows,contract){
+  const list=rows.filter(r=>r.Contract===contract);
+  if(!list.length)return {};
+  const months=[...new Set(list.map(r=>r['ContractMonth(Week)']))].sort();
+  const m=months[0];
+  const d=list.filter(r=>r['ContractMonth(Week)']===m);
+  return {
+    month:m,
+    day:d.find(r=>r.TradingSession==='一般')||null,
+    night:d.find(r=>r.TradingSession==='盤後')||null
+  };
+}
+function futLine(label,r){
+  if(!r||!r.Last||r.Last==='-')return `<tr><td>${label}</td><td colspan="4" class="flat">— 無成交</td></tr>`;
+  const last=parseFloat(r.Last), pc=parseFloat(r['%']);      // '%' 為官方漲跌幅（對照昨結算）
+  const k=cls(pc);
+  const dp=label.indexOf('電子')>=0||label.indexOf('金融')>=0?2:0;
+  const chg=pc!==null?last*(pc/100)/(1+pc/100):null;        // 由 % 反推漲跌點
+  return `<tr>
+    <td>${label}</td>
+    <td class="${k}" style="font-weight:600">${fmt(last,dp)}</td>
+    <td class="${k}">${chg!==null?sgn(chg)+fmt(chg,dp):'—'}</td>
+    <td class="${k}">${pc!==null?sgn(pc)+fmt(pc,2)+'%':'—'}</td>
+    <td class="tail">${fmt(r.Volume,0)}</td></tr>`;
+}
+async function loadTwSession(force){
+  const now=taipeiNow(), phase=currentPhase(now);
+  const title=document.getElementById('twSecTitle');
+  const box=document.getElementById('twSecBox'), st=document.getElementById('twSecStamp');
+  const sess=[dayInfo(now).dayOpen?'日盤交易中':'', dayInfo(now).nightOpen?'夜盤交易中':''].filter(Boolean);
+  title.innerHTML=`台指期 <span style="color:var(--accent)">${sess.length?sess[0]:'最近收盤'}</span>`;
+  box.innerHTML=`<div class="loading">${phase==='closed'?'載入最近收盤…':'載入即時行情…'}</div>`;
+
+  const wantNight = (phase==='night');
+  let rows;
+  try{ rows=await loadTaifex(force); }
+  catch(e){
+    box.innerHTML=`<div class="err">期交所 OpenAPI 逾時（常見），請點 ↻ 重試</div>`; st.textContent='—';
+    return;
+  }
+  const s=pickFut(rows,'TX'), mx=pickFut(rows,'MTX');
+  const main = wantNight ? s.night : s.day;
+  const alt  = wantNight ? s.day   : s.night;
+  if(!main){ box.innerHTML=`<div class="err">查無台指期資料</div>`; return; }
+
+  const last=parseFloat(main.Last), pc=parseFloat(main['%']);
+  const k=cls(pc), dp=0;
+  const chg=pc!==null?last*(pc/100)/(1+pc/100):null;
+  const ref=wantNight?'夜盤':'日盤';
+  const altRef=wantNight?'日盤':'夜盤';
+  const altLast=alt&&alt.Last&&alt.Last!=='−'?parseFloat(alt.Last):null;
+  const altPc=alt&&alt['%']?parseFloat(alt['%']):null;
+
+  box.innerHTML=`
+    <div class="row">
+      <div>
+        <div class="nm">臺股期貨 TX<em>${s.month}</em><span class="badge ${wantNight?'night':'day'}">${ref}</span></div>
+        <div class="px ${k}">${fmt(last,dp)}</div>
+        <div class="chg ${k}">${chg!==null?sgn(chg)+fmt(chg,dp):'—'}　${pc!==null?sgn(pc)+fmt(pc,2)+'%':'—'}
+          <span style="color:var(--sub);font-size:.78rem;font-weight:400">（${altRef} ${altLast!==null?fmt(altLast,0):'—'}${altPc!==null?' '+sgn(altPc)+fmt(altPc,2)+'%':''}）</span>
+        </div>
+      </div>
+      <div style="font-size:.8rem;color:var(--sub);text-align:right;font-variant-numeric:tabular-nums">
+        開 ${fmt(main.Open,0)}　高 ${fmt(main.High,0)}<br>低 ${fmt(main.Low,0)}　量 ${fmt(main.Volume,0)} 口
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>${wantNight?'夜盤':'日盤'} 商品</th><th>成交</th><th>漲跌</th><th>漲跌幅</th><th>量</th></tr></thead>
+      <tbody>
+        ${futLine('小台 MTX', mx[wantNight?'night':'day'])}
+      </tbody>
+    </table>`;
+  st.textContent=`期交所資料日 ${dstr(main.Date)}　${wantNight?'夜盤至 05:00':'日盤至 13:45'}`;
+}
+
+/* ========== 美股四大指數（奇摩股市） ========== */
+const US=[
+  {code:'^DJI', name:'道瓊工業'},
+  {code:'^IXIC',name:'那斯達克'},
+  {code:'^GSPC',name:'S&P 500'},
+  {code:'^SOX', name:'費城半導體（延伸觀察）'}
+];
+function parseUs(t){
+  const i=t.indexOf('距離台股開盤'); if(!t)return null;
+  // 價格區可能在錨點後（即時行情表），也可能是頁首（盤後）；取前 2500 字都掃
+  const seg = (i>=0? t.slice(i,i+1800) : '') + '\n' + t.slice(0,2500);
+
+  let px=null, prev=null, o=null, h=null, l=null, time=null;
+  let m;
+  if((m=seg.match(/成交\s*([\d,]+(?:\.\d+)?)/)))px=parseFloat(m[1].replace(/,/g,''));
+  if(px===null&&(m=seg.match(/([\d,]+(?:\.\d+)?)\s*USD/)))px=parseFloat(m[1].replace(/,/g,''));
+  if((m=seg.match(/開盤\s*([\d,]+(?:\.\d+)?)/)))o=parseFloat(m[1].replace(/,/g,''));
+  if((m=seg.match(/最高\s*([\d,]+(?:\.\d+)?)/)))h=parseFloat(m[1].replace(/,/g,''));
+  if((m=seg.match(/最低\s*([\d,]+(?:\.\d+)?)/)))l=parseFloat(m[1].replace(/,/g,''));
+  if((m=seg.match(/昨收\s*([\d,]+(?:\.\d+)?)/)))prev=parseFloat(m[1].replace(/,/g,''));
+  if((m=seg.match(/(\d{4}\/\d{1,2}\/\d{1,2}\s*\d{1,2}:\d{2})\s*台北時間/)))time=m[1];
+  return {px,prev,o,h,l,time,delay:seg.indexOf('延遲')>=0};
+}
+async function loadUs(){
+  const box=document.getElementById('usBox'), st=document.getElementById('usStamp');
+  const results=await Promise.all(US.map(async s=>{
+    for(let a=0;a<2;a++){
+      try{
+        const t=await jinaGet('https://tw.stock.yahoo.com/quote/'+encodeURIComponent(s.code),18000);
+        const p=parseUs(t);
+        if(p&&p.px!==null)return {...s,...p};
+      }catch(e){}
+    }
+    return {...s,px:null};
+  }));
+  const ok=results.filter(r=>r.px!==null);
+  if(!ok.length){ box.innerHTML=`<div class="err">美股行情讀取失敗，點 ↻ 重試</div>`; return; }
+  const tstamp=ok.find(r=>r.time)?.time||'—';
+  box.innerHTML=`<table>
+    <thead><tr><th>指數</th><th>現價</th><th>漲跌</th><th>漲跌幅</th></tr></thead>
+    <tbody>${results.map(r=>{
+      if(r.px===null)return `<tr><td>${r.name}</td><td colspan="3" class="flat">讀取失敗</td></tr>`;
+      const c=r.prev!==null?r.px-r.prev:null;
+      const pc=r.prev?(c/r.prev*100):null;
+      const k=cls(c);
+      const nm=r.name.indexOf('延伸')>=0?`<span class="tail">費半</span>`:'';
+      return `<tr><td>${nm||r.name}</td>
+        <td class="${k}" style="font-weight:600">${fmt(r.px)}</td>
+        <td class="${k}">${c!==null?sgn(c)+fmt(c):'—'}</td>
+        <td class="${k}">${pc!==null?sgn(pc)+fmt(pc,2)+'%':'—'}</td></tr>`;
+    }).join('')}</tbody></table>`;
+  st.textContent=`${tstamp}（台北時間）`;
+}
+
+/* ========== 排程與狀態 ========== */
+function tickClock(){
+  const now=taipeiNow();
+  document.getElementById('clock').textContent=now.toLocaleTimeString('zh-TW',{hour12:false})+' 台北';
+  const d=dayInfo(now), ph=currentPhase(now);
+  document.getElementById('phase').textContent =
+    ph==='day'?'日盤時段':ph==='night'?'夜盤時段':(d.weekend?'週末休市':'非交易時段');
+
+  const sess=document.getElementById('sessChip');
+  if(ph==='day'){sess.className='chip live';sess.innerHTML='<b>●</b> 日盤 09:00–13:45';}
+  else if(ph==='night'){sess.className='chip live';sess.innerHTML='<b>●</b> 夜盤 15:00–05:00';}
+  else {sess.className='chip';sess.textContent='非交易時段（顯示最近收盤）';}
+
+  const tw=document.getElementById('twseChip');
+  tw.textContent='台股：'+(d.weekend?'週末休市':(d.dayOpen?'盤中':'已收盤'));
+  const h=now.getHours(), m=now.getMinutes();
+  const usOpen=!(d.weekend)&&((h>=21&&h<24)||(h>=0&&h<5));
+  const us=document.getElementById('usChip');
+  us.textContent='美股：'+(usOpen?'盤中（21:30–04:00）':'非交易時段（顯示最近收盤）');
+}
+
+async function refreshAll(force){
+  const btn=document.getElementById('refreshBtn');
+  btn.disabled=true;
+  tickClock();
+  await Promise.allSettled([
+    loadTaiex(),
+    loadTwSession(force),
+    loadUs()
+  ]);
+  btn.disabled=false;
+}
+
+// 手動查個股（原台股查詢頁功能保留在此頁尾端入口）
+tickClock();
+refreshAll(false);
+setInterval(()=>{tickClock();},1000);
+setInterval(()=>{refreshAll(false);},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshAll(false);});
+</script>
+</body>
+</html>
