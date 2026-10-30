@@ -1,137 +1,151 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head><meta charset="utf-8">
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>台指期 · 美股四大指數 即時行情</title>
+<title>台股指數與台指期 即時行情</title>
 <style>
-:root{--bg:#F7F5F0;--card:#fff;--tx:#2D2A26;--mut:#8A857D;--up:#D64545;--dn:#2F9E63;--line:#EAE6DE;--accent:#B8860B}
+:root{--bg:#F7F5F0;--card:#fff;--text:#2D2A26;--muted:#6b6560;--accent:#B8860B;--up:#D64545;--down:#2F9E63;--border:#e8e4dc}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;padding:28px 16px 60px;line-height:1.5}
-.wrap{max-width:1000px;margin:0 auto}
-header{margin-bottom:26px;border-bottom:2px solid var(--tx);padding-bottom:14px}
-h1{font-size:24px;letter-spacing:.5px;font-weight:800}
-.sub{font-size:12.5px;color:var(--mut);margin-top:6px;letter-spacing:.3px}
-.live{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;background:#FDF3DC;color:#8A6A10;padding:3px 9px;border-radius:20px;font-weight:700;margin-left:8px;vertical-align:2px}
-.dot{width:6px;height:6px;border-radius:50%;background:#C9A227;animation:p 1.6s infinite}
-@keyframes p{0%,100%{opacity:1}50%{opacity:.25}}
-h2{font-size:15px;font-weight:800;margin:30px 0 12px;letter-spacing:.6px;display:flex;align-items:center;gap:9px}
-h2::before{content:"";width:4px;height:16px;background:var(--accent);border-radius:2px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(45,42,38,.05)}
-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-th{font-size:11px;font-weight:700;color:var(--mut);text-align:right;padding:11px 14px;letter-spacing:.5px;border-bottom:1px solid var(--line);background:#FCFBF8;white-space:nowrap}
-th:first-child{text-align:left}
-td{padding:13px 14px;text-align:right;font-size:14.5px;border-bottom:1px solid #F4F1EB;white-space:nowrap}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6;padding:20px}
+a{color:var(--accent)}
+h1{font-size:1.5rem;margin-bottom:4px}
+.subtitle{color:var(--muted);font-size:.9rem;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:960px;margin:0 auto}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.card.wide{grid-column:1/-1}
+.tag{display:inline-block;font-size:.7rem;font-weight:600;background:#f0ebe0;color:var(--muted);padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.label{font-size:.8rem;color:var(--muted);margin-bottom:2px}
+.big-num{font-size:2rem;font-weight:700;letter-spacing:-.02em}
+.big-change{font-size:1rem;font-weight:600;margin-top:2px}
+.up{color:var(--up)}.down{color:var(--down)}
+.stat-row{display:flex;gap:24px;margin-top:12px;flex-wrap:wrap}
+.stat-item .label{font-size:.75rem}
+.stat-item .val{font-size:.9rem;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:12px}
+th{text-align:left;padding:6px 8px;border-bottom:2px solid var(--border);color:var(--muted);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em}
+td{padding:8px;border-bottom:1px solid var(--border)}
 tr:last-child td{border-bottom:none}
-td.nm{text-align:left}
-td.nm .t{font-weight:700;font-size:14.5px}
-td.nm .c{font-size:11px;color:var(--mut);font-family:ui-monospace,monospace;margin-top:2px}
-td.px{font-weight:800;font-size:16px;text-align:right}
-.up{color:var(--up)}.dn{color:var(--dn)}.flat{color:var(--mut)}
-.badge span{display:inline-block;padding:2.5px 8px;border-radius:6px;font-weight:800;font-size:13px}
-.badge.up span{background:#FCEBE9;color:var(--up)}
-.badge.dn span{background:#E8F6EE;color:var(--dn)}
-.muted{color:var(--mut);font-size:13px}
-.tm{font-size:11px;color:var(--mut);text-align:right}
-/* tw block */
-.hero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;box-shadow:0 1px 3px rgba(45,42,38,.05)}
-.hero .big{font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1.06}
-.hero .lbl{font-size:12px;color:var(--mut);font-weight:700;letter-spacing:1px;margin-bottom:6px}
-.hero .chg{font-size:17px;font-weight:800;margin-top:6px}
-.hero .meta{text-align:right;font-size:12.5px;color:var(--mut);line-height:1.9}
-.hero .meta b{color:var(--tx);font-weight:700}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.kv{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
-.kv .k{font-size:11px;color:var(--mut);font-weight:700;letter-spacing:.6px;margin-bottom:5px}
-.kv .v{font-size:19px;font-weight:800}
-.note{margin-top:32px;background:#FCFBF8;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:15px 18px;font-size:12.5px;color:#5C574F;line-height:1.85}
-.note b{color:var(--tx)}
-footer{margin-top:26px;font-size:11.5px;color:var(--mut);text-align:center;line-height:1.9}
-@media(max-width:640px){
- body{padding:18px 10px 40px} h1{font-size:19px}
- .hero{grid-template-columns:1fr;padding:18px} .hero .big{font-size:32px} .hero .meta{text-align:left}
- .grid{grid-template-columns:1fr 1fr;gap:9px} .kv{padding:12px 13px} .kv .v{font-size:16px}
- td,th{padding:10px 8px;font-size:13px} td.px{font-size:14px}
- .badge span{font-size:11.5px;padding:2px 6px}
- .muted{display:none} th.muted-h{display:none}
-}
-</style></head><body><div class="wrap">
-<header>
-  <h1>台指期 · 美股四大指數<span class="live"><span class="dot"></span>即時</span></h1>
-  <div class="sub">資料來源：臺灣證券交易所 / 臺灣期貨交易所 / Yahoo 財經 ｜ 頁面產出 2026-10-31 06:28 (台北)</div>
-</header>
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.basis-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.8rem;font-weight:600}
+.basis-bearish{background:#fee2e2;color:var(--up)}.basis-bullish{background:#dcfce7;color:var(--down)}
+.footer{max-width:960px;margin:24px auto 0;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.78rem;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body>
+<div style="max-width:960px;margin:0 auto">
+<h1>台股指數與台指期 即時行情</h1>
+<p class="subtitle">資料時間：2026/10/30 夜盤收盤 ｜ 加權指數為收盤價</p>
 
-<h2>台指期貨 TAIFEX</h2>
-<div class="hero">
-  <div>
-    <div class="lbl">台指期近一 WTX&amp;</div>
-    <div class="big up">44,433.00</div>
-    <div class="chg up">+867.00 點　<span class="badge up"><span>+1.91%</span></span></div>
-  </div>
-  <div class="meta">
-    開盤 <b>45,395.00</b><br>
-    最高 <b>45,420.00</b>　最低 <b>44,052.00</b><br>
-    成交 <b>44,274 口</b>　未平倉 <b>119,040</b><br>
-    <span style="font-size:11.5px">2026/10/30 夜盤 04:59:59</span>
-  </div>
-</div>
 <div class="grid">
-  <div class="kv"><div class="k">台指期近二 WTX@</div><div class="v up">44,541.00</div><div class="up" style="font-size:12.5px;font-weight:700;margin-top:3px">+879.00 (+1.94%)</div></div>
-  <div class="kv"><div class="k">近一／現貨 逆價差</div><div class="v">780.83</div><div style="font-size:12.5px;color:var(--mut);margin-top:3px">期貨低於加權指數</div></div>
-  <div class="kv"><div class="k">加權指數（現貨收盤 10/30）</div><div class="v dn">45,211.83</div><div class="dn" style="font-size:12.5px;font-weight:700;margin-top:3px">-1,156.50 (-2.49%)</div></div>
-  <div class="kv"><div class="k">期貨夜盤 vs 現貨</div><div class="v up">+1.91%</div><div style="font-size:12.5px;color:var(--mut);margin-top:3px">夜盤自低點強彈，跌幅收斂</div></div>
+  <!-- 加權指數 Hero -->
+  <div class="card wide">
+    <span class="tag">加權股價指數</span>
+    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap">
+      <span class="big-num">45,211.83</span>
+      <span class="big-change up">+1,156.50（+2.49%）</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat-item"><div class="label">最高</div><div class="val">46,139.79</div></div>
+      <div class="stat-item"><div class="label">最低</div><div class="val">44,726.26</div></div>
+      <div class="stat-item"><div class="label">昨日收盤</div><div class="val">46,368.33</div></div>
+      <div class="stat-item"><div class="label">成交量（億股）</div><div class="val">8,792.57</div></div>
+    </div>
+  </div>
+
+  <!-- 台指期近一 -->
+  <div class="card">
+    <span class="tag">台指期貨 近一（WTX&amp;）</span>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <span class="big-num">44,433</span>
+      <span class="big-change up">+867（+1.91%）</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat-item"><div class="label">開盤</div><div class="val">45,395</div></div>
+      <div class="stat-item"><div class="label">最高</div><div class="val">45,420</div></div>
+      <div class="stat-item"><div class="label">最低</div><div class="val">44,052</div></div>
+      <div class="stat-item"><div class="label">成交量</div><div class="val">44,274</div></div>
+      <div class="stat-item"><div class="label">未平倉</div><div class="val">119,040</div></div>
+    </div>
+    <div style="margin-top:12px">
+      <span class="label">逆價差（現貨−期貨）：</span>
+      <span class="basis-badge basis-bearish">+780.83 點（貼水）</span>
+    </div>
+    <div style="margin-top:6px;font-size:.78rem;color:var(--muted)">時間：04:59:59（夜盤收盤）</div>
+  </div>
+
+  <!-- 台指期近二 -->
+  <div class="card">
+    <span class="tag">台指期貨 近二（WTX&commat;）</span>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <span class="big-num">44,541</span>
+      <span class="big-change up">+879（+1.94%）</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat-item"><div class="label">開盤</div><div class="val">45,454</div></div>
+      <div class="stat-item"><div class="label">最高</div><div class="val">45,503</div></div>
+      <div class="stat-item"><div class="label">最低</div><div class="val">44,173</div></div>
+      <div class="stat-item"><div class="label">成交量</div><div class="val">379</div></div>
+      <div class="stat-item"><div class="label">未平倉</div><div class="val">3,645</div></div>
+    </div>
+    <div style="margin-top:12px">
+      <span class="label">逆價差（現貨−期貨）：</span>
+      <span class="basis-badge basis-bearish">+89.17 點（貼水）</span>
+    </div>
+    <div style="margin-top:6px;font-size:.78rem;color:var(--muted)">時間：04:59:49（夜盤收盤）</div>
+  </div>
+
+  <!-- 各月合約一覽 -->
+  <div class="card wide">
+    <span class="tag">台指期貨各月合約一覽</span>
+    <table>
+      <thead>
+        <tr>
+          <th>合約</th><th class="num">成交價</th><th class="num">漲跌</th><th class="num">漲跌幅</th>
+          <th class="num">開盤</th><th class="num">最高</th><th class="num">最低</th>
+          <th class="num">逆價差</th><th class="num">未平倉</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>近一 WTX&amp;</td><td class="num">44,433</td><td class="num up">+867</td><td class="num up">+1.91%</td>
+          <td class="num">45,395</td><td class="num">45,420</td><td class="num">44,052</td>
+          <td class="num up">+780.83</td><td class="num">119,040</td></tr>
+        <tr><td>近二 WTX&commat;</td><td class="num">44,541</td><td class="num up">+879</td><td class="num up">+1.94%</td>
+          <td class="num">45,454</td><td class="num">45,503</td><td class="num">44,173</td>
+          <td class="num up">+89.17</td><td class="num">3,645</td></tr>
+        <tr><td>2611 WTXZ6</td><td class="num">44,433</td><td class="num up">+867</td><td class="num up">+1.91%</td>
+          <td class="num">45,395</td><td class="num">45,420</td><td class="num">44,052</td>
+          <td class="num up">+784.83</td><td class="num">119,040</td></tr>
+        <tr><td>2612 WTXZ6</td><td class="num">44,541</td><td class="num up">+879</td><td class="num up">+1.94%</td>
+          <td class="num">45,454</td><td class="num">45,503</td><td class="num">44,173</td>
+          <td class="num up">+26.83</td><td class="num">3,645</td></tr>
+        <tr><td>2701 WTXF7</td><td class="num">44,500</td><td class="num up">+1,050</td><td class="num up">+2.31%</td>
+          <td class="num">45,585</td><td class="num">45,585</td><td class="num">44,500</td>
+          <td class="num up">+336.17</td><td class="num">115</td></tr>
+        <tr><td>2703 WTXH7</td><td class="num">45,469</td><td class="num up">+430</td><td class="num up">+0.94%</td>
+          <td class="num">45,951</td><td class="num">45,951</td><td class="num">45,469</td>
+          <td class="num up">+684.17</td><td class="num">112</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 盤勢觀察 -->
+  <div class="card wide">
+    <span class="tag">盤勢觀察</span>
+    <ul style="margin-top:8px;padding-left:20px;font-size:.9rem;line-height:2">
+      <li>加權指數收 <b>45,212 點</b>，單日大涨 <b>+1,156 點（+2.49%）</b>，最高摸 46,140。</li>
+      <li>台指期近一收 <b>44,433</b>，夜盤大漲 <b>+1.91%</b>，收盤前觸及 <b>45,420</b> 高點。</li>
+      <li>夜盤逆價差（貼水）收在 <b>+781 點</b>，近一月仍明顯貼水，反映夜盤末段現貨漲幅 > 期貨漲幅。</li>
+      <li>近二合约逆價差僅 <b>+89 點</b>，月差結構相對正常。</li>
+      <li>夜盤未平倉近一 <b>119,040 口</b>，流動性集中於近一，後續交易日將持續觀察貼水是否收斂。</li>
+    </ul>
+  </div>
 </div>
 
-<h2>美股四大指數 US Indices</h2>
-<div class="card"><table>
-<thead><tr><th>指數</th><th>現價</th><th>漲跌</th><th>漲跌幅</th><th class="muted-h">最高</th><th class="muted-h">最低</th><th>資料時間</th></tr></thead>
-<tbody><tr>
-      <td class="nm"><div class="t">S&P 500</div><div class="c">^GSPC</div></td>
-      <td class="px">7,580.07</td>
-      <td class="up">+140.32</td>
-      <td class="up badge"><span>+1.82%</span></td>
-      <td class="muted">7,637.48</td>
-      <td class="muted">7,527.56</td>
-      <td class="tm">2026/10/31 04:47</td></tr><tr>
-      <td class="nm"><div class="t">道瓊工業指數</div><div class="c">^DJI</div></td>
-      <td class="px">51,770.31</td>
-      <td class="up">+572.25</td>
-      <td class="up badge"><span>+1.09%</span></td>
-      <td class="muted">—</td>
-      <td class="muted">—</td>
-      <td class="tm">2026/10/31 04:47</td></tr><tr>
-      <td class="nm"><div class="t">那斯達克指數</div><div class="c">^IXIC</div></td>
-      <td class="px">25,437.00</td>
-      <td class="up">+747.73</td>
-      <td class="up badge"><span>+2.86%</span></td>
-      <td class="muted">—</td>
-      <td class="muted">—</td>
-      <td class="tm">2026/10/31 04:47</td></tr><tr>
-      <td class="nm"><div class="t">羅素 2000</div><div class="c">^RUT</div></td>
-      <td class="px">2,811.84</td>
-      <td class="up">+47.37</td>
-      <td class="up badge"><span>+1.66%</span></td>
-      <td class="muted">2,843.00</td>
-      <td class="muted">2,787.12</td>
-      <td class="tm">2026/10/31 04:30 (延遲15分)</td></tr></tbody></table></div>
-
-<h2>延伸觀察</h2>
-<div class="card"><table>
-<thead><tr><th>指數</th><th>現價</th><th>漲跌</th><th>漲跌幅</th></tr></thead>
-<tbody><tr>
-      <td class="nm"><div class="t">費城半導體指數</div><div class="c">^SOX</div></td>
-      <td class="px">10,688.80</td>
-      <td class="up">+829.40</td>
-      <td class="up badge"><span>+7.20%</span></td></tr></tbody></table></div>
-
-<div class="note">
-<b>盤勢解讀重點</b><br>
-• 美股四大指數<b>全面收紅</b>，那斯達克 +2.86% 領漲，S&amp;P 500 +1.82%，羅素 2000 +1.66% 補漲，小型股同步轉強＝資金面擴散、非單一權值股拉抬。<br>
-• <b>費半 +7.20%</b> 是本波最強族群，半導體全面噴出，對台股電子權值（台積電、IC 設計）具直接正向遞延效果。<br>
-• 台股 10/30 現貨重挫 <b>-2.49%（-1,156 點）</b>，但台指期夜盤自 44,052 低點反彈至 44,433，<b>逆價差收斂至 780 點</b>，反映夜盤已部分修復恐慌賣壓。<br>
-• 下週一開盤觀察：<b>台指期能否收斂逆價差、電子期是否跳空補漲</b>；若逆價差快速收窄至 200 點內，代表空方回補、止跌訊號浮現。
+<div class="footer">
+  <b>資料說明：</b>加權指數為證交所收盤價（2026/10/30），台指期為奇摩股市 Yahoo 期貨頁夜盤報價（時間 04:59:59）。台灣股市慣例：紅漲綠跌。逆價差 = 加權指數 − 期貨成交價，正值為貼水（期貨低於現貨）。本頁為靜態快照，非逐筆即時報價。
 </div>
-
-<footer>
-美股為 10/30 收盤（美東時間）；台指期為 10/30 夜盤報價。羅素 2000 延遲 15 分鐘。<br>
-本頁僅供參考，不構成投資建議。資料為靜態快照，非逐筆即時更新。
-</footer>
-</div></body></html>
+</div>
+</body>
+</html>
