@@ -259,19 +259,15 @@ async function loadTaiex(){
 let FUT_CACHE=null, FUT_TS=0;
 async function loadTaifex(force){
   if(!force && FUT_CACHE && Date.now()-FUT_TS<60000)return FUT_CACHE;
-  // 期交所 OpenAPI 無 CORS header → 瀏覽器必擋，只能走 r.jina.ai 代理
-  const url='https://openapi.taifex.com.tw/v1/DailyMarketReportFut';
-  let lastErr='';
-  for(let a=0;a<2;a++){
-    try{
-      const txt=await jinaGet(url,30000);
-      const d=sliceJson(txt,'[{"Date"');
-      if(!d||!Array.isArray(d)||!d.length)throw new Error('解析失敗');
-      FUT_CACHE=d; FUT_TS=Date.now();
-      return d;
-    }catch(e){lastErr=e.message;}
-  }
-  throw new Error(lastErr||'逾時');
+  // 期交所 OpenAPI 無 CORS header、r.jina.ai 也因 content-type 拒收(422)
+  // → 由伺服器端 cron 每 5 分鐘抓成 market-data.json，前端只讀這個靜態檔
+  const bust = Math.floor(Date.now()/120000);
+  const r=await fetch('market-data.json?v='+bust,{cache:'no-store'});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=await r.json();
+  if(!d||!Array.isArray(d.rows)||!d.rows.length)throw new Error('無資料');
+  FUT_CACHE=d; FUT_TS=Date.now();
+  return d;
 }
 function pickFut(rows,contract){
   const list=rows.filter(r=>r.Contract===contract);
@@ -307,12 +303,13 @@ async function loadTwSession(force){
   box.innerHTML=`<div class="loading">${phase==='closed'?'載入最近收盤…':'載入即時行情…'}</div>`;
 
   const wantNight = (phase==='night');
-  let rows;
-  try{ rows=await loadTaifex(force); }
+  let payload;
+  try{ payload=await loadTaifex(force); }
   catch(e){
-    box.innerHTML=`<div class="err">期交所 OpenAPI 逾時（常見），請點 ↻ 重試</div>`; st.textContent='—';
+    box.innerHTML=`<div class="err">台指期資料讀取失敗（${e.message}），請點 ↻ 重試</div>`; st.textContent='—';
     return;
   }
+  const rows=payload.rows||payload;
   const s=pickFut(rows,'TX'), mx=pickFut(rows,'MTX');
   const main = wantNight ? s.night : s.day;
   const alt  = wantNight ? s.day   : s.night;
@@ -345,7 +342,7 @@ async function loadTwSession(force){
         ${futLine('小台 MTX', mx[wantNight?'night':'day'])}
       </tbody>
     </table>`;
-  st.textContent=`期交所資料日 ${dstr(main.Date)}　${wantNight?'夜盤至 05:00':'日盤至 13:45'}`;
+  st.textContent=`期交所資料日 ${dstr(main.Date)}　${wantNight?'夜盤至 05:00':'日盤至 13:45'}　更新 ${(payload._updated||'').slice(11,16)}`;
 }
 
 /* ========== 美股四大指數（奇摩股市） ========== */
