@@ -96,47 +96,129 @@ footer{margin-top:8px;font-size:.72rem;color:var(--sub);line-height:1.7}
   <div id="usBox"><div class="loading">載入中…</div></div>
 </div>
 
-<!-- 個股查詢（原台股查詢功能，收在下面） -->
+<!-- 個股查詢（代號或名稱都可） -->
 <div class="card">
   <div class="card head" style="margin-bottom:8px">
     <h2><span>個股</span> 即時報價查詢</h2>
     <div class="stamp">上市＋上櫃</div>
   </div>
   <div style="display:flex;gap:8px">
-    <input id="stockInput" placeholder="輸入代號，如 2330、2317、0050"
-      maxlength="6" autocomplete="off"
+    <input id="stockInput" placeholder="輸入代號或名稱，如 2330、台積電、長榮"
+      maxlength="20" autocomplete="off"
       style="flex:1;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:.95rem;background:#fff;color:var(--ink)">
     <button class="btn" id="qBtn" style="margin:0;padding:9px 18px;border-radius:8px" onclick="doQuery()">查詢</button>
   </div>
+  <div id="stockSuggest" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"></div>
   <div id="stockResult" style="margin-top:10px"></div>
 </div>
 
 <footer id="foot">
-  資料：證交所 MIS（加權指數／個股，經 r.jina.ai 代理）· 期交所 OpenAPI（台指期日盤・夜盤）· 奇摩股市（美股四大指數，延遲約 15 分鐘）<br>
+  資料：證交所 MIS（加權指數／個股，經 r.jina.ai 代理）· 期交所 OpenAPI（台指期日盤・夜盤）· 奇摩股市（美股四大指數，延遲約 15 分鐘）· 上市上櫃清單（證交所／櫃買中心 OpenAPI，每日更新）<br>
   本頁每 60 秒自動更新；數值為最近成交，非逐筆饋送。紅漲綠跌。僅供參考，不構成投資建議。
 </footer>
 </div>
 
 <script>
+/* ========== 名稱 → 代號索引（tw-list.json，每日更新） ========== */
+let LIST=null, LIST_TS=0;
+async function loadList(){
+  if(LIST && Date.now()-LIST_TS<3600000) return LIST;
+  const r=await fetch('tw-list.json?v='+Math.floor(Date.now()/86400000),{cache:'no-store'});
+  if(!r.ok) throw new Error('清單讀取失敗');
+  const d=await r.json();
+  LIST=(d.rows||[]); LIST_TS=Date.now();
+  return LIST;
+}
+
+/* 代號 or 名稱 → 候選 [{c,n,e}]，依相關度排序 */
+function resolve(q,list){
+  const s=q.trim();
+  if(!s) return [];
+  // 1) 純代號：直接查（支援 2330、0050、00679B）
+  if(/^[0-9]{4,6}[A-Za-z]?$/.test(s)){
+    const hit=list.filter(r=>r.c===s);
+    if(hit.length) return hit;
+    // 代號本身也可能不在清單（如新上市）→ 直接讓 MIS 試
+    return [{c:s.toUpperCase(),n:s,e:'tse',_raw:true}];
+  }
+  // 2) 名稱比對：完全相符 > 開頭相符 > 包含 > 全名包含
+  const key=s.replace(/\s+/g,'');
+  const exact=[],start=[],incl=[],full=[];
+  for(const r of list){
+    const n=r.n||'', f=r.f||'';
+    if(n===key) exact.push(r);
+    else if(n.startsWith(key)) start.push(r);
+    else if(n.includes(key)) incl.push(r);
+    else if(f.includes(key)) full.push(r);
+    else if(f.replace(/股份有限公司|有限公司|\s/g,'')===key) full.push(r);
+  }
+  const rank=(arr)=>arr.slice().sort((a,b)=>(a.n.length-b.n.length)||a.c.localeCompare(b.c));
+  return [...rank(exact),...rank(start),...rank(incl),...rank(full)];
+}
+
+/* 輸入提示（debounce，最多 6 個） */
+let sugTimer=null;
+function renderSuggest(list){
+  const box=document.getElementById('stockSuggest');
+  if(!list||!list.length){box.innerHTML='';return;}
+  box.innerHTML=list.slice(0,6).map(r=>
+    `<span class="chip" style="cursor:pointer" onclick="pickSuggest('${r.c}')">${r.n} <b style="color:var(--accent);font-weight:600">${r.c}</b></span>`
+  ).join('');
+}
+function pickSuggest(code){
+  document.getElementById('stockInput').value=code;
+  document.getElementById('stockSuggest').innerHTML='';
+  doQuery(code);
+}
+function onInput(){
+  clearTimeout(sugTimer);
+  const v=document.getElementById('stockInput').value.trim();
+  if(!v){renderSuggest([]);return;}
+  sugTimer=setTimeout(async()=>{
+    try{
+      const list=await loadList();
+      const hits=resolve(v,list);
+      // 代號輸入且完全命中時不顯示提示
+      if(/^[0-9]{4,6}[A-Za-z]?$/.test(v) && hits.length===1 && hits[0].c===v.toUpperCase()){renderSuggest([]);return;}
+      renderSuggest(hits);
+    }catch(e){renderSuggest([]);}
+  },260);
+}
+
 /* ========== 個股查詢 ========== */
-async function doQuery(){
+async function doQuery(presetCode){
   const input=document.getElementById('stockInput');
   const btn=document.getElementById('qBtn');
   const out=document.getElementById('stockResult');
-  const q=input.value.trim().replace(/[^0-9a-zA-Z]/g,'');
+  const q=(presetCode||input.value||'').trim();
   if(!q){input.focus();return;}
+  if(presetCode) input.value=presetCode;
   out.innerHTML='<div class="loading">查詢中…</div>';
   btn.disabled=true;
   try{
-    const arr=await misQuotes([q]);
-    const m=arr.find(x=>x.c===q)||arr[0];
-    if(!m)throw new Error('查無此代號');
+    const list=await loadList().catch(()=>[]);
+    const hits=resolve(q,list);
+    if(!hits.length) throw new Error(`查無「${q}」這個名稱或代號`);
+    if(hits.length>1 && !hits[0]._raw && hits[0].n!==q.replace(/\s+/g,'')){
+      // 多筆模糊命中 → 列候選讓使用者選
+      out.innerHTML=`<div style="font-size:.82rem;color:var(--sub);margin-bottom:6px">「${q}」符合 ${hits.length} 檔，請點選：</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">${hits.slice(0,10).map(r=>
+          `<span class="chip" style="cursor:pointer" onclick="pickSuggest('${r.c}')">${r.n} <b style="color:var(--accent);font-weight:600">${r.c}</b></span>`
+        ).join('')}</div>`;
+      return;
+    }
+    const pick=hits[0];
+    const code=pick.c;
+    const arr=await misQuotes([code]);
+    const m=arr.find(x=>x.c===code)||arr[0];
+    if(!m)throw new Error('查無此代號報價');
+    document.getElementById('stockSuggest').innerHTML='';
     const z=m.z&&m.z!=='-'?parseFloat(m.z):null;
     const y=m.y&&m.y!=='-'?parseFloat(m.y):null;
     const k=cls(z!==null&&y!==null?z-y:null);
     out.innerHTML=`<div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
-        <span style="font-size:.88rem;font-weight:600">${m.n||m.c}</span>
-        <span class="tail">${m.c}　${m.ex==='otc'?'上櫃':'上市'}</span>
+        <span style="font-size:.88rem;font-weight:600">${m.n||pick.n||code}</span>
+        <span class="tail">${code}　${m.ex==='otc'||pick.e==='otc'?'上櫃':'上市'}</span>
       </div>
       <div class="row" style="margin-top:2px">
         <div>
@@ -151,7 +233,10 @@ async function doQuery(){
     out.innerHTML=`<div class="err">查詢失敗：${e.message}</div>`;
   }finally{btn.disabled=false;}
 }
-document.getElementById('stockInput').addEventListener('keypress',e=>{if(e.key==='Enter')doQuery();});
+document.getElementById('stockInput').addEventListener('keypress',e=>{if(e.key==='Enter'){document.getElementById('stockSuggest').innerHTML='';doQuery();}});
+document.getElementById('stockInput').addEventListener('input',onInput);
+// 預熱清單（不阻塞主畫面）
+setTimeout(()=>{loadList().catch(()=>{});},1200);
 </script>
 
 <script>
