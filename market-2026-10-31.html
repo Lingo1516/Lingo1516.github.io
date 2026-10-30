@@ -1,151 +1,245 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>台股指數與台指期 即時行情</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>台指期（日盤／夜盤）＋美股四大指數｜2026-10-31</title>
 <style>
-:root{--bg:#F7F5F0;--card:#fff;--text:#2D2A26;--muted:#6b6560;--accent:#B8860B;--up:#D64545;--down:#2F9E63;--border:#e8e4dc}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6;padding:20px}
-a{color:var(--accent)}
-h1{font-size:1.5rem;margin-bottom:4px}
-.subtitle{color:var(--muted);font-size:.9rem;margin-bottom:24px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:960px;margin:0 auto}
-@media(max-width:700px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.card.wide{grid-column:1/-1}
-.tag{display:inline-block;font-size:.7rem;font-weight:600;background:#f0ebe0;color:var(--muted);padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.label{font-size:.8rem;color:var(--muted);margin-bottom:2px}
-.big-num{font-size:2rem;font-weight:700;letter-spacing:-.02em}
-.big-change{font-size:1rem;font-weight:600;margin-top:2px}
-.up{color:var(--up)}.down{color:var(--down)}
-.stat-row{display:flex;gap:24px;margin-top:12px;flex-wrap:wrap}
-.stat-item .label{font-size:.75rem}
-.stat-item .val{font-size:.9rem;font-weight:600}
-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:12px}
-th{text-align:left;padding:6px 8px;border-bottom:2px solid var(--border);color:var(--muted);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em}
-td{padding:8px;border-bottom:1px solid var(--border)}
-tr:last-child td{border-bottom:none}
-td.num{text-align:right;font-variant-numeric:tabular-nums}
-.basis-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.8rem;font-weight:600}
-.basis-bearish{background:#fee2e2;color:var(--up)}.basis-bullish{background:#dcfce7;color:var(--down)}
-.footer{max-width:960px;margin:24px auto 0;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.78rem;color:var(--muted);line-height:1.7}
+  :root{
+    --bg:#F7F5F0; --card:#FFFFFF; --ink:#2D2A26; --sub:#6B655C;
+    --line:#E4DFD5; --accent:#B8860B; --up:#D64545; --down:#2F9E63;
+    --upbg:#FDF1F1; --downbg:#EFF8F2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,"Segoe UI",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:960px;margin:0 auto;padding:28px 20px 60px;}
+  header{border-bottom:2px solid var(--accent);padding-bottom:16px;margin-bottom:26px;}
+  h1{font-size:1.55rem;margin:0 0 8px;letter-spacing:.02em;}
+  .meta{font-size:.82rem;color:var(--sub);}
+  .badge{display:inline-block;background:#FBF6E9;border:1px solid #EBD9A8;color:#8A6A0B;
+    border-radius:999px;padding:2px 10px;font-size:.75rem;margin-right:6px;}
+  h2{font-size:1.05rem;margin:34px 0 12px;padding-left:10px;border-left:4px solid var(--accent);letter-spacing:.02em;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 1px 2px rgba(0,0,0,.03);padding:20px 22px;}
+  /* hero */
+  .hero{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-end;}
+  .hero-main{flex:1 1 260px;}
+  .hero-label{font-size:.78rem;color:var(--sub);letter-spacing:.08em;}
+  .hero-px{font-size:2.9rem;font-weight:700;line-height:1.1;letter-spacing:-.01em;}
+  .hero-chg{font-size:1.15rem;font-weight:600;margin-top:2px;}
+  .hero-side{flex:1 1 220px;}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:.86rem;}
+  .kv dt{color:var(--sub);}
+  .kv dd{margin:0;font-variant-numeric:tabular-nums;text-align:right;}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--sub)}
+  .pill{display:inline-block;border-radius:6px;padding:1px 7px;font-size:.78rem;font-weight:600;}
+  .pill.up{background:var(--upbg)} .pill.down{background:var(--downbg)}
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:4px;}
+  th,td{padding:10px 8px;text-align:right;border-bottom:1px solid var(--line);
+    font-variant-numeric:tabular-nums;white-space:nowrap;}
+  th{font-weight:600;color:var(--sub);font-size:.78rem;letter-spacing:.04em;
+    border-bottom:1.5px solid var(--line);background:#FCFBF8;}
+  th:first-child,td:first-child{text-align:left;}
+  tbody tr:last-child td{border-bottom:none;}
+  .name{font-weight:600;} .code{color:var(--sub);font-size:.76rem;margin-left:4px;}
+  .sess{display:inline-block;font-size:.72rem;padding:1px 6px;border-radius:5px;
+    background:#F1EEE7;color:#6B655C;border:1px solid var(--line);}
+  .sess.night{background:#EEF2F8;color:#40536E;border-color:#D6E0EE;}
+  ul.notes{margin:6px 0 0;padding-left:1.15rem;font-size:.9rem;}
+  ul.notes li{margin:6px 0;}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;}
+  .mini{background:#FCFBF8;border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .mini h3{margin:0 0 8px;font-size:.82rem;color:var(--sub);letter-spacing:.06em;font-weight:600;}
+  .mini .big{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;}
+  .mini .small{font-size:.8rem;color:var(--sub);}
+  footer{margin-top:38px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:.76rem;color:var(--sub);line-height:1.75;}
+  @media(max-width:640px){
+    .hero-px{font-size:2.2rem}
+    .split{grid-template-columns:1fr}
+    th.hide-m,td.hide-m{display:none}
+    th,td{padding:9px 5px;font-size:.82rem}
+    .wrap{padding:20px 14px 48px}
+  }
 </style>
 </head>
 <body>
-<div style="max-width:960px;margin:0 auto">
-<h1>台股指數與台指期 即時行情</h1>
-<p class="subtitle">資料時間：2026/10/30 夜盤收盤 ｜ 加權指數為收盤價</p>
+<div class="wrap">
+<header>
+  <h1>台指期（日盤／夜盤）＋ 美股四大指數</h1>
+  <div class="meta">
+    <span class="badge">資料時間 2026-10-31 07:05</span>
+    <span class="badge">台股未開盤</span>
+    台指期＝10/30 夜盤收盤（05:00）｜美股＝10/30 收盤（台北 10/31 04:47–05:15）
+  </div>
+</header>
 
-<div class="grid">
-  <!-- 加權指數 Hero -->
-  <div class="card wide">
-    <span class="tag">加權股價指數</span>
-    <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap">
-      <span class="big-num">45,211.83</span>
-      <span class="big-change up">+1,156.50（+2.49%）</span>
+<!-- 台指期 HERO -->
+<h2>台指期 近月 TX 202611</h2>
+<div class="card">
+  <div class="hero">
+    <div class="hero-main">
+      <div class="hero-label">夜盤收盤價（加權指數參照）</div>
+      <div class="hero-px down">45,926</div>
+      <div class="hero-chg down">−642 點　−1.38%</div>
+      <div class="meta" style="margin-top:8px">日盤收盤 45,301（−1,267 點　−2.72%）</div>
     </div>
-    <div class="stat-row">
-      <div class="stat-item"><div class="label">最高</div><div class="val">46,139.79</div></div>
-      <div class="stat-item"><div class="label">最低</div><div class="val">44,726.26</div></div>
-      <div class="stat-item"><div class="label">昨日收盤</div><div class="val">46,368.33</div></div>
-      <div class="stat-item"><div class="label">成交量（億股）</div><div class="val">8,792.57</div></div>
+    <div class="hero-side">
+      <dl class="kv">
+        <dt>日盤開盤</dt><dd>45,395</dd>
+        <dt>日盤最高</dt><dd>45,420</dd>
+        <dt>日盤最低</dt><dd class="down">44,052</dd>
+        <dt>日盤成交量</dt><dd>73,987 口</dd>
+        <dt>夜盤成交量</dt><dd>34,357 口</dd>
+        <dt>未平倉（日盤）</dt><dd>119,040 口</dd>
+      </dl>
     </div>
   </div>
 
-  <!-- 台指期近一 -->
-  <div class="card">
-    <span class="tag">台指期貨 近一（WTX&amp;）</span>
-    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
-      <span class="big-num">44,433</span>
-      <span class="big-change up">+867（+1.91%）</span>
+  <div class="split">
+    <div class="mini">
+      <h3>夜盤回升幅度</h3>
+      <div class="big up">+1,874 點</div>
+      <div class="small">自日盤最低 44,052 反彈至 45,926，幅度 +4.25%</div>
     </div>
-    <div class="stat-row">
-      <div class="stat-item"><div class="label">開盤</div><div class="val">45,395</div></div>
-      <div class="stat-item"><div class="label">最高</div><div class="val">45,420</div></div>
-      <div class="stat-item"><div class="label">最低</div><div class="val">44,052</div></div>
-      <div class="stat-item"><div class="label">成交量</div><div class="val">44,274</div></div>
-      <div class="stat-item"><div class="label">未平倉</div><div class="val">119,040</div></div>
+    <div class="mini">
+      <h3>期現價差（逆價差）</h3>
+      <div class="big down">−714 點</div>
+      <div class="small">夜盤 45,926 vs 加權收盤 45,211.83（期貨高於現貨 → 正價差 714 點）</div>
     </div>
-    <div style="margin-top:12px">
-      <span class="label">逆價差（現貨−期貨）：</span>
-      <span class="basis-badge basis-bearish">+780.83 點（貼水）</span>
-    </div>
-    <div style="margin-top:6px;font-size:.78rem;color:var(--muted)">時間：04:59:59（夜盤收盤）</div>
-  </div>
-
-  <!-- 台指期近二 -->
-  <div class="card">
-    <span class="tag">台指期貨 近二（WTX&commat;）</span>
-    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
-      <span class="big-num">44,541</span>
-      <span class="big-change up">+879（+1.94%）</span>
-    </div>
-    <div class="stat-row">
-      <div class="stat-item"><div class="label">開盤</div><div class="val">45,454</div></div>
-      <div class="stat-item"><div class="label">最高</div><div class="val">45,503</div></div>
-      <div class="stat-item"><div class="label">最低</div><div class="val">44,173</div></div>
-      <div class="stat-item"><div class="label">成交量</div><div class="val">379</div></div>
-      <div class="stat-item"><div class="label">未平倉</div><div class="val">3,645</div></div>
-    </div>
-    <div style="margin-top:12px">
-      <span class="label">逆價差（現貨−期貨）：</span>
-      <span class="basis-badge basis-bearish">+89.17 點（貼水）</span>
-    </div>
-    <div style="margin-top:6px;font-size:.78rem;color:var(--muted)">時間：04:59:49（夜盤收盤）</div>
-  </div>
-
-  <!-- 各月合約一覽 -->
-  <div class="card wide">
-    <span class="tag">台指期貨各月合約一覽</span>
-    <table>
-      <thead>
-        <tr>
-          <th>合約</th><th class="num">成交價</th><th class="num">漲跌</th><th class="num">漲跌幅</th>
-          <th class="num">開盤</th><th class="num">最高</th><th class="num">最低</th>
-          <th class="num">逆價差</th><th class="num">未平倉</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>近一 WTX&amp;</td><td class="num">44,433</td><td class="num up">+867</td><td class="num up">+1.91%</td>
-          <td class="num">45,395</td><td class="num">45,420</td><td class="num">44,052</td>
-          <td class="num up">+780.83</td><td class="num">119,040</td></tr>
-        <tr><td>近二 WTX&commat;</td><td class="num">44,541</td><td class="num up">+879</td><td class="num up">+1.94%</td>
-          <td class="num">45,454</td><td class="num">45,503</td><td class="num">44,173</td>
-          <td class="num up">+89.17</td><td class="num">3,645</td></tr>
-        <tr><td>2611 WTXZ6</td><td class="num">44,433</td><td class="num up">+867</td><td class="num up">+1.91%</td>
-          <td class="num">45,395</td><td class="num">45,420</td><td class="num">44,052</td>
-          <td class="num up">+784.83</td><td class="num">119,040</td></tr>
-        <tr><td>2612 WTXZ6</td><td class="num">44,541</td><td class="num up">+879</td><td class="num up">+1.94%</td>
-          <td class="num">45,454</td><td class="num">45,503</td><td class="num">44,173</td>
-          <td class="num up">+26.83</td><td class="num">3,645</td></tr>
-        <tr><td>2701 WTXF7</td><td class="num">44,500</td><td class="num up">+1,050</td><td class="num up">+2.31%</td>
-          <td class="num">45,585</td><td class="num">45,585</td><td class="num">44,500</td>
-          <td class="num up">+336.17</td><td class="num">115</td></tr>
-        <tr><td>2703 WTXH7</td><td class="num">45,469</td><td class="num up">+430</td><td class="num up">+0.94%</td>
-          <td class="num">45,951</td><td class="num">45,951</td><td class="num">45,469</td>
-          <td class="num up">+684.17</td><td class="num">112</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 盤勢觀察 -->
-  <div class="card wide">
-    <span class="tag">盤勢觀察</span>
-    <ul style="margin-top:8px;padding-left:20px;font-size:.9rem;line-height:2">
-      <li>加權指數收 <b>45,212 點</b>，單日大涨 <b>+1,156 點（+2.49%）</b>，最高摸 46,140。</li>
-      <li>台指期近一收 <b>44,433</b>，夜盤大漲 <b>+1.91%</b>，收盤前觸及 <b>45,420</b> 高點。</li>
-      <li>夜盤逆價差（貼水）收在 <b>+781 點</b>，近一月仍明顯貼水，反映夜盤末段現貨漲幅 > 期貨漲幅。</li>
-      <li>近二合约逆價差僅 <b>+89 點</b>，月差結構相對正常。</li>
-      <li>夜盤未平倉近一 <b>119,040 口</b>，流動性集中於近一，後續交易日將持續觀察貼水是否收斂。</li>
-    </ul>
   </div>
 </div>
 
-<div class="footer">
-  <b>資料說明：</b>加權指數為證交所收盤價（2026/10/30），台指期為奇摩股市 Yahoo 期貨頁夜盤報價（時間 04:59:59）。台灣股市慣例：紅漲綠跌。逆價差 = 加權指數 − 期貨成交價，正值為貼水（期貨低於現貨）。本頁為靜態快照，非逐筆即時報價。
+<!-- 日盤 vs 夜盤 對照表 -->
+<h2>日盤 vs 夜盤 對照</h2>
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>商品</th><th>場次</th><th>成交價</th><th>漲跌</th><th>漲跌幅</th>
+        <th class="hide-m">成交量</th><th class="hide-m">未平倉</th><th class="hide-m">時間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="name">臺股期貨<span class="code">TX 202611</span></td><td><span class="sess">日盤</span></td>
+        <td>45,301</td><td class="down">−1,267</td><td class="down">−2.72%</td>
+        <td class="hide-m">73,987</td><td class="hide-m">119,040</td><td class="hide-m">13:44</td></tr>
+      <tr><td class="name">臺股期貨<span class="code">TX 202611</span></td><td><span class="sess night">夜盤</span></td>
+        <td>45,926</td><td class="down">−642</td><td class="down">−1.38%</td>
+        <td class="hide-m">34,357</td><td class="hide-m">—</td><td class="hide-m">05:00</td></tr>
+      <tr><td class="name">臺股期貨<span class="code">TX 202612 次月</span></td><td><span class="sess">日盤</span></td>
+        <td>45,412</td><td class="down">−1,290</td><td class="down">−2.76%</td>
+        <td class="hide-m">386</td><td class="hide-m">3,645</td><td class="hide-m">13:45</td></tr>
+      <tr><td class="name">臺股期貨<span class="code">TX 202612 次月</span></td><td><span class="sess night">夜盤</span></td>
+        <td>46,050</td><td class="down">−652</td><td class="down">−1.40%</td>
+        <td class="hide-m">275</td><td class="hide-m">—</td><td class="hide-m">05:00</td></tr>
+      <tr><td class="name">小型臺指<span class="code">MTX 202611</span></td><td><span class="sess">日盤</span></td>
+        <td>45,286</td><td class="down">−1,284</td><td class="down">−2.76%</td>
+        <td class="hide-m">138,469</td><td class="hide-m">33,487</td><td class="hide-m">13:44</td></tr>
+      <tr><td class="name">小型臺指<span class="code">MTX 202611</span></td><td><span class="sess night">夜盤</span></td>
+        <td>45,925</td><td class="down">−640</td><td class="down">−1.38%</td>
+        <td class="hide-m">116,556</td><td class="hide-m">—</td><td class="hide-m">05:00</td></tr>
+      <tr><td class="name">電子期<span class="code">TE 202611</span></td><td><span class="sess">日盤</span></td>
+        <td>2,820.15</td><td class="down">−79.20</td><td class="down">−2.73%</td>
+        <td class="hide-m">69</td><td class="hide-m">376</td><td class="hide-m">13:44</td></tr>
+      <tr><td class="name">電子期<span class="code">TE 202611</span></td><td><span class="sess night">夜盤</span></td>
+        <td>2,848.40</td><td class="down">−50.70</td><td class="down">−1.75%</td>
+        <td class="hide-m">91</td><td class="hide-m">—</td><td class="hide-m">05:00</td></tr>
+      <tr><td class="name">金融期<span class="code">TF 202611</span></td><td><span class="sess">日盤</span></td>
+        <td>3,782.00</td><td class="down">−18.20</td><td class="down">−0.48%</td>
+        <td class="hide-m">94</td><td class="hide-m">334</td><td class="hide-m">13:45</td></tr>
+      <tr><td class="name">金融期<span class="code">TF 202611</span></td><td><span class="sess night">夜盤</span></td>
+        <td>3,805.80</td><td class="up">+5.80</td><td class="up">+0.15%</td>
+        <td class="hide-m">9</td><td class="hide-m">—</td><td class="hide-m">05:00</td></tr>
+      <tr><td class="name">非金電期<span class="code">XIF 202611</span></td><td><span class="sess">日盤</span></td>
+        <td>17,151</td><td class="down">−291</td><td class="down">−1.67%</td>
+        <td class="hide-m">368</td><td class="hide-m">398</td><td class="hide-m">13:17</td></tr>
+      <tr><td class="name">非金電期<span class="code">XIF 202611</span></td><td><span class="sess night">夜盤</span></td>
+        <td>17,200</td><td class="down">−242</td><td class="down">−1.51%</td>
+        <td class="hide-m">322</td><td class="hide-m">—</td><td class="hide-m">05:00</td></tr>
+    </tbody>
+  </table>
+  <div class="meta" style="margin-top:10px">
+    漲跌以 10/29 收盤為基準；夜盤（15:00–翌日 05:00）漲跌幅同樣對照 10/29 收盤，因此與日盤同一基準。
+  </div>
 </div>
+
+<!-- 加權指數 -->
+<h2>現貨對照：加權指數</h2>
+<div class="card">
+  <div class="hero">
+    <div class="hero-main">
+      <div class="hero-label">10/30 收盤</div>
+      <div class="hero-px down">45,211.83</div>
+      <div class="hero-chg down">−1,156.50 點　−2.49%</div>
+    </div>
+    <div class="hero-side">
+      <dl class="kv">
+        <dt>開盤＝最高</dt><dd>46,139.79</dd>
+        <dt>最低</dt><dd class="down">44,726.26</dd>
+        <dt>成交金額</dt><dd>8,792.57 億</dd>
+        <dt>10/29 收盤</dt><dd>46,368.33</dd>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<!-- 美股四大指數 -->
+<h2>美股四大指數（10/30 收盤）</h2>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>指數</th><th>收盤</th><th>漲跌</th><th>漲跌幅</th>
+        <th class="hide-m">開盤</th><th class="hide-m">最高</th><th class="hide-m">最低</th><th class="hide-m">昨收</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="name">道瓊工業<span class="code">^DJI</span></td>
+        <td>51,770.31</td><td class="down">−572.25</td><td class="down">−1.09%</td>
+        <td class="hide-m">52,383.90</td><td class="hide-m">52,383.90</td><td class="hide-m">51,563.76</td><td class="hide-m">52,342.56</td></tr>
+      <tr><td class="name">S&amp;P 500<span class="code">^GSPC</span></td>
+        <td>7,580.07</td><td class="down">−140.32</td><td class="down">−1.82%</td>
+        <td class="hide-m">7,631.07</td><td class="hide-m">7,637.48</td><td class="hide-m">7,527.56</td><td class="hide-m">7,720.39</td></tr>
+      <tr><td class="name">那斯達克<span class="code">^IXIC</span></td>
+        <td>25,437.00</td><td class="down">−747.73</td><td class="down">−2.86%</td>
+        <td class="hide-m">25,592.49</td><td class="hide-m">25,673.00</td><td class="hide-m">25,177.33</td><td class="hide-m">26,184.72</td></tr>
+      <tr><td class="name">羅素 2000<span class="code">^RUT</span></td>
+        <td>2,811.84</td><td class="down">−47.37</td><td class="down">−1.66%</td>
+        <td class="hide-m">2,838.77</td><td class="hide-m">2,843.00</td><td class="hide-m">2,787.12</td><td class="hide-m">2,859.22</td></tr>
+      <tr><td class="name">費城半導體<span class="code">^SOX 延伸觀察</span></td>
+        <td>10,688.80</td><td class="down">−829.40</td><td class="down">−7.20%</td>
+        <td class="hide-m">10,855.81</td><td class="hide-m">10,957.32</td><td class="hide-m">10,439.01</td><td class="hide-m">11,518.20</td></tr>
+    </tbody>
+  </table>
+  <div class="meta" style="margin-top:10px">
+    四大指數全數收黑；費半 −7.20% 為跌幅最重，直接對應台股電子期、台指期的殺盤主因。
+  </div>
+</div>
+
+<!-- 盤勢解讀 -->
+<h2>盤勢解讀</h2>
+<div class="card">
+  <ul class="notes">
+    <li><strong>日盤重挫、夜盤強彈。</strong>台指期日盤從 46,139 開高後一路下殺到 44,052，收 45,301（−2.72%）；夜盤因美股開低走高、四大指數跌幅收斂，期貨從 44,052 的低點一路反彈到 45,926，<span class="up">單夜 +1,874 點（+4.25%）</span>，夜盤跌幅收斂到 −1.38%。</li>
+    <li><strong>夜盤量能 34,357 口，是日盤的 47%。</strong>反彈帶量而非空頭回補的軋空，短線止穩訊號比單純跌幅收斂更可信。</li>
+    <li><strong>期貨轉正價差 714 點。</strong>台指期夜盤收 45,926 已高於現貨 45,211.83，代表夜盤交易者押注 11/2 現貨會跳空補漲；若開盤未能站上 45,900，價差會快速收斂，屬於「開高走低」的風險點。</li>
+    <li><strong>電子期夜盤只收斂到 −1.75%。</strong>對照費半 −7.20% 的重挫，電子期反彈幅度其實偏弱，半導體仍是最大壓力源（台積電 10/30 收 2,370，−1.86%）。</li>
+    <li><strong>金融期夜盤翻紅 +0.15%。</strong>資金防禦性輪動到金融，指數若要止穩，金融必須續強。</li>
+    <li><strong>選擇權未平倉 P/C 比 62.59（成交量 P/C 90.91）。</strong>OI 的 P/C 比偏低代表相對買權，賣權未平倉相對少、買權堆積偏多，上方履約價壓力沉重；週一若無量突破 46,000，容易再回測 44,700。</li>
+    <li><strong>關鍵價位。</strong>支撐：日盤低 44,052 / 現貨低 44,726；壓力：夜盤高 45,926、10/30 開盤 46,139。跳空開高逾 46,000 以上屬「美股跌、台股不跌」的強勢訊號，但需現貨量能配合。</li>
+  </ul>
+</div>
+
+<footer>
+  <strong>資料來源與限制</strong><br>
+  • 台指期、電子期、金融期、非金電期日盤與夜盤：臺灣期貨交易所（TAIFEX）官方 OpenAPI「期貨每日交易行情」，含 TradingSession＝一般（日盤）／盤後（夜盤）分場資料，資料日 2026/10/30。<br>
+  • 加權指數：證交所 MIS 即時行情 API（tse_t00），10/30 13:33 收盤。<br>
+  • 美股四大指數＋費半：Yahoo 奇摩股市（tw.stock.yahoo.com），台北時間 10/31 04:30–05:15 之 10/30 收盤價。<br>
+  • 本頁為 2026-10-31 07:05 產生的<strong>靜態快照</strong>，非逐筆即時饋送；台股與台指期週末休市，數值不會變動直到 11/2 開盤。<br>
+  • 漲跌配色採台股慣例：<span class="up">紅漲</span>／<span class="down">綠跌</span>。內容僅供資訊參考，不構成投資建議。
+</footer>
 </div>
 </body>
 </html>
