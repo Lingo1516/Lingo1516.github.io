@@ -93,10 +93,19 @@ function extractJson(txt, marker){
   try { return JSON.parse(j); } catch(e) { return null; }
 }
 
-async function jinaGet(url){
-  const resp = await fetch(PROXY + url, {headers:{'Accept':'text/plain'}});
-  if(!resp.ok) throw new Error('HTTP '+resp.status);
-  return await resp.text();
+async function jinaGet(url, timeoutMs=20000){
+  const ctl = new AbortController();
+  const timer = setTimeout(()=>ctl.abort(), timeoutMs);
+  try{
+    const resp = await fetch(PROXY + url, {headers:{'Accept':'text/plain'}, signal:ctl.signal});
+    if(!resp.ok) throw new Error('HTTP '+resp.status);
+    return await resp.text();
+  }catch(e){
+    if(e.name==='AbortError') throw new Error('請求逾時（'+(timeoutMs/1000)+'秒），請重試');
+    throw e;
+  }finally{
+    clearTimeout(timer);
+  }
 }
 
 // 用代號或名稱反查，取得 c(代號) 與 key 前綴(tse/otc)
@@ -192,6 +201,20 @@ async function doQuery(codeIn){
       card.innerHTML = `<span class="tag">${m.n||'加權指數'}　T00</span>` + renderQuote(m)
         + `<div class="status">資料日：${m.d||'-'}</div>`;
       return;
+    }
+
+    // 純數字代號（4~6 碼）直接查報價，跳過名稱反查（名稱反查會回傳上千筆權證，需 4~5 秒）
+    if(/^\d{4,6}$/.test(q)){
+      const q2 = await fetchQuotes([q]);
+      const m = q2.find(x=>x.c===q) || q2[0];
+      if(m){
+        card.innerHTML = `<div style="padding-bottom:14px">
+          <span class="tag">${m.n||m.c}　${m.c}　${m.ex==='otc'?'上櫃':'上市'}</span>
+          ${renderQuote(m)}
+          <div class="status">資料日：${m.d||'-'}</div></div>`;
+        return;
+      }
+      // 代號查無 → 落入名稱反查（可能是 5~6 碼權證或特殊代碼）
     }
 
     // 先反查代號/名稱（支援上市 tse 與上櫃 otc）
