@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>初探沖繩 · 2026 年 11 月 (v2)</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;background:#0a0a0a;color:#e8e8e8;line-height:1.7}
+.hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('media/kokusai-dori.png') center/cover no-repeat;filter:brightness(.7)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,#0a0a0a 100%)}
+.hero-content{position:relative;z-index:2;padding:0 24px;max-width:900px}
+.hero-label{font-size:13px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,200,150,.6);margin-bottom:20px;font-weight:300}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(48px,8vw,96px);font-weight:700;color:#fff;margin-bottom:16px;line-height:1.15}
+.hero p{font-size:clamp(16px,2.5vw,22px);color:rgba(255,255,255,.6);font-weight:300;letter-spacing:2px}
+.hero-date{font-size:14px;color:rgba(255,200,150,.4);margin-top:24px;letter-spacing:1px}
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-title{font-size:14px;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:2px}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.nav-links a{padding:6px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:all .3s;white-space:nowrap}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-links a.active{color:#fff;background:rgba(255,200,150,.15)}
+.section{max-width:1200px;margin:0 auto;padding:80px 24px}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header .tag{font-size:12px;letter-spacing:4px;color:rgba(255,200,150,.4);text-transform:uppercase;margin-bottom:12px}
+.section-header h2{font-size:clamp(28px,4vw,42px);font-weight:300;color:#fff;letter-spacing:1px}
+.section-header h2 strong{font-weight:700}
+.section-header p{color:rgba(255,255,255,.35);font-size:15px;margin-top:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);border-radius:16px;overflow:hidden;margin:0 24px}
+.stat{background:#0a0a0a;padding:40px 24px;text-align:center}
+.stat-num{font-size:clamp(28px,3vw,48px);font-weight:700}
+.stat-label{font-size:13px;color:rgba(255,255,255,.4);margin-top:6px}
+.timeline{position:relative;padding:20px 0}
+.timeline::before{content:'';position:absolute;left:50px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.1),rgba(255,255,255,.1),transparent)}
+.timeline-item{position:relative;padding-left:80px;margin-bottom:60px}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-dot{position:absolute;left:42px;top:6px;width:16px;height:16px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center}
+.timeline-dot-inner{width:6px;height:6px;border-radius:50%}
+.timeline-date{font-size:12px;letter-spacing:2px;color:rgba(255,255,255,.3);margin-bottom:4px}
+.timeline-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
+.timeline-sub{font-size:14px;color:rgba(255,255,255,.4)}
+.timeline-tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+.timeline-tags span{padding:3px 10px;font-size:11px;border-radius:10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.45)}
+.timeline-card{background:rgba(255,255,255,.03);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:all .4s;cursor:pointer}
+.timeline-card:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);transform:translateX(4px)}
+.timeline-card a{display:grid;grid-template-columns:280px 1fr;text-decoration:none;color:inherit;min-height:180px}
+.timeline-card-img{overflow:hidden;position:relative;min-height:180px;background:linear-gradient(135deg,#1a5276,#2980b9)}
+.timeline-card-img .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;opacity:.3}
+.timeline-card-text{padding:24px 28px;display:flex;flex-direction:column;justify-content:center}
+.timeline-card-text .label{font-size:11px;letter-spacing:2px;color:rgba(255,200,150,.5);margin-bottom:6px}
+.timeline-card-text h3{font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.timeline-card-text p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.6}
+.timeline-card-text .read-more{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:rgba(255,200,150,.6);transition:all .3s}
+.timeline-card:hover .read-more{color:#d4a373;gap:10px}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.feature-card{background:rgba(255,255,255,.03);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:all .4s;cursor:pointer}
+.feature-card:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);transform:translateY(-4px)}
+.feature-card a{text-decoration:none;color:inherit;display:block}
+.feature-card-img{width:100%;height:200px;overflow:hidden;background:linear-gradient(135deg,#1a5276,#2980b9)}
+.feature-card-img .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;opacity:.3}
+.feature-card-text{padding:20px 24px}
+.feature-card-text .label{font-size:11px;letter-spacing:2px;color:rgba(255,200,150,.5);margin-bottom:4px}
+.feature-card-text h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
+.feature-card-text p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.6}
+.footer{text-align:center;padding:60px 24px 40px;border-top:1px solid rgba(255,255,255,.05);max-width:1200px;margin:0 auto}
+.footer p{font-size:13px;color:rgba(255,255,255,.2);letter-spacing:1px}
+@media(max-width:768px){
+  .timeline::before{left:24px}
+  .timeline-item{padding-left:52px}
+  .timeline-dot{left:16px;width:14px;height:14px}
+  .timeline-dot-inner{width:5px;height:5px}
+  .timeline-card a{grid-template-columns:1fr}
+  .timeline-card-img{height:200px;min-height:auto}
+  .timeline-card-text{padding:18px 20px}
+  .feature-grid{grid-template-columns:1fr}
+  .feature-card-img{height:180px}
+  .stats{grid-template-columns:repeat(2,1fr);margin:0}
+  .hero h1{font-size:42px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-label">Travelogue · Okinawa 2026</div>
+    <h1>初探沖繩</h1>
+    <p>五天四夜 · 那霸・本部・美里</p>
+    <p style="color:#d4a373;font-size:12px;margin-top:8px;">2026.11.09-13</p>
+    <div class="hero-date">2026.11.09 — 11.13</div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num" style="color:#3498db">5</div><div class="stat-label">天數</div></div>
+  <div class="stat"><div class="stat-num" style="color:#2ecc71">4</div><div class="stat-label">酒店</div></div>
+  <div class="stat"><div class="stat-num" style="color:#e74c3c">6</div><div class="stat-label">景點</div></div>
+  <div class="stat"><div class="stat-num" style="color:#f39c12">∞</div><div class="stat-label">回憶</div></div>
+</div>
+
+<section class="section">
+  <div class="section-header">
+    <div class="tag">Itinerary</div>
+    <h2>行程全記錄</h2>
+    <p>每一天都是一頁全新的故事</p>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#3498db"><div class="timeline-dot-inner" style="background:#3498db"></div></div>
+      <div class="timeline-date">DAY 1 · 十一月九日（一）</div>
+      <div class="timeline-title">啟程</div>
+      <div class="timeline-sub">台北 → 那霸 · 國際通逛街 · 美榮橋市場</div>
+      <div class="timeline-tags">
+        <span>✈️ 長榮航空</span><span>🏨 那霸大和飯店</span><span>🛍️ 國際通</span><span>🦐 美榮橋市場</span>
+      </div>
+      <div class="timeline-card">
+        <a href="#">
+          <div class="timeline-card-img"><img src="media/okinawa/day1.jpg" alt="Day 1" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="timeline-card-text">
+            <div class="label">READ MORE</div>
+            <h3>抵達沖繩的第一刻</h3>
+            <p>長榮航空清晨班機，四小時飛抵那霸。放下行李後直奔國際通，伴手禮、藥妝、沖繩特產琳琅滿目。晚上在美榮橋市場品嚐在地海鮮。</p>
+            <div class="read-more">閱讀全文 →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#2ecc71"><div class="timeline-dot-inner" style="background:#2ecc71"></div></div>
+      <div class="timeline-date">DAY 2 · 十一月十日（二）</div>
+      <div class="timeline-title">美麗海水族館</div>
+      <div class="timeline-sub">黑潮之海 · Premium Outlet · 紫藤飯店</div>
+      <div class="timeline-tags">
+        <span>🐠 美麗海水族館</span><span>🛍️ Premium Outlet</span><span>🏨 沖繩紫藤飯店</span>
+      </div>
+      <div class="timeline-card">
+        <a href="#">
+          <div class="timeline-card-img"><img src="media/okinawa/day2.jpg" alt="Day 2" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="timeline-card-text">
+            <div class="label">READ MORE</div>
+            <h3>邂逅鯨鯊的藍色世界</h3>
+            <p>一早就直奔美麗海水族館，黑潮之海的鯨鯊水槽震撼人心。下午在 Premium Outlet 購物，傍晚抵達本部町的紫藤飯店。</p>
+            <div class="read-more">閱讀全文 →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#e74c3c"><div class="timeline-dot-inner" style="background:#e74c3c"></div></div>
+      <div class="timeline-date">DAY 3 · 十一月十一日（三）</div>
+      <div class="timeline-title">北部景點 → 返回那霸</div>
+      <div class="timeline-sub">美麗海水族館再逛 · Premium Outlet · 日航飯店</div>
+      <div class="timeline-tags">
+        <span>🐠 美麗海水族館</span><span>🛍️ Premium Outlet</span><span>🏨 沖繩日航飯店</span>
+      </div>
+      <div class="timeline-card">
+        <a href="#">
+          <div class="timeline-card-img"><img src="media/okinawa/day3.jpg" alt="Day 3" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="timeline-card-text">
+            <div class="label">READ MORE</div>
+            <h3>北部的藍海與購物時光</h3>
+            <p>早上在紫藤飯店享用早餐，再次前往美麗海水族館細細遊覽。中午在 Premium Outlet 購物，傍晚南下返回那霸，入住日航飯店。</p>
+            <div class="read-more">閱讀全文 →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#e74c3c"><div class="timeline-dot-inner" style="background:#e74c3c"></div></div>
+      <div class="timeline-date">DAY 4 · 十一月十二日（四）</div>
+      <div class="timeline-title">中部美國村</div>
+      <div class="timeline-sub">萬座毛 · 殘波岬燈塔 · 古宇利島 · 美國村</div>
+      <div class="timeline-tags">
+        <span>🪨 萬座毛</span><span>🗼 殘波岬</span><span>🏝️ 古宇利島</span><span>🏖️ 美國村</span><span>🚗 19:00還車</span>
+      </div>
+      <div class="timeline-card">
+        <a href="#">
+          <div class="timeline-card-img"><img src="media/okinawa/day4.jpg" alt="Day 4" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="timeline-card-text">
+            <div class="label">READ MORE</div>
+            <h3>沖繩中部的夢幻藍</h3>
+            <p>從萬座毛的大象鼻岩石，到殘波岬的白色燈塔，再到古宇利島的夢幻藍海。傍晚在美國村的海灘看日落，19:00 前還車返回日航飯店。</p>
+            <div class="read-more">閱讀全文 →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="border-color:#f39c12"><div class="timeline-dot-inner" style="background:#f39c12"></div></div>
+      <div class="timeline-date">DAY 5 · 十一月十三日（五）</div>
+      <div class="timeline-title">返程日</div>
+      <div class="timeline-sub">checkout · 國際通最後採購 · 19:00 搭機</div>
+      <div class="timeline-tags">
+        <span>🏨 日航 checkout</span><span>🛍️ 國際通</span><span>✈️ 長榮晚班機</span>
+      </div>
+      <div class="timeline-card">
+        <a href="#">
+          <div class="timeline-card-img"><img src="media/okinawa/day1.jpg" alt="Day 1" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="timeline-card-text">
+            <div class="label">READ MORE</div>
+            <h3>帶著滿滿的回憶回家</h3>
+            <p>早上從日航飯店 checkout，把行李寄放到機場。中午在那霸國際通做最後採購，買齊伴手禮後前往機場，19:00 搭長榮晚班機回台北。</p>
+            <div class="read-more">閱讀全文 →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="tag">Food Guide</div>
+    <h2>沖繩美食地圖</h2>
+    <p>那些讓人一再回味的琉球滋味</p>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <a href="#">
+        <div class="feature-card-img"><img src="media/okinawa/food1.jpg" alt="Food 1" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="feature-card-text">
+          <div class="label">FEATURE · 阿古豬</div>
+          <h3>百年古家阿古豬<br>沖繩黑豬料理</h3>
+          <p>歷史悠久的老字號餐廳，沖繩名產黑豬料理。烤豬排、豬肉涮涮鍋，每一口都是琉球的風味。</p>
+        </div>
+      </a>
+    </div>
+    <div class="feature-card">
+      <a href="#">
+        <div class="feature-card-img"><img src="media/okinawa/food2.jpg" alt="Food 2" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="feature-card-text">
+          <div class="label">FEATURE · 市場</div>
+          <h3>美榮橋市場<br>在地海鮮天堂</h3>
+          <p>那霸最舊的海鮮市場，魚糕、海產丼、沖繩生魚片。早去才能买到最新鮮的海味。</p>
+        </div>
+      </a>
+    </div>
+    <div class="feature-card">
+      <a href="#">
+        <div class="feature-card-img"><img src="media/okinawa/food3.jpg" alt="Food 3" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="feature-card-text">
+          <div class="label">FEATURE · 拉麵</div>
+          <h3>沖繩拉麵<br>與東京豚骨不同</h3>
+          <p>鹽味清湯、扁麵條、叉燒大片。那霸市區有好幾家排隊名店，值得專程尋找。</p>
+        </div>
+      </a>
+    </div>
+    <div class="feature-card">
+      <a href="#">
+        <div class="feature-card-img"><img src="media/okinawa/food4.jpg" alt="Food 4" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="feature-card-text">
+          <div class="label">FEATURE · 甜點</div>
+          <h3>沖繩冰品<br>紅芋・苦瓜・黑糖</h3>
+          <p>沖繩的特產冰品，紅芋霜淇淋、苦瓜冰、黑糖剉冰，都是當地人的日常消暑聖品。</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <p>初探沖繩 · 2026 年十一月 · 五天四夜</p>
+    <p style="font-size:11px;color:rgba(255,255,255,.15);margin-top:8px;">Updated: 2026-10-29</p>
+</div>
+
+</body>
+</html>
