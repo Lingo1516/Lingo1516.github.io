@@ -259,14 +259,19 @@ async function loadTaiex(){
 let FUT_CACHE=null, FUT_TS=0;
 async function loadTaifex(force){
   if(!force && FUT_CACHE && Date.now()-FUT_TS<60000)return FUT_CACHE;
-  const ctl=new AbortController();
-  const timer=setTimeout(()=>ctl.abort(),40000);
-  try{
-    const r=await fetch(TAIFEX,{signal:ctl.signal});
-    if(!r.ok)throw new Error('HTTP '+r.status);
-    FUT_CACHE=await r.json(); FUT_TS=Date.now();
-    return FUT_CACHE;
-  }finally{clearTimeout(timer);}
+  // 期交所 OpenAPI 無 CORS header → 瀏覽器必擋，只能走 r.jina.ai 代理
+  const url='https://openapi.taifex.com.tw/v1/DailyMarketReportFut';
+  let lastErr='';
+  for(let a=0;a<2;a++){
+    try{
+      const txt=await jinaGet(url,30000);
+      const d=sliceJson(txt,'[{"Date"');
+      if(!d||!Array.isArray(d)||!d.length)throw new Error('解析失敗');
+      FUT_CACHE=d; FUT_TS=Date.now();
+      return d;
+    }catch(e){lastErr=e.message;}
+  }
+  throw new Error(lastErr||'逾時');
 }
 function pickFut(rows,contract){
   const list=rows.filter(r=>r.Contract===contract);
