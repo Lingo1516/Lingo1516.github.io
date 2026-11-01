@@ -331,12 +331,15 @@ const APPLE_CODES = {
   '8068':'全達','8074':'鉅橡','9955':'佳龍'
 };
 
+// 別名：避免 id="q" 覆蓋 function q()
+function goCode(c){ return q(c); }
+
 function renderAppleGrid(){
   const g = document.getElementById('appleGrid');
   if (!g) return;
   const stocks = Object.entries(APPLE_CODES);
   g.innerHTML = stocks.map(([c,n])=>`
-    <div class="apple-card" onclick="q('${c}')" style="cursor:pointer;padding:10px;border-radius:10px;background:#F9F6EE;border:1px solid #EDE8D8;transition:all .15s">
+    <div class="apple-card" onclick="goCode('${c}')" style="cursor:pointer;padding:10px;border-radius:10px;background:#F9F6EE;border:1px solid #EDE8D8;transition:all .15s">
       <div style="font-size:12px;color:#888;margin-bottom:3px">${c}</div>
       <div style="font-size:14px;font-weight:700;color:#2D2A26">${n}</div>
     </div>
