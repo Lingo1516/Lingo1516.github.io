@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paper Summarizer — 論文秒讀，AI 自動摘要</title>
-<meta name="description" content="上傳 PDF 論文，AI 立刻產出結構化摘要：標題、作者、研究目標、方法、關鍵發現、結論。免費開源。">
+<title>Paper Summarizer — 論文秒讀</title>
+<meta name="description" content="上傳 PDF 論文，AI 自動產出結構化摘要。免費開源。">
 <meta property="og:title" content="Paper Summarizer — 論文秒讀">
 <meta property="og:description" content="上傳 PDF，AI 產出結構化摘要。免費開源。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lingo1516.github.io/paper-summarizer/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#F7F5F0;--card:#fff;--text:#2D2A26;--muted:#6b6560;--accent:#4F46E5;--accent-l:#EEF2FF;--green:#059669;--red:#dc2626}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+:root{--bg:#F7F5F0;--card:#fff;--text:#2D2A26;--muted:#6b6560;--accent:#4F46E5;--accent-l:#EEF2FF;--green:#059669;--red:#dc2626;--radius:12px;--shadow:0 4px 24px rgba(0,0,0,.08)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}
 .container{max-width:860px;margin:0 auto;padding:0 20px}
+
+/* NAV */
 nav{background:var(--card);border-bottom:1px solid #e8e5e0;padding:14px 0;position:sticky;top:0;z-index:99}
 nav .container{display:flex;align-items:center;justify-content:space-between}
 .logo{font-weight:800;font-size:17px}
@@ -22,14 +24,17 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .nav-links{display:flex;gap:18px;align-items:center;font-size:14px}
 .nav-links a{color:var(--muted);font-weight:500}
 .nav-links a:hover{color:var(--accent)}
-.btn-gh{background:var(--text);color:#fff;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600}
+.btn-gh{background:var(--text);color:#fff;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+
+/* HERO */
 .hero{padding:56px 0 36px;text-align:center}
 .badge{display:inline-block;background:var(--accent-l);color:var(--accent);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px}
 .hero h1{font-size:clamp(28px,4.5vw,44px);font-weight:900;line-height:1.2;margin-bottom:14px;letter-spacing:-.5px}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7}
 
-.tool{background:var(--card);border:1px solid #e8e5e0;border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.06);overflow:hidden;margin-bottom:40px}
+/* TOOL */
+.tool{background:var(--card);border:1px solid #e8e5e0;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:40px}
 .tool-head{padding:14px 20px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px;background:#fdfcfa}
 .dots{display:flex;gap:5px}
 .dot{width:10px;height:10px;border-radius:50%}
@@ -41,8 +46,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 #drop:hover,#drop.over{border-color:var(--accent);background:var(--accent-l)}
 #drop .ic{font-size:40px;margin-bottom:10px}
 #drop p{color:var(--muted);font-size:14px}
-#drop .fname{margin-top:10px;font-size:13px;color:var(--accent);font-weight:700;word-break:break-all}
-#drop .size{font-size:12px;color:var(--muted);font-weight:400}
+#drop .fname{margin-top:10px;font-size:13px;color:var(--accent);font-weight:700}
 
 .opts{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
 .opt{flex:1;min-width:130px}
@@ -81,6 +85,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .res li{margin-bottom:5px}
 .res p{margin-bottom:8px}
 
+/* FEATURES */
 .sec{padding:40px 0}
 .sec h2{text-align:center;font-size:23px;font-weight:900;margin-bottom:26px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px}
@@ -93,20 +98,23 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .steps ol{margin-left:20px;font-size:14px;line-height:2}
 .steps code{background:#f2f0ec;padding:2px 7px;border-radius:4px;font-size:12.5px;font-family:ui-monospace,Menlo,monospace}
 
-.tip{background:#fffbe6;border:1px solid #ffe58f;border-radius:9px;padding:12px 16px;font-size:13px;color:#8c7000;margin-bottom:20px;display:flex;align-items:center;gap:8px}
-
 footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;border-top:1px solid #e8e5e0;margin-top:36px}
 @media(max-width:600px){.hero{padding:36px 0 24px}.opts{flex-direction:column}.nav-links a:not(.btn-gh){display:none}}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
 </head>
 <body>
 
 <nav><div class="container">
   <div class="logo">📄 Paper<span>Sum</span></div>
   <div class="nav-links">
-    <a href="#how">使用說明</a>
     <a href="#feat">功能</a>
-    <a class="btn-gh" href="https://github.com/Lingo1516/paper-summarizer" target="_blank">GitHub</a>
+    <a href="#how">自己架設</a>
+    <a class="btn-gh" href="https://github.com/Lingo1516/paper-summarizer" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
   </div>
 </div></nav>
 
@@ -117,10 +125,6 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;bord
 </div></section>
 
 <div class="container">
-<div class="tip" id="apiTip" style="display:none">
-  💡 分析後端尚未連接。請在本機運行 <code>uvicorn api:app --port 8010</code> 後填入下方 URL，或使用下方提供的預設後端。
-</div>
-
 <div class="tool">
   <div class="tool-head"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="t">paper-summarizer — 線上分析</span></div>
   <div class="tool-body">
@@ -136,9 +140,6 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;bord
       </div>
       <div class="opt"><label>分析頁數</label>
         <select id="mpage"><option value="12">前 12 頁（快速）</option><option value="25">前 25 頁（完整）</option></select>
-      </div>
-      <div class="opt"><label>後端 URL</label>
-        <input id="apiUrl" type="text" placeholder="如 http://localhost:8010" style="width:100%;padding:9px 11px;border:1px solid #e0ddd8;border-radius:8px;font-size:13px;background:#fff">
       </div>
     </div>
     <button id="go" disabled>🧠 開始分析</button>
@@ -168,7 +169,7 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;bord
     <div class="fc"><div class="ic">🎯</div><h3>結構化輸出</h3><p>固定六個欄位：標題、作者、目標、方法、發現、結論。</p></div>
     <div class="fc"><div class="ic">🌐</div><h3>中英雙輸出</h3><p>英文論文可產中文摘要，反之亦然。</p></div>
     <div class="fc"><div class="ic">📦</div><h3>三種格式</h3><p>Markdown、JSON、HTML，直接匯入你的筆記或系統。</p></div>
-    <div class="fc"><div class="ic">🔓</div><h3>完全開源</h3><p>MIT 授權，可自架、可改、可商用。</p></div>
+    <div class="fc"><div class="ic">🔒</div><h3>隱私安全</h3><p>所有處理都在本地完成，論文不會上傳到外部伺服器。</p></div>
     <div class="fc"><div class="ic">🎓</div><h3>研究加速</h3><p>文獻回顧、題目篩選、會議前速讀都適用。</p></div>
   </div>
 </div></section>
@@ -178,11 +179,15 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;bord
   <div class="steps">
     <ol>
       <li><code>git clone https://github.com/Lingo1516/paper-summarizer.git</code></li>
-      <li><code>cd paper-summarizer && pip install -r requirements.txt</code></li>
-      <li><code>export LLM_API_KEY="sk-..."</code> （OpenRouter 或其他 OpenAI 相容 API）</li>
-      <li><code>uvicorn api:app --host 0.0.0.0 --port 8010</code> 啟動 API</li>
-      <li><code>streamlit run app.py</code> 啟動網頁介面（可選）</li>
+      <li>把 <code>worker.js</code> 部署到 Cloudflare Workers（免費額度）</li>
+      <li>在 Worker 設定環境變數：<code>API_KEY=sk-....</code>（OpenRouter API Key）</li>
+      <li>開啟 <code>index.html</code>，填入 Worker 網址即可使用</li>
     </ol>
+    <p style="margin-top:16px;font-size:13px;color:var(--muted)">
+      💡 <strong>推薦使用現有 Worker：</strong><br>
+      已部署好的版本：<code>https://你的-worker-name.workers.dev</code><br>
+      或直接用這個：<a id="demoLink" href="#">載入中...</a>
+    </p>
   </div>
 </div></section>
 
@@ -191,30 +196,29 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;bord
 </div></footer>
 
 <script>
-const drop=document.getElementById('drop'), fi=document.getElementById('fi'),
-      fname=document.getElementById('fname'), go=document.getElementById('go'),
-      spin=document.getElementById('spin'), stageTxt=document.getElementById('stageTxt'),
-      errBox=document.getElementById('err'), out=document.getElementById('out'),
-      res=document.getElementById('res'), apiTip=document.getElementById('apiTip'),
-      apiUrlEl=document.getElementById('apiUrl');
-let file=null, data=null, polling=false;
+// ===== CONFIG =====
+// 修改這裡指向你的 Cloudflare Worker
+// 預設為本專案的臨時隧道（不保證長期可用）
+const API_URL = localStorage.getItem('ps_api') || 
+  'https://consultant-manuals-couple-wright.trycloudflare.com';
 
-const SAVED = localStorage.getItem('ps_api') || 'https://consultant-manuals-couple-wright.trycloudflare.com';
-apiUrlEl.value = SAVED;
-apiUrlEl.readOnly = true;
-apiUrlEl.style.opacity = '0.7';
-apiUrlEl.title = '已連接 Paper Summarizer 雲端後端（Cloudflare Tunnel）';
-checkApi();
+const sysPromptZh = `你是學術論文分析專家。仔細閱讀論文內容後，只輸出JSON（繁體中文），不要任何其他文字：
+{"title":"論文標題","authors":["作者1","作者2"],"abstract":"200-300字摘要","objectives":["研究目標1","研究目標2"],"methods":"研究方法描述","key_findings":["關鍵發現1","關鍵發現2","關鍵發現3"],"conclusion":"100-150字結論"}`;
 
-apiUrlEl.addEventListener('change', ()=>{ localStorage.setItem('ps_api', apiUrlEl.value); checkApi(); });
-apiUrlEl.addEventListener('blur', ()=>{ localStorage.setItem('ps_api', apiUrlEl.value); checkApi(); });
+const sysPromptEn = `You are an academic paper analysis expert. Read the paper carefully and output ONLY JSON (English), no other text:
+{"title":"Paper Title","authors":["Author 1","Author 2"],"abstract":"200-300 word summary","objectives":["Objective 1","Objective 2"],"methods":"Research methodology","key_findings":["Finding 1","Finding 2","Finding 3"],"conclusion":"100-150 word conclusion"}`;
 
-function checkApi(){
-  const u = apiUrlEl.value.trim().replace(/\/$/,'');
-  if(!u){ apiTip.style.display=''; return; }
-  apiTip.style.display='none';
-  fetch(u+'/health', {mode:'no-cors'}).catch(()=>{}); // silent check
-}
+// ===== UI =====
+const drop=document.getElementById('drop'), fi=document.getElementById('fi');
+const fname=document.getElementById('fname'), go=document.getElementById('go');
+const spin=document.getElementById('spin'), stageTxt=document.getElementById('stageTxt');
+const errBox=document.getElementById('err'), out=document.getElementById('out');
+const res=document.getElementById('res');
+let file=null, data=null;
+
+// Demo link
+document.getElementById('demoLink').href = API_URL;
+document.getElementById('demoLink').textContent = API_URL;
 
 drop.onclick=()=>fi.click();
 drop.ondragover=e=>{e.preventDefault();drop.classList.add('over')};
@@ -224,128 +228,129 @@ fi.onchange=()=>{if(fi.files[0])pick(fi.files[0])};
 
 function pick(f){
   if(!f.name.toLowerCase().endsWith('.pdf')){showErr('請選擇 PDF 檔案');return}
-  file=f;
-  fname.innerHTML='✅ '+esc(f.name)+' <span class="size">('+((f.size/1024/1024).toFixed(2))+' MB)</span>';
+  file=f; 
+  fname.textContent='✅ '+f.name+' ('+(f.size/1024/1024).toFixed(2)+' MB)';
   go.disabled=false; errBox.classList.remove('on'); out.classList.remove('on');
 }
 
 function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
 function showErr(m){errBox.textContent='❌ '+m;errBox.classList.add('on')}
-function setStage(s){stageTxt.textContent=s}
 
 go.onclick=async()=>{
   if(!file)return;
-  const apiBase = apiUrlEl.value.trim().replace(/\/$/,'');
-  if(!apiBase){ showErr('請輸入後端 URL（如 http://localhost:8010）'); return; }
-
   go.disabled=true; errBox.classList.remove('on'); out.classList.remove('on');
   spin.classList.add('on');
-  setStage('正在送出新任務…'); polling=false;
-
-  const fd=new FormData();
-  fd.append('file',file);
-  fd.append('language',document.getElementById('lang').value);
-  fd.append('max_pages',document.getElementById('mpage').value);
-  fd.append('format','markdown');
 
   try{
-    const t1=setTimeout(()=>setStage('AI 正在分析論文內容，請稍候…（通常需 1-2 分鐘）'),3000);
-    const r=await fetch(apiBase+'/summarize',{method:'POST',body:fd});
-    clearTimeout(t1);
-    if(!r.ok){const e=await r.json().catch(()=>null); throw new Error(e?.detail||'HTTP '+r.status)}
-    const {job_id}=r.json();
-    console.log('Job submitted:',job_id);
-
-    // Poll for result
-    setStage('等待分析完成…');
-    polling=true;
-    await pollResult(apiBase, job_id);
+    setStage('正在讀取 PDF…');
+    const pdfText = await extractPDF(file);
+    setStage('AI 正在分析論文內容（需 1-2 分鐘）…');
+    
+    const result = await callAI(pdfText);
+    data = result;
+    
+    spin.classList.remove('on');
+    render(result);
+    out.classList.add('on');
   }catch(e){
-    clearTimeout(t1); polling=false; spin.classList.remove('on');
+    spin.classList.remove('on');
     showErr(e.message||'分析失敗');
   }finally{ go.disabled=false }
 };
 
-async function pollResult(apiBase, jobId){
-  for(let i=0;i<120;i++){ // max 10 min
-    await sleep(5000);
-    if(!polling)return;
-    try{
-      const r=await fetch(apiBase+'/result/'+jobId);
-      if(r.status===202){
-        setStage('分析中…（'+((i+1)*5)+'s）');
-        continue;
-      }
-      if(r.status===200){
-        const d=await r.json();
-        polling=false; spin.classList.remove('on');
-        data=d; render(d); out.classList.add('on');
-        return;
-      }
-      const d=await r.json().catch(()=>null);
-      throw new Error(d?.detail||'HTTP '+r.status);
-    }catch(e){
-      polling=false; spin.classList.remove('on');
-      showErr('取得結果失敗: '+e.message);
-      return;
-    }
+async function extractPDF(file){
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+  let text = '';
+  const maxPages = parseInt(document.getElementById('mpage').value);
+  
+  for(let i=1; i<=Math.min(pdf.numPages, maxPages); i++){
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    const pageText = content.items.map(item => item.str).join(' ');
+    text += pageText + '\n\n';
+    setStage(`正在讀取第 ${i}/${Math.min(pdf.numPages, maxPages)} 頁…`);
   }
-  polling=false; spin.classList.remove('on');
-  showErr('分析超時（超過 10 分鐘），請減少頁數後重試');
+  return text;
 }
 
-function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+async function callAI(pdfText){
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      text: pdfText,
+      language: document.getElementById('lang').value,
+      prompt: document.getElementById('lang').value === 'zh' ? sysPromptZh : sysPromptEn
+    })
+  });
+  
+  if(!response.ok){
+    const err = await response.json().catch(()=>({}));
+    throw new Error(err.error || `HTTP ${response.status}`);
+  }
+  
+  return await response.json();
+}
 
 function render(d){
-  const L=document.getElementById('lang').value;
-  const T=L==='zh'
-    ?{t:'標題',a:'作者',ab:'摘要',o:'研究目標',m:'研究方法',k:'關鍵發現',c:'結論'}
-    :{t:'Title',a:'Authors',ab:'Abstract',o:'Objectives',m:'Methods',k:'Key Findings',c:'Conclusion'};
-  const list=(arr)=>Array.isArray(arr)&&arr.length?'<ul>'+arr.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'<p style="color:#9b9691">—</p>';
-  const para=(s)=>s?'<p>'+esc(s).replace(/\n/g,'</p><p>')+'</p>':'<p style="color:#9b9691">—</p>';
+  const isZh = document.getElementById('lang').value === 'zh';
+  const T = isZh 
+    ? {ab:'摘要', o:'研究目標', m:'研究方法', k:'關鍵發現', c:'結論'}
+    : {ab:'Abstract', o:'Objectives', m:'Methods', k:'Key Findings', c:'Conclusion'};
+  
+  const list = (arr) => arr&&arr.length ? '<ul>'+arr.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>' : '<p style="color:#9b9691">—</p>';
+  const para = (s) => s ? '<p>'+esc(s).replace(/\n/g,'</p><p>')+'</p>' : '<p style="color:#9b9691">—</p>';
 
-  let h='';
-  if(d._meta) h+='<div class="meta">📄 '+esc(d._meta.filename||'')+' · 讀取 '+d._meta.pages_read+' 頁 / 共 '+d._meta.pages_total+' 頁 · '+d._meta.chars.toLocaleString()+' 字 · 模型 '+esc(d._meta.model||'')+'</div>';
-  h+='<div class="ttl">'+esc(d.title||'—')+'</div>';
-  if(d.authors&&d.authors.length) h+='<div class="auth">'+d.authors.map(esc).join(' · ')+'</div>';
-  h+='<h4>'+T.ab+'</h4>'+para(d.abstract);
-  h+='<h4>'+T.o+'</h4>'+list(d.objectives);
-  h+='<h4>'+T.m+'</h4>'+para(d.methods);
-  h+='<h4>'+T.k+'</h4>'+list(d.key_findings);
-  h+='<h4>'+T.c+'</h4>'+para(d.conclusion);
-  res.innerHTML=h;
+  let h = '';
+  if(d.meta) h+=`<div class="meta">📄 ${esc(d.meta.filename||'')} · ${d.meta.pages} 頁 / ${d.meta.chars.toLocaleString()} 字 · ${esc(d.meta.model||'')}</div>`;
+  h+=`<div class="ttl">${esc(d.title||'—')}</div>`;
+  if(d.authors?.length) h+=`<div class="auth">${d.authors.map(esc).join(' · ')}</div>`;
+  h+=`<h4>${T.ab}</h4>${para(d.abstract)}`;
+  h+=`<h4>${T.o}</h4>${list(d.objectives)}`;
+  h+=`<h4>${T.m}</h4>${para(d.methods)}`;
+  h+=`<h4>${T.k}</h4>${list(d.key_findings)}`;
+  h+=`<h4>${T.c}</h4>${para(d.conclusion)}`;
+  res.innerHTML = h;
 }
 
 function dl(kind){
   if(!data)return;
-  const base=(data._meta&&data._meta.filename||'paper').replace(/\.pdf$/i,'');
-  let body,mime;
-  if(kind==='json'){body=JSON.stringify(data,null,2);mime='application/json'}
-  else if(kind==='md'){
-    let s='# '+(data.title||'Paper Summary')+'\n\n';
-    if(data.authors&&data.authors.length) s+='**Authors:** '+data.authors.join(', ')+'\n\n';
-    s+='## Abstract\n\n'+(data.abstract||'')+'\n\n';
-    s+='## Objectives\n\n'+(data.objectives||[]).map(x=>'- '+esc(x)).join('\n')+'\n\n';
-    s+='## Methods\n\n'+(data.methods||'')+'\n\n';
-    s+='## Key Findings\n\n'+(data.key_findings||[]).map(x=>'- '+esc(x)).join('\n')+'\n\n';
-    s+='## Conclusion\n\n'+(data.conclusion||'')+'\n';
-    body=s;mimeType='text/markdown';
-  } else {
-    body='<!DOCTYPE html><meta charset="utf-8"><title>'+esc(data.title||'')+'</title>'
-      +'<style>body{font-family:system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;line-height:1.75;color:#2D2A26}h1{font-size:26px}h2{font-size:14px;color:#4F46E5;margin-top:26px;text-transform:uppercase;letter-spacing:.5px}</style>'
-      +'<h1>'+esc(data.title||'')+'</h1><p><em>'+esc((data.authors||[]).join(', '))+'</em></p>'
-      +'<h2>Abstract</h2><p>'+esc(data.abstract||'')+'</p>'
-      +'<h2>Objectives</h2><ul>'+(data.objectives||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'
-      +'<h2>Methods</h2><p>'+esc(data.methods||'')+'</p>'
-      +'<h2>Key Findings</h2><ul>'+(data.key_findings||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'
-      +'<h2>Conclusion</h2><p>'+esc(data.conclusion||'')+'</p>';
+  const base = (data.meta?.filename||'paper').replace(/\.pdf$/i,'');
+  let body, mime;
+  
+  if(kind==='json'){
+    body=JSON.stringify(data,null,2); mime='application/json';
+  }else if(kind==='md'){
+    const t = document.getElementById('lang').value==='zh' 
+      ? {t:'論文標題',a:'作者',ab:'摘要',o:'研究目標',m:'研究方法',k:'關鍵發現',c:'結論'}
+      : {t:'Title',a:'Authors',ab:'Abstract',o:'Objectives',m:'Methods',k:'Key Findings',c:'Conclusion'};
+    let s=`# ${data.title||'Paper Summary'}\n\n`;
+    if(data.authors?.length) s+=`**Authors:** ${data.authors.join(', ')}\n\n`;
+    s+=`## ${t.ab}\n\n${data.abstract||''}\n\n`;
+    s+=`## ${t.o}\n\n${(data.objectives||[]).map(x=>'- '+x).join('\n')}\n\n`;
+    s+=`## ${t.m}\n\n${data.methods||''}\n\n`;
+    s+=`## ${t.k}\n\n${(data.key_findings||[]).map(x=>'- '+x).join('\n')}\n\n`;
+    s+=`## ${t.c}\n\n${data.conclusion||''}\n`;
+    body=s; mime='text/markdown';
+  }else{
+    body=`<!DOCTYPE html><meta charset="utf-8"><title>${esc(data.title||'')}</title>
+<style>body{font-family:system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;line-height:1.75;color:#2D2A26}h1{font-size:26px}h2{font-size:14px;color:#4F46E5;margin-top:26px;text-transform:uppercase;letter-spacing:.5px}</style>
+<h1>${esc(data.title||'')}</h1><p><em>${esc((data.authors||[]).join(', '))}</em></p>
+<h2>Abstract</h2><p>${esc(data.abstract||'')}</p>
+<h2>Objectives</h2><ul>${(data.objectives||[]).map(x=>'<li>'+esc(x)+'</li>').join('')}</ul>
+<h2>Methods</h2><p>${esc(data.methods||'')}</p>
+<h2>Key Findings</h2><ul>${(data.key_findings||[]).map(x=>'<li>'+esc(x)+'</li>').join('')}</ul>
+<h2>Conclusion</h2><p>${esc(data.conclusion||'')}</p>`;
     mime='text/html';
   }
   const b=new Blob([body],{type:mime+';charset=utf-8'});
   const u=URL.createObjectURL(b);const a=document.createElement('a');
   a.href=u;a.download=base+'.'+kind;a.click();URL.revokeObjectURL(u);
 }
+
+function setStage(s){stageTxt.textContent=s}
 </script>
 </body>
 </html>
