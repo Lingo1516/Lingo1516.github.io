@@ -240,13 +240,15 @@ function render(d){
   const cls = ch>0?'up': ch<0?'down':'flat';
   const sg = ch>0?'+':'';
   const starred = isStar(d.code);
+  const isOTC = d.mkt === 'otc';
   document.title = `${d.name} ${d.px} ${sg}${pct.toFixed(2)}% · 台股`;
 
   MAIN.innerHTML = `
   <div class="card">
-    <div class="hdr"><div>
+    <div class="hdr">
+      <div>
         <div class="nm">${esc(d.name)} <button class="star ${starred?'on':''}" onclick="toggleStar('${d.code}','${esc(d.name)}')" title="加入自選">${starred?'★':'☆'}</button></div>
-        <div class="cd">${d.code} · ${d.mkt==='otc'?'上櫃':'上市'}</div>
+        <div class="cd">${d.code} · ${isOTC?'上櫃':'上市'}</div>
       </div>
       <div style="text-align:right">
         <div class="px ${cls}">${fmt(d.px)}</div>
@@ -256,72 +258,58 @@ function render(d){
     </div>
     <div class="meta">
       <div class="mi"><span class="ml">開盤</span><span class="mv">${fmt(d.open)}</span></div>
-      MAIN.innerHTML = `
-      <div class="card">
-        <div class="hdr">
-          <div><div class="nm">${esc(d.n)} <span style="font-size:13px;color:#aaa;font-weight:400">#${d.code}</span>${isOTC?'<span class="s-mkt">上櫃</span>':''}</div>
-            <div class="cd">資料來源：${mktLabel(curMkt)} · ${d.time}</div></div>
-          <div style="text-align:right"><button class="star-btn ${isStar?'on':''}" onclick="toggleStar('${d.code}','${esc(d.n)}')" title="加入自選股">${isStar?'★':'☆'}</button></div>
-        </div>
-        <div class="px ${cls(d)}">${d.px}</div>
-        <div class="ch ${cls(d)}">${d.chg>0?'+':''}${d.chg} (${d.pct>0?'+':''}${d.pct.toFixed(2)}%)</div>
-        <div class="ts">📊 查詢時間 ${d.time} · 盤後行情</div>
-        <div class="meta">
-          <div class="mi"><span class="ml">今開</span><span class="mv">${fmt(d.op)}</span></div>
-          <div class="mi"><span class="ml">最高</span><span class="mv up">${fmt(d.hi)}</span></div>
-          <div class="mi"><span class="ml">最低</span><span class="mv down">${fmt(d.lo)}</span></div>
-          <div class="mi"><span class="ml">昨收</span><span class="mv">${fmt(d.pt)}</span></div>
-          <div class="mi"><span class="ml">成交量</span><span class="mv">${lotFmt(d.vol)}</span></div>
-          <div class="mi"><span class="ml">成交額</span><span class="mv">${d.px&&d.vol?((d.px*1000*d.vol)/1e8).toFixed(2)+'億':'—'}</span></div>
-        </div>
+      <div class="mi"><span class="ml">最高</span><span class="mv">${fmt(d.high)}</span></div>
+      <div class="mi"><span class="ml">最低</span><span class="mv">${fmt(d.low)}</span></div>
+      <div class="mi"><span class="ml">昨收</span><span class="mv">${fmt(d.prev)}</span></div>
+      <div class="mi"><span class="ml">成交量</span><span class="mv">${d.vol?((d.vol>=10000)?(d.vol/10000).toFixed(1)+'萬張':d.vol.toLocaleString()+'張'):'—'}</span></div>
+      <div class="mi"><span class="ml">成交額</span><span class="mv">${d.px&&d.vol?((d.px*d.vol*1000)/1e8).toFixed(1)+'億':'—'}</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-t">
+      <span>📊 走勢</span>
+      <div class="btns">
+        <button class="on" id="b20" onclick="loadK('${d.code}',20)">20日</button>
+        <button id="b60" onclick="loadK('${d.code}',60)">60日</button>
+        <button id="b120" onclick="loadK('${d.code}',120)">120日</button>
       </div>
+    </div>
+    <canvas id="cv" height="220"></canvas>
+  </div>
 
-      <div class="card">
-        <div class="sec-t">
-          <span>🍎 蘋概股快看</span>
-          <span style="font-size:11px;color:#aaa;font-weight:400">（Apple 供應鏈）</span>
-        </div>
-        <div id="appleGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"></div>
+  <div class="card">
+    <div class="sec-t">
+      <span>🍎 蘋概股快看</span>
+      <span style="font-size:11px;color:#aaa;font-weight:400">（Apple 供應鏈）</span>
+    </div>
+    <div id="appleGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"></div>
+  </div>
+
+  <div class="card">
+    <div class="sec-t">
+      <span>💰 融資融券（籌碼）</span>
+      <div class="btns">
+        <button class="on" id="m5" onclick="drawMargin(5)">5日</button>
+        <button id="m10" onclick="drawMargin(10)">10日</button>
+        <button id="m20" onclick="drawMargin(20)">20日</button>
       </div>
+    </div>
+    <div id="marginBox"><div class="loading" style="padding:16px"><div class="spinner"></div></div></div>
+    <canvas id="mcv" height="180" style="margin-top:10px"></canvas>
+    <div id="mNote" style="font-size:11.5px;color:#8a8578;line-height:1.65;margin-top:10px"></div>
+  </div>
 
-      <div class="card">
-        <div class="sec-t">
-          <span>💰 融資融券（籌碼）</span>
-          <div class="btns">
-            <button class="on" id="m5" onclick="drawMargin(5)">5日</button>
-            <button id="m10" onclick="drawMargin(10)">10日</button>
-            <button id="m20" onclick="drawMargin(20)">20日</button>
-          </div>
-        </div>
-        <div id="marginBox"><div class="loading" style="padding:16px"><div class="spinner"></div></div></div>
-        <canvas id="mcv" height="180" style="margin-top:10px"></canvas>
-        <div id="mNote" style="font-size:11.5px;color:#8a8578;line-height:1.65;margin-top:10px"></div>
-      </div>
+  <div class="card">
+    <div class="sec-t"><span>📋 歷史日線</span><span style="font-size:11px;color:#bbb;font-weight:400" id="tblInfo"></span></div>
+    <div id="tbl"><div class="loading" style="padding:20px">載入中…</div></div>
+  </div>
+  `;
 
-      <div class="card">
-        <div class="sec-t"><span>📋 歷史日線</span><span style="font-size:11px;color:#bbb;font-weight:400" id="tblInfo"></span></div>
-        <div id="tbl"><div class="loading" style="padding:20px">載入中…</div></div>
-      </div>
-      `;
-
-      // 渲染蘋概股卡片
-      renderAppleGrid();
-
-      drawWL();
-      loadMargin(d.code);
-      }
-
-      function renderAppleGrid(){
-      const g = document.getElementById('appleGrid');
-      if (!g) return;
-      const stocks = Object.entries(APPLE_CODES);
-      g.innerHTML = stocks.map(([c,n])=>`
-        <div class="apple-card" onclick="q('${c}')" style="cursor:pointer;padding:10px;border-radius:10px;background:#F9F6EE;border:1px solid #EDE8D8;transition:all .15s">
-          <div style="font-size:12px;color:#888;margin-bottom:3px">${c}</div>
-          <div style="font-size:14px;font-weight:700;color:#2D2A26">${n}</div>
-        </div>
-      `).join('');
-      }
+  renderAppleGrid();
+  drawWL();
+  loadMargin(d.code);
+}
 
 /* ---------- 蘋概股（Apple 供應鏈） ---------- */
 const APPLE_CODES = {
