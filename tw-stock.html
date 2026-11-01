@@ -235,8 +235,7 @@ function render(d){
 
   MAIN.innerHTML = `
   <div class="card">
-    <div class="hdr">
-      <div>
+    <div class="hdr"><div>
         <div class="nm">${esc(d.name)} <button class="star ${starred?'on':''}" onclick="toggleStar('${d.code}','${esc(d.name)}')" title="加入自選">${starred?'★':'☆'}</button></div>
         <div class="cd">${d.code} · ${d.mkt==='otc'?'上櫃':'上市'}</div>
       </div>
@@ -273,6 +272,7 @@ function render(d){
     <div id="tbl"><div class="loading" style="padding:20px">載入中…</div></div>
   </div>
   `;
+  drawWL();
 }
 
 function fmt(n){ return isFinite(n)&&n? n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) : '—'; }
@@ -442,12 +442,19 @@ function toggleStar(c,n){
   else a.unshift({c,n});
   setWL(a);
   if (cur===c) q(cur);
-  drawWL();
+  else drawWL();
 }
 
 async function drawWL(){
-  const box = document.getElementById('wlBox');
-  if (!box) return;
+  // 首頁與個股頁都要有自選股區塊
+  let box = document.getElementById('wlBox');
+  if (!box){
+    const card = document.createElement('div');
+    card.id = 'wlBox';
+    card.style.marginTop = '12px';
+    MAIN.appendChild(card);
+    box = card;
+  }
   const a = getWL();
   if (!a.length){ box.innerHTML=''; return; }
   box.innerHTML = `<div class="card">
