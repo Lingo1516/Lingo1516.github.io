@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VJW 機場退稅手機操作指南</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f4f4f5; margin: 0; padding: 20px; }
+        .container { max-width: 500px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: #0056b3; color: white; padding: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 20px; }
+        .warning { background: #fee2e2; color: #991b1b; padding: 15px; margin: 20px; border-radius: 8px; font-size: 14px; font-weight: bold; border-left: 4px solid #ef4444; }
+        .step { padding: 15px 20px; border-bottom: 1px solid #eee; display: flex; align-items: flex-start; }
+        .step:last-child { border-bottom: none; }
+        .step-number { background: #0056b3; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; flex-shrink: 0; margin-right: 15px; }
+        .step-content h2 { margin: 0 0 5px 0; font-size: 18px; color: #1f2937; }
+        .step-content p { margin: 0 0 10px 0; font-size: 15px; color: #4b5563; }
+        .code-box { background: #f3f4f6; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 14px; color: #111827; }
+        .status-box { padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 14px; }
+        .status-green { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .status-red { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>VJW 機場退稅手機操作指南</h1>
+        </div>
+        <div class="warning">
+            ⚠️ 絕對不可先託運行李！請務必「先做完 VJW 系統通關，再去航空公司櫃檯報到」。
+        </div>
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h2>連線海關專用 Wi-Fi</h2>
+                <p>在機場出境大廳（尚未託運行李前），打開手機 Wi-Fi 尋找並連線：</p>
+                <div class="code-box">網路名稱：Customs_WiFi_For_TaxRefund<br>密碼：jcustoms</div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h2>登入 Visit Japan Web</h2>
+                <p>開啟手機瀏覽器，登入您的 VJW 帳號。</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h2>進入免稅退稅手續</h2>
+                <p>在首頁點選「免稅購買及退稅手續」 (Tax Refund Procedure)，系統會自動讀取您綁定的免稅明細。</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h2>送出並確認燈號</h2>
+                <p>確認明細無誤後，點選「確認 / Confirm」送出，看系統判定結果：</p>
+                <div class="status-box status-green">🟢 顯示綠色：通關完成！可直接去託運行李。</div>
+                <div class="status-box status-red">🔴 顯示紅色：請帶著手機與「實體免稅商品」，走人工海關檢查櫃檯。</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
