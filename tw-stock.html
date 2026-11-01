@@ -339,7 +339,10 @@ async function loadK(code, days){
   rows.sort((a,b)=> a[0].localeCompare(b[0]));
   rows = rows.slice(-days);
   chartData = rows.map(r=>({
-    d:r[0], o:pf(r[3]), h:pf(r[4]), l:pf(r[5]), c:pf(r[6]), v:pf(r[1]), diff:pf(r[7])
+    d:r[0], o:pf(r[3]), h:pf(r[4]), l:pf(r[5]), c:pf(r[6]),
+    // 證交所 r[1] 是成交股數；櫃買中心 r[1] 是成交張數
+    lots: curMkt==='otc' ? pf(r[1]) : Math.round(pf(r[1])/1000),
+    diff:pf(r[7])
   })).filter(x=>x.c>0);
 
   drawChart(chartData);
@@ -441,7 +444,7 @@ function drawTable(data){
       const df = r.diff;
       const cls = df>0?'chip-up': df<0?'chip-dn':'chip-fl';
       const ds = (df>0?'+':'') + (isFinite(df)?df.toFixed(2):'0');
-      const lots = Math.round(r.v/1000);
+      const lots = r.lots;
       return `<tr>
         <td>${r.d}</td>
         <td>${r.o.toFixed(2)}</td>
