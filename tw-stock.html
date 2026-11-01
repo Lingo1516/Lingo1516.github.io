@@ -187,7 +187,7 @@ async function q(code){
   const d = await quote(code);
   if (!d){ MAIN.innerHTML = `<div class="error">查無資料：${esc(code)}<br><span style="font-size:12px;color:#999">代號可能不存在，或該股今日無成交</span></div>`; return; }
   render(d);
-  loadK(code, 30);
+  loadK(code, 30).then(()=>{ if (MCUR === code) drawMargin(MRANGE); });
 }
 
 /* ---------- 報價 ---------- */
@@ -521,10 +521,25 @@ function drawMargin(n){
   const mlPct = first[1] ? (mlChg/first[1]*100) : 0;
 
   // 籌碼評分公式 S = 2P − F + P×Q
-  // P:股價方向（漲+1跌−1平0）、F:融資方向、Q:融券方向
-  const P = mlChg>0?1:mlChg<0?-1:0;
-  const F = mlChg>0?1:mlChg<0?-1:0;
-  const Q = slChg>0?1:slChg<0?-1:0;
+  // P: 股價方向（比較收盤價，漲+1 跌−1 平0）
+  // F: 融資餘額方向（增+1 減−1 平0）
+  // Q: 融券餘額方向（增+1 減−1 平0）
+  // 取同日區間內的收盤價（chartData 由 loadK 建立）
+  let pFirst = null, pLast = null;
+  const cd = (typeof chartData !== 'undefined' && chartData) ? chartData : [];
+  if (cd.length >= 2){
+    // 用日期對齊 rows 的頭尾
+    const d0 = dates[first[0]], dN = dates[last[0]];
+    const find0 = cd.find(x => x.d === d0 || x.d.replace(/\//g,'') === d0);
+    const findN = cd.find(x => x.d === dN || x.d.replace(/\//g,'') === dN);
+    if (find0) pFirst = find0.c;
+    if (findN) pLast = findN.c;
+    if (pFirst == null) pFirst = cd[0].c;
+    if (pLast == null) pLast = cd[cd.length-1].c;
+  }
+  const P = (pFirst!=null && pLast!=null) ? (pLast>pFirst?1:pLast<pFirst?-1:0) : 0;
+  const F = last[1] > first[1] ? 1 : last[1] < first[1] ? -1 : 0;
+  const Q = last[2] > first[2] ? 1 : last[2] < first[2] ? -1 : 0;
   const S = 2*P - F + P*Q;
   const tagLabel = S>=3?'明顯偏多':S>=1?'稍微偏多':S===0?'中性（多空抵銷）':S>=-2?'稍微偏空':'明顯偏空';
   const tagEmoji = S>=1?'🟢':S>=-2?'🟡':'🔴';
