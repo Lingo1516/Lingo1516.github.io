@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6fbff">
+<title>沖繩國際通｜雪鹽店方位圖</title>
+<style>
+:root{--ink:#17324e;--muted:#597082;--blue:#1974be;--sky:#e6f6ff;--mint:#eef9ef;--border:#dbe6ee;--orange:#f3ae60;--bg:#f5f8fb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;line-height:1.55}
+main{max-width:1230px;margin:auto;padding:30px 20px 52px}
+.eyebrow{font-size:13px;letter-spacing:.15em;color:#2576a0;font-weight:800}
+h1{font-size:clamp(25px,3.4vw,38px);line-height:1.22;margin:6px 0 10px;letter-spacing:.01em}
+.sub{color:var(--muted);font-size:15px;max-width:950px;margin:0 0 18px}
+.legends{display:flex;align-items:center;gap:12px 23px;flex-wrap:wrap;padding:0 0 18px;font-size:14px;font-weight:700}
+.legend{display:flex;gap:8px;align-items:center}
+.dot{display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;border-radius:50%;background:#207cbe;color:#fff;font-size:12px}
+.dot.green{background:#299d76}.dot.hotel{background:#8065c5}
+.map-shell{background:white;border:1px solid #d7e5ef;box-shadow:0 12px 35px #1b526014;border-radius:22px;overflow:hidden}
+.map-scroll{overflow-x:auto;scrollbar-width:thin}
+svg{display:block;width:100%;height:auto;min-width:940px;background:linear-gradient(135deg,#fffefa 0%,#fbfefd 50%,#f4faff 100%)}
+.map-footer{background:#eff6fb;border-top:1px solid #d9e8f2;color:#4d6a80;font-size:13px;display:flex;justify-content:space-between;gap:12px;padding:12px 19px;flex-wrap:wrap}
+.map-pin{cursor:pointer;outline:none}
+.map-pin .pin-core{transition:transform .15s ease,filter .15s ease;transform-box:fill-box;transform-origin:center}
+.map-pin:hover .pin-core,.map-pin:focus .pin-core{transform:scale(1.13);filter:drop-shadow(0px 3px 3px #17324e44)}
+.map-label{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif}
+.map-label .title{font-size:20px;font-weight:800;fill:#123a5a}
+.map-label .detail{font-size:15px;fill:#56738a}
+.map-label .small{font-size:13px;fill:#56738a}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:19px}
+.place{background:white;border-radius:14px;border:1px solid var(--border);padding:16px 17px;display:flex;gap:12px;align-items:flex-start}
+.place .num{font-size:15px;font-weight:900;flex:none;background:#207cbe;color:#fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center}
+.place.salt .num{background:#299d76}
+.place .content{flex:1;min-width:0}
+.place h2{font-size:17px;margin:0 0 3px;line-height:1.45}
+.place p{font-size:13.5px;color:var(--muted);margin:1px 0 8px}
+a{color:#096ab5;text-decoration:none;font-weight:750}
+a:hover{text-decoration:underline}
+.guide{background:#eaf6ff;border:1px solid #cfe9f6;border-radius:15px;padding:17px 20px;margin-top:17px}
+.guide strong{font-size:16px}
+.guide p{margin:6px 0 0;color:#3b607b;font-size:15px}
+.foot{font-size:13px;color:#6b7d8a;margin:14px 3px 0}
+@media(max-width:680px){main{padding:19px 12px 35px}.map-shell{border-radius:16px}.cards{grid-template-columns:1fr}.sub{font-size:14px}.map-footer{font-size:12px}.guide{padding:15px}}
+@media print{body{background:#fff} main{padding:0}.map-shell{box-shadow:none}svg{min-width:0}.cards{grid-template-columns:repeat(2,1fr)}.map-scroll{overflow:visible}}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">OKINAWA · NAHA · KOKUSAI DORI</div>
+  <h1>國際通雪鹽店｜簡易方位圖</h1>
+  <p class="sub">上方是北、右方是東。國際通大致由<strong>西南（縣廳前）往東北（牧志）</strong>延伸；圖中標示 4 家目前官方列出的雪鹽相關門市，以及大和 ROYNET 飯店。</p>
+  <div class="legends"><span class="legend"><span class="dot">1</span> 雪塩さんど直營店</span><span class="legend"><span class="dot green">2</span> 塩屋專賣店</span><span class="legend"><span class="dot hotel">H</span> 飯店</span></div>
+  <div class="map-shell">
+    <div class="map-scroll" aria-label="國際通方位圖；手機可向左右滑動">
+    <svg viewBox="0 0 1140 710" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="mapTitle mapDesc">
+      <title id="mapTitle">沖繩那霸國際通雪鹽店方位示意圖</title>
+      <desc id="mapDesc">西南往東北：縣廳前站、雪塩さんど國際通本店、塩屋松尾店、唐吉訶德店內雪塩さんど、塩屋國際通店、牧志站及大和 ROYNET 飯店。圖為相對位置示意，不代表精確街道或店面在路的哪一側。</desc>
+      <!-- Soft city blocks -->
+      <g fill="#f2f6f7" stroke="#e2eaf0" stroke-width="1">
+        <rect x="70" y="180" width="190" height="88" rx="16" transform="rotate(-15 70 180)"/>
+        <rect x="305" y="90" width="176" height="95" rx="15" transform="rotate(-15 305 90)"/>
+        <rect x="508" y="480" width="155" height="90" rx="15" transform="rotate(-15 508 480)"/>
+        <rect x="810" y="460" width="180" height="90" rx="15" transform="rotate(-15 810 460)"/>
+        <rect x="730" y="74" width="150" height="92" rx="15" transform="rotate(-15 730 74)"/>
+      </g>
+      <!-- Streets and junction lines, schematic only -->
+      <g stroke="#d9e3ec" stroke-width="15" fill="none" stroke-linecap="round">
+        <path d="M158 695 L195 570 L218 470 L258 312 L297 180"/>
+        <path d="M470 702 L455 550 L495 435 L510 260 L520 88"/>
+        <path d="M720 710 L716 540 L747 345 L794 115"/>
+        <path d="M1010 620 L965 405 L1015 227 L1033 85"/>
+      </g>
+      <!-- Kokusai dori: southwest (bottom left) -> northeast (top right) -->
+      <path d="M70 615 C230 567 329 544 451 480 S700 353 807 289 S960 196 1073 130" stroke="#cbdce7" stroke-width="50" fill="none" stroke-linecap="round"/>
+      <path d="M70 615 C230 567 329 544 451 480 S700 353 807 289 S960 196 1073 130" stroke="#faedcc" stroke-width="42" fill="none" stroke-linecap="round"/>
+      <path d="M70 615 C230 567 329 544 451 480 S700 353 807 289 S960 196 1073 130" stroke="#f5a951" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="15 14"/>
+      <rect x="520" y="352" width="149" height="37" rx="18" fill="#fff" stroke="#e9d8b2" transform="rotate(-26 595 370)"/>
+      <text x="595" y="370" text-anchor="middle" font-weight="800" font-size="19" fill="#97601f" transform="rotate(-26 595 370)">國　際　通</text>
+      <!-- Heiwa dori branch, roughly south of shopping street -->
+      <path d="M745 325 Q769 410 805 510" fill="none" stroke="#c7dbe0" stroke-width="18" stroke-linecap="round" />
+      <path d="M745 325 Q769 410 805 510" fill="none" stroke="#e4f2f0" stroke-width="13" stroke-linecap="round" />
+      <text x="808" y="523" font-size="16" fill="#6d8b95" font-weight="700">平和通商店街方向</text>
+      <!-- Compass -->
+      <g transform="translate(1042 585)">
+        <circle r="42" fill="white" stroke="#d3e4ec" stroke-width="2"/>
+        <path d="M0 -30 L9 0 L0 -7 L-9 0Z" fill="#136eac" />
+        <path d="M0 30 L9 0 L0 7 L-9 0Z" fill="#b4c5d4" />
+        <text x="0" y="-49" text-anchor="middle" fill="#1c5277" font-size="16" font-weight="900">北 N</text>
+        <text x="50" y="5" text-anchor="middle" fill="#59748a" font-size="13">東</text>
+        <text x="-50" y="5" text-anchor="middle" fill="#59748a" font-size="13">西</text>
+        <text x="0" y="58" text-anchor="middle" fill="#59748a" font-size="13">南</text>
+      </g>
+      <!-- Station labels -->
+      <g class="map-label">
+        <rect x="23" y="510" width="165" height="62" rx="13" fill="#ffffff" stroke="#c8d8e4" stroke-width="2" />
+        <text x="40" y="536" class="title" style="font-size:18px">🚝 縣廳前站</text>
+        <text x="40" y="558" class="small">西南端 · 逛街起點</text>
+        <rect x="890" y="22" width="202" height="66" rx="13" fill="#fff" stroke="#c8d8e4" stroke-width="2"/>
+        <text x="905" y="47" class="title" style="font-size:18px">🚝 牧志站</text>
+        <text x="905" y="69" class="small">東北端 · 飯店旁</text>
+      </g>
+      <!-- Shop callouts, annotations are directional and deliberately avoid claiming the side of the road -->
+      <!-- Mainstore point x243 y565 -->
+      <path d="M255 535 L254 387" stroke="#2585c0" stroke-width="3" stroke-dasharray="5 6" fill="none"/>
+      <g class="map-label"><rect x="98" y="280" width="315" height="109" rx="16" fill="#e9f6ff" stroke="#9bcfe9" stroke-width="2"/><text x="119" y="313" class="title">① 雪塩さんど 國際通本店</text><text x="119" y="341" class="detail">宮古島雪鹽直營 · 雪鹽霜淇淋</text><text x="119" y="366" class="small">久茂地 3-1-1｜靠近縣廳前</text></g>
+      <a class="map-pin" href="https://www.google.com/maps/search/?api=1&amp;query=%E9%9B%AA%E5%A1%A9%E3%81%95%E3%82%93%E3%81%A9%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener" aria-label="Google 地圖查看雪塩國際通本店"><circle class="pin-core" cx="255" cy="553" r="24" fill="#1974be" stroke="#fff" stroke-width="5"/><text x="255" y="560" text-anchor="middle" fill="white" font-size="21" font-weight="900">1</text></a>
+      <!-- Matsuo store point x428 y493 -->
+      <path d="M427 493 L425 587" stroke="#299d76" stroke-width="3" stroke-dasharray="5 6" fill="none"/>
+      <g class="map-label"><rect x="282" y="581" width="308" height="102" rx="16" fill="#eafaee" stroke="#9bd8b9" stroke-width="2"/><text x="302" y="613" class="title">② 塩屋 松尾店</text><text x="302" y="641" class="detail">Hotel Gracery Naha 1F</text><text x="302" y="663" class="small">松尾 1-3-6｜國際通西段</text></g>
+      <a class="map-pin" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%A1%A9%E5%B1%8B%E6%9D%BE%E5%B0%BE%E5%BA%97%E6%9D%BE%E5%B0%BE1-3-6" target="_blank" rel="noopener" aria-label="Google 地圖查看塩屋松尾店"><circle class="pin-core" cx="427" cy="493" r="24" fill="#299d76" stroke="#fff" stroke-width="5"/><text x="427" y="500" text-anchor="middle" fill="white" font-size="21" font-weight="900">2</text></a>
+      <!-- Donki point x651 y377 -->
+      <path d="M648 382 L648 232" stroke="#2585c0" stroke-width="3" stroke-dasharray="5 6" fill="none"/>
+      <g class="map-label"><rect x="425" y="125" width="380" height="109" rx="16" fill="#e9f6ff" stroke="#9bcfe9" stroke-width="2"/><text x="445" y="158" class="title">③ 雪塩さんど 唐吉訶德店</text><text x="445" y="186" class="detail">唐吉訶德國際通店 1F</text><text x="445" y="211" class="small">松尾 2-8-19｜國際通中段</text></g>
+      <a class="map-pin" href="https://www.google.com/maps/search/?api=1&amp;query=%E9%9B%AA%E5%A1%A9%E3%81%95%E3%82%93%E3%81%A9%20%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AD%E3%83%9B%E3%83%BC%E3%83%86%E5%BA%97" target="_blank" rel="noopener" aria-label="Google 地圖查看唐吉訶德雪塩さんど店"><circle class="pin-core" cx="648" cy="377" r="24" fill="#1974be" stroke="#fff" stroke-width="5"/><text x="648" y="384" text-anchor="middle" fill="white" font-size="21" font-weight="900">3</text></a>
+      <!-- Kokusaidori salt point x821 y280 -->
+      <path d="M823 280 L882 402" stroke="#299d76" stroke-width="3" stroke-dasharray="5 6" fill="none"/>
+      <g class="map-label"><rect x="829" y="398" width="278" height="103" rx="16" fill="#eafaee" stroke="#9bd8b9" stroke-width="2"/><text x="848" y="430" class="title">④ 塩屋 國際通店</text><text x="848" y="459" class="detail">靠近平和通入口</text><text x="848" y="482" class="small">牧志 3-9-2｜國際通東段</text></g>
+      <a class="map-pin" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%A1%A9%E5%B1%8B%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%E5%BA%97%20%E7%89%A7%E5%BF%973-9-2" target="_blank" rel="noopener" aria-label="Google 地圖查看塩屋國際通店"><circle class="pin-core" cx="823" cy="280" r="24" fill="#299d76" stroke="#fff" stroke-width="5"/><text x="823" y="287" text-anchor="middle" fill="white" font-size="21" font-weight="900">4</text></a>
+      <!-- Hotel -->
+      <path d="M1001 170 L1001 312" stroke="#8065c5" stroke-width="3" stroke-dasharray="5 6" fill="none"/>
+      <g class="map-label"><rect x="854" y="312" width="254" height="75" rx="14" fill="#f3edff" stroke="#beaee4" stroke-width="2"/><text x="871" y="341" class="title" style="font-size:18px">🏨 大和 ROYNET 飯店</text><text x="871" y="367" class="small">那霸國際通店 · 牧志站直結</text></g>
+      <circle class="pin-core" cx="1001" cy="170" r="22" fill="#8065c5" stroke="#fff" stroke-width="4"/><text x="1001" y="176" text-anchor="middle" fill="white" font-size="18" font-weight="900">H</text>
+      <!-- directional bracket -->
+      <text x="49" y="667" fill="#547080" font-weight="750" font-size="17">← 西南 · 縣廳前方向</text>
+      <text x="838" y="120" fill="#547080" font-weight="750" font-size="17">牧志方向 · 東北 ↗</text>
+    </svg>
+    </div>
+    <div class="map-footer"><span>📍 點圖上的 ①②③④，可開啟對應 Google 地圖</span><span>📱 手機可以左右滑動查看全圖</span></div>
+  </div>
+  <div class="guide"><strong>從你的飯店出發，沿國際通往縣廳前方向走：</strong><p>🏨 大和 ROYNET 飯店 → <strong>④ 塩屋國際通店</strong> → <strong>③ 唐吉訶德雪塩店</strong> → <strong>② 塩屋松尾店</strong> → <strong>① 雪塩國際通本店</strong> → 🚝 縣廳前站。</p></div>
+  <div class="cards">
+    <article class="place"><span class="num">1</span><div class="content"><h2>雪塩さんど 國際通本店</h2><p>那霸市久茂地 3-1-1 · 直營甜點店</p><a href="https://www.google.com/maps/search/?api=1&amp;query=%E9%9B%AA%E5%A1%A9%E3%81%95%E3%82%93%E3%81%A9%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">查看 Google 地圖 ↗</a></div></article>
+    <article class="place salt"><span class="num">2</span><div class="content"><h2>塩屋 松尾店</h2><p>那霸市松尾 1-3-6 · Hotel Gracery 一樓</p><a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%A1%A9%E5%B1%8B%20%E6%9D%BE%E5%B0%BE%E5%BA%97%20%E6%9D%BE%E5%B0%BE1-3-6" target="_blank" rel="noopener">查看 Google 地圖 ↗</a></div></article>
+    <article class="place"><span class="num">3</span><div class="content"><h2>雪塩さんど 唐吉訶德店</h2><p>那霸市松尾 2-8-19 · 唐吉訶德國際通店一樓</p><a href="https://www.google.com/maps/search/?api=1&amp;query=%E9%9B%AA%E5%A1%A9%E3%81%95%E3%82%93%E3%81%A9%20%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AD%E3%83%9B%E3%83%BC%E3%83%86%E5%BA%97" target="_blank" rel="noopener">查看 Google 地圖 ↗</a></div></article>
+    <article class="place salt"><span class="num">4</span><div class="content"><h2>塩屋 國際通店</h2><p>那霸市牧志 3-9-2 一樓 · 平和通入口附近</p><a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%A1%A9%E5%B1%8B%20%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%E5%BA%97%20%E7%89%A7%E5%BF%973-9-2" target="_blank" rel="noopener">查看 Google 地圖 ↗</a></div></article>
+  </div>
+  <p class="foot">※ 這是方便辨認方向與店家先後順序的示意圖，位置、道路彎曲及標籤所在的道路側別並非精準測繪，實際過馬路與入口位置請以 Google 地圖為準。原資料所列「塩屋平和通店」已歇業，故未列入。本圖店址參照宮古島雪塩、塩屋及大和 ROYNET 飯店官網（查核：2026-11-01）。</p>
+</main>
+</body>
+</html>
