@@ -280,14 +280,6 @@ function render(d){
 
   <div class="card">
     <div class="sec-t">
-      <span>🍎 蘋概股快看</span>
-      <span style="font-size:11px;color:#aaa;font-weight:400">（Apple 供應鏈）</span>
-    </div>
-    <div id="appleGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"></div>
-  </div>
-
-  <div class="card">
-    <div class="sec-t">
       <span>💰 融資融券（籌碼）</span>
       <div class="btns">
         <button class="on" id="m5" onclick="drawMargin(5)">5日</button>
@@ -306,33 +298,12 @@ function render(d){
   </div>
   `;
 
-  renderAppleGrid();
   drawWL();
   loadMargin(d.code);
 }
 
-/* ---------- 蘋概股（Apple 供應鏈） ---------- */
-const APPLE_CODES = {
-  '2317':'鴻海','2324':'仁寶','2354':'鴻準','2356':'英業達','2357':'華碩','3231':'緯創',
-  '2301':'光寶科','2382':'廣達','2379':'瑞昱','2392':'正崴','2409':'友達','3481':'群創',
-  '3037':'欣興','3533':'嘉澤','4938':'和碩','6415':'矽力*-KY','8016':'矽創','8046':'南電',
-  '8068':'全達','8074':'鉅橡','9955':'佳龍'
-};
-
 // 別名：避免 id="q" 覆蓋 function q()
 function goCode(c){ return q(c); }
-
-function renderAppleGrid(){
-  const g = document.getElementById('appleGrid');
-  if (!g) return;
-  const stocks = Object.entries(APPLE_CODES);
-  g.innerHTML = stocks.map(([c,n])=>`
-    <div class="apple-card" onclick="goCode('${c}')" style="cursor:pointer;padding:10px;border-radius:10px;background:#F9F6EE;border:1px solid #EDE8D8;transition:all .15s">
-      <div style="font-size:12px;color:#888;margin-bottom:3px">${c}</div>
-      <div style="font-size:14px;font-weight:700;color:#2D2A26">${n}</div>
-    </div>
-  `).join('');
-}
 
 function fmt(n){ return isFinite(n)&&n? n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) : '—'; }
 function volFmt(v){ if(!v) return '—'; if(v>=1e8) return (v/1e8).toFixed(2)+'億股'; if(v>=1e4) return (v/1e4).toFixed(0)+'張'; return v+'股'; }
