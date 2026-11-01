@@ -142,6 +142,22 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;bord
         <select id="mpage"><option value="12">前 12 頁（快速）</option><option value="25">前 25 頁（完整）</option></select>
       </div>
     </div>
+    <details style="margin-top:14px;font-size:13px">
+      <summary style="cursor:pointer;color:var(--muted);font-weight:600;padding:6px 0">⚙️ 進階：用自己的 API Key（繞過後端，最穩定）</summary>
+      <div style="margin-top:10px;padding:12px;background:#faf9f7;border-radius:8px">
+        <p style="font-size:12px;color:var(--muted);margin-bottom:8px;line-height:1.6">
+          填入 OpenRouter API Key（<a href="https://openrouter.ai/keys" target="_blank">免費申請</a>），
+          分析將直接從你的瀏覽器呼叫 AI，不經過任何伺服器。<br>
+          Key 只存在你本機瀏覽器，不會上傳。
+        </p>
+        <div style="display:flex;gap:8px">
+          <input type="password" id="apiKey" placeholder="sk-or-v1-..." 
+            style="flex:1;padding:8px 11px;border:1px solid #e0ddd8;border-radius:7px;font-size:13px;font-family:monospace">
+          <button onclick="saveKey()" style="padding:8px 16px;border:none;background:var(--accent);color:#fff;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer">儲存</button>
+        </div>
+        <div id="keyStatus" style="font-size:12px;margin-top:7px;color:var(--green)"></div>
+      </div>
+    </details>
     <button id="go" disabled>🧠 開始分析</button>
     <div class="spin" id="spin">
       <div class="ring"></div>
@@ -276,22 +292,67 @@ async function extractPDF(file){
 }
 
 async function callAI(pdfText){
+  const lang = document.getElementById('lang').value;
+  const sysPrompt = lang === 'zh' ? sysPromptZh : sysPromptEn;
+
+  // 優先：如果有自己的 OpenRouter Key，直接在瀏覽器呼叫（不經後端）
+  const userKey = localStorage.getItem('ps_key');
+  if(userKey){
+    setStage('AI 正在分析（直連模式）…');
+    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Authorization':'Bearer '+userKey},
+      body: JSON.stringify({
+        model: 'deepseek/deepseek-chat',
+        messages: [
+          {role:'system', content: sysPrompt},
+          {role:'user', content: '論文內容：\n' + pdfText.slice(0, 12000)}
+        ],
+        temperature: 0.3,
+        max_tokens: 2000
+      })
+    });
+    if(!r.ok){
+      const t = await r.text();
+      throw new Error('API 錯誤：' + t.slice(0,150));
+    }
+    const j = await r.json();
+    let c = j.choices?.[0]?.message?.content || '';
+    return parseAIJson(c, pdfText.length, 'openrouter/deepseek-chat');
+  }
+
+  // 否則走後端
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      text: pdfText,
-      language: document.getElementById('lang').value,
-      prompt: document.getElementById('lang').value === 'zh' ? sysPromptZh : sysPromptEn
-    })
+    body: JSON.stringify({ text: pdfText, language: lang, prompt: sysPrompt })
   });
-  
+
   if(!response.ok){
     const err = await response.json().catch(()=>({}));
-    throw new Error(err.error || `HTTP ${response.status}`);
+    throw new Error((err.error || `HTTP ${response.status}`) + ' — 可在下方設定自己的 API Key 直連');
   }
-  
+
   return await response.json();
+}
+
+function parseAIJson(content, chars, model){
+  let c = content.trim();
+  const m = c.match(/\{[\s\S]*\}/);
+  if(m) c = m[0];
+  let d;
+  try { d = JSON.parse(c); }
+  catch(e){ throw new Error('AI 回應格式錯誤，請重試'); }
+  return {
+    title: d.title || '',
+    authors: Array.isArray(d.authors) ? d.authors : [],
+    abstract: d.abstract || '',
+    objectives: Array.isArray(d.objectives) ? d.objectives : [],
+    methods: d.methods || '',
+    key_findings: Array.isArray(d.key_findings) ? d.key_findings : [],
+    conclusion: d.conclusion || '',
+    meta: {chars, model}
+  };
 }
 
 function render(d){
@@ -351,6 +412,33 @@ function dl(kind){
 }
 
 function setStage(s){stageTxt.textContent=s}
+
+// 載入已存的 Key
+const keyEl = document.getElementById('apiKey');
+const keyStatus = document.getElementById('keyStatus');
+const savedKey = localStorage.getItem('ps_key');
+if(savedKey){
+  keyEl.value = savedKey;
+  keyStatus.textContent = '✅ 已設定直連模式（不會經過後端伺服器）';
+}
+
+function saveKey(){
+  const v = keyEl.value.trim();
+  if(!v){
+    localStorage.removeItem('ps_key');
+    keyStatus.textContent = '已清除，將使用後端模式';
+    keyStatus.style.color = 'var(--muted)';
+    return;
+  }
+  if(!v.startsWith('sk-')){
+    keyStatus.textContent = '⚠️ Key 格式看起來不對（應以 sk- 開頭）';
+    keyStatus.style.color = 'var(--red)';
+    return;
+  }
+  localStorage.setItem('ps_key', v);
+  keyStatus.textContent = '✅ 已儲存！分析將直連 OpenRouter，不經後端';
+  keyStatus.style.color = 'var(--green)';
+}
 </script>
 </body>
 </html>
