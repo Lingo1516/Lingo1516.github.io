@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>我的旅行手冊 · 沖繩 2026/11 + 福岡 2026/05</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c2b36;--muted:#6b8091;--line:#e3ecf1;--bg:#f7fafb;--card:#fff;--navy:#1e3a4c;--sand:#c8a878;--shadow:0 8px 26px rgba(31,60,80,.07)}
+body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+.hero{background:linear-gradient(165deg,#1e3a4c 0%,#2d5a73 55%,#3d7d8f 100%);color:#fff;padding:72px 0 60px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 15%,rgba(200,168,120,.22),transparent 55%)}
+.hero .wrap{position:relative;z-index:2}
+.kicker{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px}
+.hero h1{font-size:clamp(32px,6vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.5px}
+.hero h1 span{color:var(--sand)}
+.hero p{color:rgba(255,255,255,.68);font-size:16px;margin-top:14px;max-width:620px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.facts span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:7px 15px;border-radius:999px;font-size:13px;backdrop-filter:blur(8px)}
+
+/* TABS */
+.tabs{position:sticky;top:0;z-index:900;background:rgba(247,250,251,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.tabs-in{max-width:1040px;margin:0 auto;padding:12px 20px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.tabs-in::-webkit-scrollbar{display:none}
+.tab{border:1.5px solid var(--line);background:#fff;color:var(--muted);padding:9px 20px;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap;transition:.22s;font-family:inherit}
+.tab:hover{border-color:#b9cfda;color:var(--navy)}
+.tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* SECTION */
+.pane{display:none;padding:52px 0 96px}
+.pane.on{display:block}
+.sec-head{margin-bottom:34px}
+.sec-head h2{font-size:clamp(24px,3.4vw,34px);font-weight:900;letter-spacing:-.3px}
+.sec-head p{color:var(--muted);font-size:15px;margin-top:6px}
+
+/* TRIP HEADER */
+.trip-head{background:var(--card);border:1.5px solid var(--line);border-radius:24px;padding:30px 32px;margin-bottom:34px;box-shadow:var(--shadow)}
+.trip-head .badge{display:inline-block;background:#eef6f9;color:#2b6b82;font-size:12px;font-weight:900;letter-spacing:1.5px;padding:5px 14px;border-radius:999px;margin-bottom:14px}
+.trip-head h2{font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:-.5px}
+.trip-head p{color:var(--muted);margin-top:10px;font-size:15px}
+
+/* DAYS */
+.day{display:grid;grid-template-columns:56px 1fr;gap:0;margin-bottom:26px}
+.day-rail{display:flex;flex-direction:column;align-items:center}
+.dnum{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;flex-shrink:0}
+.dline{width:2px;flex:1;background:linear-gradient(180deg,var(--line),transparent);margin-top:6px}
+.day:last-child .dline{display:none}
+.day-card{background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:24px 26px;margin-left:10px;box-shadow:var(--shadow)}
+.day-card h3{font-size:20px;font-weight:900;letter-spacing:-.2px}
+.dsub{font-size:12px;letter-spacing:2px;color:var(--muted);margin-top:3px;text-transform:uppercase}
+.route{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.route span{background:#f0f6f8;border:1px solid #dbe9ee;color:#33566b;padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:700}
+.day-sum{color:var(--muted);font-size:14px;margin-top:12px;padding:12px 16px;background:#f8fbfc;border-left:3px solid var(--sand);border-radius:0 10px 10px 0}
+.hotel{margin-top:14px;padding:11px 16px;background:#fdf9f3;border:1px solid #f0e4d0;border-radius:12px;font-size:13.5px;color:#7a6040;font-weight:700}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;margin-top:18px}
+.ph{position:relative;border-radius:12px;overflow:hidden;background:#e8eef1;aspect-ratio:4/3;cursor:zoom-in;transition:.25s}
+.ph:hover{transform:scale(1.03);box-shadow:0 8px 20px rgba(20,50,70,.18)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.82));color:#fff;font-size:11px;padding:20px 8px 7px;line-height:1.35}
+
+/* MAP */
+#map{height:520px;border-radius:22px;border:1.5px solid var(--line);box-shadow:var(--shadow);background:#dceff3;margin-bottom:20px}
+.day-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.day-filter button{cursor:pointer;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:9px 17px;font-weight:800;color:var(--muted);font-family:inherit;font-size:13.5px;transition:.2s}
+.day-filter button:hover{border-color:#b9cfda}
+.day-filter button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* BUDGET */
+.budget{background:var(--card);border:1.5px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow)}
+.budget-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px dashed var(--line)}
+.budget-row:last-of-type{border-bottom:none}
+.budget-row label{font-size:14.5px;font-weight:700;color:#33566b}
+.budget-row input{width:140px;border:1.5px solid var(--line);border-radius:10px;padding:9px 13px;font-size:15px;font-family:inherit;text-align:right;color:var(--ink)}
+.budget-row input:focus{outline:none;border-color:var(--navy)}
+.budget-total{display:flex;justify-content:space-between;margin-top:18px;padding-top:18px;border-top:2px solid var(--navy);font-weight:900;font-size:17px}
+
+/* CHECKLIST */
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.check{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:15px 18px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:.2s;font-size:14.5px;font-weight:600}
+.check:hover{border-color:#b9cfda}
+.check input{width:18px;height:18px;accent-color:var(--navy);cursor:pointer;flex-shrink:0}
+.check:has(input:checked){background:#f2f9f4;border-color:#bfe0c9;color:#4a7a58;text-decoration:line-through;text-decoration-thickness:1px}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:2000;background:rgba(12,24,32,.94);display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px)}
+.lb.on{display:flex}
+.lb img{max-width:92vw;max-height:84vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb-cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:rgba(255,255,255,.82);font-size:14px;padding:0 24px}
+.lb-close{position:absolute;top:20px;right:24px;color:#fff;font-size:34px;cursor:pointer;line-height:1;opacity:.75}
+.lb-close:hover{opacity:1}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;cursor:pointer;padding:12px;opacity:.55;user-select:none}
+.lb-nav:hover{opacity:1}
+.lb-prev{left:14px}.lb-next{right:14px}
+
+footer{text-align:center;padding:44px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+
+@media(max-width:720px){
+  .hero{padding:52px 0 44px}
+  .day{grid-template-columns:40px 1fr}
+  .dnum{width:32px;height:32px;font-size:13px}
+  .day-card{padding:19px 18px;margin-left:8px}
+  .gallery{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:7px}
+  #map{height:400px}
+  .budget-row input{width:110px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">MY TRAVEL BOOK</div>
+    <h1>我的旅行手冊<br><span>沖繩 2026/11</span> · 福岡 2026/05</h1>
+    <p>兩趟實際走過的旅程，合成一份帶著走的完整記錄。行程、景點座標、照片、預算與行前清單全在這裡。</p>
+    <div class="facts">
+      <span>🌺 沖繩 11/9–11/13</span>
+      <span>🍜 福岡 5/17–5/20</span>
+      <span>🗺️ 16 個景點座標</span>
+      <span>📷 110 張照片</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-in">
+    <button class="tab on" data-pane="oki">🌺 沖繩行程</button>
+    <button class="tab" data-pane="fuk">🍜 福岡相簿</button>
+    <button class="tab" data-pane="map">🗺️ 景點地圖</button>
+    <button class="tab" data-pane="bud">💰 預算試算</button>
+    <button class="tab" data-pane="chk">✅ 行前清單</button>
+  </div>
+</nav>
+
+<!-- ===== 沖繩 ===== -->
+<section class="pane on" id="oki">
+  <div class="wrap">
+    <div class="trip-head">
+      <div class="badge">🌺 OKINAWA · 2026 秋</div>
+      <h2>初探沖繩 5 天 4 夜</h2>
+      <p>2026 年 11 月 9 日至 13 日，長榮航空直飛那霸。Day 2 取車、Day 4 19:00 還車，中間走北部與西海岸經典路線。</p>
+    </div>
+    <div class="day">
+  <div class="day-rail"><div class="dnum">1</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>抵達那霸・國際通第一晚</h3>
+    <div class="dsub">11/9（一） · OKINAWA</div>
+    <div class="route"><span>✈️ 那霸機場</span><span>🥞 瀨長島 Umikaji Terrace</span><span>🍻 國際通</span></div>
+    <div class="hotel">🛏️ 那霸大和飯店</div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-rail"><div class="dnum">2</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>取車北上・水族館與 outlet</h3>
+    <div class="dsub">11/10（二） · OKINAWA</div>
+    <div class="route"><span>🐘 萬座毛</span><span>🍤 古宇利島</span><span>🦈 沖繩美麗海水族館</span></div>
+    <div class="hotel">🛏️ 沖繩紫藤飯店</div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-rail"><div class="dnum">3</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>北部景點・返回那霸</h3>
+    <div class="dsub">11/11（三） · OKINAWA</div>
+    <div class="route"><span>🚲 備瀨福木林道</span><span>🗼 殘波岬燈塔</span><span>🌇 美國村</span></div>
+    <div class="hotel">🛏️ 沖繩日航飯店</div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-rail"><div class="dnum">4</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>西海岸一日遊・經典路線</h3>
+    <div class="dsub">11/12（四） · OKINAWA</div>
+    <div class="route"><span>🦇 沖繩世界／玉泉洞</span><span>🐱 奧武島</span><span>🛍️ PARCO CITY</span><span>🏨 那霸／國際通</span></div>
+    <div class="hotel">🛏️ 沖繩日航飯店</div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-rail"><div class="dnum">5</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>最後採購・返程</h3>
+    <div class="dsub">11/13（五） · OKINAWA</div>
+    <div class="route"><span>⛩️ 波上宮</span><span>🏯 首里城公園</span><span>✈️ 那霸機場</span></div>
+    <div class="hotel">🛏️ 19:00 班機</div>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- ===== 福岡 ===== -->
+<section class="pane" id="fuk">
+  <div class="wrap">
+    <div class="trip-head">
+      <div class="badge">🍜 FUKUOKA · 2026 春</div>
+      <h2>福岡 5 天 4 夜相簿</h2>
+      <p>2026 年 5 月 17 日至 20 日，博多、太宰府、柳川、糸島、天神與六本松。共 110 張照片按天分類，點圖可放大瀏覽。</p>
+    </div>
+    <div class="day">
+  <div class="day-rail"><div class="dnum">1</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>啟程</h3>
+    <div class="dsub">2026-05-17（六） · FUKUOKA</div>
+    <p class="day-sum">桃園機場 → 福岡 → 一幸舍 → 大東園 → 櫛田神社 → 運河城</p>
+    <div class="gallery"><figure class="ph"><img src="images/lingo_airport2.jpg" alt="清晨的桃園機場，通關前最後一眼" loading="lazy"><figcaption>桃園機場第二航廈 · 清晨的桃園機場，通關前最後一眼</figcaption></figure><figure class="ph"><img src="images/lingo_airport3.jpg" alt="管制區內等待登機" loading="lazy"><figcaption>桃園機場第二航廈 · 管制區內等待登機</figcaption></figure><figure class="ph"><img src="images/lingo_boarding.jpg" alt="長榮航空 BR106 登機" loading="lazy"><figcaption>桃園機場登機門 · 長榮航空 BR106 登機</figcaption></figure><figure class="ph"><img src="images/lingo_seat.jpg" alt="靠窗座位，準備起飛" loading="lazy"><figcaption>BR106 機艙內 · 靠窗座位，準備起飛</figcaption></figure><figure class="ph"><img src="images/lingo_landing.jpg" alt="下降時從空中俯瞰福岡" loading="lazy"><figcaption>福岡空中 · 下降時從空中俯瞰福岡</figcaption></figure><figure class="ph"><img src="images/lingo_airport_fuk.jpg" alt="降落福岡，出關入境" loading="lazy"><figcaption>福岡機場 · 降落福岡，出關入境</figcaption></figure><figure class="ph"><img src="images/lingo_hotel.jpg" alt="寄放行李、Check in 完成" loading="lazy"><figcaption>博多飯店 · 寄放行李、Check in 完成</figcaption></figure><figure class="ph"><img src="images/lingo_street.jpg" alt="從飯店步行往博多車站" loading="lazy"><figcaption>博多街區 · 從飯店步行往博多車站</figcaption></figure><figure class="ph"><img src="images/lingo_underground.jpg" alt="地下商店街，午餐覓食中" loading="lazy"><figcaption>博多地下街 · 地下商店街，午餐覓食中</figcaption></figure><figure class="ph"><img src="images/lingo_ramen.jpg" alt="泡系豚骨拉麵上桌" loading="lazy"><figcaption>博多一幸舍（地下街店） · 泡系豚骨拉麵上桌</figcaption></figure><figure class="ph"><img src="images/lingo_ramen2.jpg" alt="濃郁湯頭特寫" loading="lazy"><figcaption>博多一幸舍（地下街店） · 濃郁湯頭特寫</figcaption></figure><figure class="ph"><img src="images/lingo_ramen3.jpg" alt="加麵後的第二碗" loading="lazy"><figcaption>博多一幸舍（地下街店） · 加麵後的第二碗</figcaption></figure><figure class="ph"><img src="images/lingo_daifuku.jpg" alt="飯後甜點大福" loading="lazy"><figcaption>博多地下街 · 飯後甜點大福</figcaption></figure><figure class="ph"><img src="images/lingo_boardgame.jpg" alt="地下街桌遊休憩區" loading="lazy"><figcaption>博多地下街 · 地下街桌遊休憩區</figcaption></figure><figure class="ph"><img src="images/lingo_uniqlo.jpg" alt="OIOI 八樓逛街" loading="lazy"><figcaption>博多 OIOI 百貨 · OIOI 八樓逛街</figcaption></figure><figure class="ph"><img src="images/lingo_daitoen1.jpg" alt="晚餐燒肉，炭火與油脂香" loading="lazy"><figcaption>大東園 燒肉（博多店） · 晚餐燒肉，炭火與油脂香</figcaption></figure><figure class="ph"><img src="images/lingo_daitoen2.jpg" alt="厚切牛舌上烤盤" loading="lazy"><figcaption>大東園 燒肉（博多店） · 厚切牛舌上烤盤</figcaption></figure><figure class="ph"><img src="images/lingo_daitoen3.jpg" alt="滿桌肉盤" loading="lazy"><figcaption>大東園 燒肉（博多店） · 滿桌肉盤</figcaption></figure><figure class="ph"><img src="images/lingo_daitoen4.jpg" alt="吃飽喝足的滿足表情" loading="lazy"><figcaption>大東園 燒肉（博多店） · 吃飽喝足的滿足表情</figcaption></figure><figure class="ph"><img src="images/daitoen_ext.jpg" alt="菜單 · 定食與價格" loading="lazy"><figcaption>大東園 燒肉（博多店） · 菜單 · 定食與價格</figcaption></figure><figure class="ph"><img src="images/da02.jpg" alt="菜單 · 單點與燒肉定食" loading="lazy"><figcaption>大東園 燒肉（博多店） · 菜單 · 單點與燒肉定食</figcaption></figure><figure class="ph"><img src="images/lingo_kushida.jpg" alt="博多總鎮守，創建於 757 年" loading="lazy"><figcaption>櫛田神社 · 博多總鎮守，創建於 757 年</figcaption></figure><figure class="ph"><img src="images/lingo_kushida2.jpg" alt="境內燈籠" loading="lazy"><figcaption>櫛田神社 · 境內燈籠</figcaption></figure><figure class="ph"><img src="images/lingo_kushida3.jpg" alt="夜間參道" loading="lazy"><figcaption>櫛田神社 · 夜間參道</figcaption></figure><figure class="ph"><img src="images/lingo_kushida4.jpg" alt="本殿夜景" loading="lazy"><figcaption>櫛田神社 · 本殿夜景</figcaption></figure><figure class="ph"><img src="images/lingo_kushida5.jpg" alt="樓門" loading="lazy"><figcaption>櫛田神社 · 樓門</figcaption></figure><figure class="ph"><img src="images/lingo_kushida6.jpg" alt="夜色中的神社一隅" loading="lazy"><figcaption>櫛田神社 · 夜色中的神社一隅</figcaption></figure><figure class="ph"><img src="images/lingo_canal1.jpg" alt="B1 中央廣場水舞秀" loading="lazy"><figcaption>博多運河城 · B1 中央廣場水舞秀</figcaption></figure><figure class="ph"><img src="images/lingo_canal2.jpg" alt="水舞搭配燈光音樂" loading="lazy"><figcaption>博多運河城 · 水舞搭配燈光音樂</figcaption></figure><figure class="ph"><img src="images/lingo_canal_food.jpg" alt="水舞會場旁的小吃" loading="lazy"><figcaption>博多運河城 · 水舞會場旁的小吃</figcaption></figure></div>
+  </div>
+</div><div class="day">
+  <div class="day-rail"><div class="dnum">2</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>晨光中的博多</h3>
+    <div class="dsub">2026-05-18（日） · FUKUOKA</div>
+    <p class="day-sum">雷山觀世音 → 柳川 → 太宰府 → 竈門神社 → 中洲屋台</p>
+    <div class="gallery"><figure class="ph"><img src="images/20260518_sunshine_hotel_morning_view.jpg" alt="早晨六點半，窗外的福岡街景" loading="lazy"><figcaption>陽光飯店客房 · 早晨六點半，窗外的福岡街景</figcaption></figure><figure class="ph"><img src="images/20260518_hotel_breakfast2.jpg" alt="自助早餐吧" loading="lazy"><figcaption>陽光飯店早餐 · 自助早餐吧</figcaption></figure><figure class="ph"><img src="images/20260518_hotel_breakfast3.jpg" alt="沙拉與冷盤區" loading="lazy"><figcaption>陽光飯店早餐 · 沙拉與冷盤區</figcaption></figure><figure class="ph"><img src="images/20260518_hotel_breakfast4.jpg" alt="熱食區" loading="lazy"><figcaption>陽光飯店早餐 · 熱食區</figcaption></figure><figure class="ph"><img src="images/20260518_hotel_breakfast5.jpg" alt="咖啡與飲品" loading="lazy"><figcaption>陽光飯店早餐 · 咖啡與飲品</figcaption></figure><figure class="ph"><img src="images/20260518_hotel_breakfast6.jpg" alt="現烤麵包" loading="lazy"><figcaption>陽光飯店早餐 · 現烤麵包</figcaption></figure><figure class="ph"><img src="images/20260518_hotel_breakfast7.jpg" alt="餐盤合照" loading="lazy"><figcaption>陽光飯店早餐 · 餐盤合照</figcaption></figure><figure class="ph"><img src="images/20260518_hotel_breakfast8.jpg" alt="早晨的用餐時光" loading="lazy"><figcaption>陽光飯店早餐 · 早晨的用餐時光</figcaption></figure><figure class="ph"><img src="images/breakfast1.jpg" alt="炒蛋與水煮蛋吧台" loading="lazy"><figcaption>陽光飯店早餐 · 炒蛋與水煮蛋吧台</figcaption></figure><figure class="ph"><img src="images/20260518_kkday_bus_departure.jpg" alt="KKday 一日遊遊覽車出發" loading="lazy"><figcaption>博多車站 · KKday 一日遊遊覽車出發</figcaption></figure><figure class="ph"><img src="images/20260518_kkday_enroute.jpg" alt="前往雷山途中" loading="lazy"><figcaption>九州高速公路 · 前往雷山途中</figcaption></figure><figure class="ph"><img src="images/20260518_kkday_scenery2.jpg" alt="車窗外的田園風光" loading="lazy"><figcaption>糸島方向 · 車窗外的田園風光</figcaption></figure><figure class="ph"><img src="images/20260518_raizan_kannon1.jpg" alt="雷山觀音入口" loading="lazy"><figcaption>雷山千如寺 大悲王院 · 雷山觀音入口</figcaption></figure><figure class="ph"><img src="images/20260518_raizan_kannon2.jpg" alt="手水舍" loading="lazy"><figcaption>雷山千如寺 大悲王院 · 手水舍</figcaption></figure><figure class="ph"><img src="images/20260518_raizan_kannon3.jpg" alt="本殿屋簷" loading="lazy"><figcaption>雷山千如寺 大悲王院 · 本殿屋簷</figcaption></figure><figure class="ph"><img src="images/20260518_raizan_kannon4.jpg" alt="國寶千手觀音所在" loading="lazy"><figcaption>雷山千如寺 大悲王院 · 國寶千手觀音所在</figcaption></figure><figure class="ph"><img src="images/20260518_raizan_kannon5.jpg" alt="風鈴與繪馬" loading="lazy"><figcaption>雷山千如寺 大悲王院 · 風鈴與繪馬</figcaption></figure><figure class="ph"><img src="images/20260518_raizan_kannon6.jpg" alt="參道旁石佛" loading="lazy"><figcaption>雷山千如寺 大悲王院 · 參道旁石佛</figcaption></figure><figure class="ph"><img src="images/20260518_raizan_kannon7.jpg" alt="山門遠景" loading="lazy"><figcaption>雷山千如寺 大悲王院 · 山門遠景</figcaption></figure><figure class="ph"><img src="images/20260518_raizan_kannon8.jpg" alt="寺域全景" loading="lazy"><figcaption>雷山千如寺 大悲王院 · 寺域全景</figcaption></figure><figure class="ph"><img src="images/20260518_yanagawa1.jpg" alt="水之都入口" loading="lazy"><figcaption>柳川 · 水之都入口</figcaption></figure><figure class="ph"><img src="images/20260518_yanagawa2.jpg" alt="運河一景" loading="lazy"><figcaption>柳川 · 運河一景</figcaption></figure><figure class="ph"><img src="images/20260518_yanagawa3.jpg" alt="小船列隊" loading="lazy"><figcaption>柳川 · 小船列隊</figcaption></figure><figure class="ph"><img src="images/20260518_yanagawa4.jpg" alt="岸邊垂柳" loading="lazy"><figcaption>柳川 · 岸邊垂柳</figcaption></figure><figure class="ph"><img src="images/20260518_yanagawa5.jpg" alt="柳川街景" loading="lazy"><figcaption>柳川 · 柳川街景</figcaption></figure><figure class="ph"><img src="images/20260518_dazaifu1.jpg" alt="參道入口" loading="lazy"><figcaption>太宰府天滿宮 · 參道入口</figcaption></figure><figure class="ph"><img src="images/20260518_dazaifu2.jpg" alt="樓門" loading="lazy"><figcaption>太宰府天滿宮 · 樓門</figcaption></figure><figure class="ph"><img src="images/20260518_dazaifu3.jpg" alt="本殿" loading="lazy"><figcaption>太宰府天滿宮 · 本殿</figcaption></figure><figure class="ph"><img src="images/20260518_dazaifu4.jpg" alt="梅枝餅名物" loading="lazy"><figcaption>太宰府天滿宮 · 梅枝餅名物</figcaption></figure><figure class="ph"><img src="images/20260518_kamado_shrine1.jpg" alt="入口鳥居" loading="lazy"><figcaption>寶滿宮 竈門神社 · 入口鳥居</figcaption></figure><figure class="ph"><img src="images/20260518_kamado_shrine2.jpg" alt="参道" loading="lazy"><figcaption>寶滿宮 竈門神社 · 参道</figcaption></figure><figure class="ph"><img src="images/20260518_kamado_shrine3.jpg" alt="本殿屋頂" loading="lazy"><figcaption>寶滿宮 竈門神社 · 本殿屋頂</figcaption></figure><figure class="ph"><img src="images/20260518_kamado_shrine4.jpg" alt="社殿全景" loading="lazy"><figcaption>寶滿宮 竈門神社 · 社殿全景</figcaption></figure><figure class="ph"><img src="images/20260518_yatai_night1.jpg" alt="橘色燈籠一字排開" loading="lazy"><figcaption>中洲屋台 · 橘色燈籠一字排開</figcaption></figure><figure class="ph"><img src="images/20260518_yatai_night2.jpg" alt="屋台內用餐" loading="lazy"><figcaption>中洲屋台 · 屋台內用餐</figcaption></figure><figure class="ph"><img src="images/20260518_yatai_night3.jpg" alt="烤串與關東煮" loading="lazy"><figcaption>中洲屋台 · 烤串與關東煮</figcaption></figure><figure class="ph"><img src="images/20260518_yatai_night4.jpg" alt="拉麵攤前" loading="lazy"><figcaption>中洲屋台 · 拉麵攤前</figcaption></figure><figure class="ph"><img src="images/20260518_yatai_night5.jpg" alt="那珂川夜景" loading="lazy"><figcaption>中洲屋台 · 那珂川夜景</figcaption></figure><figure class="ph"><img src="images/20260518_yatai_night6.jpg" alt="屋台全景" loading="lazy"><figcaption>中洲屋台 · 屋台全景</figcaption></figure><figure class="ph"><img src="images/20260518_yatai_night7.jpg" alt="散步回程的中洲" loading="lazy"><figcaption>中洲屋台 · 散步回程的中洲</figcaption></figure></div>
+  </div>
+</div><div class="day">
+  <div class="day-rail"><div class="dnum">3</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>同一扇窗・不同風景</h3>
+    <div class="dsub">2026-05-19（一） · FUKUOKA</div>
+    <p class="day-sum">陽光飯店 → 天神地下街 → PARCO → 天神商圈</p>
+    <div class="gallery"><figure class="ph"><img src="images/20260519_breakfast_day3_01.jpg" alt="換了位子，窗外不同風景" loading="lazy"><figcaption>陽光飯店早餐（Day 3） · 換了位子，窗外不同風景</figcaption></figure><figure class="ph"><img src="images/20260519_breakfast_day3_02.jpg" alt="第三天的早餐" loading="lazy"><figcaption>陽光飯店早餐（Day 3） · 第三天的早餐</figcaption></figure><figure class="ph"><img src="images/20260519_day3_01.jpg" alt="出發前" loading="lazy"><figcaption>陽光飯店早餐（Day 3） · 出發前</figcaption></figure><figure class="ph"><img src="images/20260519_day3_04.jpg" alt="全長 600 公尺的地下商店街" loading="lazy"><figcaption>天神地下街 · 全長 600 公尺的地下商店街</figcaption></figure><figure class="ph"><img src="images/20260519_day3_05.jpg" alt="連通新光三越的通道" loading="lazy"><figcaption>天神地下街 · 連通新光三越的通道</figcaption></figure><figure class="ph"><img src="images/20260519_day3_06.jpg" alt="平日早晨的空蕩月台" loading="lazy"><figcaption>天神南站 · 平日早晨的空蕩月台</figcaption></figure><figure class="ph"><img src="images/20260519_day3_07.jpg" alt="剛開店的地下街" loading="lazy"><figcaption>天神地下街 · 剛開店的地下街</figcaption></figure><figure class="ph"><img src="images/20260519_day3_08.jpg" alt="商店街中段" loading="lazy"><figcaption>天神地下街 · 商店街中段</figcaption></figure><figure class="ph"><img src="images/20260519_day3_09.jpg" alt="通往 PARCO 的入口" loading="lazy"><figcaption>天神地下街 · 通往 PARCO 的入口</figcaption></figure><figure class="ph"><img src="images/20260519_day3_10.jpg" alt="地下街一隅" loading="lazy"><figcaption>天神地下街 · 地下街一隅</figcaption></figure><figure class="ph"><img src="images/20260519_day3_11.jpg" alt="明太子名店，今天公休" loading="lazy"><figcaption>The Full Full Hakata · 明太子名店，今天公休</figcaption></figure><figure class="ph"><img src="images/20260519_day3_12.jpg" alt="ONE FUKUOKA BLDG. 新地標" loading="lazy"><figcaption>天神街區 · ONE FUKUOKA BLDG. 新地標</figcaption></figure><figure class="ph"><img src="images/20260519_day3_13.jpg" alt="街邊建築" loading="lazy"><figcaption>天神街區 · 街邊建築</figcaption></figure><figure class="ph"><img src="images/20260519_day3_14.jpg" alt="午後的天神街區" loading="lazy"><figcaption>天神 大丸前廣場 · 午後的天神街區</figcaption></figure><figure class="ph"><img src="images/20260519_day3_15.jpg" alt="十字路口" loading="lazy"><figcaption>天神街區 · 十字路口</figcaption></figure><figure class="ph"><img src="images/20260519_day3_16.jpg" alt="商店街入口" loading="lazy"><figcaption>天神街區 · 商店街入口</figcaption></figure><figure class="ph"><img src="images/20260519_day3_17.jpg" alt="街景一角" loading="lazy"><figcaption>天神街區 · 街景一角</figcaption></figure><figure class="ph"><img src="images/20260519_day3_18.jpg" alt="咖啡收據（795 円）" loading="lazy"><figcaption>天神 Blue Bottle · 咖啡收據（795 円）</figcaption></figure><figure class="ph"><img src="images/20260519_day3_receipt.jpg" alt="購物收據" loading="lazy"><figcaption>天神 · 購物收據</figcaption></figure></div>
+  </div>
+</div><div class="day">
+  <div class="day-rail"><div class="dnum">4</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>六本松與牛腸鍋</h3>
+    <div class="dsub">2026-05-20（二） · FUKUOKA</div>
+    <p class="day-sum">六本松科學館 → FULL 明太子 → 前田屋牛腸鍋</p>
+    <div class="gallery"><figure class="ph"><img src="images/day4_morning1.jpg" alt="搭火車前往六本松" loading="lazy"><figcaption>JR 六本松站 · 搭火車前往六本松</figcaption></figure><figure class="ph"><img src="images/day4_morning2.jpg" alt="互動展覽" loading="lazy"><figcaption>六本松科學館 · 互動展覽</figcaption></figure><figure class="ph"><img src="images/day4_morning3.jpg" alt="展場一景" loading="lazy"><figcaption>六本松科學館 · 展場一景</figcaption></figure><figure class="ph"><img src="images/day4_morning4.jpg" alt="科學展品" loading="lazy"><figcaption>六本松科學館 · 科學展品</figcaption></figure><figure class="ph"><img src="images/day4_morning5.jpg" alt="動手實作區" loading="lazy"><figcaption>六本松科學館 · 動手實作區</figcaption></figure><figure class="ph"><img src="images/day4_morning6.jpg" alt="展覽細節" loading="lazy"><figcaption>六本松科學館 · 展覽細節</figcaption></figure><figure class="ph"><img src="images/day4_morning7.jpg" alt="可愛的科學圖" loading="lazy"><figcaption>六本松科學館 · 可愛的科學圖</figcaption></figure><figure class="ph"><img src="images/day4_ropponmatsu1.jpg" alt="日本牛肉價格" loading="lazy"><figcaption>六本松超市 · 日本牛肉價格</figcaption></figure><figure class="ph"><img src="images/day4_ropponmatsu2.jpg" alt="肉品冷藏櫃" loading="lazy"><figcaption>六本松超市 · 肉品冷藏櫃</figcaption></figure><figure class="ph"><img src="images/day4_ropponmatsu3.jpg" alt="和牛特寫" loading="lazy"><figcaption>六本松超市 · 和牛特寫</figcaption></figure><figure class="ph"><img src="images/day4_ropponmatsu4.jpg" alt="超市全景" loading="lazy"><figcaption>六本松超市 · 超市全景</figcaption></figure><figure class="ph"><img src="images/day4_full1.jpg" alt="終於買到明太子麵包" loading="lazy"><figcaption>The Full Full Hakata · 終於買到明太子麵包</figcaption></figure><figure class="ph"><img src="images/day4_full2.jpg" alt="店面外觀" loading="lazy"><figcaption>The Full Full Hakata · 店面外觀</figcaption></figure><figure class="ph"><img src="images/day4_full3.jpg" alt="明太子麵包特寫" loading="lazy"><figcaption>The Full Full Hakata · 明太子麵包特寫</figcaption></figure><figure class="ph"><img src="images/day4_maedaya.jpg" alt="濃郁味噌牛腸鍋" loading="lazy"><figcaption>前田屋 牛腸鍋 · 濃郁味噌牛腸鍋</figcaption></figure><figure class="ph"><img src="images/day4_maedaya2.jpg" alt="牛腸與韭菜" loading="lazy"><figcaption>前田屋 牛腸鍋 · 牛腸與韭菜</figcaption></figure><figure class="ph"><img src="images/day4_maedaya3.jpg" alt="店內用餐" loading="lazy"><figcaption>前田屋 牛腸鍋 · 店內用餐</figcaption></figure></div>
+  </div>
+</div><div class="day">
+  <div class="day-rail"><div class="dnum">5</div><div class="dline"></div></div>
+  <div class="day-card">
+    <h3>華味鳥收尾</h3>
+    <div class="dsub">2026-05-20（二）晚 · FUKUOKA</div>
+    <p class="day-sum">華味鳥 水炊雞老字號，為旅程畫句點</p>
+    <div class="gallery"><figure class="ph"><img src="images/20260519_hanamidori_01.jpg" alt="水炊雞老字號" loading="lazy"><figcaption>華味鳥 はなおり · 水炊雞老字號</figcaption></figure><figure class="ph"><img src="images/20260519_hanamidori_02.jpg" alt="清甜雞湯" loading="lazy"><figcaption>華味鳥 はなおり · 清甜雞湯</figcaption></figure><figure class="ph"><img src="images/20260519_hanamidori_03.jpg" alt="嫩滑雞肉" loading="lazy"><figcaption>華味鳥 はなおり · 嫩滑雞肉</figcaption></figure><figure class="ph"><img src="images/20260519_hanamidori_04.jpg" alt="為旅程畫下句點" loading="lazy"><figcaption>華味鳥 はなおり · 為旅程畫下句點</figcaption></figure></div>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- ===== 地圖 ===== -->
+<section class="pane" id="map-pane">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>沖繩景點地圖</h2>
+      <p>16 個實際景點座標，按天分色。點選上方按鈕可只看某一天。</p>
+    </div>
+    <div class="day-filter">
+      <button class="on" data-day="0">全部</button>
+      <button data-day="1">Day 1</button>
+      <button data-day="2">Day 2</button>
+      <button data-day="3">Day 3</button>
+      <button data-day="4">Day 4</button>
+      <button data-day="5">Day 5</button>
+    </div>
+    <div id="map"></div>
+  </div>
+</section>
+
+<!-- ===== 預算 ===== -->
+<section class="pane" id="bud-pane">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>旅行預算試算</h2>
+      <p>填入各項金額，即時算出總額（未含購物）。</p>
+    </div>
+    <div class="budget">
+      <div class="budget-row"><label>✈️ 來回機票（每人）</label><input class="budget-input" type="number" value="12000"></div>
+      <div class="budget-row"><label>🏨 住宿（4 晚總計）</label><input class="budget-input" type="number" value="16000"></div>
+      <div class="budget-row"><label>🚗 租車（含油資、保險）</label><input class="budget-input" type="number" value="8000"></div>
+      <div class="budget-row"><label>🍽️ 餐食（5 天）</label><input class="budget-input" type="number" value="9000"></div>
+      <div class="budget-row"><label>🎫 門票與體驗</label><input class="budget-input" type="number" value="3000"></div>
+      <div class="budget-row"><label>🚝 交通雜支</label><input class="budget-input" type="number" value="2500"></div>
+      <div class="budget-total"><span>合計（1 人）</span><span id="budgetPer">NT$ 0</span></div>
+      <div class="budget-total" style="border-top:1px solid var(--line);color:var(--muted);font-size:15px"><span>兩人同行</span><span id="budgetTwo">NT$ 0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 清單 ===== -->
+<section class="pane" id="chk-pane">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>行前 Check-list</h2>
+      <p>勾選狀態會自動記住，下次打開還在。</p>
+    </div>
+    <div class="checks">
+      <label class="check"><input type="checkbox" data-check="passport">護照有效期限 6 個月以上</label>
+      <label class="check"><input type="checkbox" data-check="visa">日本免簽（台灣護照 90 天）</label>
+      <label class="check"><input type="checkbox" data-check="flight">機票確認與線上報到</label>
+      <label class="check"><input type="checkbox" data-check="hotel">住宿訂房確認單</label>
+      <label class="check"><input type="checkbox" data-check="car">租車預約（國際駕照＋日譯本）</label>
+      <label class="check"><input type="checkbox" data-check="insurance">旅平險與不便險</label>
+      <label class="check"><input type="checkbox" data-check="sim">網卡或 eSIM</label>
+      <label class="check"><input type="checkbox" data-check="yen">日幣現金（小店家）</label>
+      <label class="check"><input type="checkbox" data-check="suitcase">行李重量確認</label>
+      <label class="check"><input type="checkbox" data-check="adapter">變壓器與延長線</label>
+      <label class="check"><input type="checkbox" data-check="mapcode">Mapcode 清單存手機</label>
+      <label class="check"><input type="checkbox" data-check="charger">行動電源（手提行李）</label>
+    </div>
+  </div>
+</section>
+
+<div class="lb" id="lb">
+  <span class="lb-close" onclick="closeLb()">×</span>
+  <span class="lb-nav lb-prev" onclick="navLb(-1)">‹</span>
+  <img id="lbImg" src="" alt="">
+  <span class="lb-nav lb-next" onclick="navLb(1)">›</span>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<footer>陳曼都 · 我的旅行手冊 · 沖繩 2026/11 + 福岡 2026/05</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var SPOTS = [{"id": 1.0, "day": 1.0, "name": "那霸機場", "emoji": "✈️", "lat": 26.1932, "lng": 127.6458}, {"id": 2.0, "day": 1.0, "name": "瀨長島 Umikaji Terrace", "emoji": "🥞", "lat": 26.17602, "lng": 127.6406}, {"id": 3.0, "day": 1.0, "name": "國際通", "emoji": "🍻", "lat": 26.216405, "lng": 127.6887}, {"id": 4.0, "day": 2.0, "name": "萬座毛", "emoji": "🐘", "lat": 26.505, "lng": 127.850278}, {"id": 5.0, "day": 2.0, "name": "古宇利島", "emoji": "🍤", "lat": 26.7041, "lng": 128.017922}, {"id": 6.0, "day": 2.0, "name": "沖繩美麗海水族館", "emoji": "🦈", "lat": 26.694156, "lng": 127.877936}, {"id": 7.0, "day": 3.0, "name": "備瀨福木林道", "emoji": "🚲", "lat": 26.701389, "lng": 127.880278}, {"id": 8.0, "day": 3.0, "name": "殘波岬燈塔", "emoji": "🗼", "lat": 26.441037, "lng": 127.713749}, {"id": 9.0, "day": 3.0, "name": "美國村", "emoji": "🌇", "lat": 26.315851, "lng": 127.757669}, {"id": 10.0, "day": 4.0, "name": "沖繩世界／玉泉洞", "emoji": "🦇", "lat": 26.139328, "lng": 127.750336}, {"id": 11.0, "day": 4.0, "name": "奧武島", "emoji": "🐱", "lat": 26.1308, "lng": 127.7688, "query": "Ou Island Nanjo Okinawa Japan"}, {"id": 12.0, "day": 4.0, "name": "PARCO CITY", "emoji": "🛍️", "lat": 26.2578, "lng": 127.6997, "query": "SAN-A Urasoe West Coast PARCO CITY Okinawa Japan"}, {"id": 13.0, "day": 4.0, "name": "那霸／國際通", "emoji": "🏨", "lat": 26.216405, "lng": 127.6887}, {"id": 14.0, "day": 5.0, "name": "波上宮", "emoji": "⛩️", "lat": 26.220319, "lng": 127.671142}, {"id": 15.0, "day": 5.0, "name": "首里城公園", "emoji": "🏯", "lat": 26.217014, "lng": 127.719521}, {"id": 16.0, "day": 5.0, "name": "那霸機場", "emoji": "✈️", "lat": 26.1932, "lng": 127.6458}];
+
+/* Tabs */
+document.querySelectorAll('.tab').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    var p = b.dataset.pane;
+    var id = p==='map'?'map-pane':(p==='bud'?'bud-pane':(p==='chk'?'chk-pane':p));
+    document.querySelectorAll('.pane').forEach(function(s){s.classList.remove('on')});
+    document.getElementById(id).classList.add('on');
+    if(p==='map' && !window._mapInit){ initMap(); window._mapInit = true; }
+    if(p==='map' && window._map){ setTimeout(function(){ window._map.invalidateSize(); }, 120); }
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+/* Map */
+var markers = [];
+function initMap(){
+  if(typeof L === 'undefined') return;
+  var colors = {1:'#e65b66',2:'#66a53e',3:'#ee982d',4:'#497fb9',5:'#8b6db3'};
+  var map = L.map('map', {scrollWheelZoom:false}).setView([26.45,127.78], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'&copy; OpenStreetMap', maxZoom:18
+  }).addTo(map);
+  SPOTS.forEach(function(s){
+    var c = colors[s.day] || '#333';
+    var icon = L.divIcon({
+      html:'<div style="background:'+c+';width:30px;height:30px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:14px">'+s.emoji+'</div>',
+      className:'', iconSize:[30,30], iconAnchor:[15,15]
+    });
+    var mk = L.marker([s.lat, s.lng], {icon:icon}).addTo(map);
+    mk.bindPopup('<b>'+s.name+'</b><br><span style="color:#888;font-size:12px">Day '+s.day+'</span>');
+    mk._day = s.day;
+    markers.push(mk);
+  });
+  window._map = map;
+  window._markers = markers;
+}
+
+document.querySelectorAll('.day-filter button').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.day-filter button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    var d = Number(b.dataset.day);
+    if(!window._map) return;
+    window._markers.forEach(function(m){
+      if(d===0 || m._day===d){ if(!window._map.hasLayer(m)) m.addTo(window._map); }
+      else { window._map.removeLayer(m); }
+    });
+  });
+});
+
+/* Budget */
+function money(n){ return 'NT$ ' + Math.round(n).toLocaleString('zh-TW'); }
+function calcBudget(){
+  var ins = document.querySelectorAll('.budget-input');
+  var t = 0;
+  ins.forEach(function(i){ t += Number(i.value)||0; });
+  document.getElementById('budgetPer').textContent = money(t);
+  document.getElementById('budgetTwo').textContent = money(t*2);
+}
+document.querySelectorAll('.budget-input').forEach(function(i){ i.addEventListener('input', calcBudget); });
+calcBudget();
+
+/* Checklist */
+document.querySelectorAll('[data-check]').forEach(function(box){
+  var key = 'travel_chk_' + box.dataset.check;
+  try {
+    box.checked = localStorage.getItem(key) === '1';
+    box.addEventListener('change', function(){ localStorage.setItem(key, box.checked ? '1' : '0'); });
+  } catch(e) {}
+});
+
+/* Lightbox */
+var lbImgs = [], lbIdx = 0;
+function collectImgs(){
+  lbImgs = [].slice.call(document.querySelectorAll('.ph img'));
+}
+function openLb(img){
+  collectImgs();
+  lbIdx = lbImgs.indexOf(img);
+  showLb();
+}
+function showLb(){
+  var img = lbImgs[lbIdx];
+  if(!img) return;
+  document.getElementById('lbImg').src = img.src;
+  document.getElementById('lbCap').textContent = img.alt;
+  document.getElementById('lb').classList.add('on');
+}
+function closeLb(){ document.getElementById('lb').classList.remove('on'); }
+function navLb(d){
+  lbIdx = (lbIdx + d + lbImgs.length) % lbImgs.length;
+  showLb();
+}
+document.addEventListener('click', function(e){
+  if(e.target.tagName === 'IMG' && e.target.closest('.ph')) openLb(e.target);
+});
+document.getElementById('lb').addEventListener('click', function(e){
+  if(e.target.id === 'lb') closeLb();
+});
+document.addEventListener('keydown', function(e){
+  if(!document.getElementById('lb').classList.contains('on')) return;
+  if(e.key === 'Escape') closeLb();
+  if(e.key === 'ArrowLeft') navLb(-1);
+  if(e.key === 'ArrowRight') navLb(1);
+});
+</script>
+</body>
+</html>
