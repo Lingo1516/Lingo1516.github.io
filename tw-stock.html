@@ -213,7 +213,8 @@ async function quote(code){
         px, prev:pv,
         open:parseFloat(a.o)||0, high:parseFloat(a.h)||0, low:parseFloat(a.l)||0,
         vol:parseInt((a.v||'0').replace(/,/g,''))||0,
-        amt:parseInt((a.a||'0').replace(/,/g,''))||0,
+        lots:parseInt((a.v||'0').replace(/,/g,''))||0,
+        amt:0,
         date:a.d||'', time:(a['%']||a.ot||'').slice(0,8),
         limitUp:a.u||'', limitDn:a.w||''
       };
@@ -250,8 +251,8 @@ function render(d){
       <div class="mi"><span class="ml">最高</span><span class="mv up">${fmt(d.high)}</span></div>
       <div class="mi"><span class="ml">最低</span><span class="mv down">${fmt(d.low)}</span></div>
       <div class="mi"><span class="ml">昨收</span><span class="mv">${fmt(d.prev)}</span></div>
-      <div class="mi"><span class="ml">成交量</span><span class="mv">${volFmt(d.vol)}</span></div>
-      <div class="mi"><span class="ml">成交額</span><span class="mv">${amtFmt(d.amt)}</span></div>
+      <div class="mi"><span class="ml">成交量</span><span class="mv">${lotFmt(d.vol)}</span></div>
+      <div class="mi"><span class="ml">成交額</span><span class="mv">${d.px&&d.vol?((d.px*1000*d.vol)/1e8).toFixed(1)+'億':'—'}</span></div>
     </div>
   </div>
 
@@ -276,6 +277,7 @@ function render(d){
 
 function fmt(n){ return isFinite(n)&&n? n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) : '—'; }
 function volFmt(v){ if(!v) return '—'; if(v>=1e8) return (v/1e8).toFixed(2)+'億股'; if(v>=1e4) return (v/1e4).toFixed(0)+'張'; return v+'股'; }
+function lotFmt(v){ if(!v) return '—'; if(v>=10000) return (v/10000).toFixed(1)+'萬張'; return v.toLocaleString()+'張'; }
 function amtFmt(v){ if(!v) return '—'; if(v>=1e8) return (v/1e8).toFixed(2)+'億'; if(v>=1e4) return (v/1e4).toFixed(0)+'萬'; return v+''; }
 
 /* ---------- 歷史日線（證交所） ---------- */
