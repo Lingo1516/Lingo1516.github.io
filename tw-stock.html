@@ -6,12 +6,12 @@
 <title>台股行情 · 看盤查詢</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:#F7F5F0;color:#2D2A26;line-height:1.55;padding-bottom:70px}
-.header{background:#fff;border-bottom:1px solid #E8E4DF;padding:14px 16px;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:#FDF8E8;color:#2D2A26;line-height:1.55;padding-bottom:70px}
+.header{background:#FCF6E4;border-bottom:1px solid #EBE2C8;padding:14px 16px;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(120,100,40,.06)}
 .header h1{font-size:17px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .search-wrap{display:flex;gap:8px;position:relative}
-.search-wrap input{flex:1;padding:11px 14px;border:1.5px solid #E0DCD7;border-radius:11px;font-size:16px;outline:none;background:#FAFAF8;color:#2D2A26}
-.search-wrap input:focus{border-color:#4A90D9;background:#fff;box-shadow:0 0 0 3px rgba(74,144,217,.1)}
+.search-wrap input{flex:1;padding:11px 14px;border:1.5px solid #E0DCD7;border-radius:11px;font-size:16px;outline:none;background:#FFFEF8;color:#2D2A26}
+.search-wrap input:focus{border-color:#4A90D9;background:#fff;margin-top:5px;left:0;right:0;background:#FFFFF5;box-shadow:0 0 0 3px rgba(74,144,217,.1)}
 .search-wrap button{padding:11px 18px;background:#4A90D9;color:#fff;border:none;border-radius:11px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap}
 .search-wrap button:active{background:#357ABD;transform:scale(.97)}
 #sug{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #E0DCD7;border-radius:12px;margin-top:5px;max-height:260px;overflow-y:auto;display:none;box-shadow:0 6px 20px rgba(0,0,0,.12);z-index:200}
@@ -22,7 +22,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans
 .s-name{color:#555;font-size:14px}
 .s-mkt{font-size:10px;color:#aaa;background:#f5f5f5;padding:1px 6px;border-radius:4px;margin-left:6px}
 .main{max-width:780px;margin:0 auto;padding:14px}
-.card{background:#fff;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.card{background:#FFFDF2;border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:0 1px 4px rgba(120,100,40,.08);border:1px solid #F2EAD3}
 .loading{text-align:center;padding:50px 20px;color:#999;font-size:15px}
 .spinner{width:26px;height:26px;border:3px solid #eee;border-top-color:#4A90D9;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -277,11 +277,26 @@ function render(d){
   </div>
 
   <div class="card">
+    <div class="sec-t">
+      <span>💰 融資融券（籌碼）</span>
+      <div class="btns">
+        <button class="on" id="m5" onclick="drawMargin(5)">5日</button>
+        <button id="m10" onclick="drawMargin(10)">10日</button>
+        <button id="m20" onclick="drawMargin(20)">20日</button>
+      </div>
+    </div>
+    <div id="marginBox"><div class="loading" style="padding:16px"><div class="spinner"></div></div></div>
+    <canvas id="mcv" height="180" style="margin-top:10px"></canvas>
+    <div id="mNote" style="font-size:11.5px;color:#8a8578;line-height:1.65;margin-top:10px"></div>
+  </div>
+
+  <div class="card">
     <div class="sec-t"><span>📋 歷史日線</span><span style="font-size:11px;color:#bbb;font-weight:400" id="tblInfo"></span></div>
     <div id="tbl"><div class="loading" style="padding:20px">載入中…</div></div>
   </div>
   `;
   drawWL();
+  loadMargin(d.code);
 }
 
 function fmt(n){ return isFinite(n)&&n? n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) : '—'; }
@@ -456,6 +471,179 @@ function drawTable(data){
       </tr>`;
     }).join('')}</tbody></table>`;
 }
+
+/* ---------- 融資融券（籌碼） ---------- */
+let MDATA = null, MCUR = null, MRANGE = 5;
+
+async function loadMargin(code){
+  MCUR = code;
+  const box = document.getElementById('marginBox');
+  if (!box) return;
+  if (!MDATA){
+    box.innerHTML = '<div class="loading" style="padding:16px"><div class="spinner"></div>載入籌碼資料…</div>';
+    try{
+      const r = await fetch('tw-margin.json?v=' + Date.now());
+      MDATA = await r.json();
+    }catch(e){
+      box.innerHTML = '<div style="padding:14px;text-align:center;color:#b0a898;font-size:13px">籌碼資料載入失敗</div>';
+      return;
+    }
+  }
+  const s = MDATA.s[code];
+  if (!s || s.length < 2){
+    box.innerHTML = '<div style="padding:14px;text-align:center;color:#b0a898;font-size:13px">此股無融資融券資料（可能非信用交易標的）</div>';
+    const cv = document.getElementById('mcv'); if (cv) cv.style.display='none';
+    return;
+  }
+  drawMargin(MRANGE);
+}
+
+function drawMargin(n){
+  MRANGE = n;
+  ['m5','m10','m20'].forEach(id=>{ const b=document.getElementById(id); if(b) b.classList.toggle('on', id==='m'+n); });
+  const box = document.getElementById('marginBox');
+  const note = document.getElementById('mNote');
+  const cv = document.getElementById('mcv');
+  if (!MDATA || !MCUR || !cv) return;
+  const s = MDATA.s[MCUR];
+  if (!s || s.length < 2) return;
+  cv.style.display = 'block';
+
+  const dates = MDATA.d;
+  const rows = s.slice(-n-1);   // 多抓一天算增減
+  const px = MDATA.spot && MDATA.spot[MCUR] ? MDATA.spot[MCUR] : 0;
+
+  // 融資金額估算：張數 × 1000股 × 股價
+  const calc = r => px ? r[1]*1000*px : 0;
+  const first = rows[0], last = rows[rows.length-1];
+  const mlChg = last[1]-first[1];
+  const slChg = last[2]-first[2];
+  const mlPct = first[1] ? (mlChg/first[1]*100) : 0;
+
+  // 籌碼乾淨度判定
+  const total = last[1]+last[2];
+  const ratio = total ? (last[2]/total*100) : 0;   // 融券佔比（券/資+券）
+  let tag, tagCls, explain;
+  if (mlChg < 0 && slChg >= 0){
+    tag='籌碼轉乾淨'; tagCls='clean';
+    explain = `融資減少 ${Math.abs(mlChg).toLocaleString()} 張，散戶在退場；融券${slChg>0?'增加':'持平'}，空方力道有限。`;
+  } else if (mlChg > 0 && slChg > 0){
+    tag='融資券同增'; tagCls='warn';
+    explain = `融資增加 ${mlChg.toLocaleString()} 張（散戶進場），融券也增加 ${slChg.toLocaleString()} 張，多空交戰、籌碼較亂。`;
+  } else if (mlChg > 0){
+    tag='籌碼轉亂'; tagCls='dirty';
+    explain = `融資增加 ${mlChg.toLocaleString()} 張（${mlPct>0?'+':''}${mlPct.toFixed(1)}%），散戶追高、浮額變多，需留意回檔賣壓。`;
+  } else {
+    tag='籌碼穩定'; tagCls='steady';
+    explain = `融資減少 ${Math.abs(mlChg).toLocaleString()} 張、融券減少 ${Math.abs(slChg).toLocaleString()} 張，籌碼沉澱中。`;
+  }
+
+  box.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div style="background:#F5F0DE;border-radius:10px;padding:11px 12px">
+        <div style="font-size:11px;color:#9a937f;margin-bottom:3px">融資餘額</div>
+        <div style="font-size:19px;font-weight:700;font-variant-numeric:tabular-nums">${last[1].toLocaleString()}<span style="font-size:12px;font-weight:400;color:#9a937f"> 張</span></div>
+        <div style="font-size:12px;font-weight:600;margin-top:2px" class="${mlChg>0?'up':mlChg<0?'down':'flat'}">${mlChg>0?'+':''}${mlChg.toLocaleString()} (${mlChg>0?'+':''}${mlPct.toFixed(1)}%)</div>
+        ${px?`<div style="font-size:11px;color:#a8a192;margin-top:3px">約 ${(calc(last)/1e8).toFixed(2)} 億元</div>`:''}
+      </div>
+      <div style="background:#F5F0DE;border-radius:10px;padding:11px 12px">
+        <div style="font-size:11px;color:#9a937f;margin-bottom:3px">融券餘額</div>
+        <div style="font-size:19px;font-weight:700;font-variant-numeric:tabular-nums">${last[2].toLocaleString()}<span style="font-size:12px;font-weight:400;color:#9a937f"> 張</span></div>
+        <div style="font-size:12px;font-weight:600;margin-top:2px" class="${slChg>0?'up':slChg<0?'down':'flat'}">${slChg>0?'+':''}${slChg.toLocaleString()}</div>
+        <div style="font-size:11px;color:#a8a192;margin-top:3px">券/資比 ${ratio.toFixed(2)}%</div>
+      </div>
+    </div>
+    <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:9px;font-size:13px;font-weight:700;background:${{clean:'#E4F2E4',warn:'#FFF2D6',dirty:'#FCE6E3',steady:'#E8EEF5'}[tagCls]};color:${{clean:'#2d7a2d',warn:'#a07000',dirty:'#c0392b',steady:'#3a5f8a'}[tagCls]}">
+      ${tagCls==='clean'?'🟢':tagCls==='warn'?'🟡':tagCls==='dirty'?'🔴':'🔵'} ${tag}
+    </div>
+  `;
+  if (note) note.textContent = explain + `（近 ${n} 個交易日）`;
+
+  drawMarginChart(rows, dates);
+}
+
+function drawMarginChart(rows, dates){
+  const cv = document.getElementById('mcv');
+  if (!cv) return;
+  const DPR = 2, W = cv.clientWidth || 700, H = 180;
+  cv.width = W*DPR; cv.height = H*DPR;
+  cv.style.width = W+'px'; cv.style.height = H+'px';
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(1,0,0,1,0,0); ctx.scale(DPR,DPR);
+  ctx.clearRect(0,0,W,H);
+  if (!rows.length) return;
+
+  const pad = {t:12,r:52,b:20,l:8};
+  const cw = W-pad.l-pad.r, chh = H-pad.t-pad.b;
+
+  let lo=Infinity, hi=-Infinity;
+  rows.forEach(r=>{ lo=Math.min(lo,r[1]); hi=Math.max(hi,r[1]); });
+  const rg=(hi-lo)||1; lo-=rg*0.12; hi+=rg*0.12;
+  const R=hi-lo;
+  const y = v => pad.t + ((hi-v)/R)*chh;
+
+  // 網格
+  ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='left';
+  for (let i=0;i<=3;i++){
+    const yy = pad.t + chh/3*i;
+    ctx.strokeStyle='#F0E9D5'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(pad.l,yy); ctx.lineTo(W-pad.r,yy); ctx.stroke();
+    ctx.fillStyle='#b5ae9c';
+    ctx.fillText(Math.round(hi-R/3*i).toLocaleString(), W-pad.r+5, yy+3.5);
+  }
+
+  // 融資柱狀
+  const bw = cw/rows.length;
+  const bodyW = Math.max(Math.min(bw*0.6, 16), 1.5);
+  rows.forEach((r,i)=>{
+    const cx = pad.l + bw*i + bw/2;
+    const yy = y(r[1]);
+    const prev = i>0 ? rows[i-1][1] : r[1];
+    const col = r[1] > prev ? '#E8A0A0' : r[1] < prev ? '#9BC49B' : '#D8D2C0';
+    ctx.fillStyle = col;
+    ctx.fillRect(cx-bodyW/2, yy, bodyW, H-pad.b-yy);
+  });
+
+  // 融資折線
+  ctx.beginPath(); ctx.strokeStyle='#C0392B'; ctx.lineWidth=2; ctx.lineJoin='round';
+  rows.forEach((r,i)=>{
+    const cx = pad.l + bw*i + bw/2;
+    const yy = y(r[1]);
+    i===0 ? ctx.moveTo(cx,yy) : ctx.lineTo(cx,yy);
+  });
+  ctx.stroke();
+
+  // 融券折線（另一軸，放大顯示）
+  let slo=Infinity, shi=-Infinity;
+  rows.forEach(r=>{ slo=Math.min(slo,r[2]); shi=Math.max(shi,r[2]); });
+  if (shi>slo && shi>0){
+    const sy = v => pad.t + chh - ((v-slo)/((shi-slo)||1))*chh*0.85 - chh*0.05;
+    ctx.beginPath(); ctx.strokeStyle='#2E7D8F'; ctx.lineWidth=1.6; ctx.setLineDash([4,3]);
+    rows.forEach((r,i)=>{
+      const cx = pad.l + bw*i + bw/2;
+      const yy = sy(r[2]);
+      i===0 ? ctx.moveTo(cx,yy) : ctx.lineTo(cx,yy);
+    });
+    ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  // 日期軸
+  ctx.fillStyle='#b5ae9c'; ctx.font='10px -apple-system,sans-serif'; ctx.textAlign='center';
+  const step = Math.max(1, Math.floor(rows.length/4));
+  rows.forEach((r,i)=>{
+    if (i%step===0 || i===rows.length-1){
+      ctx.fillText(dates[r[0]].slice(4), pad.l+bw*i+bw/2, H-5);
+    }
+  });
+
+  // 圖例
+  ctx.textAlign='left'; ctx.font='10px -apple-system,sans-serif';
+  ctx.fillStyle='#C0392B'; ctx.fillRect(pad.l, 2, 10, 3);
+  ctx.fillStyle='#8a8578'; ctx.fillText('融資', pad.l+14, 6);
+  ctx.fillStyle='#2E7D8F'; ctx.fillRect(pad.l+48, 2, 10, 3);
+  ctx.fillStyle='#8a8578'; ctx.fillText('融券', pad.l+62, 6);
+}
+
 
 /* ---------- 自選股 ---------- */
 const WK = 'twstock_watchlist_v1';
