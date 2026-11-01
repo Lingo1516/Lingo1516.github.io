@@ -520,23 +520,22 @@ function drawMargin(n){
   const slChg = last[2]-first[2];
   const mlPct = first[1] ? (mlChg/first[1]*100) : 0;
 
-  // 籌碼乾淨度判定
-  const total = last[1]+last[2];
-  const ratio = total ? (last[2]/total*100) : 0;   // 融券佔比（券/資+券）
-  let tag, tagCls, explain;
-  if (mlChg < 0 && slChg >= 0){
-    tag='籌碼轉乾淨'; tagCls='clean';
-    explain = `融資減少 ${Math.abs(mlChg).toLocaleString()} 張，散戶在退場；融券${slChg>0?'增加':'持平'}，空方力道有限。`;
-  } else if (mlChg > 0 && slChg > 0){
-    tag='融資券同增'; tagCls='warn';
-    explain = `融資增加 ${mlChg.toLocaleString()} 張（散戶進場），融券也增加 ${slChg.toLocaleString()} 張，多空交戰、籌碼較亂。`;
-  } else if (mlChg > 0){
-    tag='籌碼轉亂'; tagCls='dirty';
-    explain = `融資增加 ${mlChg.toLocaleString()} 張（${mlPct>0?'+':''}${mlPct.toFixed(1)}%），散戶追高、浮額變多，需留意回檔賣壓。`;
-  } else {
-    tag='籌碼穩定'; tagCls='steady';
-    explain = `融資減少 ${Math.abs(mlChg).toLocaleString()} 張、融券減少 ${Math.abs(slChg).toLocaleString()} 張，籌碼沉澱中。`;
-  }
+  // 籌碼評分公式 S = 2P − F + P×Q
+  // P:股價方向（漲+1跌−1平0）、F:融資方向、Q:融券方向
+  const P = mlChg>0?1:mlChg<0?-1:0;
+  const F = mlChg>0?1:mlChg<0?-1:0;
+  const Q = slChg>0?1:slChg<0?-1:0;
+  const S = 2*P - F + P*Q;
+  const tagLabel = S>=3?'明顯偏多':S>=1?'稍微偏多':S===0?'中性（多空抵銷）':S>=-2?'稍微偏空':'明顯偏空';
+  const tagEmoji = S>=1?'🟢':S>=-2?'🟡':'🔴';
+  const tagBg = S>=1?'#E4F2E4':S>=-2?'#FFF2D6':'#FCE6E3';
+  const tagColor = S>=1?'#2d7a2d':S>=-2?'#a07000':'#c0392b';
+  let explain='';
+  if (S>=3) explain='股價與融資同步上漲、融券也在增加（軋空條件），短期動能最強。';
+  else if (S>=1) explain='股價偏強，融資雖有增加但整體仍偏多，注意浮額賣壓。';
+  else if (S===0) explain='多空訊號抵銷，籌碼方向不明，觀察後續變化。';
+  else if (S>=-2) explain='股價偏弱或融資增加，空方略佔上風，需留意回檔風險。';
+  else explain='股價下跌且融資融券同步增加，市場分歧劇烈，短期偏空。';
 
   box.innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -550,14 +549,17 @@ function drawMargin(n){
         <div style="font-size:11px;color:#9a937f;margin-bottom:3px">融券餘額</div>
         <div style="font-size:19px;font-weight:700;font-variant-numeric:tabular-nums">${last[2].toLocaleString()}<span style="font-size:12px;font-weight:400;color:#9a937f"> 張</span></div>
         <div style="font-size:12px;font-weight:600;margin-top:2px" class="${slChg>0?'up':slChg<0?'down':'flat'}">${slChg>0?'+':''}${slChg.toLocaleString()}</div>
-        <div style="font-size:11px;color:#a8a192;margin-top:3px">券/資比 ${ratio.toFixed(2)}%</div>
+        <div style="font-size:11px;color:#a8a192;margin-top:3px">券/資比 ${(last[1]+last[2]?(last[2]/(last[1]+last[2])*100):0).toFixed(2)}%</div>
       </div>
     </div>
-    <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:9px;font-size:13px;font-weight:700;background:${{clean:'#E4F2E4',warn:'#FFF2D6',dirty:'#FCE6E3',steady:'#E8EEF5'}[tagCls]};color:${{clean:'#2d7a2d',warn:'#a07000',dirty:'#c0392b',steady:'#3a5f8a'}[tagCls]}">
-      ${tagCls==='clean'?'🟢':tagCls==='warn'?'🟡':tagCls==='dirty'?'🔴':'🔵'} ${tag}
+    <div style="text-align:center">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:11px;font-size:15px;font-weight:700;background:${tagBg};color:${tagColor}">
+        ${tagEmoji} S=${S>=0?'+':''}${S} &nbsp;·&nbsp; ${tagLabel}
+      </div>
+      <div style="font-size:11px;color:#a8a192;margin-top:6px">評分公式：S = 2P − F + P×Q &nbsp;（近 ${n} 個交易日）</div>
     </div>
   `;
-  if (note) note.textContent = explain + `（近 ${n} 個交易日）`;
+  if (note) note.textContent = explain;
 
   drawMarginChart(rows, dates);
 }
