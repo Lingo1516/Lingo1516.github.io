@@ -3,437 +3,346 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paper Summarizer — 論文秒讀工具 | AI-Powered PDF Summary</title>
-<meta name="description" content="上傳 PDF 論文，AI 自動產出結構化摘要。支援中英文，一鍵下載 JSON/Markdown/HTML。
-<meta property="og:title" content="Paper Summarizer — 論文秒讀工具">
-<meta property="og:description" content="上傳 PDF 論文，AI 自動產出結構化摘要。支援中英文，一鍵下載 JSON/Markdown/HTML。">
+<title>Paper Summarizer — 論文秒讀，AI 自動摘要</title>
+<meta name="description" content="上傳 PDF 論文，AI 立刻產出結構化摘要：標題、作者、研究目標、方法、關鍵發現、結論。免費開源。">
+<meta property="og:title" content="Paper Summarizer — 論文秒讀">
+<meta property="og:description" content="上傳 PDF，AI 產出結構化摘要。免費開源。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://lingo1516.github.io/paper-summarizer">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://lingo1516.github.io/paper-summarizer/">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#F7F5F0;--card:#fff;--text:#2D2A26;--muted:#6b6560;
-  --accent:#4F46E5;--accent-light:#EEF2FF;--green:#059669;
-  --radius:12px;--shadow:0 4px 24px rgba(0,0,0,.08);
-}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+:root{--bg:#F7F5F0;--card:#fff;--text:#2D2A26;--muted:#6b6560;--accent:#4F46E5;--accent-l:#EEF2FF;--green:#059669;--red:#dc2626}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
 a{color:var(--accent);text-decoration:none}
-.container{max-width:900px;margin:0 auto;padding:0 24px}
-
-/* NAV */
-nav{background:var(--card);border-bottom:1px solid #e8e5e0;padding:16px 0;position:sticky;top:0;z-index:100}
+.container{max-width:860px;margin:0 auto;padding:0 20px}
+nav{background:var(--card);border-bottom:1px solid #e8e5e0;padding:14px 0;position:sticky;top:0;z-index:99}
 nav .container{display:flex;align-items:center;justify-content:space-between}
-nav .logo{font-weight:800;font-size:18px;color:var(--text)}
-nav .logo span{color:var(--accent)}
-nav .nav-links{display:flex;gap:20px;align-items:center}
-nav .nav-links a{color:var(--muted);font-size:14px;font-weight:500}
-nav .nav-links a:hover{color:var(--accent)}
-nav .btn-github{background:var(--text);color:#fff;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
-nav .btn-github:hover{opacity:.85}
-
-/* HERO */
-.hero{padding:80px 0 60px;text-align:center;background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
-.hero .badge{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;margin-bottom:20px;letter-spacing:.5px}
-.hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.15;margin-bottom:16px;letter-spacing:-.5px}
+.logo{font-weight:800;font-size:17px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:18px;align-items:center;font-size:14px}
+.nav-links a{color:var(--muted);font-weight:500}
+.nav-links a:hover{color:var(--accent)}
+.btn-gh{background:var(--text);color:#fff;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600}
+.hero{padding:56px 0 36px;text-align:center}
+.badge{display:inline-block;background:var(--accent-l);color:var(--accent);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px}
+.hero h1{font-size:clamp(28px,4.5vw,44px);font-weight:900;line-height:1.2;margin-bottom:14px;letter-spacing:-.5px}
 .hero h1 em{font-style:normal;color:var(--accent)}
-.hero p{font-size:18px;color:var(--muted);max-width:560px;margin:0 auto 32px;line-height:1.7}
-.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-primary{background:var(--accent);color:#fff;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .15s,box-shadow .15s}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(79,70,229,.3)}
-.btn-secondary{background:var(--card);color:var(--text);padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;border:1px solid #e0ddd8;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-.hero .stats{display:flex;gap:40px;justify-content:center;margin-top:48px}
-.hero .stat{text-align:center}
-.hero .stat .num{font-size:28px;font-weight:900;color:var(--accent)}
-.hero .stat .label{font-size:12px;color:var(--muted);margin-top:2px}
+.hero p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7}
 
-/* DEMO SECTION */
-.demo-section{padding:60px 0}
-.demo-card{background:var(--card);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:1px solid #e8e5e0}
-.demo-header{padding:20px 24px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:12px}
-.demo-header .dots{display:flex;gap:6px}
-.demo-header .dot{width:12px;height:12px;border-radius:50%}
-.demo-header .dot:nth-child(1){background:#ff5f57}
-.demo-header .dot:nth-child(2){background:#ffbd2e}
-.demo-header .dot:nth-child(3){background:#28ca42}
-.demo-header .title{font-size:13px;color:var(--muted);font-weight:600}
-.demo-body{padding:24px}
-.upload-zone{border:2px dashed #d4d0c8;border-radius:12px;padding:48px 24px;text-align:center;cursor:pointer;transition:border-color .2s;background:#faf9f7}
-.upload-zone:hover{border-color:var(--accent)}
-.upload-zone.drag-over{border-color:var(--accent);background:var(--accent-light)}
-.upload-zone .icon{font-size:48px;margin-bottom:12px}
-.upload-zone p{color:var(--muted);font-size:14px}
-.upload-zone .file-info{margin-top:12px;font-size:13px;color:var(--accent);font-weight:600}
+.tool{background:var(--card);border:1px solid #e8e5e0;border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.06);overflow:hidden;margin-bottom:40px}
+.tool-head{padding:14px 20px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px;background:#fdfcfa}
+.dots{display:flex;gap:5px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot:nth-child(1){background:#ff5f57}.dot:nth-child(2){background:#ffbd2e}.dot:nth-child(3){background:#28ca42}
+.tool-head .t{font-size:12px;color:var(--muted);font-weight:600}
+.tool-body{padding:22px}
 
-/* OPTIONS */
-.options{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
-.option-group{flex:1;min-width:140px}
-.option-group label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
-.option-group select{width:100%;padding:10px 12px;border:1px solid #e0ddd8;border-radius:8px;font-size:14px;background:#fff;color:var(--text);cursor:pointer}
+#drop{border:2px dashed #d4d0c8;border-radius:11px;padding:44px 20px;text-align:center;cursor:pointer;background:#faf9f7;transition:.18s}
+#drop:hover,#drop.over{border-color:var(--accent);background:var(--accent-l)}
+#drop .ic{font-size:40px;margin-bottom:10px}
+#drop p{color:var(--muted);font-size:14px}
+#drop .fname{margin-top:10px;font-size:13px;color:var(--accent);font-weight:700;word-break:break-all}
+#drop .size{font-size:12px;color:var(--muted);font-weight:400}
 
-/* RESULT */
-.result-area{margin-top:24px;display:none}
-.result-area.show{display:block}
-.result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.result-header h3{font-size:16px;font-weight:700}
-.download-btns{display:flex;gap:8px}
-.download-btns button{padding:6px 14px;border-radius:6px;border:1px solid #e0ddd8;background:#fff;font-size:12px;font-weight:600;cursor:pointer;color:var(--text)}
-.download-btns button:hover{background:var(--accent-light);color:var(--accent);border-color:var(--accent)}
-.result-content{background:#faf9f7;border-radius:10px;padding:20px;font-size:14px;line-height:1.8;white-space:pre-wrap;max-height:400px;overflow-y:auto}
-.result-content h4{font-size:15px;font-weight:700;margin:16px 0 6px;color:var(--accent)}
-.result-content h4:first-child{margin-top:0}
+.opts{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
+.opt{flex:1;min-width:130px}
+.opt label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;letter-spacing:.4px}
+.opt select{width:100%;padding:9px 11px;border:1px solid #e0ddd8;border-radius:8px;font-size:14px;background:#fff;color:var(--text);cursor:pointer}
 
-/* FEATURES */
-.features{padding:60px 0}
-.features h2{text-align:center;font-size:28px;font-weight:800;margin-bottom:40px}
-.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.feature-card{background:var(--card);border-radius:var(--radius);padding:24px;border:1px solid #e8e5e0;transition:transform .15s,box-shadow .15s}
-.feature-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.feature-card .icon{font-size:32px;margin-bottom:12px}
-.feature-card h3{font-size:15px;font-weight:700;margin-bottom:6px}
-.feature-card p{font-size:13px;color:var(--muted);line-height:1.6}
+#go{width:100%;margin-top:18px;background:var(--accent);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:.15s}
+#go:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 20px rgba(79,70,229,.28)}
+#go:disabled{background:#c7c4bf;cursor:not-allowed}
 
-/* CODE SECTION */
-.code-section{padding:60px 0;background:#1e1e2e;color:#cdd6f4;border-radius:20px;margin:0 24px}
-.code-section .container{padding:0}
-.code-section h2{text-align:center;font-size:24px;font-weight:800;margin-bottom:8px;color:#cdd6f4}
-.code-section .sub{text-align:center;font-size:14px;color:#a6adc8;margin-bottom:32px}
-.code-block{background:#1e1e2e;border-radius:12px;overflow:hidden;border:1px solid #313244}
-.code-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#1e1e2e;border-bottom:1px solid #313244}
-.code-header .lang{font-size:12px;color:#a6adc8;font-weight:600}
-.code-header .copy-btn{background:#313244;border:none;color:#cdd6f4;padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer}
-.code-header .copy-btn:hover{background:#45475a}
-pre{padding:20px;font-size:13px;line-height:1.7;overflow-x:auto;font-family:"JetBrains Mono",Fira Code,monospace}
-.code-section .copy-feedback{position:fixed;top:20px;right:20px;background:var(--green);color:#fff;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none}
-.code-section .copy-feedback.show{opacity:1}
+.spin{display:none;text-align:center;padding:36px 0}
+.spin.on{display:block}
+.ring{width:36px;height:36px;border:4px solid #e8e5e0;border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.spin p{font-size:13px;color:var(--muted)}
+.stage{color:var(--accent);font-weight:600;font-size:13px}
 
-/* FOOTER */
-footer{padding:40px 0;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid #e8e5e0;margin-top:60px}
-footer a{color:var(--accent)}
+.err{display:none;margin-top:18px;padding:14px 16px;background:#fef2f2;border:1px solid #fecaca;border-radius:9px;color:var(--red);font-size:13px}
+.err.on{display:block}
 
-/* LOADING */
-.loading{display:none;text-align:center;padding:40px}
-.loading.show{display:block}
-.spinner{width:40px;height:40px;border:4px solid #e8e5e0;border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
-@keyframes spin{to{transform:rotate(360deg)}}
+#out{display:none;margin-top:22px}
+#out.on{display:block}
+.out-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.out-bar h3{font-size:15px;font-weight:800}
+.dls{display:flex;gap:6px}
+.dls button{padding:6px 12px;border-radius:6px;border:1px solid #e0ddd8;background:#fff;font-size:12px;font-weight:600;cursor:pointer;color:var(--text)}
+.dls button:hover{background:var(--accent-l);color:var(--accent);border-color:var(--accent)}
 
-/* RESPONSIVE */
-@media(max-width:600px){
-  .hero{padding:48px 0 32px}
-  .hero .stats{gap:20px}
-  .hero .stat .num{font-size:22px}
-  .options{flex-direction:column}
-  .code-section{margin:0 0}
-}
+.res{background:#faf9f7;border-radius:10px;padding:20px;font-size:14px;line-height:1.75}
+.res .meta{font-size:11px;color:var(--muted);border-bottom:1px solid #e8e5e0;padding-bottom:12px;margin-bottom:16px}
+.res h4{font-size:11px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.6px;margin:20px 0 8px}
+.res h4:first-of-type{margin-top:0}
+.res .ttl{font-size:20px;font-weight:800;line-height:1.3;margin-bottom:4px}
+.res .auth{font-size:12.5px;color:var(--muted);font-style:italic;margin-bottom:4px}
+.res ul{margin-left:18px}
+.res li{margin-bottom:5px}
+.res p{margin-bottom:8px}
+
+.sec{padding:40px 0}
+.sec h2{text-align:center;font-size:23px;font-weight:900;margin-bottom:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px}
+.fc{background:var(--card);border:1px solid #e8e5e0;border-radius:11px;padding:20px}
+.fc .ic{font-size:26px;margin-bottom:9px}
+.fc h3{font-size:14px;font-weight:800;margin-bottom:5px}
+.fc p{font-size:13px;color:var(--muted);line-height:1.6}
+
+.steps{background:var(--card);border-radius:12px;padding:24px;border:1px solid #e8e5e0}
+.steps ol{margin-left:20px;font-size:14px;line-height:2}
+.steps code{background:#f2f0ec;padding:2px 7px;border-radius:4px;font-size:12.5px;font-family:ui-monospace,Menlo,monospace}
+
+.tip{background:#fffbe6;border:1px solid #ffe58f;border-radius:9px;padding:12px 16px;font-size:13px;color:#8c7000;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+
+footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;border-top:1px solid #e8e5e0;margin-top:36px}
+@media(max-width:600px){.hero{padding:36px 0 24px}.opts{flex-direction:column}.nav-links a:not(.btn-gh){display:none}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-<div class="container">
+<nav><div class="container">
   <div class="logo">📄 Paper<span>Sum</span></div>
   <div class="nav-links">
-    <a href="#demo">Demo</a>
-    <a href="#features">Features</a>
-    <a href="#code">Get Code</a>
-    <a class="btn-github" href="https://github.com/Lingo1516/paper-summarizer" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      GitHub
-    </a>
+    <a href="#how">使用說明</a>
+    <a href="#feat">功能</a>
+    <a class="btn-gh" href="https://github.com/Lingo1516/paper-summarizer" target="_blank">GitHub</a>
   </div>
-</div>
-</nav>
+</div></nav>
 
-<!-- HERO -->
-<section class="hero">
-<div class="container">
-  <div class="badge">✨ FREE & OPEN SOURCE</div>
-  <h1>論文秒讀<br><em>AI 自動摘要工具</em></h1>
-  <p>上傳 PDF 論文，30 秒產出結構化摘要。中英文雙語支援，一鍵下載 JSON / Markdown / HTML。</p>
-  <div class="hero-actions">
-    <a href="#demo" class="btn-primary">🚀 立即體驗</a>
-    <a href="https://github.com/Lingo1516/paper-summarizer" target="_blank" class="btn-secondary">📦 GitHub Repo</a>
-  </div>
-  <div class="stats">
-    <div class="stat"><div class="num">30s</div><div class="label">平均處理時間</div></div>
-    <div class="stat"><div class="num">3</div><div class="label">輸出格式</div></div>
-    <div class="stat"><div class="num">CN/EN</div><div class="label">雙語支援</div></div>
-    <div class="stat"><div class="num">MIT</div><div class="label">開源自由</div></div>
-  </div>
-</div>
-</section>
+<section class="hero"><div class="container">
+  <div class="badge">免費 · 開源 · MIT LICENSE</div>
+  <h1>論文秒讀<br><em>AI 自動摘要</em></h1>
+  <p>上傳 PDF 論文，AI 完整解析內容，產出標題、作者、研究目標、方法、關鍵發現與結論。</p>
+</div></section>
 
-<!-- DEMO -->
-<section class="demo-section" id="demo">
 <div class="container">
-  <div class="demo-card">
-    <div class="demo-header">
-      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      <span class="title">Paper Summarizer — 線上 Demo</span>
+<div class="tip">
+  💡 <span id="apiTip">分析後端尚未連接。請在下方設定，或在本機運行 <code>uvicorn api:app --port 8010</code> 後填入 localhost:8010。</span>
+</div>
+
+<div class="tool">
+  <div class="tool-head"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><span class="t">paper-summarizer — 線上分析</span></div>
+  <div class="tool-body">
+    <div id="drop">
+      <div class="ic">📄</div>
+      <p>拖放 PDF 到此處，或點擊選擇檔案</p>
+      <div class="fname" id="fname"></div>
     </div>
-    <div class="demo-body">
-      <div class="upload-zone" id="uploadZone">
-        <div class="icon">📄</div>
-        <p>拖放 PDF 檔案到此處，或點擊選擇檔案</p>
-        <div class="file-info" id="fileInfo"></div>
+    <input type="file" id="fi" accept=".pdf" hidden>
+    <div class="opts">
+      <div class="opt"><label>輸出語言</label>
+        <select id="lang"><option value="zh">繁體中文</option><option value="en">English</option></select>
       </div>
-      <input type="file" id="fileInput" accept=".pdf" style="display:none">
-      <div class="options">
-        <div class="option-group">
-          <label>輸出語言</label>
-          <select id="langSelect">
-            <option value="zh">繁體中文</option>
-            <option value="en">English</option>
-          </select>
-        </div>
-        <div class="option-group">
-          <label>輸出格式</label>
-          <select id="formatSelect">
-            <option value="markdown">Markdown</option>
-            <option value="json">JSON</option>
-            <option value="html">HTML</option>
-          </select>
+      <div class="opt"><label>分析頁數</label>
+        <select id="mpage"><option value="12">前 12 頁（快速）</option><option value="25">前 25 頁（完整）</option></select>
+      </div>
+      <div class="opt"><label>後端 URL</label>
+        <input id="apiUrl" type="text" placeholder="如 http://localhost:8010" style="width:100%;padding:9px 11px;border:1px solid #e0ddd8;border-radius:8px;font-size:13px;background:#fff">
+      </div>
+    </div>
+    <button id="go" disabled>🧠 開始分析</button>
+    <div class="spin" id="spin">
+      <div class="ring"></div>
+      <p class="stage" id="stageTxt">正在讀取 PDF…</p>
+    </div>
+    <div class="err" id="err"></div>
+    <div id="out">
+      <div class="out-bar"><h3>📋 分析結果</h3>
+        <div class="dls">
+          <button onclick="dl('md')">Markdown</button>
+          <button onclick="dl('json')">JSON</button>
+          <button onclick="dl('html')">HTML</button>
         </div>
       </div>
-      <button class="btn-primary" style="width:100%;margin-top:20px;justify-content:center" id="summarizeBtn" disabled>
-        🧠 開始 AI 摘要
-      </button>
-      <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <p style="color:var(--muted);font-size:14px">AI 正在分析論文內容...</p>
-      </div>
-      <div class="result-area" id="resultArea">
-        <div class="result-header">
-          <h3>📋 摘要結果</h3>
-          <div class="download-btns">
-            <button onclick="downloadResult('json')">JSON</button>
-            <button onclick="downloadResult('markdown')">Markdown</button>
-            <button onclick="downloadResult('html')">HTML</button>
-          </div>
-        </div>
-        <div class="result-content" id="resultContent"></div>
-      </div>
+      <div class="res" id="res"></div>
     </div>
   </div>
 </div>
-</section>
-
-<!-- FEATURES -->
-<section class="features" id="features">
-<div class="container">
-  <h2>為什麼需要 Paper Summarizer？</h2>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <div class="icon">⏱️</div>
-      <h3>節省閱讀時間</h3>
-      <p>不用花 30 分鐘讀完整篇論文，30 秒掌握核心內容與發現。</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">🌐</div>
-      <h3>中英雙語支援</h3>
-      <p>上傳英文論文，產出中文摘要；或上傳中文論文，產出英文摘要。</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">📊</div>
-      <h3>多格式輸出</h3>
-      <p>支援 JSON、Markdown、HTML 三種格式，方便整合進你的工作流。</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">💻</div>
-      <h3>開源自由</h3>
-      <p>MIT License，可自由修改、部署、整合到你自己的系統中。</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">🔒</div>
-      <h3>隱私安全</h3>
-      <p>所有處理都在本地或你控制的伺服器上進行，論文不會外洩。</p>
-    </div>
-    <div class="feature-card">
-      <div class="icon">🎓</div>
-      <h3>學術研究必备</h3>
-      <p>文献综述、会议准备、快速筛选题目，研究效率倍增。</p>
-    </div>
-  </div>
 </div>
-</section>
 
-<!-- CODE -->
-<section class="code-section" id="code">
-<div class="container">
-  <h2>🚀 快速上手</h2>
-  <p class="sub">三行命令，在自己電腦上運行 Paper Summarizer</p>
-  <div class="code-block">
-    <div class="code-header">
-      <span class="lang">bash</span>
-      <button class="copy-btn" onclick="copyCode(this)">📋 複製</button>
-    </div>
-    <pre id="codeBlock">git clone https://github.com/Lingo1516/paper-summarizer.git
-cd paper-summarizer
-pip install -r requirements.txt
-python app.py</pre>
+<section class="sec" id="feat"><div class="container">
+  <h2>為什麼用它</h2>
+  <div class="grid">
+    <div class="fc"><div class="ic">⚡</div><h3>真的讀內容</h3><p>不是猜標題，是完整解析 PDF 文字後再由 AI 摘要。</p></div>
+    <div class="fc"><div class="ic">🎯</div><h3>結構化輸出</h3><p>固定六個欄位：標題、作者、目標、方法、發現、結論。</p></div>
+    <div class="fc"><div class="ic">🌐</div><h3>中英雙輸出</h3><p>英文論文可產中文摘要，反之亦然。</p></div>
+    <div class="fc"><div class="ic">📦</div><h3>三種格式</h3><p>Markdown、JSON、HTML，直接匯入你的筆記或系統。</p></div>
+    <div class="fc"><div class="ic">🔓</div><h3>完全開源</h3><p>MIT 授權，可自架、可改、可商用。</p></div>
+    <div class="fc"><div class="ic">🎓</div><h3>研究加速</h3><p>文獻回顧、題目篩選、會議前速讀都適用。</p></div>
   </div>
-  <p style="margin-top:20px;font-size:13px;color:#a6adc8;text-align:center">
-    需要 OpenAI API Key：<code style="background:#313244;padding:2px 8px;border-radius:4px">export OPENAI_API_KEY="sk-..."</code>
-  </p>
-</div>
-</section>
+</div></section>
 
-<!-- FOOTER -->
-<footer>
-<div class="container">
+<section class="sec" id="how"><div class="container">
+  <h2>自己架設</h2>
+  <div class="steps">
+    <ol>
+      <li><code>git clone https://github.com/Lingo1516/paper-summarizer.git</code></li>
+      <li><code>cd paper-summarizer && pip install -r requirements.txt</code></li>
+      <li><code>export LLM_API_KEY="sk-..."</code> （OpenRouter 或其他 OpenAI 相容 API）</li>
+      <li><code>uvicorn api:app --host 0.0.0.0 --port 8010</code> 啟動 API</li>
+      <li><code>streamlit run app.py</code> 啟動網頁介面（可選）</li>
+    </ol>
+  </div>
+</div></section>
+
+<footer><div class="container">
   <p>© 2026 Paper Summarizer · MIT License · <a href="https://github.com/Lingo1516/paper-summarizer" target="_blank">GitHub</a></p>
-  <p style="margin-top:8px;font-size:12px">Made with ❤️ by <a href="https://github.com/Lingo1516">Lingo Chen</a></p>
-</div>
-</footer>
-
-<div class="copy-feedback" id="copyFeedback">已複製！</div>
+</div></footer>
 
 <script>
-// Upload zone logic
-const uploadZone = document.getElementById('uploadZone');
-const fileInput = document.getElementById('fileInput');
-const fileInfo = document.getElementById('fileInfo');
-const summarizeBtn = document.getElementById('summarizeBtn');
-let selectedFile = null;
+const drop=document.getElementById('drop'), fi=document.getElementById('fi'),
+      fname=document.getElementById('fname'), go=document.getElementById('go'),
+      spin=document.getElementById('spin'), stageTxt=document.getElementById('stageTxt'),
+      errBox=document.getElementById('err'), out=document.getElementById('out'),
+      res=document.getElementById('res'), apiTip=document.getElementById('apiTip'),
+      apiUrlEl=document.getElementById('apiUrl');
+let file=null, data=null, polling=false;
 
-uploadZone.addEventListener('click', () => fileInput.click());
-uploadZone.addEventListener('dragover', e => {
-  e.preventDefault();
-  uploadZone.classList.add('drag-over');
-});
-uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
-uploadZone.addEventListener('drop', e => {
-  e.preventDefault();
-  uploadZone.classList.remove('drag-over');
-  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-});
-fileInput.addEventListener('change', () => {
-  if (fileInput.files.length) handleFile(fileInput.files[0]);
-});
+// Load saved API URL
+const savedApi = localStorage.getItem('ps_api') || '';
+if(savedApi){ apiUrlEl.value = savedApi; checkApi(); }
 
-function handleFile(file) {
-  if (!file.name.toLowerCase().endsWith('.pdf')) {
-    alert('請上傳 PDF 檔案');
-    return;
-  }
-  selectedFile = file;
-  fileInfo.textContent = `✅ ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
-  summarizeBtn.disabled = false;
+apiUrlEl.addEventListener('change', ()=>{ localStorage.setItem('ps_api', apiUrlEl.value); checkApi(); });
+apiUrlEl.addEventListener('blur', ()=>{ localStorage.setItem('ps_api', apiUrlEl.value); checkApi(); });
+
+function checkApi(){
+  const u = apiUrlEl.value.trim().replace(/\/$/,'');
+  if(!u){ apiTip.style.display=''; return; }
+  apiTip.style.display='none';
+  fetch(u+'/health', {mode:'no-cors'}).catch(()=>{}); // silent check
 }
 
-// Demo mode: simulate AI summary
-const demoResult = {
-  zh: {
-    title: "Attention Is All You Need",
-    authors: ["Ashish Vaswani", "Noam Shazeer", "Niki Parmar"],
-    summary: "本文提出 Transformer 架構，完全基於注意力機制，無需循環或卷積結構。在機器翻譯任務上達到 State-of-the-Art，訓練時間大幅減少。",
-    objectives: ["提出純注意力機制架構替代 RNN/CNN", "在翻譯品質與訓練效率上突破現有方法"],
-    methods: "採用 Encoder-Decoder 架構，核心為 Multi-Head Self-Attention 與 Positional Encoding，在 WMT 2014 德英翻譯上驗證。",
-    findings: ["BLEU 分數達到 28.4，超越所有現有模型", "訓練時間從數天縮短至數小時", "模型具有良好的可擴展性"],
-    conclusion: "Transformer 架構為序列轉換任務提供了更高效、更精準的解決方案，已成為現代 NLP 與多模態模型的基礎。"
-  },
-  en: {
-    title: "Attention Is All You Need",
-    authors: ["Ashish Vaswani", "Noam Shazeer", "Niki Parmar"],
-    summary: "This paper proposes the Transformer architecture, which relies solely on attention mechanisms, dispensing with recurrence and convolutions entirely. It achieves state-of-the-art results on machine translation while significantly reducing training time.",
-    objectives: ["Propose a pure attention-based architecture as an alternative to RNN/CNN", "Break through existing methods in translation quality and training efficiency"],
-    methods: "Encoder-Decoder architecture with Multi-Head Self-Attention and Positional Encoding, validated on WMT 2014 English-German translation.",
-    findings: ["BLEU score of 28.4, surpassing all existing models", "Training time reduced from days to hours", "Model demonstrates strong scalability"],
-    conclusion: "The Transformer architecture provides a more efficient and accurate solution for sequence transduction tasks and has become the foundation of modern NLP and multimodal models."
-  }
+drop.onclick=()=>fi.click();
+drop.ondragover=e=>{e.preventDefault();drop.classList.add('over')};
+drop.ondragleave=()=>drop.classList.remove('over');
+drop.ondrop=e=>{e.preventDefault();drop.classList.remove('over');if(e.dataTransfer.files[0])pick(e.dataTransfer.files[0])};
+fi.onchange=()=>{if(fi.files[0])pick(fi.files[0])};
+
+function pick(f){
+  if(!f.name.toLowerCase().endsWith('.pdf')){showErr('請選擇 PDF 檔案');return}
+  file=f;
+  fname.innerHTML='✅ '+esc(f.name)+' <span class="size">('+((f.size/1024/1024).toFixed(2))+' MB)</span>';
+  go.disabled=false; errBox.classList.remove('on'); out.classList.remove('on');
+}
+
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function showErr(m){errBox.textContent='❌ '+m;errBox.classList.add('on')}
+function setStage(s){stageTxt.textContent=s}
+
+go.onclick=async()=>{
+  if(!file)return;
+  const apiBase = apiUrlEl.value.trim().replace(/\/$/,'');
+  if(!apiBase){ showErr('請輸入後端 URL（如 http://localhost:8010）'); return; }
+
+  go.disabled=true; errBox.classList.remove('on'); out.classList.remove('on');
+  spin.classList.add('on');
+  setStage('正在送出新任務…'); polling=false;
+
+  const fd=new FormData();
+  fd.append('file',file);
+  fd.append('language',document.getElementById('lang').value);
+  fd.append('max_pages',document.getElementById('mpage').value);
+  fd.append('format','markdown');
+
+  try{
+    const t1=setTimeout(()=>setStage('AI 正在分析論文內容，請稍候…（通常需 1-2 分鐘）'),3000);
+    const r=await fetch(apiBase+'/summarize',{method:'POST',body:fd});
+    clearTimeout(t1);
+    if(!r.ok){const e=await r.json().catch(()=>null); throw new Error(e?.detail||'HTTP '+r.status)}
+    const {job_id}=r.json();
+    console.log('Job submitted:',job_id);
+
+    // Poll for result
+    setStage('等待分析完成…');
+    polling=true;
+    await pollResult(apiBase, job_id);
+  }catch(e){
+    clearTimeout(t1); polling=false; spin.classList.remove('on');
+    showErr(e.message||'分析失敗');
+  }finally{ go.disabled=false }
 };
 
-document.getElementById('summarizeBtn').addEventListener('click', () => {
-  if (!selectedFile) return;
-  const loading = document.getElementById('loading');
-  const resultArea = document.getElementById('resultArea');
-  loading.classList.add('show');
-  resultArea.classList.remove('show');
-  
-  // Simulate API call
-  setTimeout(() => {
-    loading.classList.remove('show');
-    const lang = document.getElementById('langSelect').value;
-    const result = demoResult[lang];
-    
-    // Render result
-    const content = document.getElementById('resultContent');
-    content.innerHTML = `
-      <h4>📌 ${lang === 'zh' ? '標題' : 'Title'}</h4>
-      <p>${result.title}</p>
-      <h4>✍️ ${lang === 'zh' ? '作者' : 'Authors'}</h4>
-      <p>${result.authors.join(', ')}</p>
-      <h4>📝 ${lang === 'zh' ? '摘要' : 'Abstract'}</h4>
-      <p>${result.summary}</p>
-      <h4>🎯 ${lang === 'zh' ? '研究目標' : 'Objectives'}</h4>
-      <p>${result.objectives.map(o => '• ' + o).join('\n')}</p>
-      <h4>🔬 ${lang === 'zh' ? '研究方法' : 'Methods'}</h4>
-      <p>${result.methods}</p>
-      <h4>💡 ${lang === 'zh' ? '關鍵發現' : 'Key Findings'}</h4>
-      <p>${result.findings.map(f => '• ' + f).join('\n')}</p>
-      <h4>📌 ${lang === 'zh' ? '結論' : 'Conclusion'}</h4>
-      <p>${result.conclusion}</p>
-    `;
-    resultArea.classList.add('show');
-  }, 2000);
-});
-
-function downloadResult(format) {
-  const lang = document.getElementById('langSelect').value;
-  const result = demoResult[lang];
-  let content, mime, ext;
-  
-  if (format === 'json') {
-    content = JSON.stringify(result, null, 2);
-    mime = 'application/json';
-    ext = 'json';
-  } else if (format === 'markdown') {
-    content = `# ${result.title}\n\n**Authors:** ${result.authors.join(', ')}\n\n## Abstract\n\n${result.summary}\n\n## Objectives\n\n${result.objectives.map(o => '- ' + o).join('\n')}\n\n## Methods\n\n${result.methods}\n\n## Key Findings\n\n${result.findings.map(f => '- ' + f).join('\n')}\n\n## Conclusion\n\n${result.conclusion}`;
-    mime = 'text/markdown';
-    ext = 'md';
-  } else {
-    content = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${result.title}</title>
-<style>body{font-family:sans-serif;max-width:800px;margin:40px auto;padding:20px;line-height:1.7}h1{color:#4F46E5}h2{color:#333;margin-top:30px;border-bottom:2px solid #eee;padding-bottom:8px}</style>
-</head><body>
-<h1>${result.title}</h1>
-<p><strong>Authors:</strong> ${result.authors.join(', ')}</p>
-<h2>Abstract</h2><p>${result.summary}</p>
-<h2>Objectives</h2><ul>${result.objectives.map(o=>'<li>'+o+'</li>').join('')}</ul>
-<h2>Methods</h2><p>${result.methods}</p>
-<h2>Key Findings</h2><ul>${result.findings.map(f=>'<li>'+f+'</li>').join('')}</ul>
-<h2>Conclusion</h2><p>${result.conclusion}</p>
-</body></html>`;
-    mime = 'text/html';
-    ext = 'html';
+async function pollResult(apiBase, jobId){
+  for(let i=0;i<120;i++){ // max 10 min
+    await sleep(5000);
+    if(!polling)return;
+    try{
+      const r=await fetch(apiBase+'/result/'+jobId);
+      if(r.status===202){
+        setStage('分析中…（'+((i+1)*5)+'s）');
+        continue;
+      }
+      if(r.status===200){
+        const d=await r.json();
+        polling=false; spin.classList.remove('on');
+        data=d; render(d); out.classList.add('on');
+        return;
+      }
+      const d=await r.json().catch(()=>null);
+      throw new Error(d?.detail||'HTTP '+r.status);
+    }catch(e){
+      polling=false; spin.classList.remove('on');
+      showErr('取得結果失敗: '+e.message);
+      return;
+    }
   }
-  
-  const blob = new Blob([content], { type: mime });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `summary.${ext}`;
-  a.click();
-  URL.revokeObjectURL(url);
+  polling=false; spin.classList.remove('on');
+  showErr('分析超時（超過 10 分鐘），請減少頁數後重試');
 }
 
-function copyCode(btn) {
-  const code = document.getElementById('codeBlock').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const fb = document.getElementById('copyFeedback');
-    fb.classList.add('show');
-    setTimeout(() => fb.classList.remove('show'), 1500);
-  });
+function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+
+function render(d){
+  const L=document.getElementById('lang').value;
+  const T=L==='zh'
+    ?{t:'標題',a:'作者',ab:'摘要',o:'研究目標',m:'研究方法',k:'關鍵發現',c:'結論'}
+    :{t:'Title',a:'Authors',ab:'Abstract',o:'Objectives',m:'Methods',k:'Key Findings',c:'Conclusion'};
+  const list=(arr)=>Array.isArray(arr)&&arr.length?'<ul>'+arr.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'<p style="color:#9b9691">—</p>';
+  const para=(s)=>s?'<p>'+esc(s).replace(/\n/g,'</p><p>')+'</p>':'<p style="color:#9b9691">—</p>';
+
+  let h='';
+  if(d._meta) h+='<div class="meta">📄 '+esc(d._meta.filename||'')+' · 讀取 '+d._meta.pages_read+' 頁 / 共 '+d._meta.pages_total+' 頁 · '+d._meta.chars.toLocaleString()+' 字 · 模型 '+esc(d._meta.model||'')+'</div>';
+  h+='<div class="ttl">'+esc(d.title||'—')+'</div>';
+  if(d.authors&&d.authors.length) h+='<div class="auth">'+d.authors.map(esc).join(' · ')+'</div>';
+  h+='<h4>'+T.ab+'</h4>'+para(d.abstract);
+  h+='<h4>'+T.o+'</h4>'+list(d.objectives);
+  h+='<h4>'+T.m+'</h4>'+para(d.methods);
+  h+='<h4>'+T.k+'</h4>'+list(d.key_findings);
+  h+='<h4>'+T.c+'</h4>'+para(d.conclusion);
+  res.innerHTML=h;
 }
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
+function dl(kind){
+  if(!data)return;
+  const base=(data._meta&&data._meta.filename||'paper').replace(/\.pdf$/i,'');
+  let body,mime;
+  if(kind==='json'){body=JSON.stringify(data,null,2);mime='application/json'}
+  else if(kind==='md'){
+    let s='# '+(data.title||'Paper Summary')+'\n\n';
+    if(data.authors&&data.authors.length) s+='**Authors:** '+data.authors.join(', ')+'\n\n';
+    s+='## Abstract\n\n'+(data.abstract||'')+'\n\n';
+    s+='## Objectives\n\n'+(data.objectives||[]).map(x=>'- '+esc(x)).join('\n')+'\n\n';
+    s+='## Methods\n\n'+(data.methods||'')+'\n\n';
+    s+='## Key Findings\n\n'+(data.key_findings||[]).map(x=>'- '+esc(x)).join('\n')+'\n\n';
+    s+='## Conclusion\n\n'+(data.conclusion||'')+'\n';
+    body=s;mimeType='text/markdown';
+  } else {
+    body='<!DOCTYPE html><meta charset="utf-8"><title>'+esc(data.title||'')+'</title>'
+      +'<style>body{font-family:system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;line-height:1.75;color:#2D2A26}h1{font-size:26px}h2{font-size:14px;color:#4F46E5;margin-top:26px;text-transform:uppercase;letter-spacing:.5px}</style>'
+      +'<h1>'+esc(data.title||'')+'</h1><p><em>'+esc((data.authors||[]).join(', '))+'</em></p>'
+      +'<h2>Abstract</h2><p>'+esc(data.abstract||'')+'</p>'
+      +'<h2>Objectives</h2><ul>'+(data.objectives||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'
+      +'<h2>Methods</h2><p>'+esc(data.methods||'')+'</p>'
+      +'<h2>Key Findings</h2><ul>'+(data.key_findings||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>'
+      +'<h2>Conclusion</h2><p>'+esc(data.conclusion||'')+'</p>';
+    mime='text/html';
+  }
+  const b=new Blob([body],{type:mime+';charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');
+  a.href=u;a.download=base+'.'+kind;a.click();URL.revokeObjectURL(u);
+}
 </script>
 </body>
 </html>
