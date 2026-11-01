@@ -117,8 +117,8 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:12.5px;bord
 </div></section>
 
 <div class="container">
-<div class="tip">
-  💡 <span id="apiTip">分析後端尚未連接。請在下方設定，或在本機運行 <code>uvicorn api:app --port 8010</code> 後填入 localhost:8010。</span>
+<div class="tip" id="apiTip" style="display:none">
+  💡 分析後端尚未連接。請在本機運行 <code>uvicorn api:app --port 8010</code> 後填入下方 URL，或使用下方提供的預設後端。
 </div>
 
 <div class="tool">
@@ -199,9 +199,12 @@ const drop=document.getElementById('drop'), fi=document.getElementById('fi'),
       apiUrlEl=document.getElementById('apiUrl');
 let file=null, data=null, polling=false;
 
-// Load saved API URL
-const savedApi = localStorage.getItem('ps_api') || '';
-if(savedApi){ apiUrlEl.value = savedApi; checkApi(); }
+const SAVED = localStorage.getItem('ps_api') || 'https://consultant-manuals-couple-wright.trycloudflare.com';
+apiUrlEl.value = SAVED;
+apiUrlEl.readOnly = true;
+apiUrlEl.style.opacity = '0.7';
+apiUrlEl.title = '已連接 Paper Summarizer 雲端後端（Cloudflare Tunnel）';
+checkApi();
 
 apiUrlEl.addEventListener('change', ()=>{ localStorage.setItem('ps_api', apiUrlEl.value); checkApi(); });
 apiUrlEl.addEventListener('blur', ()=>{ localStorage.setItem('ps_api', apiUrlEl.value); checkApi(); });
