@@ -213,8 +213,11 @@ async function quote(code){
       const j = JSON.parse(raw.slice(i, raw.lastIndexOf('}')+1));
       const a = j.msgArray && j.msgArray[0];
       if (!a || !a.c) continue;
-      const px = parseFloat(a.z);
-      // 昨收：優先用 y（盤中仍為昨收價），其次 pz，最後 p
+      const tr = a.trade || {};
+      // 成交價：優先用 trade.z（盤中逐筆），其次 a.z（收盤後）
+      let px = parseFloat(tr.z);
+      if (!isFinite(px) || px <= 0) px = parseFloat(a.z);
+      // 昨收：優先用 y，其次 pz、p
       let pv = parseFloat(a.y);
       if (!isFinite(pv) || pv <= 0) pv = parseFloat(a.pz);
       if (!isFinite(pv) || pv <= 0) pv = parseFloat(a.p);
