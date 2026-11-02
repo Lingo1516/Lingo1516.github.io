@@ -214,7 +214,11 @@ async function quote(code){
       const a = j.msgArray && j.msgArray[0];
       if (!a || !a.c) continue;
       const px = parseFloat(a.z);
-      const pv = a.pz && a.pz !== '-' ? parseFloat(a.pz) : (parseFloat(a.p) || 0);
+      // 昨收：優先用 y（盤中仍為昨收價），其次 pz，最後 p
+      let pv = parseFloat(a.y);
+      if (!isFinite(pv) || pv <= 0) pv = parseFloat(a.pz);
+      if (!isFinite(pv) || pv <= 0) pv = parseFloat(a.p);
+      if (!isFinite(pv) || pv <= 0) pv = 0;
       if (!isFinite(px) || px <= 0) continue;
       curMkt = m;
       return {
