@@ -214,8 +214,8 @@ async function quote(code){
       const a = j.msgArray && j.msgArray[0];
       if (!a || !a.c) continue;
       const px = parseFloat(a.z);
-      const pv = parseFloat(a.y);
-      if (!isFinite(px) || px<=0) continue;
+      const pv = a.pz && a.pz !== '-' ? parseFloat(a.pz) : (parseFloat(a.p) || 0);
+      if (!isFinite(px) || px <= 0) continue;
       curMkt = m;
       return {
         code:a.c, name:a.n, mkt:m,
