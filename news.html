@@ -2,18 +2,366 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📰 今日新聞</title>
-<meta http-equiv="refresh" content="0;url=https://lingo1516.github.io/news-2026-10-20.html">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>今日新聞 11/02（週一）｜七區塊深度版</title>
 <style>
-body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;flex-direction:column;text-align:center;padding:20px}
-a{color:#58a6ff;font-size:18px;text-decoration:none;padding:16px 32px;border:2px solid #58a6ff;border-radius:12px;margin-top:20px;display:inline-block}
-a:hover{background:#58a6ff;color:#0d1117}
-p{font-size:16px;color:#8b949e}
+:root{
+  --bg:#0F0A1E; --card:#1A1233; --line:#2A1F4A; --txt:#E8E4F0; --dim:#9A90B8;
+  --politics:#FF4D8D; --econ:#FF7A3D; --world:#3DDC97; --tech:#00C9DB;
+  --invest:#FFD166; --show:#C77DFF; --mgmt:#9B5DE5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  line-height:1.85;font-size:16px;-webkit-text-size-adjust:100%;
+  padding:0 0 60px;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header{
+  background:linear-gradient(150deg,#1E1240 0%,#0F0A1E 70%);
+  padding:34px 0 26px;border-bottom:1px solid var(--line);margin-bottom:26px;
+}
+.kicker{font-size:12px;letter-spacing:3px;color:var(--dim);margin-bottom:10px;font-weight:600}
+header h1{font-size:27px;font-weight:800;letter-spacing:-.5px;line-height:1.35}
+header h1 span{color:var(--politics)}
+.sub{margin-top:12px;font-size:13.5px;color:var(--dim);line-height:1.8}
+
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 30px}
+nav a{
+  font-size:12.5px;padding:6px 12px;border-radius:20px;text-decoration:none;
+  background:var(--card);border:1px solid var(--line);color:var(--dim);white-space:nowrap;
+}
+
+.mkt{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin-bottom:34px}
+.mkt h2{font-size:14px;letter-spacing:1.5px;color:var(--invest);margin-bottom:14px;font-weight:700}
+.mkt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.mkt-item{background:#120C28;border-radius:9px;padding:11px 12px;border-left:3px solid var(--line)}
+.mkt-item .nm{font-size:11.5px;color:var(--dim);margin-bottom:3px}
+.mkt-item .vl{font-size:15px;font-weight:700;letter-spacing:-.3px}
+.dn{color:#FF5E5E}.up{color:#3DDC97}
+
+section{margin-bottom:44px;scroll-margin-top:20px}
+.sec-head{display:flex;align-items:center;gap:11px;margin-bottom:8px}
+.sec-head i{width:5px;height:24px;border-radius:3px;display:block}
+.sec-head h2{font-size:20px;font-weight:800;letter-spacing:-.3px}
+.sec-note{font-size:12.5px;color:var(--dim);margin:0 0 20px 16px;line-height:1.7}
+
+article{
+  background:var(--card);border-radius:12px;padding:18px 17px;margin-bottom:14px;
+  border-left:4px solid var(--line);
+}
+article h3{font-size:16.5px;font-weight:700;line-height:1.55;margin-bottom:10px;letter-spacing:-.2px}
+article p{font-size:14.5px;color:#CFC8E2;margin-bottom:11px;line-height:1.9}
+article p:last-child{margin-bottom:0}
+article .time{font-size:11.5px;color:var(--dim);font-weight:500;margin-left:6px}
+.observe{
+  font-size:13.5px;background:#120C28;border-radius:8px;padding:11px 13px;
+  color:#B9AFD6;border-left:2px solid var(--mgmt);line-height:1.8;
+}
+.observe b{color:var(--mgmt);font-weight:700}
+.hl{color:var(--invest);font-weight:600}
+
+#politics .sec-head i{background:var(--politics)}
+#politics article{border-left-color:var(--politics)}
+#econ .sec-head i{background:var(--econ)}
+#econ article{border-left-color:var(--econ)}
+#world .sec-head i{background:var(--world)}
+#world article{border-left-color:var(--world)}
+#tech .sec-head i{background:var(--tech)}
+#tech article{border-left-color:var(--tech)}
+#invest .sec-head i{background:var(--invest)}
+#invest article{border-left-color:var(--invest)}
+#show .sec-head i{background:var(--show)}
+#show article{border-left-color:var(--show)}
+#mgmt .sec-head i{background:var(--mgmt)}
+#mgmt article{border-left-color:var(--mgmt)}
+
+.focus{
+  background:linear-gradient(140deg,#241847,#160E33);border:1px solid #3B2A6B;
+  border-radius:14px;padding:22px 19px;margin-bottom:40px;
+}
+.focus h2{font-size:15px;color:var(--politics);letter-spacing:1.5px;margin-bottom:13px;font-weight:700}
+.focus p{font-size:14.5px;color:#DCD5EC;line-height:1.95}
+footer{text-align:center;font-size:12px;color:#6B6188;padding:26px 0 0;border-top:1px solid var(--line);margin-top:20px;line-height:2}
+@media(max-width:400px){
+  header h1{font-size:23px}body{font-size:15px}article h3{font-size:15.5px}
+  .mkt-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<p>📰 載入新聞中...</p>
-<a href="https://lingo1516.github.io/news-2026-10-20.html">如果沒有自動跳轉，請按這裡</a>
+<header>
+  <div class="wrap">
+    <div class="kicker">TAIWAN DAILY · 深度版</div>
+    <h1>今日新聞 <span>11/02</span><br>Intel 崩 28%、台股失守 45000</h1>
+    <div class="sub">2026 年 11 月 2 日（週一）｜七區塊深度整理：政治・經濟・國際・科技・財經投資・影劇娛樂・管理趨勢</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav>
+  <a href="#politics">政治</a>
+  <a href="#econ">經濟</a>
+  <a href="#world">國際</a>
+  <a href="#tech">科技</a>
+  <a href="#invest">財經投資</a>
+  <a href="#show">影劇娛樂</a>
+  <a href="#mgmt">EMBA 觀察</a>
+</nav>
+
+<div class="focus">
+  <h2>💡 今日焦點</h2>
+  <p>美國 Intel 上週五重挫 28% 引爆全球科技股賣壓，台積電 ADR 跟跌近 6%，台股盤中一度跌 812 點、終場收 44,920 點，失守 45,000 關卡。同時美國期中選舉（11/3）臨近，市場擔憂民主黨若拿下參眾兩院，將衝擊財政與 AI 投資路線，大型基金轉為觀望。台灣選情方面，新北市長 11/13 政見會因北市辯論「洩題」事件，委員會首度明文禁止洩題，成藍白攻誾新戰場。</p>
+</div>
+
+<div class="mkt">
+  <h2>📊 市場速覽</h2>
+  <div class="mkt-grid">
+    <div class="mkt-item"><div class="nm">台股加權</div><div class="vl dn">44,920.14　-2.55%</div></div>
+    <div class="mkt-item"><div class="nm">台積電</div><div class="vl dn">跌 60 元　領跌權值</div></div>
+    <div class="mkt-item"><div class="nm">S&P 500（美收）</div><div class="vl dn">-1.82%　7,580</div></div>
+    <div class="mkt-item"><div class="nm">NASDAQ（美收）</div><div class="vl dn">-2.86%　25,437</div></div>
+    <div class="mkt-item"><div class="nm">美元兌台幣</div><div class="vl dn">32.70　貶 2.2 分</div></div>
+    <div class="mkt-item"><div class="nm">10 月 PMI</div><div class="vl">54.9　回落但仍 >50</div></div>
+  </div>
+</div>
+
+<section id="politics">
+  <div class="sec-head"><i></i><h2>政治</h2></div>
+  <p class="sec-note">新北市長 11/13 政見會首度禁洩題、蔣萬安市長保衛戰浮現「淺藍跑票」、高雄金選白熱化。</p>
+
+  <article>
+    <h3>蔣萬安、沈伯洋辯論會洩題惹議　新北市長政見會 11/13 禁洩題<span class="time">13:54</span></h3>
+    <p>台北市長選舉辯論會「事先洩題給雙方陣營」引發爭議後，新北市選舉委員會明確公告，11/13 新北市長候選人公辦電視政見會將「禁止洩題」，由委員會统一控管題目。這是台湾首次明文規定公辦政見會不得洩題，藍白陣營都將受此規範。</p>
+    <p>背後是蔣萬安從「藍營共主」淪為「保衛戰市長」的選情焦慮，民調顯示淺藍族群逐漸跑票，民團「台灣韜略策進學會」今(2日)公布民調，民進黨台北市長候選人沈伯洋支撐度上升。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 11/13 新北市長政見會是否再次洩題，以及台北市長民調沈伯洋能否持續擴大對蔣萬安壓力。</div>
+  </article>
+
+  <article>
+    <h3>高雄市長選白熱化　王金平批柯志恩「倒吃甘蔗」、賴瑞隆全力爭取<span class="time">13:54</span></h3>
+    <p>前立法院長王金平罕見公開批評國民黨參選人柯志恩「倒吃甘蔗」，指其选情優劣未明就喊穩；民進黨參選人賴瑞隆則「全力爭取支持」。柯志恩內部民調雖自稱「五五波」，但王金平點名顯示藍營內部已有分歧。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　11/2 是高雄市長最後一個電視辯論日，看柯志恩如何回應「王金平砲」，以及賴瑞隆能否搶下無黨籍票源。</div>
+  </article>
+
+  <article>
+    <h3>蔣萬安「沒戴口罩」視察婦幼醫院　網轟作秀擺拍<span class="time">13:46</span></h3>
+    <p>蔣萬安日前剛因感冒不適請假兩天，11/2 前往婦幼專責醫院視察新手家庭門診時，被眼尖網友抓包全場唯獨他「未戴口罩」，遭質疑缺乏公衛常識、無視婦幼防疫安全。北市府後續發布聲明未直接回應口罩問題。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　此事若被沈伯洋陣營接住，可能轉成「蔣萬安假裝亲民」攻勢。</div>
+  </article>
+
+  <article>
+    <h3>痛批藍白錯刪老福法弱勢長者補助　經民連：錯誤修法「不應上路」<span class="time">13:55</span></h3>
+    <p>立法院會上月中三讀通過「老人福利法」修正案，確立 65 歲以上長者免健保費，卻同步刪除了弱勢長者的「醫療補助」項目。經民連今天公開表態，稱這是「錯誤修法不應上路」，指藍白兩黨在修法時未充分評估對弱勢族群衝擊。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看該條文是否能在 11/22 國會第二次審查時被修正。</div>
+  </article>
+
+  <article>
+    <h3>圖輯：無人艇集結！三艘「奮進魔鬼魚」在台南港邊操演示演<span class="time">13:45</span></h3>
+    <p>國軍近日於台南港邊公開演示三艘新型無人艇「奮進魔鬼魚」，展示集結與操演能力。同時，7 艘中國共艦與 6 艘公務船近日多次穿越台南海峽，國軍已嚴密監控。中共空軍也於 11/11 成立 77 周年前舉行無人機燈光秀，2000 架無人機排出「雲龍」戰機圖案，被視為對台軍的示威。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 11/11 中共空軍成立日當天，是否會伴隨台海的實彈演習。</div>
+  </article>
+</section>
+
+<section id="econ">
+  <div class="sec-head"><i></i><h2>經濟</h2></div>
+  <p class="sec-note">10 月 PMI 回落至 54.9、全聯 120 家門市開放疫苗接種、台灣新車 10 月銷量衰退 1 成。</p>
+
+  <article>
+    <h3>AI 訂單旺景氣仍降溫　台灣 10 月 PMI 回落至 54.9<span class="time">13:56</span></h3>
+    <p>台經院公布最新景氣動向調查，受惠於高科技產業擴廠、公共建設及 AI 基礎建設與消費性電子產品備貨需求帶動，製造業及營建業的產業景氣回升。但 10 月 PMI 從 9 月的 55.6 回落至 54.9，日韓製造業同步放緩，顯示全球需求端仍有不明確性。</p>
+    <p>財政部「金融支持措施」受理案件已破萬件，累計減輕約 5,000 家廠商的利息負擔，是疫後最激進的金融緩兵之措施。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　11 月美國期中選舉結果若偏向民主黨，對台積電、鴻海等外需型企業的影響將是關鍵變數。</div>
+  </article>
+
+  <article>
+    <h3>公費流感、新冠疫苗第二階段開打　全聯 120 家門市設接種站<span class="time">14:27</span></h3>
+    <p>疾管署 11/2 擴大第二階段公費流感、新冠疫苗開打對象，並攜手全聯在 120 家門市設置接種站，呼籲符合第一與第二階段對象踴躍施打。醫師提醒，流感「大白肺」四大警訊：持續高燒超過 3 天、呼吸困難、血氧低於 92%、胸悶加劇，一旦出現應立即就醫。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 11 月流感高峰是否如期降臨，以及全聯門市接種量是否會拉動整體疫苗接種率。</div>
+  </article>
+
+  <article>
+    <h3>台灣 10 月新車銷量衰退 1 成　Toyota 包辦前三名<span class="time">13:37</span></h3>
+    <p>10 月台灣新車市場掛牌數為 33,271 輛，較 9 月下滑 10.2%，整體市場買氣降溫。Toyota 包辦前三名（RAV4、Camry、Hilux），Lexus 兩款衝進前十，反映中階轎車與休旅車仍是主力。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 11 月是否有車廠推出新車或促銷活動拉動銷售。</div>
+  </article>
+
+  <article>
+    <h3>夫妻贈與也算移轉！土地重購退稅五年內須繳回<span class="time">14:17</span></h3>
+    <p>台中稅務局提醒，土增稅重購退稅核准後，五年內將重購土地贈與配偶，仍會被追繳原退還稅款。夫妻間贈與也屬於所有權移轉，不能因為土地仍在夫妻名下，就認為不受重購退稅管制。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　此規範是否會被擴大解釋到親屬間贈與。</div>
+  </article>
+</section>
+
+<section id="world">
+  <div class="sec-head"><i></i><h2>國際</h2></div>
+  <p class="sec-note">美國期中選舉 11/3 登場，債市巨頭轉觀望；中共規範「一把手」职权、監控擴及家屬；能源供應緊張，石油巨頭利潤回升。</p>
+
+  <article>
+    <h3>美國期中選舉臨近！結果將如何影響金融市場？<span class="time">14:25</span></h3>
+    <p>11 月 3 日的美國中期選舉臨近，民主黨在參眾兩院均取得多數席位的情景被視為最可能，市場普遍認為將對美股形成逆風。日本經濟新聞分析，選舉結果將牽動財政與 AI 走向，大型債市基金經理人已轉為觀望，暫停近幾週搶進美債的腳步。</p>
+    <p>能源供應緊張下，石油巨頭利潤回升至 2022 年能源危機高點附近：殼牌、BP、道達爾、埃克森美孚的成品油業務利潤大幅回升，中東衝突恐推升年底油價維持高檔。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　11/4 選後，看民主黨是否同時拿下參眾兩院，以及對美元、黃金、油價的即時反應。</div>
+  </article>
+
+  <article>
+    <h3>中共公布全面從嚴治黨決定全文　規範「一把手」职权<span class="time">14:21</span></h3>
+    <p>中共昨天正式公布 20 屆五中全會「持之以恆推進全面從嚴治黨決定」全文，明確規範各級黨組織「一把手」履職用權，不可搞「一言堂」。外界解讀，這是習佈局第四任期的前奏，同時將官員監控擴及家屬財產與網路行為。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 2027 中共二十大會前，是否會有更多高層人事異動。</div>
+  </article>
+
+  <article>
+    <h3>南韓首爾巷弄驚見木乃伊化遺體　死者為中國籍逾期居留<span class="time">14:19</span></h3>
+    <p>南韓首爾九老區住宅區巷弄內，10 月 27 日驚見 1 具由報紙、塑膠布包裹的木乃伊化遺體。首爾警察廳長 11/2 召開記者會，稱死者為 50 來歲的中國籍逾期居留男子。案件凸顯在韓中國移工群落的處境問題。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　南韓是否會配合調查中國籍移工的逾期居留規模。</div>
+  </article>
+
+  <article>
+    <h3>台籍男子馬尼拉被捕　涉嫌拘禁菲人強迫詐騙<span class="time">14:00</span></h3>
+    <p>菲律賓警方近日在馬尼拉逮捕一名彭姓台灣籍男子及一名馬來西亞籍男子，兩人涉嫌非法拘禁、強迫菲律賓籍員工背誦話術，進行愛情及投資詐騙。台方尚未證實此案件，已要求菲方提供更多細節。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看台菲兩國是否會启动司法互助程序。</div>
+  </article>
+
+  <article>
+    <h3>美國 AI 投資人賺飽後忙買保險：從股票到算力租金<span class="time">14:05</span></h3>
+    <p>AI 熱潮讓投資人賺進大筆財富，如今愈來愈多人開始買保險守住獲利。華爾街日報報導，投資人與科技業者正尋找各種避險工具，從防範股票重挫、企業倒債，到算力租金崩跌，都有相對應的商品。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　AI 算力租賃價是否會因為 AI 應用成長而出現第二波漲價循環。</div>
+  </article>
+</section>
+
+<section id="tech">
+  <div class="sec-head"><i></i><h2>科技</h2></div>
+  <p class="sec-note">Intel 崩 28% 引爆全球半導體賣壓、台積電被讚「誰贏都能賺」、聯發科逆勢漲上看 7,300 元。</p>
+
+  <article>
+    <h3>台積電跌 60 元　台股早盤挫 812 點失守 45,000 關<span class="time">09:15</span></h3>
+    <p>英特爾上週五股價暴跌近 29%，美股半導體族群重摔，台積電 ADR 大跌 5.95%，拖累台股 11/2 早盤最多下跌 812 點，失守 45,000 點大關。終場收 44,920.14 點，跌幅 2.55%，鴻海、聯發科等權值股開盤下跌，台積電領跌。</p>
+    <p>外媒卻同時讚台積電「坐收龐大利益、不管誰贏都能賺」，AI 軍備競賽中，台積電是英特爾、AMD、NVIDIA 共同供應商，被視為受益者。英特爾執行長則親自示警，記憶體漲價在 2027 年將成為「所有人的嚴重問題」。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看台積電 11/13 法說會是否會上修 2027 年資本支出。</div>
+  </article>
+
+  <article>
+    <h3>聯發科逆勢漲　AI ASIC 釋利多　目標價上看 7,300 元<span class="time">13:47</span></h3>
+    <p>在台股重挫 291 點的情況下，聯發科逆勢上漲，市場聚焦 AI ASIC 釋利多。法人目標價最高上看 7,300 元，AI 伺服器、DRAM 訂單看到明年。國巨開低急拉再殺尾盤，股價震盪劇烈。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看聯發科 11 月 AI ASIC 訂單是否會持續轉單。</div>
+  </article>
+
+  <article>
+    <h3>Sony 預告 11/6 推出復古耳機　神似 1979 年 Walkman 經典 MDR-3L2<span class="time">13:35</span></h3>
+    <p>Sony 社群平台預告 11/6 推出新品，從圖片判斷為耳機作品，神似 1979 年 Walkman 經典 MDR-3L2。這是 Sony 對 Walkman 35 周年的致敬產品，市場熱度極高。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 11/6 發表會是否會公布實體耳機規格與售價。</div>
+  </article>
+
+  <article>
+    <h3>NASA 太空人隔離 378 天後首踏出模擬艙　助攻未來火星任務<span class="time">11:09</span></h3>
+    <p>NASA 太空人在完成 378 天隔離實驗（模擬火星任務閉環生存）後首次走出模擬艙，為 2030 年代的火星任務蒐集生理與心理數據。實驗期間太空人經歷了閉環、低日照、長延遲等火星環境模擬。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 SpaceX、NASA 是否會加速火星任務排程。</div>
+  </article>
+</section>
+
+<section id="invest">
+  <div class="sec-head"><i></i><h2>財經投資</h2></div>
+  <p class="sec-note">台指期跌 44 點、易發強攻漲停、台光電台燿迎漲價行情、金融股是最強避風港。</p>
+
+  <article>
+    <h3>11 月電子期、金融期齊跌　台指期收 45,256 點<span class="time">14:08</span></h3>
+    <p>11 月台指期收 45,256 點，下跌 44 點，與現貨價差 3.28 點，呈正價差。電子期收 2,801.45 點，下跌 18.70 點，正價差 20.77 點。期貨與現貨同步走弱，反映短線賣壓尚未出清。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 11 月期貨是否會持續維持正價差，或翻轉為負價差。</div>
+  </article>
+
+  <article>
+    <h3>業績加持！易發股價強攻漲停<span class="time">13:54</span></h3>
+    <p>營運加溫的易發（6425）11/2 開盤即帶量強攻漲停，終場上漲 7.4 元，收 82.2 元，成交量 2,529 張。法人認為 AI 硬體訂單與 DRAM 漲價是主要利多。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看易發後續能否維持漲勢，是否會成為 AI 硬體族群的新龍頭。</div>
+  </article>
+
+  <article>
+    <h3>國巨開低急拉再殺尾盤　股價震盪劇烈<span class="time">13:43</span></h3>
+    <p>被動元件大廠國巨 11/2 上演「大洗三溫暖」，早盤以 492 元開出，下跌 10 元，開盤後賣壓隨即出籠，股價一度下探 489 元。但隨後買盤進場承接，帶動股價快速拉抬。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看國巨尾盤拉抬是否會在隔日延續，反映被動元件需求。</div>
+  </article>
+
+  <article>
+    <h3>金融股是最強避風港？彰銀、中信金驚現瘋狂買盤<span class="time">13:58</span></h3>
+    <p>「菁業獎」得獎名單揭曉。在台股重挫時，金融股相對抗跌，彰銀、中信金驚現瘋狂買盤。專家提醒，金融股雖是避風港，但不能無腦買，這幾檔地雷法人正在偷賣。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看金融股是否能成為台股的抗跌族群，或只是反彈一天。</div>
+  </article>
+
+  <article>
+    <h3>台股 10 月底開戶數 1,482.7 萬人續創高　月增 6.4 萬人<span class="time">08:53</span></h3>
+    <p>根據台灣證券交易所統計，截至 10 月底，台股累積總開戶數達到 1,482.7 萬人，月增 6.4 萬人，續創歷史新高。台股 10 月全月下跌 2,728.30 點，但仍未擋住新進資金入場。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看新增資金是否會在台指 45,000 點下方持續承接。</div>
+  </article>
+</section>
+
+<section id="show">
+  <div class="sec-head"><i></i><h2>影劇娛樂</h2></div>
+  <p class="sec-note">蜘蛛人《重生日》台灣票房破 6 億、蔡康永罕見談同志議題、高雄電影節創 26 年新高。</p>
+
+  <article>
+    <h3>蜘蛛人太狂！《重生日》台灣票房勇破 6 億<span class="time">13:47</span></h3>
+    <p>由「小蜘蛛」湯姆霍蘭德主演的《蜘蛛人：重生日》票房氣勢驚人，台灣票房正式突破 6 億元大關，不僅刷新索尼影業在台最高票房紀錄，也成為歷來最賣座的《蜘蛛人》電影，達到前所未有的高度。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看《重生日》是否會突破 7 億，再創台影票房紀錄。</div>
+  </article>
+
+  <article>
+    <h3>蔡康永沉寂數日發聲！網友謝他替同志擋箭<span class="time">13:45</span></h3>
+    <p>蔡康永日前登上王偉忠主持的《欸！我說到哪裡了？》，罕見談及多年來公開出櫃所承受的壓力，以及身為同志公眾人物的責任。近日一名網友分享 16 歲被迫出櫃的往事，蔡康永的「親回一句話」引發廣闊迴響，被視為「同志議題的代間隔對話」。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看同志社群如何將蔡康永發聲轉化為後續活動。</div>
+  </article>
+
+  <article>
+    <h3>創 26 年新高！高雄電影節 18 天吸 3 萬人「總票房破 400 萬」<span class="time">14:07</span></h3>
+    <p>2026 高雄電影節在 10/26 晚間畫下句點，相隔一週 11/2 公開成績單，為期 18 天的影展活動總票房突破 400 萬元，創下 26 年來新高。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看高雄電影節明年是否會進一步擴大規模。</div>
+  </article>
+
+  <article>
+    <h3>白冰冰被地母娘娘欽點！宮廟現身掀轟動<span class="time">13:49</span></h3>
+    <p>白冰冰 11/1 率領旗下子弟兵前往苗栗卓蘭雙鳳宮，盛大參與 50 週年宮慶平安福宴。日前被地母娘娘挑選在三立《戲說台灣》飾演其「分身」的白冰冰，本次主持特別收起過往葷素不拘的綜藝風，信眾狂喊「慈悲」。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看白冰冰在《戲說台灣》的表現是否會成為話題。</div>
+  </article>
+</section>
+
+<section id="mgmt">
+  <div class="sec-head"><i></i><h2>EMBA 觀察</h2></div>
+  <p class="sec-note">AI 投資人「賺飽後忙買保險」揭露 AI 投機本質、企業導入 AI 轉型案例、組織行為「高管被砍薪」。</p>
+
+  <article>
+    <h3>AI 投資人賺飽後忙買保險　華爾街避險招數曝光<span class="time">14:05</span></h3>
+    <p>AI 熱潮讓投資人賺進大筆財富，如今華爾街開始尋找各種避險工具，從防範股票重挫、企業倒債，到算力租金崩跌，都有相對應的商品。這反映 AI 投資的「投機本質」正在被機構投資人正視，避險需求成為新一波金融產品機會。</p>
+    <p>對組織決策的啟示：當 AI 投資從「追高」進入「追保險」階段，企業內部需要建立更嚴謹的 AI 投資組合管理，不能只看單一資產的報酬。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看 AI 保險商品是否會成為 2026 財報季的新風氣，以及對 AI 公司 ESG 評級的即時影響。</div>
+  </article>
+
+  <article>
+    <h3>年薪 280 萬突遭砍薪！54 歲高管因「1 變動」薪水崩潰<span class="time">14:21</span></h3>
+    <p>日本 1 名 54 歲大型製造企業部門主管，原本年收入高達 1,400 萬日圓（約新台幣 280 萬元），卻在 1 次周一上午的績效考核中，突然被告知下個月起將卸下主管職務，調任其他部門擔任專員。薪資同步調降，領薪日「一看薪水崩潰」。</p>
+    <p>這是組織行為中「角色轉換」「職級調整」的典型情境，反映日本企業「年功序列」文化正在崩解，績效導向取代資歷導向。對 EMBA 學員而言，是「個人職業規劃 vs. 組織需求」的活案例。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看台灣企業是否也會出現類似「中年高管被砍薪」的案例，以及勞資雙方對「職位調整」的共識。</div>
+  </article>
+
+  <article>
+    <h3>泰國企業導入 AI 求轉型　新創瞄準招聘與營運新商機<span class="time">12:01</span></h3>
+    <p>泰國企業正在大量導入 AI 求轉型，新創公司瞄準「AI 招聘」與「AI 營運」兩大商機，提供企業一站式 AI 導入服務。反映東南亞企業對 AI 轉型的急迫性，以及人才缺口。</p>
+    <p>對 EMBA 學員而言，AI 轉型不只是「技術導入」，更是「組織行為」與「人才管理」的雙重挑戰：既要訓練既有員工，又要爭奪新技能人才。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看東南亞 AI 新創是否會反向進入台灣市場，或成為台企東南亞佈局的技術合作夥伴。</div>
+  </article>
+
+  <article>
+    <h3>研究：柑橘、洋蔥天然化合物或有助抵抗肺癌細胞<span class="time">14:05</span></h3>
+    <p>德國 1 項研究發現，存在於柑橘類水果及洋蔥中的天然化合物槲皮素，可能具有對抗肺癌細胞的潛力。此研究發表在《Cell Death Discovery》期刊上。</p>
+    <p>對組織決策的啟示：「天然化合物」的研究正在重塑消費品公司的產品定位，ESG 與健康趨勢的交叉點，是品牌經理人必須關注的下一波機會。</p>
+    <div class="observe"><b>🔭 後續觀察</b>　看台灣食品公司是否會將「槲皮素」作為產品行銷的新賣點。</div>
+  </article>
+</section>
+
+<footer>
+  資料來源：自由時報、經濟日報、中央社、Google 新聞彙整<br>
+  生成時間 2026/11/02 14:45　｜　七區塊深度版
+</footer>
+
+</div>
 </body>
 </html>
