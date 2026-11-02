@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=yes">
+<title>論文寫作日期紀錄</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang TC','Noto Sans TC',sans-serif;background:#0d1117;color:#e6edf3;padding:16px;max-width:640px;margin:0 auto;line-height:1.5}
+h1{font-size:22px;background:linear-gradient(135deg,#58a6ff,#bc8cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:12px 0 4px}
+h2{font-size:17px;color:#f0f6fc;margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.08)}
+.tip{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.15);border-radius:8px;padding:10px 12px;font-size:12px;color:#8b949e;margin:10px 0}
+.save-status{font-size:12px;color:#3fb950;margin:6px 0;min-height:16px}
+.save-status.error{color:#f85149}
+table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;overflow:hidden}
+thead{background:rgba(88,166,255,.12)}
+th{padding:12px 8px;text-align:left;font-size:12px;font-weight:600;color:#58a6ff;white-space:nowrap}
+td{padding:10px 8px;border-top:1px solid rgba(255,255,255,.05);vertical-align:middle;font-size:13px}
+.student-info{min-width:120px}
+.student-name{font-weight:600;font-size:14px}
+.student-id{font-size:11px;color:#8b949e;margin-top:2px}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;margin-top:4px}
+.tag-case{background:rgba(88,166,255,.15);color:#58a6ff}
+.tag-spss{background:rgba(251,191,36,.15);color:#d29922}
+.tag-delphi{background:rgba(63,185,80,.15);color:#3fb950}
+.tag-ahp{background:rgba(188,140,255,.15);color:#bc8cff}
+input[type="date"]{width:100%;padding:8px 10px;border:1px solid rgba(255,255,255,.1);border-radius:6px;background:rgba(255,255,255,.05);color:#e6edf3;font-size:13px;min-width:140px}
+input[type="date"]:focus{outline:none;border-color:#58a6ff}
+.date-value{font-size:12px;color:#8b949e;margin-top:4px;min-height:16px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.btn{padding:10px 18px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(255,255,255,.04);color:#e6edf3;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn:hover{border-color:#58a6ff;color:#58a6ff}
+.btn.primary{background:rgba(88,166,255,.15);border-color:rgba(88,166,255,.3);color:#58a6ff}
+.btn.primary:hover{background:rgba(88,166,255,.25)}
+.btn.danger{border-color:rgba(248,81,73,.3);color:#f85149}
+.btn.danger:hover{background:rgba(248,81,73,.15)}
+.export-row{font-size:11px;color:#484f58;margin:12px 0 4px;text-align:center}
+@media(max-width:480px){input[type="date"]{min-width:100px;font-size:12px;padding:7px 8px}th,td{padding:8px 6px}}
+</style>
+</head>
+<body>
+
+<h1>📅 論文寫作日期紀錄</h1>
+<p style="font-size:13px;color:#8b949e;margin:4px 0 8px">115-1 學年度｜19 位同學</p>
+<div class="tip">💡 每次輸入日期後會自動儲存到這台裝置。重新開啟網頁，紀錄還在。</div>
+<div class="save-status" id="saveStatus"></div>
+
+<div class="actions">
+  <button class="btn primary" onclick="saveAll()">💾 立即儲存</button>
+  <button class="btn" onclick="exportCSV()">📊 匯出 CSV</button>
+  <button class="btn danger" onclick="clearAll()">🗑 清除全部</button>
+</div>
+
+<div style="overflow-x:auto">
+<table id="mainTable">
+  <thead>
+    <tr>
+      <th style="width:40px">#</th>
+      <th style="width:120px">學生</th>
+      <th style="width:160px">寫作日期</th>
+      <th>日期說明</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+</div>
+<p class="export-row">資料只存在這台裝置的瀏覽器中（同裝置、同瀏覽器才看得見）</p>
+
+<script>
+const STORAGE_KEY = 'thesis_dates_v1';
+
+const students = [
+  {id:1, sid:'11591027', name:'許愷云', type:'case'},
+  {id:2, sid:'11491046', name:'林雋堯', type:'case'},
+  {id:3, sid:'11491046', name:'蘇韋勳', type:'case'},
+  {id:4, sid:'11591002', name:'江雨臻', type:'spss'},
+  {id:5, sid:'11591003', name:'李芷萱', type:'case'},
+  {id:6, sid:'11591006', name:'徐莉佳', type:'case'},
+  {id:7, sid:'11591009', name:'陳雅芬', type:'case'},
+  {id:8, sid:'11591016', name:'李郁瑾', type:'case'},
+  {id:9, sid:'11591019', name:'張倍瑜', type:'case'},
+  {id:10, sid:'11591020', name:'黃婕雯', type:'case'},
+  {id:11, sid:'11591021', name:'陳韋蒨', type:'spss'},
+  {id:12, sid:'11591023', name:'李榆媃', type:'spss'},
+  {id:13, sid:'11591026', name:'呂鈺玫', type:'delphi'},
+  {id:14, sid:'11591028', name:'楊紓函', type:'delphi'},
+  {id:15, sid:'11591029', name:'陳柔蓉', type:'delphi'},
+  {id:16, sid:'11591030', name:'邱翊寧', type:'ahp'},
+  {id:17, sid:'11591032', name:'薛宇皓', type:'ahp'},
+  {id:18, sid:'11591045', name:'盧宥蓁', type:'ahp'},
+  {id:19, sid:'11491047', name:'曲庭葦', type:'spss'}
+];
+
+const typeLabel = {case:'個案研究', spss:'SPSS量化', delphi:'德爾菲法', ahp:'AHP'};
+const typeClass = {case:'tag-case', spss:'tag-spss', delphi:'tag-delphi', ahp:'tag-ahp'};
+
+// date + note per student
+let data = {};
+students.forEach(s => { data[s.id] = { date:'', note:'' }; });
+
+function loadFromStorage(){
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      students.forEach(s => {
+        if (parsed[s.id]) {
+          data[s.id].date = parsed[s.id].date || '';
+          data[s.id].note = parsed[s.id].note || '';
+        }
+      });
+    }
+  } catch(e) { console.error('load error', e); }
+}
+
+function saveToStorage(){
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    showStatus('已儲存 ✓');
+  } catch(e) {
+    showStatus('儲存失敗：' + e.message, true);
+  }
+}
+
+function showStatus(msg, isError){
+  const el = document.getElementById('saveStatus');
+  el.textContent = msg;
+  el.className = 'save-status' + (isError ? ' error' : '');
+  setTimeout(() => { el.textContent = ''; }, 3000);
+}
+
+function saveAll(){
+  saveToStorage();
+}
+
+function clearAll(){
+  if (!confirm('確定要清除所有日期與說明嗎？')) return;
+  students.forEach(s => { data[s.id] = { date:'', note:'' }; });
+  saveToStorage();
+  render();
+}
+
+function exportCSV(){
+  let csv = '\uFEFF#', '学号', '姓名', '类型', '写作日期', '说明\n';
+  students.forEach((s, idx) => {
+    const d = data[s.id];
+    csv += (idx+1) + ',' + s.sid + ',' + s.name + ',' + typeLabel[s.type] + ',' + d.date + ',"' + d.note.replace(/"/g, '""') + '"\n';
+  });
+  const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '論文寫作日期_' + new Date().toISOString().slice(0,10) + '.csv';
+  link.click();
+}
+
+function onDateChange(id, el){
+  data[id].date = el.value;
+  saveToStorage();
+  // update display below
+  const val = document.getElementById('dateval_' + id);
+  val.textContent = el.value ? '已填：' + el.value : '';
+}
+
+function onNoteChange(id, el){
+  data[id].note = el.value;
+  saveToStorage();
+}
+
+function render(){
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  students.forEach((s, idx) => {
+    const d = data[s.id];
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-weight:600;color:#8b949e">${idx + 1}</td>
+      <td class="student-info">
+        <div class="student-name">${s.name}</div>
+        <div class="student-id">${s.sid}</div>
+        <span class="tag ${typeClass[s.type]}">${typeLabel[s.type]}</span>
+      </td>
+      <td>
+        <input type="date" id="date_${s.id}" value="${d.date}" onchange="onDateChange(${s.id}, this)">
+        <div class="date-value" id="dateval_${s.id}">${d.date ? '已填：' + d.date : ''}</div>
+      </td>
+      <td>
+        <input type="text" id="note_${s.id}" value="${d.note.replace(/"/g,'&quot;')}" placeholder="備註..." onchange="onNoteChange(${s.id}, this)" style="border-radius:6px">
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+loadFromStorage();
+render();
+</script>
+</body>
+</html>
