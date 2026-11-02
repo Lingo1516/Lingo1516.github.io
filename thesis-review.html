@@ -435,7 +435,9 @@
 
 <script>
 // ===== Password Protection =====
-const PASSWORD = "thesis2026"; // 可更改
+// 密碼以編碼形式存放（避免明文），可自行更改下面的 base64
+// 密碼以 base64 存放（非明文）。換密碼：把 btoa('新密碼') 的結果貼進 atob()
+const PASSWORD=atob("dGhlc2lzMjAyNg==");
 const SESSION_KEY = "thesis_review_session";
 
 function checkPassword() {
@@ -514,7 +516,9 @@ function toggle(sid, field) {
   if (!d[sid]) d[sid] = {};
   d[sid][field] = !d[sid][field];
   save(d);
-  render();
+  // 局部更新：只改這一列的進度與統計，不重建整張表
+  updateRow(sid);
+  updateTotals();
 }
 
 function calcProgress(sid) {
@@ -527,6 +531,43 @@ function statusLabel(pct) {
   if (pct === 100) return `<span class="status-badge status-done">✓ 完成</span>`;
   if (pct > 0) return `<span class="status-badge status-partial">◐ ${pct}%</span>`;
   return `<span class="status-badge status-none">✗ 未開始</span>`;
+}
+
+// 只更新某一列的進度徽章
+function updateRow(sid) {
+  const tr = document.querySelector(`#tableBody tr[data-sid="${sid}"]`);
+  if (!tr) return;
+  const pct = calcProgress(sid);
+  tr.dataset.pct = pct;
+  tr.querySelector(".status-cell").innerHTML = statusLabel(pct);
+}
+
+// 只更新總計列與上方總覽
+function updateTotals() {
+  let totalPerField = {};
+  FIELDS.forEach(f => totalPerField[f] = 0);
+  let completedCount = 0;
+  STUDENTS.forEach(s => {
+    if (calcProgress(s.id) === 100) completedCount++;
+    FIELDS.forEach(f => { if (getVal(s.id, f)) totalPerField[f]++; });
+  });
+
+  let fhtml = `<td colspan="5" style="text-align:right;padding-right:10px;">總計（✓數）</td>`;
+  FIELDS.forEach(f => {
+    fhtml += `<td class="col-total">${totalPerField[f]}/${STUDENTS.length}</td>`;
+  });
+  fhtml += `<td>—</td>`;
+  document.getElementById("footRow").innerHTML = fhtml;
+
+  const totalDone = FIELDS.reduce((s, f) => s + totalPerField[f], 0);
+  const totalMax = FIELDS.length * STUDENTS.length;
+  const overallPct = Math.round(totalDone / totalMax * 100);
+  document.getElementById("summaryBar").innerHTML = `
+    <div class="summary-chip"><span class="dot dot-all"></span>總人數 ${STUDENTS.length}</div>
+    <div class="summary-chip"><span class="dot dot-done"></span>全部完成 ${completedCount} 人</div>
+    <div class="summary-chip"><span class="dot ${overallPct>=100?'dot-done':overallPct>=50?'dot-partial':'dot-none'}"></span>整體進度 ${overallPct}%</div>
+    ${FIELDS.map(f => `<div class="summary-chip" title="${FIELD_LABELS[f]}">${FIELD_LABELS[f]} ${totalPerField[f]}/${STUDENTS.length}</div>`).join("")}
+  `;
 }
 
 function render() {
@@ -546,7 +587,7 @@ function render() {
     if (filter === "pending" && pct >= 100) return;
     if (filter !== "all" && filter !== "pending" && s.method !== filter) return;
 
-    html += `<tr data-method="${s.method}" data-pct="${pct}">
+    html += `<tr data-method="${s.method}" data-pct="${pct}" data-sid="${s.id}">
       <td>${i+1}</td>
       <td class="id-cell">${s.id}</td>
       <td class="name-cell"><strong>${s.name}</strong></td>
