@@ -353,7 +353,6 @@ function load() {
 }
 function save(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify({ data, savedAt: new Date().toISOString() }));
-  const d = load();
   document.getElementById("lastSaved").textContent = "最後儲存：" + new Date().toLocaleString("zh-TW");
 }
 function getVal(sid, field) {
@@ -363,7 +362,7 @@ function toggle(sid, field) {
   const d = load().data;
   if (!d[sid]) d[sid] = {};
   d[sid][field] = !d[sid][field];
-  save({ data: d });
+  save(d);
   render();
 }
 
