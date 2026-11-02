@@ -27,22 +27,125 @@
     font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
     background: var(--bg);
     color: var(--text);
-    padding: 20px;
-    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
-  .container { max-width: 1400px; margin: 0 auto; }
-  h1 {
+  
+  /* Login overlay */
+  #loginOverlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #FDF8E8 0%, #F5E6A3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .login-box {
+    background: var(--card);
+    border: 2px solid var(--accent);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 4px;
+    max-width: 360px;
+    width: 90%;
+  }
+  .login-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
     color: var(--text);
   }
-  .subtitle {
-    text-align: center;
+  .login-box p {
     color: var(--text-light);
-    margin-bottom: 20px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
   }
+  .login-box input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  .login-box input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .login-box button {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .login-box button:hover {
+    background: #B8860B;
+  }
+  .login-error {
+    color: var(--red);
+    font-size: 0.85rem;
+    margin-top: 12px;
+    min-height: 20px;
+  }
+  .login-hint {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 16px;
+    opacity: 0.7;
+  }
+
+  /* Main content - hidden until logged in */
+  #mainContent {
+    display: none;
+    flex: 1;
+  }
+  .container { max-width: 1400px; margin: 0 auto; padding: 20px; width: 100%; }
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  h1 {
+    font-size: 1.8rem;
+    color: var(--text);
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+  }
+  .btn-logout {
+    padding: 6px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--red);
+    transition: all 0.2s;
+  }
+  .btn-logout:hover {
+    background: var(--red-light);
+    border-color: var(--red);
+  }
+
   .summary-bar {
     display: flex;
     gap: 10px;
@@ -150,14 +253,12 @@
   .method-德爾菲 { background: #E8F5E9; color: #2E7D32; }
   .method-AHP { background: #FFF8E1; color: #E65100; }
 
-  /* Checkbox styling */
   .chk {
     width: 22px; height: 22px;
     cursor: pointer;
     accent-color: var(--accent);
     transform: scale(1.2);
   }
-  /* Status badge in last column */
   td.status-cell { font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
   .status-badge {
     display: inline-block;
@@ -170,18 +271,12 @@
   .status-partial { background: var(--yellow-light); color: var(--yellow); }
   .status-none { background: var(--red-light); color: var(--red); }
 
-  .chapter-total {
-    background: rgba(255,255,255,0.2) !important;
-    font-weight: 700 !important;
-    font-size: 0.8rem;
-  }
   .col-total {
     background: #C49000 !important;
     font-size: 0.72rem;
     min-width: 36px;
   }
 
-  /* Legend */
   .legend {
     display: flex;
     gap: 20px;
@@ -193,7 +288,6 @@
   }
   .legend-item { display: flex; align-items: center; gap: 5px; }
 
-  /* Controls */
   .controls {
     display: flex;
     gap: 10px;
@@ -259,9 +353,29 @@
 </style>
 </head>
 <body>
+
+<!-- Login Overlay -->
+<div id="loginOverlay">
+  <div class="login-box">
+    <h2>🔒 論文進度審查表</h2>
+    <p>115-1 研究方法課程<br>請輸入密碼進入</p>
+    <input type="password" id="passwordInput" placeholder="請輸入密碼" onkeypress="if(event.key==='Enter') checkPassword()">
+    <button onclick="checkPassword()">進入系統</button>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-hint">密碼請詢問授課教師</div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent">
 <div class="container">
-  <h1>📋 論文進度審查表</h1>
-  <p class="subtitle">115-1 研究方法課程｜19 位同學</p>
+  <div class="header-bar">
+    <h1>📋 論文進度審查表</h1>
+    <div class="user-info">
+      <span>👤 教授/助理</span>
+      <button class="btn-logout" onclick="logout()">登出</button>
+    </div>
+  </div>
 
   <div class="summary-bar" id="summaryBar"></div>
 
@@ -317,8 +431,44 @@
   </div>
   <div class="last-saved" id="lastSaved"></div>
 </div>
+</div>
 
 <script>
+// ===== Password Protection =====
+const PASSWORD = "thesis2026"; // 可更改
+const SESSION_KEY = "thesis_review_session";
+
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  if (input === PASSWORD) {
+    localStorage.setItem(SESSION_KEY, "authenticated");
+    showMain();
+  } else {
+    document.getElementById("loginError").textContent = "密碼錯誤，請重試";
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("passwordInput").focus();
+  }
+}
+
+function showMain() {
+  document.getElementById("loginOverlay").style.display = "none";
+  document.getElementById("mainContent").style.display = "block";
+  render();
+}
+
+function logout() {
+  localStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+// Auto-login if already authenticated
+(function() {
+  if (localStorage.getItem(SESSION_KEY) === "authenticated") {
+    showMain();
+  }
+})();
+
+// ===== Data Management =====
 const STUDENTS = [
   { id:"11591027", name:"許愷云",  method:"個案", title:"桃園市某公立國小轉型雙語教育實施現況之個案研究" },
   { id:"11491046", name:"林雋堯",  method:"個案", title:"價值共創觀點探討利害關係人協作——以國內半導體產業漢民科技為例" },
@@ -356,7 +506,8 @@ function save(data) {
   document.getElementById("lastSaved").textContent = "最後儲存：" + new Date().toLocaleString("zh-TW");
 }
 function getVal(sid, field) {
-  return !!load().data[sid]?.[field];
+  const loaded = load();
+  return !!loaded.data[sid]?.[field];
 }
 function toggle(sid, field) {
   const d = load().data;
@@ -434,11 +585,11 @@ function render() {
 
 function exportCSV() {
   let csv = "\uFEFF"; // BOM for Excel
-  csv += "序號,學號,姓名,研究方法,論文題目,第1章,第2章,第3章,第4章,第5章,期中報告,期末報告,進度%}\n";
+  csv += "序號,學號,姓名,研究方法,論文題目,第1章,第2章,第3章,第4章,第5章,期中報告,期末報告,進度%\n";
   STUDENTS.forEach((s, i) => {
     const d = load().data[s.id] || {};
     const pct = calcProgress(s.id);
-    const row = FIELDS.map(f => d[f] ? "\u2713" : "");
+    const row = FIELDS.map(f => d[f] ? "✓" : "");
     csv += `${i+1},${s.id},${s.name},${s.method},"${s.title}",${row.join(",")},${pct}%\n`;
   });
   download(csv, "論文進度審查表.csv", "text/csv;charset=utf-8");
@@ -469,8 +620,6 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
     render();
   });
 });
-
-render();
 </script>
 </body>
 </html>
