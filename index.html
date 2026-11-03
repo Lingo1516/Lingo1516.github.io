@@ -3,574 +3,187 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>陳曼都的技術與創作倉庫</title>
+  <title>Lingo1516</title>
   <style>
-    :root {
-      --bg: #FDF8E8;
-      --card: #FFFDF2;
-      --border: #F2EAD3;
-      --text: #2D2A26;
-      --muted: #6B6B6B;
-      --accent: #D4A843;
-      --accent-hover: #E8C56B;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #fff;
+      color: #111;
       line-height: 1.6;
     }
 
-    /* Background texture */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(245, 240, 230, 0.4) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(252, 253, 242, 0.3) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .container {
-      max-width: 1200px;
+    .wrap {
+      max-width: 800px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 40px 20px;
     }
 
-    /* Header */
-    header {
-      padding: 60px 0 40px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 40px;
-    }
-
-    header .logo {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--text);
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
       margin-bottom: 12px;
-      display: block;
+      color: #111;
     }
 
-    header .tagline {
-      font-size: 1rem;
-      color: var(--muted);
+    .desc {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 40px;
       max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-      line-height: 1.8;
     }
 
-    /* Nav */
-    nav {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 8px;
-      margin-bottom: 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    .section {
+      margin-bottom: 50px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #eee;
     }
 
-    nav ul {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 4px 0;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) var(--bg);
-    }
-
-    nav ul::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    nav ul::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-
-    nav ul::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 3px;
-    }
-
-    nav ul li {
-      font-size: 0.85rem;
-      color: var(--muted);
-      white-space: nowrap;
-      transition: color 0.2s;
-    }
-
-    nav ul li:hover {
-      color: var(--text);
-    }
-
-    nav ul li.active {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    /* Category Grid */
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-bottom: 40px;
-    }
-
-    .category-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 24px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
-
-    .category-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    }
-
-    .category-card:hover .card-icon {
-      stroke: var(--accent);
-    }
-
-    .category-card:hover .card-title {
-      color: var(--accent);
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 16px;
-      stroke: var(--muted);
-      fill: none;
-      transition: stroke 0.2s;
-    }
-
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-      transition: color 0.2s;
-    }
-
-    .card-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* Recent Section */
-    .recent {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 24px;
-    }
-
-    .recent h3 {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--muted);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .recent ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .recent li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      transition: padding-left 0.2s;
-    }
-
-    .recent li:hover {
-      padding-left: 8px;
-    }
-
-    .recent li:last-child {
+    .section:last-child {
       border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
 
-    .recent .num {
-      width: 28px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent);
-      min-height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .recent .info {
-      flex: 1;
-    }
-
-    .recent .title {
-      font-size: 0.85rem;
+    .section h2 {
+      font-size: 1.2rem;
       font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 180px;
+      margin-bottom: 24px;
+      color: #111;
     }
 
-    .recent .meta {
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    /* Features/Badges */
-    .badges {
+    .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 12px;
     }
 
-    .badge {
-      font-size: 0.65rem;
+    .tag {
+      font-size: 0.75rem;
       padding: 3px 6px;
       border-radius: 4px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
+      background: #f5f5f5;
+      color: #444;
+      font-weight: 500;
     }
 
-    .badge.new { background: #FFFDF2; color: var(--accent); border: 1px solid var(--border); }
-    .badge.pop { background: #F2EAD3; color: var(--text); }
-    .badge.use { background: #E0E7FF; color: #3182CE; }
+    .list {
+      list-style: none;
+    }
 
-    /* Footer */
+    .list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .list li:last-child {
+      border-bottom: none;
+    }
+
+    .list a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .list a:hover { color: #d4a843; }
+
+    .num {
+      width: 20px;
+      font-size: 0.7rem;
+      color: #888;
+      flex-shrink: 0;
+    }
+
+    .meta {
+      font-size: 0.75rem;
+      color: #666;
+      margin-left: 4px;
+    }
+
     footer {
-      padding: 40px 0;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #eee;
       text-align: center;
-      color: var(--muted);
+      color: #777;
       font-size: 0.8rem;
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    .reveal-delay-1 { animation-delay: 0.1s; }
-    .reveal-delay-2 { animation-delay: 0.2s; }
-    .reveal-delay-3 { animation-delay: 0.3s; }
-    .reveal-delay-4 { animation-delay: 0.4s; }
-    .reveal-delay-5 { animation-delay: 0.5s; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        animation: none;
-        opacity: 1;
-      }
-      .category-card,
-      .recent ul li {
-        transition: none;
-      }
-    }
-
-    /* Focus states */
-    a:focus-visible,
-    button:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 4px;
-    }
-
-    /* Table responsive */
-    @media (max-width: 768px) {
-      .categories {
-        grid-template-columns: 1fr 1fr;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header>
-      <div class="logo">📚 Lingo1516</div>
-      <div class="tagline">
-        歡迎來到我的個人倉庫 — 包含台股分析、新聞整理、旅遊手冊、簡報專案與開源工具。<br>
-        所有頁面均使用暖黃主題 (#FDF8E8)，專為閱讀優化，減少視疲勞。
-      </div>
-    </header>
+  <div class="wrap">
+    <h1>📚 Lingo1516</h1>
+    <p class="desc">個人專案倉庫 — 台股分析、新聞整理、旅遊手冊、簡報與開源工具。所有頁面使用暖黃主題 (#FDF8E8)，專為閱讀優化。</p>
 
-    <!-- Navigation -->
-    <nav>
-      <ul>
-        <li class="active"><a href="#" data-section="all">全部</a></li>
-        <li><a href="#" data-section="stocks">台股</a></li>
-        <li><a href="#" data-section="news">新聞</a></li>
-        <li><a href="#" data-section="travel">旅遊</a></li>
-        <li><a href="#" data-section="tools">工具</a></li>
-        <li><a href="#" data-section="ppt">簡報</a></li>
+    <!-- 台股 -->
+    <section class="section">
+      <h2>台股看盤</h2>
+      <ul class="list">
+        <li><a href="tw-stock.html">報價、K線、歷史日線、籌碼分析、蘋概股</a></li>
+        <li><a href="market-live.html">每日報酬</a></li>
+        <li><a href="tw-margin.json">市場數據</a></li>
       </ul>
-    </nav>
-
-    <!-- Categories Grid -->
-    <div class="categories" id="categories">
-      <!-- Cards will be injected by JS -->
-    </div>
-
-    <!-- Recent Updates -->
-    <section class="recent" id="recent">
-      <h3>最近更新</h3>
-      <ul></ul>
     </section>
 
-    <!-- Badges / Quick Links -->
-    <div class="badges" id="badges"></div>
+    <!-- 新聞 -->
+    <section class="section">
+      <h2>新聞整理</h2>
+      <ul class="list">
+        <li><a href="news-2026-10-31.html">每日新聞 (HTML + PDF)</a></li>
+        <li><a href="today-news-2026-11-01.html">即時新聞</a></li>
+        <li><a href="news.html">新聞總覽</a></li>
+      </ul>
+    </section>
+
+    <!-- 旅遊 -->
+    <section class="section">
+      <h2>旅遊手冊</h2>
+      <ul class="list">
+        <li><a href="travel/">沖繩+福岡行程指南</a></li>
+        <li><a href="okinawa-salt-map.html">雪鹽店方位圖</a></li>
+        <li><a href="okinawa-2026-11.html">沖繩旅遊日誌</a></li>
+      </ul>
+    </section>
+
+    <!-- 簡報 -->
+    <section class="section">
+      <h2>簡報/PPT</h2>
+      <ul class="list">
+        <li><a href="slides/">管理矩陣、組織理論</a></li>
+        <li><a href="ppt-master/">簡報專案</a></li>
+        <li><a href="management-matrix-slides-2in1.pdf">下載 PDF</a></li>
+      </ul>
+    </section>
+
+    <!-- 工具 -->
+    <section class="section">
+      <h2>工具專案</h2>
+      <ul class="list">
+        <li><a href="paper-summarizer/">AI 論文摘要</a></li>
+        <li><a href="skills/">DEMATEL/AHP 分析</a></li>
+        <li><a href="stock-lookup.json">數據下載</a></li>
+      </ul>
+    </section>
+
+    <!-- 個人連結 -->
+    <section class="section">
+      <h2>連結</h2>
+      <ul class="list">
+        <li><a href="my-links.html">個人入口頁</a></li>
+        <li><a href="okrlingo-index.html">OKR 宇宙站</a></li>
+        <li><a href="okinawa-blog-edit/">沖繩部落格</a></li>
+      </ul>
+    </section>
   </div>
 
-  <script>
-    // Project data - all sections/projects with their pages
-    const projects = [
-      {
-        id: 'stocks',
-        name: '台股看盤',
-        desc: '報價、K線、歷史日線、融資融券籌碍圖、蘋概股21檔',
-        href: 'tw-stock.html',
-        icon: '📈',
-        color: '#D4A843',
-        new: false,
-        use: true
-      },
-      {
-        id: 'news',
-        name: '每日報酬',
-        desc: '即時行情、盤中新聞、收盤報告',
-        href: 'market-live.html',
-        icon: '📰',
-        color: '#E0E7FF',
-        new: false,
-        use: true
-      },
-      {
-        id: 'news-daily',
-        name: '每日新聞',
-        desc: '每日新聞整理 (HTML + PDF)',
-        href: 'news-2026-10-31.html',
-        icon: '📋',
-        color: '#F2EAD3',
-        new: true,
-        use: true
-      },
-      {
-        id: 'travel',
-        name: '旅遊手冊',
-        desc: '沖繩+福岡行程指南 (110張照片、預算、地圖)',
-        href: 'travel/',
-        icon: '🗺️',
-        color: '#D6A7F0',
-        new: false,
-        use: true
-      },
-      {
-        id: 'okinawa',
-        name: '沖繩雪鹽店',
-        desc: '雪鹽店方位圖',
-        href: 'okinawa-salt-map.html',
-        icon: '🏖️',
-        color: '#F2EAD3',
-        new: false,
-        use: true
-      },
-      {
-        id: 'my-links',
-        name: '個人連結',
-        desc: '常用入口頁',
-        href: 'my-links.html',
-        icon: '🔗',
-        color: '#FFF0F5',
-        new: false,
-        use: true
-      },
-      {
-        id: 'okrlingo',
-        name: 'OKR 宇宙站',
-        desc: '單檔 hash 路由 SPA (旅遊、生活、福岡)',
-        href: 'okrlingo-index.html',
-        icon: '🌌',
-        color: '#FDE68A',
-        new: false,
-        use: true
-      },
-      {
-        id: 'paper-summarizer',
-        name: '論文摘要',
-        desc: 'AI-powered PDF 分析與摘要',
-        href: 'paper-summarizer/',
-        icon: '📝',
-        color: '#E0E7FF',
-        new: false,
-        use: true
-      },
-      {
-        id: 'skills',
-        name: '技能專案',
-        desc: 'DEMATEL、AHP、各種分析工具',
-        href: 'skills/',
-        icon: '⚙️',
-        color: '#E0E7FF',
-        new: false,
-        use: true
-      },
-      {
-        id: 'slides',
-        name: '簡報/PPT',
-        desc: '管理矩陣、組織理論、阿米巴等 (PDF/PPTX/HTML)',
-        href: 'slides/',
-        icon: '📊',
-        color: '#D4A843',
-        new: false,
-        use: true
-      },
-      {
-        id: 'rwd',
-        name: '響應式數據',
-        desc: '各類報表與分析視覺化',
-        href: 'rwd-mnt-data-resource.html',
-        icon: '📊',
-        color: '#F2EAD3',
-        new: false,
-        use: true
-      },
-      {
-        id: 'market-data',
-        name: '市場數據',
-        desc: '台股籌碼、融資融券、歷史數據',
-        href: 'tw-margin.json',
-        icon: '💹',
-        color: '#D4A843',
-        new: false,
-        use: true
-      }
-    ];
-
-    // Render category cards
-    function renderCategories() {
-      const grid = document.getElementById('categories');
-      let html = '';
-      
-      projects.forEach((p, i) => {
-        html += `
-          <div class="category-card reveal reveal-delay-${Math.min(i, 5)}" 
-               style="border-left: 4px solid ${p.color};"
-               onclick="window.location='${p.href}'">
-            <div style="width: 32px; height: 32px; background: ${p.color}10; border-radius: 8px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center;">
-              <span style="font-size: 1.2rem; color: ${p.color}">${p.icon}</span>
-            </div>
-            <h3 class="card-title" style="color: ${p.color}">${p.name}</h3>
-            <p class="card-desc">${p.desc}</p>
-            ${p.new ? '<span class="badge new">新</span>' : ''}
-          </div>
-        `;
-      });
-
-      grid.innerHTML = html;
-    }
-
-    // Render recent updates
-    function renderRecent() {
-      const ul = document.querySelector('#recent ul');
-      let html = '';
-      
-      // Show last 8 projects
-      projects.slice(0, 8).forEach((p, i) => {
-        const date = new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' });
-        html += `
-          <li class="reveal reveal-delay-${Math.min(i, 5)}">
-            <div class="num">${i + 1}</div>
-            <div class="info">
-              <div class="title" style="max-width: 160px;">${p.name}</div>
-              <div class="meta">${date}</div>
-            </div>
-            <a href="${p.href}" style="font-size: 0.7rem; color: var(--accent);">查看</a>
-          </li>
-        `;
-      });
-
-      ul.innerHTML = html;
-    }
-
-    // Render badges
-    function renderBadges() {
-      const container = document.getElementById('badges');
-      
-      // Count new items
-      const newCount = projects.filter(p => p.new).length;
-      const useCount = projects.filter(p => p.use).length;
-      
-      let html = '';
-      
-      if (newCount > 0) {
-        html += `<span class="badge new">新 ${newCount} 項</span>`;
-      }
-      html += `<span class="badge use">${useCount} 個項</span>`;
-      
-      container.innerHTML = html;
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      renderCategories();
-      renderRecent();
-      renderBadges();
-      
-      // Observe elements for fade-in
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0'
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, observerOptions);
-      
-      // Observe all reveal elements
-      document.querySelectorAll('.reveal').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-      });
-    });
-  </script>
+  <footer>
+    © 2026 Lingo1516 · 個人倉庫 · GitHub: <a href="https://github.com/Lingo1516/Lingo1516.github.io" style="color: #777; text-decoration: underline;">lingo1516/Lingo1516.github.io</a>
+  </footer>
 </body>
 </html>
