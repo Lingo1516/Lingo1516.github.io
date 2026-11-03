@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沖繩五天四夜行程</title>
+  <style>
+    :root {
+      --bg: #FDF8E8;
+      --card: #FFFDF2;
+      --border: #F2EAD3;
+      --text: #2D2A26;
+      --muted: #6B6B6B;
+      --accent: #D4A843;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Background subtle texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(245, 240, 230, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(252, 253, 242, 0.2) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      padding: 40px 0 30px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 30px;
+    }
+
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) var(--bg);
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .nav-tabs::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    .nav-tabs::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    .nav-tabs a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: color 0.2s;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+
+    .nav-tabs a:hover {
+      color: var(--text);
+      background: var(--border);
+    }
+
+    .nav-tabs a.active {
+      color: var(--accent);
+      font-weight: 600;
+      background: rgba(212, 168, 67, 0.1);
+    }
+
+    /* Section */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section h2 span {
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 8px;
+    }
+
+    /* Itinerary */
+    .itinerary {
+      margin: 20px 0;
+    }
+
+    .itinerary-day {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .itinerary-day:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .day-number {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      color: #111;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .day-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .day-desc {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    .day-activities {
+      margin-top: 12px;
+    }
+
+    .activity {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+
+    .activity:last-child {
+      border-bottom: none;
+    }
+
+    .activity-time {
+      width: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .activity-desc {
+      flex: 1;
+    }
+
+    /* Tips */
+    .tips {
+      background: #FAF8F5;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+
+    .tips h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tips ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .tips li {
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container { padding: 15px; }
+      .nav-tabs { padding: 8px 10px; }
+      .day-number { width: 28px; height: 28px; font-size: 0.7rem; }
+    }
+
+    /* Focus states */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <h1 class="title">🌺 沖繩五天四夜行程</h1>
+        <p class="subtitle">2026/11/9–11/13｜4 人同行｜長榮 BR112</p>
+      </div>
+    </header>
+
+    <nav>
+      <div class="nav-tabs">
+        <a class="active" href="#day1">DAY 1</a>
+        <a href="#day2">DAY 2</a>
+        <a href="#day3">DAY 3</a>
+        <a href="#day4">DAY 4</a>
+        <a href="#day5">DAY 5</a>
+      </div>
+    </nav>
+
+    <main>
+      <!-- DAY 1 -->
+      <section class="section" id="day1">
+        <h2><span>DAY 1</span> 11/9（一）</h2>
+        <div class="itinerary-day">
+          <div class="day-header">
+            <div class="day-number">1</div>
+            <div class="day-title">11/9（一）</div>
+          </div>
+          <div class="day-desc">
+            長榮 BR112 去程 06:55 桃園 → 09:15 那霸
+          </div>
+
+          <div class="day-activities">
+            <div class="activity">
+              <span class="activity-time">09:15</span>
+              <span class="activity-desc">抵達那霸，單軌進市區寄放行李</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">11:00</span>
+              <span class="activity-desc">第一牧志公設市場｜60 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">12:00</span>
+              <span class="activity-desc">國際通、壺屋通｜90 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">13:45</span>
+              <span class="activity-desc">飯店入住休息</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">14:40</span>
+              <span class="activity-desc">DFS、Main Place｜2 小時</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">17:30</span>
+              <span class="activity-desc">燒肉 King 那霸久茂地店｜已訂位</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">19:15</span>
+              <span class="activity-desc">國際通夜逛</span>
+            </div>
+          </div>
+
+          <div class="tips">
+            <h3>💡 提醒</h3>
+            <ul>
+              <li>DFS 免稅商品回程在機場領取，請保留收據</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAY 2 -->
+      <section class="section" id="day2">
+        <h2><span>DAY 2</span> 11/10（二）</h2>
+        <div class="itinerary-day">
+          <div class="day-header">
+            <div class="day-number">2</div>
+            <div class="day-title">11/10（二）</div>
+          </div>
+          <div class="day-desc">
+            退房、早餐
+          </div>
+
+          <div class="day-activities">
+            <div class="activity">
+              <span class="activity-time">10:00</span>
+              <span class="activity-desc">美麗島租車取車｜牧志 PLAZA21 3F，租車費已付</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">11:40</span>
+              <span class="activity-desc">萬座毛｜40 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">12:30</span>
+              <span class="activity-desc">恩納之站午餐｜60 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">13:40</span>
+              <span class="activity-desc">許田休息站｜20 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">15:00</span>
+              <span class="activity-desc">紫藤公寓入住休息</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">17:35</span>
+              <span class="activity-desc">百年古家大家，先逛園區</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">18:00</span>
+              <span class="activity-desc">百年古家晚餐｜已訂位，阿古豬涮涮鍋</span>
+            </div>
+          </div>
+
+          <div class="tips">
+            <h3>💡 提醒</h3>
+            <ul>
+              <li>取車須攜帶台灣駕照正本及日文譯本</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAY 3 -->
+      <section class="section" id="day3">
+        <h2><span>DAY 3</span> 11/11（三）</h2>
+        <div class="itinerary-day">
+          <div class="day-header">
+            <div class="day-number">3</div>
+            <div class="day-title">11/11（三）</div>
+          </div>
+          <div class="day-desc">
+            出門
+          </div>
+
+          <div class="day-activities">
+            <div class="activity">
+              <span class="activity-time">08:30</span>
+              <span class="activity-desc">美麗海水族館｜3 小時</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">12:00</span>
+              <span class="activity-desc">午餐</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">13:00</span>
+              <span class="activity-desc">海豚秀</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">13:30</span>
+              <span class="activity-desc">海龜館、海牛館、翡翠海灘｜40 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">14:20</span>
+              <span class="activity-desc">備瀨福木林道｜70 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">16:05</span>
+              <span class="activity-desc">古宇利島、海洋塔、心形岩｜100 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">17:45</span>
+              <span class="activity-desc">古宇利大橋看夕陽</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">18:40</span>
+              <span class="activity-desc">回本部町晚餐</span>
+            </div>
+          </div>
+
+          <div class="tips">
+            <h3>💡 提醒</h3>
+            <ul>
+              <li>建議預購水族館 QR 票；鯨鯊餵食 15:00／17:00 與原行程衝突</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAY 4 -->
+      <section class="section" id="day4">
+        <h2><span>DAY 4</span> 11/12（四）</h2>
+        <div class="itinerary-day">
+          <div class="day-header">
+            <div class="day-number">4</div>
+            <div class="day-title">11/12（四）</div>
+          </div>
+          <div class="day-desc">
+            退房南下
+          </div>
+
+          <div class="day-activities">
+            <div class="activity">
+              <span class="activity-time">10:00</span>
+              <span class="activity-desc">美國村｜3.5 小時含午餐</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">14:15</span>
+              <span class="activity-desc">PARCO CITY 浦添｜2 小時</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">16:30</span>
+              <span class="activity-desc">開車回那霸</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">17:30</span>
+              <span class="activity-desc">加滿油、還車｜18:00–18:30 完成</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">19:00</span>
+              <span class="activity-desc">日航城市飯店入住</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">19:30</span>
+              <span class="activity-desc">國際通晚餐、夜逛</span>
+            </div>
+          </div>
+
+          <div class="tips">
+            <h3>💡 提醒</h3>
+            <ul>
+              <li>19:00 前完成還車；車內不要留貴重物品</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DAY 5 -->
+      <section class="section" id="day5">
+        <h2><span>DAY 5</span> 11/13（五）</h2>
+        <div class="itinerary-day">
+          <div class="day-header">
+            <div class="day-number">5</div>
+            <div class="day-title">11/13（五）</div>
+          </div>
+          <div class="day-desc">
+            打包、最後補貨
+          </div>
+
+          <div class="day-activities">
+            <div class="activity">
+              <span class="activity-time">09:30</span>
+              <span class="activity-desc">退房，前往那霸機場寄放行李</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">10:30</span>
+              <span class="activity-desc">95 號巴士往豐崎</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">11:50</span>
+              <span class="activity-desc">Ashibinaa Outlet｜90 分</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">13:30</span>
+              <span class="activity-desc">iias 沖繩豐崎午餐</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">14:40</span>
+              <span class="activity-desc">DMM 水族館／豐崎海灘（二選一）</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">15:45</span>
+              <span class="activity-desc">返回機場</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">17:00</span>
+              <span class="activity-desc">領行李、DFS 提貨、報到</span>
+            </div>
+            <div class="activity">
+              <span class="activity-time">19:00</span>
+              <span class="activity-desc">搭機返台，約 19:45 抵桃園</span>
+            </div>
+          </div>
+
+          <div class="tips">
+            <h3>💡 提醒</h3>
+            <ul>
+              <li>錯過巴士就改搭計程車；不要壓線</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    © 2026 Lingo1516 · 沖繩五天四夜行程 · 歡迎分享與轉載（註明出處）
+  </footer>
+</body>
+</html>
