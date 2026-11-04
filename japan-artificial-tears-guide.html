@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本人工淚液指南 - 4大品牌快速比較</title>
+    <style>
+        :root {
+            --bg: #FDF8E8;
+            --card: #FFFFFF;
+            --text: #2D2A26;
+            --accent: #E67E22;
+            --accent-light: #F39C12;
+            --border: #D5C6B5;
+            --success: #27AE60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--accent);
+            font-size: 2.5rem;
+            border-bottom: 4px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 180px;
+            background: #f5f0e8;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 0.8rem;
+        }
+
+        .product-img::before {
+            content: '產品圖片';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-brand {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .product-info {
+            margin-bottom: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .info-label {
+            color: #666;
+        }
+
+        .info-value {
+            font-family: 'monospace';
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+        }
+
+        .price {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.8rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid var(--border);
+            padding: 12px 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: var(--accent);
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f5f0;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: bold;
+            color: var(--accent);
+            width: 30%;
+        }
+
+        .okinawa-reminder {
+            background: linear-gradient(135deg, #fff5eb 0%, #ffe8e0 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .okinawa-reminder h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .okinawa-reminder ul {
+            margin-left: 20px;
+        }
+
+        .okinawa-reminder li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .shortcut {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .shortcut h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .shortcut-code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'monospace';
+            overflow-x: auto;
+            margin-top: 10px;
+            font-size: 0.75rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--accent-light);
+        }
+
+        @media (max-width: 600px) {
+            .product-img {
+                height: 150px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>日本人工淚液指南</h1>
+
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <div class="product-img" title="Soft Santear">
+                    產品圖片
+                </div>
+                <div class="product-brand">Soft Santear<br><span class="product-name">(参天)</span></div>
+                <div class="product-info">
+                    <div class="info-row">
+                        <span class="info-label">推薦理由</span>
+                        <span class="info-value">純人工淚液、無防腐劑</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">價格</span>
+                        <span class="info-value">大藥房約 ¥478 (約 NT$100)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">特點</span>
+                        <span class="info-value">無防腐劑，適用軟性隱形眼鏡</span>
+                    </div>
+                </div>
+                <div class="product-desc">
+                    <strong>最推薦。</strong> 純人工淚液、無防腐劑，大國藥妝 ¥478（約 NT$100），OS 藥局特價看過 ¥300。
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" title="Soft Santear 瞳孔舒緩版">
+                    產品圖片
+                </div>
+                <div class="product-brand">Soft Santear 瞳孔舒緩版<br><span class="product-name">(参天)</span></div>
+                <div class="product-info">
+                    <div class="info-row">
+                        <span class="info-label">額外成分</span>
+                        <span class="info-value">抗疲勞成分</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">價格</span>
+                        <span class="info-value">網購約 ¥475～749</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">適合</span>
+                        <span class="info-value">需要緩解眼睛疲勞者</span>
+                    </div>
+                </div>
+                <div class="product-desc">
+                    <strong>多了抗疲勞成分</strong>，網購約 ¥475～749。
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" title="Hyalain S">
+                    產品圖片
+                </div>
+                <div class="product-brand">Hyalain S<br><span class="product-name">(参天)</span></div>
+                <div class="product-info">
+                    <div class="info-row">
+                        <span class="info-label">主要成分</span>
+                        <span class="info-value">玻尿酸 0.1%</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">適合</span>
+                        <span class="info-value">重度乾眼使用</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">需求</span>
+                        <span class="info-value">處方藥濃度</span>
+                    </div>
+                </div>
+                <div class="product-desc">
+                    <strong>玻尿酸 0.1%</strong> 處方同濃度，重度乾眼用，Yodobashi ¥1,270。
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" title="樂敦 Dry Aid 隱形眼鏡版">
+                    產品圖片
+                </div>
+                <div class="product-brand">樂敦 Dry Aid<br><span class="product-name">隱形眼鏡版</span></div>
+                <div class="product-info">
+                    <div class="info-row">
+                        <span class="info-label">主要特點</span>
+                        <span class="info-value">高黏度約 60 倍</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">效期</span>
+                        <span class="info-value">長效保濕</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">價格</span>
+                        <span class="info-value">Yodobashi ¥975</span>
+                    </div>
+                </div>
+                <div class="product-desc">
+                    <strong>高黏度約 60 倍</strong>、長效保濕。Yodobashi ¥975。
+                </div>
+            </div>
+        </div>
+
+        <h2>四款快速比較表</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>比較項目</th>
+                    <th>Soft Santear (参天)</th>
+                    <th>Soft Santear 瞳孔舒緩版 (参天)</th>
+                    <th>Hyalain S (参天)</th>
+                    <th>樂敦 Dry Aid 隱形眼鏡版</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>主要成分</td>
+                    <td>純人工淚液、無防腐劑</td>
+                    <td>含抗疲勞成分</td>
+                    <td>玻尿酸 0.1%</td>
+                    <td>高黏度配方</td>
+                </tr>
+                <tr>
+                    <td>防腐劑</td>
+                    <td>無</td>
+                    <td>未提及</td>
+                    <td>視濃度而定</td>
+                    <td>有</td>
+                </tr>
+                <tr>
+                    <td>隱形眼鏡</td>
+                    <td>✓ 適用</td>
+                    <td>✓ 適用</td>
+                    <td>請醫囑</td>
+                    <td>✓ 特隱形眼鏡版</td>
+                </tr>
+                <tr>
+                    <td>推薦場景</td>
+                    <td>普通乾眼、首選</td>
+                    <td>眼睛疲勞</td>
+                    <td>重度乾眼</td>
+                    <td>長效保濕需求</td>
+                </tr>
+                <tr>
+                    <td>參考價格</td>
+                    <td>¥478 (約 NT$100)</td>
+                    <td>¥475～749</td>
+                    <td>¥1,270</td>
+                    <td>¥975</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="okinawa-reminder">
+            <h3><span>💡</span> 在沖繩買最划算的提醒</h3>
+            <ul>
+                <li><strong>國際通大國藥妝先去</strong> — 相比一般藥妝價格更有競力</li>
+                <li><strong>免稅密封規則</strong> — 開封後 <strong>10 天內必須使用完畢</strong>，過期視為已使用</li>
+                <li>購買時請確認商品是否為<strong>密封未開封</strong>狀態</li>
+                <li>若想買樂敦 V 系列乾眼款，需現場確認型號，網路上圖片易與其他產品混淆</li>
+            </ul>
+        </div>
+
+        <div class="shortcut">
+            <h3>📋 快捷指令（可直接複制）</h3>
+            <div class="shortcut-code">
+ 賽百味/大藥房尋找「Soft Santear」<br>
+ 人工淚液無防腐劑款約 NT$100<br>
+ OS 藥局詢問「参天人工淚液」<br>
+ Yodobashi 搜尋「Hyalain S」或「Dry Acid」
+                            </div>
+        </div>
+    </div>
+</body>
+</html>
