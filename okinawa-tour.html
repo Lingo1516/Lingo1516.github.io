@@ -811,6 +811,9 @@
     }
 
     // Event listeners
+    chatInput.addEventListener('input', () => {
+      chatSend.disabled = !chatInput.value.trim();
+    });
     chatSend.addEventListener('click', sendMessage);
     chatInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
