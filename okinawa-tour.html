@@ -728,6 +728,9 @@
     const chatSend = document.getElementById('chatSend');
     const chatMessages = document.getElementById('chatMessages');
 
+    // Conversation history management
+    let conversationHistory = [];
+
     // Toggle chat
     chatBtn.addEventListener('click', () => {
       chatModal.classList.toggle('open');
@@ -750,6 +753,12 @@
       // Show typing indicator
       const typingId = addTypingIndicator();
 
+      // Context management: keep last 20 messages to avoid limit
+      conversationHistory.push({ role: 'user', content: message });
+      if (conversationHistory.length > 20) {
+        conversationHistory = conversationHistory.slice(-20);
+      }
+
       try {
         const response = await fetch(RELAYROUTER_API_URL, {
           method: 'POST',
@@ -761,7 +770,7 @@
             model: MODEL,
             messages: [
               { role: 'system', content: '你是一位沖繩旅行專家，幫助用戶了解沖繩五天四夜行程的詳細資訊。回答要簡潔實用，用繁體中文。' },
-              { role: 'user', content: message }
+              ...conversationHistory
             ],
             max_tokens: 200
           })
@@ -773,7 +782,9 @@
         removeTypingIndicator(typingId);
 
         if (data.choices && data.choices[0] && data.choices[0].message) {
-          addMessage(data.choices[0].message.content, 'ai');
+          const reply = data.choices[0].message.content;
+          addMessage(reply, 'ai');
+          conversationHistory.push({ role: 'assistant', content: reply });
         } else {
           addMessage('抱歉，我暫時無法回應，請稍後再試。', 'ai');
         }
