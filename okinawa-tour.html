@@ -717,9 +717,11 @@
 
   <script>
     // RelayRouter API config
-    const RELAYROUTER_API_KEY = '***';
-    const RELAYROUTER_API_URL = 'https://www.relayrouter.ai/v1/chat/completions';
-    const MODEL = 'mimo-v2.6-flash';
+    // OpenRouter API config (CORS enabled, browser-accessible)
+    // OpenRouter API (用戶自有key，費用很低)
+    const RELAYROUTER_API_KEY='***';
+    const RELAYROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+    const MODEL = 'openai/gpt-4o-mini';
 
     const chatBtn = document.getElementById('chatBtn');
     const chatModal = document.getElementById('chatModal');
