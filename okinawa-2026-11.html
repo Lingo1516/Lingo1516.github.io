@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>初探沖繩 · 2026 年 11 月 (v3)</title>
+<title>初探沖繩 · 2026 年 11 月 (v4)</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -69,6 +69,11 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 .feature-card-text .label{font-size:11px;letter-spacing:2px;color:rgba(255,200,150,.5);margin-bottom:4px}
 .feature-card-text h3{font-size:18px;font-weight:700;color:#fff;margin-bottom:6px}
 .feature-card-text p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.6}
+.day-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:16px}
+.day-gallery:empty{display:none}
+.day-gallery figure{margin:0}
+.day-gallery img{width:100%;height:150px;object-fit:cover;border-radius:10px;display:block}
+.day-gallery figcaption{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px;line-height:1.5}
 .footer{text-align:center;padding:60px 24px 40px;border-top:1px solid rgba(255,255,255,.05);max-width:1200px;margin:0 auto}
 .footer p{font-size:13px;color:rgba(255,255,255,.2);letter-spacing:1px}
 @media(max-width:768px){
@@ -93,7 +98,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
   <div class="hero-content">
     <div class="hero-label">Travelogue · Okinawa 2026</div>
     <h1>初探沖繩</h1>
-    <p>五天四夜 · 那霸・本部・美里</p>
+    <p>五天四夜 · 那霸・恩納・本部</p>
     <p style="color:#d4a373;font-size:12px;margin-top:8px;">2026.11.09-13</p>
     <div class="hero-date">2026.11.09 — 11.13</div>
   </div>
@@ -101,7 +106,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 
 <div class="stats">
   <div class="stat"><div class="stat-num" style="color:#3498db">5</div><div class="stat-label">天數</div></div>
-  <div class="stat"><div class="stat-num" style="color:#2ecc71">4</div><div class="stat-label">酒店</div></div>
+  <div class="stat"><div class="stat-num" style="color:#2ecc71">3</div><div class="stat-label">酒店</div></div>
   <div class="stat"><div class="stat-num" style="color:#e74c3c">6</div><div class="stat-label">景點</div></div>
   <div class="stat"><div class="stat-num" style="color:#f39c12">∞</div><div class="stat-label">回憶</div></div>
 </div>
@@ -118,9 +123,9 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
       <div class="timeline-dot" style="border-color:#3498db"><div class="timeline-dot-inner" style="background:#3498db"></div></div>
       <div class="timeline-date">DAY 1 · 十一月九日（一）</div>
       <div class="timeline-title">啟程</div>
-      <div class="timeline-sub">台北 → 那霸 · 國際通逛街 · 美榮橋市場</div>
+      <div class="timeline-sub">台北 → 那霸 · 國際通 · DFS · 燒肉 King</div>
       <div class="timeline-tags">
-        <span>✈️ 長榮航空</span><span>🚝 那霸單軌</span><span>🏨 那霸大和飯店</span><span>🛍️ 國際通</span><span>🦐 美榮橋市場</span>
+        <span>✈️ 長榮 BR112</span><span>🚝 那霸單軌</span><span>🏨 Daiwa Roynet</span><span>🛍️ 國際通・牧志市場</span><span>🛒 DFS</span><span>🥩 燒肉 King 17:30</span>
       </div>
       <div class="guide-links">
         <a href="https://youtu.be/WDioeAn6Lus" target="_blank" rel="noopener">▶ 那霸單軌搭乘影片攻略</a>
@@ -131,23 +136,23 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
           <div class="timeline-card-text">
             <div class="label">READ MORE</div>
             <h3>抵達沖繩的第一刻</h3>
-            <p>長榮航空清晨班機，四小時飛抵那霸。放下行李後直奔國際通，伴手禮、藥妝、沖繩特產琳琅滿目。晚上在美榮橋市場品嚐在地海鮮。</p>
+            <p>06:55 長榮 BR112 出發，09:15 抵達那霸。入住國際通旁的 Daiwa Roynet，下午逛國際通與牧志市場，再到歌町的 DFS。晚上 17:30 在燒肉 King 那霸久茂地店吃燒肉。</p>
             <div class="read-more">閱讀全文 →</div>
           </div>
         </a>
       </div>
+      <div class="day-gallery" id="gallery-day1"><!-- DAY1 PHOTOS --></div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#2ecc71"><div class="timeline-dot-inner" style="background:#2ecc71"></div></div>
       <div class="timeline-date">DAY 2 · 十一月十日（二）</div>
-      <div class="timeline-title">美麗海水族館</div>
-      <div class="timeline-sub">黑潮之海 · Premium Outlet · 紫藤飯店</div>
+      <div class="timeline-title">一路向北</div>
+      <div class="timeline-sub">取車自駕 · 萬座毛 · 百年古家 大家</div>
       <div class="timeline-tags">
-        <span>🐠 美麗海水族館</span><span>🛍️ Premium Outlet</span><span>🏨 沖繩紫藤飯店</span>
+        <span>🚗 08:30 取車</span><span>🌊 萬座毛</span><span>🍽️ 恩納之駅午餐</span><span>🏯 百年古家 大家 18:00</span><span>🏨 紫藤公寓</span>
       </div>
       <div class="guide-links">
-        <a href="churaumi-original.html" target="_blank" rel="noopener">🦈 美麗海水族館深度攻略</a>
         <a href="https://leadership-guide.vercel.app/mapcode.html" target="_blank" rel="noopener">🗺️ Mapcode 導航編碼表</a>
       </div>
       <div class="timeline-card">
@@ -155,63 +160,69 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
           <div class="timeline-card-img"><img src="media/okinawa/day2.jpg" alt="Day 2 沖繩行程" ></div>
           <div class="timeline-card-text">
             <div class="label">READ MORE</div>
-            <h3>邂逅鯨鯊的藍色世界</h3>
-            <p>一早就直奔美麗海水族館，黑潮之海的鯨鯊水槽震撼人心。下午在 Premium Outlet 購物，傍晚抵達本部町的紫藤飯店。</p>
+            <h3>沿著海岸線北上</h3>
+            <p>08:30 取車，一路向北：萬座毛看象鼻岩，在恩納之駅吃午餐，許田休息站稍作停留。傍晚入住本部町的紫藤公寓，18:00 到百年古家「大家」享用晚餐。</p>
             <div class="read-more">閱讀全文 →</div>
           </div>
         </a>
       </div>
+      <div class="day-gallery" id="gallery-day2"><!-- DAY2 PHOTOS --></div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#e74c3c"><div class="timeline-dot-inner" style="background:#e74c3c"></div></div>
       <div class="timeline-date">DAY 3 · 十一月十一日（三）</div>
-      <div class="timeline-title">北部景點 → 返回那霸</div>
-      <div class="timeline-sub">美麗海水族館再逛 · Premium Outlet · 日航飯店</div>
+      <div class="timeline-title">美麗海水族館</div>
+      <div class="timeline-sub">黑潮之海 · 海豚秀 · 備瀨福木林 · 古宇利島</div>
       <div class="timeline-tags">
-        <span>🐠 美麗海水族館</span><span>🛍️ Premium Outlet</span><span>🏨 沖繩日航飯店</span>
+        <span>🐠 美麗海水族館</span><span>🐬 海豚秀</span><span>🌳 備瀨福木林</span><span>🏝️ 古宇利島</span><span>🏨 紫藤公寓</span>
+      </div>
+      <div class="guide-links">
+        <a href="churaumi-original.html" target="_blank" rel="noopener">🦈 美麗海水族館深度攻略</a>
       </div>
       <div class="timeline-card">
         <a href="#">
           <div class="timeline-card-img"><img src="media/okinawa/day3.jpg" alt="Day 3 沖繩行程" ></div>
           <div class="timeline-card-text">
             <div class="label">READ MORE</div>
-            <h3>北部的藍海與購物時光</h3>
-            <p>早上在紫藤飯店享用早餐，再次前往美麗海水族館細細遊覽。中午在 Premium Outlet 購物，傍晚南下返回那霸，入住日航飯店。</p>
+            <h3>邂逅鯨鯊的藍色世界</h3>
+            <p>08:45 進美麗海水族館，黑潮之海的鯨鯊震撼人心，13:00 看海豚秀。下午到備瀨福木林散步，再開上古宇利大橋，看心形岩與日落。</p>
             <div class="read-more">閱讀全文 →</div>
           </div>
         </a>
       </div>
+      <div class="day-gallery" id="gallery-day3"><!-- DAY3 PHOTOS --></div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#e74c3c"><div class="timeline-dot-inner" style="background:#e74c3c"></div></div>
       <div class="timeline-date">DAY 4 · 十一月十二日（四）</div>
       <div class="timeline-title">中部美國村</div>
-      <div class="timeline-sub">萬座毛 · 殘波岬燈塔 · 古宇利島 · 美國村</div>
+      <div class="timeline-sub">美國村 · PARCO CITY · 還車 · 日航城市飯店</div>
       <div class="timeline-tags">
-        <span>🪨 萬座毛</span><span>🗼 殘波岬</span><span>🏝️ 古宇利島</span><span>🏖️ 美國村</span><span>🚗 19:00還車</span>
+        <span>🏖️ 美國村</span><span>🛍️ PARCO CITY</span><span>🚗 20:00 還車</span><span>🏨 日航城市飯店</span>
       </div>
       <div class="timeline-card">
         <a href="#">
           <div class="timeline-card-img"><img src="media/okinawa/day4.jpg" alt="Day 4 沖繩行程" ></div>
           <div class="timeline-card-text">
             <div class="label">READ MORE</div>
-            <h3>沖繩中部的夢幻藍</h3>
-            <p>從萬座毛的大象鼻岩石，到殘波岬的白色燈塔，再到古宇利島的夢幻藍海。傍晚在美國村的海灘看日落，19:00 前還車返回日航飯店。</p>
+            <h3>美國村的海邊午後</h3>
+            <p>退房後南下，在美國村逛街看海，再到 PARCO CITY 採購。20:00 前還車，晚上入住那霸的日航城市飯店。</p>
             <div class="read-more">閱讀全文 →</div>
           </div>
         </a>
       </div>
+      <div class="day-gallery" id="gallery-day4"><!-- DAY4 PHOTOS --></div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#f39c12"><div class="timeline-dot-inner" style="background:#f39c12"></div></div>
       <div class="timeline-date">DAY 5 · 十一月十三日（五）</div>
       <div class="timeline-title">返程日</div>
-      <div class="timeline-sub">checkout · 國際通最後採購 · 19:00 搭機</div>
+      <div class="timeline-sub">checkout · Ashibinaa Outlet · iias 豐崎 · 19:00 搭機</div>
       <div class="timeline-tags">
-        <span>🏨 日航 checkout</span><span>🛍️ 國際通</span><span>✈️ 長榮晚班機</span>
+        <span>🏨 10:30 checkout</span><span>🛍️ Ashibinaa Outlet</span><span>🍽️ iias 豐崎</span><span>✈️ 19:00 長榮</span>
       </div>
       <div class="guide-links">
         <a href="vjw-tax-refund-guide.html" target="_blank" rel="noopener">🧾 VJW 機場退稅操作指南</a>
@@ -224,11 +235,12 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
           <div class="timeline-card-text">
             <div class="label">READ MORE</div>
             <h3>帶著滿滿的回憶回家</h3>
-            <p>早上從日航飯店 checkout，把行李寄放到機場。中午在那霸國際通做最後採購，買齊伴手禮後前往機場，19:00 搭長榮晚班機回台北。</p>
+            <p>10:30 從日航城市飯店 checkout，搭單軌到那霸機場寄放行李，再搭 95 號巴士到豐崎：逛 Ashibinaa Outlet、在 iias 豐崎吃午餐。15:45 搭計程車回機場，19:00 搭長榮回台北。</p>
             <div class="read-more">閱讀全文 →</div>
           </div>
         </a>
       </div>
+      <div class="day-gallery" id="gallery-day5"><!-- DAY5 PHOTOS --></div>
     </div>
 
   </div>
@@ -257,8 +269,8 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
         <div class="feature-card-img"><img src="media/okinawa/food2.jpg" alt="Food 2" ></div>
         <div class="feature-card-text">
           <div class="label">FEATURE · 市場</div>
-          <h3>美榮橋市場<br>在地海鮮天堂</h3>
-          <p>那霸最舊的海鮮市場，魚糕、海產丼、沖繩生魚片。早去才能买到最新鮮的海味。</p>
+          <h3>牧志市場<br>在地海鮮天堂</h3>
+          <p>國際通旁的牧志公設市場，魚糕、海產丼、沖繩生魚片。早去才能買到最新鮮的海味。</p>
         </div>
       </a>
     </div>
@@ -287,7 +299,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 
 <div class="footer">
   <p>初探沖繩 · 2026 年十一月 · 五天四夜</p>
-    <p style="font-size:11px;color:rgba(255,255,255,.15);margin-top:8px;">Updated: 2026-11-01（Day5 新增 VJW 退稅指南與購物地圖）</p>
+    <p style="font-size:11px;color:rgba(255,255,255,.15);margin-top:8px;">Updated: 2026-11-08（v4：五天行程依實際訂位修正，並加入每日照片牆，照片將於旅途中陸續補上）</p>
 </div>
 
 </body>
