@@ -98,7 +98,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 #lightbox img{max-width:100%;max-height:80vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 #lb-cap{color:rgba(255,255,255,.85);font-size:14px;line-height:1.7;margin-top:14px;max-width:640px;text-align:center}
 #lb-hint{color:rgba(255,255,255,.4);font-size:12px;margin-top:8px}
-.day-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px auto 4px;max-width:720px}.day-nav a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;padding:8px 14px;border-radius:999px;font-size:15px}.day-nav a:hover{background:rgba(255,255,255,.2)}.timeline-date{scroll-margin-top:24px}</style>
+.day-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px auto 4px;max-width:720px}.day-nav a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;padding:8px 14px;border-radius:999px;font-size:15px}.day-nav a:hover{background:rgba(255,255,255,.2)}.timeline-date{scroll-margin-top:24px}#lb-prev,#lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.35);width:48px;height:48px;border-radius:50%;font-size:30px;line-height:1;cursor:pointer;z-index:5;padding:0}#lb-prev{left:10px}#lb-next{right:10px}#lb-count{color:rgba(255,255,255,.7);font-size:13px;margin-top:8px;text-align:center}</style>
 </head>
 <body>
 
@@ -200,7 +200,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
           </div>
         </a>
       </div>
-      <div class="day-gallery" id="gallery-day3"><!-- DAY3 PHOTOS --></div>
+      <div class="day-gallery" id="gallery-day3"><figure><img src="media/okinawa/d3-01.jpg" alt="本部町清晨海景與瀬底島"><figcaption>第三天早上的清晨——從本部町望出去，對岸是瀬底島，左邊那條細細的橋是瀬底大橋；今天是水族館日，海洋博公園就在旁邊，8:30 開門進場。</figcaption></figure><!-- DAY3 PHOTOS --></div>
     </div>
 
     <div class="timeline-item">
@@ -308,23 +308,47 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 
 <div class="footer">
   <p>初探沖繩 · 2026 年十一月 · 五天四夜</p>
-    <p style="font-size:11px;color:rgba(255,255,255,.15);margin-top:8px;">Updated: 2026-11-10（頁首新增五日導覽；Day 1 共 22 張；Day 2 共 12 張並設當日封面）</p>
+    <p style="font-size:11px;color:rgba(255,255,255,.15);margin-top:8px;">Updated: 2026-11-11（Day 1 共 22 張；Day 2 共 12 張；Day 3 上架中；相片放大可左右滑切換）</p>
 </div>
 
 
-<div id="lightbox"><img id="lb-img" src="" alt=""><div id="lb-cap"></div><div id="lb-hint">點一下任意處關閉 ✕</div></div>
+<div id="lightbox"><button id="lb-prev" aria-label="上一張">‹</button><img id="lb-img" src="" alt=""><button id="lb-next" aria-label="下一張">›</button><div id="lb-cap"></div><div id="lb-count"></div><div id="lb-hint">左右滑動或點照片看下一張 · 點背景關閉 ✕</div></div>
 <script>
 (function(){
-  var lb=document.getElementById('lightbox'),li=document.getElementById('lb-img'),lc=document.getElementById('lb-cap');
-  document.querySelectorAll('img').forEach(function(im){
-    im.addEventListener('click',function(){
-      li.src=im.src;
-      var f=im.closest('figure');var c=f?f.querySelector('figcaption'):null;
-      lc.textContent=c?c.textContent:(im.alt||'');
-      lb.classList.add('open');document.body.style.overflow='hidden';
-    });
+  var lb=document.getElementById('lightbox'),li=document.getElementById('lb-img'),lc=document.getElementById('lb-cap'),cnt=document.getElementById('lb-count');
+  var items=[],idx=-1;
+  document.querySelectorAll('.day-gallery figure img').forEach(function(im){items.push(im);});
+  function capOf(im){var f=im.closest('figure');var c=f?f.querySelector('figcaption'):null;return c?c.textContent:(im.alt||'');}
+  function show(i){
+    if(!items.length)return;
+    idx=(i+items.length)%items.length;
+    li.src=items[idx].src;lc.textContent=capOf(items[idx]);
+    cnt.textContent=(idx+1)+' / '+items.length;
+    [idx-1,idx+1].forEach(function(j){var k=(j+items.length)%items.length;var p=new Image();p.src=items[k].src;});
+  }
+  function open(im){
+    var i=items.indexOf(im);
+    lb.classList.add('open');document.body.style.overflow='hidden';
+    if(i>=0){show(i);}else{li.src=im.src;lc.textContent=capOf(im);cnt.textContent='';idx=-1;}
+  }
+  function close(){lb.classList.remove('open');document.body.style.overflow='';li.src='';}
+  document.querySelectorAll('img').forEach(function(im){im.addEventListener('click',function(){open(im);});});
+  document.getElementById('lb-prev').addEventListener('click',function(e){e.stopPropagation();if(idx>=0)show(idx-1);});
+  document.getElementById('lb-next').addEventListener('click',function(e){e.stopPropagation();if(idx>=0)show(idx+1);});
+  li.addEventListener('click',function(e){e.stopPropagation();if(idx>=0)show(idx+1);});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target===lc||e.target===cnt||e.target.id==='lb-hint')close();});
+  var tx=0,ty=0;
+  lb.addEventListener('touchstart',function(e){tx=e.changedTouches[0].clientX;ty=e.changedTouches[0].clientY;},{passive:true});
+  lb.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+    if(idx>=0&&Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){show(dx<0?idx+1:idx-1);}
+  },{passive:true});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')close();
+    if(idx>=0&&e.key==='ArrowRight')show(idx+1);
+    if(idx>=0&&e.key==='ArrowLeft')show(idx-1);
   });
-  lb.addEventListener('click',function(){lb.classList.remove('open');document.body.style.overflow='';li.src='';});
 })();
 </script>
 </body>
