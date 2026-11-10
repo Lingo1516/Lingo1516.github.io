@@ -98,7 +98,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 #lightbox img{max-width:100%;max-height:80vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 #lb-cap{color:rgba(255,255,255,.85);font-size:14px;line-height:1.7;margin-top:14px;max-width:640px;text-align:center}
 #lb-hint{color:rgba(255,255,255,.4);font-size:12px;margin-top:8px}
-</style>
+.day-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px auto 4px;max-width:720px}.day-nav a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;padding:8px 14px;border-radius:999px;font-size:15px}.day-nav a:hover{background:rgba(255,255,255,.2)}.timeline-date{scroll-margin-top:24px}</style>
 </head>
 <body>
 
@@ -123,14 +123,14 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 <section class="section">
   <div class="section-header">
     <div class="tag">Itinerary</div>
-    <h2>行程全記錄</h2>
+    <h2>行程全記錄</h2><nav class="day-nav"><a href="#day1">第一天 · 11/9</a><a href="#day2">第二天 · 11/10</a><a href="#day3">第三天 · 11/11</a><a href="#day4">第四天 · 11/12</a><a href="#day5">第五天 · 11/13</a></nav>
     <p>每一天都是一頁全新的故事</p>
   </div>
   <div class="timeline">
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#3498db"><div class="timeline-dot-inner" style="background:#3498db"></div></div>
-      <div class="timeline-date">DAY 1 · 十一月九日（一）</div>
+      <div class="timeline-date" id="day1">DAY 1 · 十一月九日（一）</div>
       <div class="timeline-title">啟程</div>
       <div class="timeline-sub">台北 → 那霸 · 國際通 · DFS · 燒肉 King</div>
       <div class="timeline-tags">
@@ -155,7 +155,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#2ecc71"><div class="timeline-dot-inner" style="background:#2ecc71"></div></div>
-      <div class="timeline-date">DAY 2 · 十一月十日（二）</div>
+      <div class="timeline-date" id="day2">DAY 2 · 十一月十日（二）</div>
       <div class="timeline-title">一路向北</div>
       <div class="timeline-sub">取車自駕 · 萬座毛 · 百年古家 大家</div>
       <div class="timeline-tags">
@@ -180,7 +180,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#e74c3c"><div class="timeline-dot-inner" style="background:#e74c3c"></div></div>
-      <div class="timeline-date">DAY 3 · 十一月十一日（三）</div>
+      <div class="timeline-date" id="day3">DAY 3 · 十一月十一日（三）</div>
       <div class="timeline-title">美麗海水族館</div>
       <div class="timeline-sub">黑潮之海 · 海豚秀 · 備瀨福木林 · 古宇利島</div>
       <div class="timeline-tags">
@@ -205,7 +205,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#e74c3c"><div class="timeline-dot-inner" style="background:#e74c3c"></div></div>
-      <div class="timeline-date">DAY 4 · 十一月十二日（四）</div>
+      <div class="timeline-date" id="day4">DAY 4 · 十一月十二日（四）</div>
       <div class="timeline-title">中部美國村</div>
       <div class="timeline-sub">美國村 · PARCO CITY · 還車 · 日航城市飯店</div>
       <div class="timeline-tags">
@@ -227,7 +227,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 
     <div class="timeline-item">
       <div class="timeline-dot" style="border-color:#f39c12"><div class="timeline-dot-inner" style="background:#f39c12"></div></div>
-      <div class="timeline-date">DAY 5 · 十一月十三日（五）</div>
+      <div class="timeline-date" id="day5">DAY 5 · 十一月十三日（五）</div>
       <div class="timeline-title">返程日</div>
       <div class="timeline-sub">checkout · Ashibinaa Outlet · iias 豐崎 · 19:00 搭機</div>
       <div class="timeline-tags">
@@ -308,7 +308,7 @@ body{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;ba
 
 <div class="footer">
   <p>初探沖繩 · 2026 年十一月 · 五天四夜</p>
-    <p style="font-size:11px;color:rgba(255,255,255,.15);margin-top:8px;">Updated: 2026-11-10（Day 1 共 22 張；Day 2 照片陸續上架中）</p>
+    <p style="font-size:11px;color:rgba(255,255,255,.15);margin-top:8px;">Updated: 2026-11-10（頁首新增五日導覽；Day 1 共 22 張；Day 2 照片陸續上架中）</p>
 </div>
 
 
