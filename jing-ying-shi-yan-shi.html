@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>經營實驗室｜商業經營模擬教材</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #FDF8E8; color: #2D2A26; font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; line-height: 1.8; }
+.header { background: linear-gradient(135deg, #F7F5F0 0%, #EDE9DB 100%); border-bottom: 3px solid #C4B696; padding: 2rem 1rem; text-align: center; }
+.header h1 { font-size: 1.8rem; color: #3A2F1E; margin-bottom: 0.5rem; }
+.header .subtitle { color: #6B5B4A; font-size: 1rem; }
+.nav { background: #fff; padding: 1rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto; white-space: nowrap; display: flex; gap: 0.5rem; justify-content: center; }
+.nav a { display: inline-block; padding: 0.4rem 0.8rem; background: #F7F5F0; color: #3A2F1E; text-decoration: none; border-radius: 4px; font-size: 0.85rem; border: 1px solid #E0D8C8; }
+.nav a:hover { background: #EDE9DB; }
+.container { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem; }
+.chapter { background: #fff; border: 1px solid #F2EAD3; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.chapter h2 { color: #3A2F1E; border-bottom: 2px solid #E0D8C8; padding-bottom: 0.5rem; margin-bottom: 1rem; font-size: 1.3rem; }
+.chapter h3 { color: #4A3F2F; margin: 1rem 0 0.5rem; font-size: 1.1rem; }
+.term-card { background: #FDF8E8; border-left: 4px solid #C4B696; padding: 1rem; margin: 1rem 0; border-radius: 0 4px 4px 0; }
+.term-card strong { color: #3A2F1E; display: block; margin-bottom: 0.3rem; }
+.example { background: #fff9f0; border: 1px dashed #E0D8C8; padding: 0.8rem; margin: 0.5rem 0; border-radius: 4px; font-size: 0.9rem; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+th, td { border: 1px solid #DDD5C5; padding: 0.6rem 0.5rem; text-align: left; }
+th { background: #F7F5F0; color: #3A2F1E; font-weight: 600; }
+tr:nth-child(even) { background: #FDFAF2; }
+.formula { background: #F7F5F0; padding: 0.8rem; border-radius: 4px; font-family: monospace; margin: 0.5rem 0; overflow-x: auto; white-space: pre-wrap; }
+.warning { background: #FFF4E0; border-left: 4px solid #E08040; padding: 0.8rem; margin: 1rem 0; border-radius: 0 4px 4px 0; }
+.checklist { list-style: none; padding: 0; }
+.checklist li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; }
+.checklist li:before { content: "☐"; position: absolute; left: 0; color: #C4B696; }
+.footer { text-align: center; padding: 2rem; color: #8B7D6B; font-size: 0.85rem; border-top: 1px solid #E0D8C8; margin-top: 2rem; }
+.highlight { background: #FFEBB8; padding: 0.1rem 0.3rem; border-radius: 2px; }
+.badge { display: inline-block; padding: 0.2rem 0.5rem; background: #E8DFC8; border-radius: 12px; font-size: 0.8rem; margin-right: 0.3rem; }
+@media (max-width: 600px) { .nav { justify-content: flex-start; } .container { padding: 1rem 0.8rem; } }
+</style>
+</head>
+<body>
+<div class="header">
+<h1>🏢 經營實驗室</h1>
+<div class="subtitle">商業經營模擬教材 · 師生專用版</div>
+<div style="margin-top: 1rem; font-size: 0.9rem; color: #6B5B4A;">
+學生分組經營一家公司，老師主持市場、統一結算<br>
+八個經營季度、四個市場、每一期做 18 項決策
+</div>
+</div>
+
+<nav class="nav">
+<a href="#intro">總覽</a>
+<a href="#terms1">名詞教室（一）</a>
+<a href="#terms2">名詞教室（二）</a>
+<a href="#terms3">名詞教室（三）</a>
+<a href="#usage">使用方式</a>
+<a href="#teacher">老師手冊</a>
+<a href="#student">學生手冊</a>
+<a href="#decisions">18項決策</a>
+<a href="#example">實戰範例</a>
+<a href="#reports">財務報表</a>
+<a href="#formulas">公式與檢查清單</a>
+</nav>
+
+<div class="container">
+
+<!-- 總覽 -->
+<section id="intro" class="chapter">
+<h2>📖 這本教材怎麼用</h2>
+<p><strong>建議順序：</strong></p>
+<ol style="margin-left: 1.5rem;">
+<li>先看第 2–4 頁「名詞白話教室」把每個詞弄懂</li>
+<li>學生照第 9–12 頁操作與範例動手</li>
+<li>老師照第 6–8 頁逐步開班、設定、出題、結算</li>
+</ol>
+<div class="warning">⚠️ 金額皆為<strong>虛擬教學數據</strong>。</div>
+<div class="term-card">
+<strong>📋 本教材內容目錄</strong>
+<table>
+<tr><th>章節</th><th>內容</th></tr>
+<tr><td>名詞白話教室（一）</td><td>資產、現金、設備、原料、成品存貨、負債、業主權益</td></tr>
+<tr><td>名詞白話教室（二）</td><td>單位、產能、材料利用率、緊急採購、銷貨成本、折舊、利息、保管費、稅</td></tr>
+<tr><td>名詞白話教室（三）</td><td>營收、淨利、股利、NPV、需求、吸引力、價格敏感度、停業</td></tr>
+<tr><td>怎麼使用這套教材</td><td>自主練習與班級競賽兩種模式、一期的五個步驟</td></tr>
+<tr><td>老師操作手冊</td><td>開班、班級代碼、市場情境、六項權限、指派題目、公告、結算、回饋、評分</td></tr>
+<tr><td>學生操作手冊</td><td>加入班級、每期操作步驟、學生可以做與不能做的事</td></tr>
+<tr><td>18 項決策總覽</td><td>四個市場 12 項 + 營運財務 6 項：範圍、效果、何時生效</td></tr>
+<tr><td>學生動手範例</td><td>先算產能、原料、現金；再看一局完整第一期的真實結算</td></tr>
+<tr><td>三張財務報表怎麼讀</td><td>損益表、資產負債表、現金流量表，用同一期數字對照</td></tr>
+<tr><td>公式總整理與檢查清單</td><td>全部計算公式、八期走勢、學生與老師的結算前自查表</td></tr>
+</table>
+</div>
+</section>
+
+<!-- 名詞教室一 -->
+<section id="terms1" class="chapter">
+<h2>📚 名詞白話教室（一）：公司的家底</h2>
+<p>每一家公司開局都一樣：現金 <span class="highlight">$500,000</span>、設備 <span class="highlight">$500,000</span>、原料 6,000 單位、負債 <span class="highlight">$200,000</span>。</p>
+
+<div class="term-card"><strong>💰 資產</strong>公司擁有、值錢的東西。現金、設備、原料、成品，全部加起來就是資產。<div class="example">小例：資產 = 500,000（現金）+ 500,000（設備）+ 60,000（原料）+ 0（成品）= $1,060,000</div></div>
+
+<div class="term-card"><strong>💵 現金</strong>口袋裡能立刻花的錢。賣貨收到的錢會進現金；買原料、付廣告、付人工會從現金出去。<div class="example">注意：公司「有賺錢」不等於「有現金」，錢可能卡在存貨裡。</div></div>
+
+<div class="term-card"><strong>🏭 設備</strong>工廠的機器，決定你能做多少貨。設備用帳面價值計算，會慢慢折舊變舊。<div class="example">小例：設備 $500,000，每 $125 的設備 = 每期 1 單位產能，所以開局每期最多生產 4,000 單位。</div></div>
+
+<div class="term-card"><strong>🧱 原料</strong>做產品的材料，用「單位」算數量、用「元」算價值。本期新買的原料要<strong>下一期</strong>才能用。</div>
+
+<div class="term-card"><strong>📦 成品存貨</strong>做好了、還沒賣掉的產品。每個市場分開存放，北部的貨不能拿去南部賣。每單位每期要付 <span class="highlight">$2</span> 保管費。</div>
+
+<div class="term-card"><strong>🏦 負債</strong>公司欠別人的錢。開局每家公司都先向銀行借了 $200,000。<div class="example">小例：負債 200,000，每期利息 = 200,000 × 2% = $4,000，不管這期有沒有賺錢都要付。</div></div>
+
+<div class="term-card"><strong>👤 業主權益</strong>扣掉欠的錢，公司真正屬於股東的淨值。權益 = 資產 − 負債。開局權益 = 1,060,000 − 200,000 = <span class="highlight">$860,000</span>。賺錢權益會變大，虧錢會變小；權益 ≤ 0，公司就停業。<div class="formula">資產 = 負債 + 權益</div></div>
+</section>
+
+<!-- 名詞教室二 -->
+<section id="terms2" class="chapter">
+<h2>📚 名詞白話教室（二）：經營過程中會遇到的詞</h2>
+
+<div class="term-card"><strong>📊 單位</strong>數量就用「單位」，不要跟錢搞混。售價、預算、費用都用元。<div class="example">小例：「配貨 800」是 800 單位產品；「售價 100」是每單位賣 $100；800 單位全賣掉，收入 = 800 × 100 = $80,000。</div></div>
+
+<div class="term-card"><strong>⚙️ 產能</strong>這一期工廠最多做得出的數量。<div class="formula">產能 = 期初設備 ÷ 125（向下取整）</div><div class="example">小例：設備 500,000 ÷ 125 = 4,000 單位。四個市場的配貨加起來超過 4,000，系統會按比例自動調低。</div></div>
+
+<div class="term-card"><strong>🔄 材料利用率</strong>做產品時原料的耗損程度。<div class="formula">利用率 = min(0.95, 0.8 + 維護費 ÷ 1,000,000)</div><div class="example">小例：維護費 5,000 → 利用率 80.5%。想生產 3,200 單位，需要原料 = 3,200 ÷ 0.805 ≈ 3,975 單位，不是 3,200 單位。</div></div>
+
+<div class="term-card"><strong>⏰ 採購時差</strong>本期買的原料，下期才能用。這是最容易踩的規則：<strong>本期生產只能用「期初就有的原料」</strong>。</div>
+
+<div class="term-card"><strong>🚨 緊急採購</strong>原料不夠時，系統自動用貴 50% 的價格補。<div class="example">小例：不足 1,975 單位 × $10 × 1.5 = $29,625，直接從現金扣。</div></div>
+
+<div class="term-card"><strong>📉 銷貨成本</strong>賣掉的那些產品，當初做它們花了多少。<div class="formula">每單位成本 = （材料費 + 人工 $20）÷ 生產量</div></div>
+
+<div class="term-card"><strong>🔧 折舊</strong>設備變舊的價值損耗，每期固定扣。<div class="formula">折舊 = 期初設備 × 2.5%</div></div>
+
+<div class="term-card"><strong>💳 保管費</strong>成品每單位每期 <span class="highlight">$2</span>、原料每單位每期 <span class="highlight">$0.2</span>、管理費固定 <span class="highlight">$20,000／期</span>。</div>
+
+<div class="term-card"><strong>💼 所得稅</strong>有賺錢才課，稅率 <span class="highlight">20%</span>。虧損不課稅，也不能留到下期抵。</div>
+</section>
+
+<!-- 名詞教室三 -->
+<section id="terms3" class="chapter">
+<h2>📚 名詞白話教室（三）：成果怎麼看、名次怎麼算</h2>
+
+<div class="term-card"><strong>💰 營收</strong>這一期賣貨收到的錢。<div class="formula">營收 = 每個市場「成交數量 × 售價」加總</div></div>
+
+<div class="term-card"><strong>🎯 淨利</strong>營收扣掉所有成本與費用、再扣稅之後，真正賺的錢。<div class="example">稅後淨利 = 營收 − 銷貨成本 − 各項費用 − 稅</div></div>
+
+<div class="term-card"><strong>🪙 股利</strong>把賺到的錢發給股東。限制：不能超過當期可用現金，也不能超過累積盈餘。</div>
+
+<div class="term-card"><strong>📈  NPV（淨現值）</strong>八期結束的總評分，排名看它。<div class="formula">NPV = 各期股利折現合計 + 期末權益 ÷ 1.02^期數 − 860,000</div></div>
+
+<div class="term-card"><strong>📊 市場需求</strong>每個市場的需求由基本量、季節、成長與情境共同決定，再依各公司的「吸引力」比例分配。</div>
+
+<div class="term-card"><strong>⭐ 吸引力與價格敏感度</strong>吸引力由售價、行銷（廣告）與品質決定。price sensitivity越高，漲價跑掉的客人越多：<div class="table"><table>
+<tr><th>市場</th><th>價格敏感度</th><th>品牌權重</th><th>性格一句話</th></tr>
+<tr><td>北部</td><td>1.7（最高）</td><td>0.2（最小）</td><td>最怕貴，廣告效果最小 — 拚價格的地方</td></tr>
+<tr><td>中部</td><td>1.3</td><td>0.3</td><td>價格與品牌都要顧</td></tr>
+<tr><td>南部</td><td>1.0</td><td>0.4</td><td>品牌開始比價格重要</td></tr>
+<tr><td>海外</td><td>0.7（最低）</td><td>0.5（最大）</td><td>最不怕貴、最吃品牌 — 拚毛利的地方</td></tr>
+</table></div></div>
+
+<div class="term-card"><strong>🎨 品質</strong>研發慢慢養出來的吸引力。<div class="formula">下期品質 = min(1.6, 品質 × 0.99 + 研發 ÷ 1,000,000)</div></div>
+
+<div class="warning"><strong>🛑 停業 — 三條紅線，碰到就出局</strong><br>
+1. 權益 ≤ 0<br>
+2. 負債超過權益的 10 倍<br>
+3. 借到上限現金還是負的
+</div>
+</section>
+
+<!-- 使用方式 -->
+<section id="usage" class="chapter">
+<h2>🎮 怎麼使用這套教材：兩種模式、一套節奏</h2>
+
+<h3>模式一：自主練習（一個人）</h3>
+<ul style="margin-left: 1.5rem;">
+<li>你經營一家公司，對手是三家電腦公司（青禾製造、日序企業、遠山實業）</li>
+<li>共八期，填完決策按提交就立刻結算</li>
+<li>進度存在瀏覽器裡，可下載 CSV 保存</li>
+<li>市場情境固定為「正常市場」</li>
+</ul>
+
+<h3>模式二：班級競賽（老師 + 各組）</h3>
+<ul style="margin-left: 1.5cherries;">
+<li>老師開班、拿到班級代碼；每組一位代表用代碼加入（最多 12 組）</li>
+<li>共八期，情境由老師設定，全班面對同一個市場競爭</li>
+<li>各組交齊決策後，由老師統一結算 — 學生自己不能結算</li>
+</ul>
+
+<h3>每一期的固定節奏（五個步驟）</h3>
+<ol style="margin-left: 1.5rem;">
+<li><strong>看情報</strong>：經營總覽 — 本期情境、自己的現金、產能、期初原料與各市場庫存、對手排名</li>
+<li><strong>做決策</strong>：小組討論後填 18 項決策</li>
+<li><strong>寫理由</strong>：一段話寫下「這一期想達成什麼、為什麼這樣配置」</li>
+<li><strong>等結算</strong>：班級模式要等全班交齊、老師按下統一結算</li>
+<li><strong>讀報表</strong>：看損益表、資產負債表、現金流量表與白話診斷</li>
+</ol>
+</section>
+
+<!-- 老師手冊 -->
+<section id="teacher" class="chapter">
+<h2>👨‍🏫 老師操作手冊</h2>
+
+<h3>建立班級</h3>
+<ol style="margin-left: 1.5rem;">
+<li>進入教學區，打開「經營實驗室」，切換到班級競賽</li>
+<li>輸入班級名稱，按建立班級</li>
+<li>把顯示的 6 碼班級代碼給學生</li>
+<li>等人到齊後，建議關閉「開放加入」</li>
+</ol>
+
+<h3>設定市場情境（每期結算前設定）</h3>
+<table>
+<tr><th>情境</th><th>對需求的影響</th><th>對原料價格</th><th>教學時機</th></tr>
+<tr><td>正常市場</td><td>需求 × 1.00</td><td>不變</td><td>第一期先用</td></tr>
+<tr><td>需求成長</td><td>需求 × 1.25</td><td>不變</td><td>考驗供貨與產能</td></tr>
+<tr><td>景氣衰退</td><td>需求 × 0.78</td><td>不變</td><td>考驗現金與庫存</td></tr>
+<tr><td>原料漲價</td><td>不變</td><td>原料 × 1.30</td><td>考驗毛利</td></tr>
+</table>
+<div class="warning">⚠️ 只要有任何一組已提交本期決策，該期情境就不能再改！</div>
+
+<h3>六項權限設定</h3>
+<table>
+<tr><th>權限</th><th>開啟時</th><th>建議</th></tr>
+<tr><td>開放加入</td><td>拿到代碼的人可以加入</td><td>組數到齊就關</td></tr>
+<tr><td>允許重送決策</td><td>結算前可修改並重新提交</td><td>教學期開啟</td></tr>
+<tr><td>公開排名</td><td>學生看得到各組權益與 NPV</td><td>開啟，競爭感是動力</td></tr>
+<tr><td>公開他組完整報表</td><td>學生可看其他組的完整三表</td><td>預設關閉</td></tr>
+<tr><td>開放留言提問</td><td>學生可在留言板發問</td><td>預設關閉</td></tr>
+<tr><td>決策理由必填</td><td>理由至少 5 個字才能提交</td><td>開啟 — 理由是評分依據</td></tr>
+</table>
+
+<h3>評分建議</h3>
+<table>
+<tr><th>項目</th><th>比重</th><th>看什麼</th></tr>
+<tr><td>經營結果</td><td>30%</td><td>八期 NPV 排名與是否停業</td></tr>
+<tr><td>決策理由</td><td>30%</td><td>每期理由有沒有目標、有沒有預測、跟數字對不對得起來</td></tr>
+<tr><td>報表分析</td><td>20%</td><td>能不能用三張表解釋自己為什麼賺／賠</td></tr>
+<tr><td>反思修正</td><td>20%</td><td>下一期的調整有沒有回應上一期的診斷</td></tr>
+</table>
+</section>
+
+<!-- 學生手冊 -->
+<section id="student" class="chapter">
+<h2>👩‍🎓 學生操作手冊</h2>
+
+<h3>第一次：加入班級</h3>
+<ol style="margin-left: 1.5rem;">
+<li>打開「經營實驗室」，切換到班級競賽</li>
+<li>輸入老師給的班級代碼，填入組別名稱</li>
+<li>整學期固定用同一台裝置、同一個瀏覽器</li>
+</ol>
+
+<h3>每一期：五個步驟</h3>
+<ol style="margin-left: 1.5rem;">
+<li>讀公告與情報</li>
+<li>先算三件事：產能、原料、現金</li>
+<li>填 18 項決策</li>
+<li>寫決策理由</li>
+<li>提交，等老師結算</li>
+</ol>
+
+<h3>你可以做 vs 不能做</h3>
+<table>
+<tr><th>✅ 可以做</th><th>❌ 不能做</th></tr>
+<tr><td>填、改自己組的決策</td><td>自己結算、更改市場情境</td></tr>
+<tr><td>看自己組的完整三張報表</td><td>更改班級權限設定</td></tr>
+<tr><td>回答題目與留言提問</td><td>看其他組的完整決策與報表（除非老師開放）</td></tr>
+</table>
+</section>
+
+<!-- 18項決策 -->
+<section id="decisions" class="chapter">
+<h2>📝 18 項決策總覽</h2>
+
+<h3>前 12 項：四個市場，每個市場三項</h3>
+<table>
+<tr><th>市場</th><th>售價 ($30–300)</th><th>計畫配貨 (0–20,000)</th><th>行銷預算 ($0–200,000)</th></tr>
+<tr><td>北部</td><td colspan="3">價格敏感度 1.7（最高），廣告效果最小 — 拚價格的地方</td></tr>
+<tr><td>中部</td><td colspan="3">價格敏感度 1.3，價格與品牌都要顧</td></tr>
+<tr><td>南部</td><td colspan="3">價格敏感度 1.0，品牌開始比價格重要</td></tr>
+<tr><td>海外</td><td colspan="3">價格敏感度 0.7（最低），最吃品牌 — 拚毛利利的地方</td></tr>
+</table>
+<div class="example">預設值：售價 100／100／100／110，配貨各 800，行銷各 5,000</div>
+
+<h3>後 6 項：營運與財務</h3>
+<table>
+<tr><th>決策</th><th>範圍</th><th>生效時間</th><th>說明</th></tr>
+<tr><td>原料採購量</td><td>0–100,000 單位</td><td>下期</td><td>每單位 $10（漲價情境 ×1.3）</td></tr>
+<tr><td>設備投資</td><td>$0–1,000,000</td><td>下期產能增加</td><td>每 $125 = 1 單位產能</td></tr>
+<tr><td>設備維護費</td><td>$0–200,000</td><td>本期立即</td><td>提高材料利用率</td></tr>
+<tr><td>研發支出</td><td>$0–200,000</td><td>下期品質提高</td><td>每 100,000 ≈ +0.1 品質</td></tr>
+<tr><td>借款／還款</td><td>−2M ~ +2M</td><td>本期立即</td><td>正數借錢、負數還錢</td></tr>
+<tr><td>預計發放股利</td><td>$0–1,000,000</td><td>結算時發放</td><td>受現金與盈餘限制</td></tr>
+</table>
+<div class="warning">💡 決策理由（最多 1,000 字）也是最重要的項目的 — 數字決定這一期，理由決定下一期會不會進步。</div>
+</section>
+
+<!-- 實戰範例 -->
+<section id="example" class="chapter">
+<h2>✋ 學生動手範例</h2>
+
+<h3>第一步：先算產能、原料、現金</h3>
+<div class="example">
+<strong>情境：</strong>第一期，正常市場<br>
+<strong>期初家底：</strong>現金 $500,000、設備 $500,000、原料 6,000 單位、負債 $200,000<br>
+<strong>計畫產量：</strong>北部 900、中部 800、南部 800、海外 900
+</div>
+
+<div class="term-card"><strong>產能計算</strong>產能 = 500,000 ÷ 125 = 4,000 單位。計畫產量 = 3,400 ≤ 4,000 ✅</div>
+
+<div class="term-card"><strong>原料計算</strong>維護費 20,000 → 利用率 = 0.82，需原料 = 3,400 ÷ 0.82 ≈ 4,147 ≤ 6,000 ✅<div class="example">還剩約 1,853 單位，下期需補約 2,300 單位，保險一點買 3,000 單位（$30,000）</div></div>
+
+<div class="term-card"><strong>現金計算</strong>採購 30,000 + 人工 68,000 + 行銷 26,000 + 維護 20,000 + 研發 10,000 + 管理費 20,000 + 利息 4,000 = <span class="highlight">$178,000</span><div class="example">期初現金 500,000 足夠覆蓋 ✅</div></div>
+
+<h3>完整第一期範例（系統真實運算）</h3>
+<table>
+<tr><th>市場</th><th>售價</th><th>配貨</th><th>行銷</th><th>需求</th><th>成交</th><th>庫存</th></tr>
+<tr><td>北部</td><td>100</td><td>800</td><td>5,000</td><td>847</td><td>800</td><td>0</td></tr>
+<tr><td>中部</td><td>100</td><td>800</td><td>5,000</td><td>847</td><td>800</td><td>0</td></tr>
+<tr><td>南部</td><td>100</td><td>800</td><td>5,000</td><td>836</td><td>800</td><td>0</td></tr>
+<tr><td>海外</td><td>110</td><td>800</td><td>5,000</td><td>756</td><td>756</td><td>44</td></tr>
+</table>
+
+<div class="warning">📋 系統診斷：<span class="highlight">「有 130 單位需求未成交。」</span><br>
+問題不在總產量，而在<strong>分配</strong>：海外配太多、北中南配太少，成品不能跨市場搬運。</div>
+</section>
+
+<!-- 財務報表 -->
+<section id="reports" class="chapter">
+<h2>📊 三張財務報表怎麼讀</h2>
+<p>延續上一頁那一局的第一期。</p>
+
+<h3>損益表（這一期賺多少）</h3>
+<table>
+<tr><th>項目</th><th>金額</th></tr>
+<tr><td>銷售收入</td><td>$323,160</td></tr>
+<tr><td>銷貨成本</td><td>$102,325</td></tr>
+<tr><td>行銷費用</td><td>$20,000</td></tr>
+<tr><td>維護與研發</td><td>$10,000</td></tr>
+<tr><td>倉儲與管理費</td><td>$21,133</td></tr>
+<tr><td>利息費用</td><td>$4,000</td></tr>
+<tr><td>折舊費用</td><td>$12,500</td></tr>
+<tr><td>所得稅</td><td>$30,640</td></tr>
+<tr><td><strong>稅後淨利</strong></td><td><strong>$122,562</strong></td></tr>
+</table>
+
+<h3>資產負債表（期末的家底）</h3>
+<table>
+<tr><th>項目</th><th>金額</th></tr>
+<tr><td>現金</td><td>$641,387</td></tr>
+<tr><td>原料存貨</td><td>$52,248</td></tr>
+<tr><td>成品存貨</td><td>$1,427</td></tr>
+<tr><td>設備帳面價值</td><td>$487,500</td></tr>
+<tr><td><strong>資產合計</strong></td><td><strong>$1,182,562</strong></td></tr>
+<tr><td>負債</td><td>$200,000</td></tr>
+<tr><td>業主權益</td><td>$982,562</td></tr>
+<tr><td><strong>負債 ＋ 權益</strong></td><td><strong>$1,182,562</strong> ✅</td></tr>
+</table>
+
+<h3>現金流量表（錢的進出明細）</h3>
+<table>
+<tr><th>項目</th><th>金額</th><th>說明</th></tr>
+<tr><td>期初現金</td><td>$500,000</td><td>開局的錢</td></tr>
+<tr><td>+ 銷售收款</td><td>$323,160</td><td>賣貨當期全數收款</td></tr>
+<tr><td>− 採購／人工</td><td>$96,000</td><td>採購 32,000 + 人工 64,000</td></tr>
+<tr><td>− 營業費用、利息與稅</td><td>$85,773</td><td>行銷+維護+研發+保管+管理+利息+稅</td></tr>
+<tr><td>+ 期末現金</td><td><strong>$641,387</strong></td><td></td></tr>
+</table>
+<div class="warning">💡 這一期淨利 $122,562，現金卻增加 $141,387 — 因為折舊 $12,500 是費用但沒付現金。</div>
+</section>
+
+<!-- 公式總整理 -->
+<section id="formulas" class="chapter">
+<h2>🧮 公式總整理與檢查清單</h2>
+
+<h3>全部公式（公開，歡迎驗算）</h3>
+<table>
+<tr><th>項目</th><th>公式</th></tr>
+<tr><td>市場基本需求</td><td>850 × 公司數 × 季節係數 × (1 + 0.015 × (期數−1)) × 情境係數 × min(1.5, 100 ÷ 平均售價)</td></tr>
+<tr><td>公司吸引力</td><td>exp(−敏感度 × (售價÷100 − 1)) × (1 + 品牌權重 × ln(1 + 廣告÷5,000)) × 品質</td></tr>
+<tr><td>產能</td><td>產能 = 期初設備 ÷ 125（取整）；超產能按比例縮減</td></tr>
+<tr><td>原料需求</td><td>所需原料 = 產量 ÷ 利用率；利用率 = min(0.95, 0.8 + 維護費 ÷ 1,000,000)</td></tr>
+<tr><td>單位成本</td><td>(材料 + 人工 $20) ÷ 產量</td></tr>
+<tr><td>期末設備</td><td>期初設備 × 0.975 + 投資</td></tr>
+<tr><td>期末品質</td><td>min(1.6, 品質 × 0.99 + 研發 ÷ 1,000,000)</td></tr>
+<tr><td>NPV</td><td>股利折現合計 + 期末權益 ÷ 1.02^期數 − 860,000</td></tr>
+</table>
+
+<h3>八期走勢（預設決策）</h3>
+<div class="term-card">
+每期間淨利約在 <span class="highlight">$120,000~130,000</span> 上下浮動，期末權益約 <span class="highlight">$1,857,558</span>，NPV 約 <span class="highlight">$725,408</span>（第二名）。
+</div>
+
+<h3>學生繳交前自查</h3>
+<ul class="checklist">
+<li>四市場配貨總和 ≤ 產能？</li>
+<li>原料需求（產量 ÷ 利用率）＜ 期初原料？</li>
+<li>本期採購有算下期的量嗎？</li>
+<li>預估支出 ≤ 期初現金 + 保守收入？</li>
+<li>缺貨補了、剩貨減了嗎？理由寫了目標與預測嗎？</li>
+</ul>
+
+<h3>老師結算前自查</h3>
+<ul class="checklist">
+<li>本期情境設定正確嗎？</li>
+<li>公告與指派題目都發了嗎？</li>
+<li>繳交組數 = 全部組數嗎？</li>
+<li>結算後要帶看的 1–2 組診斷選好了嗎？上期回饋寫了嗎？</li>
+</ul>
+
+<div class="footer">
+<p>流程參考公開的 BOSS 教學架構；公式、係數與電腦策略為本教學版自行設計，不等同官方 BOSS 模型。</p>
+<p style="margin-top: 0.5rem;">版本：教學區「經營實驗室」師生專用版，2026 年 11 月</p>
+</div>
+
+</div>
+</body>
+</html>
