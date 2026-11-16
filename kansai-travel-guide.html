@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>關西美食住宿指南｜大阪・京都・神戶</title>
+<style>
+:root{
+  --bg:#FDF8E8;--card:#FFFDF2;--border:#F2EAD3;--ink:#2D2A26;--muted:#6B6860;
+  --accent:#C4903F;--accent-light:#F5E6C8;--ok:#7DB87D;--warn:#D4A017;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;line-height:1.75}
+main{max-width:960px;margin:0 auto;padding:28px 20px 60px}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);text-align:center;margin-bottom:8px;color:var(--ink)}
+.hero-sub{text-align:center;color:var(--muted);font-size:1rem;margin-bottom:32px}
+.card{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(0,0,0,.04)}
+.city-tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;padding:4px 12px;border-radius:20px}
+.tag-osaka{background:#FFE5D9;color:#C44}
+.tag-kyoto{background:#E5F0E5;color:#2D6A2D}
+.tag-kobe{background:#D9E8FF;color:#265AA8}
+h2{font-size:1.5rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+h2 .emoji{font-size:1.4rem}
+section{margin-bottom:24px}
+h3{font-size:1.05rem;font-weight:700;margin:20px 0 10px;color:var(--ink);padding-left:12px;border-left:3px solid var(--accent)}
+p{color:var(--muted);margin-bottom:10px;font-size:.95rem}
+ul{list-style:none;padding:0}
+li{padding:10px 0 10px 28px;position:relative;border-bottom:1px solid var(--border)}
+li:last-child{border-bottom:none}
+li::before{content:"•";position:absolute;left:8px;color:var(--accent);font-weight:700;font-size:1.2rem}
+.menu-item{background:#FAF7EF;border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.menu-name{font-weight:700;color:var(--ink);font-size:.95rem}
+.menu-desc{color:var(--muted);font-size:.85rem;margin-top:4px}
+.price-tag{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:8px}
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px}
+.loc-card{background:#FAF7EF;border-radius:12px;padding:18px;border:1px solid var(--border)}
+.loc-card h4{font-size:.95rem;margin-bottom:6px;color:var(--ink)}
+.loc-card p{font-size:.85rem;margin:0}
+.tips{background:#F5F0E6;border-radius:12px;padding:18px;margin-top:16px}
+.tips h4{font-size:.9rem;font-weight:700;margin-bottom:8px;color:var(--accent)}
+.tips p{font-size:.85rem;margin:0}
+.comparison{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.comp-card{background:var(--card);border-radius:14px;border:1px solid var(--border);overflow:hidden}
+.comp-head{padding:16px 20px;font-weight:700;font-size:1rem;color:#fff}
+.comp-head.osaka{background:linear-gradient(135deg,#E85D4A,#C44)}
+.comp-head.kyoto{background:linear-gradient(135deg,#5BA85B,#3D7A3D)}
+.comp-head.kobe{background:linear-gradient(135deg,#4A7BC4,#265AA8)}
+.comp-body{padding:16px 20px;font-size:.9rem}
+.comp-body ul li{padding:6px 0 6px 20px;border-bottom:1px dashed var(--border)}
+.comp-body ul li:last-child{border-bottom:none}
+.nav-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px}
+.pill{background:var(--card);border:1px solid var(--border);border-radius:30px;padding:10px 22px;font-size:.9rem;font-weight:600;color:var(--ink);text-decoration:none;transition:all .2s}
+.pill:hover{background:var(--accent-light);border-color:var(--accent);transform:translateY(-2px)}
+footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:20px}
+@media(max-width:680px){main{padding:20px 16px 48px}.card{padding:20px}.comparison{grid-template-columns:1fr}.loc-grid{grid-template-columns:1fr}}
+@media print{body{background:#fff}.card{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<main>
+  <h1>🗾 關西食宿指南</h1>
+  <p class="hero-sub">大阪 ・ 京都 ・ 神戶 — 三大城市風格大解析</p>
+
+  <nav class="nav-pills" aria-label="快速導航">
+    <a href="#osaka" class="pill">🔥 大阪</a>
+    <a href="#kyoto" class="pill">⛩️ 京都</a>
+    <a href="#kobe" class="pill">🌊 神戶</a>
+    <a href="#compare" class="pill">📊 比較總結</a>
+  </nav>
+
+  <!-- 大阪 -->
+  <div id="osaka" class="card">
+    <span class="city-tag tag-osaka">OSAKA</span>
+    <h2><span class="emoji">🔥</span>大阪 — 熱鬧便利、美食之都</h2>
+    
+    <section>
+      <h3>🏨 住宿特色</h3>
+      <p>大阪是關西的交通樞紐，住宿區域選擇極多，從平價商務到頂級奢華一應俱全。</p>
+      <div class="loc-grid">
+        <div class="loc-card">
+          <h4>🚉 梅田（大阪站）</h4>
+          <p>適合商務旅客與想搭車去京都或機場的人。新幹線、JR環狀線、地鐵匯集，周邊百貨林立。</p>
+        </div>
+        <div class="loc-card">
+          <h4>🛍️ 難波／心齋橋</h4>
+          <p>購物血拼天堂！道頓堀美食一出門就到，夜生活熱鬧，適合自由行遊客。</p>
+        </div>
+        <div class="loc-card">
+          <h4>💰 平價推薦</h4>
+          <p>商務旅館密集區如「美國村」「本町」，每晚 3,000–6,000 日圓就能住得不錯。</p>
+        </div>
+        <div class="loc-card">
+          <h4>✨ 高CP值連鎖</h4>
+          <p>東橫 Inn、 Daiwa Roynet、Resort Inn 等連鎖飯店品質穩定，鄰近車站方便。</p>
+        </div>
+      </div>
+      <div class="tips">
+        <h4>💡 大阪住宿小建議</h4>
+        <p>若打算三天內跑大阪＋京都＋神戶，建議住在 <strong>梅田</strong> 或 <strong>難波</strong>，交通最彈性。</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>🍴 美食特色</h3>
+      <p>大阪稱得上日本「庶民美食王國」，口味濃郁、醬香十足，吃下去就會感到幸福。</p>
+      
+      <div class="menu-item">
+        <span class="menu-name">章魚燒（たこ焼き）</span>
+        <span class="price-tag">¥500–800</span>
+        <p>外皮酥脆內裡軟嫩，現烤現吃最對味。道頓堀的「くくる」、「わかもり」都是名店。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">大阪燒（お好み焼き）</span>
+        <span class="price-tag">¥1,200–2,000</span>
+        <p>日式煎餅風美食，麵糊混搭高麗菜、豚肉、海鮮，鐵板現烤，淋上特製醬汁與美乃滋。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">串炸（串カツ）</span>
+        <span class="price-tag">¥200–400/串</span>
+        <p>外酥內嫩的炸串，沾醬只能蘸一次（不可重複蘸）。新世界「元祖串カツ」最有名。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">燒肉・居酒屋放題</span>
+        <span class="price-tag">¥3,000–6,000</span>
+        <p>大阪燒肉價格比東京親民，放題文化發達，晚餐花 4,000 日圓就能吃到飽。</p>
+      </div>
+
+      <div class="tips">
+        <h4>🍽️ 必吃名單</h4>
+        <p>道頓堀・黑門市場・新世界為小吃集中區，百元物價在這裡還能找到，是真正的大阪庶民味。</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 京都 -->
+  <div id="kyoto" class="card">
+    <span class="city-tag tag-kyoto">KYOTO</span>
+    <h2><span class="emoji">⛩️</span>京都 — 古都風情、沉靜雅緻</h2>
+    
+    <section>
+      <h3>🏨 住宿特色</h3>
+      <p>京都的住宿除了現代飯店，最具魅力的是改建自傳統木造建築的「京町家」民宿，以及結合日式庭園的高級溫泉旅館。</p>
+      <div class="loc-grid">
+        <div class="loc-card">
+          <h4>🚄 京都車站周邊</h4>
+          <p>新幹線直通，去奈良、大阪、神戶都很方便，商業機能強，適合首次來訪者。</p>
+        </div>
+        <div class="loc-card">
+          <h4>👘 祇園・河原町</h4>
+          <p>古街散步區，晚上燈光亮起超有氛圍，能體驗藝伎文化，住宿多為精品旅館。</p>
+        </div>
+        <div class="loc-card">
+          <h4>🌿 嵐山</h4>
+          <p>山水環繞的清幽之地，高級溫泉旅館密集，適合追求寧靜與禪意的旅客。</p>
+        </div>
+        <div class="loc-card">
+          <h4>🏠 京町家 Airbnb</h4>
+          <p>將百年木造町屋改成時尚民宿，夜晚安靜、清晨鳥叫，是最地道的京都體驗。</p>
+        </div>
+      </div>
+      <div class="tips">
+        <h4>💡 京都住宿小建議</h4>
+        <p>若想省錢又體會文青感，可選<strong>烏丸御池</strong>或<strong>四条河原町</strong>周邊的小民宿；預算夠就訂一間<strong>懷石料理旅館</strong>度過一晚。</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>🍱 美食特色</h3>
+      <p>京都料理講究食材原味與季節感，調味清淡但高湯底蘊深厚，擺盤講求藝術性。</p>
+      
+      <div class="menu-item">
+        <span class="menu-name">湯豆腐・湯葉料理</span>
+        <span class="price-tag">¥1,500–3,000</span>
+        <p>南禪寺、嵐山一帶最著名。溫熱柔滑的豆花搭配昆布高湯，健康又暖心。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">懷石料理</span>
+        <span class="price-tag">¥5,000–15,000+</span>
+        <p>融合視覺與味覺的頂級饗宴，一餐可能涵蓋數十道精緻小品，是京都飲食文化的巔峰。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">鯡魚蕎麥麵（しらす麺）</span>
+        <span class="price-tag">¥800–1,200</span>
+        <p>京都特有的清爽涼麵，配上新鮮白魚，是夏天消暑首選。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">宇治抹茶甜點</span>
+        <span class="price-tag">¥400–1,000</span>
+        <p>抹茶冰淇淋、抹茶提拉米蘇、抹茶千層蛋糕——祇園和清水一帶滿滿抹茶店家。</p>
+      </div>
+
+      <div class="tips">
+        <h4>🍵 精華用餐時間</h4>
+        <p>懷石料理多半需事前預約，午餐時段有較平價的「お割烹」可選；傍晚前到嵐山能避開人潮。</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 神戶 -->
+  <div id="kobe" class="card">
+    <span class="city-tag tag-kobe">KOBE</span>
+    <h2><span class="emoji">🌊</span>神戶 — 浪漫海港、和洋交融</h2>
+    
+    <section>
+      <h3>🏨 住宿特色</h3>
+      <p>神戶具有濃厚的異國情調，靠海飯店房間打開窗戶就能看到神戶港塔與海洋博物館，夜景迷人。</p>
+      <div class="loc-grid">
+        <div class="loc-card">
+          <h4>🏙️ 三宮・元町</h4>
+          <p>交通逛街核心，地下街四通八達，前往美利堅公園只需步行 5 分鐘。</p>
+        </div>
+        <div class="loc-card">
+          <h4>🌃 神戶港・美利堅公園</h4>
+          <p>海景第一排，港灣夜景浪漫絕倫，高級酒店與設計旅館眾多。</p>
+        </div>
+        <div class="loc-card">
+          <h4>🏘️ 北野町・異人館區</h4>
+          <p>歐風百年歷史小旅館，像住在歐洲小鎮，適合蜜月或紀念日。</p>
+        </div>
+        <div class="loc-card">
+          <h4>♨️ 有馬溫泉</h4>
+          <p>距市中心 30 分鐘，金泉銀泉雙泡， overnight ryokan 值得留宿一晚。</p>
+        </div>
+      </div>
+      <div class="tips">
+        <h4>💡 神戶住宿小建議</h4>
+        <p>推薦住 <strong>神戶臨海樂園臨港域名勝</strong> 附近，或選一間 <strong>有馬溫泉鄉</strong> 的溫泉旅館，夜晚泡湯看星最愜意。</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>🥩 美食特色</h3>
+      <p>神戶融合了早期開港的西洋異國風情與頂級肉品文化，是關西最能感受「和洋折衷」的城市。</p>
+      
+      <div class="menu-item">
+        <span class="menu-name">神戶牛（Kobe Beef）</span>
+        <span class="price-tag">¥8,000–20,000+</span>
+        <p>世界聞名的頂級和牛，油花分佈均勻如大理石紋，入口即化。建議以鐵板燒或壽喜燒方式品嚐，每家料亭各有秘傳。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">元町洋食街</span>
+        <span class="price-tag">¥1,500–4,000</span>
+        <p>明治時期開港後留下的西洋餐廳聚集地，咖啡、麵包、甜點水準極高，是日本有名的甜點之都。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">神戶港塔餐廳</span>
+        <span class="price-tag">¥3,000–6,000</span>
+        <p>邊吃邊欣賞夜景，浪漫指數滿分，適合慶祝特殊日子。</p>
+      </div>
+      
+      <div class="menu-item">
+        <span class="menu-name">有馬溫泉鄉鄉土料理</span>
+        <span class="price-tag">¥2,000–4,000</span>
+        <p>溫泉鄉裡也能吃到在地料哩，如「金刀比羅燒」「有馬豆腐」等。</p>
+      </div>
+
+      <div class="tips">
+        <h4>🍷 神戶 Dining 重點</h4>
+        <p>神戶牛名店需要事前預訂，建議透過飯店櫃台或電話預約；平日午餐時段較容易訂位且價格較親民。</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 比較總表 -->
+  <div id="compare" class="card">
+    <h2><span class="emoji">📊</span>三城比較速覽</h2>
+    <div class="comparison">
+      <div class="comp-card">
+        <div class="comp-head osaka">🔥 大阪</div>
+        <div class="comp-body">
+          <ul>
+            <li>住宿：<strong>便宜、選擇多</strong></li>
+            <li>美食：<strong>庶民、量大、便宜</strong></li>
+            <li>氣氛：<strong>熱鬧、嘈雜、有趣</strong></li>
+            <li>適合：<strong>第一次來、想吃飽</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-head kyoto">⛩️ 京都</div>
+        <div class="comp-body">
+          <ul>
+            <li>住宿：<strong>有質感、貴</strong></li>
+            <li>美食：<strong>精緻、清淡、養生</strong></li>
+            <li>氣氛：<strong>靜謐、有歷史感</strong></li>
+            <li>適合：<strong>喜歡慢活、文化探索</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-head kobe">🌊 神戶</div>
+        <div class="comp-body">
+          <ul>
+            <li>住宿：<strong>浪漫海景、温泉</strong></li>
+            <li>美食：<strong>高級、異國風、奢華</strong></li>
+            <li>氣氛：<strong>優雅、閒適、小眾</strong></li>
+            <li>適合：<strong>約會、纪念日、放鬆</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Lingo1516 · 關西食宿指南</p>
+    <p style="margin-top:6px;font-size:.8rem">資料來源：公開旅遊資訊整理，實際價格以官網為準</p>
+  </footer>
+</main>
+</body>
+</html>
