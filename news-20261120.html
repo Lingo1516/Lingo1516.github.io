@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>今日新聞 11/20（週五）｜台股史上第3大跌、外資連5賣、普發2萬三讀</title>
+<style>
+:root{
+  --bg:#0F0A1E; --card:#1A1233; --line:#2A1F4A; --txt:#E8E4F0; --dim:#9A90B8;
+  --politics:#FF4D8D; --econ:#FF7A3D; --world:#3DDC97; --tech:#00C9DB;
+  --invest:#FFD166; --show:#C77DFF; --mgmt:#9B5DE5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  line-height:1.85;font-size:16px;-webkit-text-size-adjust:100%;
+  padding:0 0 60px;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header{
+  background:linear-gradient(150deg,#1E1240 0%,#0F0A1E 70%);
+  padding:34px 0 26px;border-bottom:1px solid var(--line);margin-bottom:26px;
+}
+.kicker{font-size:12px;letter-spacing:3px;color:var(--dim);margin-bottom:10px;font-weight:600}
+header h1{font-size:27px;font-weight:800;letter-spacing:-.5px;line-height:1.35}
+header h1 span{color:var(--politics)}
+.sub{margin-top:12px;font-size:13.5px;color:var(--dim);line-height:1.8}
+
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 30px}
+nav a{
+  font-size:12.5px;padding:6px 12px;border-radius:20px;text-decoration:none;
+  background:var(--card);border:1px solid var(--line);color:var(--dim);white-space:nowrap;
+}
+nav a:active{background:#241847}
+
+.mkt{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin-bottom:34px}
+.mkt h2{font-size:14px;letter-spacing:1.5px;color:var(--invest);margin-bottom:14px;font-weight:700}
+.mkt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.mkt-item{background:#120C28;border-radius:9px;padding:11px 12px;border-left:3px solid var(--line)}
+.mkt-item .nm{font-size:11.5px;color:var(--dim);margin-bottom:3px}
+.mkt-item .vl{font-size:15px;font-weight:700;letter-spacing:-.3px}
+.dn{color:#FF5E5E}.up{color:#3DDC97}
+
+section{margin-bottom:44px;scroll-margin-top:20px}
+.sec-head{display:flex;align-items:center;gap:11px;margin-bottom:8px}
+.sec-head i{width:5px;height:24px;border-radius:3px;display:block}
+.sec-head h2{font-size:20px;font-weight:800;letter-spacing:-.3px}
+.sec-note{font-size:12.5px;color:var(--dim);margin:0 0 20px 16px;line-height:1.7}
+
+article{
+  background:var(--card);border-radius:12px;padding:18px 17px;margin-bottom:14px;
+  border-left:4px solid var(--line);
+}
+article h3{font-size:16.5px;font-weight:700;line-height:1.55;margin-bottom:10px;letter-spacing:-.2px}
+article p{font-size:14.5px;color:#CFC8E2;margin-bottom:11px;line-height:1.9}
+article p:last-child{margin-bottom:0}
+article .time{font-size:11.5px;color:var(--dim);font-weight:500;margin-left:6px;letter-spacing:0}
+.observe{
+  font-size:13.5px;background:#120C28;border-radius:8px;padding:11px 13px;
+  color:#B9AFD6;border-left:2px solid var(--mgmt);line-height:1.8;
+}
+.observe b{color:var(--mgmt);font-weight:700}
+.hl{color:var(--invest);font-weight:600}
+
+#politics .sec-head i{background:var(--politics)}
+#politics article{border-left-color:var(--politics)}
+#econ .sec-head i{background:var(--econ)}
+#econ article{border-left-color:var(--econ)}
+#world .sec-head i{background:var(--world)}
+#world article{border-left-color:var(--world)}
+#tech .sec-head i{background:var(--tech)}
+#tech article{border-left-color:var(--tech)}
+#invest .sec-head i{background:var(--invest)}
+#invest article{border-left-color:var(--invest)}
+#show .sec-head i{background:var(--show)}
+#show article{border-left-color:var(--show)}
+#mgmt .sec-head i{background:var(--mgmt)}
+#mgmt article{border-left-color:var(--mgmt)}
+
+.focus{
+  background:linear-gradient(140deg,#241847,#160E33);border:1px solid #3B2A6B;
+  border-radius:14px;padding:22px 19px;margin-bottom:40px;
+}
+.focus h2{font-size:15px;color:var(--politics);letter-spacing:1.5px;margin-bottom:13px;font-weight:700}
+.focus p{font-size:14.5px;color:#DCD5EC;line-height:1.95}
+footer{text-align:center;font-size:12px;color:#6B6188;padding:26px 0 0;border-top:1px solid var(--line);margin-top:20px;line-height:2}
+@media(max-width:400px){
+  header h1{font-size:23px}body{font-size:15px}article h3{font-size:15.5px}
+  .mkt-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">TAIWAN DAILY · 深度版</div>
+    <h1>今日新聞 <span>11/20</span><br>台股史上第3大跌 2393點 外資連5賣94億 普發2萬強勢三讀</h1>
+    <div class="sub">2026 年 11 月 20 日（週五）｜七區塊深度整理：政治・經濟・國際・科技・財經投資・影劇娛樂・管理趨勢</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav>
+  <a href="#politics">政治</a>
+  <a href="#econ">經濟</a>
+  <a href="#world">國際</a>
+  <a href="#tech">科技</a>
+  <a href="#invest">財經投資</a>
+  <a href="#show">影劇娛樂</a>
+  <a href="#mgmt">EMBA 觀察</a>
+</nav>
+
+<div class="focus">
+  <h2>💡 今日焦點</h2>
+  <p>台股單日重挫 2,393 點、跌幅 6.23%，創下史上第 3 大收盤跌點紀錄，加權指數收 36,033 點，本週累計暴跌 7,641 點。外資連 5 日賣超、三大法人合賣超 522 億元，國巨、台積電雙雙創波段新低，槓桿型 ETF 跌幅超 13%。同一天立院三讀普發現金 2 萬元與 6,076 億追加預算，油電凍漲延至 2028 年 1 月，政經雙線同步劇震。外部環境方面，日股狂瀉 3,000 點、Anthropic 上市首日先揚後抑、AI 熱潮連帶衝擊 Meta 氣候承諾，全球風險厭惡情緒高漲。後續觀察：台股能否在 36,000 點企穩、外資賣超是否趨緩、美股感恩節前走勢、以及 11/27 選前黃金週對市場心理的影響。</p>
+</div>
+
+<div class="mkt">
+  <h2>📊 市場速覽</h2>
+  <div class="mkt-grid">
+    <div class="mkt-item"><div class="nm">加權指數</div><div class="vl dn">36,033　−2,393 (−6.23%)</div></div>
+    <div class="mkt-item"><div class="nm">本週累跌</div><div class="vl dn">−7,641 點　史上罕見</div></div>
+    <div class="mkt-item"><div class="nm">外資賣超</div><div class="vl dn">94 億元　連 5 賣</div></div>
+    <div class="mkt-item"><div class="nm">三大法人</div><div class="vl dn">522.46 億元　合賣超</div></div>
+    <div class="mkt-item"><div class="nm">台積電</div><div class="vl dn">7 個月新低　零股衝 241 億</div></div>
+    <div class="mkt-item"><div class="nm">國巨</div><div class="vl dn">跌破 300 元　回跌逾 75%</div></div>
+    <div class="mkt-item"><div class="nm">台指期 12 月</div><div class="vl dn">−2,732 點</div></div>
+    <div class="mkt-item"><div class="nm">新台幣</div><div class="vl up">32.936　升 0.6 分</div></div>
+  </div>
+</div>
+
+<section id="politics">
+  <div class="sec-head"><i></i><h2>政治</h2></div>
+  <p class="sec-note">立院強勢三讀普發 2 萬與追加預算，油電凍漲延長；選前黃金週藍綠白三腳督陣容成形。</p>
+
+  <article>
+    <h3>立院三讀普發現金 2 萬元 綠白聯手反對不敵藍營人數優勢<span class="time">15:56</span></h3>
+    <p>立法院三讀通過「全民普發現金 2 萬元」特別條例，民進黨團與民眾黨團聯手反對，但國民黨憑藉席次優勢強勢通過。蔣萬安表示藍營要更團結面對年底選舉，趙曉慧分析秦慧珠遭黃復興開鍘對蔣選情影響有限。王婉諭直指 13 位綠委缺席成「破口」，批民進黨該給交代。</p>
+    <p>追加預算同步三讀，歲出 6,076 億元全數照列，包含補助中油、台電虧損，並鎖定油電價格凍漲至 2028 年 1 月底前。劉建國痛批「本末倒置到極點」，藍提案禁水源水庫設光電設施逕付二讀交協商。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 普發 2 萬執行細節（發放對象、時間表）、追加預算對財政紀律衝擊、油電凍漲到期後調漲壓力。選前 11/27 黃金週三黨主席同台效應。</div>
+  </article>
+
+  <article>
+    <h3>APEC 台美舉行雙邊會議 國安團隊緊盯美中俄峰會<span class="time">17:02</span></h3>
+    <p>APEC 期間台美舉行雙邊會議，前駐美代表指出川普需要鎂光燈，台灣可凸顯價值與美互利。國安團隊全程監控美中俄峰會動向，川普稱峰會「滿分 12 分」，路透社則指未取得實質成果。新華社指美國不支持台獨，林佳龍回應為中國官媒話術。台灣九合一選舉前夕通報 Meta 近 2,700 個疑似中國介選帳號。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 川普 2.0 時期美台關係具體推進項目、Meta 介選帳號查核進展、美中俄三方互動對台海情勢影響。</div>
+  </article>
+
+  <article>
+    <h3>選前黃金週莊競程衝刺 賴清德、沈伯洋週日站台<span class="time">17:20</span></h3>
+    <p>竹市長候選人莊競程進入選前黃金週，明天黃偉哲陪車掃，週日賴清德、沈伯洋將合體站台。何欣純再送「海線辣醬」助選，沈伯洋回應「要回去 PK」。柯志恩專訪喊「讓高雄更好」車掃熱絡延長 1 小時。謝國樑提政績盼求連任，童子瑋允諾提升清潔隊福利。81 歲阿北寒風中舉牌支持沈伯洋、何欣純 2 小時。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 11/23-24 最後雙週末造勢效果、賴清德親自下場助選的邊際效益、各縣市關鍵樣板市選情收尾走向。</div>
+  </article>
+</section>
+
+<section id="econ">
+  <div class="sec-head"><i></i><h2>經濟</h2></div>
+  <p class="sec-note">外銷訂單連 21 紅創歷史新高，投資台灣三大方案破 3 兆，產業端呈現韌性與轉型並行。</p>
+
+  <article>
+    <h3>10 月外銷訂單 1,238 億美元續創高 年增 78.3% 連 21 紅<span class="time">16:20</span></h3>
+    <p>經濟部公布 10 月外銷訂單 1,238 億美元，年增 78.3%，連續 21 個月年增，創歷史單月新高紀錄。顯示全球供應鏈重組下，台灣製造業訂單動能依然強勁，AI 伺服器、高效能運算相關需求持續支撐。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 11-12 月訂單能否維持高檔、美聯儲降息路徑對全球需求影響、關稅政策不確定性對出口轉單效應。</div>
+  </article>
+
+  <article>
+    <h3>投資台灣三大方案累計破 3 兆 福懋科砸 111 億擴封測產能<span class="time">15:45</span></h3>
+    <p>經濟部統計投資台灣三大方案（投資台灣、歸台投資、旗艦計畫）累計引資破 3 兆元。福懋科技砸逾 111 億元擴充封測產能，因應 AI 晶片封裝測試需求爆增。桃園 A8 加速器助新創獲大廠採購，AI 與淨零技術落地創造新商機。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 後續引資案質與量、封測產能擴充時程對台股產業鏈題材影響、A8 加速器孵化成果商業化進度。</div>
+  </article>
+
+  <article>
+    <h3>南寶法說會：全年營收獲利有望再創高 拚跨足先進封裝、CCL 材料<span class="time">17:34</span></h3>
+    <p>南寶樹脂法說會指出，全年營收獲利有望再創歷史新高，積極佈局先進封裝材料與 CCL（銅箔基板）高階產品。受惠 AI 伺服器、高階 PCB 需求結構性成長，毛利率有望逐季改善。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 先進封裝材料驗證進度、CCL 新產品出貨時程、毛利率季節性變化與競爭格局。</div>
+  </article>
+
+  <article>
+    <h3>和泰車：今年車市估 43 萬輛 觀察 AI 產業震盪對購車力影響<span class="time">16:35</span></h3>
+    <p>和泰車法說會預估 2026 年國內車市約 43 萬輛，並密切觀察 AI 產業震盪對高薪族群購車意願的影響。集團佈局電動車、智慧行動服務，轉型成效將是後續觀察重點。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 車市實際銷售達標率、電動車銷售比重提升、AI 產業薪資波動對大宗消費影響。</div>
+  </article>
+
+  <article>
+    <h3>研調：11 月下旬面板需求弱 成本仍高 價格持平<span class="time">17:22</span></h3>
+    <p>研調機構指出 11 月下旬面板需求轉弱，但原物料成本維持高檔，面板價格預估持平。七大光電公協會呼籲綠能發展回歸理性，訴求科學實證導向政策。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 面板廠產能利用率調整、明年上半年面板價格談判走向、綠能政策修法對光電產業影響。</div>
+  </article>
+</section>
+
+<section id="world">
+  <div class="sec-head"><i></i><h2>國際</h2></div>
+  <p class="sec-note">日股暴跌 3,000 點引發全球避險，美中俄峰會無實質成果，烏俄戰火波及波蘭邊境。</p>
+
+  <article>
+    <h3>日股暴跌逾 3,000 點 日經狂瀉 3,000 點 Anthropic 上市難救行情<span class="time">15:28</span></h3>
+    <p>東京股市暴跌，日經 225 指數單日狂瀉逾 3,000 點，創歷史最大單日跌點之一。AI 概念股 Anthropic 上市首日先揚後抑，無法扭轉科技股賣壓。科技股賣壓未止，日韓股市雙雙收低，顯示全球風險厭惡情緒升溫，資金回避高估值科技股。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 日股後市支撐位、美股科技七巨頭財報季後走勢、日圓匯率變化對出口導向股影響。</div>
+  </article>
+
+  <article>
+    <h3>川普稱美中俄峰會滿分 12 分 路透：未取得實質成果<span class="time">16:58</span></h3>
+    <p>川普在社群媒體稱美中俄峰會「滿分 12 分」，但路透社報導指出會議未取得實質成果。波蘭軍方通報與烏克蘭邊境有不明物體墜落，烏俄戰火外溢風險升高。前駐美代表分析川普需要鎂光燈，台灣可凸顯互利價值。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 川普 2.0 外交實質推進內容、烏俄停戰談判進展、波蘭/北約東翼防務部署調整。</div>
+  </article>
+
+  <article>
+    <h3>法國將在 2027 年大選前監控網紅及 YouTube 創作者 防範政治偏頗<span class="time">17:23</span></h3>
+    <p>法國政府計畫在 2027 年大選前建立機制，監控網紅及 YouTube 創作者政治內容，防範政治偏頗與外力介選。Euronews 精選報導顯示歐洲各國對數位平台政治影響力監管趨嚴。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 法國具體監管細則出台時程、歐盟《數位服務法案》執行力度、台灣參考借鑑空間。</div>
+  </article>
+
+  <article>
+    <h3>東協電網計畫受矚 新加坡盼吸引投資促區域經濟成長<span class="time">16:16</span></h3>
+    <p>東協區域電網互聯計畫受到關注，新加坡期盼透過基礎建設互聯互通吸引投資、促進區域經濟成長。區域能源轉型與電力交易機制建立將是長期議題。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 東協電網互聯具體時間表、跨國電力定價機制、台灣綠電國際認證與參與空間。</div>
+  </article>
+</section>
+
+<section id="tech">
+  <div class="sec-head"><i></i><h2>科技</h2></div>
+  <p class="sec-note">AI 熱潮衝擊大廠氣候承諾，Anthropic 上市首日表現分歧，資安事件頻傳。</p>
+
+  <article>
+    <h3>AI 熱潮衝擊企業氣候承諾 Meta 重新評估 2030 淨零目標<span class="time">11:06</span></h3>
+    <p>Meta 因 AI 基礎建設大擴建導致耗電量暴增，宣布重新評估 2030 年淨零排放目標。AI 熱潮讓科技巨頭面臨「算力擴張」與「永續承諾」雙重壓力，微軟、Google 同樣面臨碳排增長挑戰。企業永續報告與實際執行落差擴大，ESG 投資人關注度升高。</p>
+    <div class="observe"><b>🔭 後續觀察</b> Meta 具體調整方案與時間表、科技巨頭綠電採購加碼規模、AI 能耗優化技術突破進度、台灣電力供給能否配合 AI 產業擴張。</div>
+  </article>
+
+  <article>
+    <h3>Anthropic 上市首日先盛後衰 AI 熱潮能否延續備受關注<span class="time">10:24</span></h3>
+    <p>AI 新創 Anthropic 上市首日開盤大漲，但盤中迅速回落，收盤漲幅大幅縮水。市場解讀為 AI 概念股估值泡沫化跡象明顯，投資人對 AI 商業化變現時程轉趨審慎。日股、韓股科技權值股同步走弱，顯示全球 AI 題材熱度降溫。</p>
+    <div class="observe"><b>🔭 後續觀察</b> Anthropic 後續股價表現、OpenAI 等未上市獨角獸估值調整、AI 應用層營收貢獻度驗證、台灣 AI 供應鏈股價聯動性。</div>
+  </article>
+
+  <article>
+    <h3>阿里巴巴遭股東告詐欺 涉隱瞞與輝達間諜案關係<span class="time">09:24</span></h3>
+    <p>阿里巴巴被股東提起集體訴訟，指控公司隱瞞與輝達相關的間諜案關係，涉及晶片技術洩露指控。中美科技戰背景下，供應鏈資安合規風險顯性化。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 訴訟進展與證據揭露、中美晶片出口管制新規執行、台灣半導體廠商合規成本上升。</div>
+  </article>
+
+  <article>
+    <h3>Visa、摩根大通用戶個資遭駭 n0n 勒索軟體組織宣稱犯案<span class="time">08:43</span></h3>
+    <p>Visa 與摩根大通確認用戶個資遭駭，勒索軟體組織 n0n 宣稱犯案。金融業資安防護再次拉警報，數發部表示今年累計培訓逾 3,900 名資安人才，推動大專校院資安健檢團強化中小企業防護韌性。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 駭客組織 n0n 後續攻擊目標、金融業資安投資加碼規模、台灣金管會資安檢核機制強化、供應鏈攻擊防範對策。</div>
+  </article>
+
+  <article>
+    <h3>中華電：沒放棄 AWS 低軌衛星合作 盼協調 28GHz 頻譜<span class="time">17:21</span></h3>
+    <p>中華電信表示未放棄與 AWS 低軌衛星合作，正積極協調 28GHz 頻譜釋出。低軌衛星通訊為數位韌性關鍵基礎建設，頻譜資源取得將決定部署時程。</p>
+    <div class="observe"><b>🔭 後續觀察</b> NCC 28GHz 頻譜釋出時程、中華電與 AWS 具體合作進度、低軌衛星商業化服務上線時間點。</div>
+  </article>
+</section>
+
+<section id="invest">
+  <div class="sec-head"><i></i><h2>財經投資</h2></div>
+  <p class="sec-note">台股暴跌引發恐慌性拋售，國巨、台積電雙雙創新低，外資持續賣超，法人籌碼面惡化。</p>
+
+  <article>
+    <h3>台股暴跌 6.23% 收 36,033 點 史上第 3 大收盤跌點 本週重挫 7,641 點<span class="time">13:45</span></h3>
+    <p>加權指數開低走低，全日跌 2,393.60 點，跌幅 6.23%，收 36,033 點，創下史上第 3 大單日收盤跌點紀錄。本週累計重挫 7,641 點，近 7 個月新低。電子、金融、傳產全面下殺，量能縮減顯示買方意願凍結。證交所董事長林修銘信心喊話，限空加護盤雙重措施下跌勢仍超強。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 36,000 點關鍵支撐能否守住、外資賣超是否趨緩、融資餘額變化、11/27 選前效應對市場心理影響、技術面反彈條件（量能、均線）。</div>
+  </article>
+
+  <article>
+    <h3>外資賣超 94 億元連 5 賣 續砍 ETF 敲進聯電、群創<span class="time">17:13</span></h3>
+    <p>外資連續第 5 日賣超，單日賣超 94 億元，重點砍倉 ETF、並敲進聯電、群創等個股。三大法人合賣超 522.46 億元，投信、自營商同步賣超。外資持股比重下修，台股籌碼結構惡化。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 外資賣超連續天數能否中斷、ETF 賣超對指數拖累、外資回補條件（匯率、美股、基本面估值）。</div>
+  </article>
+
+  <article>
+    <h3>國巨跌破 300 元創波段新低 自 7/1 高點回跌逾 75%<span class="time">15:58</span></h3>
+    <p>被動元件龍頭國巨股價跌破 300 元關卡，創下波段新低。自 7 月 1 日高點 1,220 元迄今回跌逾 75%，網友崩潰喊「買進國巨、公園相聚」。MLCC 需求疲軟、庫存去化緩慢、車用/工業訂單可見度低，基本面改善時點未明。</p>
+    <div class="observe"><b>🔭 後續觀察</b> MLCC 庫存去化進度、車用/工業/伺服器需求復甦跡象、股價技術面長期支撐位、法人買超回補訊號。</div>
+  </article>
+
+  <article>
+    <h3>台積電創逾 7 個月新低 散戶搶進零股交易衝 241 億<span class="time">14:36</span></h3>
+    <p>台積電股價創下逾 7 個月新低，但散戶透過零股交易搶進，單日零股成交金額衝上 241 億元。外資持續減碼、投信賣超，散戶逆勢撿便宜貨現象明顯。台積電基本面長期向好，短期受 AI 晶片需求消化、CoWoS 產能擴充時程影響。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 外資持股比重變化、2nm/CoWoS 產能釋出時程、AI 晶片訂單可見度、散戶零股買盤持續性。</div>
+  </article>
+
+  <article>
+    <h3>4 檔 2 倍槓桿 ETF 跌幅 13% 起跳 高槓桿工具風險凸顯<span class="time">16:23</span></h3>
+    <p>台股暴跌導致 4 檔 2 倍槓桿型 ETF（如 00878、00881 等）單日跌幅均超過 13%，淨值蒸發驚人。高槓桿工具在單邊下跌行情中放大虧損，投資人需審慎評估風險承受度。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 槓桿 ETF 規模縮減幅度、投信發行策略調整、散戶使用槓桿工具行為改變、盈餘分配與淨值修復機制。</div>
+  </article>
+
+  <article>
+    <h3>才透過基金進場 Juice Boy 遇上台股崩盤 慘賠代價曝光<span class="time">17:15</span></h3>
+    <p>網紅 Juice Boy 才透過基金進場台股，即遇上本輪崩盤，慘賠代價曝光引發討論。散戶追高殺低、缺乏停損紀律、濫用槓桿是典型虧損模式。謝欣穎、高爾宣等藝人也被爆料慘賠。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 散戶投資行為調查、金融教育推廣成效、適當性原則執行力度、基金銷售端風險揭露完整度。</div>
+  </article>
+
+  <article>
+    <h3>台股 2 天狂殺 4,161 點 外資大舉押寶「這檔」 狂買 10.09 萬張<span class="time">16:53</span></h3>
+    <p>台股 2 天狂殺 4,161 點，但外資在特定個股（推測為 AI 供應鏈核心股）大舉買超 10.09 萬張，呈現「賣指數、買個股」的選股策略。顯示外資對基本面優質標的仍具信心，但整體風險厭惡主導大盤。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 外資買超標的具體名單、後續持股變化、該類股能否領漲反彈、基本面驗證時程。</div>
+  </article>
+</section>
+
+<section id="show">
+  <div class="sec-head"><i></i><h2>影劇娛樂</h2></div>
+  <p class="sec-note">鄧紫棋祕婚巡演收官、胡瓜重啟頻道破 16 萬訂閱、金鐘獎季效應持續發酵。</p>
+
+  <article>
+    <h3>巡演完成爆美國祕婚 鄧紫棋親揪「重新面對人生」<span class="time">17:00</span></h3>
+    <p>鄧紫棋巡演收官，親自證實在美國祕婚，並揪感「重新面對人生」。演唱會現場淚灑舞台，粉絲送上祝福。婚訊曝光引發熱議，展現藝人隱私保護與公眾人物光環的張力。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 婚後事業規劃、新專輯/巡演時程、品牌代言續約動向、粉絲經濟模式轉型。</div>
+  </article>
+
+  <article>
+    <h3>胡瓜丟 60 萬 YT 頻道 另起爐灶「一天衝破 16 萬訂閱」網力挺<span class="time">16:57</span></h3>
+    <p>胡瓜原擁有 60 萬訂閱的 YouTube 頻道遭公司收回，另起爐灶開新頻道，上線一天即衝破 16 萬訂閱，網友大力支持。資深藝人轉型數位創作者，展現個人品牌價值不受平台綁架。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 新頻道營收模型、跨平台佈局（TikTok、IG、Podcast）、廣告主合作意願、銀髮族群數位經濟紅利。</div>
+  </article>
+
+  <article>
+    <h3>BTS 有多放鬆 柾國 Jimin 大剌剌內用高雄名店 j-hope 爽吃蛋餅紅茶<span class="time">17:02</span></h3>
+    <p>BTS 成員柾國、Jimin 現身高雄知名餐廳大剌剌內用，j-hope 吃蛋餅紅茶畫面曝光。韓團來台私人行程引發粉絲朝聖，帶動觀光消費熱潮。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 韓流觀光經濟效益量化、台灣觀光局行銷策略調整、藝人私人行程隱私保護與商業利用平衡。</div>
+  </article>
+
+  <article>
+    <h3>日本球迷 18 度飛桃園 從棒球迷變身農遊鐵粉<span class="time">16:56</span></h3>
+    <p>日本棒球迷為觀賽飛抵桃園，意外愛上台灣農村遊憩體驗，轉型為「農遊鐵粉」並多次返台。體育觀光帶動農村再生，展現跨域觀光串聯潛力。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 體育觀光政策補助、農村民宿/體驗產品開發、國際行銷通路拓展、重複造訪率提升策略。</div>
+  </article>
+
+  <article>
+    <h3>A-Lin 最愛這款耳機配色 天后寵粉送福利 親筆簽名款將開抽<span class="time">17:08</span></h3>
+    <p>A-Lin 分享最愛耳機配色並寵粉送福利，親筆簽名款即將開獎抽獎。藝人跨足周邊商品設計、粉絲經濟深耕，展現 IP 授權商業化新模式。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 藝人周邊商品銷售規模、IP 授權收益占比、粉絲社群營運轉化率、跨界聯名商機。</div>
+  </article>
+
+  <article>
+    <h3>曾創 1,200 萬人收視神話 《園藝大改造》湯米華許病逝享壽 69 歲<span class="time">17:08</span></h3>
+    <p>英國園藝節目《園藝大改造》主持人湯米·華許病逝，享壽 69 歲。節目曾創下 1,200 萬人收視神話，影響幾代園藝愛好者。經典生活類節目跨時代影響力持續。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 園藝/生活類節目版權引進、本土化改編潛力、銀髮族群媒體消費習慣、怀旧經濟商機。</div>
+  </article>
+</section>
+
+<section id="mgmt">
+  <div class="sec-head"><i></i><h2>管理趨勢（EMBA 觀察）</h2></div>
+  <p class="sec-note">資安人才培訓規模化、中小企業防護韌性建構、AI 治理與氣候承諾的張力。</p>
+
+  <article>
+    <h3>數發部：強化資安自主能量 今年累計培訓逾 3,900 名資安人才<span class="time">16:21</span></h3>
+    <p>數位發展部推動資安人才培訓計畫，今年累計培訓逾 3,900 名資安人才，強化國家資安自主防護能量。針對中小企業資源不足痛點，成立大專校院資安健檢團，提供免費健檢與改善建議，建構產業整體防護韌性。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 資安人才供給缺口縮減度、中小企業資安成熟度提升指標、資安產業輸出創匯潛力、公私部門資安預算成長率。</div>
+  </article>
+
+  <article>
+    <h3>數發部推大專校院資安健檢團 強化中小企業防護韌性<span class="time">13:35</span></h3>
+    <p>延續資安人才培訓，數發部結合大專校院資源組成「資安健檢團」，主動出擊協助中小企業進行資安健檢、弱點掃描、修補建議。解決中小企業「不敢投、不會投、不想投」資安的三大困境。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 健檢覆蓋率與改善率追蹤、資安保險搭配機制、供應鏈資安等級認證推廣、資安事件通報與聯合防禦機制。</div>
+  </article>
+
+  <article>
+    <h3>AI 熱潮衝擊企業氣候承諾 永續治理面臨雙重壓力測試<span class="time">11:06</span></h3>
+    <p>Meta 因 AI 基建擴張導致碳排暴增，重新評估 2030 淨零目標，引發企業永續治理核心議題：技術創新與氣候承諾的張力如何管理？董事會需在 AI 競爭優勢與 ESG 承諾間取得平衡，永續報告揭露品質受考驗。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 國際永續準則（ISSB/ESRS）對 AI 碳排揭露要求、台灣永續發展行動方案修訂、企業內部碳定價機制導入、綠電採購與 AI 用電協調機制。</div>
+  </article>
+
+  <article>
+    <h3>南山產物獲金管會公平待客評核前 25% 產險業唯一連 5 年獲肯定<span class="time">17:17</span></h3>
+    <p>南山產物險連續 5 年獲金管會「公平待客」評核前 25%，產險業唯一。展現企業治理與消費者保護長期經營成果，為金融業樹立標竿。公平待客非單一專案，需納入組織文化與 KPI。</p>
+    <div class="observe"><b>🔭 後續觀察</b> 金管會評核指標細項變化、各壽險/產險業改善進度、消費者申訴處理時效與滿意度、ESG 評級機構對公平待客權重調整。</div>
+  </article>
+
+  <article>
+    <h3>中華電盼協調 28GHz 頻譜 推動低軌衛星數位韌性建設<span class="time">17:21</span></h3>
+    <p>中華電信積極爭取 28GHz 頻譜以推動與 AWS 低軌衛星合作，建構國家數位韌性關鍵基礎建設。頻譜釋出涉及監管協調、產業利益平衡、國家安全考量，屬跨部會治理課題。</p>
+    <div class="observe"><b>🔭 後續觀察</b> NCC 頻譜釋出時程與機制、低軌衛星商業模式驗證、國家通訊韌性指標建立、國際頻譜協調案例參考。</div>
+  </article>
+</section>
+
+<footer>
+  資料來源：自由時報、經濟日報、中央社、Google 新聞彙整<br>
+  生成時間 2026/11/20　｜　七區塊深度版
+</footer>
+
+</div>
+</body>
+</html>
